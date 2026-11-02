@@ -20,6 +20,9 @@ for a in "${@:2}"; do
   else VOZ="$(cd "$(dirname "$a")" && pwd)/$(basename "$a")"; fi
 done
 PY="$RAIZ/voces/.venv/bin/python"
+# each account has its own sound script (its scene engine is linked as comun/ in the video folder)
+CUENTA="$(basename "$(dirname "$VIDEO")")"
+if [ "$CUENTA" = "lascosaspordentro" ]; then SONIDO="sonido_pordentro.py"; else SONIDO="sonido_contador.py"; fi
 
 if [ -n "$TEXTO" ]; then
   echo "1-2/6 Modo texto: tiempos de cada frase, sin voz"
@@ -46,7 +49,7 @@ echo "3/6 Montando el HTML"
 python3 "$RAIZ/herramientas/montar.py" "$VIDEO/index.html" "$VIDEO/vozdata.json" --audio
 
 echo "4/6 Efectos, música y mezcla"
-"$PY" "$RAIZ/herramientas/sonido_contador.py" "$VIDEO" "$VOZ"
+"$PY" "$RAIZ/herramientas/$SONIDO" "$VIDEO" "$VOZ"
 python3 "$RAIZ/herramientas/volumen.py" "$VIDEO/assets/mezcla.wav" "$([ -n "$TEXTO" ] && echo -20 || echo -14)"
 
 echo "5/6 Revisión"

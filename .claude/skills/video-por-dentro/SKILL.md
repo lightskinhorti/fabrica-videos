@@ -8,7 +8,9 @@ description: Hacer vídeos verticales cortos de "cómo funciona por dentro" con 
 Esta skill hace vídeos verticales que explican cómo funciona por dentro un objeto de cada día (tarjeta, móvil, portátil, coche…). Cada vídeo es una página web con una escena 3D que HyperFrames graba fotograma a fotograma. La voz y los efectos de sonido se generan con código. No hay grabación ni edición a mano.
 
 El ejemplo completo que funciona es la carpeta `fabrica-prueba` de Javier:
-- `render/index.html`: la plantilla de la tarjeta.
+- `herramientas/pordentro/`: el motor común (desde el 2 de noviembre). Trae la mesa, las luces, el dedo, la cámara por momentos de la voz, los subtítulos con la palabra seleccionada, las etiquetas y las notas. Cada vídeo vive en `videos/lascosaspordentro/<vídeo>/` y enlaza el motor como `comun`. El primero, y el ejemplo a copiar, es `01-tarjeta`.
+- Cada vídeo se hace con `bash herramientas/producir.sh videos/lascosaspordentro/<vídeo>`: voz, tiempos, mezcla (`sonido_pordentro.py`, con los "sonidos" de la escena), render, publicación y control.
+- `render/index.html`: la prueba original de la tarjeta, de 21 s. Ya no se usa para vídeos nuevos.
 - `voces/voz_gemini.py`: la voz.
 - `exports/`: todo lo que se genera.
 

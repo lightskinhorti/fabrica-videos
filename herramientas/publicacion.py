@@ -25,7 +25,10 @@ guion = json.load(open(os.path.join(carpeta, "guion.json"), encoding="utf-8"))
 pub = guion.get("publicacion", {})
 
 # hashtags shared by every video of the account, then the video's own
-COMUNES = {"elcontadorloco": ["#quepasariasi", "#curiosidades", "#datoscuriosos", "#parati"]}
+COMUNES = {
+    "elcontadorloco": ["#quepasariasi", "#curiosidades", "#datoscuriosos", "#parati"],
+    "lascosaspordentro": ["#comofunciona", "#tecnologia", "#curiosidades", "#parati"],
+}
 hashtags = COMUNES.get(cuenta, ["#curiosidades", "#parati"]) + [h for h in pub.get("hashtags", []) if h not in COMUNES.get(cuenta, [])]
 
 if "descripcion" in pub:
@@ -37,7 +40,14 @@ else:
 texto_mode = os.path.basename(mp4).endswith("-texto.mp4")
 dur = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", mp4], capture_output=True, text=True).stdout)
 portada = mp4[: -len(".mp4")] + "-portada.png"
-subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", "1.0", "-i", mp4, "-frames:v", "1", portada], check=True)
+# "portada_en": seconds, or a word of the voice (the frame 0.35 s after it starts: its caption is selected
+# and the next group has not replaced it yet)
+en = pub.get("portada_en", 1.0)
+if isinstance(en, str):
+    voz = json.load(open(os.path.join(carpeta, "vozdata.json"), encoding="utf-8"))
+    quita = lambda s: re.sub(r"\W", "", s.lower())
+    en = next(w["s"] + 0.35 for l in voz["lines"] for w in l["words"] if quita(w["w"]).startswith(quita(en)))
+subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{en:.2f}", "-i", mp4, "-frames:v", "1", portada], check=True)
 raiz = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(carpeta))))
 rel = lambda p: os.path.relpath(os.path.abspath(p), raiz)
 
@@ -45,7 +55,7 @@ texto = f"""# Publicación: {guion['titulo']}
 
 - **Cuenta:** @{cuenta} en TikTok (y en Instagram cuando toque)
 - **Vídeo:** `{rel(mp4)}` ({f'{dur:.1f}'.replace('.', ',')} s)
-- **Portada:** `{rel(portada)}` (el segundo 1, con la pregunta en grande)
+- **Portada:** `{rel(portada)}` (el segundo {f'{en:.1f}'.replace('.', ',')}, con el gancho en pantalla)
 - **Hora:** 18:00, 20:00 o 22:00, la franja libre de ese día
 
 ## Descripción (copiar y pegar)
@@ -57,7 +67,7 @@ texto = f"""# Publicación: {guion['titulo']}
 ## Al subirlo
 
 - [ ] Activar "Contenido generado con IA" (en Más opciones). Siempre, aunque no parezca real.
-- [ ] Portada: el primer segundo, con la pregunta.
+- [ ] Portada: el fotograma del gancho (el de la imagen de portada).
 - [ ] Comprobar que dura más de 1 minuto.
 - [ ] Verlo entero una vez antes de programarlo.
 """

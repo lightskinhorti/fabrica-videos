@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <script type="importmap">
+      { "imports": { "three": "./lib/three.module.js", "three/addons/": "./lib/addons/" } }
+    </script>
+    <link rel="stylesheet" href="comun/pordentro.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="69.9" data-width="1080" data-height="1920" data-fps="30">
+      <canvas id="gl" class="clip" data-start="0" data-duration="69.9" data-track-index="0" width="1080" height="1920"></canvas>
+      <div id="shade" class="clip" data-start="0" data-duration="69.9" data-track-index="1"></div>
+      <svg id="leaders" class="clip" data-start="0" data-duration="69.9" data-track-index="2" width="1080" height="1920" data-layout-allow-overlap></svg>
+      <div id="labels" class="clip" data-start="0" data-duration="69.9" data-track-index="3" data-layout-allow-overlap></div>
+      <div id="note" class="clip" data-start="0" data-duration="69.9" data-track-index="4"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="69.9"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="69.9" data-track-index="5" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 68.68, "lines": [{"id": "l1", "s": 0.17, "e": 2.19, "words": [{"w": "Tu", "s": 0.17, "e": 0.23, "key": false}, {"w": "tarjeta", "s": 0.23, "e": 0.77, "key": false}, {"w": "no", "s": 0.77, "e": 0.79, "key": false}, {"w": "tiene", "s": 0.97, "e": 1.37, "key": false}, {"w": "batería.", "s": 1.37, "e": 2.19, "key": true}]}, {"id": "l2", "s": 2.19, "e": 5.0, "words": [{"w": "Entonces,", "s": 2.19, "e": 2.862, "key": false}, {"w": "¿de", "s": 2.862, "e": 3.03, "key": false}, {"w": "dónde", "s": 3.03, "e": 3.35, "key": false}, {"w": "saca", "s": 3.35, "e": 3.58, "key": false}, {"w": "la", "s": 3.61, "e": 3.73, "key": false}, {"w": "energía", "s": 3.73, "e": 4.18, "key": true}, {"w": "para", "s": 4.18, "e": 4.28, "key": false}, {"w": "pagar?", "s": 4.44, "e": 5.0, "key": false}]}, {"id": "l3", "s": 5, "e": 11.08, "words": [{"w": "Vamos", "s": 5, "e": 5.11, "key": false}, {"w": "a", "s": 5.13, "e": 5.2, "key": false}, {"w": "abrirla.", "s": 5.35, "e": 6.12, "key": false}, {"w": "Dentro", "s": 6.12, "e": 6.58, "key": false}, {"w": "hay", "s": 6.58, "e": 6.8, "key": false}, {"w": "un", "s": 6.8, "e": 6.96, "key": false}, {"w": "cable", "s": 6.96, "e": 7.35, "key": false}, {"w": "de", "s": 7.39, "e": 7.48, "key": false}, {"w": "cobre", "s": 7.5, "e": 7.87, "key": true}, {"w": "finísimo", "s": 7.91, "e": 8.56, "key": false}, {"w": "que", "s": 8.56, "e": 8.7, "key": false}, {"w": "da", "s": 8.73, "e": 8.86, "key": false}, {"w": "varias", "s": 8.86, "e": 9.3, "key": false}, {"w": "vueltas", "s": 9.3, "e": 9.8, "key": false}, {"w": "por", "s": 9.8, "e": 10.06, "key": false}, {"w": "todo", "s": 10.06, "e": 10.31, "key": false}, {"w": "el", "s": 10.31, "e": 10.45, "key": false}, {"w": "borde.", "s": 10.45, "e": 11.08, "key": false}]}, {"id": "l4", "s": 11.08, "e": 16.4, "words": [{"w": "Es", "s": 11.08, "e": 11.295, "key": false}, {"w": "una", "s": 11.295, "e": 11.51, "key": false}, {"w": "antena,", "s": 11.51, "e": 12.01, "key": false}, {"w": "y", "s": 12.01, "e": 12.07, "key": false}, {"w": "sus", "s": 12.07, "e": 12.27, "key": false}, {"w": "dos", "s": 12.27, "e": 12.47, "key": false}, {"w": "puntas", "s": 12.47, "e": 12.85, "key": false}, {"w": "acaban", "s": 12.92, "e": 13.19, "key": false}, {"w": "en", "s": 13.19, "e": 13.44, "key": false}, {"w": "el", "s": 13.44, "e": 13.52, "key": false}, {"w": "chip,", "s": 13.55, "e": 13.86, "key": true}, {"w": "justo", "s": 13.95, "e": 14.27, "key": false}, {"w": "debajo", "s": 14.27, "e": 14.67, "key": false}, {"w": "de", "s": 14.67, "e": 14.8, "key": false}, {"w": "los", "s": 14.8, "e": 14.91, "key": false}, {"w": "contactos", "s": 15, "e": 15.54, "key": false}, {"w": "dorados.", "s": 15.61, "e": 16.4, "key": false}]}, {"id": "l5", "s": 16.63, "e": 23.46, "words": [{"w": "Ahora,", "s": 16.63, "e": 16.72, "key": false}, {"w": "el", "s": 16.76, "e": 16.83, "key": false}, {"w": "datáfono.", "s": 16.84, "e": 17.53, "key": false}, {"w": "Por", "s": 17.53, "e": 17.72, "key": false}, {"w": "dentro", "s": 17.72, "e": 18.08, "key": false}, {"w": "también", "s": 18.08, "e": 18.31, "key": false}, {"w": "tiene", "s": 18.56, "e": 18.86, "key": false}, {"w": "una", "s": 18.86, "e": 18.98, "key": false}, {"w": "antena,", "s": 19.07, "e": 19.55, "key": false}, {"w": "y", "s": 19.55, "e": 19.58, "key": false}, {"w": "cuando", "s": 19.61, "e": 19.98, "key": false}, {"w": "marcan", "s": 20.01, "e": 20.35, "key": false}, {"w": "el", "s": 20.37, "e": 20.49, "key": false}, {"w": "importe,", "s": 20.49, "e": 20.93, "key": false}, {"w": "crea", "s": 20.93, "e": 21.28, "key": false}, {"w": "un", "s": 21.28, "e": 21.51, "key": false}, {"w": "campo", "s": 21.51, "e": 21.78, "key": false}, {"w": "magnético", "s": 21.82, "e": 22.49, "key": false}, {"w": "invisible.", "s": 22.56, "e": 23.46, "key": true}]}, {"id": "l6", "s": 23.46, "e": 28.24, "words": [{"w": "Ese", "s": 23.46, "e": 23.69, "key": false}, {"w": "campo", "s": 23.69, "e": 24.08, "key": false}, {"w": "va", "s": 24.08, "e": 24.23, "key": false}, {"w": "y", "s": 24.23, "e": 24.31, "key": false}, {"w": "viene", "s": 24.31, "e": 24.7, "key": false}, {"w": "13", "s": 24.7, "e": 25.13, "key": false}, {"w": "millones", "s": 25.19, "e": 25.56, "key": true}, {"w": "y", "s": 25.77, "e": 25.87, "key": false}, {"w": "medio", "s": 26.22, "e": 26.27, "key": false}, {"w": "de", "s": 26.27, "e": 26.52, "key": false}, {"w": "veces", "s": 26.52, "e": 26.8, "key": false}, {"w": "por", "s": 26.8, "e": 27.03, "key": false}, {"w": "segundo.", "s": 27.48, "e": 28.24, "key": false}]}, {"id": "l7", "s": 28.25, "e": 34.12, "words": [{"w": "Al", "s": 28.25, "e": 28.36, "key": false}, {"w": "acercar", "s": 28.47, "e": 28.74, "key": false}, {"w": "la", "s": 28.78, "e": 28.84, "key": false}, {"w": "tarjeta,", "s": 28.91, "e": 29.44, "key": false}, {"w": "ese", "s": 29.44, "e": 29.62, "key": false}, {"w": "campo", "s": 29.62, "e": 29.92, "key": false}, {"w": "atraviesa", "s": 29.92, "e": 30.47, "key": false}, {"w": "las", "s": 30.51, "e": 30.66, "key": false}, {"w": "vueltas", "s": 30.66, "e": 31.08, "key": false}, {"w": "de", "s": 31.08, "e": 31.2, "key": false}, {"w": "cobre", "s": 31.2, "e": 31.5, "key": false}, {"w": "y", "s": 31.5, "e": 31.56, "key": false}, {"w": "crea", "s": 31.56, "e": 31.8, "key": false}, {"w": "en", "s": 31.8, "e": 31.87, "key": false}, {"w": "ellas", "s": 31.96, "e": 32.23, "key": false}, {"w": "una", "s": 32.23, "e": 32.5, "key": false}, {"w": "pequeña", "s": 32.81, "e": 33.14, "key": false}, {"w": "corriente.", "s": 33.14, "e": 34.12, "key": true}]}, {"id": "l8", "s": 34.12, "e": 38.13, "words": [{"w": "Esa", "s": 34.12, "e": 34.35, "key": false}, {"w": "corriente", "s": 34.36, "e": 35.08, "key": false}, {"w": "enciende", "s": 35.13, "e": 35.75, "key": true}, {"w": "el", "s": 35.76, "e": 35.92, "key": false}, {"w": "chip.", "s": 35.92, "e": 36.41, "key": false}, {"w": "Sin", "s": 36.41, "e": 36.61, "key": false}, {"w": "pilas", "s": 36.66, "e": 36.92, "key": false}, {"w": "y", "s": 37.06, "e": 37.14, "key": false}, {"w": "sin", "s": 37.16, "e": 37.4, "key": false}, {"w": "cables.", "s": 37.52, "e": 38.13, "key": false}]}, {"id": "l9", "s": 38.22, "e": 47.52, "words": [{"w": "Pero", "s": 38.22, "e": 38.39, "key": false}, {"w": "el", "s": 38.39, "e": 38.47, "key": false}, {"w": "chip", "s": 38.47, "e": 38.61, "key": false}, {"w": "no", "s": 38.75, "e": 38.76, "key": false}, {"w": "tiene", "s": 38.87, "e": 39.1, "key": false}, {"w": "fuerza", "s": 39.1, "e": 39.43, "key": false}, {"w": "para", "s": 39.61, "e": 39.77, "key": false}, {"w": "emitir", "s": 39.77, "e": 40.17, "key": false}, {"w": "nada.", "s": 40.17, "e": 40.55, "key": false}, {"w": "Así", "s": 40.55, "e": 40.8, "key": false}, {"w": "que", "s": 40.8, "e": 40.97, "key": false}, {"w": "contesta", "s": 40.97, "e": 41.5, "key": false}, {"w": "gastando", "s": 41.5, "e": 42.03, "key": false}, {"w": "a", "s": 42.03, "e": 42.09, "key": false}, {"w": "ratos", "s": 42.09, "e": 42.42, "key": false}, {"w": "un", "s": 42.42, "e": 42.49, "key": false}, {"w": "poco", "s": 42.55, "e": 42.82, "key": false}, {"w": "más", "s": 42.82, "e": 42.92, "key": false}, {"w": "de", "s": 42.92, "e": 43.47, "key": false}, {"w": "energía,", "s": 43.47, "e": 43.84, "key": false}, {"w": "y", "s": 43.92, "e": 43.97, "key": false}, {"w": "el", "s": 43.97, "e": 44.04, "key": false}, {"w": "datáfono", "s": 44.21, "e": 44.69, "key": false}, {"w": "lee", "s": 44.69, "e": 44.91, "key": false}, {"w": "esos", "s": 44.91, "e": 45.12, "key": false}, {"w": "cambios", "s": 45.4, "e": 45.71, "key": false}, {"w": "como", "s": 45.71, "e": 46.0, "key": false}, {"w": "si", "s": 46, "e": 46.13, "key": false}, {"w": "fueran", "s": 46.15, "e": 46.57, "key": false}, {"w": "código", "s": 46.57, "e": 47.01, "key": false}, {"w": "morse.", "s": 47.01, "e": 47.52, "key": true}]}, {"id": "l10", "s": 47.7, "e": 53.5, "words": [{"w": "En", "s": 47.7, "e": 47.84, "key": false}, {"w": "cada", "s": 47.84, "e": 48.15, "key": false}, {"w": "pago,", "s": 48.15, "e": 48.35, "key": false}, {"w": "el", "s": 48.37, "e": 48.48, "key": false}, {"w": "chip", "s": 48.59, "e": 48.73, "key": false}, {"w": "crea", "s": 48.73, "e": 48.96, "key": false}, {"w": "un", "s": 49.03, "e": 49.1, "key": false}, {"w": "código", "s": 49.1, "e": 49.48, "key": true}, {"w": "nuevo", "s": 49.48, "e": 49.79, "key": false}, {"w": "que", "s": 49.79, "e": 49.93, "key": false}, {"w": "solo", "s": 49.99, "e": 50.22, "key": false}, {"w": "vale", "s": 50.22, "e": 50.27, "key": false}, {"w": "para", "s": 50.52, "e": 50.72, "key": false}, {"w": "ese", "s": 50.74, "e": 50.91, "key": false}, {"w": "pago.", "s": 50.92, "e": 51.34, "key": false}, {"w": "Si", "s": 51.34, "e": 51.46, "key": false}, {"w": "alguien", "s": 51.46, "e": 51.9, "key": false}, {"w": "lo", "s": 51.9, "e": 51.99, "key": false}, {"w": "copia,", "s": 52.08, "e": 52.45, "key": false}, {"w": "ya", "s": 52.45, "e": 52.57, "key": false}, {"w": "no", "s": 52.57, "e": 52.64, "key": false}, {"w": "le", "s": 52.64, "e": 53.03, "key": false}, {"w": "sirve.", "s": 53.03, "e": 53.5, "key": false}]}, {"id": "l11", "s": 53.5, "e": 56.06, "words": [{"w": "Y", "s": 53.5, "e": 53.57, "key": false}, {"w": "todo", "s": 53.57, "e": 53.85, "key": false}, {"w": "esto", "s": 53.85, "e": 54.13, "key": false}, {"w": "pasa", "s": 54.13, "e": 54.37, "key": false}, {"w": "en", "s": 54.44, "e": 54.54, "key": false}, {"w": "menos", "s": 54.54, "e": 54.71, "key": false}, {"w": "de", "s": 54.96, "e": 55.04, "key": false}, {"w": "medio", "s": 55.07, "e": 55.38, "key": false}, {"w": "segundo.", "s": 55.47, "e": 56.06, "key": true}]}, {"id": "l12", "s": 56.11, "e": 61.78, "words": [{"w": "Por", "s": 56.11, "e": 56.3, "key": false}, {"w": "eso", "s": 56.3, "e": 56.43, "key": false}, {"w": "hay", "s": 56.52, "e": 56.72, "key": false}, {"w": "que", "s": 56.72, "e": 56.93, "key": false}, {"w": "acercarla", "s": 56.93, "e": 57.56, "key": false}, {"w": "tanto:", "s": 57.74, "e": 58.17, "key": false}, {"w": "el", "s": 58.31, "e": 58.32, "key": false}, {"w": "datáfono", "s": 58.43, "e": 58.8, "key": false}, {"w": "está", "s": 58.87, "e": 58.99, "key": false}, {"w": "hecho", "s": 59.17, "e": 59.41, "key": false}, {"w": "para", "s": 59.5, "e": 59.69, "key": false}, {"w": "leerla", "s": 59.69, "e": 60.08, "key": false}, {"w": "a", "s": 60.08, "e": 60.11, "key": false}, {"w": "menos", "s": 60.36, "e": 60.47, "key": false}, {"w": "de", "s": 60.47, "e": 60.6, "key": false}, {"w": "4", "s": 60.6, "e": 60.76, "key": false}, {"w": "centímetros.", "s": 60.87, "e": 61.78, "key": true}]}, {"id": "l13", "s": 61.81, "e": 64.91, "words": [{"w": "Y", "s": 61.81, "e": 61.87, "key": false}, {"w": "en", "s": 61.87, "e": 61.99, "key": false}, {"w": "España,", "s": 61.99, "e": 62.46, "key": false}, {"w": "si", "s": 62.46, "e": 62.67, "key": false}, {"w": "pagas", "s": 62.67, "e": 63.0, "key": false}, {"w": "más", "s": 63, "e": 63.23, "key": false}, {"w": "de", "s": 63.23, "e": 63.3, "key": false}, {"w": "50", "s": 63.3, "e": 63.6, "key": false}, {"w": "euros,", "s": 63.67, "e": 64.1, "key": false}, {"w": "te", "s": 64.1, "e": 64.2, "key": false}, {"w": "pedirá", "s": 64.29, "e": 64.57, "key": false}, {"w": "el", "s": 64.64, "e": 64.68, "key": false}, {"w": "PIN.", "s": 64.71, "e": 64.91, "key": true}]}, {"id": "l14", "s": 65.16, "e": 68.28, "words": [{"w": "Mándaselo", "s": 65.16, "e": 65.58, "key": false}, {"w": "a", "s": 65.67, "e": 65.68, "key": false}, {"w": "alguien", "s": 65.68, "e": 66.11, "key": false}, {"w": "que", "s": 66.11, "e": 66.26, "key": false}, {"w": "todavía", "s": 66.31, "e": 66.63, "key": false}, {"w": "cree", "s": 66.72, "e": 66.96, "key": false}, {"w": "que", "s": 66.97, "e": 67.15, "key": false}, {"w": "la", "s": 67.15, "e": 67.26, "key": false}, {"w": "tarjeta", "s": 67.26, "e": 67.82, "key": false}, {"w": "lleva", "s": 67.82, "e": 68.05, "key": false}, {"w": "pila.", "s": 68.05, "e": 68.28, "key": true}]}]}</script>
+    <script id="escena" type="application/json">
+      {
+        "momentos": [
+          { "id": "TAP", "clave": "tarjeta", "fin": true },
+          { "id": "SLIDE0", "clave": "entonces" },
+          { "id": "SLIDE1", "clave": "pagar", "fin": true },
+          { "id": "ABRIR", "clave": "abrirla" },
+          { "id": "COBRE", "clave": "cobre" },
+          { "id": "VUELTAS", "clave": "vueltas" },
+          { "id": "ANTENA", "clave": "antena" },
+          { "id": "CHIP", "clave": "chip" },
+          { "id": "DORADOS", "clave": "dorados" },
+          { "id": "DATAFONO", "clave": "datafono" },
+          { "id": "ANTENA2", "clave": "antena" },
+          { "id": "IMPORTE", "clave": "importe" },
+          { "id": "CAMPO", "clave": "campo" },
+          { "id": "VECES", "clave": "viene", "fin": true },
+          { "id": "ACERCAR", "clave": "acercar" },
+          { "id": "CORRIENTE", "clave": "corriente" },
+          { "id": "ENCIENDE", "clave": "enciende" },
+          { "id": "FUERZA", "clave": "fuerza" },
+          { "id": "CONTESTA", "clave": "contesta" },
+          { "id": "MORSE", "clave": "morse" },
+          { "id": "CODIGO", "clave": "codigo" },
+          { "id": "COPIA", "clave": "copia" },
+          { "id": "SEGUNDO", "clave": "segundo" },
+          { "id": "CERCA", "clave": "acercarla" },
+          { "id": "LEERLA", "clave": "leerla" },
+          { "id": "CENTIMETROS", "clave": "centimetros" },
+          { "id": "ESPANA", "clave": "espana" },
+          { "id": "PIN", "clave": "pin" },
+          { "id": "MANDA", "clave": "mandaselo" }
+        ],
+        "etiquetas": [
+          { "texto": "ANTENA DE COBRE", "pieza": "antena", "desde": "COBRE", "hasta": "CHIP", "dy": -230 },
+          { "texto": "CHIP", "pieza": "chip", "desde": "CHIP", "hasta": "DATAFONO", "dx": 60, "dy": 200 },
+          { "texto": "CONTACTOS DORADOS", "pieza": "contactos", "desde": "DORADOS", "hasta": "DATAFONO", "dx": 60, "dy": -210 },
+          { "texto": "ANTENA DEL DATÁFONO", "pieza": "antena2", "desde": "ANTENA2", "hasta": "CAMPO", "dy": -200 },
+          { "texto": "CAMPO MAGNÉTICO", "pieza": "campo", "desde": "CAMPO", "hasta": "VECES", "dy": -160 },
+          { "texto": "13,56 MILLONES DE VECES POR SEGUNDO", "pieza": "campo", "desde": "VECES", "hasta": "ACERCAR", "dx": 40, "dy": -160 },
+          { "texto": "CORRIENTE", "pieza": "antena", "desde": "CORRIENTE", "hasta": "ENCIENDE", "dy": -200 },
+          { "texto": "CHIP ENCENDIDO", "pieza": "chip", "desde": "ENCIENDE", "hasta": "FUERZA", "dy": -200 },
+          { "texto": "CÓDIGO DE UN SOLO USO", "pieza": "codigo", "desde": "CODIGO", "hasta": "COPIA", "dx": 40, "dy": -150 },
+          { "texto": "UNA COPIA NO SIRVE", "pieza": "copia", "desde": "COPIA", "hasta": "SEGUNDO", "dx": 40, "dy": -150 },
+          { "texto": "MENOS DE 0,5 S", "pieza": "lector", "desde": "SEGUNDO", "hasta": "CERCA", "dy": -240 },
+          { "texto": "MENOS DE 4 CM", "pieza": "medida", "desde": "CENTIMETROS", "hasta": "ESPANA", "dx": 90, "dy": -40 }
+        ],
+        "notas": [
+          { "texto": "Ilustración ampliada y simplificada", "desde": "ABRIR" },
+          { "texto": "Campo mostrado en ámbar: en realidad es invisible", "desde": "CAMPO" },
+          { "texto": "Corriente mostrada en ámbar · valores ilustrativos", "desde": "CORRIENTE" },
+          { "texto": "Importes de ejemplo · algunos comercios piden el PIN antes", "desde": "ESPANA" },
+          { "texto": "", "desde": "MANDA" }
+        ],
+        "iconos": { "batería": "bateria", "energía": "rayo", "corriente": "rayo", "magnético": "onda", "pila": "bateria" },
+        "sonidos": [
+          { "tipo": "toque", "en": "TAP" },
+          { "tipo": "desliza", "en": "SLIDE0" },
+          { "tipo": "abre", "en": "ABRIR" },
+          { "tipo": "brillo", "en": "COBRE" },
+          { "tipo": "pop", "en": "CHIP" },
+          { "tipo": "abre", "en": "ANTENA2", "volumen": 0.5 },
+          { "tipo": "zumbido", "desde": "CAMPO", "hasta": "SEGUNDO", "mas": 0.6 },
+          { "tipo": "sube", "en": "VECES", "mas": -0.8 },
+          { "tipo": "desliza", "en": "ACERCAR" },
+          { "tipo": "sube", "en": "CORRIENTE" },
+          { "tipo": "chip", "en": "ENCIENDE" },
+          { "tipo": "morse", "desde": "CONTESTA", "hasta": "CODIGO" },
+          { "tipo": "pop", "en": "CODIGO" },
+          { "tipo": "pagado", "en": "SEGUNDO" },
+          { "tipo": "zumbido", "desde": "CERCA", "hasta": "ESPANA", "volumen": 0.7 },
+          { "tipo": "chip", "en": "CENTIMETROS", "mas": -0.6 },
+          { "tipo": "teclas", "en": "PIN", "mas": 0.35, "n": 4, "cada": 0.4 },
+          { "tipo": "pagado", "en": "PIN", "mas": 2.15 }
+        ]
+      }
+    </script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 69.9 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import * as THREE from "three";
+      import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
+      import { crearPorDentro } from "./comun/pordentro.js";
+
+      const C = crearPorDentro(THREE);
+      const { T, D, scene, v3, UP, lerp, ramp, ventana, hash, rrShape, slab, canvasTex, rrPoint, brillo } = C;
+
+      // ---------- card (1 unit = 1 cm: a bank card is 8.56 x 5.4 cm) ----------
+      const CW = 8.56, CH = 5.4, CR = 0.32, LT = 0.04;
+      const CHIP = { x: -2.55, z: -0.15, w: 1.18, h: 0.92 };
+      const card = new THREE.Group();
+      scene.add(card);
+
+      const cardPrint = canvasTex(1712, 1080, (g, w, h) => {
+        const grd = g.createLinearGradient(0, 0, w, h);
+        grd.addColorStop(0, "#2b2e33"); grd.addColorStop(0.55, "#1d2024"); grd.addColorStop(1, "#15171a");
+        g.fillStyle = grd; g.fillRect(0, 0, w, h);
+        for (let i = 0; i < 900; i++) {
+          g.strokeStyle = `rgba(255,255,255,${0.008 + hash(i) * 0.012})`; g.lineWidth = 1;
+          const y = hash(i + 1) * h * 1.6 - h * 0.3;
+          g.beginPath(); g.moveTo(0, y); g.lineTo(w, y - w * 0.18); g.stroke();
+        }
+        g.fillStyle = "rgba(255,255,255,0.78)"; g.font = "700 64px Inter"; g.fillText("•••• 4821", 110, h - 120);
+        g.strokeStyle = "rgba(255,255,255,0.7)"; g.lineWidth = 9; g.lineCap = "round";
+        const cx = w - 210, cy = h / 2;
+        for (let i = 0; i < 4; i++) { g.beginPath(); g.arc(cx - 40, cy, 34 + i * 30, -0.75, 0.75); g.stroke(); }
+      });
+      cardPrint.tex.repeat.set(1 / CW, 1 / CH);
+      cardPrint.tex.offset.set(0.5, 0.5);
+
+      const topMat = new THREE.MeshPhysicalMaterial({ map: cardPrint.tex, roughness: 0.38, metalness: 0.15, clearcoat: 0.8, clearcoatRoughness: 0.18, transparent: true });
+      const coreMat = new THREE.MeshPhysicalMaterial({ color: 0x5a5650, roughness: 0.6, transparent: true });
+      const botMat = new THREE.MeshPhysicalMaterial({ color: 0x1b1d20, roughness: 0.45, clearcoat: 0.5 });
+      card.add(new THREE.Mesh(slab(rrShape(CW, CH, CR), LT), [botMat, coreMat]));
+      const inlay = new THREE.Mesh(new THREE.ShapeGeometry(rrShape(CW - 0.12, CH - 0.12, CR - 0.06)), new THREE.MeshStandardMaterial({ color: 0x14100d, roughness: 0.8 }));
+      inlay.rotation.x = -Math.PI / 2; inlay.position.y = LT + 0.007; card.add(inlay);
+      const topGroup = new THREE.Group();
+      const top = new THREE.Mesh(slab(rrShape(CW, CH, CR, [[CHIP.x, -CHIP.z, CHIP.w + 0.04, CHIP.h + 0.04, 0.12]]), LT), [topMat, coreMat]);
+      topGroup.add(top); topGroup.position.y = LT; card.add(topGroup);
+
+      // copper antenna: 4 turns spiralling in, its two ends wired to the chip
+      const turns = 4, i0 = 0.3, pitch = 0.085, perTurn = 220;
+      const coilPts = [];
+      for (let k = 0; k <= turns * perTurn; k++) {
+        const u = k / perTurn, inset = i0 + pitch * u;
+        const p = rrPoint(CW - 2 * inset, CH - 2 * inset, Math.max(0.12, CR - inset * 0.4), u);
+        p.y = LT + 0.016; coilPts.push(p);
+      }
+      const outerEnd = coilPts[0].clone(), innerEnd = coilPts[coilPts.length - 1].clone();
+      const pad1 = v3(CHIP.x - 0.42, LT + 0.016, CHIP.z - 0.22), pad2 = v3(CHIP.x - 0.42, LT + 0.016, CHIP.z + 0.22);
+      const coilCurve = new THREE.CatmullRomCurve3(coilPts, false, "centripetal");
+      const copper = new THREE.MeshPhysicalMaterial({ color: 0xc06a32, metalness: 1, roughness: 0.34, emissive: 0xff6a12, emissiveIntensity: 0 });
+      card.add(new THREE.Mesh(new THREE.TubeGeometry(coilCurve, turns * perTurn * 2, 0.018, 8, false), copper));
+      for (const lead of [
+        [outerEnd, v3(outerEnd.x, outerEnd.y, outerEnd.z - 0.2), v3(lerp(outerEnd.x, pad1.x, 0.5), outerEnd.y, pad1.z), pad1],
+        [innerEnd, v3(innerEnd.x + 0.12, innerEnd.y, innerEnd.z + 0.1), v3(lerp(innerEnd.x, pad2.x, 0.5), innerEnd.y, pad2.z), pad2],
+      ]) card.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(lead, false, "centripetal"), 40, 0.018, 8, false), copper));
+
+      // the chip itself (a small black die) under the gold contacts, with two fine wires from the antenna pads
+      const dieMat = new THREE.MeshPhysicalMaterial({ color: 0x15161a, roughness: 0.3, metalness: 0.3, emissive: 0xffa040, emissiveIntensity: 0 });
+      const die = new THREE.Mesh(new THREE.BoxGeometry(0.44, 0.03, 0.44), dieMat);
+      die.position.set(CHIP.x, LT + 0.012, CHIP.z); card.add(die);
+      for (const [pad, sz] of [[pad1, -1], [pad2, 1]]) {
+        const a = pad.clone(), b = v3(CHIP.x - 0.2, LT + 0.028, CHIP.z + sz * 0.12);
+        card.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([a, v3(lerp(a.x, b.x, 0.5), LT + 0.05, lerp(a.z, b.z, 0.5)), b]), 12, 0.008, 6, false), copper));
+      }
+      const gold = new THREE.MeshPhysicalMaterial({ color: 0xd6a84e, metalness: 1, roughness: 0.28, emissive: 0xffa040, emissiveIntensity: 0 });
+      const plateGroup = new THREE.Group(); card.add(plateGroup);
+      const plate = new THREE.Mesh(new RoundedBoxGeometry(CHIP.w, 0.05, CHIP.h, 3, 0.1), gold);
+      plate.position.set(CHIP.x, LT + 0.032, CHIP.z); plateGroup.add(plate);
+      const grooveMat = new THREE.MeshStandardMaterial({ color: 0x5c4320, roughness: 0.6 });
+      for (const [gx, gz, gw, gh] of [[0, 0, 0.03, CHIP.h - 0.12], [-0.3, 0, 0.42, 0.03], [0.3, 0, 0.42, 0.03], [-0.3, -0.24, 0.42, 0.03], [0.3, 0.24, 0.42, 0.03]]) {
+        const gm = new THREE.Mesh(new THREE.BoxGeometry(gw, 0.012, gh), grooveMat);
+        gm.position.set(CHIP.x + gx, LT + 0.058, CHIP.z + gz); plateGroup.add(gm);
+      }
+      const halo = brillo("255,190,110");
+      halo.position.set(CHIP.x, LT + 0.3, CHIP.z); halo.scale.set(1.7, 1.7, 1); card.add(halo);
+
+      // current particles along the coil, and a bright "comet" that traces the turns
+      const NP = 70, dummy = new THREE.Object3D();
+      const sparkMat = new THREE.MeshBasicMaterial({ color: 0xffb060, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false });
+      const sparks = new THREE.InstancedMesh(new THREE.SphereGeometry(0.05, 10, 8), sparkMat, NP); card.add(sparks);
+      const NC = 14;
+      const cometMat = new THREE.MeshBasicMaterial({ color: 0xffc080, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false });
+      const comet = new THREE.InstancedMesh(new THREE.SphereGeometry(0.07, 10, 8), cometMat, NC); card.add(comet);
+
+      C.pieza("antena", card, v3(CW / 2 - i0 - 0.12, LT + 0.04, 0.9));
+      C.pieza("chip", card, v3(CHIP.x, LT + 0.03, CHIP.z));
+      C.pieza("contactos", plateGroup, v3(CHIP.x + 0.4, LT + 0.06, CHIP.z));
+
+      // ---------- payment terminal, with its own antenna under the screen ----------
+      const pos = new THREE.Group(); scene.add(pos);
+      const termMat = new THREE.MeshPhysicalMaterial({ color: 0x1a1b1e, roughness: 0.4, clearcoat: 0.6, clearcoatRoughness: 0.25, transparent: true });
+      const body = new THREE.Mesh(new RoundedBoxGeometry(7.6, 1.6, 15, 4, 0.6), termMat);
+      body.position.y = 0.8; pos.add(body);
+      const bezel = new THREE.Mesh(new RoundedBoxGeometry(6.2, 0.06, 5.0, 3, 0.25), new THREE.MeshPhysicalMaterial({ color: 0x050506, roughness: 0.15, clearcoat: 1 }));
+      bezel.position.set(0, 1.6, -3.7); pos.add(bezel);
+      const scr = canvasTex(1160, 920, () => {});
+      const screen = new THREE.Mesh(new THREE.PlaneGeometry(5.8, 4.6), new THREE.MeshStandardMaterial({ color: 0x000000, emissive: 0xffffff, emissiveMap: scr.tex, emissiveIntensity: 0.85, roughness: 0.2 }));
+      screen.rotation.x = -Math.PI / 2; screen.position.set(0, 1.64, -3.7); pos.add(screen);
+      const keyMat = new THREE.MeshPhysicalMaterial({ color: 0x2b2d31, roughness: 0.5, clearcoat: 0.3 });
+      const keys = new THREE.InstancedMesh(new RoundedBoxGeometry(1.55, 0.22, 0.95, 2, 0.12), keyMat, 12);
+      const keyAt = (r, c) => v3((c - 1) * 2.0, 1.66, 0.9 + r * 1.3);
+      for (let r = 0; r < 4; r++) for (let c = 0; c < 3; c++) {
+        dummy.position.copy(keyAt(r, c)); dummy.rotation.set(0, 0, 0); dummy.scale.set(1, 1, 1); dummy.updateMatrix();
+        keys.setMatrixAt(r * 3 + c, dummy.matrix);
+      }
+      pos.add(keys);
+      const termCopper = new THREE.MeshPhysicalMaterial({ color: 0xc06a32, metalness: 1, roughness: 0.34, emissive: 0xff6a12, emissiveIntensity: 0 });
+      const termPts = [];
+      for (let k = 0; k <= 3 * 200; k++) { const u = k / 200, inset = 0.14 * u; const p = rrPoint(6.9 - 2 * inset, 5.7 - 2 * inset, 0.5, u); p.y = 1.3; p.z += -3.7; termPts.push(p); }
+      pos.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(termPts, false, "centripetal"), 1200, 0.035, 8, false), termCopper));
+
+      pos.position.set(2.6, 0, -2.6); pos.rotation.y = 0.32; pos.updateMatrixWorld();
+      const R = pos.localToWorld(v3(0, 1.64, -3.7));
+      C.pieza("antena2", pos, v3(3.42, 1.3, -2.2));
+      C.pieza("campo", pos, v3(1.2, 4.6, -3.7));
+      C.pieza("lector", pos, v3(1.4, 1.64, -3.7));
+
+      // magnetic field rings rising from the terminal
+      const NR = 7, rings = [], ringMat = [];
+      for (let i = 0; i < NR; i++) {
+        const m = new THREE.MeshBasicMaterial({ color: 0xff9a3c, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false });
+        const ring = new THREE.Mesh(new THREE.TorusGeometry(1, 0.018, 8, 160), m);
+        ring.rotation.x = Math.PI / 2; pos.add(ring); rings.push(ring); ringMat.push(m);
+      }
+
+      // the 4 cm gauge: a vertical bar with two ticks, from the screen up to the card
+      const gaugeMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0, depthWrite: false });
+      const gauge = new THREE.Group(); gauge.position.set(0.3, 1.64, -0.75); pos.add(gauge);
+      const bar = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, 1, 8), gaugeMat); gauge.add(bar);
+      const ticks = [0, 1].map(() => { const m = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.05, 0.05), gaugeMat); gauge.add(m); return m; });
+      C.pieza("medida", gauge, v3(0.2, 2, 0));
+
+      // the one-time code the chip sends, and a useless copy of it
+      const codeTex = canvasTex(640, 160, () => {}), copyTex = canvasTex(640, 160, () => {});
+      function drawCode(tex, color, strike) {
+        const g = tex.g; g.clearRect(0, 0, 640, 160);
+        g.fillStyle = "rgba(12,10,8,0.82)"; g.strokeStyle = color; g.lineWidth = 6;
+        g.beginPath(); g.roundRect(6, 6, 628, 148, 26); g.fill(); g.stroke();
+        g.fillStyle = color; g.font = "700 74px Inter"; g.textAlign = "center"; g.textBaseline = "middle";
+        g.fillText("9F27 4C1A", 320, 84);
+        if (strike) { g.strokeStyle = "#ff5a4a"; g.lineWidth = 10; g.beginPath(); g.moveTo(40, 130); g.lineTo(600, 30); g.stroke(); }
+        tex.tex.needsUpdate = true;
+      }
+      const spriteOf = (tex) => { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex.tex, transparent: true, depthWrite: false, opacity: 0 })); s.scale.set(2.0, 0.5, 1); scene.add(s); return s; };
+      const code = spriteOf(codeTex), copy = spriteOf(copyTex);
+      let codesDrawn = false;
+      C.pieza("codigo", code, v3(0, 0.5, 0));
+      C.pieza("copia", copy, v3(0, 0.5, 0));
+
+      // terminal screen: idle, amount, reading, paid, PIN with dots
+      function drawScreen(state, dots) {
+        const g = scr.g, w = 1160, h = 920;
+        g.fillStyle = "#0b0d10"; g.fillRect(0, 0, w, h); g.textAlign = "center";
+        if (state === "listo") {
+          g.fillStyle = "rgba(255,255,255,0.22)"; g.font = "400 70px Inter"; g.fillText("Listo", w / 2, 480);
+        } else if (state === "importe" || state === "leyendo") {
+          g.fillStyle = "#f4f4f4"; g.font = "700 150px Inter"; g.fillText("12,50 €", w / 2, 360);
+          g.strokeStyle = "#ffae5c"; g.lineWidth = 16; g.lineCap = "round";
+          for (let i = 0; i < 4; i++) { g.beginPath(); g.arc(w / 2 - 60, 600, 40 + i * 38, -0.8, 0.8); g.stroke(); }
+          g.fillStyle = "rgba(255,255,255,0.55)"; g.font = "400 58px Inter";
+          g.fillText(state === "leyendo" ? "Leyendo…" : "Acerque la tarjeta", w / 2, 840);
+        } else if (state === "pagado") {
+          g.fillStyle = "#2fbf71"; g.beginPath(); g.arc(w / 2, 400, 180, 0, Math.PI * 2); g.fill();
+          g.strokeStyle = "#0b0d10"; g.lineWidth = 34; g.lineCap = "round"; g.lineJoin = "round";
+          g.beginPath(); g.moveTo(w / 2 - 80, 405); g.lineTo(w / 2 - 15, 470); g.lineTo(w / 2 + 95, 330); g.stroke();
+          g.fillStyle = "#f4f4f4"; g.font = "700 110px Inter"; g.fillText("Pagado", w / 2, 760);
+        } else if (state === "pin") {
+          g.fillStyle = "#f4f4f4"; g.font = "700 150px Inter"; g.fillText("62,00 €", w / 2, 300);
+          g.fillStyle = "rgba(255,255,255,0.7)"; g.font = "400 62px Inter"; g.fillText("Introduzca el PIN", w / 2, 480);
+          for (let i = 0; i < 4; i++) {
+            g.beginPath(); g.arc(w / 2 + (i - 1.5) * 120, 680, 30, 0, Math.PI * 2);
+            if (i < dots) { g.fillStyle = "#f4f4f4"; g.fill(); } else { g.strokeStyle = "rgba(255,255,255,0.5)"; g.lineWidth = 6; g.stroke(); }
+          }
+        }
+        scr.tex.needsUpdate = true;
+      }
+      let screenKey = "";
+
+      // ---------- finger ----------
+      const F = C.dedo();
+      const PRESS = [[0, 0], [1, 2], [2, 1], [0, 2]].map(([r, c]) => pos.localToWorld(keyAt(r, c).add(v3(0, 0.11, 0))));
+      const tp = PRESS.map((_, i) => T.PIN + 0.35 + i * 0.4);
+
+      // the chip answers by "spending" energy in a pattern: P-A-G-O in morse, 0.09 s per unit
+      const MORSE = ".--. .- --. ---", UNITS = [];
+      for (const ch of MORSE) { if (ch === ".") UNITS.push(1, 0); else if (ch === "-") UNITS.push(1, 1, 1, 0); else UNITS.push(0, 0); }
+      UNITS.push(0, 0, 0, 0);
+      const morse = (t) => { const u = Math.floor((t - T.CONTESTA) / 0.09); return u < 0 ? 0 : UNITS[u % UNITS.length]; };
+
+      // ---------- story ----------
+      const C0 = { p: v3(-2.4, 0, 3.4), yaw: -1.15 };
+      const C1 = { p: v3(-3.2, 0, 4.4), yaw: -0.95 };
+      const C2 = { p: R.clone().add(v3(0, 2.6, 0)), yaw: 0.32 };
+      const CF = { p: v3(-4.4, 0, 3.0), yaw: -0.9 };
+      const AWAY = v3(-5.2, 1.4, -1.6);
+      const chipC1 = C1.p.clone().add(v3(CHIP.x, 0, CHIP.z).applyAxisAngle(UP, -1.45));
+      const dirZ = v3(Math.sin(0.32), 0, Math.cos(0.32));
+      // between the screen and the keypad, so the PIN shot shows both
+      const KM = pos.localToWorld(v3(0, 1.7, -1.2));
+      const camAt = C.camara([
+        { t: 0, p: v3(-0.2, 10.6, 14.2), q: v3(-2.2, 0.2, 2.5) },
+        { t: "SLIDE0", mas: -0.3, p: v3(-0.6, 9.8, 13.0), q: v3(-2.2, 0.2, 2.5) },
+        { t: "SLIDE0", mas: 0.8, p: v3(0.6, 18.8, 18.6), q: v3(-0.6, 0.4, 0.9) },
+        { t: "ABRIR", mas: -0.2, p: v3(0.2, 18.0, 17.8), q: v3(-0.8, 0.4, 1.1) },
+        { t: "ABRIR", mas: 0.5, p: C1.p.clone().add(v3(-0.6, 13.8, 10.6)), q: C1.p.clone().add(v3(0, 0.9, -0.2)) },
+        { t: "CHIP", mas: -0.7, p: C1.p.clone().add(v3(-0.3, 13.1, 9.9)), q: C1.p.clone().add(v3(0, 0.9, -0.2)) },
+        { t: "CHIP", mas: 0.2, p: chipC1.clone().add(v3(-0.4, 6.8, 5.6)), q: chipC1.clone().add(v3(0, 0.4, 0)) },
+        { t: "DATAFONO", mas: -0.3, p: chipC1.clone().add(v3(-0.2, 6.2, 5.0)), q: chipC1.clone().add(v3(0, 0.4, 0)) },
+        { t: "DATAFONO", mas: 0.6, p: R.clone().add(v3(-0.6, 9.5, 12.0)), q: R.clone().add(v3(0, 1.8, 1.0)) },
+        { t: "ACERCAR", mas: -0.3, p: R.clone().add(v3(-1.0, 9.2, 11.2)), q: R.clone().add(v3(0, 1.8, 1.0)) },
+        { t: "ACERCAR", mas: 0.7, p: R.clone().add(v3(-4.6, 12.5, 12.5)), q: R.clone().add(v3(-0.4, 2.2, 0.6)) },
+        { t: "ENCIENDE", mas: -0.3, p: R.clone().add(v3(-4.0, 11.6, 11.4)), q: R.clone().add(v3(-0.4, 2.2, 0.6)) },
+        { t: "ENCIENDE", mas: 0.5, p: R.clone().add(v3(-3.6, 11.0, 10.2)), q: R.clone().add(v3(-0.9, 2.0, 0.0)) },
+        { t: "CONTESTA", mas: -0.6, p: R.clone().add(v3(-3.3, 10.6, 9.8)), q: R.clone().add(v3(-0.8, 2.0, 0.1)) },
+        { t: "CONTESTA", mas: 0.4, p: R.clone().add(v3(-5.8, 8.6, 13.4)), q: R.clone().add(v3(-0.5, 2.6, 0.2)) },
+        { t: "CODIGO", mas: -0.3, p: R.clone().add(v3(-5.4, 8.2, 12.6)), q: R.clone().add(v3(-0.5, 2.6, 0.2)) },
+        { t: "CODIGO", mas: 0.5, p: R.clone().add(v3(-4.0, 13.4, 12.4)), q: R.clone().add(v3(-1.5, 3.9, 0.9)) },
+        { t: "SEGUNDO", mas: -0.4, p: R.clone().add(v3(-3.7, 13.0, 11.9)), q: R.clone().add(v3(-1.5, 3.9, 0.9)) },
+        { t: "SEGUNDO", mas: 0.4, p: R.clone().add(v3(-0.6, 9.5, 12.0)), q: R.clone().add(v3(0, 1.8, 1.0)) },
+        { t: "CERCA", mas: -0.3, p: R.clone().add(v3(-0.8, 9.3, 11.6)), q: R.clone().add(v3(0, 1.8, 1.0)) },
+        { t: "CERCA", mas: 0.8, p: R.clone().add(dirZ.clone().multiplyScalar(24)).add(v3(0, 5.6, 0)), q: R.clone().add(v3(0, 4.0, 0)) },
+        { t: "ESPANA", mas: -0.3, p: R.clone().add(dirZ.clone().multiplyScalar(22)).add(v3(0, 5.0, 0)), q: R.clone().add(v3(0, 3.4, 0)) },
+        { t: "ESPANA", mas: 0.8, p: KM.clone().add(v3(-2.0, 17.0, 9.5)), q: KM },
+        { t: "PIN", mas: 2.0, p: KM.clone().add(v3(-1.7, 16.5, 9.0)), q: KM },
+        { t: "PIN", mas: 3.3, p: v3(0.4, 21, 21), q: v3(-0.6, 0.6, 0.2) },
+        { t: D, p: v3(0.2, 20, 20), q: v3(-0.6, 0.6, 0.2) },
+      ]);
+
+      // ---------- frame ----------
+      function renderAt(t) {
+        if (!codesDrawn) { drawCode(codeTex, "#ffb347", false); drawCode(copyTex, "#8a8a8a", true); codesDrawn = true; }
+
+        // card: slides at the question, turns as it opens, rises over the terminal, steps aside to show "Pagado",
+        // goes up to 9 cm (nothing happens) and down to 4 cm (it reads), then leaves and comes back to the desk
+        const slide = ramp(t, T.SLIDE0, T.SLIDE1);
+        const lift = ramp(t, T.ACERCAR, T.ACERCAR + 1.9);
+        const p = C0.p.clone().lerp(C1.p, slide);
+        let yaw = lerp(C0.yaw, C1.yaw, slide);
+        yaw = lerp(yaw, -1.45, ramp(t, T.ABRIR - 0.1, T.ABRIR + 0.9));
+        if (lift > 0) { p.lerp(C2.p, lift); p.y += Math.sin(lift * Math.PI) * 0.9; yaw = lerp(yaw, C2.yaw, lift); }
+        p.y += lift >= 1 ? Math.sin((t - T.ACERCAR) * 1.6) * 0.04 : 0;
+        const aside = ventana(t, T.SEGUNDO - 0.1, T.CERCA + 0.4, 0.6);
+        const up = ramp(t, T.CERCA + 0.2, T.CERCA + 1.1), down = ramp(t, T.LEERLA - 0.2, T.LEERLA + 0.9);
+        p.add(AWAY.clone().multiplyScalar(aside));
+        // 2.6 cm over the reader -> 7.5 cm (too far) -> 4 cm
+        p.y += 4.9 * up * (1 - down) + 1.4 * down;
+        const leave = ramp(t, T.ESPANA - 0.2, T.ESPANA + 0.9), back = ramp(t, T.PIN + 2.0, T.PIN + 3.2);
+        p.add(AWAY.clone().multiplyScalar(1.6 * leave));
+        p.lerp(CF.p, back); yaw = lerp(yaw, CF.yaw, back);
+        card.position.copy(p);
+        card.rotation.set(Math.sin(lift * Math.PI) * -0.12 * (1 - back), yaw, 0);
+
+        // cutaway: the top layer lifts, then stays as an x-ray until the card leaves
+        const open = ramp(t, T.ABRIR, T.ABRIR + 1.1);
+        const settle = ramp(t, T.DATAFONO - 0.6, T.DATAFONO + 0.4);
+        const close = ramp(t, T.ESPANA, T.ESPANA + 1.0);
+        topGroup.position.y = LT + 1.9 * open * (1 - settle);
+        topGroup.rotation.z = 0.06 * open * (1 - settle);
+        const op = lerp(lerp(1, lerp(0.3, 0.14, settle), open), 1, close);
+        topMat.opacity = op; coreMat.opacity = op; topMat.depthWrite = op > 0.95;
+        topMat.emissive.setHex(0x8a919c); topMat.emissiveIntensity = (0.12 * open * (1 - settle) + 0.05 * settle) * (1 - close);
+        topMat.clearcoat = lerp(0.8, 0.1, open * (1 - close));
+        top.castShadow = op > 0.6;
+        plateGroup.position.y = 0.9 * ventana(t, T.CHIP - 0.2, T.DATAFONO, 0.5);
+
+        // the copper flashes when named, and a comet traces its turns
+        const flash = ramp(t, T.COBRE, T.COBRE + 0.25) * (1 - ramp(t, T.COBRE + 1.0, T.COBRE + 1.7));
+        const trace = ventana(t, T.VUELTAS - 0.1, T.CHIP, 0.3);
+        const head = Math.min(1, Math.max(0, (t - T.VUELTAS) / (T.ANTENA - T.VUELTAS + 0.4)));
+        cometMat.opacity = trace;
+        for (let i = 0; i < NC; i++) {
+          dummy.position.copy(coilCurve.getPointAt(Math.max(0, head - i * 0.005))); dummy.position.y += 0.02;
+          const s = trace * (1 - i / NC); dummy.scale.set(s, s, s); dummy.rotation.set(0, 0, 0); dummy.updateMatrix();
+          comet.setMatrixAt(i, dummy.matrix);
+        }
+        comet.instanceMatrix.needsUpdate = true;
+
+        // the terminal turns to x-ray to show its antenna, then the field rises from it
+        const xr = ventana(t, T.ANTENA2 - 0.2, T.ACERCAR, 0.6);
+        termMat.opacity = 1 - 0.78 * xr; termMat.depthWrite = xr < 0.05; body.castShadow = xr < 0.4;
+        const field1 = ramp(t, T.CAMPO, T.CAMPO + 0.6) * (1 - ramp(t, T.SEGUNDO + 0.3, T.SEGUNDO + 1.0));
+        const field2 = ventana(t, T.CERCA, T.ESPANA + 0.4, 0.5);
+        const field = Math.max(field1, field2);
+        termCopper.emissiveIntensity = 0.25 * xr + 0.45 * field * (0.85 + 0.15 * Math.sin(t * 9));
+        const answering = ventana(t, T.CONTESTA, T.CODIGO, 0.2);
+        const blink = morse(t);
+        const phase = 0.42 * (t - T.CAMPO) + 0.9 * Math.max(0, t - T.VECES);
+        rings.forEach((ring, i) => {
+          const ph = ((phase + i / NR) % 1 + 1) % 1, r = 1.2 + ph * 5.2;
+          ring.scale.set(r, r, 1); ring.position.set(0, 1.7 + ph * 4.2, -3.7);
+          ringMat[i].opacity = field * Math.sin(Math.PI * ph) * 0.6 * (1 - answering * 0.5 * (1 - blink));
+        });
+
+        // current in the copper: when the card is over the reader, and again at 4 cm (not at 9 cm)
+        const cur1 = ramp(t, T.CORRIENTE, T.CORRIENTE + 0.5) * (1 - ramp(t, T.SEGUNDO + 0.3, T.SEGUNDO + 1.0));
+        const cur2 = ramp(t, T.LEERLA + 0.4, T.LEERLA + 0.9) * (1 - ramp(t, T.ESPANA - 0.3, T.ESPANA + 0.3));
+        const cur = Math.max(cur1, cur2);
+        copper.emissiveIntensity = Math.max(0.5 * flash, 0.55 * cur * (0.85 + 0.15 * Math.sin(t * 9)));
+        sparkMat.opacity = cur;
+        for (let i = 0; i < NP; i++) {
+          const u = (((i / NP) + (t - T.CORRIENTE) * 0.11) % 1 + 1) % 1;
+          dummy.position.copy(coilCurve.getPointAt(u)); dummy.position.y += 0.02;
+          const s = cur * (0.8 + 0.5 * hash(i)); dummy.scale.set(s, s, s); dummy.rotation.set(0, 0, 0); dummy.updateMatrix();
+          sparks.setMatrixAt(i, dummy.matrix);
+        }
+        sparks.instanceMatrix.needsUpdate = true;
+        const chipOn = Math.max(ramp(t, T.ENCIENDE, T.ENCIENDE + 0.3) * (1 - ramp(t, T.SEGUNDO + 0.3, T.SEGUNDO + 1.0)), cur2);
+        const chipGlow = chipOn * lerp(1, 0.25 + 0.75 * blink, answering);
+        gold.emissiveIntensity = 0.55 * chipGlow + 0.3 * ventana(t, T.DORADOS, T.DATAFONO, 0.3) * (0.7 + 0.3 * Math.sin(t * 5));
+        dieMat.emissiveIntensity = 0.8 * chipGlow;
+        halo.material.opacity = chipGlow * (0.6 + 0.08 * Math.sin(t * 7));
+
+        // the code: born above the chip, a copy appears and is crossed out, the real one flies into the reader
+        card.updateMatrixWorld();
+        const chipW = card.localToWorld(v3(CHIP.x, LT, CHIP.z));
+        const born = ramp(t, T.CODIGO, T.CODIGO + 0.8), into = ramp(t, T.SEGUNDO - 0.5, T.SEGUNDO + 0.1);
+        code.position.copy(chipW.clone().add(v3(0, 0.5 + 1.3 * born, 0)).lerp(R.clone().add(v3(0, 0.4, 0)), into));
+        code.material.opacity = born * (1 - ramp(t, T.SEGUNDO - 0.05, T.SEGUNDO + 0.15));
+        code.scale.set(2.0 * (1 - 0.6 * into), 0.5 * (1 - 0.6 * into), 1);
+        copy.position.copy(chipW.clone().add(v3(2.0, 0.9, 0.8)));
+        copy.material.opacity = ventana(t, T.COPIA, T.SEGUNDO + 0.2, 0.3);
+
+        // the gauge grows from the screen up to the card, 4 cm
+        const g = ventana(t, T.CENTIMETROS - 0.3, T.ESPANA, 0.3), gh = 4 * ramp(t, T.CENTIMETROS - 0.3, T.CENTIMETROS + 0.3);
+        gaugeMat.opacity = g; bar.scale.set(1, Math.max(0.001, gh), 1); bar.position.y = gh / 2;
+        ticks[0].position.y = 0; ticks[1].position.y = gh;
+
+        // screen
+        const pressed = tp.filter((x) => t >= x).length;
+        let st = "listo", dots = 0;
+        if (t >= tp[3] + 0.6) st = "pagado";
+        else if (t >= T.ESPANA) { st = "pin"; dots = pressed; }
+        else if (t >= T.CERCA) st = "importe";
+        else if (t >= T.SEGUNDO) st = "pagado";
+        else if (t >= T.CONTESTA) st = "leyendo";
+        else if (t >= T.IMPORTE) st = "importe";
+        if (st + dots !== screenKey) { drawScreen(st, dots); screenKey = st + dots; }
+        screen.material.emissiveIntensity = 0.85 * (1 - 0.35 * xr);
+
+        // finger: taps the card, pushes it, holds it over the reader and takes it away; later types the PIN
+        const cardContact = card.localToWorld(v3(1.6, LT * 2 + 0.01 + (topGroup.position.y - LT), 0.6));
+        if (t < T.ACERCAR - 0.8) {
+          const tapIn = ramp(t, 0.0, T.TAP), tapOut = ramp(t, T.TAP + 0.35, T.TAP + 0.9);
+          const gone = ramp(t, T.SLIDE1 + 0.25, T.SLIDE1 + 0.9);
+          const away = t < T.SLIDE0 - 0.4 ? (1 - tapIn) * 7 + tapOut * 1.2 : lerp(1.2, 0, ramp(t, T.SLIDE0 - 0.4, T.SLIDE0)) + gone * 12;
+          F.colocar(cardContact, v3(-0.5, 0.72, -0.48), away);
+        } else if (t < T.ESPANA + 1.2) {
+          // it leaves once the card is over the reader (it would cover the close-ups) and comes back to move it aside
+          const off = ramp(t, T.ACERCAR + 2.4, T.ACERCAR + 3.2) * (1 - ramp(t, T.SEGUNDO - 1.0, T.SEGUNDO - 0.2));
+          const away = (1 - ramp(t, T.ACERCAR - 0.8, T.ACERCAR)) * 7 + off * 12 + ramp(t, T.ESPANA + 0.3, T.ESPANA + 1.2) * 12;
+          F.colocar(cardContact, v3(-0.5, 0.72, -0.48), away);
+        } else {
+          const dir = v3(0.75, 0.62, 0.15);
+          let contact = PRESS[0], away = (1 - ramp(t, T.ESPANA + 1.2, tp[0])) * 9;
+          for (let i = 0; i < tp.length - 1; i++) {
+            if (t >= tp[i] && t < tp[i + 1]) {
+              const k = (t - tp[i]) / (tp[i + 1] - tp[i]);
+              contact = PRESS[i].clone().lerp(PRESS[i + 1], ramp(k, 0.2, 0.8)); away = 0.9 * Math.sin(Math.PI * k);
+            }
+          }
+          if (t >= tp[3]) { contact = PRESS[3]; away = ramp(t, tp[3] + 0.15, tp[3] + 0.9) * 12; }
+          F.colocar(contact, dir, away);
+        }
+
+        C.mirar(camAt(t));
+        C.pintar(t);
+      }
+
+      C.arrancar(renderAt);
+    </script>
+  </body>
+</html>

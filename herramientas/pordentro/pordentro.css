@@ -1,0 +1,49 @@
+/* Estilos comunes de Las cosas por dentro: subtítulos arriba con la palabra seleccionada, etiquetas y notas. */
+:root {
+  --ground: #050403;
+  --ink: #ffffff;
+  --muted: rgba(255, 255, 255, 0.42);
+  --select: #3d7bf0;
+  --select-fill: #16305f;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--ground); }
+#root { position: relative; width: 1080px; height: 1920px; }
+#gl { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+#shade {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(5, 4, 3, 0.92) 0%, rgba(5, 4, 3, 0.55) 17%, rgba(5, 4, 3, 0) 32%),
+    radial-gradient(ellipse 85% 70% at 50% 58%, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.55) 100%);
+}
+#leaders { position: absolute; inset: 0; }
+#caps {
+  /* top: below TikTok's tabs; two lines at most (control.py measures it) */
+  position: absolute; left: 90px; right: 90px; top: 196px; height: 200px;
+  display: flex; align-items: flex-start; justify-content: center; text-align: center;
+}
+#caps .line { font-size: 68px; line-height: 1.18; font-weight: 700; letter-spacing: -0.02em; color: var(--muted); }
+#caps .w { display: inline-block; margin: 0 0.12em; opacity: 0; position: relative; white-space: nowrap; }
+#caps .w.now, #caps .w.key { color: var(--ink); }
+#caps .w .txt, #caps .w svg.ico { position: relative; z-index: 1; }
+#caps .w .box {
+  position: absolute; left: -10px; right: -10px; top: 2px; bottom: -2px; border-radius: 6px;
+  background: var(--select-fill); border: 3px solid var(--select); opacity: 0;
+}
+#caps .w .h1, #caps .w .h2 {
+  position: absolute; width: 16px; height: 16px; border-radius: 50%; background: var(--select);
+  border: 2px solid #fff; opacity: 0; z-index: 2;
+}
+#caps .w .h1 { left: -18px; top: -6px; }
+#caps .w .h2 { right: -18px; bottom: -10px; }
+#caps svg.ico { height: 0.82em; width: auto; vertical-align: -0.08em; margin-right: 0.18em; }
+#labels { position: absolute; inset: 0; pointer-events: none; }
+#labels .lab {
+  position: absolute; font-size: 26px; font-weight: 700; letter-spacing: 0.14em; color: #fff;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7); white-space: nowrap; opacity: 0;
+}
+#note {
+  /* above TikTok's account name and description */
+  position: absolute; left: 64px; right: 64px; top: 1440px; font-size: 26px; font-weight: 400;
+  color: rgba(255, 255, 255, 0.6); letter-spacing: 0.01em; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9);
+}

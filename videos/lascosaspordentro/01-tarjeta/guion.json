@@ -1,0 +1,41 @@
+{
+  "titulo": "Tu tarjeta no tiene batería",
+  "lines": [
+    "Tu tarjeta no tiene batería.",
+    "Entonces, ¿de dónde saca la energía para pagar?",
+    "Vamos a abrirla. Dentro hay un cable de cobre finísimo que da varias vueltas por todo el borde.",
+    "Es una antena, y sus dos puntas acaban en el chip, justo debajo de los contactos dorados.",
+    "Ahora, el datáfono. Por dentro también tiene una antena, y cuando marcan el importe, crea un campo magnético invisible.",
+    "Ese campo va y viene trece millones y medio de veces por segundo.",
+    "Al acercar la tarjeta, ese campo atraviesa las vueltas de cobre y crea en ellas una pequeña corriente.",
+    "Esa corriente enciende el chip. Sin pilas y sin cables.",
+    "Pero el chip no tiene fuerza para emitir nada. Así que contesta gastando a ratos un poco más de energía, y el datáfono lee esos cambios como si fueran código morse.",
+    "En cada pago, el chip crea un código nuevo que solo vale para ese pago. Si alguien lo copia, ya no le sirve.",
+    "Y todo esto pasa en menos de medio segundo.",
+    "Por eso hay que acercarla tanto: el datáfono está hecho para leerla a menos de cuatro centímetros.",
+    "Y en España, si pagas más de cincuenta euros, te pedirá el PIN.",
+    "Mándaselo a alguien que todavía cree que la tarjeta lleva pila."
+  ],
+  "claves": [
+    "batería",
+    "energía",
+    "cobre",
+    "chip",
+    "invisible",
+    "millones",
+    "corriente",
+    "enciende",
+    "morse",
+    "código",
+    "segundo",
+    "centímetros",
+    "PIN",
+    "pila"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "Tu tarjeta no tiene batería, pero paga en menos de medio segundo. Así funciona por dentro: una antena de cobre, un campo magnético y un chip que contesta en morse. Ilustración simplificada.",
+    "hashtags": ["#tarjeta", "#nfc", "#contactless"],
+    "portada_en": "batería"
+  }
+}

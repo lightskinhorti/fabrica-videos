@@ -405,13 +405,24 @@ El objetivo es 3 vídeos al día por cuenta, pero se llega por escalones. Si la 
 - Punto de partida: 18:00, 20:00 y 22:00, separadas al menos 2 horas. \[Supuesto\] En España la actividad se concentra por la tarde-noche, y las 18:00 aparecen como la mejor hora general según datos de TikTok recogidos por Metricool.
 - Las tres caen fuera de tu horario laboral, así que se pueden publicar a mano si hace falta.
 - A las 2 semanas se ajustan con TikTok Studio, en Audiencia > Actividad de seguidores.
-- TikTok tiene un programador gratuito en su web que deja programar con hasta 10 días de antelación. Una fuente dice que exige cuenta de empresa, que no puede cobrar del programa: hay que comprobarlo con una cuenta personal.
+- TikTok tiene un programador gratuito en su web que deja programar con hasta 10 días de antelación. **Comprobado por Javier el 2 de noviembre: funciona con una cuenta personal** (@elcontadorloco). Al subir pide activar las revisiones automáticas (derechos de autor y si el vídeo puede salir en "Para ti"); se activan.
+- Instagram no programa desde instagram.com. Sí se puede con la app del móvil o con Meta Business Suite en el ordenador (entrando con Facebook), las dos con cuenta profesional (de creador, gratis), hasta unos 75 días antes. Instagram solo admite 5 hashtags por publicación desde diciembre de 2025. Pasos en `publicar/elcontadorloco.md`.
 
-**Ritmo de salida (pregunta de Javier, 2 de noviembre):** ¿empezar con 3 vídeos al día por cuenta en vez de 1? La recomendación de Claude es empezar con 1 por cuenta (3 al día en total) y subir a 2 en cuanto haya una semana de reserva y la calidad aguante:
-- Más volumen sube el techo de los mejores vídeos, pero baja la interacción de cada uno (estudios de Buffer y TT Calculator citados arriba).
-- 9 vídeos al día son 63 a la semana, y ahora hay 5 y una sola plantilla.
-- El plan gratis de la voz de Gemini tiene un límite diario de peticiones (no comprobado cuál).
-Pendiente de que Javier decida.
+**Preparación de la fase 2 (2 de noviembre):** 20 ideas para Las cosas por dentro en `ideas/lascosaspordentro.md`, puntuadas por gancho, datos, piezas que se reutilizan y riesgo. La reserva propuesta (tarjeta, cargador inalámbrico, placa de inducción, pantalla táctil, reloj de cuarzo y GPS) comparte piezas para ir más rápido. El trackpad se descarta porque es el tema del vídeo de referencia. Javier aprobó las 6 el 2 de noviembre.
+
+**Motor de Las cosas por dentro (2 de noviembre):** sale de la plantilla de la tarjeta, igual que el de El contador loco.
+- `herramientas/pordentro/` trae la mesa oscura, las luces, el dedo, los subtítulos arriba con la palabra clave seleccionada, las etiquetas con línea y las notas honestas.
+- Todo se ancla a la voz con "momentos": cada uno es una palabra del guion. Así la escena no depende de segundos escritos a mano y aguanta si la voz cambia.
+- `sonido_pordentro.py` pone los efectos (toque, apertura, zumbido, corriente, chip, morse, teclas, pagado) en esos mismos momentos.
+- `control.py` y `publicacion.py` valen para las dos cuentas. `producir.sh` elige el sonido según la cuenta.
+- Vídeo 1, la tarjeta: 69,9 s con la voz de Gemini (antes, 21 s). Guion de 14 frases y una fuente para cada cifra en `fuentes.md`. Toda la cadena tarda 1 minuto con la voz ya hecha (el render, 38 s) y el control sale sin errores. Está en `exports/render/01-tarjeta.mp4`, a falta de que Javier lo apruebe.
+- La portada puede ser un segundo o una palabra de la voz (`portada_en` en `guion.json`). En la tarjeta es "batería", con el gancho entero y la palabra seleccionada.
+
+**Ritmo de salida (decidido por Javier el 2 de noviembre):**
+- **Día 1: 3 vídeos por cuenta,** para que quien entre en el perfil vea ya varios vídeos. Mejor repartidos en las tres franjas (18:00, 20:00 y 22:00) que subidos a la vez, para que cada uno tenga su hueco.
+- **Después, 1 al día por cuenta,** y 2 al día cuando haya una semana de reserva y la calidad aguante (como dice el plan, desde la semana 6 o antes).
+- **Reserva antes de abrir:** no hace falta tener la semana entera. El mínimo es 3 por cuenta para el día 1 más 2 o 3 días de margen, es decir, unos 5 o 6 por cuenta. El margen cubre imprevistos: un vídeo que no pasa el control, el límite diario de la voz o un día sin tiempo. Lo que sí hace falta es que la fábrica saque al menos 1 vídeo al día por cuenta a partir de entonces. Ahora hay 5, todos de El contador loco.
+- Más volumen sube el techo de los mejores vídeos, pero baja la interacción de cada uno (Buffer y TT Calculator, citados arriba), y el plan gratis de la voz de Gemini tiene un límite diario de peticiones (no comprobado cuál).
 
 **Cómo se publica (revisado el 2 de noviembre):**
 
@@ -419,7 +430,7 @@ Hay tres formas, de menos a más automática:
 
 | Forma | Cómo va | Coste | Problema |
 | --- | --- | --- | --- |
-| A. TikTok Studio en la web | Claude deja cada vídeo con su texto, hashtags y hora. Tú lo subes y lo programas una vez a la semana, hasta 10 días antes | Gratis | Unos 2 o 3 minutos tuyos por vídeo. Sin comprobar si una cuenta personal puede programar |
+| A. TikTok Studio en la web | Claude deja cada vídeo con su texto, hashtags y hora. Tú lo subes y lo programas una vez a la semana, hasta 10 días antes | Gratis | Unos 2 o 3 minutos tuyos por vídeo. Programa con cuenta personal (comprobado el 2 de noviembre) |
 | B. Metricool | Programador español que publica solo en TikTok e Instagram con las APIs oficiales. Su ayuda dice que vale para cuentas personales | Gratis para 1 marca (1 TikTok y 1 Instagram); 3 cuentas pasan al plan de pago | Fuentes contradictorias sobre si el plan gratis publica solo y cuántos vídeos al mes deja |
 | C. Programa propio con la API de TikTok | Claude escribe un programa que publica cada vídeo aprobado | Gratis | TikTok tiene que auditar la aplicación antes: hasta entonces solo publica en privado y como mucho para 5 usuarios al día. La auditoría pide web, política de privacidad y un vídeo de demostración |
 
@@ -455,7 +466,7 @@ El riesgo más probable es que ninguna cuenta despegue. Por eso el proyecto est�
 | Errores en los datos | Pérdida de confianza y vídeos retirados | Cada cifra con su fuente, control automático y tu revisión |
 | Derechos de imágenes o música | Vídeo silenciado o retirado, y sin cobro | Solo fuentes con licencia comercial, con su atribución |
 | Límites de Claude Max | Parones a mitad de semana | Plantillas reutilizables y trabajo por lotes en tus sesiones |
-| El programador de TikTok exige cuenta de empresa | No se puede programar | Publicar a mano en las franjas de tarde-noche |
+| El programador de TikTok exige cuenta de empresa (descartado: funciona con la personal, 2 de noviembre) | No se puede programar | Publicar a mano en las franjas de tarde-noche |
 | Conflicto con eduki | Problemas en el trabajo, más aún en periodo de prueba | Equipo y cuentas personales, nada de eduki, marca sin tu nombre y revisar el contrato antes de lanzar |
 | Cansancio | Dejarlo antes de ver resultados | Subir por escalones y tener una semana de vídeos en reserva |
 | TikTok cambia su programa de pagos | Cae el ingreso principal | Otras redes, afiliación y packs de Instagram como respaldo |
@@ -490,7 +501,7 @@ Esta lista hay que tenerla hecha antes de publicar el primer vídeo. La parte de
 
 - [x] Mandar como archivo los reels de Instagram de referencia, porque los enlaces no se pueden abrir desde aquí.
 - [x] Confirmar qué ordenador personal vas a usar y si tiene espacio para los renders: tu MacBook Pro M5 de 32 GB, con unos 780 GB libres.
-- [ ] Comprobar si el programador de TikTok funciona con una cuenta personal.
+- [x] Comprobar si el programador de TikTok funciona con una cuenta personal. Sí funciona (Javier, 2 de noviembre).
 - [x] Crear el repositorio privado en tu GitHub personal: `lightskinhorti/fabrica-videos`, creado el 2 de noviembre. Git está configurado solo en la carpeta del proyecto, sin tocar tu configuración de trabajo.
 - [x] Elegir la voz sintética en español: Gemini TTS, voz es-es-concierge-12.
 - [x] Poner nombre a cada cuenta, sin tu nombre real. Elegidos el 2 de noviembre, con el mismo @ en TikTok e Instagram (libres ese día en las dos):

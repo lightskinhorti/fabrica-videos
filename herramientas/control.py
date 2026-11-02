@@ -1,14 +1,16 @@
-"""Control automático de un vídeo de El contador loco (R10 del PRD).
+"""Control automático de un vídeo (R10 del PRD), para El contador loco y Las cosas por dentro.
 
 Uso (con el Python de voces/.venv, que tiene Pillow para medir el texto):
     ../voces/.venv/bin/python control.py <carpeta del vídeo> [video.mp4]
 
+Sabe de qué cuenta es por la escena: con "hitos" es El contador loco; con "momentos", Las cosas por dentro.
 Comprueba:
 - Duración: más de 60 s, lo que pide TikTok para cobrar.
 - Volumen del MP4: -14 LUFS, con un margen de 1.
-- Subtítulos: cada grupo cabe en 2 líneas dentro de su caja (de 1.230 a 1.420 px), así que no
-  sube hacia la escena ni se sale por los lados. El título del principio cabe en 3 líneas.
-- Marcador y etiquetas: la cifra más larga cabe en el marcador y cada etiqueta en la pantalla.
+- Subtítulos: cada grupo cabe en 2 líneas dentro de su caja, así que no se mete en la escena ni se sale
+  por los lados. En El contador loco, además, el título del principio cabe en 3 líneas.
+- El contador loco: la cifra más larga cabe en el marcador y cada etiqueta en la pantalla.
+- Las cosas por dentro: cada momento encuentra su palabra en la voz y cada etiqueta cabe en la pantalla.
 - Fuentes: cada cifra de las etiquetas está en fuentes.md (si falta, es un error) y cada cifra
   de los subtítulos también (si falta, es un aviso: puede ser un cálculo, como "a los 14 minutos").
 No revisa la ortografía: eso lo hace Claude al escribir el guion.
@@ -20,6 +22,7 @@ import os
 import re
 import subprocess
 import sys
+import unicodedata
 
 from PIL import ImageFont
 
@@ -28,6 +31,7 @@ mp4 = sys.argv[2] if len(sys.argv) > 2 else None
 html = open(os.path.join(carpeta, "index.html"), encoding="utf-8").read()
 bloque = lambda i: json.loads(re.search(rf'<script id="{i}" type="application/json">(.*?)</script>', html, re.S).group(1))
 VOZ, ESC = bloque("vozdata"), bloque("escena")
+CONTADOR = "hitos" in ESC
 D = float(re.search(r'data-composition-id="main"[^>]*data-duration="([\d.]+)"', html).group(1))
 errores, avisos = [], []
 
@@ -47,15 +51,19 @@ def ancho(fuentes, texto):
     return max(f.getlength(texto) for f in fuentes)
 
 
-def lineas(fuentes, palabras, caja, hueco):
+def lineas(fuentes, palabras, caja, hueco, extra=lambda p: 0):
     n, actual = 1, 0.0
     for p in palabras:
-        w = ancho(fuentes, p) + hueco
+        w = ancho(fuentes, p) + hueco + extra(p)
         if actual and actual + w > caja:
             n, actual = n + 1, w
         else:
             actual += w
     return n
+
+
+def norm(s):
+    return "".join(c for c in unicodedata.normalize("NFD", s.lower()) if c.isalnum())
 
 
 # ---------- duration and loudness ----------
@@ -70,28 +78,50 @@ if mp4:
 if dur <= 60:
     errores.append(f"dura {dur:.1f} s: TikTok solo paga vídeos de más de 1 minuto")
 
-# ---------- captions: same grouping as the engine ----------
-CAP = letra("nunito", 900, 72)
+# ---------- captions: same grouping as each engine ----------
+PUNTO = re.compile(r"[.,:;?!]$")
 grupos = []
 for L in VOZ["lines"]:
+    ws = [w["w"] for w in L["words"]]
     if VOZ.get("modo") == "texto":
-        grupos.append([w["w"] for w in L["words"]])
+        grupos.append(ws)
         continue
     cur = []
-    for i, w in enumerate(L["words"]):
-        cur.append(w["w"])
-        if len(cur) >= 4 or re.search(r"[.,:;?!]$", w["w"]) or i == len(L["words"]) - 1:
+    for i, w in enumerate(ws):
+        cur.append(w)
+        if CONTADOR:
+            corta = len(cur) >= 4
+        else:
+            # pordentro.js: with exactly one word left until the next punctuation, it joins this group
+            resto = 0
+            for j in range(i + 1, len(ws)):
+                resto += 1
+                if PUNTO.search(ws[j]):
+                    break
+            corta = len(cur) >= 4 and resto != 1
+        if corta or PUNTO.search(w) or i == len(ws) - 1:
             grupos.append(cur)
             cur = []
-# box: 1080 - 110 - 170 = 800 px; each word has 0.13em of margin per side and 12 px of outline
-for g in grupos:
-    n = lineas(CAP, g, 800, 72 * 0.26 + 12)
-    if n > 2:
-        errores.append(f"subtítulo en {n} líneas, se sale de su caja: \"{' '.join(g)}\"")
-TIT = letra("nunito", 900, 92)
-n = lineas(TIT, ESC["titulo"].split(), 880, ancho(TIT, " "))
-if n > 3:
-    errores.append(f"el título ocupa {n} líneas (máximo 3): \"{ESC['titulo']}\"")
+
+if CONTADOR:
+    # box: 1080 - 110 - 170 = 800 px; each word has 0.13em of margin per side and 12 px of outline
+    CAP = letra("nunito", 900, 72)
+    for g in grupos:
+        n = lineas(CAP, g, 800, 72 * 0.26 + 12)
+        if n > 2:
+            errores.append(f"subtítulo en {n} líneas, se sale de su caja: \"{' '.join(g)}\"")
+    TIT = letra("nunito", 900, 92)
+    n = lineas(TIT, ESC["titulo"].split(), 880, ancho(TIT, " "))
+    if n > 3:
+        errores.append(f"el título ocupa {n} líneas (máximo 3): \"{ESC['titulo']}\"")
+else:
+    # box: 1080 - 90 - 90 = 900 px at the top; 0.12em of margin per side; a word with an icon is ~1.2em wider
+    CAP = letra("inter", 700, 68)
+    iconos = {norm(k) for k in ESC.get("iconos", {})}
+    for g in grupos:
+        n = lineas(CAP, g, 900, 68 * 0.24, lambda p: 68 * 1.2 if norm(p) in iconos else 0)
+        if n > 2:
+            errores.append(f"subtítulo en {n} líneas, se sale de su caja: \"{' '.join(g)}\"")
 
 
 # ---------- counter and labels (same formats as the engine) ----------
@@ -118,18 +148,41 @@ def valor(v):
     sys.exit(f"Formato desconocido: {f}")
 
 
-NUM, UNI, LAB = letra("archivo-black", 400, 148), letra("archivo-black", 400, 74), letra("nunito", 900, 30)
-for h in ESC["hitos"]:
-    num, unidad = valor(h["v"])
-    # HUD: number + unit at half size + 56 px of padding and a 6 px border per side, inside the frame
-    w = ancho(NUM, num) + ancho(UNI, unidad) + 2 * 62
-    if w > 1040:
-        errores.append(f"la cifra {num} {unidad} no cabe en el marcador ({w:.0f} px)")
-    if h.get("etiqueta"):
-        texto = f"{h['etiqueta']} · {num} {unidad}"
-        w = ancho(LAB, texto) + len(texto) * 30 * 0.06 + 36
-        if w > 1000:
-            errores.append(f"la etiqueta \"{texto}\" no cabe en la pantalla ({w:.0f} px)")
+etiquetas = []
+if CONTADOR:
+    NUM, UNI, LAB = letra("archivo-black", 400, 148), letra("archivo-black", 400, 74), letra("nunito", 900, 30)
+    for h in ESC["hitos"]:
+        num, unidad = valor(h["v"])
+        # HUD: number + unit at half size + 56 px of padding and a 6 px border per side, inside the frame
+        w = ancho(NUM, num) + ancho(UNI, unidad) + 2 * 62
+        if w > 1040:
+            errores.append(f"la cifra {num} {unidad} no cabe en el marcador ({w:.0f} px)")
+        if h.get("etiqueta"):
+            texto = f"{h['etiqueta']} · {num} {unidad}"
+            etiquetas.append((h["etiqueta"], num))
+            w = ancho(LAB, texto) + len(texto) * 30 * 0.06 + 36
+            if w > 1000:
+                errores.append(f"la etiqueta \"{texto}\" no cabe en la pantalla ({w:.0f} px)")
+else:
+    # every moment finds its word in the voice, in order (as pordentro.js and sonido_pordentro.py do)
+    words = [w["w"] for l in VOZ["lines"] for w in l["words"]]
+    desde, ids = 0, set()
+    for m in ESC.get("momentos", []):
+        i = next((k for k in range(desde, len(words)) if norm(words[k]).startswith(norm(m["clave"]))), None)
+        if i is None:
+            errores.append(f"el momento {m['id']} no encuentra la palabra \"{m['clave']}\" en la voz")
+            continue
+        ids.add(m["id"])
+        desde = i + 1
+    LAB = letra("inter", 700, 26)
+    for e in ESC.get("etiquetas", []):
+        for k in ("desde", "hasta"):
+            if isinstance(e[k], str) and e[k] not in ids:
+                errores.append(f"la etiqueta \"{e['texto']}\" usa el momento {e[k]}, que no existe")
+        etiquetas.append((e["texto"], e["texto"]))
+        w = ancho(LAB, e["texto"]) + len(e["texto"]) * 26 * 0.14
+        if w > 960:
+            errores.append(f"la etiqueta \"{e['texto']}\" no cabe en la pantalla ({w:.0f} px)")
 
 
 # ---------- every number on screen has a source ----------
@@ -157,11 +210,10 @@ if not os.path.exists(ruta_fuentes):
 else:
     conocidos = numeros(open(ruta_fuentes, encoding="utf-8").read())
     esta = lambda v: any(abs(c - v) <= max(0.5, abs(v) * 0.005) for c in conocidos)
-    for h in ESC["hitos"]:
-        if h.get("etiqueta"):
-            for v in numeros(valor(h["v"])[0]):
-                if not esta(v):
-                    errores.append(f"la etiqueta {h['etiqueta']} dice {v:g} y esa cifra no está en fuentes.md")
+    for nombre_etiqueta, cifras in etiquetas:
+        for v in numeros(cifras):
+            if not esta(v):
+                errores.append(f"la etiqueta {nombre_etiqueta} dice {v:g} y esa cifra no está en fuentes.md")
     vistos = set()
     for L in VOZ["lines"]:
         for w in L["words"]:
