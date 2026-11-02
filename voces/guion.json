@@ -1,0 +1,11 @@
+{
+  "lines": [
+    "Tu tarjeta no tiene batería.",
+    "Entonces, ¿de dónde saca la energía para pagar?",
+    "Dentro hay un cable de cobre que da vueltas por todo el borde.",
+    "El datáfono crea un campo magnético invisible.",
+    "Al acercar la tarjeta, ese campo crea una pequeña corriente en el cobre,",
+    "y esa corriente enciende el chip, justo el tiempo que dura el pago."
+  ],
+  "pausa_segundos": 0.35
+}

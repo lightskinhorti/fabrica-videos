@@ -1,0 +1,12 @@
+es-es-training-9 | Training Voiceover 9 | 23-year-old Instructional Video Host from Spain. Speaks Castilian Spanish (Castellano). Currently brainstorming in a meeting. Sounds confident and clear.
+es-es-concierge-12 | Concierge 12 | 27-year-old Tour Guide from Spain. Speaks Castilian Spanish (Castellano). Tone is objective, direct, and helpful
+es-es-training-11 | Training Voiceover 11 | 31-year-old Cooking Show Host from Spain. Speaks Castilian Spanish (Castellano). Voice is natural and clear.
+es-es-csagent-3 | Call Center Agent 3 | 32-year-old Sales Associate from Spain. Speaks Castilian Spanish (Castellano). Voice is engaging and empathic.
+es-es-concierge-4 | Concierge 4 | 35-year-old Tour Guide from Spain. Speaks Castilian Spanish (Castellano). Voice is cool, confident, and collaborative.
+es-es-advisor-2 | Authoritative Advisor 2 | 38-year-old Lawyer from Spain. Speaks Castilian Spanish (Castellano). Tone is peer-to-peer and curious
+es-es-advisor-9 | Authoritative Advisor 9 | 44-year-old Lawyer from Spain. Speaks Castilian Spanish (Castellano). Currently at a meditation retreat. Sounds confident and clear.
+es-es-training-3 | Training Voiceover 3 | 44-year-old Cooking Show Host from Spain. Speaks Castilian Spanish (Castellano). Currently on npr. Voice is warm and engaging.
+es-es-techagent-4 | Tech Advisor 4 | 50-year-old Tech Support Agent from Spain. Speaks Castilian Spanish (Castellano). Currently sitting next to you on an airplane. Voice is warm and engaging.
+es-es-podcaster-7 | Podcaster 7 | 51-year-old Radio Host from Spain. Speaks Castilian Spanish (Castellano). Tone is objective, direct, and helpful
+es-es-assistant-4 | Digital Assistant 4 | 54-year-old Sibling from Spain. Speaks Castilian Spanish (Castellano). Voice is clear, medium-pitch, and friendly.
+es-es-assistant-3 | Digital Assistant 3 | 59-year-old Sibling from Spain. Speaks Castilian Spanish (Castellano). Voice is resonant and witty.

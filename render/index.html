@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <script type="importmap">
+      { "imports": { "three": "./lib/three.module.js", "three/addons/": "./lib/addons/" } }
+    </script>
+    <style>
+      :root {
+        --ground: #050403;
+        --ink: #ffffff;
+        --muted: rgba(255, 255, 255, 0.42);
+        --select: #3d7bf0;
+        --select-fill: #16305f;
+        --font-display: "Inter", sans-serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--ground); }
+      #root { position: relative; width: 1080px; height: 1920px; font-family: var(--font-display); }
+      #gl { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+      #shade {
+        position: absolute; inset: 0; pointer-events: none;
+        background:
+          linear-gradient(to bottom, rgba(5, 4, 3, 0.92) 0%, rgba(5, 4, 3, 0.55) 17%, rgba(5, 4, 3, 0) 32%),
+          radial-gradient(ellipse 85% 70% at 50% 58%, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.55) 100%);
+      }
+      #caps {
+        position: absolute; left: 90px; right: 90px; top: 196px; height: 200px;
+        display: flex; align-items: flex-start; justify-content: center; text-align: center;
+      }
+      #caps .line { font-size: 68px; line-height: 1.18; font-weight: 700; letter-spacing: -0.02em; color: var(--muted); }
+      #caps .w { display: inline-block; margin: 0 0.12em; opacity: 0; position: relative; white-space: nowrap; }
+      #caps .w.now { color: var(--ink); }
+      #caps .w.key { color: var(--ink); }
+      #caps .w .txt, #caps .w svg.ico { position: relative; z-index: 1; }
+      #caps .w .box {
+        position: absolute; left: -10px; right: -10px; top: 2px; bottom: -2px; border-radius: 6px;
+        background: var(--select-fill); border: 3px solid var(--select); opacity: 0;
+      }
+      #caps .w .h1, #caps .w .h2 {
+        position: absolute; width: 16px; height: 16px; border-radius: 50%; background: var(--select);
+        border: 2px solid #fff; opacity: 0; z-index: 2;
+      }
+      #caps .w .h1 { left: -18px; top: -6px; }
+      #caps .w .h2 { right: -18px; bottom: -10px; }
+      #caps svg.ico { height: 0.82em; width: auto; vertical-align: -0.08em; margin-right: 0.18em; }
+      #labels { position: absolute; inset: 0; pointer-events: none; }
+      #labels .lab {
+        position: absolute; font-size: 24px; font-weight: 700; letter-spacing: 0.14em; color: #fff;
+        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7); white-space: nowrap; opacity: 0;
+      }
+      #note {
+        position: absolute; left: 64px; bottom: 300px; font-size: 24px; font-weight: 400;
+        color: rgba(255, 255, 255, 0.5); letter-spacing: 0.01em;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="21.2" data-width="1080" data-height="1920" data-fps="30">
+      <canvas id="gl" class="clip" data-start="0" data-duration="21.2" data-track-index="0" width="1080" height="1920"></canvas>
+      <div id="shade" class="clip" data-start="0" data-duration="21.2" data-track-index="1"></div>
+      <svg id="leaders" class="clip" data-start="0" data-duration="21.2" data-track-index="2" width="1080" height="1920" style="position:absolute;inset:0" data-layout-allow-overlap>
+        <g id="leadA" opacity="0"><line id="leadA-l" stroke="rgba(255,255,255,0.75)" stroke-width="2" /><circle id="leadA-d" r="6" fill="#fff" /></g>
+        <g id="leadB" opacity="0"><line id="leadB-l" stroke="rgba(255,255,255,0.75)" stroke-width="2" /><circle id="leadB-d" r="6" fill="#fff" /></g>
+      </svg>
+      <div id="labels" class="clip" data-start="0" data-duration="21.2" data-track-index="3" data-layout-allow-overlap>
+        <div class="lab" id="labA">ANTENA DE COBRE</div>
+        <div class="lab" id="labB">CHIP</div>
+      </div>
+      <div id="note" class="clip" data-start="0" data-duration="21.2" data-track-index="4"></div>
+      <div id="caps" class="clip" data-start="0" data-duration="21.2" data-track-index="5" data-track-kind="captions"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="21.2"></audio>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 20.76, "lines": [{"id": "l1", "s": 0.02, "e": 2.17, "words": [{"w": "Tu", "s": 0.02, "e": 0.28, "key": false}, {"w": "tarjeta", "s": 0.28, "e": 0.77, "key": false}, {"w": "no", "s": 0.77, "e": 0.94, "key": false}, {"w": "tiene", "s": 0.94, "e": 1.37, "key": false}, {"w": "batería.", "s": 1.37, "e": 2.17, "key": true}]}, {"id": "l2", "s": 2.26, "e": 5.61, "words": [{"w": "Entonces,", "s": 2.26, "e": 2.932, "key": false}, {"w": "¿de", "s": 2.932, "e": 3.1, "key": false}, {"w": "dónde", "s": 3.1, "e": 3.52, "key": false}, {"w": "saca", "s": 3.52, "e": 3.85, "key": false}, {"w": "la", "s": 3.85, "e": 3.99, "key": false}, {"w": "energía", "s": 4.09, "e": 4.59, "key": true}, {"w": "para", "s": 4.59, "e": 5.34, "key": false}, {"w": "pagar?", "s": 5.34, "e": 5.61, "key": false}]}, {"id": "l3", "s": 5.96, "e": 9.29, "words": [{"w": "Dentro", "s": 5.96, "e": 6.08, "key": false}, {"w": "hay", "s": 6.1, "e": 6.25, "key": false}, {"w": "un", "s": 6.31, "e": 6.45, "key": false}, {"w": "cable", "s": 6.45, "e": 6.73, "key": false}, {"w": "de", "s": 6.8, "e": 6.94, "key": false}, {"w": "cobre", "s": 6.94, "e": 7.29, "key": true}, {"w": "que", "s": 7.29, "e": 7.46, "key": false}, {"w": "da", "s": 7.46, "e": 7.51, "key": false}, {"w": "vueltas", "s": 7.64, "e": 8.13, "key": false}, {"w": "por", "s": 8.13, "e": 8.34, "key": false}, {"w": "todo", "s": 8.34, "e": 8.42, "key": false}, {"w": "el", "s": 8.62, "e": 8.75, "key": false}, {"w": "borde.", "s": 8.76, "e": 9.29, "key": false}]}, {"id": "l4", "s": 9.33, "e": 12.36, "words": [{"w": "El", "s": 9.33, "e": 9.46, "key": false}, {"w": "datáfono", "s": 9.6, "e": 10.01, "key": false}, {"w": "crea", "s": 10.08, "e": 10.3, "key": false}, {"w": "un", "s": 10.3, "e": 10.37, "key": false}, {"w": "campo", "s": 10.44, "e": 10.77, "key": false}, {"w": "magnético", "s": 10.83, "e": 11.15, "key": false}, {"w": "invisible.", "s": 11.58, "e": 12.36, "key": true}]}, {"id": "l5", "s": 12.37, "e": 16.84, "words": [{"w": "Al", "s": 12.37, "e": 12.5, "key": false}, {"w": "acercar", "s": 12.64, "e": 12.96, "key": false}, {"w": "la", "s": 12.99, "e": 13.13, "key": false}, {"w": "tarjeta,", "s": 13.13, "e": 13.76, "key": false}, {"w": "ese", "s": 13.76, "e": 13.97, "key": false}, {"w": "campo", "s": 13.97, "e": 14.17, "key": false}, {"w": "crea", "s": 14.54, "e": 14.61, "key": false}, {"w": "una", "s": 14.62, "e": 14.82, "key": false}, {"w": "pequeña", "s": 14.82, "e": 15.32, "key": false}, {"w": "corriente", "s": 15.32, "e": 15.96, "key": true}, {"w": "en", "s": 15.96, "e": 16.1, "key": false}, {"w": "el", "s": 16.1, "e": 16.24, "key": false}, {"w": "cobre,", "s": 16.24, "e": 16.84, "key": false}]}, {"id": "l6", "s": 16.84, "e": 20.45, "words": [{"w": "y", "s": 16.84, "e": 16.91, "key": false}, {"w": "esa", "s": 16.91, "e": 16.97, "key": false}, {"w": "corriente", "s": 17.14, "e": 17.76, "key": false}, {"w": "enciende", "s": 17.77, "e": 18.25, "key": false}, {"w": "el", "s": 18.25, "e": 18.35, "key": false}, {"w": "chip,", "s": 18.39, "e": 18.62, "key": true}, {"w": "justo", "s": 18.62, "e": 18.93, "key": false}, {"w": "el", "s": 18.93, "e": 19.05, "key": false}, {"w": "tiempo", "s": 19.05, "e": 19.41, "key": false}, {"w": "que", "s": 19.41, "e": 19.54, "key": false}, {"w": "dura", "s": 19.59, "e": 19.6, "key": false}, {"w": "el", "s": 19.6, "e": 20.01, "key": false}, {"w": "pago.", "s": 20.01, "e": 20.45, "key": false}]}]}</script>
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.tarjeta = new Promise((r) => (window.__tarjetaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 21.2 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import * as THREE from "three";
+      import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+      import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
+      import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
+      import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
+      import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
+      import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
+
+      const VOZ = JSON.parse(document.getElementById("vozdata").textContent);
+      const W = 1080, H = 1920, D = 21.2;
+
+      // ---------- helpers ----------
+      const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+      const lerp = (a, b, k) => a + (b - a) * k;
+      const ease = (k) => (k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2);
+      const ramp = (t, a, b) => ease(clamp((t - a) / (b - a)));
+      const v3 = (x, y, z) => new THREE.Vector3(x, y, z);
+      function hash(i) { const s = Math.sin(i * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); }
+
+      function rrShape(w, h, r, holes = []) {
+        const s = new THREE.Shape();
+        const x = -w / 2, y = -h / 2;
+        s.moveTo(x + r, y); s.lineTo(x + w - r, y); s.quadraticCurveTo(x + w, y, x + w, y + r);
+        s.lineTo(x + w, y + h - r); s.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+        s.lineTo(x + r, y + h); s.quadraticCurveTo(x, y + h, x, y + h - r);
+        s.lineTo(x, y + r); s.quadraticCurveTo(x, y, x + r, y);
+        for (const hdef of holes) {
+          const p = new THREE.Path();
+          const [cx, cy, hw, hh, hr] = hdef;
+          const hx = cx - hw / 2, hy = cy - hh / 2;
+          p.moveTo(hx + hr, hy); p.lineTo(hx + hw - hr, hy); p.quadraticCurveTo(hx + hw, hy, hx + hw, hy + hr);
+          p.lineTo(hx + hw, hy + hh - hr); p.quadraticCurveTo(hx + hw, hy + hh, hx + hw - hr, hy + hh);
+          p.lineTo(hx + hr, hy + hh); p.quadraticCurveTo(hx, hy + hh, hx, hy + hh - hr);
+          p.lineTo(hx, hy + hr); p.quadraticCurveTo(hx, hy, hx + hr, hy);
+          s.holes.push(p);
+        }
+        return s;
+      }
+      function slab(shape, depth) {
+        const g = new THREE.ExtrudeGeometry(shape, { depth, bevelEnabled: true, bevelThickness: 0.006, bevelSize: 0.006, bevelSegments: 2, curveSegments: 18 });
+        g.rotateX(-Math.PI / 2);
+        return g;
+      }
+      function canvasTex(w, h, draw) {
+        const c = document.createElement("canvas"); c.width = w; c.height = h;
+        const g = c.getContext("2d"); draw(g, w, h);
+        const tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 8;
+        return { tex, c, g };
+      }
+      // point on a rounded rectangle perimeter, s in [0,1), starting at the middle of the left edge, going clockwise seen from above
+      function rrPoint(w, h, r, s) {
+        const straightW = w - 2 * r, straightH = h - 2 * r, arc = (Math.PI / 2) * r;
+        const segs = [straightH / 2, arc, straightW, arc, straightH, arc, straightW, arc, straightH / 2];
+        const total = segs.reduce((a, b) => a + b, 0);
+        let d = (((s % 1) + 1) % 1) * total;
+        const x0 = -w / 2, x1 = w / 2, z0 = -h / 2, z1 = h / 2;
+        const pts = [
+          (k) => v3(x0, 0, lerp(0, z0 + r, k)),
+          (k) => { const a = Math.PI + (Math.PI / 2) * k; return v3(x0 + r + r * Math.cos(a), 0, z0 + r + r * Math.sin(a)); },
+          (k) => v3(lerp(x0 + r, x1 - r, k), 0, z0),
+          (k) => { const a = -Math.PI / 2 + (Math.PI / 2) * k; return v3(x1 - r + r * Math.cos(a), 0, z0 + r + r * Math.sin(a)); },
+          (k) => v3(x1, 0, lerp(z0 + r, z1 - r, k)),
+          (k) => { const a = (Math.PI / 2) * k; return v3(x1 - r + r * Math.cos(a), 0, z1 - r + r * Math.sin(a)); },
+          (k) => v3(lerp(x1 - r, x0 + r, k), 0, z1),
+          (k) => { const a = Math.PI / 2 + (Math.PI / 2) * k; return v3(x0 + r + r * Math.cos(a), 0, z1 - r + r * Math.sin(a)); },
+          (k) => v3(x0, 0, lerp(z1 - r, 0, k)),
+        ];
+        for (let i = 0; i < segs.length; i++) {
+          if (d <= segs[i] || i === segs.length - 1) return pts[i](segs[i] > 0 ? clamp(d / segs[i]) : 0);
+          d -= segs[i];
+        }
+      }
+
+      // ---------- renderer ----------
+      const canvas = document.getElementById("gl");
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true });
+      renderer.setPixelRatio(1);
+      renderer.setSize(W, H, false);
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.05;
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x050403);
+      scene.fog = new THREE.Fog(0x050403, 26, 58);
+      const pmrem = new THREE.PMREMGenerator(renderer);
+      scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+      scene.environmentIntensity = 0.32;
+
+      const camera = new THREE.PerspectiveCamera(30, W / H, 0.1, 200);
+
+      // ---------- lights ----------
+      scene.add(new THREE.HemisphereLight(0x3a2c22, 0x080504, 0.35));
+      const key = new THREE.SpotLight(0xffd6ae, 2600, 0, 0.42, 0.85, 2);
+      key.position.set(-14, 30, 16);
+      key.castShadow = true;
+      key.shadow.mapSize.set(1024, 1024);
+      key.shadow.bias = -0.0004;
+      key.shadow.radius = 6;
+      scene.add(key, key.target);
+      const rim = new THREE.DirectionalLight(0xa9c2ff, 0.9);
+      rim.position.set(12, 9, -20);
+      scene.add(rim);
+      const warm = new THREE.PointLight(0xff9a55, 30, 22, 2);
+      warm.position.set(6, 4, 6);
+      scene.add(warm);
+
+      // ---------- desk ----------
+      const wood = canvasTex(1024, 1024, (g, w, h) => {
+        g.fillStyle = "#26170e"; g.fillRect(0, 0, w, h);
+        for (let i = 0; i < 260; i++) {
+          const y = hash(i) * h, a = 0.03 + hash(i + 50) * 0.07;
+          g.strokeStyle = hash(i + 9) > 0.5 ? `rgba(70,42,24,${a})` : `rgba(10,6,3,${a * 1.4})`;
+          g.lineWidth = 1 + hash(i + 3) * 5;
+          g.beginPath(); g.moveTo(0, y);
+          for (let x = 0; x <= w; x += 32) g.lineTo(x, y + Math.sin(x * 0.006 + i) * 9 * hash(i + 7));
+          g.stroke();
+        }
+      });
+      wood.tex.wrapS = wood.tex.wrapT = THREE.RepeatWrapping;
+      wood.tex.repeat.set(5, 5);
+      const desk = new THREE.Mesh(
+        new THREE.PlaneGeometry(220, 220),
+        new THREE.MeshPhysicalMaterial({ map: wood.tex, roughness: 0.48, clearcoat: 0.35, clearcoatRoughness: 0.35 })
+      );
+      desk.rotation.x = -Math.PI / 2;
+      desk.receiveShadow = true;
+      scene.add(desk);
+
+      // ---------- card ----------
+      const CW = 8.56, CH = 5.4, CR = 0.32, LT = 0.04;
+      const CHIP = { x: -2.55, z: -0.15, w: 1.18, h: 0.92 };
+      const card = new THREE.Group();
+      scene.add(card);
+
+      const cardPrint = canvasTex(1712, 1080, (g, w, h) => {
+        const grd = g.createLinearGradient(0, 0, w, h);
+        grd.addColorStop(0, "#2b2e33"); grd.addColorStop(0.55, "#1d2024"); grd.addColorStop(1, "#15171a");
+        g.fillStyle = grd; g.fillRect(0, 0, w, h);
+        for (let i = 0; i < 900; i++) {
+          g.strokeStyle = `rgba(255,255,255,${0.008 + hash(i) * 0.012})`;
+          g.lineWidth = 1;
+          const y = hash(i + 1) * h * 1.6 - h * 0.3;
+          g.beginPath(); g.moveTo(0, y); g.lineTo(w, y - w * 0.18); g.stroke();
+        }
+        g.fillStyle = "rgba(255,255,255,0.78)";
+        g.font = "700 64px Inter"; g.fillText("•••• 4821", 110, h - 120);
+        g.strokeStyle = "rgba(255,255,255,0.7)"; g.lineWidth = 9; g.lineCap = "round";
+        const cx = w - 210, cy = h / 2;
+        for (let i = 0; i < 4; i++) { g.beginPath(); g.arc(cx - 40, cy, 34 + i * 30, -0.75, 0.75); g.stroke(); }
+      });
+      cardPrint.tex.repeat.set(1 / CW, 1 / CH);
+      cardPrint.tex.offset.set(0.5, 0.5);
+
+      const topMat = new THREE.MeshPhysicalMaterial({ map: cardPrint.tex, roughness: 0.38, metalness: 0.15, clearcoat: 0.8, clearcoatRoughness: 0.18, transparent: true, depthWrite: true });
+      const coreMat = new THREE.MeshPhysicalMaterial({ color: 0x5a5650, roughness: 0.6, transparent: true });
+      const botMat = new THREE.MeshPhysicalMaterial({ color: 0x1b1d20, roughness: 0.45, clearcoat: 0.5 });
+
+      const bottom = new THREE.Mesh(slab(rrShape(CW, CH, CR), LT), [botMat, coreMat]);
+      bottom.castShadow = true; bottom.receiveShadow = true;
+      card.add(bottom);
+
+      // inner substrate tint so the coil reads
+      const inlay = new THREE.Mesh(new THREE.ShapeGeometry(rrShape(CW - 0.12, CH - 0.12, CR - 0.06)), new THREE.MeshStandardMaterial({ color: 0x14100d, roughness: 0.8 }));
+      inlay.rotation.x = -Math.PI / 2; inlay.position.y = LT + 0.007; card.add(inlay);
+
+      const topGroup = new THREE.Group();
+      const top = new THREE.Mesh(slab(rrShape(CW, CH, CR, [[CHIP.x, -CHIP.z, CHIP.w + 0.04, CHIP.h + 0.04, 0.12]]), LT), [topMat, coreMat]);
+      top.castShadow = true;
+      topGroup.add(top);
+      topGroup.position.y = LT;
+      card.add(topGroup);
+
+      // copper antenna: 4 turns spiralling in
+      const turns = 4, i0 = 0.3, pitch = 0.085, perTurn = 220;
+      const coilPts = [];
+      for (let k = 0; k <= turns * perTurn; k++) {
+        const u = k / perTurn, inset = i0 + pitch * u;
+        const p = rrPoint(CW - 2 * inset, CH - 2 * inset, Math.max(0.12, CR - inset * 0.4), u);
+        p.y = LT + 0.016;
+        coilPts.push(p);
+      }
+      const outerEnd = coilPts[0].clone(), innerEnd = coilPts[coilPts.length - 1].clone();
+      const pad1 = v3(CHIP.x - 0.42, LT + 0.016, CHIP.z - 0.22), pad2 = v3(CHIP.x - 0.42, LT + 0.016, CHIP.z + 0.22);
+      const leadA = [v3(outerEnd.x + 0.0, outerEnd.y, outerEnd.z - 0.2), v3(lerp(outerEnd.x, pad1.x, 0.5), outerEnd.y, pad1.z), pad1];
+      const leadB = [v3(innerEnd.x + 0.12, innerEnd.y, innerEnd.z + 0.1), v3(lerp(innerEnd.x, pad2.x, 0.5), innerEnd.y, pad2.z), pad2];
+      const coilCurve = new THREE.CatmullRomCurve3(coilPts, false, "centripetal");
+      const copper = new THREE.MeshPhysicalMaterial({ color: 0xc06a32, metalness: 1, roughness: 0.34, emissive: 0xff6a12, emissiveIntensity: 0 });
+      const coil = new THREE.Mesh(new THREE.TubeGeometry(coilCurve, turns * perTurn * 2, 0.018, 8, false), copper);
+      coil.castShadow = true;
+      card.add(coil);
+      for (const lead of [[outerEnd, ...leadA], [innerEnd, ...leadB]]) {
+        const c = new THREE.CatmullRomCurve3(lead, false, "centripetal");
+        card.add(new THREE.Mesh(new THREE.TubeGeometry(c, 40, 0.018, 8, false), copper));
+      }
+
+      // chip module
+      const gold = new THREE.MeshPhysicalMaterial({ color: 0xd6a84e, metalness: 1, roughness: 0.28, emissive: 0xffa040, emissiveIntensity: 0 });
+      const plate = new THREE.Mesh(new RoundedBoxGeometry(CHIP.w, 0.05, CHIP.h, 3, 0.1), gold);
+      plate.position.set(CHIP.x, LT + 0.032, CHIP.z);
+      plate.castShadow = true;
+      card.add(plate);
+      const grooveMat = new THREE.MeshStandardMaterial({ color: 0x5c4320, roughness: 0.6 });
+      for (const [gx, gz, gw, gh] of [[0, 0, 0.03, CHIP.h - 0.12], [-0.3, 0, 0.42, 0.03], [0.3, 0, 0.42, 0.03], [-0.3, -0.24, 0.42, 0.03], [0.3, 0.24, 0.42, 0.03]]) {
+        const gm = new THREE.Mesh(new THREE.BoxGeometry(gw, 0.012, gh), grooveMat);
+        gm.position.set(CHIP.x + gx, LT + 0.058, CHIP.z + gz);
+        card.add(gm);
+      }
+      const halo = new THREE.Sprite(new THREE.SpriteMaterial({
+        map: canvasTex(256, 256, (g, w, h) => {
+          const r = g.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w / 2);
+          r.addColorStop(0, "rgba(255,190,110,1)"); r.addColorStop(0.25, "rgba(255,140,50,0.55)"); r.addColorStop(1, "rgba(255,100,20,0)");
+          g.fillStyle = r; g.fillRect(0, 0, w, h);
+        }).tex,
+        transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, opacity: 0,
+      }));
+      halo.position.set(CHIP.x, LT + 0.3, CHIP.z); halo.scale.set(1.7, 1.7, 1);
+      card.add(halo);
+
+      // current particles along the coil
+      const NP = 70;
+      const sparkMat = new THREE.MeshBasicMaterial({ color: 0xffb060, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false });
+      const sparks = new THREE.InstancedMesh(new THREE.SphereGeometry(0.05, 10, 8), sparkMat, NP);
+      card.add(sparks);
+      const dummy = new THREE.Object3D();
+
+      // ---------- payment terminal ----------
+      const pos = new THREE.Group();
+      scene.add(pos);
+      const termMat = new THREE.MeshPhysicalMaterial({ color: 0x1a1b1e, roughness: 0.4, clearcoat: 0.6, clearcoatRoughness: 0.25 });
+      const body = new THREE.Mesh(new RoundedBoxGeometry(7.6, 1.6, 15, 4, 0.6), termMat);
+      body.position.y = 0.8; body.castShadow = true; body.receiveShadow = true;
+      pos.add(body);
+      const bezel = new THREE.Mesh(new RoundedBoxGeometry(6.2, 0.06, 5.0, 3, 0.25), new THREE.MeshPhysicalMaterial({ color: 0x050506, roughness: 0.15, clearcoat: 1 }));
+      bezel.position.set(0, 1.6, -3.7); pos.add(bezel);
+      const scr = canvasTex(1160, 920, () => {});
+      function drawScreen(state) {
+        const g = scr.g, w = 1160, h = 920;
+        g.fillStyle = "#0b0d10"; g.fillRect(0, 0, w, h);
+        g.textAlign = "center";
+        if (state === 0) {
+          g.fillStyle = "#f4f4f4"; g.font = "700 150px Inter"; g.fillText("12,50 €", w / 2, 360);
+          g.strokeStyle = "#ffae5c"; g.lineWidth = 16; g.lineCap = "round";
+          for (let i = 0; i < 4; i++) { g.beginPath(); g.arc(w / 2 - 60, 600, 40 + i * 38, -0.8, 0.8); g.stroke(); }
+          g.fillStyle = "rgba(255,255,255,0.55)"; g.font = "400 58px Inter"; g.fillText("Acerque la tarjeta", w / 2, 840);
+        } else {
+          g.fillStyle = "#2fbf71"; g.beginPath(); g.arc(w / 2, 400, 180, 0, Math.PI * 2); g.fill();
+          g.strokeStyle = "#0b0d10"; g.lineWidth = 34; g.lineCap = "round"; g.lineJoin = "round";
+          g.beginPath(); g.moveTo(w / 2 - 80, 405); g.lineTo(w / 2 - 15, 470); g.lineTo(w / 2 + 95, 330); g.stroke();
+          g.fillStyle = "#f4f4f4"; g.font = "700 110px Inter"; g.fillText("Pagado", w / 2, 760);
+        }
+        scr.tex.needsUpdate = true;
+      }
+      let screenState = -1;
+      const screen = new THREE.Mesh(new THREE.PlaneGeometry(5.8, 4.6), new THREE.MeshStandardMaterial({ color: 0x000000, emissive: 0xffffff, emissiveMap: scr.tex, emissiveIntensity: 0.85, roughness: 0.2 }));
+      screen.rotation.x = -Math.PI / 2; screen.position.set(0, 1.64, -3.7);
+      pos.add(screen);
+      const keyMat = new THREE.MeshPhysicalMaterial({ color: 0x2b2d31, roughness: 0.5, clearcoat: 0.3 });
+      const keys = new THREE.InstancedMesh(new RoundedBoxGeometry(1.55, 0.22, 0.95, 2, 0.12), keyMat, 12);
+      for (let r = 0; r < 4; r++) for (let c = 0; c < 3; c++) {
+        dummy.position.set((c - 1) * 2.0, 1.66, 0.9 + r * 1.3); dummy.rotation.set(0, 0, 0); dummy.scale.set(1, 1, 1); dummy.updateMatrix();
+        keys.setMatrixAt(r * 3 + c, dummy.matrix);
+      }
+      keys.castShadow = true; pos.add(keys);
+
+      pos.position.set(2.6, 0, -2.6);
+      pos.rotation.y = 0.32;
+      pos.updateMatrixWorld();
+      const R = pos.localToWorld(v3(0, 1.64, -3.7));
+
+      // magnetic field rings
+      const NR = 7;
+      const ringMat = [];
+      const rings = [];
+      for (let i = 0; i < NR; i++) {
+        const m = new THREE.MeshBasicMaterial({ color: 0xff9a3c, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false });
+        const ring = new THREE.Mesh(new THREE.TorusGeometry(1, 0.018, 8, 160), m);
+        ring.rotation.x = Math.PI / 2;
+        pos.add(ring);
+        rings.push(ring); ringMat.push(m);
+      }
+
+      // ---------- finger ----------
+      const prof = [];
+      for (let i = 0; i <= 16; i++) { const a = (i / 16) * (Math.PI / 2); prof.push(new THREE.Vector2(0.82 * Math.sin(a) + 0.0001, 0.82 * (1 - Math.cos(a)))); }
+      prof.push(new THREE.Vector2(0.86, 1.8), new THREE.Vector2(0.88, 3.0), new THREE.Vector2(0.93, 3.4), new THREE.Vector2(0.92, 4.4), new THREE.Vector2(0.97, 7), new THREE.Vector2(1.02, 12));
+      const fGeo = new THREE.LatheGeometry(prof, 64);
+      fGeo.scale(1, 1, 0.84);
+      const skin = new THREE.MeshPhysicalMaterial({ color: 0xd9ad98, roughness: 0.62, sheen: 0.45, sheenRoughness: 0.7, sheenColor: new THREE.Color(0xffd2bd), clearcoat: 0.08, clearcoatRoughness: 0.7, emissive: 0x3a1408, emissiveIntensity: 0.18 });
+      const finger = new THREE.Group();
+      const fMesh = new THREE.Mesh(fGeo, skin); fMesh.castShadow = true; finger.add(fMesh);
+      const nail = new THREE.Mesh(new THREE.SphereGeometry(1, 40, 20), new THREE.MeshPhysicalMaterial({ color: 0xe3b4a6, roughness: 0.3, clearcoat: 0.9, clearcoatRoughness: 0.2 }));
+      nail.scale.set(0.5, 0.78, 0.085); nail.position.set(0, 1.12, 0.61); nail.rotation.x = -0.12;
+      finger.add(nail);
+      scene.add(finger);
+      const UP = v3(0, 1, 0);
+      function placeFinger(contact, dir, away) {
+        const d = dir.clone().normalize();
+        const z = UP.clone().sub(d.clone().multiplyScalar(d.dot(UP))).normalize();
+        const x = new THREE.Vector3().crossVectors(d, z).normalize();
+        const m = new THREE.Matrix4().makeBasis(x, d, z);
+        finger.quaternion.setFromRotationMatrix(m);
+        const origin = contact.clone().add(UP.clone().multiplyScalar(0.72)).sub(d.clone().multiplyScalar(0.8)).add(d.clone().multiplyScalar(away));
+        finger.position.copy(origin);
+      }
+
+      // ---------- post ----------
+      const rt = new THREE.WebGLRenderTarget(W, H, { type: THREE.HalfFloatType, samples: 4 });
+      const composer = new EffectComposer(renderer, rt);
+      composer.setPixelRatio(1); composer.setSize(W, H);
+      composer.addPass(new RenderPass(scene, camera));
+      const bloom = new UnrealBloomPass(new THREE.Vector2(W / 2, H / 2), 0.6, 0.55, 0.86);
+      composer.addPass(bloom);
+      composer.addPass(new OutputPass());
+
+      // ---------- story constants ----------
+      const C0 = { p: v3(-2.4, 0, 3.4), yaw: -1.15 };
+      const C1 = { p: v3(-3.2, 0, 4.4), yaw: -0.95 };
+      const C2 = { p: R.clone().add(v3(0, 2.6, 0)), yaw: 0.32 };
+      // timed to the Gemini voice (es-es-concierge-12); keep in sync with sonido.py
+      const T_TAP = 0.69, T_SLIDE0 = 2.63, T_SLIDE1 = 4.77, T_CUT = 5.96, T_FIELD = 9.53, T_LIFT0 = 12.62, T_LIFT1 = 14.56, T_CURRENT = 15.23, T_CHIP = 18.35, T_PAID = 19.92;
+
+      const CAM = [
+        { t: 0.0, p: v3(-0.2, 10.6, 14.2), q: v3(-2.2, 0.2, 2.5) },
+        { t: 2.16, p: v3(-0.6, 9.8, 13.0), q: v3(-2.2, 0.2, 2.5) },
+        { t: 3.23, p: v3(0.6, 18.8, 18.6), q: v3(-0.6, 0.4, 0.9) },
+        { t: 5.84, p: v3(0.2, 18.0, 17.8), q: v3(-0.8, 0.4, 1.1) },
+        { t: 6.49, p: C1.p.clone().add(v3(-0.6, 13.8, 10.6)), q: C1.p.clone().add(v3(0.0, 0.9, -0.2)) },
+        { t: 9.22, p: C1.p.clone().add(v3(-0.3, 13.1, 9.9)), q: C1.p.clone().add(v3(0.0, 0.9, -0.2)) },
+        { t: 9.96, p: R.clone().add(v3(-0.6, 9.5, 12.0)), q: R.clone().add(v3(0.0, 1.8, 1.0)) },
+        { t: 12.29, p: R.clone().add(v3(-1.0, 9.2, 11.2)), q: R.clone().add(v3(0.0, 1.8, 1.0)) },
+        { t: 13.11, p: R.clone().add(v3(-4.6, 12.5, 12.5)), q: R.clone().add(v3(-0.4, 2.2, 0.6)) },
+        { t: 16.93, p: R.clone().add(v3(-4.0, 11.6, 11.4)), q: R.clone().add(v3(-0.4, 2.2, 0.6)) },
+        { t: 17.86, p: R.clone().add(v3(-3.6, 11.0, 10.2)), q: R.clone().add(v3(-0.9, 2.0, 0.0)) },
+        { t: 19.51, p: R.clone().add(v3(-3.3, 10.6, 9.8)), q: R.clone().add(v3(-0.8, 2.0, 0.1)) },
+        { t: 21.2, p: R.clone().add(v3(0.4, 13.6, 11.2)), q: R.clone().add(v3(0.0, 0.8, -0.2)) },
+      ];
+      function camAt(t) {
+        let i = 0;
+        while (i < CAM.length - 2 && t > CAM[i + 1].t) i++;
+        const a = CAM[i], b = CAM[i + 1];
+        const k = ease(clamp((t - a.t) / (b.t - a.t)));
+        return { p: a.p.clone().lerp(b.p, k), q: a.q.clone().lerp(b.q, k) };
+      }
+
+      // ---------- captions ----------
+      const ICON = {
+        bat: '<svg class="ico" viewBox="0 0 34 18"><rect x="1.5" y="1.5" width="27" height="15" rx="3" fill="none" stroke="#fff" stroke-width="3"/><rect x="30" y="6" width="3" height="6" rx="1" fill="#fff"/><rect x="5" y="5" width="5" height="8" rx="1" fill="#ff5a4a"/></svg>',
+        bolt: '<svg class="ico" viewBox="0 0 14 22"><path d="M8.5 0 0 12.5h5.5L4.5 22 14 8.8H8.2z" fill="#ffb347"/></svg>',
+      };
+      const ICON_FOR = { "batería.": "bat", "energía": "bolt", "corriente": "bolt" };
+      const BREAKS = { l1: [2], l2: [1, 4, 6], l3: [2, 6, 9], l4: [2, 5], l5: [2, 4, 7, 10], l6: [3, 6, 8] };
+      const chunks = [];
+      for (const L of VOZ.lines) {
+        const cuts = [0, ...BREAKS[L.id], L.words.length];
+        for (let i = 0; i < cuts.length - 1; i++) chunks.push(L.words.slice(cuts[i], cuts[i + 1]));
+      }
+      const capsEl = document.getElementById("caps");
+      const chunkEls = chunks.map((ws, ci) => {
+        const line = document.createElement("div");
+        line.className = "line"; line.style.display = "none";
+        ws.forEach((w, wi) => {
+          const span = document.createElement("span");
+          span.className = "w" + (w.key ? " key" : "");
+          const ico = ICON_FOR[w.w] ? ICON[ICON_FOR[w.w]] : "";
+          span.innerHTML = (w.key ? '<span class="box"></span><span class="h1"></span><span class="h2"></span>' : "") + ico + '<span class="txt">' + w.w + "</span>";
+          line.appendChild(span);
+        });
+        capsEl.appendChild(line);
+        return line;
+      });
+      function drawCaps(t) {
+        let active = -1;
+        for (let i = 0; i < chunks.length; i++) if (t >= chunks[i][0].s - 0.06) active = i;
+        chunkEls.forEach((el, i) => (el.style.display = i === active ? "block" : "none"));
+        if (active < 0) return;
+        const ws = chunks[active];
+        let last = -1;
+        ws.forEach((w, i) => { if (t >= w.s - 0.04) last = i; });
+        [...chunkEls[active].children].forEach((span, i) => {
+          const w = ws[i];
+          const k = clamp((t - (w.s - 0.04)) / 0.12);
+          span.style.opacity = k;
+          span.style.transform = `translateY(${(1 - ease(k)) * 10}px)`;
+          span.classList.toggle("now", i === last);
+          if (w.key) {
+            const ks = ease(clamp((t - w.s) / 0.14));
+            for (const c of span.querySelectorAll(".box,.h1,.h2")) c.style.opacity = ks;
+            span.querySelector(".box").style.transform = `scale(${0.9 + 0.1 * ks})`;
+          }
+        });
+      }
+
+      // ---------- labels ----------
+      const labA = document.getElementById("labA"), labB = document.getElementById("labB");
+      const toScreen = (p) => { const v = p.clone().project(camera); return { x: (v.x + 1) * 0.5 * W, y: (1 - v.y) * 0.5 * H }; };
+      function drawLabel(labEl, gId, anchorLocal, dx, dy, alpha) {
+        const g = document.getElementById(gId);
+        g.setAttribute("opacity", alpha.toFixed(3));
+        labEl.style.opacity = alpha;
+        if (alpha <= 0) return;
+        const a = toScreen(card.localToWorld(anchorLocal.clone()));
+        const sx = a.x > W * 0.55 ? -Math.abs(dx) : Math.abs(dx); const lx = clamp(a.x + sx, 80, W - 80), ly = a.y + dy; dx = sx;
+        const l = document.getElementById(gId + "-l"), d = document.getElementById(gId + "-d");
+        l.setAttribute("x1", a.x); l.setAttribute("y1", a.y); l.setAttribute("x2", lx); l.setAttribute("y2", ly + 14);
+        d.setAttribute("cx", a.x); d.setAttribute("cy", a.y);
+        labEl.style.left = lx - (dx < 0 ? labEl.offsetWidth : 0) + "px";
+        labEl.style.top = ly - 18 + "px";
+      }
+
+      // ---------- frame ----------
+      function renderAt(t) {
+        // card placement
+        const slide = ramp(t, T_SLIDE0, T_SLIDE1);
+        const lift = ramp(t, T_LIFT0, T_LIFT1);
+        const p = C0.p.clone().lerp(C1.p, slide);
+        let yaw = lerp(C0.yaw, C1.yaw, slide);
+        yaw = lerp(yaw, -1.45, ramp(t, T_CUT - 0.1, T_CUT + 0.9));
+        if (lift > 0) { p.lerp(C2.p, lift); p.y += Math.sin(lift * Math.PI) * 0.9; yaw = lerp(yaw, C2.yaw, lift); }
+        p.y += lift >= 1 ? Math.sin((t - T_LIFT1) * 1.6) * 0.05 : 0;
+        const away2 = ramp(t, T_PAID - 0.25, T_PAID + 0.6);
+        p.add(v3(-5.2 * away2, 1.4 * away2, -1.6 * away2));
+        card.position.copy(p);
+        card.rotation.set(Math.sin(lift * Math.PI) * -0.12, yaw, 0);
+
+        // cutaway: top layer lifts, then becomes x-ray
+        const open = ramp(t, T_CUT, T_CUT + 1.1);
+        const settle = ramp(t, 11.57, 12.37);
+        topGroup.position.y = LT + 1.9 * open * (1 - settle);
+        topGroup.rotation.z = 0.06 * open * (1 - settle);
+        const op = lerp(1, lerp(0.3, 0.14, settle), open);
+        topMat.opacity = op; coreMat.opacity = op;
+        topMat.depthWrite = op > 0.95;
+        topMat.emissive.setHex(0x8a919c); topMat.emissiveIntensity = 0.12 * open * (1 - settle) + 0.05 * settle;
+        topMat.clearcoat = lerp(0.8, 0.1, open);
+        top.castShadow = op > 0.6;
+
+        // field, current, chip, screen
+        const fieldOn = ramp(t, T_FIELD, T_FIELD + 0.6) * (1 - ramp(t, T_PAID + 0.2, T_PAID + 0.9));
+        rings.forEach((ring, i) => {
+          const ph = (((t - T_FIELD) * 0.42 + i / NR) % 1 + 1) % 1;
+          const r = 1.2 + ph * 5.2;
+          ring.scale.set(r, r, 1);
+          ring.position.set(0, 1.7 + ph * 4.2, -3.7);
+          ringMat[i].opacity = fieldOn * Math.sin(Math.PI * ph) * 0.85;
+        });
+        const cur = ramp(t, T_CURRENT, T_CURRENT + 0.5);
+        copper.emissiveIntensity = 0.55 * cur * (0.85 + 0.15 * Math.sin(t * 9));
+        sparkMat.opacity = cur;
+        for (let i = 0; i < NP; i++) {
+          const u = (((i / NP) + (t - T_CURRENT) * 0.11) % 1 + 1) % 1;
+          dummy.position.copy(coilCurve.getPointAt(u)); dummy.position.y += 0.02;
+          const s = cur * (0.8 + 0.5 * hash(i));
+          dummy.scale.set(s, s, s); dummy.rotation.set(0, 0, 0); dummy.updateMatrix();
+          sparks.setMatrixAt(i, dummy.matrix);
+        }
+        sparks.instanceMatrix.needsUpdate = true;
+        const chipOn = ramp(t, T_CHIP, T_CHIP + 0.3);
+        gold.emissiveIntensity = 0.55 * chipOn;
+        halo.material.opacity = chipOn * (0.6 + 0.08 * Math.sin(t * 7));
+        const st = t >= T_PAID ? 1 : 0;
+        if (st !== screenState) { drawScreen(st); screenState = st; }
+
+        // finger
+        const tapIn = ramp(t, 0.0, T_TAP), tapOut = ramp(t, T_TAP + 0.35, T_TAP + 0.9);
+        const goneSlide = ramp(t, T_SLIDE1 + 0.25, T_SLIDE1 + 0.9);
+        const back = ramp(t, 13.11, 13.89);
+        let away = 0;
+        if (t < T_SLIDE0 - 0.4) away = (1 - tapIn) * 7 + tapOut * 1.2;
+        else if (t < 13.11) away = lerp(1.2, 0, ramp(t, T_SLIDE0 - 0.4, T_SLIDE0)) + goneSlide * 12;
+        else away = (1 - back) * 7;
+        const contactLocal = v3(1.6, LT * 2 + 0.01 + (topGroup.position.y - LT), 0.6);
+        const contact = card.localToWorld(contactLocal.clone());
+        placeFinger(contact, v3(-0.5, 0.72, -0.48), away);
+        finger.visible = away < 11.5;
+
+        // camera
+        const c = camAt(t);
+        camera.position.copy(c.p); camera.lookAt(c.q); camera.updateMatrixWorld();
+        key.target.position.copy(c.q);
+
+        composer.render();
+
+        // overlays
+        drawCaps(t);
+        const aA = ramp(t, 6.91, 7.2) * (1 - ramp(t, 9.14, 9.37));
+        drawLabel(labA, "leadA", v3(CW / 2 - i0 - 0.12, LT + 0.04, 0.9), 70, -230, aA);
+        const aB = ramp(t, 18.37, 18.7) * (1 - ramp(t, T_PAID - 0.4, T_PAID - 0.1));
+        drawLabel(labB, "leadB", v3(CHIP.x, LT + 0.08, CHIP.z), -60, -220, aB);
+        const note = document.getElementById("note");
+        let txt = "", na = 0;
+        if (t >= 6.06 && t < 9.31) { txt = "Ilustración ampliada"; na = ramp(t, 6.06, 6.46); }
+        else if (t >= 9.68 && t < 15.18) { txt = "Campo mostrado en ámbar, invisible a la vista"; na = ramp(t, 9.68, 10.08); }
+        else if (t >= 15.18) { txt = "Corriente mostrada en ámbar · Valores ilustrativos"; na = ramp(t, 15.28, 15.68); }
+        note.textContent = txt; note.style.opacity = na;
+      }
+
+      window.addEventListener("hf-seek", (e) => renderAt(e.detail.time));
+      await document.fonts.ready;
+      renderAt(0);
+      window.__renderAt = renderAt;
+      window.__tarjetaReady();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+.DS_Store
+*.log
+.env
+.claude/settings.local.json
+
+# dependencias: se regeneran con render/preparar.sh y pip
+node_modules/
+render/lib/
+.venv/
+__pycache__/
+
+# estado local de HyperFrames
+render/.hyperframes/
+
+# vídeos de otras cuentas: solo para estudiar, no se suben
+referencias/
+
+# todo lo generado (vídeos y audios)
+exports/
