@@ -8,6 +8,7 @@ de un momento (los mismos "momentos" que usa la escena, buscados igual que en po
     { "tipo": "toque", "en": "TAP", "mas": 0.1, "volumen": 0.8 }
     { "tipo": "zumbido", "desde": "CAMPO", "hasta": "SEGUNDO" }
 Tipos: toque, desliza, abre, brillo, pop, sube, chip, pagado, metal (una moneda que cae), error, hervor (desde/hasta),
+tictac (desde/hasta: un tic en cada segundo entero),
 teclas (n, cada), zumbido y morse (desde/hasta; el morse repite P-A-G-O con unidades de 0,09 s, como la
 escena) y ping (desde + mas hasta hasta, uno cada `cada` s; la escena lee estos mismos datos para dibujarlos).
 En zumbido, "mas" alarga el final; en ping, retrasa el comienzo.
@@ -122,6 +123,13 @@ for s in ESC.get("sonidos", []):
         w = env(a, 1.0, max(0, min(b, D) - a - 1.0), 0.8)
         pops = (rng.random(N) < 0.0012) * rng.standard_normal(N)
         out += (bandpass(pops, 600, 3500) * 0.25 + bandpass(noise, 2000, 7000) * 0.008) * w * vol
+    elif tipo == "tictac":
+        # a watch tick on every whole second between desde and hasta (the scene steps the second hand then)
+        a, b = cuando(s["desde"]), min(cuando(s["hasta"]), D)
+        k = int(np.ceil(a))
+        while k < b:
+            out += (tono(3200.0, k, 0.0005, 0.003, 0.02, 0.035) + bandpass(noise, 2000, 8000) * env(k, 0.0005, 0.002, 0.012) * 0.12) * vol
+            k += 1
     elif tipo == "metal":
         for f, g in ((2350.0, 0.05), (3720.0, 0.035), (5180.0, 0.02)):
             out += tono(f, a, 0.001, 0.005, 0.35, g * vol)

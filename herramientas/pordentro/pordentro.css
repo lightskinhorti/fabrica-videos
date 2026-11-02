@@ -44,7 +44,7 @@ html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--
 }
 /* legend fixed at the bottom, like a map key (rejilla style) */
 .leyenda { position: absolute; left: 64px; top: 1330px; display: flex; flex-direction: column; gap: 10px; }
-.leyenda .fila { display: flex; align-items: center; gap: 14px; opacity: 0; font-size: 24px; color: rgba(255, 255, 255, 0.75); }
+.leyenda .fila { display: flex; align-items: center; gap: 14px; opacity: 0; font-size: 24px; color: rgba(255, 255, 255, 0.9); text-shadow: 0 1px 8px rgba(0, 0, 0, 0.95), 0 0 2px rgba(0, 0, 0, 0.9); }
 .leyenda svg { width: 40px; height: 16px; }
 /* data panel: a big figure with a small title */
 .panel {

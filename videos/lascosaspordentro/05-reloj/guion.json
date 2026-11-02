@@ -1,0 +1,43 @@
+{
+  "titulo": "Tu reloj tiene un cristal que tiembla",
+  "lines": [
+    "Tu reloj tiene un cristal que tiembla.",
+    "Y tiembla un número exacto de veces por segundo. Al final verás por qué es justo ese número.",
+    "Vamos a abrirlo. Debajo de la esfera hay una pila de botón, un chip y una pieza diminuta con forma de diapasón.",
+    "Es un cristal de cuarzo de apenas unos milímetros.",
+    "Y el cuarzo tiene un truco: si le das electricidad, se dobla. Y al doblarse, devuelve electricidad.",
+    "Así que el chip le da un empujón, el cristal vibra, y esa vibración le devuelve al chip el siguiente empujón.",
+    "Y vibra siempre al mismo ritmo: treinta y dos mil setecientas sesenta y ocho veces por segundo.",
+    "El chip las va contando, y cada vez que llega a esa cifra, manda un pulso a un motor diminuto.",
+    "El motor da un paso y mueve la aguja: un segundo.",
+    "Por eso el segundero de tu reloj salta, en vez de deslizarse.",
+    "Con este sistema, un reloj normal se adelanta o se atrasa unos quince segundos al mes.",
+    "Y gasta tan poco que la pila suele durar entre uno y tres años.",
+    "¿Y por qué justo ese número? Porque si lo divides entre dos quince veces seguidas, sale exactamente uno.",
+    "Y dividir entre dos es lo más fácil para un chip: así cuenta los segundos sin equivocarse.",
+    "Mándaselo a alguien que nunca se ha preguntado qué tiembla en su muñeca."
+  ],
+  "claves": [
+    "tiembla",
+    "número",
+    "diapasón",
+    "cuarzo",
+    "dobla",
+    "vibra",
+    "ritmo",
+    "pulso",
+    "aguja",
+    "salta",
+    "quince",
+    "pila",
+    "uno",
+    "fácil",
+    "muñeca"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "Tu reloj tiene un cristal de cuarzo que tiembla 32.768 veces por segundo, y ese número no es casualidad. Así funciona por dentro. Ilustración simplificada.",
+    "hashtags": ["#reloj", "#cuarzo", "#ciencia"],
+    "portada_en": "tiembla"
+  }
+}
