@@ -28,6 +28,7 @@ pub = guion.get("publicacion", {})
 COMUNES = {
     "elcontadorloco": ["#quepasariasi", "#curiosidades", "#datoscuriosos", "#parati"],
     "lascosaspordentro": ["#comofunciona", "#tecnologia", "#curiosidades", "#parati"],
+    "dinerosinlio": ["#dinero", "#finanzaspersonales", "#economia", "#parati"],
 }
 hashtags = COMUNES.get(cuenta, ["#curiosidades", "#parati"]) + [h for h in pub.get("hashtags", []) if h not in COMUNES.get(cuenta, [])]
 

@@ -22,7 +22,7 @@ done
 PY="$RAIZ/voces/.venv/bin/python"
 # each account has its own sound script (its scene engine is linked as comun/ in the video folder)
 CUENTA="$(basename "$(dirname "$VIDEO")")"
-if [ "$CUENTA" = "lascosaspordentro" ]; then SONIDO="sonido_pordentro.py"; else SONIDO="sonido_contador.py"; fi
+if [ "$CUENTA" = "lascosaspordentro" ] || [ "$CUENTA" = "dinerosinlio" ]; then SONIDO="sonido_pordentro.py"; else SONIDO="sonido_contador.py"; fi
 
 if [ -n "$TEXTO" ]; then
   echo "1-2/6 Modo texto: tiempos de cada frase, sin voz"

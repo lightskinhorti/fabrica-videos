@@ -10,6 +10,7 @@
 //   notas: [{ texto, desde }]  (cada nota dura hasta la siguiente; texto "" la quita)
 //   iconos: { palabra: "bateria" | "rayo" | "onda" | "candado" | "reloj" }
 //   sonidos: los usa sonido_pordentro.py
+//   gancho: { texto, clave }  (el gancho en grande durante los primeros segundos; los subtítulos esperan)
 // Opciones del estilo de @speedy_devv (referencias 06 y speedy_devv/), para los vídeos nuevos:
 //   estilo: "rejilla"  (fondo negro con rejilla suave y los objetos flotando, sin mesa)
 //   leyenda: [{ color, forma: "flecha" | "onda" | "punto", texto, desde?, hasta? }]  (fija abajo, como en un mapa)
@@ -380,9 +381,24 @@ export function crearPorDentro(THREE) {
     }
   }
 
+  // ---------- hook title: the hook in big words for the first seconds, the captions wait for it ----------
+  // gancho: { texto, clave }  (clave = the word with the selection box); it stays until the first sentence ends
+  const G = ESC.gancho;
+  const ganchoEl = document.createElement("div"); ganchoEl.className = "gancho";
+  document.getElementById("labels").appendChild(ganchoEl);
+  if (G) ganchoEl.innerHTML = G.texto.split(" ").map((w) => (norm(w) === norm(G.clave || "") ? `<span class="sel">${w}</span>` : w)).join(" ");
+  const ganchoFin = G ? Math.max(2.4, VOZ.lines[0] ? VOZ.lines[0].e + 0.3 : 0) : 0;
+  function drawGancho(t) {
+    if (!G) return 0;
+    const k = 1 - ramp(t, ganchoFin - 0.35, ganchoFin);
+    ganchoEl.style.opacity = k; ganchoEl.style.transform = `translateY(-50%) scale(${0.96 + 0.04 * k})`;
+    return k;
+  }
+
   // draws the 3D scene (camera already placed) and every overlay for time t
   function pintar(t) {
     composer.render();
+    capsEl.style.opacity = 1 - drawGancho(t);
     drawCaps(t);
     drawLabels(t);
     drawNote(t);

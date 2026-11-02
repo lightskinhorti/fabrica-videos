@@ -77,9 +77,19 @@ elif len(args) > 1:
     if sm.ratio() < 0.7:
         sys.exit(f"El guion y lo que ha oído Whisper se parecen poco ({sm.ratio():.0%}): ¿es la voz de este guion?")
     limpia = lambda t: re.sub(r"^\W+|\W+$", "", t)
-    # Whisper writes 1538; Spanish captions read 1.538
+    # Whisper writes 1538; Spanish captions read 1.538, except years ("en 2016", "desde 2019")
     miles = lambda c: f"{int(c):,}".replace(",", ".") if re.fullmatch(r"\d{4,}", c) else c
     es_cifra = lambda t: re.fullmatch(r"\d[\d.,]*", limpia(t)) is not None
+    ANTES_DE_ANO = {"en", "de", "del", "desde", "hasta", "ano", "el"}
+    UNIDADES = {"euros", "euro", "metros", "kilometros", "kilos", "grados", "personas", "billetes", "veces",
+                "anos", "dias", "horas", "minutos", "segundos", "numeros"}
+
+    def es_ano(c, i1, i2):
+        if not re.fullmatch(r"(19|20)\d\d", c):
+            return False
+        antes = norm(guion_w[i1 - 1]) if i1 > 0 else ""
+        despues = norm(guion_w[i2]) if i2 < len(guion_w) else ""
+        return antes in ANTES_DE_ANO and despues not in UNIDADES
 
     def racha(xs, ok):
         n = 0
@@ -108,7 +118,9 @@ elif len(args) > 1:
                 and all(es_cifra(w["t"]) for w in words[j1:j2])):
             pre = re.match(r"[¿¡]*", guion_w[i1]).group(0)
             post = re.search(r"\W*$", guion_w[i2 - 1]).group(0)
-            mostrar[i1] = (pre + " ".join(miles(limpia(w["t"])) for w in words[j1:j2]) + post, s, e, list(range(i1, i2)))
+            cifras = [limpia(w["t"]) for w in words[j1:j2]]
+            texto_cifras = " ".join(c if es_ano(c, i1, i2) else miles(c) for c in cifras)
+            mostrar[i1] = (pre + texto_cifras + post, s, e, list(range(i1, i2)))
 
     def partir(i1, i2, j1, j2):
         """Separa una cifra al principio o al final del tramo ("del Everest: ocho mil…" / "de Leverest, 8.849")."""

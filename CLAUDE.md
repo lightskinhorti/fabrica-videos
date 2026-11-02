@@ -77,11 +77,20 @@ Hechos el 2 de noviembre: el paso 0 (skill del estilo instalada), el paso 1 (ví
    - Motor común hecho: `herramientas/pordentro/` (cada vídeo enlaza `comun` y `lib`) y `herramientas/sonido_pordentro.py`. La escena se ancla a la voz con "momentos" (palabras del guion), no con segundos. Se produce igual: `bash herramientas/producir.sh videos/lascosaspordentro/<video>`. El ejemplo es `01-tarjeta` (69,9 s).
    - Tarjeta, cargador inalámbrico y placa de inducción aprobados por Javier el 2 de noviembre (la placa, rehecha con el gancho corto y el estilo de rejilla). La pantalla táctil se descarta: @speedy_devv ya la tiene (referencia 06). Antes de cada objeto nuevo, comprobar con Javier que no está en el perfil de @speedy_devv (Instagram no deja verlo sin iniciar sesión).
    - Motor acercado al estilo de @speedy_devv (2 de noviembre), con opciones de la escena: `estilo: "rejilla"`, `leyenda`, `paneles`, `desenfoque` y `corte: true` en la cámara (detalle en el comentario de `pordentro.js` y en la skill `video-por-dentro`). Los vídeos nuevos los usan. Con `estilo: "rejilla"` no hay niebla: no toques `scene.fog`.
+   - La tarjeta, el cargador y la placa ya están programados en TikTok (2 de noviembre): no se vuelven a renderizar ni se tocan.
+   - Cada vídeo nuevo lleva `gancho: { texto, clave }` en la escena: el gancho en grande durante los primeros 2 o 3 segundos (lo pidió Javier el 2 de noviembre al ver el reloj).
    - Guiones: gancho que acabe antes de 2,5 s (`control.py` avisa), una pregunta abierta al principio que se resuelve al final y el dato más fuerte guardado para el final (consejos de `referencias/07` y de Javier).
    - Siguiente: el reloj de cuarzo y el GPS con el estilo nuevo, después de comprobar con Javier que @speedy_devv no tiene esos temas.
    - **Voz de pago activada por Javier el 2 de noviembre** (prepago, sin recarga automática): ya no hay límite de 10 voces al día, pero cada voz cuesta unos 1,5 céntimos y el saldo se acaba. Si la API responde 402, el saldo está a cero: avisa a Javier, no reintentes.
    - Si alguna vez la voz no está disponible, monta la escena con tiempos estimados (`vozdata.py guion.json`) y produce cuando vuelva: todo se ancla a palabras.
    - Ritmo decidido por Javier: el día 1, 3 vídeos por cuenta repartidos a las 18:00, 20:00 y 22:00; después, 1 al día por cuenta, y 2 cuando haya una semana de reserva.
+   - **Dinero sin lío (2 de noviembre):**
+     - Motor plano 2D en `herramientas/dinero/`, sin three.js, con los colores de la foto de perfil. Admite piezas que entran y salen, cifras que cuentan, iconos planos, gancho y subtítulos. El detalle está en el comentario de `dinero.js`.
+     - Usa `sonido_pordentro.py` con `fondo: "claro"`. Se produce igual: `bash herramientas/producir.sh videos/dinerosinlio/<video>`.
+     - Hechos, a la espera de la aprobación de Javier: `01-loteria`, `02-nomina` y `03-billete`. Guía y horario en `publicar/dinerosinlio.md`.
+     - Regla: explicar, nunca recomendar (ni inversiones ni consejos personales).
+   - **De momento solo se sube a TikTok** (decisión de Javier del 2 de noviembre); Instagram se automatizará más adelante. Javier quiere un panel para manejar varias cuentas sin cerrar sesión: opciones y recomendación en el PRD ("Panel de control para varias cuentas").
+   - Si Whisper oye un número distinto del guion, se cambia el texto del guion a cifras después de hacer la voz, sin pagar otra (campo `voz_dice`).
    - Formato principal: con voz. El modo texto (`--texto`) es solo una opción para vídeos de acción o surrealistas.
 
 ## Repositorio

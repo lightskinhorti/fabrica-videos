@@ -1,0 +1,48 @@
+{
+  "titulo": "Cuestas más de lo que cobras",
+  "lines": [
+    "Cuestas más de lo que cobras.",
+    "Tu nómina esconde dinero que nunca ves. Al final te enseño adónde va cada euro.",
+    "Imagina que tu sueldo bruto son cien euros: lo que pone arriba en tu nómina.",
+    "Antes de pagártelos, tu empresa ya ha pagado casi treinta y un euros más a la Seguridad Social.",
+    "Y algo más por accidentes de trabajo, que depende de tu oficio.",
+    "O sea, que le cuestas a tu empresa más de ciento treinta euros.",
+    "Pero de tus cien euros también te descuentan 6,50 euros para la Seguridad Social.",
+    "Te quedan 93,50. Y de ahí, Hacienda te retiene el IRPF, que depende de lo que ganes y de tu familia.",
+    "Así que, entre tu empresa y tú, a la Seguridad Social van más de treinta y siete euros.",
+    "¿Y adónde van? Más de veintiocho, a pensiones y a bajas por enfermedad.",
+    "Unos siete, a pagar el paro.",
+    "Casi uno, a la hucha de las pensiones.",
+    "Y casi otro, a cursos de formación y a un fondo que te paga el sueldo si tu empresa quiebra.",
+    "Míralo en tu próxima nómina: abajo pone lo que aporta tu empresa.",
+    "¿Sabías que costabas tanto? Te leo en los comentarios."
+  ],
+  "claves": [
+    "cuestas",
+    "esconde",
+    "bruto",
+    "empresa",
+    "accidentes",
+    "cuestas",
+    "descuentan",
+    "IRPF",
+    "entre",
+    "pensiones",
+    "paro",
+    "hucha",
+    "quiebra",
+    "abajo",
+    "comentarios"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "Por cada 100 euros de tu sueldo, tu empresa paga casi 31 más a la Seguridad Social, y a ti te descuentan 6,50. Así se reparte cada euro. Contrato indefinido, tipos de 2026.",
+    "hashtags": [
+      "#nomina",
+      "#seguridadsocial",
+      "#sueldo"
+    ],
+    "portada_en": "cobras"
+  },
+  "voz_dice": "La voz se generó con los números en palabras; aquí van en cifras para que los subtítulos coincidan con lo que oye Whisper."
+}

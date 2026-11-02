@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <link rel="stylesheet" href="comun/dinero.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+      .cifra, .fila b, .col-lab b, .ley b { font-family: "Archivo Black", sans-serif; }
+      /* this video's layout */
+      .ancho { left: 0; width: 1080px; }
+      .fila.marca { background: #f8dc7a; margin: 0 -16px; padding-left: 16px; padding-right: 16px; border-radius: 8px; }
+      /* the company's cost column, 5 px per euro */
+      .col { position: absolute; left: 0; width: 200px; border: 7px solid #1d2a44; }
+      #colBase { background: #1d2a44; bottom: 0; height: 500px; border-radius: 0 0 14px 14px; }
+      #colSS { background: #f2b705; bottom: 500px; height: 0; }
+      #colAT { background: repeating-linear-gradient(45deg, #e5383b 0 12px, #fffaf0 12px 24px); bottom: 653px; height: 0; border-radius: 14px 14px 0 0; }
+      #columna { width: 214px; height: 720px; }
+      .col-lab { font-size: 26px; font-weight: 800; letter-spacing: 0.08em; line-height: 1.2; }
+      .col-lab b { display: block; font-weight: 400; font-size: 46px; letter-spacing: 0; }
+      .fila b { white-space: nowrap; }
+      #selloNoVes .sello { font-size: 52px; }
+      .seg.tuyo { background: #fffaf0; }
+      .seg.ss { background: #e5383b; }
+      .ley { display: flex; align-items: center; gap: 18px; font-size: 32px; font-weight: 800; letter-spacing: 0.04em; height: 58px; }
+      .ley i { width: 34px; height: 34px; border-radius: 8px; border: 5px solid #1d2a44; }
+      .ley b { font-weight: 400; font-size: 38px; min-width: 150px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="62.3" data-width="1080" data-height="1920" data-fps="30">
+      <div id="fondo" class="clip" data-start="0" data-duration="62.3" data-track-index="0"></div>
+      <div id="escenario" class="clip" data-start="0" data-duration="62.3" data-track-index="1" data-layout-allow-overlap data-layout-allow-overflow>
+        <!-- A: the payslip that hides money -->
+        <div class="pieza" id="nomina" style="left:220px; top:830px" data-icono="doc"
+          data-args='["NÓMINA", [["SUELDO BRUTO", "100,00 €", "filaBruto"], ["DEDUCCIONES", "···", null, "roja"], ["LÍQUIDO A PERCIBIR", "···", null, "verde"]]]'></div>
+        <div class="pieza" id="selloNoVes" style="left:200px; top:1200px" data-icono="sello" data-args='["DINERO QUE NO VES", "#e5383b"]'></div>
+        <div class="pieza" id="pregunta" style="left:230px; top:520px"><div class="chip blanco">¿ADÓNDE VA CADA EURO?</div></div>
+
+        <!-- B: what you cost your company -->
+        <div class="pieza cifra media ancho" id="coste" style="top:420px">0 €</div>
+        <div class="pieza rotulo ancho" id="costeLab" style="top:528px">LE CUESTAS, COMO MÍNIMO</div>
+        <div class="pieza" id="empresa" style="left:50px; top:640px" data-icono="oficina" data-args='["TU EMPRESA", 250]'></div>
+        <div class="pieza" id="columna" style="left:350px; top:610px">
+          <div class="col" id="colAT"></div><div class="col" id="colSS"></div><div class="col" id="colBase"></div>
+        </div>
+        <div class="pieza col-lab" id="labBase" style="left:600px; top:1100px"><b>100 €</b>TU SUELDO BRUTO</div>
+        <div class="pieza col-lab" id="labSS" style="left:600px; top:850px"><b>+30,65 €</b>SEGURIDAD SOCIAL<br />QUE PAGA LA EMPRESA</div>
+        <div class="pieza col-lab" id="labAT" style="left:600px; top:700px"><b style="color:#e5383b">+ ALGO MÁS</b>ACCIDENTES DE TRABAJO</div>
+
+        <!-- C: what they take from your 100 € -->
+        <div class="pieza rotulo ancho" id="titC" style="top:520px">TUS 100 € BRUTOS</div>
+        <div class="pieza" id="barra" style="left:90px; top:600px; width:900px">
+          <div class="barra"><div class="seg tuyo" id="segTuyo" style="width:100%"></div><div class="seg ss" id="segSS" style="width:0%"></div></div>
+        </div>
+        <div class="pieza rotulo rojo" id="labDesc" style="left:90px; top:770px; text-align:left">−6,50 € A LA SEGURIDAD SOCIAL</div>
+        <div class="pieza rotulo ancho" id="quedaLab" style="top:870px">TE QUEDAN, ANTES DEL IRPF</div>
+        <div class="pieza cifra verde ancho" id="queda" style="top:920px">100,00 €</div>
+        <div class="pieza" id="irpf" style="left:90px; top:1150px"><div class="chip rojo" style="font-size:36px">− IRPF: SEGÚN TU CASO</div></div>
+        <div class="pieza" id="hacienda" style="left:660px; top:1080px" data-icono="edificio" data-args='["HACIENDA", "#fffaf0", 250]'></div>
+
+        <!-- D: everything that goes to the Seguridad Social, and where -->
+        <div class="pieza" id="chipEmp" style="left:90px; top:520px"><div class="chip blanco" style="font-size:36px">EMPRESA 30,65 €</div></div>
+        <div class="pieza" id="chipTu" style="left:600px; top:520px"><div class="chip blanco" style="font-size:36px">TÚ 6,50 €</div></div>
+        <div class="pieza cifra ancho" id="ss37" style="top:700px">0 €</div>
+        <div class="pieza rotulo ancho" id="ss37Lab" style="top:850px">A LA SEGURIDAD SOCIAL</div>
+        <div class="pieza" id="donut" style="left:290px; top:470px">
+          <svg width="530" height="530" viewBox="0 0 530 530">
+            <circle cx="262" cy="262" r="200" fill="none" stroke="#1d2a44" stroke-width="104" />
+            <circle cx="250" cy="250" r="200" fill="none" stroke="#fffaf0" stroke-width="96" />
+            <g transform="rotate(-90 250 250)">
+              <circle id="d0" cx="250" cy="250" r="200" fill="none" stroke="#1d2a44" stroke-width="96" stroke-dasharray="0 2000" />
+              <circle id="d1" cx="250" cy="250" r="200" fill="none" stroke="#4a78c2" stroke-width="96" stroke-dasharray="0 2000" />
+              <circle id="d2" cx="250" cy="250" r="200" fill="none" stroke="#f2b705" stroke-width="96" stroke-dasharray="0 2000" />
+              <circle id="d3" cx="250" cy="250" r="200" fill="none" stroke="#2f8f6b" stroke-width="96" stroke-dasharray="0 2000" />
+            </g>
+            <circle cx="250" cy="250" r="248" fill="none" stroke="#1d2a44" stroke-width="7" />
+            <circle cx="250" cy="250" r="152" fill="#f4eee2" stroke="#1d2a44" stroke-width="7" />
+            <text x="250" y="238" text-anchor="middle" dominant-baseline="central" font-family="Archivo Black" font-size="62" fill="#1d2a44">37,15 €</text>
+            <text x="250" y="292" text-anchor="middle" dominant-baseline="central" font-family="Inter" font-weight="800" font-size="22" letter-spacing="3" fill="#1d2a44">EN TOTAL</text>
+          </svg>
+        </div>
+        <div class="pieza ley" id="ley0" style="left:120px; top:1030px"><i style="background:#1d2a44"></i><b>28,30 €</b>PENSIONES Y BAJAS</div>
+        <div class="pieza ley" id="ley1" style="left:120px; top:1095px"><i style="background:#4a78c2"></i><b>7,05 €</b>PARO</div>
+        <div class="pieza ley" id="ley2" style="left:120px; top:1160px"><i style="background:#f2b705"></i><b>0,90 €</b>HUCHA DE LAS PENSIONES</div>
+        <div class="pieza ley" id="ley3" style="left:120px; top:1225px"><i style="background:#2f8f6b"></i><b>0,90 €</b>FORMACIÓN Y FOGASA</div>
+
+        <!-- E: look at the bottom of your payslip -->
+        <div class="pieza" id="nomina2" style="left:220px; top:560px" data-icono="doc"
+          data-args='["NÓMINA", [["SUELDO BRUTO", "100,00 €"], ["SEG. SOCIAL (TÚ)", "−6,50 €", null, "roja"], ["IRPF", "−···", null, "roja"], ["APORTACIÓN DE LA EMPRESA", "", "filaApTit", "fuerte"], ["SEGURIDAD SOCIAL", "30,65 €", "filaAporta"]]]'></div>
+
+        <!-- F: the closing question -->
+        <div class="pieza cifra ancho" id="final" style="top:640px">0 €</div>
+        <div class="pieza rotulo ancho" id="finalLab" style="top:790px">POR CADA 100 € DE TU SUELDO</div>
+        <div class="pieza" id="chipFin" style="left:150px; top:950px"><div class="chip" style="font-size:46px">¿SABÍAS QUE COSTABAS TANTO?</div></div>
+      </div>
+      <div id="gancho" class="clip" data-start="0" data-duration="62.3" data-track-index="2"></div>
+      <div id="note" class="clip" data-start="0" data-duration="62.3" data-track-index="3"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="62.3"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="62.3" data-track-index="4" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 61.08, "lines": [{"id": "l1", "s": 0.07, "e": 1.99, "words": [{"w": "Cuestas", "s": 0.07, "e": 0.57, "key": true}, {"w": "más", "s": 0.57, "e": 0.79, "key": false}, {"w": "de", "s": 0.79, "e": 0.93, "key": false}, {"w": "lo", "s": 0.93, "e": 1.06, "key": false}, {"w": "que", "s": 1.06, "e": 1.27, "key": false}, {"w": "cobras.", "s": 1.32, "e": 1.99, "key": false}]}, {"id": "l2", "s": 2, "e": 7.32, "words": [{"w": "Tu", "s": 2, "e": 2.03, "key": false}, {"w": "nómina", "s": 2.19, "e": 2.46, "key": false}, {"w": "esconde", "s": 2.46, "e": 2.87, "key": true}, {"w": "dinero", "s": 2.87, "e": 3.22, "key": false}, {"w": "que", "s": 3.22, "e": 3.4, "key": false}, {"w": "nunca", "s": 3.4, "e": 3.69, "key": false}, {"w": "ves.", "s": 3.69, "e": 4.8, "key": false}, {"w": "Al", "s": 4.8, "e": 4.82, "key": false}, {"w": "final", "s": 4.82, "e": 5.13, "key": false}, {"w": "te", "s": 5.17, "e": 5.24, "key": false}, {"w": "enseño", "s": 5.24, "e": 5.52, "key": false}, {"w": "adónde", "s": 5.52, "e": 6.16, "key": false}, {"w": "va", "s": 6.16, "e": 6.34, "key": false}, {"w": "cada", "s": 6.34, "e": 6.67, "key": false}, {"w": "euro.", "s": 6.71, "e": 7.32, "key": false}]}, {"id": "l3", "s": 7.47, "e": 11.2, "words": [{"w": "Imagina", "s": 7.47, "e": 7.63, "key": false}, {"w": "que", "s": 7.79, "e": 7.87, "key": false}, {"w": "tu", "s": 7.87, "e": 7.96, "key": false}, {"w": "sueldo", "s": 7.96, "e": 8.22, "key": false}, {"w": "bruto", "s": 8.23, "e": 8.46, "key": true}, {"w": "son", "s": 8.46, "e": 8.6, "key": false}, {"w": "100", "s": 8.6, "e": 9.03, "key": false}, {"w": "euros:", "s": 9.03, "e": 9.44, "key": false}, {"w": "lo", "s": 9.44, "e": 9.51, "key": false}, {"w": "que", "s": 9.51, "e": 9.55, "key": false}, {"w": "pone", "s": 9.72, "e": 9.82, "key": false}, {"w": "arriba", "s": 9.82, "e": 10.08, "key": false}, {"w": "en", "s": 10.08, "e": 10.2, "key": false}, {"w": "tu", "s": 10.32, "e": 10.38, "key": false}, {"w": "nómina.", "s": 10.38, "e": 11.2, "key": false}]}, {"id": "l4", "s": 11.2, "e": 16.8, "words": [{"w": "Antes", "s": 11.2, "e": 11.46, "key": false}, {"w": "de", "s": 11.46, "e": 11.56, "key": false}, {"w": "pagártelos,", "s": 11.56, "e": 12.17, "key": false}, {"w": "tu", "s": 12.17, "e": 12.27, "key": false}, {"w": "empresa", "s": 12.39, "e": 12.64, "key": true}, {"w": "ya", "s": 12.64, "e": 12.74, "key": false}, {"w": "ha", "s": 12.74, "e": 12.83, "key": false}, {"w": "pagado", "s": 12.9, "e": 13.24, "key": false}, {"w": "casi", "s": 13.24, "e": 13.57, "key": false}, {"w": "31", "s": 13.58, "e": 14.09, "key": false}, {"w": "euros", "s": 14.09, "e": 14.16, "key": false}, {"w": "más", "s": 14.27, "e": 14.73, "key": false}, {"w": "a", "s": 14.73, "e": 14.97, "key": false}, {"w": "la", "s": 14.97, "e": 15.01, "key": false}, {"w": "Seguridad", "s": 15.01, "e": 15.72, "key": false}, {"w": "Social.", "s": 15.92, "e": 16.8, "key": false}]}, {"id": "l5", "s": 16.8, "e": 19.66, "words": [{"w": "Y", "s": 16.8, "e": 16.852, "key": false}, {"w": "algo", "s": 16.852, "e": 17.06, "key": false}, {"w": "más", "s": 17.06, "e": 17.17, "key": false}, {"w": "por", "s": 17.22, "e": 17.38, "key": false}, {"w": "accidentes", "s": 17.38, "e": 17.85, "key": true}, {"w": "de", "s": 17.98, "e": 18.0, "key": false}, {"w": "trabajo,", "s": 18, "e": 18.43, "key": false}, {"w": "que", "s": 18.5, "e": 18.62, "key": false}, {"w": "depende", "s": 18.63, "e": 19.0, "key": false}, {"w": "de", "s": 19, "e": 19.02, "key": false}, {"w": "tu", "s": 19.16, "e": 19.2, "key": false}, {"w": "oficio.", "s": 19.2, "e": 19.66, "key": false}]}, {"id": "l6", "s": 19.66, "e": 22.72, "words": [{"w": "O", "s": 19.66, "e": 19.71, "key": false}, {"w": "sea,", "s": 19.71, "e": 19.97, "key": false}, {"w": "que", "s": 19.97, "e": 20.13, "key": false}, {"w": "le", "s": 20.13, "e": 20.16, "key": false}, {"w": "cuestas", "s": 20.27, "e": 20.64, "key": true}, {"w": "a", "s": 20.64, "e": 20.76, "key": false}, {"w": "tu", "s": 20.76, "e": 20.83, "key": false}, {"w": "empresa", "s": 20.83, "e": 21.25, "key": false}, {"w": "más", "s": 21.37, "e": 21.48, "key": false}, {"w": "de", "s": 21.48, "e": 21.61, "key": false}, {"w": "130", "s": 21.61, "e": 22.18, "key": false}, {"w": "euros.", "s": 22.2, "e": 22.72, "key": false}]}, {"id": "l7", "s": 22.83, "e": 28.05, "words": [{"w": "Pero", "s": 22.83, "e": 22.98, "key": false}, {"w": "de", "s": 22.98, "e": 23.11, "key": false}, {"w": "tus", "s": 23.11, "e": 23.26, "key": false}, {"w": "100", "s": 23.34, "e": 23.86, "key": false}, {"w": "euros", "s": 24, "e": 24.22, "key": false}, {"w": "también", "s": 24.22, "e": 24.59, "key": false}, {"w": "te", "s": 24.59, "e": 24.79, "key": false}, {"w": "descuentan", "s": 24.79, "e": 25.56, "key": true}, {"w": "6,50", "s": 25.56, "e": 26.09, "key": false}, {"w": "euros", "s": 26.09, "e": 26.44, "key": false}, {"w": "para", "s": 26.44, "e": 26.65, "key": false}, {"w": "la", "s": 26.8, "e": 26.82, "key": false}, {"w": "Seguridad", "s": 26.84, "e": 27.5, "key": false}, {"w": "Social.", "s": 27.5, "e": 28.05, "key": false}]}, {"id": "l8", "s": 28.1, "e": 34.85, "words": [{"w": "Te", "s": 28.1, "e": 28.25, "key": false}, {"w": "quedan", "s": 28.25, "e": 28.7, "key": false}, {"w": "93,50.", "s": 28.87, "e": 29.9, "key": false}, {"w": "Y", "s": 30.04, "e": 30.09, "key": false}, {"w": "de", "s": 30.09, "e": 30.19, "key": false}, {"w": "ahí,", "s": 30.19, "e": 30.56, "key": false}, {"w": "Hacienda", "s": 30.56, "e": 31.08, "key": false}, {"w": "te", "s": 31.08, "e": 31.21, "key": false}, {"w": "retiene", "s": 31.45, "e": 31.81, "key": false}, {"w": "el", "s": 31.85, "e": 31.95, "key": false}, {"w": "IRPF,", "s": 31.97, "e": 32.4, "key": true}, {"w": "que", "s": 32.41, "e": 32.8, "key": false}, {"w": "depende", "s": 32.8, "e": 33.04, "key": false}, {"w": "de", "s": 33.24, "e": 33.25, "key": false}, {"w": "lo", "s": 33.25, "e": 33.38, "key": false}, {"w": "que", "s": 33.38, "e": 33.58, "key": false}, {"w": "ganes", "s": 33.58, "e": 33.91, "key": false}, {"w": "y", "s": 33.91, "e": 33.98, "key": false}, {"w": "de", "s": 33.98, "e": 34.11, "key": false}, {"w": "tu", "s": 34.11, "e": 34.24, "key": false}, {"w": "familia.", "s": 34.24, "e": 34.85, "key": false}]}, {"id": "l9", "s": 34.99, "e": 40.305, "words": [{"w": "Así", "s": 34.99, "e": 35.12, "key": false}, {"w": "que,", "s": 35.3, "e": 35.32, "key": false}, {"w": "entre", "s": 35.32, "e": 35.66, "key": true}, {"w": "tu", "s": 35.66, "e": 35.75, "key": false}, {"w": "empresa", "s": 35.82, "e": 36.26, "key": false}, {"w": "y", "s": 36.27, "e": 36.34, "key": false}, {"w": "tú,", "s": 36.34, "e": 36.48, "key": false}, {"w": "a", "s": 36.48, "e": 36.54, "key": false}, {"w": "la", "s": 36.54, "e": 36.67, "key": false}, {"w": "Seguridad", "s": 36.67, "e": 37.08, "key": false}, {"w": "Social", "s": 37.2, "e": 37.65, "key": false}, {"w": "van", "s": 37.89, "e": 37.92, "key": false}, {"w": "más", "s": 38.04, "e": 38.28, "key": false}, {"w": "de", "s": 38.36, "e": 38.53, "key": false}, {"w": "37", "s": 38.65, "e": 39.28, "key": false}, {"w": "euros.", "s": 39.28, "e": 40.305, "key": false}]}, {"id": "l10", "s": 40.305, "e": 45.44, "words": [{"w": "¿Y", "s": 40.305, "e": 40.51, "key": false}, {"w": "adónde", "s": 40.51, "e": 41.14, "key": false}, {"w": "van?", "s": 41.28, "e": 41.87, "key": false}, {"w": "Más", "s": 42.01, "e": 42.22, "key": false}, {"w": "de", "s": 42.22, "e": 42.28, "key": false}, {"w": "28,", "s": 42.66, "e": 42.71, "key": false}, {"w": "a", "s": 42.71, "e": 42.77, "key": false}, {"w": "pensiones", "s": 42.77, "e": 43.32, "key": true}, {"w": "y", "s": 43.32, "e": 43.38, "key": false}, {"w": "a", "s": 43.38, "e": 43.44, "key": false}, {"w": "bajas", "s": 43.44, "e": 43.74, "key": false}, {"w": "por", "s": 43.74, "e": 43.92, "key": false}, {"w": "enfermedad.", "s": 43.92, "e": 45.44, "key": false}]}, {"id": "l11", "s": 45.44, "e": 46.96, "words": [{"w": "Unos", "s": 45.44, "e": 45.45, "key": false}, {"w": "7,", "s": 45.6, "e": 45.73, "key": false}, {"w": "a", "s": 45.73, "e": 45.81, "key": false}, {"w": "pagar", "s": 45.81, "e": 46.22, "key": false}, {"w": "el", "s": 46.22, "e": 46.38, "key": false}, {"w": "paro.", "s": 46.38, "e": 46.96, "key": true}]}, {"id": "l12", "s": 46.96, "e": 49.42, "words": [{"w": "Casi", "s": 46.96, "e": 47.21, "key": false}, {"w": "uno,", "s": 47.3, "e": 47.54, "key": false}, {"w": "a", "s": 47.54, "e": 47.67, "key": false}, {"w": "la", "s": 47.67, "e": 47.78, "key": false}, {"w": "hucha", "s": 47.78, "e": 48.1, "key": true}, {"w": "de", "s": 48.11, "e": 48.27, "key": false}, {"w": "las", "s": 48.27, "e": 48.52, "key": false}, {"w": "pensiones.", "s": 48.52, "e": 49.42, "key": false}]}, {"id": "l13", "s": 49.42, "e": 54.72, "words": [{"w": "Y", "s": 49.42, "e": 49.43, "key": false}, {"w": "casi", "s": 49.65, "e": 49.8, "key": false}, {"w": "otro,", "s": 49.8, "e": 50.025, "key": false}, {"w": "a", "s": 50.025, "e": 50.25, "key": false}, {"w": "cursos", "s": 50.25, "e": 50.73, "key": false}, {"w": "de", "s": 50.73, "e": 50.89, "key": false}, {"w": "formación", "s": 50.89, "e": 51.75, "key": false}, {"w": "y", "s": 51.75, "e": 51.815, "key": false}, {"w": "a", "s": 51.815, "e": 51.88, "key": false}, {"w": "un", "s": 51.88, "e": 52.0, "key": false}, {"w": "fondo", "s": 52, "e": 52.31, "key": false}, {"w": "que", "s": 52.31, "e": 52.37, "key": false}, {"w": "te", "s": 52.49, "e": 52.61, "key": false}, {"w": "paga", "s": 52.61, "e": 52.83, "key": false}, {"w": "el", "s": 52.87, "e": 52.97, "key": false}, {"w": "sueldo", "s": 52.97, "e": 53.33, "key": false}, {"w": "si", "s": 53.33, "e": 53.45, "key": false}, {"w": "tu", "s": 53.45, "e": 53.49, "key": false}, {"w": "empresa", "s": 53.94, "e": 54.01, "key": false}, {"w": "quiebra.", "s": 54.01, "e": 54.72, "key": true}]}, {"id": "l14", "s": 54.72, "e": 58.258, "words": [{"w": "Míralo", "s": 54.72, "e": 54.98, "key": false}, {"w": "en", "s": 55.12, "e": 55.13, "key": false}, {"w": "tu", "s": 55.13, "e": 55.23, "key": false}, {"w": "próxima", "s": 55.23, "e": 55.6, "key": false}, {"w": "nómina:", "s": 55.6, "e": 56.12, "key": false}, {"w": "abajo", "s": 56.12, "e": 56.3, "key": true}, {"w": "pone", "s": 56.52, "e": 56.68, "key": false}, {"w": "lo", "s": 56.68, "e": 56.76, "key": false}, {"w": "que", "s": 56.84, "e": 57.01, "key": false}, {"w": "aporta", "s": 57.13, "e": 57.45, "key": false}, {"w": "tu", "s": 57.52, "e": 57.66, "key": false}, {"w": "empresa.", "s": 57.66, "e": 58.258, "key": false}]}, {"id": "l15", "s": 58.258, "e": 60.8, "words": [{"w": "¿Sabías", "s": 58.258, "e": 58.77, "key": false}, {"w": "que", "s": 58.77, "e": 58.93, "key": false}, {"w": "costabas", "s": 58.93, "e": 59.31, "key": false}, {"w": "tanto?", "s": 59.31, "e": 59.8, "key": false}, {"w": "Te", "s": 59.8, "e": 59.9, "key": false}, {"w": "leo", "s": 59.9, "e": 60.05, "key": false}, {"w": "en", "s": 60.05, "e": 60.18, "key": false}, {"w": "los", "s": 60.18, "e": 60.28, "key": false}, {"w": "comentarios.", "s": 60.28, "e": 60.8, "key": true}]}]}</script>
+    <script id="escena" type="application/json">
+      {
+        "momentos": [
+          { "id": "ESCONDE", "clave": "esconde" },
+          { "id": "FINAL", "clave": "final" },
+          { "id": "BRUTO", "clave": "bruto" },
+          { "id": "ARRIBA", "clave": "arriba" },
+          { "id": "EMPRESA", "clave": "empresa" },
+          { "id": "SEGURIDAD", "clave": "seguridad" },
+          { "id": "ACCIDENTES", "clave": "accidentes" },
+          { "id": "CUESTAS", "clave": "cuestas" },
+          { "id": "DESCUENTAN", "clave": "descuentan" },
+          { "id": "QUEDAN", "clave": "quedan" },
+          { "id": "IRPF", "clave": "irpf" },
+          { "id": "ENTRE", "clave": "entre" },
+          { "id": "VAN", "clave": "van" },
+          { "id": "ADONDE", "clave": "adonde" },
+          { "id": "PENSIONES", "clave": "pensiones" },
+          { "id": "PARO", "clave": "paro" },
+          { "id": "HUCHA", "clave": "hucha" },
+          { "id": "CURSOS", "clave": "cursos" },
+          { "id": "QUIEBRA", "clave": "quiebra" },
+          { "id": "MIRALO", "clave": "miralo" },
+          { "id": "ABAJO", "clave": "abajo" },
+          { "id": "SABIAS", "clave": "sabias" }
+        ],
+        "gancho": { "texto": "Cuestas más de lo que cobras", "clave": "más" },
+        "piezas": [
+          { "id": "nomina", "desde": 0.1, "hasta": "EMPRESA", "entra": "escala", "dura": 0.6 },
+          { "id": "selloNoVes", "desde": "ESCONDE", "hasta": "BRUTO", "entra": "sello" },
+          { "id": "pregunta", "desde": "FINAL", "hasta": "EMPRESA", "entra": "baja" },
+          { "id": "empresa", "desde": "EMPRESA", "hasta": "DESCUENTAN", "entra": "izq" },
+          { "id": "columna", "desde": "EMPRESA", "hasta": "DESCUENTAN", "entra": "fundido" },
+          { "id": "labBase", "desde": "EMPRESA", "hasta": "DESCUENTAN", "entra": "der" },
+          { "id": "labSS", "desde": "SEGURIDAD", "hasta": "DESCUENTAN", "entra": "der" },
+          { "id": "labAT", "desde": "ACCIDENTES", "hasta": "DESCUENTAN", "entra": "der" },
+          { "id": "coste", "desde": "CUESTAS", "hasta": "DESCUENTAN", "entra": "escala" },
+          { "id": "costeLab", "desde": "CUESTAS", "hasta": "DESCUENTAN" },
+          { "id": "titC", "desde": "DESCUENTAN", "hasta": "ENTRE", "entra": "baja" },
+          { "id": "barra", "desde": "DESCUENTAN", "hasta": "ENTRE", "entra": "izq" },
+          { "id": "labDesc", "desde": "DESCUENTAN", "hasta": "ENTRE", "entra": "izq", "dura": 0.7 },
+          { "id": "quedaLab", "desde": "QUEDAN", "hasta": "ENTRE" },
+          { "id": "queda", "desde": "QUEDAN", "hasta": "ENTRE", "entra": "escala" },
+          { "id": "irpf", "desde": "IRPF", "hasta": "ENTRE", "entra": "izq" },
+          { "id": "hacienda", "desde": "IRPF", "hasta": "ENTRE", "entra": "der" },
+          { "id": "chipEmp", "desde": "ENTRE", "hasta": "ADONDE", "entra": "izq" },
+          { "id": "chipTu", "desde": "ENTRE", "hasta": "ADONDE", "entra": "der" },
+          { "id": "ss37", "desde": "VAN", "hasta": "ADONDE", "entra": "escala" },
+          { "id": "ss37Lab", "desde": "VAN", "hasta": "ADONDE" },
+          { "id": "donut", "desde": "ADONDE", "hasta": "MIRALO", "entra": "escala" },
+          { "id": "ley0", "desde": "PENSIONES", "hasta": "MIRALO", "entra": "izq" },
+          { "id": "ley1", "desde": "PARO", "hasta": "MIRALO", "entra": "izq" },
+          { "id": "ley2", "desde": "HUCHA", "hasta": "MIRALO", "entra": "izq" },
+          { "id": "ley3", "desde": "CURSOS", "hasta": "MIRALO", "entra": "izq" },
+          { "id": "nomina2", "desde": "MIRALO", "hasta": "SABIAS", "entra": "sube" },
+          { "id": "final", "desde": "SABIAS", "entra": "escala" },
+          { "id": "finalLab", "desde": "SABIAS" },
+          { "id": "chipFin", "desde": "SABIAS", "entra": "sube", "dura": 0.6 }
+        ],
+        "cifras": [
+          { "id": "coste", "desde": "CUESTAS", "de": 100, "a": 130.65, "dec": 2, "dura": 1.0 },
+          { "id": "queda", "desde": "QUEDAN", "de": 100, "a": 93.5, "dec": 2, "dura": 1.0 },
+          { "id": "ss37", "desde": "VAN", "a": 37.15, "dec": 2, "dura": 1.0 },
+          { "id": "final", "desde": "SABIAS", "de": 100, "a": 130.65, "dec": 2, "dura": 1.0 }
+        ],
+        "notas": [
+          { "texto": "Por cada 100 € de base de cotización. Contrato indefinido, régimen general, 2026", "desde": "BRUTO" },
+          { "texto": "Accidentes de trabajo: depende de la actividad de la empresa", "desde": "ACCIDENTES" },
+          { "texto": "Por cada 100 € de base de cotización. Contrato indefinido, régimen general, 2026", "desde": "DESCUENTAN" },
+          { "texto": "La retención de IRPF depende de tu sueldo y de tu familia", "desde": "IRPF" },
+          { "texto": "Pensiones y bajas: contingencias comunes", "desde": "PENSIONES" },
+          { "texto": "FOGASA: Fondo de Garantía Salarial", "desde": "CURSOS" },
+          { "texto": "", "desde": "MIRALO" }
+        ],
+        "fondo": "claro",
+        "sonidos": [
+          { "tipo": "metal", "en": 0.15 },
+          { "tipo": "toque", "en": "ESCONDE", "mas": 0.15 },
+          { "tipo": "brillo", "en": "FINAL" },
+          { "tipo": "chip", "en": "BRUTO" },
+          { "tipo": "desliza", "en": "EMPRESA" },
+          { "tipo": "sube", "en": "SEGURIDAD" },
+          { "tipo": "pop", "en": "ACCIDENTES" },
+          { "tipo": "pagado", "en": "CUESTAS", "mas": 0.2 },
+          { "tipo": "error", "en": "DESCUENTAN" },
+          { "tipo": "sube", "en": "QUEDAN" },
+          { "tipo": "toque", "en": "IRPF" },
+          { "tipo": "pop", "en": "ENTRE" },
+          { "tipo": "metal", "en": "VAN" },
+          { "tipo": "desliza", "en": "ADONDE" },
+          { "tipo": "pop", "en": "PENSIONES" },
+          { "tipo": "pop", "en": "PARO" },
+          { "tipo": "pop", "en": "HUCHA" },
+          { "tipo": "pop", "en": "CURSOS" },
+          { "tipo": "chip", "en": "QUIEBRA" },
+          { "tipo": "desliza", "en": "MIRALO" },
+          { "tipo": "brillo", "en": "ABAJO" },
+          { "tipo": "pagado", "en": "SABIAS", "mas": 0.2 }
+        ]
+      }
+    </script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 62.3 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import { crearDinero } from "./comun/dinero.js";
+      const C = crearDinero();
+      const { T, ramp } = C;
+      const $ = (id) => document.getElementById(id);
+
+      // the donut: 37,15 € split into 28,30 + 7,05 + 0,90 + 0,90
+      const VUELTA = 2 * Math.PI * 200;
+      const PARTES = [[28.3, T.PENSIONES], [7.05, T.PARO], [0.9, T.HUCHA], [0.9, T.CURSOS]];
+      const filaClase = (id, clase, on) => { const b = $(id); if (b) b.parentElement.classList.toggle(clase, on); };
+
+      function renderAt(t) {
+        // A: the payslip floats; the gross salary row lights up while the voice talks about it
+        C.mover("nomina", { y: 6 * Math.sin(t * 2.2) });
+        filaClase("filaBruto", "marca", t >= T.BRUTO && t < T.EMPRESA);
+
+        // B: the cost column grows: salary, then the company's social security, then accidents
+        // stacked boxes share their 7 px border; an empty one is hidden
+        const hb = 500 * ramp(t, T.EMPRESA, T.EMPRESA + 0.7);
+        const hs = 153 * ramp(t, T.SEGURIDAD, T.SEGURIDAD + 0.7);
+        const ha = 34 * ramp(t, T.ACCIDENTES, T.ACCIDENTES + 0.5);
+        const caja = (id, abajo, alto) => {
+          const e = $(id);
+          e.style.display = alto > 1 ? "block" : "none";
+          e.style.bottom = abajo + "px";
+          e.style.height = alto + 7 + "px";
+        };
+        caja("colBase", 0, hb - 7);
+        caja("colSS", hb - 7, hs);
+        caja("colAT", hb + hs - 14, ha);
+        C.mover("empresa", { y: 5 * Math.sin(t * 2) });
+
+        // C: 6,50 € come off your 100 €
+        const ss = 6.5 * ramp(t, T.DESCUENTAN, T.DESCUENTAN + 0.7);
+        $("segSS").style.width = ss + "%";
+        $("segTuyo").style.width = 100 - ss + "%";
+
+        // D: the donut fills one slice per sentence
+        let inicio = 0;
+        PARTES.forEach(([v, a], i) => {
+          const largo = (VUELTA * v) / 37.15;
+          const k = ramp(t, a, a + 0.6);
+          const arco = $("d" + i);
+          arco.setAttribute("stroke-dasharray", `${largo * k} ${VUELTA}`);
+          arco.setAttribute("stroke-dashoffset", -inicio);
+          inicio += largo;
+        });
+        C.mover("chipEmp", { y: 5 * Math.sin(t * 2.4) });
+        C.mover("chipTu", { y: 5 * Math.sin(t * 2.4 + 1.5) });
+
+        // E: the bottom of the payslip, where the company's share is written
+        filaClase("filaAporta", "marca", t >= T.ABAJO);
+
+        C.pintar(t);
+      }
+
+      C.arrancar(renderAt);
+    </script>
+  </body>
+</html>

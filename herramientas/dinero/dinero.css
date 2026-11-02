@@ -1,0 +1,90 @@
+/* Estilos comunes de Dinero sin lío: plano 2D, papel crema, tinta azul marino, oro y rojo (la foto de perfil). */
+:root {
+  --papel: #f4eee2;
+  --tinta: #1d2a44;
+  --suave: rgba(29, 42, 68, 0.4);
+  --oro: #f2b705;
+  --rojo: #e5383b;
+  --verde: #2f8f6b;
+  --blanco: #fffaf0;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--papel); }
+#root { position: relative; width: 1080px; height: 1920px; color: var(--tinta); }
+/* paper with a faint dot grid */
+#fondo {
+  position: absolute; inset: 0;
+  background-color: var(--papel);
+  background-image: radial-gradient(rgba(29, 42, 68, 0.09) 2.2px, transparent 2.6px);
+  background-size: 54px 54px; background-position: 27px 27px;
+}
+#escenario { position: absolute; inset: 0; }
+.pieza { position: absolute; opacity: 0; transform-origin: 50% 50%; }
+.pieza svg { display: block; }
+
+#caps {
+  /* top: below TikTok's tabs; two lines at most (control.py measures it with Inter 700 68 px in 900 px) */
+  position: absolute; left: 90px; right: 90px; top: 196px; height: 200px;
+  display: flex; align-items: flex-start; justify-content: center; text-align: center;
+}
+#caps .line { font-size: 68px; line-height: 1.18; font-weight: 700; letter-spacing: -0.02em; color: var(--suave); }
+#caps .w { display: inline-block; margin: 0 0.12em; opacity: 0; position: relative; white-space: nowrap; }
+#caps .w.now, #caps .w.key { color: var(--tinta); }
+#caps .w .txt { position: relative; z-index: 1; }
+/* the key word: a flat yellow marker stroke that draws from left to right */
+#caps .w .box {
+  position: absolute; left: -10px; right: -10px; top: 14%; bottom: 4%; border-radius: 8px;
+  background: var(--oro); transform-origin: 0 50%; transform: scaleX(0);
+}
+
+/* the hook in big words for the first seconds */
+#gancho {
+  position: absolute; left: 70px; right: 70px; top: 640px; transform: translateY(-50%); opacity: 0;
+  text-align: center; font-size: 104px; font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; color: var(--tinta);
+}
+#gancho .sel { background: var(--oro); border-radius: 12px; padding: 0 16px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+
+/* big figures */
+.cifra { font-family: "Archivo Black", sans-serif; font-size: 132px; line-height: 1; letter-spacing: -0.02em; color: var(--tinta); white-space: nowrap; text-align: center; }
+.cifra.roja { color: var(--rojo); }
+.cifra.verde { color: var(--verde); }
+.cifra.media { font-size: 96px; }
+.cifra.pequena { font-size: 64px; }
+.rotulo { font-size: 30px; font-weight: 800; letter-spacing: 0.12em; color: var(--tinta); text-align: center; white-space: nowrap; }
+.rotulo.rojo { color: var(--rojo); }
+.rotulo.verde { color: var(--verde); }
+/* a flat card with a solid navy offset shadow */
+.tarjeta {
+  background: var(--blanco); border: 7px solid var(--tinta); border-radius: 24px; padding: 26px 34px;
+  box-shadow: 12px 12px 0 var(--tinta); text-align: center;
+}
+.chip {
+  display: inline-block; padding: 12px 26px; border-radius: 999px; border: 6px solid var(--tinta);
+  background: var(--oro); font-size: 40px; font-weight: 800; letter-spacing: 0.02em; white-space: nowrap; box-shadow: 8px 8px 0 var(--tinta);
+}
+.chip.rojo { background: var(--rojo); color: #fff; }
+.chip.blanco { background: var(--blanco); }
+.chip.verde { background: var(--verde); color: #fff; }
+.sello {
+  display: inline-block; transform: rotate(-8deg); border: 10px solid; border-radius: 18px; padding: 10px 30px;
+  font-size: 64px; font-weight: 800; letter-spacing: 0.06em; white-space: nowrap; background: rgba(255, 250, 240, 0.85);
+}
+/* bars made of segments; the video sets each segment's width */
+.barra { display: flex; height: 120px; border: 7px solid var(--tinta); border-radius: 18px; overflow: hidden; background: var(--blanco); box-shadow: 12px 12px 0 var(--tinta); }
+.seg { height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; white-space: nowrap; font-size: 34px; font-weight: 800; }
+.seg + .seg { border-left: 6px solid var(--tinta); }
+/* a document (payslip) */
+.doc { width: 640px; background: var(--blanco); border: 7px solid var(--tinta); border-radius: 18px; box-shadow: 12px 12px 0 var(--tinta); padding: 26px 34px 18px; }
+.doc-tit { font-size: 34px; font-weight: 800; letter-spacing: 0.16em; padding-bottom: 14px; border-bottom: 5px solid var(--tinta); margin-bottom: 8px; }
+.fila { display: flex; justify-content: space-between; align-items: baseline; padding: 12px 0; font-size: 34px; font-weight: 600; border-bottom: 3px dashed rgba(29, 42, 68, 0.25); }
+.fila:last-child { border-bottom: none; }
+.fila b { font-family: "Archivo Black", sans-serif; font-weight: 400; font-size: 38px; }
+.fila.roja b { color: var(--rojo); }
+.fila.verde b { color: var(--verde); }
+.fila.fuerte { font-weight: 800; }
+
+#note {
+  /* above TikTok's account name and description */
+  position: absolute; left: 64px; right: 160px; top: 1450px; font-size: 26px; font-weight: 500;
+  color: rgba(29, 42, 68, 0.7); letter-spacing: 0.01em;
+}

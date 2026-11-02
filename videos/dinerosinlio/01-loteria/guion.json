@@ -1,0 +1,46 @@
+{
+  "titulo": "Hacienda también juega a la lotería",
+  "lines": [
+    "Hacienda también juega a la lotería.",
+    "Y si te toca, se queda su parte. Al final verás cuánto te devuelve, de media, cada décimo.",
+    "Un décimo cuesta veinte euros, y si es el Gordo, paga cuatrocientos mil.",
+    "Pero no te llegan enteros. Hay una regla: los primeros cuarenta mil euros de cada premio no pagan nada.",
+    "Del resto, Hacienda se queda el 20%.",
+    "Así que del Gordo tributan trescientos sesenta mil euros, y Hacienda se lleva setenta y dos mil.",
+    "Te quedan trescientos veintiocho mil, y te los pagan ya descontados.",
+    "¿Y el segundo premio? Son ciento veinticinco mil por décimo, y Hacienda se lleva diecisiete mil.",
+    "Del cuarto premio para abajo, Hacienda no toca nada: son veinte mil euros o menos.",
+    "¿Y si compartes el décimo? Los cuarenta mil libres también se reparten, así que Hacienda se lleva lo mismo.",
+    "Ahora, la cuenta que casi nadie hace: hay cien mil números, y solo uno es el Gordo.",
+    "Este año salen a la venta cuatro mil cien millones de euros en décimos, y el 70% vuelve en premios.",
+    "O sea: de media, cada décimo de veinte euros devuelve catorce. Y eso, antes de Hacienda.",
+    "¿Este año juegas igual? Te leo en los comentarios."
+  ],
+  "claves": [
+    "Hacienda",
+    "devuelve",
+    "Gordo",
+    "regla",
+    "resto",
+    "lleva",
+    "quedan",
+    "segundo",
+    "nada",
+    "compartes",
+    "cuenta",
+    "vuelve",
+    "media",
+    "comentarios"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "Si te toca el Gordo de Navidad, Hacienda se lleva 72.000 euros de tu décimo. Y de media, cada décimo de 20 euros devuelve 14. Así se reparte. Datos del sorteo de 2026.",
+    "hashtags": [
+      "#loteriadenavidad",
+      "#elgordo",
+      "#hacienda"
+    ],
+    "portada_en": "Hacienda"
+  },
+  "voz_dice": "La voz se generó con los números en palabras; aquí van en cifras para que los subtítulos coincidan con lo que oye Whisper."
+}

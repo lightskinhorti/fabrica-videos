@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <link rel="stylesheet" href="comun/dinero.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+      .cifra, .tfila b { font-family: "Archivo Black", sans-serif; }
+      /* this video's layout */
+      .ancho { left: 0; width: 1080px; }
+      .lista .rotulo { text-align: left; font-size: 32px; }
+      .lista .rotulo i { display: inline-block; width: 26px; height: 26px; border-radius: 50%; border: 5px solid #1d2a44; margin-right: 14px; vertical-align: -3px; }
+      .tabla { padding: 18px 36px; }
+      .tfila { display: flex; justify-content: space-between; align-items: baseline; padding: 18px 0; font-size: 40px; font-weight: 700; border-bottom: 3px dashed rgba(29, 42, 68, 0.25); opacity: 0; }
+      .tfila:last-child { border-bottom: none; }
+      .tfila.cab { opacity: 1; font-size: 26px; font-weight: 800; letter-spacing: 0.12em; padding: 6px 0 14px; border-bottom: 5px solid #1d2a44; }
+      .tfila b { font-weight: 400; font-size: 42px; color: #e5383b; }
+      .tfila b.v { color: #2f8f6b; display: inline-block; }
+      #rejilla { display: grid; grid-template-columns: repeat(25, 32px); gap: 0; }
+      #rejilla i { display: block; width: 20px; height: 20px; margin: 6px; border-radius: 50%; background: #1d2a44; opacity: 0.18; }
+      #rejilla i.oro { background: #f2b705; opacity: 1; box-shadow: 0 0 0 5px #1d2a44; }
+      #selloAntes .sello { font-size: 50px; }
+      .seg.libre { background: #2f8f6b; }
+      .seg.queda { background: #fffaf0; }
+      .seg.hac { background: #e5383b; }
+      .seg.prem { background: #2f8f6b; color: #fff; }
+      .seg.resto { background: #1d2a44; color: #fff; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="71.2" data-width="1080" data-height="1920" data-fps="30">
+      <div id="fondo" class="clip" data-start="0" data-duration="71.2" data-track-index="0"></div>
+      <div id="escenario" class="clip" data-start="0" data-duration="71.2" data-track-index="1" data-layout-allow-overlap data-layout-allow-overflow>
+        <!-- A: the ticket, Hacienda, the open question and the Gordo -->
+        <div class="pieza" id="decimo" style="left:230px; top:900px" data-icono="decimo" data-args='["27418", 600]'></div>
+        <div class="pieza" id="hacienda" style="left:620px; top:1010px" data-icono="edificio" data-args='["HACIENDA", "#fffaf0", 340]'></div>
+        <div class="pieza tarjeta" id="pregunta" style="left:70px; top:1030px; width:500px">
+          <div class="rotulo">CADA DÉCIMO DE 20 €</div>
+          <div class="cifra media">¿?</div>
+          <div class="rotulo">VUELVE DE MEDIA</div>
+        </div>
+        <div class="pieza cifra ancho" id="gordo" style="top:960px">0 €</div>
+        <div class="pieza rotulo ancho" id="gordoLab" style="top:1110px">EL GORDO, POR DÉCIMO</div>
+        <div class="pieza" id="m1" style="left:110px; top:1190px" data-icono="moneda" data-args='["€", 150]'></div>
+        <div class="pieza" id="m2" style="left:465px; top:1240px" data-icono="moneda" data-args='["€", 150]'></div>
+        <div class="pieza" id="m3" style="left:770px; top:1190px" data-icono="moneda" data-args='["€", 150]'></div>
+
+        <!-- B: what the Gordo pays -->
+        <div class="pieza rotulo ancho" id="titB" style="top:520px">EL GORDO: 400.000 € POR DÉCIMO</div>
+        <div class="pieza" id="barra" style="left:90px; top:600px; width:900px">
+          <div class="barra"><div class="seg libre" id="segLibre" style="width:0%"></div><div class="seg queda" id="segQueda" style="width:100%"></div><div class="seg hac" id="segHac" style="width:0%"></div></div>
+        </div>
+        <div class="pieza lista" id="lab1" style="left:90px; top:790px"><div class="rotulo verde"><i style="background:#2f8f6b"></i>40.000 € LIBRES</div></div>
+        <div class="pieza lista" id="lab2" style="left:90px; top:850px"><div class="rotulo"><i style="background:#f8dc7a"></i>360.000 € PAGAN EL 20 %</div></div>
+        <div class="pieza lista" id="lab3" style="left:90px; top:910px"><div class="rotulo rojo"><i style="background:#e5383b"></i>72.000 € PARA HACIENDA</div></div>
+        <div class="pieza cifra media roja ancho" id="quita" style="top:1060px">−0 €</div>
+        <div class="pieza rotulo ancho" id="quedaLab" style="top:1020px">TE QUEDAN</div>
+        <div class="pieza cifra verde ancho" id="queda" style="top:1070px">400.000 €</div>
+        <div class="pieza" id="selloDesc" style="left:290px; top:1290px" data-icono="sello" data-args='["YA DESCONTADO", "#e5383b"]'></div>
+
+        <!-- C: the other prizes -->
+        <div class="pieza tarjeta tabla" id="tabla" style="left:90px; top:560px; width:900px">
+          <div class="tfila cab"><span>PREMIO POR DÉCIMO</span><span>HACIENDA</span></div>
+          <div class="tfila" id="f1"><span>1.º · 400.000 €</span><b>72.000 €</b></div>
+          <div class="tfila" id="f2"><span>2.º · 125.000 €</span><b>17.000 €</b></div>
+          <div class="tfila" id="f3"><span>3.º · 50.000 €</span><b>2.000 €</b></div>
+          <div class="tfila" id="f4"><span>4.º · 20.000 €</span><b class="v" id="cero">0 €</b></div>
+        </div>
+        <div class="pieza" id="chipNada" style="left:160px; top:1170px"><div class="chip verde">DEL 4.º PARA ABAJO: 0 €</div></div>
+
+        <!-- D: sharing the ticket -->
+        <div class="pieza" id="decimo2" style="left:360px; top:560px" data-icono="decimo" data-args='["27418", 360]'></div>
+        <div class="pieza" id="p1" style="left:150px; top:820px" data-icono="persona" data-args='["#4a78c2", 200]'></div>
+        <div class="pieza" id="p2" style="left:650px; top:820px" data-icono="persona" data-args='["#2f8f6b", 200]'></div>
+        <div class="pieza" id="lib1" style="left:90px; top:1120px"><div class="chip blanco" style="font-size:32px">20.000 € LIBRES</div></div>
+        <div class="pieza" id="lib2" style="left:590px; top:1120px"><div class="chip blanco" style="font-size:32px">20.000 € LIBRES</div></div>
+        <div class="pieza" id="chipMismo" style="left:150px; top:1250px"><div class="chip rojo" style="font-size:36px">HACIENDA: 72.000 € EN TOTAL</div></div>
+
+        <!-- E: one number out of 100.000 -->
+        <div class="pieza cifra ancho" id="numeros" style="top:520px">0</div>
+        <div class="pieza rotulo ancho" id="numerosLab" style="top:665px">NÚMEROS EN EL BOMBO</div>
+        <div class="pieza" id="rejilla" style="left:140px; top:740px"></div>
+        <div class="pieza" id="gordoDot" style="left:385px; top:1280px"><div class="chip">↑ EL GORDO</div></div>
+
+        <!-- F: where the money goes -->
+        <div class="pieza cifra ancho" id="emision" style="top:520px">0</div>
+        <div class="pieza rotulo ancho" id="emisionLab" style="top:665px">MILLONES DE € EN DÉCIMOS</div>
+        <div class="pieza" id="barra2" style="left:90px; top:780px; width:900px">
+          <div class="barra"><div class="seg prem" id="segPrem" style="width:0%">70 % EN PREMIOS</div><div class="seg resto" id="segResto" style="width:100%">30 %</div></div>
+        </div>
+        <div class="pieza rotulo ancho" id="restoLab" style="top:950px">EL OTRO 30 %: GASTOS Y ESTADO</div>
+
+        <!-- G: what a ticket gives back on average -->
+        <div class="pieza" id="m20" style="left:100px; top:720px" data-icono="moneda" data-args='["20 €", 270]'></div>
+        <div class="pieza" id="flecha" style="left:410px; top:810px"><svg width="220" height="90" viewBox="0 0 220 90"><path d="M10 45 H170" stroke="#1d2a44" stroke-width="16" stroke-linecap="round"/><path d="M145 12 L198 45 L145 78" fill="none" stroke="#1d2a44" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="pieza" id="m14" style="left:650px; top:720px" data-icono="moneda" data-args='["14 €", 270]'></div>
+        <div class="pieza rotulo ancho" id="mediaLab" style="top:1040px">LO QUE VUELVE DE MEDIA</div>
+        <div class="pieza" id="selloAntes" style="left:220px; top:1170px" data-icono="sello" data-args='["ANTES DE HACIENDA", "#e5383b"]'></div>
+
+        <!-- H: the closing question -->
+        <div class="pieza" id="decimo3" style="left:270px; top:640px" data-icono="decimo" data-args='["27418", 520]'></div>
+        <div class="pieza" id="chipFin" style="left:290px; top:1010px"><div class="chip" style="font-size:52px">¿JUEGAS IGUAL?</div></div>
+      </div>
+      <div id="gancho" class="clip" data-start="0" data-duration="71.2" data-track-index="2"></div>
+      <div id="note" class="clip" data-start="0" data-duration="71.2" data-track-index="3"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="71.2"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="71.2" data-track-index="4" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 69.96, "lines": [{"id": "l1", "s": 0, "e": 2.05, "words": [{"w": "Hacienda", "s": 0, "e": 0.6, "key": true}, {"w": "también", "s": 0.6, "e": 1.14, "key": false}, {"w": "juega", "s": 1.14, "e": 1.52, "key": false}, {"w": "a", "s": 1.52, "e": 1.62, "key": false}, {"w": "la", "s": 1.52, "e": 1.67, "key": false}, {"w": "lotería.", "s": 1.67, "e": 2.05, "key": false}]}, {"id": "l2", "s": 2.05, "e": 9.12, "words": [{"w": "Y", "s": 2.05, "e": 2.37, "key": false}, {"w": "si", "s": 2.37, "e": 2.6, "key": false}, {"w": "te", "s": 2.6, "e": 2.84, "key": false}, {"w": "toca,", "s": 2.84, "e": 3.04, "key": false}, {"w": "se", "s": 3.52, "e": 3.56, "key": false}, {"w": "queda", "s": 3.56, "e": 4.09, "key": false}, {"w": "su", "s": 4.09, "e": 4.3, "key": false}, {"w": "parte.", "s": 4.3, "e": 4.96, "key": false}, {"w": "Al", "s": 4.96, "e": 5.19, "key": false}, {"w": "final", "s": 5.19, "e": 5.56, "key": false}, {"w": "verás", "s": 5.56, "e": 5.99, "key": false}, {"w": "cuánto", "s": 5.99, "e": 6.5, "key": false}, {"w": "te", "s": 6.5, "e": 6.67, "key": false}, {"w": "devuelve,", "s": 6.67, "e": 7.35, "key": true}, {"w": "de", "s": 7.35, "e": 7.51, "key": false}, {"w": "media,", "s": 7.53, "e": 7.95, "key": false}, {"w": "cada", "s": 7.95, "e": 8.01, "key": false}, {"w": "décimo.", "s": 8.48, "e": 9.12, "key": false}]}, {"id": "l3", "s": 9.12, "e": 13.43, "words": [{"w": "Un", "s": 9.12, "e": 9.35, "key": false}, {"w": "décimo", "s": 9.35, "e": 9.65, "key": false}, {"w": "cuesta", "s": 9.65, "e": 10.05, "key": false}, {"w": "20", "s": 10.05, "e": 10.38, "key": false}, {"w": "euros,", "s": 10.49, "e": 10.78, "key": false}, {"w": "y", "s": 10.78, "e": 10.84, "key": false}, {"w": "si", "s": 10.84, "e": 10.97, "key": false}, {"w": "es", "s": 10.97, "e": 11.1, "key": false}, {"w": "el", "s": 11.1, "e": 11.17, "key": false}, {"w": "Gordo,", "s": 11.29, "e": 11.56, "key": true}, {"w": "paga", "s": 11.56, "e": 11.82, "key": false}, {"w": "400.000.", "s": 11.82, "e": 13.43, "key": false}]}, {"id": "l4", "s": 13.43, "e": 19.68, "words": [{"w": "Pero", "s": 13.43, "e": 13.72, "key": false}, {"w": "no", "s": 13.72, "e": 13.86, "key": false}, {"w": "te", "s": 13.86, "e": 13.98, "key": false}, {"w": "llegan", "s": 14.13, "e": 14.42, "key": false}, {"w": "enteros.", "s": 14.42, "e": 15.15, "key": false}, {"w": "Hay", "s": 15.15, "e": 15.39, "key": false}, {"w": "una", "s": 15.39, "e": 15.49, "key": false}, {"w": "regla:", "s": 15.57, "e": 15.85, "key": true}, {"w": "los", "s": 15.99, "e": 16.12, "key": false}, {"w": "primeros", "s": 16.12, "e": 16.61, "key": false}, {"w": "40.000", "s": 16.61, "e": 17.72, "key": false}, {"w": "euros", "s": 17.73, "e": 18.02, "key": false}, {"w": "de", "s": 18.07, "e": 18.15, "key": false}, {"w": "cada", "s": 18.15, "e": 18.21, "key": false}, {"w": "premio", "s": 18.64, "e": 18.77, "key": false}, {"w": "no", "s": 18.77, "e": 18.88, "key": false}, {"w": "pagan", "s": 18.89, "e": 19.16, "key": false}, {"w": "nada.", "s": 19.18, "e": 19.68, "key": false}]}, {"id": "l5", "s": 19.68, "e": 22.32, "words": [{"w": "Del", "s": 19.68, "e": 19.91, "key": false}, {"w": "resto,", "s": 20.17, "e": 20.26, "key": true}, {"w": "Hacienda", "s": 20.32, "e": 20.64, "key": false}, {"w": "se", "s": 20.64, "e": 20.87, "key": false}, {"w": "queda", "s": 20.87, "e": 21.34, "key": false}, {"w": "el", "s": 21.47, "e": 21.58, "key": false}, {"w": "20%.", "s": 21.58, "e": 22.32, "key": false}]}, {"id": "l6", "s": 22.32, "e": 28.16, "words": [{"w": "Así", "s": 22.32, "e": 22.51, "key": false}, {"w": "que", "s": 22.52, "e": 22.68, "key": false}, {"w": "del", "s": 22.68, "e": 23.01, "key": false}, {"w": "Gordo", "s": 23.01, "e": 23.28, "key": false}, {"w": "tributan", "s": 23.32, "e": 23.86, "key": false}, {"w": "360.000", "s": 24.18, "e": 25.3, "key": false}, {"w": "euros,", "s": 25.65, "e": 25.8, "key": false}, {"w": "y", "s": 25.8, "e": 25.87, "key": false}, {"w": "Hacienda", "s": 25.87, "e": 26.23, "key": false}, {"w": "se", "s": 26.42, "e": 26.54, "key": false}, {"w": "lleva", "s": 26.54, "e": 26.83, "key": true}, {"w": "72.000.", "s": 26.91, "e": 28.16, "key": false}]}, {"id": "l7", "s": 28.16, "e": 32.02, "words": [{"w": "Te", "s": 28.16, "e": 28.39, "key": false}, {"w": "quedan", "s": 28.39, "e": 28.73, "key": true}, {"w": "328.000,", "s": 28.73, "e": 30.18, "key": false}, {"w": "y", "s": 30.18, "e": 30.355, "key": false}, {"w": "te", "s": 30.355, "e": 30.53, "key": false}, {"w": "los", "s": 30.53, "e": 30.71, "key": false}, {"w": "pagan", "s": 30.73, "e": 31.08, "key": false}, {"w": "ya", "s": 31.08, "e": 31.19, "key": false}, {"w": "descontados.", "s": 31.51, "e": 32.02, "key": false}]}, {"id": "l8", "s": 32.02, "e": 37.75, "words": [{"w": "¿Y", "s": 32.02, "e": 32.08, "key": false}, {"w": "el", "s": 32.08, "e": 32.23, "key": false}, {"w": "segundo", "s": 32.23, "e": 32.74, "key": true}, {"w": "premio?", "s": 32.74, "e": 33.18, "key": false}, {"w": "Son", "s": 33.18, "e": 33.4, "key": false}, {"w": "125.000", "s": 33.4, "e": 34.96, "key": false}, {"w": "por", "s": 34.96, "e": 35.18, "key": false}, {"w": "décimo,", "s": 35.18, "e": 35.67, "key": false}, {"w": "y", "s": 35.78, "e": 35.83, "key": false}, {"w": "Hacienda", "s": 35.83, "e": 36.26, "key": false}, {"w": "se", "s": 36.26, "e": 36.37, "key": false}, {"w": "lleva", "s": 36.37, "e": 36.65, "key": false}, {"w": "17.000.", "s": 36.65, "e": 37.75, "key": false}]}, {"id": "l9", "s": 37.75, "e": 42.13, "words": [{"w": "Del", "s": 37.75, "e": 37.83, "key": false}, {"w": "cuarto", "s": 38.15, "e": 38.24, "key": false}, {"w": "premio", "s": 38.24, "e": 38.53, "key": false}, {"w": "para", "s": 38.58, "e": 38.79, "key": false}, {"w": "abajo,", "s": 38.79, "e": 38.83, "key": false}, {"w": "Hacienda", "s": 39.07, "e": 39.49, "key": false}, {"w": "no", "s": 39.5, "e": 39.61, "key": false}, {"w": "toca", "s": 39.61, "e": 39.78, "key": false}, {"w": "nada:", "s": 39.84, "e": 40.11, "key": true}, {"w": "son", "s": 40.19, "e": 40.32, "key": false}, {"w": "20.000", "s": 40.32, "e": 41.38, "key": false}, {"w": "euros", "s": 41.67, "e": 41.77, "key": false}, {"w": "o", "s": 41.77, "e": 41.85, "key": false}, {"w": "menos.", "s": 41.85, "e": 42.13, "key": false}]}, {"id": "l10", "s": 42.13, "e": 48.68, "words": [{"w": "¿Y", "s": 42.13, "e": 42.27, "key": false}, {"w": "si", "s": 42.27, "e": 42.35, "key": false}, {"w": "compartes", "s": 42.35, "e": 42.95, "key": true}, {"w": "el", "s": 42.95, "e": 43.08, "key": false}, {"w": "décimo?", "s": 43.08, "e": 43.47, "key": false}, {"w": "Los", "s": 43.47, "e": 43.49, "key": false}, {"w": "40.000", "s": 43.81, "e": 44.48, "key": false}, {"w": "libres", "s": 44.98, "e": 45.28, "key": false}, {"w": "también", "s": 45.28, "e": 45.72, "key": false}, {"w": "se", "s": 45.72, "e": 45.88, "key": false}, {"w": "reparten,", "s": 45.88, "e": 46.41, "key": false}, {"w": "así", "s": 46.45, "e": 46.72, "key": false}, {"w": "que", "s": 46.72, "e": 46.84, "key": false}, {"w": "Hacienda", "s": 46.84, "e": 47.41, "key": false}, {"w": "se", "s": 47.41, "e": 47.53, "key": false}, {"w": "lleva", "s": 47.67, "e": 47.91, "key": false}, {"w": "lo", "s": 47.91, "e": 48.05, "key": false}, {"w": "mismo.", "s": 48.05, "e": 48.68, "key": false}]}, {"id": "l11", "s": 48.91, "e": 55.2, "words": [{"w": "Ahora,", "s": 48.91, "e": 49.01, "key": false}, {"w": "la", "s": 49.09, "e": 49.24, "key": false}, {"w": "cuenta", "s": 49.24, "e": 49.72, "key": true}, {"w": "que", "s": 49.72, "e": 49.94, "key": false}, {"w": "casi", "s": 50.05, "e": 50.28, "key": false}, {"w": "nadie", "s": 50.28, "e": 50.67, "key": false}, {"w": "hace:", "s": 50.67, "e": 51.16, "key": false}, {"w": "hay", "s": 51.16, "e": 51.4, "key": false}, {"w": "100.000", "s": 51.4, "e": 52.96, "key": false}, {"w": "números,", "s": 52.96, "e": 53.69, "key": false}, {"w": "y", "s": 53.69, "e": 53.72, "key": false}, {"w": "solo", "s": 53.72, "e": 54.04, "key": false}, {"w": "uno", "s": 54.04, "e": 54.27, "key": false}, {"w": "es", "s": 54.27, "e": 54.43, "key": false}, {"w": "el", "s": 54.46, "e": 54.6, "key": false}, {"w": "Gordo.", "s": 54.6, "e": 55.2, "key": false}]}, {"id": "l12", "s": 55.2, "e": 61.33, "words": [{"w": "Este", "s": 55.2, "e": 55.35, "key": false}, {"w": "año", "s": 55.35, "e": 55.48, "key": false}, {"w": "salen", "s": 55.71, "e": 55.8, "key": false}, {"w": "a", "s": 55.89, "e": 55.93, "key": false}, {"w": "la", "s": 55.93, "e": 56.08, "key": false}, {"w": "venta", "s": 56.08, "e": 56.45, "key": false}, {"w": "4.100", "s": 56.45, "e": 57.5, "key": false}, {"w": "millones", "s": 57.85, "e": 58.19, "key": false}, {"w": "de", "s": 58.19, "e": 58.34, "key": false}, {"w": "euros", "s": 58.34, "e": 58.52, "key": false}, {"w": "en", "s": 58.74, "e": 58.81, "key": false}, {"w": "décimos,", "s": 59, "e": 59.39, "key": false}, {"w": "y", "s": 59.39, "e": 59.46, "key": false}, {"w": "el", "s": 59.46, "e": 59.6, "key": false}, {"w": "70%", "s": 59.6, "e": 60.14, "key": false}, {"w": "vuelve", "s": 60.44, "e": 60.605, "key": true}, {"w": "en", "s": 60.605, "e": 60.66, "key": false}, {"w": "premios.", "s": 60.66, "e": 61.33, "key": false}]}, {"id": "l13", "s": 61.33, "e": 67.32, "words": [{"w": "O", "s": 61.33, "e": 61.4, "key": false}, {"w": "sea:", "s": 61.4, "e": 61.76, "key": false}, {"w": "de", "s": 61.76, "e": 61.95, "key": false}, {"w": "media,", "s": 62.19, "e": 62.29, "key": true}, {"w": "cada", "s": 62.37, "e": 62.65, "key": false}, {"w": "décimo", "s": 62.79, "e": 63.2, "key": false}, {"w": "de", "s": 63.2, "e": 63.36, "key": false}, {"w": "20", "s": 63.36, "e": 63.85, "key": false}, {"w": "euros", "s": 63.85, "e": 64.0, "key": false}, {"w": "devuelve", "s": 64.33, "e": 64.93, "key": false}, {"w": "14.", "s": 64.93, "e": 65.01, "key": false}, {"w": "Y", "s": 65.49, "e": 65.51, "key": false}, {"w": "eso,", "s": 65.51, "e": 65.76, "key": false}, {"w": "antes", "s": 65.76, "e": 66.12, "key": false}, {"w": "de", "s": 66.19, "e": 66.29, "key": false}, {"w": "Hacienda.", "s": 66.37, "e": 67.32, "key": false}]}, {"id": "l14", "s": 67.55, "e": 69.76, "words": [{"w": "¿Este", "s": 67.55, "e": 67.57, "key": false}, {"w": "año", "s": 67.57, "e": 67.75, "key": false}, {"w": "juegas", "s": 67.75, "e": 68.01, "key": false}, {"w": "igual?", "s": 68.15, "e": 68.54, "key": false}, {"w": "Te", "s": 68.54, "e": 68.58, "key": false}, {"w": "leo", "s": 68.69, "e": 68.84, "key": false}, {"w": "en", "s": 68.84, "e": 68.94, "key": false}, {"w": "los", "s": 68.84, "e": 69.02, "key": false}, {"w": "comentarios.", "s": 69.02, "e": 69.76, "key": true}]}]}</script>
+    <script id="escena" type="application/json">
+      {
+        "momentos": [
+          { "id": "TOCA", "clave": "toca" },
+          { "id": "PARTE", "clave": "parte" },
+          { "id": "FINAL", "clave": "final" },
+          { "id": "CUESTA", "clave": "cuesta" },
+          { "id": "GORDO", "clave": "gordo" },
+          { "id": "ENTEROS", "clave": "enteros" },
+          { "id": "REGLA", "clave": "regla" },
+          { "id": "PRIMEROS", "clave": "primeros" },
+          { "id": "RESTO", "clave": "resto" },
+          { "id": "TRIBUTAN", "clave": "tributan" },
+          { "id": "LLEVA", "clave": "lleva" },
+          { "id": "QUEDAN", "clave": "quedan" },
+          { "id": "DESCONTADOS", "clave": "descontados" },
+          { "id": "SEGUNDO", "clave": "segundo" },
+          { "id": "F2", "clave": "125" },
+          { "id": "CUARTO", "clave": "cuarto" },
+          { "id": "NADA", "clave": "nada" },
+          { "id": "COMPARTES", "clave": "compartes" },
+          { "id": "LIBRES", "clave": "libres" },
+          { "id": "MISMO", "clave": "mismo" },
+          { "id": "CUENTA", "clave": "cuenta" },
+          { "id": "NUMEROS", "clave": "numeros" },
+          { "id": "SOLO", "clave": "solo" },
+          { "id": "VENTA", "clave": "venta" },
+          { "id": "VUELVE", "clave": "vuelve" },
+          { "id": "MEDIA", "clave": "media" },
+          { "id": "DEVUELVE", "clave": "devuelve" },
+          { "id": "ANTES", "clave": "antes" },
+          { "id": "JUEGAS", "clave": "juegas" }
+        ],
+        "gancho": { "texto": "Hacienda también juega a la lotería", "clave": "Hacienda" },
+        "piezas": [
+          { "id": "decimo", "desde": 0.1, "hasta": "ENTEROS", "entra": "escala", "dura": 0.6 },
+          { "id": "hacienda", "desde": "PARTE", "hasta": "CUESTA", "entra": "der" },
+          { "id": "pregunta", "desde": "FINAL", "hasta": "CUESTA", "entra": "izq" },
+          { "id": "gordo", "desde": "GORDO", "hasta": "ENTEROS", "entra": "escala" },
+          { "id": "gordoLab", "desde": "GORDO", "hasta": "ENTEROS" },
+          { "id": "m1", "desde": "GORDO", "hasta": "ENTEROS", "entra": "escala" },
+          { "id": "m2", "desde": "GORDO", "hasta": "ENTEROS", "entra": "escala", "dura": 0.6 },
+          { "id": "m3", "desde": "GORDO", "hasta": "ENTEROS", "entra": "escala", "dura": 0.75 },
+          { "id": "titB", "desde": "ENTEROS", "hasta": "SEGUNDO", "entra": "baja" },
+          { "id": "barra", "desde": "REGLA", "hasta": "SEGUNDO", "entra": "izq" },
+          { "id": "lab1", "desde": "PRIMEROS", "hasta": "SEGUNDO", "entra": "izq" },
+          { "id": "lab2", "desde": "RESTO", "hasta": "SEGUNDO", "entra": "izq" },
+          { "id": "lab3", "desde": "LLEVA", "hasta": "SEGUNDO", "entra": "izq" },
+          { "id": "quita", "desde": "LLEVA", "hasta": "QUEDAN", "entra": "escala" },
+          { "id": "quedaLab", "desde": "QUEDAN", "hasta": "SEGUNDO" },
+          { "id": "queda", "desde": "QUEDAN", "hasta": "SEGUNDO", "entra": "escala" },
+          { "id": "selloDesc", "desde": "DESCONTADOS", "hasta": "SEGUNDO", "entra": "sello" },
+          { "id": "tabla", "desde": "SEGUNDO", "hasta": "COMPARTES" },
+          { "id": "chipNada", "desde": "NADA", "hasta": "COMPARTES", "entra": "escala" },
+          { "id": "decimo2", "desde": "COMPARTES", "hasta": "CUENTA", "entra": "baja" },
+          { "id": "p1", "desde": "COMPARTES", "hasta": "CUENTA", "entra": "izq" },
+          { "id": "p2", "desde": "COMPARTES", "hasta": "CUENTA", "entra": "der" },
+          { "id": "lib1", "desde": "LIBRES", "hasta": "CUENTA", "entra": "escala" },
+          { "id": "lib2", "desde": "LIBRES", "hasta": "CUENTA", "entra": "escala", "dura": 0.6 },
+          { "id": "chipMismo", "desde": "MISMO", "hasta": "CUENTA", "entra": "sello" },
+          { "id": "numeros", "desde": "NUMEROS", "hasta": "VENTA", "entra": "escala" },
+          { "id": "numerosLab", "desde": "NUMEROS", "hasta": "VENTA" },
+          { "id": "rejilla", "desde": "NUMEROS", "hasta": "VENTA", "entra": "fundido" },
+          { "id": "gordoDot", "desde": "SOLO", "hasta": "VENTA", "entra": "der" },
+          { "id": "emision", "desde": "VENTA", "hasta": "MEDIA", "entra": "escala" },
+          { "id": "emisionLab", "desde": "VENTA", "hasta": "MEDIA" },
+          { "id": "barra2", "desde": "VENTA", "hasta": "MEDIA", "entra": "izq" },
+          { "id": "restoLab", "desde": "VUELVE", "hasta": "MEDIA" },
+          { "id": "m20", "desde": "MEDIA", "hasta": "JUEGAS", "entra": "escala" },
+          { "id": "flecha", "desde": "MEDIA", "hasta": "JUEGAS", "entra": "izq", "dura": 0.6 },
+          { "id": "m14", "desde": "DEVUELVE", "hasta": "JUEGAS", "entra": "escala" },
+          { "id": "mediaLab", "desde": "DEVUELVE", "hasta": "JUEGAS" },
+          { "id": "selloAntes", "desde": "ANTES", "hasta": "JUEGAS", "entra": "sello" },
+          { "id": "decimo3", "desde": "JUEGAS", "entra": "escala" },
+          { "id": "chipFin", "desde": "JUEGAS", "entra": "sube", "dura": 0.6 }
+        ],
+        "cifras": [
+          { "id": "gordo", "desde": "GORDO", "a": 400000, "dura": 1.4 },
+          { "id": "quita", "desde": "LLEVA", "a": 72000, "prefijo": "−", "dura": 1.0 },
+          { "id": "queda", "desde": "QUEDAN", "de": 400000, "a": 328000, "dura": 1.2 },
+          { "id": "numeros", "desde": "NUMEROS", "a": 100000, "formato": "numero", "dura": 1.2 },
+          { "id": "emision", "desde": "VENTA", "a": 4100, "formato": "numero", "dura": 1.2 }
+        ],
+        "notas": [
+          { "texto": "Premios por décimo del Sorteo de Navidad de 2026", "desde": "CUESTA" },
+          { "texto": "Gravamen especial sobre premios de loterías (Ley del IRPF)", "desde": "REGLA" },
+          { "texto": "Así lo explica la Agencia Tributaria", "desde": "COMPARTES" },
+          { "texto": "Cada punto representa 250 números", "desde": "NUMEROS" },
+          { "texto": "Emisión del sorteo de 2026", "desde": "VENTA" },
+          { "texto": "Es una media: la mayoría de los décimos no ganan nada", "desde": "MEDIA" },
+          { "texto": "", "desde": "JUEGAS" }
+        ],
+        "fondo": "claro",
+        "sonidos": [
+          { "tipo": "metal", "en": 0.15 },
+          { "tipo": "pop", "en": "PARTE" },
+          { "tipo": "brillo", "en": "FINAL" },
+          { "tipo": "pagado", "en": "GORDO", "mas": 0.2 },
+          { "tipo": "metal", "en": "GORDO", "mas": 0.45 },
+          { "tipo": "desliza", "en": "REGLA" },
+          { "tipo": "chip", "en": "PRIMEROS" },
+          { "tipo": "pop", "en": "RESTO" },
+          { "tipo": "error", "en": "LLEVA" },
+          { "tipo": "sube", "en": "QUEDAN" },
+          { "tipo": "toque", "en": "DESCONTADOS", "mas": 0.15 },
+          { "tipo": "pop", "en": "SEGUNDO" },
+          { "tipo": "pop", "en": "F2" },
+          { "tipo": "pop", "en": "CUARTO" },
+          { "tipo": "chip", "en": "NADA" },
+          { "tipo": "desliza", "en": "COMPARTES" },
+          { "tipo": "brillo", "en": "LIBRES" },
+          { "tipo": "toque", "en": "MISMO", "mas": 0.15 },
+          { "tipo": "desliza", "en": "CUENTA" },
+          { "tipo": "brillo", "en": "SOLO" },
+          { "tipo": "pop", "en": "VENTA" },
+          { "tipo": "sube", "en": "VUELVE" },
+          { "tipo": "metal", "en": "MEDIA" },
+          { "tipo": "pagado", "en": "DEVUELVE", "mas": 0.2 },
+          { "tipo": "toque", "en": "ANTES", "mas": 0.15 },
+          { "tipo": "pop", "en": "JUEGAS" }
+        ]
+      }
+    </script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 71.2 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import { crearDinero } from "./comun/dinero.js";
+      const C = crearDinero();
+      const { T, ramp, clamp } = C;
+      const $ = (id) => document.getElementById(id);
+
+      // 400 dots, 250 numbers each; one of them is the Gordo
+      const ORO = 387;
+      $("rejilla").innerHTML = Array.from({ length: 400 }, (_, i) => `<i${i === ORO ? ' class="oro"' : ""}></i>`).join("");
+      const dots = [...$("rejilla").children];
+      const filas = [["f1", T.SEGUNDO], ["f2", T.F2], ["f3", T.F2 + 1.1], ["f4", T.CUARTO]];
+
+      function renderAt(t) {
+        // A: the ticket floats, then rises to make room for the Gordo
+        C.mover("decimo", { y: -380 * ramp(t, T.TOCA, T.TOCA + 0.7) + 6 * Math.sin(t * 2.2) });
+        ["m1", "m2", "m3"].forEach((id, i) => C.mover(id, { y: 8 * Math.sin(t * 2.6 + i * 1.7), r: 6 * Math.sin(t * 1.3 + i) }));
+
+        // B: the prize bar: 10 % free, 18 % for Hacienda, the rest is yours
+        const libre = 10 * ramp(t, T.PRIMEROS, T.PRIMEROS + 0.6), hac = 18 * ramp(t, T.LLEVA, T.LLEVA + 0.6);
+        $("segLibre").style.width = libre + "%";
+        $("segHac").style.width = hac + "%";
+        $("segQueda").style.width = 100 - libre - hac + "%";
+        $("segQueda").style.background = t >= T.RESTO && t < T.QUEDAN ? "#f8dc7a" : "#fffaf0";
+
+        // C: the prize rows, one by one; the 0 € pops when the voice says "nada"
+        for (const [id, a] of filas) {
+          const k = ramp(t, a, a + 0.35);
+          $(id).style.opacity = k;
+          $(id).style.transform = `translateX(${(1 - k) * -40}px)`;
+        }
+        const pop = ramp(t, T.NADA, T.NADA + 0.2) * (1 - ramp(t, T.NADA + 0.3, T.NADA + 0.7));
+        $("cero").style.transform = `scale(${1 + 0.5 * pop})`;
+
+        // D: the two people sway a little
+        C.mover("p1", { r: 3 * Math.sin(t * 2) });
+        C.mover("p2", { r: -3 * Math.sin(t * 2 + 1) });
+
+        // E: the dots appear row by row, the Gordo grows and blinks
+        dots.forEach((d, i) => (d.style.opacity = i === ORO ? 1 : 0.18 * clamp((t - T.NUMEROS - i * 0.004) / 0.2)));
+        const s = ramp(t, T.SOLO, T.SOLO + 0.4);
+        dots[ORO].style.transform = `scale(${1 + 0.8 * s + 0.15 * s * Math.sin(t * 8)})`;
+
+        // F: 70 % back in prizes
+        const p = 70 * ramp(t, T.VUELVE, T.VUELVE + 0.8);
+        $("segPrem").style.width = p + "%";
+        $("segResto").style.width = 100 - p + "%";
+
+        // G and H: the coins bob
+        C.mover("m20", { y: 6 * Math.sin(t * 2.4) });
+        C.mover("m14", { y: 6 * Math.sin(t * 2.4 + 1.5) });
+        C.mover("decimo3", { y: 6 * Math.sin(t * 2.2), r: 2 * Math.sin(t * 1.4) });
+
+        C.pintar(t);
+      }
+
+      C.arrancar(renderAt);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <link rel="stylesheet" href="comun/dinero.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+      .cifra, .hito b { font-family: "Archivo Black", sans-serif; }
+      /* this video's layout */
+      .ancho { left: 0; width: 1080px; }
+      #linea { width: 800px; height: 8px; background: #1d2a44; border-radius: 4px; transform-origin: 0 50%; transform: scaleX(0); }
+      .hito { width: 240px; text-align: center; }
+      .hito i { display: block; width: 40px; height: 40px; margin: 0 auto 6px; border-radius: 50%; border: 7px solid #1d2a44; background: #f2b705; }
+      .hito b { display: block; font-weight: 400; font-size: 42px; line-height: 1.1; }
+      .hito span { font-size: 22px; font-weight: 800; letter-spacing: 0.1em; }
+      #pila { width: 500px; height: 440px; }
+      #pila > div { position: absolute; left: 0; }
+      .sub { font-size: 24px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="61.6" data-width="1080" data-height="1920" data-fps="30">
+      <div id="fondo" class="clip" data-start="0" data-duration="61.6" data-track-index="0"></div>
+      <div id="escenario" class="clip" data-start="0" data-duration="61.6" data-track-index="1" data-layout-allow-overlap data-layout-allow-overflow>
+        <!-- the timeline: 2002, 2016, 2019 -->
+        <div class="pieza" id="lineaBox" style="left:140px; top:486px"><div id="linea"></div></div>
+        <div class="pieza hito" id="y02" style="left:100px; top:470px"><i></i><b>2002</b><span>LLEGA</span></div>
+        <div class="pieza hito" id="y16" style="left:420px; top:470px"><i></i><b>2016</b><span>SE DEJA DE FABRICAR</span></div>
+        <div class="pieza hito" id="y19" style="left:740px; top:470px"><i></i><b>2019</b><span>NO SE EMITE MÁS</span></div>
+
+        <!-- A: the note that is no longer made -->
+        <div class="pieza" id="grande" style="left:210px; top:820px" data-icono="billete" data-args='["500", "#8e6bbf", 640]'></div>
+        <div class="pieza" id="selloVale" style="left:250px; top:1210px" data-icono="sello" data-args='["SIGUE VALIENDO", "#2f8f6b"]'></div>
+        <div class="pieza" id="pregunta" style="left:150px; top:520px"><div class="chip blanco">¿Y SI TIENES UNO EN CASA?</div></div>
+
+        <!-- B: the biggest of all -->
+        <div class="pieza" id="e0" style="left:100px; top:640px" data-icono="billete" data-args='["5", "#9aa0a6", 312]'></div>
+        <div class="pieza" id="e1" style="left:170px; top:722px" data-icono="billete" data-args='["10", "#e0675a", 330]'></div>
+        <div class="pieza" id="e2" style="left:240px; top:804px" data-icono="billete" data-args='["20", "#4a78c2", 346]'></div>
+        <div class="pieza" id="e3" style="left:310px; top:886px" data-icono="billete" data-args='["50", "#f08a3c", 364]'></div>
+        <div class="pieza" id="e4" style="left:380px; top:968px" data-icono="billete" data-args='["100", "#4f9a6a", 382]'></div>
+        <div class="pieza" id="e5" style="left:450px; top:1050px" data-icono="billete" data-args='["200", "#d9a441", 398]'></div>
+        <div class="pieza" id="e6" style="left:520px; top:1132px" data-icono="billete" data-args='["500", "#8e6bbf", 416]'></div>
+
+        <!-- C: a million in 2.000 notes -->
+        <div class="pieza cifra ancho" id="millon" style="top:640px">0 €</div>
+        <div class="pieza rotulo ancho" id="millonLab" style="top:785px">CON 2.000 BILLETES DE 500 €</div>
+        <div class="pieza" id="pila" style="left:290px; top:880px"></div>
+        <div class="pieza" id="selloProblema" style="left:330px; top:1190px" data-icono="sello" data-args='["EL PROBLEMA", "#e5383b"]'></div>
+
+        <!-- D: the ECB stops making it -->
+        <div class="pieza" id="fabrica" style="left:380px; top:720px" data-icono="fabrica" data-args='[320]'></div>
+        <div class="pieza" id="tachaFab" style="left:360px; top:660px" data-icono="tachado" data-args='[380]'></div>
+        <div class="pieza rotulo ancho" id="bceLab" style="top:1080px">BANCO CENTRAL EUROPEO</div>
+
+        <!-- E: why -->
+        <div class="pieza" id="maletin" style="left:390px; top:720px" data-icono="maletin" data-args='[300]'></div>
+        <div class="pieza" id="chipIlegal" style="left:200px; top:1020px"><div class="chip rojo">ACTIVIDADES ILEGALES</div></div>
+
+        <!-- F: central banks no longer hand it out -->
+        <div class="pieza" id="banco" style="left:90px; top:700px" data-icono="edificio" data-args='["BANCO CENTRAL", "#fffaf0", 400]'></div>
+        <div class="pieza" id="pequeno" style="left:560px; top:820px" data-icono="billete" data-args='["500", "#8e6bbf", 360]'></div>
+        <div class="pieza" id="tachaPeq" style="left:620px; top:760px" data-icono="tachado" data-args='[250]'></div>
+
+        <!-- G: the new series stops at 200 -->
+        <div class="pieza" id="viejo" style="left:90px; top:720px" data-icono="billete" data-args='["500", "#8e6bbf", 380]'></div>
+        <div class="pieza" id="tachaViejo" style="left:150px; top:660px" data-icono="tachado" data-args='[260]'></div>
+        <div class="pieza rotulo rojo sub" id="viejoLab" style="left:90px; top:960px; width:400px">FUERA DE LA SERIE NUEVA</div>
+        <div class="pieza" id="doscientos" style="left:560px; top:720px" data-icono="billete" data-args='["200", "#d9a441", 400]'></div>
+        <div class="pieza rotulo verde sub" id="doscientosLab" style="left:560px; top:960px; width:420px">EL MÁS GRANDE QUE SE FABRICA</div>
+
+        <!-- H: still legal tender -->
+        <div class="pieza" id="legal" style="left:230px; top:680px" data-icono="billete" data-args='["500", "#8e6bbf", 600]'></div>
+        <div class="pieza" id="selloLegal" style="left:300px; top:1040px" data-icono="sello" data-args='["CURSO LEGAL", "#2f8f6b"]'></div>
+        <div class="pieza" id="chipPagar" style="left:230px; top:1230px"><div class="chip verde">SE PUEDE PAGAR CON ÉL</div></div>
+
+        <!-- I: the 1.000 € cash limit -->
+        <div class="pieza rotulo ancho" id="limiteLab" style="top:560px">EN EFECTIVO, A UNA EMPRESA O PROFESIONAL</div>
+        <div class="pieza cifra roja ancho" id="limite" style="top:610px">0 €</div>
+        <div class="pieza rotulo rojo ancho" id="limiteLab2" style="top:760px">O MÁS: NO SE PUEDE</div>
+        <div class="pieza" id="dos1" style="left:80px; top:880px" data-icono="billete" data-args='["500", "#8e6bbf", 400]'></div>
+        <div class="pieza" id="dos2" style="left:560px; top:880px" data-icono="billete" data-args='["500", "#8e6bbf", 400]'></div>
+        <div class="pieza rotulo ancho" id="sumaLab" style="top:1130px">500 € + 500 € = 1.000 €</div>
+        <div class="pieza" id="selloNo" style="left:330px; top:1210px" data-icono="sello" data-args='["NO PUEDES", "#e5383b"]'></div>
+
+        <!-- J: it does not expire -->
+        <div class="pieza" id="casa" style="left:260px; top:700px" data-icono="billete" data-args='["500", "#8e6bbf", 560]'></div>
+        <div class="pieza" id="selloCaduca" style="left:310px; top:1040px" data-icono="sello" data-args='["NO CADUCA", "#2f8f6b"]'></div>
+
+        <!-- K: change it at the Banco de España -->
+        <div class="pieza" id="bde" style="left:300px; top:620px" data-icono="edificio" data-args='["BANCO DE ESPAÑA", "#fffaf0", 460]'></div>
+        <div class="pieza" id="chipLimite" style="left:250px; top:1080px"><div class="chip">SIN FECHA LÍMITE</div></div>
+        <div class="pieza cifra media ancho" id="igual" style="top:1210px">500 € = 500 €</div>
+
+        <!-- L: the closing question -->
+        <div class="pieza" id="fin" style="left:230px; top:660px" data-icono="billete" data-args='["500", "#8e6bbf", 600]'></div>
+        <div class="pieza" id="chipFin" style="left:220px; top:1040px"><div class="chip" style="font-size:52px">¿HAS TENIDO UNO?</div></div>
+      </div>
+      <div id="gancho" class="clip" data-start="0" data-duration="61.6" data-track-index="2"></div>
+      <div id="note" class="clip" data-start="0" data-duration="61.6" data-track-index="3"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="61.6"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="61.6" data-track-index="4" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 60.36, "lines": [{"id": "l1", "s": 0.14, "e": 1.65, "words": [{"w": "Este", "s": 0.14, "e": 0.24, "key": false}, {"w": "billete", "s": 0.32, "e": 0.68, "key": true}, {"w": "ya", "s": 0.68, "e": 0.8, "key": false}, {"w": "no", "s": 0.8, "e": 0.92, "key": false}, {"w": "se", "s": 0.92, "e": 1.03, "key": false}, {"w": "fabrica.", "s": 1.03, "e": 1.65, "key": false}]}, {"id": "l2", "s": 1.65, "e": 6.52, "words": [{"w": "Pero", "s": 1.65, "e": 1.91, "key": false}, {"w": "sigue", "s": 1.91, "e": 2.24, "key": false}, {"w": "valiendo", "s": 2.24, "e": 2.75, "key": true}, {"w": "500", "s": 2.75, "e": 3.34, "key": false}, {"w": "euros.", "s": 3.34, "e": 3.76, "key": false}, {"w": "Al", "s": 3.76, "e": 3.9, "key": false}, {"w": "final", "s": 3.9, "e": 4.18, "key": false}, {"w": "te", "s": 4.18, "e": 4.3, "key": false}, {"w": "digo", "s": 4.3, "e": 4.54, "key": false}, {"w": "qué", "s": 4.54, "e": 4.72, "key": false}, {"w": "hacer", "s": 4.72, "e": 5.02, "key": false}, {"w": "si", "s": 5.02, "e": 5.14, "key": false}, {"w": "encuentras", "s": 5.14, "e": 5.74, "key": false}, {"w": "uno", "s": 5.74, "e": 5.92, "key": false}, {"w": "en", "s": 5.92, "e": 6.04, "key": false}, {"w": "casa.", "s": 6.04, "e": 6.52, "key": false}]}, {"id": "l3", "s": 6.58, "e": 11.16, "words": [{"w": "Llegó", "s": 6.58, "e": 6.83, "key": false}, {"w": "con", "s": 6.84, "e": 7.01, "key": false}, {"w": "el", "s": 7.01, "e": 7.09, "key": false}, {"w": "euro,", "s": 7.16, "e": 7.41, "key": false}, {"w": "en", "s": 7.41, "e": 7.54, "key": false}, {"w": "enero", "s": 7.54, "e": 7.81, "key": false}, {"w": "de", "s": 7.86, "e": 7.95, "key": false}, {"w": "2002,", "s": 8.08, "e": 8.8, "key": false}, {"w": "y", "s": 8.8, "e": 8.87, "key": false}, {"w": "era", "s": 8.87, "e": 9.03, "key": false}, {"w": "el", "s": 9.13, "e": 9.23, "key": false}, {"w": "billete", "s": 9.23, "e": 9.74, "key": false}, {"w": "más", "s": 9.74, "e": 9.96, "key": false}, {"w": "grande", "s": 9.96, "e": 10.27, "key": true}, {"w": "de", "s": 10.41, "e": 10.51, "key": false}, {"w": "todos.", "s": 10.57, "e": 11.16, "key": false}]}, {"id": "l4", "s": 11.29, "e": 16.32, "words": [{"w": "Con", "s": 11.29, "e": 11.37, "key": false}, {"w": "2.000", "s": 11.37, "e": 12.43, "key": false}, {"w": "de", "s": 12.43, "e": 12.57, "key": false}, {"w": "estos,", "s": 12.57, "e": 12.92, "key": false}, {"w": "tienes", "s": 12.92, "e": 13.33, "key": false}, {"w": "un", "s": 13.34, "e": 13.48, "key": false}, {"w": "millón", "s": 13.48, "e": 13.9, "key": false}, {"w": "de", "s": 13.9, "e": 14.04, "key": false}, {"w": "euros.", "s": 14.04, "e": 14.43, "key": false}, {"w": "Y", "s": 14.43, "e": 14.52, "key": false}, {"w": "ese", "s": 14.52, "e": 14.74, "key": false}, {"w": "era", "s": 14.74, "e": 15.05, "key": false}, {"w": "justo", "s": 15.05, "e": 15.41, "key": false}, {"w": "el", "s": 15.45, "e": 15.6, "key": false}, {"w": "problema.", "s": 15.6, "e": 16.32, "key": true}]}, {"id": "l5", "s": 16.45, "e": 21.19, "words": [{"w": "En", "s": 16.45, "e": 16.48, "key": false}, {"w": "2016,", "s": 16.48, "e": 17.6, "key": false}, {"w": "el", "s": 17.6, "e": 17.74, "key": false}, {"w": "Banco", "s": 17.75, "e": 18.08, "key": false}, {"w": "Central", "s": 18.19, "e": 18.63, "key": false}, {"w": "Europeo", "s": 18.63, "e": 19.15, "key": false}, {"w": "decidió", "s": 19.15, "e": 19.66, "key": false}, {"w": "dejar", "s": 19.66, "e": 19.98, "key": false}, {"w": "de", "s": 19.98, "e": 20.21, "key": false}, {"w": "fabricarlo.", "s": 20.21, "e": 21.19, "key": true}]}, {"id": "l6", "s": 21.33, "e": 25.64, "words": [{"w": "Su", "s": 21.33, "e": 21.36, "key": false}, {"w": "motivo:", "s": 21.36, "e": 22.0, "key": false}, {"w": "un", "s": 22, "e": 22.14, "key": false}, {"w": "billete", "s": 22.14, "e": 22.62, "key": false}, {"w": "tan", "s": 22.63, "e": 22.84, "key": false}, {"w": "grande", "s": 22.84, "e": 23.25, "key": false}, {"w": "podía", "s": 23.3, "e": 23.61, "key": false}, {"w": "facilitar", "s": 23.61, "e": 24.24, "key": false}, {"w": "actividades", "s": 24.24, "e": 24.67, "key": false}, {"w": "ilegales.", "s": 25.09, "e": 25.64, "key": true}]}, {"id": "l7", "s": 25.77, "e": 29.92, "words": [{"w": "Por", "s": 25.77, "e": 25.83, "key": false}, {"w": "eso,", "s": 25.83, "e": 26.14, "key": false}, {"w": "desde", "s": 26.14, "e": 26.45, "key": false}, {"w": "2019,", "s": 26.45, "e": 27.21, "key": false}, {"w": "los", "s": 27.21, "e": 27.4, "key": false}, {"w": "bancos", "s": 27.4, "e": 27.77, "key": false}, {"w": "centrales", "s": 27.77, "e": 28.33, "key": false}, {"w": "ya", "s": 28.33, "e": 28.45, "key": false}, {"w": "no", "s": 28.45, "e": 28.57, "key": false}, {"w": "lo", "s": 28.57, "e": 28.69, "key": false}, {"w": "ponen", "s": 28.69, "e": 29.0, "key": false}, {"w": "en", "s": 29, "e": 29.11, "key": false}, {"w": "circulación.", "s": 29.39, "e": 29.92, "key": true}]}, {"id": "l8", "s": 29.99, "e": 35.6, "words": [{"w": "Y", "s": 29.99, "e": 30.037, "key": false}, {"w": "en", "s": 30.037, "e": 30.13, "key": false}, {"w": "la", "s": 30.13, "e": 30.27, "key": false}, {"w": "serie", "s": 30.27, "e": 30.62, "key": true}, {"w": "nueva", "s": 30.62, "e": 30.95, "key": false}, {"w": "de", "s": 31.02, "e": 31.13, "key": false}, {"w": "billetes", "s": 31.13, "e": 31.68, "key": false}, {"w": "ya", "s": 31.79, "e": 31.84, "key": false}, {"w": "no", "s": 31.84, "e": 31.97, "key": false}, {"w": "existe:", "s": 31.98, "e": 32.68, "key": false}, {"w": "el", "s": 32.68, "e": 32.82, "key": false}, {"w": "más", "s": 32.82, "e": 33.03, "key": false}, {"w": "grande", "s": 33.03, "e": 33.45, "key": false}, {"w": "que", "s": 33.45, "e": 33.65, "key": false}, {"w": "se", "s": 33.66, "e": 33.8, "key": false}, {"w": "fabrica", "s": 33.8, "e": 34.29, "key": false}, {"w": "es", "s": 34.29, "e": 34.43, "key": false}, {"w": "el", "s": 34.43, "e": 34.57, "key": false}, {"w": "de", "s": 34.57, "e": 34.71, "key": false}, {"w": "200.", "s": 34.71, "e": 35.6, "key": false}]}, {"id": "l9", "s": 35.74, "e": 40.99, "words": [{"w": "Pero", "s": 35.74, "e": 35.84, "key": false}, {"w": "ojo:", "s": 35.92, "e": 36.28, "key": false}, {"w": "no", "s": 36.28, "e": 36.43, "key": false}, {"w": "está", "s": 36.43, "e": 36.74, "key": false}, {"w": "prohibido.", "s": 36.74, "e": 37.72, "key": false}, {"w": "Sigue", "s": 37.79, "e": 38.08, "key": false}, {"w": "siendo", "s": 38.08, "e": 38.52, "key": false}, {"w": "de", "s": 38.52, "e": 38.66, "key": false}, {"w": "curso", "s": 38.66, "e": 39.0, "key": false}, {"w": "legal,", "s": 39.06, "e": 39.4, "key": true}, {"w": "y", "s": 39.4, "e": 39.47, "key": false}, {"w": "se", "s": 39.47, "e": 39.61, "key": false}, {"w": "puede", "s": 39.61, "e": 39.98, "key": false}, {"w": "pagar", "s": 39.98, "e": 40.33, "key": false}, {"w": "con", "s": 40.36, "e": 40.57, "key": false}, {"w": "él.", "s": 40.57, "e": 40.99, "key": false}]}, {"id": "l10", "s": 41.13, "e": 46.32, "words": [{"w": "Eso", "s": 41.13, "e": 41.19, "key": false}, {"w": "sí,", "s": 41.19, "e": 41.45, "key": false}, {"w": "en", "s": 41.45, "e": 41.56, "key": false}, {"w": "España", "s": 41.64, "e": 41.97, "key": false}, {"w": "no", "s": 41.97, "e": 42.03, "key": false}, {"w": "puedes", "s": 42.1, "e": 42.43, "key": false}, {"w": "pagar", "s": 42.56, "e": 42.76, "key": false}, {"w": "en", "s": 42.87, "e": 42.95, "key": false}, {"w": "efectivo", "s": 42.95, "e": 43.51, "key": true}, {"w": "1.000", "s": 43.61, "e": 43.95, "key": false}, {"w": "euros", "s": 43.95, "e": 44.12, "key": false}, {"w": "o", "s": 44.12, "e": 44.21, "key": false}, {"w": "más", "s": 44.21, "e": 44.47, "key": false}, {"w": "a", "s": 44.47, "e": 44.55, "key": false}, {"w": "una", "s": 44.56, "e": 44.8, "key": false}, {"w": "empresa", "s": 44.89, "e": 45.2, "key": false}, {"w": "o", "s": 45.2, "e": 45.23, "key": false}, {"w": "a", "s": 45.24, "e": 45.3, "key": false}, {"w": "un", "s": 45.3, "e": 45.42, "key": false}, {"w": "profesional.", "s": 45.42, "e": 46.32, "key": false}]}, {"id": "l11", "s": 46.32, "e": 49.68, "words": [{"w": "O", "s": 46.32, "e": 46.46, "key": false}, {"w": "sea,", "s": 46.46, "e": 46.72, "key": false}, {"w": "que", "s": 46.72, "e": 46.89, "key": false}, {"w": "con", "s": 46.96, "e": 47.15, "key": false}, {"w": "dos", "s": 47.15, "e": 47.35, "key": false}, {"w": "billetes", "s": 47.36, "e": 47.91, "key": false}, {"w": "de", "s": 47.91, "e": 48.05, "key": false}, {"w": "estos", "s": 48.05, "e": 48.37, "key": false}, {"w": "ya", "s": 48.42, "e": 48.53, "key": false}, {"w": "no", "s": 48.53, "e": 48.67, "key": false}, {"w": "puedes", "s": 48.67, "e": 49.08, "key": false}, {"w": "pagar.", "s": 49.08, "e": 49.68, "key": true}]}, {"id": "l12", "s": 49.74, "e": 52.63, "words": [{"w": "¿Y", "s": 49.74, "e": 49.783, "key": false}, {"w": "si", "s": 49.783, "e": 49.87, "key": false}, {"w": "encuentras", "s": 49.87, "e": 50.51, "key": false}, {"w": "uno", "s": 50.51, "e": 50.7, "key": false}, {"w": "en", "s": 50.7, "e": 50.83, "key": false}, {"w": "casa?", "s": 50.83, "e": 51.11, "key": false}, {"w": "Tranquilo:", "s": 51.24, "e": 51.93, "key": false}, {"w": "no", "s": 51.93, "e": 52.05, "key": false}, {"w": "caduca.", "s": 52.05, "e": 52.63, "key": true}]}, {"id": "l13", "s": 52.63, "e": 57.55, "words": [{"w": "Lo", "s": 52.63, "e": 52.82, "key": false}, {"w": "puedes", "s": 52.82, "e": 53.16, "key": false}, {"w": "cambiar", "s": 53.17, "e": 53.6, "key": true}, {"w": "en", "s": 53.6, "e": 53.71, "key": false}, {"w": "el", "s": 53.78, "e": 53.84, "key": false}, {"w": "Banco", "s": 53.84, "e": 54.13, "key": false}, {"w": "de", "s": 54.24, "e": 54.26, "key": false}, {"w": "España,", "s": 54.26, "e": 54.63, "key": false}, {"w": "sin", "s": 54.63, "e": 54.81, "key": false}, {"w": "fecha", "s": 54.81, "e": 55.11, "key": false}, {"w": "límite,", "s": 55.11, "e": 55.52, "key": false}, {"w": "y", "s": 55.52, "e": 55.6, "key": false}, {"w": "vale", "s": 55.6, "e": 55.93, "key": false}, {"w": "exactamente", "s": 55.93, "e": 56.84, "key": false}, {"w": "lo", "s": 56.84, "e": 57.0, "key": false}, {"w": "mismo.", "s": 57, "e": 57.55, "key": false}]}, {"id": "l14", "s": 57.55, "e": 60.19, "words": [{"w": "¿Has", "s": 57.55, "e": 57.88, "key": false}, {"w": "tenido", "s": 57.88, "e": 58.2, "key": false}, {"w": "alguno", "s": 58.2, "e": 58.51, "key": false}, {"w": "en", "s": 58.51, "e": 58.62, "key": false}, {"w": "la", "s": 58.62, "e": 58.71, "key": false}, {"w": "mano?", "s": 58.72, "e": 59.11, "key": false}, {"w": "Te", "s": 59.11, "e": 59.24, "key": false}, {"w": "leo", "s": 59.24, "e": 59.36, "key": false}, {"w": "en", "s": 59.36, "e": 59.44, "key": false}, {"w": "los", "s": 59.44, "e": 59.57, "key": false}, {"w": "comentarios.", "s": 59.57, "e": 60.19, "key": true}]}]}</script>
+    <script id="escena" type="application/json">
+      {
+        "momentos": [
+          { "id": "VALIENDO", "clave": "valiendo" },
+          { "id": "FINAL", "clave": "final" },
+          { "id": "LLEGO", "clave": "llego" },
+          { "id": "ENERO", "clave": "enero" },
+          { "id": "GRANDE", "clave": "grande" },
+          { "id": "ESTOS", "clave": "estos" },
+          { "id": "MILLON", "clave": "millon" },
+          { "id": "PROBLEMA", "clave": "problema" },
+          { "id": "BCE", "clave": "banco" },
+          { "id": "FABRICARLO", "clave": "fabricarlo" },
+          { "id": "MOTIVO", "clave": "motivo" },
+          { "id": "ILEGALES", "clave": "ilegales" },
+          { "id": "DESDE", "clave": "desde" },
+          { "id": "CIRCULACION", "clave": "circulacion" },
+          { "id": "SERIE", "clave": "serie" },
+          { "id": "FABRICA", "clave": "fabrica" },
+          { "id": "OJO", "clave": "ojo" },
+          { "id": "LEGAL", "clave": "legal" },
+          { "id": "PAGAR", "clave": "pagar" },
+          { "id": "ESPANA", "clave": "espana" },
+          { "id": "EFECTIVO", "clave": "efectivo" },
+          { "id": "BILLETES", "clave": "billetes" },
+          { "id": "PAGAR2", "clave": "pagar" },
+          { "id": "ENCUENTRAS", "clave": "encuentras" },
+          { "id": "CADUCA", "clave": "caduca" },
+          { "id": "CAMBIAR", "clave": "cambiar" },
+          { "id": "LIMITE", "clave": "limite" },
+          { "id": "MISMO", "clave": "mismo" },
+          { "id": "TENIDO", "clave": "tenido" }
+        ],
+        "gancho": { "texto": "Este billete ya no se fabrica", "clave": "billete" },
+        "piezas": [
+          { "id": "lineaBox", "desde": "LLEGO", "hasta": "SERIE", "entra": "fundido" },
+          { "id": "y02", "desde": "ENERO", "hasta": "SERIE", "entra": "escala" },
+          { "id": "y16", "desde": "BCE", "hasta": "SERIE", "entra": "escala" },
+          { "id": "y19", "desde": "DESDE", "hasta": "SERIE", "entra": "escala" },
+          { "id": "grande", "desde": 0.1, "hasta": "GRANDE", "entra": "escala", "dura": 0.6 },
+          { "id": "selloVale", "desde": "VALIENDO", "hasta": "LLEGO", "entra": "sello" },
+          { "id": "pregunta", "desde": "FINAL", "hasta": "LLEGO", "entra": "baja" },
+          { "id": "e0", "desde": "GRANDE", "hasta": "ESTOS", "entra": "izq", "dura": 0.3 },
+          { "id": "e1", "desde": "GRANDE", "hasta": "ESTOS", "entra": "izq", "dura": 0.4 },
+          { "id": "e2", "desde": "GRANDE", "hasta": "ESTOS", "entra": "izq", "dura": 0.5 },
+          { "id": "e3", "desde": "GRANDE", "hasta": "ESTOS", "entra": "izq", "dura": 0.6 },
+          { "id": "e4", "desde": "GRANDE", "hasta": "ESTOS", "entra": "izq", "dura": 0.7 },
+          { "id": "e5", "desde": "GRANDE", "hasta": "ESTOS", "entra": "izq", "dura": 0.8 },
+          { "id": "e6", "desde": "GRANDE", "hasta": "ESTOS", "entra": "escala", "dura": 0.9 },
+          { "id": "millon", "desde": "ESTOS", "hasta": "BCE", "entra": "escala" },
+          { "id": "millonLab", "desde": "ESTOS", "hasta": "BCE" },
+          { "id": "pila", "desde": "ESTOS", "hasta": "BCE", "entra": "fundido" },
+          { "id": "selloProblema", "desde": "PROBLEMA", "hasta": "BCE", "entra": "sello" },
+          { "id": "fabrica", "desde": "BCE", "hasta": "MOTIVO", "entra": "sube" },
+          { "id": "tachaFab", "desde": "FABRICARLO", "hasta": "MOTIVO", "entra": "sello" },
+          { "id": "bceLab", "desde": "BCE", "hasta": "MOTIVO" },
+          { "id": "maletin", "desde": "MOTIVO", "hasta": "DESDE", "entra": "escala" },
+          { "id": "chipIlegal", "desde": "ILEGALES", "hasta": "DESDE", "entra": "sello" },
+          { "id": "banco", "desde": "DESDE", "hasta": "SERIE", "entra": "izq" },
+          { "id": "pequeno", "desde": "DESDE", "hasta": "SERIE", "entra": "der" },
+          { "id": "tachaPeq", "desde": "CIRCULACION", "hasta": "SERIE", "entra": "sello" },
+          { "id": "viejo", "desde": "SERIE", "hasta": "OJO", "entra": "izq" },
+          { "id": "tachaViejo", "desde": "SERIE", "hasta": "OJO", "entra": "sello", "dura": 0.4 },
+          { "id": "viejoLab", "desde": "SERIE", "hasta": "OJO" },
+          { "id": "doscientos", "desde": "FABRICA", "hasta": "OJO", "entra": "escala" },
+          { "id": "doscientosLab", "desde": "FABRICA", "hasta": "OJO" },
+          { "id": "legal", "desde": "OJO", "hasta": "ESPANA", "entra": "escala" },
+          { "id": "selloLegal", "desde": "LEGAL", "hasta": "ESPANA", "entra": "sello" },
+          { "id": "chipPagar", "desde": "PAGAR", "hasta": "ESPANA", "entra": "sube" },
+          { "id": "limiteLab", "desde": "EFECTIVO", "hasta": "ENCUENTRAS", "entra": "baja" },
+          { "id": "limite", "desde": "EFECTIVO", "hasta": "ENCUENTRAS", "entra": "escala" },
+          { "id": "limiteLab2", "desde": "EFECTIVO", "hasta": "ENCUENTRAS" },
+          { "id": "dos1", "desde": "BILLETES", "hasta": "ENCUENTRAS", "entra": "izq" },
+          { "id": "dos2", "desde": "BILLETES", "hasta": "ENCUENTRAS", "entra": "der" },
+          { "id": "sumaLab", "desde": "BILLETES", "hasta": "ENCUENTRAS" },
+          { "id": "selloNo", "desde": "PAGAR2", "hasta": "ENCUENTRAS", "entra": "sello" },
+          { "id": "casa", "desde": "ENCUENTRAS", "hasta": "CAMBIAR", "entra": "escala" },
+          { "id": "selloCaduca", "desde": "CADUCA", "hasta": "CAMBIAR", "entra": "sello" },
+          { "id": "bde", "desde": "CAMBIAR", "hasta": "TENIDO", "entra": "sube" },
+          { "id": "chipLimite", "desde": "LIMITE", "hasta": "TENIDO", "entra": "escala" },
+          { "id": "igual", "desde": "MISMO", "hasta": "TENIDO", "entra": "escala" },
+          { "id": "fin", "desde": "TENIDO", "entra": "escala" },
+          { "id": "chipFin", "desde": "TENIDO", "entra": "sube", "dura": 0.6 }
+        ],
+        "cifras": [
+          { "id": "millon", "desde": "ESTOS", "a": 1000000, "dura": 2.2 },
+          { "id": "limite", "desde": "EFECTIVO", "a": 1000, "dura": 0.8 }
+        ],
+        "notas": [
+          { "texto": "Ilustración: no es el diseño real del billete", "desde": 0.1 },
+          { "texto": "Tamaños aproximados de cada billete", "desde": "GRANDE" },
+          { "texto": "Decisión del BCE del 4 de mayo de 2016", "desde": "BCE" },
+          { "texto": "Los bancos pueden seguir dando los que ya tienen", "desde": "DESDE" },
+          { "texto": "Datos del Banco Central Europeo", "desde": "SERIE" },
+          { "texto": "Ley 11/2021. Hay excepciones, como para no residentes", "desde": "EFECTIVO" },
+          { "texto": "Datos del Banco Central Europeo", "desde": "ENCUENTRAS" },
+          { "texto": "", "desde": "TENIDO" }
+        ],
+        "fondo": "claro",
+        "sonidos": [
+          { "tipo": "metal", "en": 0.15 },
+          { "tipo": "toque", "en": "VALIENDO", "mas": 0.15 },
+          { "tipo": "brillo", "en": "FINAL" },
+          { "tipo": "pop", "en": "ENERO" },
+          { "tipo": "desliza", "en": "GRANDE" },
+          { "tipo": "sube", "en": "ESTOS" },
+          { "tipo": "pagado", "en": "MILLON", "mas": 0.3 },
+          { "tipo": "toque", "en": "PROBLEMA", "mas": 0.15 },
+          { "tipo": "pop", "en": "BCE" },
+          { "tipo": "error", "en": "FABRICARLO" },
+          { "tipo": "pop", "en": "MOTIVO" },
+          { "tipo": "toque", "en": "ILEGALES", "mas": 0.15 },
+          { "tipo": "pop", "en": "DESDE" },
+          { "tipo": "error", "en": "CIRCULACION" },
+          { "tipo": "desliza", "en": "SERIE" },
+          { "tipo": "brillo", "en": "FABRICA" },
+          { "tipo": "pop", "en": "OJO" },
+          { "tipo": "toque", "en": "LEGAL", "mas": 0.15 },
+          { "tipo": "chip", "en": "PAGAR" },
+          { "tipo": "pop", "en": "EFECTIVO" },
+          { "tipo": "desliza", "en": "BILLETES" },
+          { "tipo": "error", "en": "PAGAR2" },
+          { "tipo": "pop", "en": "ENCUENTRAS" },
+          { "tipo": "toque", "en": "CADUCA", "mas": 0.15 },
+          { "tipo": "pop", "en": "CAMBIAR" },
+          { "tipo": "brillo", "en": "LIMITE" },
+          { "tipo": "pagado", "en": "MISMO", "mas": 0.2 },
+          { "tipo": "pop", "en": "TENIDO" }
+        ]
+      }
+    </script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 61.6 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import { crearDinero, ICONOS } from "./comun/dinero.js";
+      const C = crearDinero();
+      const { T, ramp, clamp } = C;
+      const $ = (id) => document.getElementById(id);
+
+      // a pile of ten notes that grows while the counter climbs to a million
+      const pila = $("pila");
+      for (let i = 0; i < 10; i++) {
+        const d = document.createElement("div");
+        d.style.bottom = i * 20 + "px";
+        d.style.left = (i % 2 ? 8 : -8) + "px";
+        d.innerHTML = ICONOS.billete("500", "#8e6bbf", 460);
+        pila.appendChild(d);
+      }
+      const notas = [...pila.children];
+
+      function renderAt(t) {
+        // the big notes float gently
+        for (const [id, f] of [["grande", 0], ["legal", 1], ["casa", 2], ["fin", 3]]) C.mover(id, { y: 7 * Math.sin(t * 2 + f), r: 1.5 * Math.sin(t * 1.3 + f) });
+        // the timeline draws up to each year as the voice reaches it
+        const largo = Math.max(0.12 * ramp(t, T.LLEGO, T.LLEGO + 0.5), 0.5 * ramp(t, T.BCE - 0.6, T.BCE), ramp(t, T.DESDE - 0.6, T.DESDE));
+        $("linea").style.transform = `scaleX(${largo})`;
+        // the pile grows note by note
+        const n = Math.floor(10 * clamp((t - T.ESTOS) / Math.max(0.6, T.MILLON + 0.6 - T.ESTOS)));
+        notas.forEach((d, i) => (d.style.opacity = i < n ? 1 : 0));
+        // the briefcase shakes a little when the voice says "ilegales"
+        C.mover("maletin", { r: 4 * Math.sin(t * 18) * (ramp(t, T.ILEGALES, T.ILEGALES + 0.1) - ramp(t, T.ILEGALES + 0.5, T.ILEGALES + 0.8)) });
+        C.mover("doscientos", { y: 6 * Math.sin(t * 2.2) });
+        C.pintar(t);
+      }
+
+      C.arrancar(renderAt);
+    </script>
+  </body>
+</html>

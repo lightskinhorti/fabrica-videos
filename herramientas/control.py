@@ -1,4 +1,4 @@
-"""Control automático de un vídeo (R10 del PRD), para El contador loco y Las cosas por dentro.
+"""Control automático de un vídeo (R10 del PRD), para El contador loco, Las cosas por dentro y Dinero sin lío.
 
 Uso (con el Python de voces/.venv, que tiene Pillow para medir el texto):
     ../voces/.venv/bin/python control.py <carpeta del vídeo> [video.mp4]
@@ -11,6 +11,8 @@ Comprueba:
   por los lados. En El contador loco, además, el título del principio cabe en 3 líneas.
 - El contador loco: la cifra más larga cabe en el marcador y cada etiqueta en la pantalla.
 - Las cosas por dentro: cada momento encuentra su palabra en la voz y cada etiqueta cabe en la pantalla.
+- Dinero sin lío (mismos subtítulos y momentos): cada pieza y cada cifra usan momentos que existen, y el valor
+  final de cada cifra que cuenta está en fuentes.md.
 - Fuentes: cada cifra de las etiquetas está en fuentes.md (si falta, es un error) y cada cifra
   de los subtítulos también (si falta, es un aviso: puede ser un cálculo, como "a los 14 minutos").
 No revisa la ortografía: eso lo hace Claude al escribir el guion.
@@ -177,6 +179,15 @@ else:
             continue
         ids.add(m["id"])
         desde = i + 1
+    # Dinero sin lío: every piece uses moments that exist, and every counting figure needs a source
+    for p in ESC.get("piezas", []):
+        for k in ("desde", "hasta"):
+            if isinstance(p.get(k), str) and p[k] not in ids:
+                errores.append(f"la pieza {p['id']} usa el momento {p[k]}, que no existe")
+    for c in ESC.get("cifras", []):
+        if isinstance(c.get("desde"), str) and c["desde"] not in ids:
+            errores.append(f"la cifra {c['id']} usa el momento {c['desde']}, que no existe")
+        etiquetas.append((f"cifra {c['id']}", re.sub(r"\.", ",", str(c["a"]))))
     LAB = letra("inter", 700, 26)
     for e in ESC.get("etiquetas", []):
         for k in ("desde", "hasta"):

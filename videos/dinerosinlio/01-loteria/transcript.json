@@ -1,0 +1,1100 @@
+[
+  {
+    "text": "Hacienda",
+    "start": 0,
+    "end": 0.6,
+    "id": "w0"
+  },
+  {
+    "text": "también",
+    "start": 0.6,
+    "end": 1.14,
+    "id": "w1"
+  },
+  {
+    "text": "juega",
+    "start": 1.14,
+    "end": 1.52,
+    "id": "w2"
+  },
+  {
+    "text": "la",
+    "start": 1.52,
+    "end": 1.67,
+    "id": "w3"
+  },
+  {
+    "text": "lotería",
+    "start": 1.67,
+    "end": 2.05,
+    "id": "w4"
+  },
+  {
+    "text": "y",
+    "start": 2.05,
+    "end": 2.37,
+    "id": "w5"
+  },
+  {
+    "text": "si",
+    "start": 2.37,
+    "end": 2.6,
+    "id": "w6"
+  },
+  {
+    "text": "te",
+    "start": 2.6,
+    "end": 2.84,
+    "id": "w7"
+  },
+  {
+    "text": "toca",
+    "start": 2.84,
+    "end": 3.04,
+    "id": "w8"
+  },
+  {
+    "text": "se",
+    "start": 3.52,
+    "end": 3.56,
+    "id": "w9"
+  },
+  {
+    "text": "queda",
+    "start": 3.56,
+    "end": 4.09,
+    "id": "w10"
+  },
+  {
+    "text": "su",
+    "start": 4.09,
+    "end": 4.3,
+    "id": "w11"
+  },
+  {
+    "text": "parte.",
+    "start": 4.3,
+    "end": 4.96,
+    "id": "w12"
+  },
+  {
+    "text": "Al",
+    "start": 4.96,
+    "end": 5.19,
+    "id": "w13"
+  },
+  {
+    "text": "final",
+    "start": 5.19,
+    "end": 5.56,
+    "id": "w14"
+  },
+  {
+    "text": "verás",
+    "start": 5.56,
+    "end": 5.99,
+    "id": "w15"
+  },
+  {
+    "text": "cuánto",
+    "start": 5.99,
+    "end": 6.5,
+    "id": "w16"
+  },
+  {
+    "text": "te",
+    "start": 6.5,
+    "end": 6.67,
+    "id": "w17"
+  },
+  {
+    "text": "devuelve",
+    "start": 6.67,
+    "end": 7.35,
+    "id": "w18"
+  },
+  {
+    "text": "de",
+    "start": 7.35,
+    "end": 7.51,
+    "id": "w19"
+  },
+  {
+    "text": "media",
+    "start": 7.53,
+    "end": 7.95,
+    "id": "w20"
+  },
+  {
+    "text": "cada",
+    "start": 7.95,
+    "end": 8.01,
+    "id": "w21"
+  },
+  {
+    "text": "décimo.",
+    "start": 8.48,
+    "end": 9.12,
+    "id": "w22"
+  },
+  {
+    "text": "Un",
+    "start": 9.12,
+    "end": 9.35,
+    "id": "w23"
+  },
+  {
+    "text": "décimo",
+    "start": 9.35,
+    "end": 9.65,
+    "id": "w24"
+  },
+  {
+    "text": "cuesta",
+    "start": 9.65,
+    "end": 10.05,
+    "id": "w25"
+  },
+  {
+    "text": "20",
+    "start": 10.05,
+    "end": 10.38,
+    "id": "w26"
+  },
+  {
+    "text": "euros",
+    "start": 10.49,
+    "end": 10.78,
+    "id": "w27"
+  },
+  {
+    "text": "y",
+    "start": 10.78,
+    "end": 10.84,
+    "id": "w28"
+  },
+  {
+    "text": "si",
+    "start": 10.84,
+    "end": 10.97,
+    "id": "w29"
+  },
+  {
+    "text": "es",
+    "start": 10.97,
+    "end": 11.1,
+    "id": "w30"
+  },
+  {
+    "text": "el",
+    "start": 11.1,
+    "end": 11.17,
+    "id": "w31"
+  },
+  {
+    "text": "gordo",
+    "start": 11.29,
+    "end": 11.56,
+    "id": "w32"
+  },
+  {
+    "text": "paga",
+    "start": 11.56,
+    "end": 11.82,
+    "id": "w33"
+  },
+  {
+    "text": "400.000,",
+    "start": 11.82,
+    "end": 13.43,
+    "id": "w34"
+  },
+  {
+    "text": "pero",
+    "start": 13.43,
+    "end": 13.72,
+    "id": "w35"
+  },
+  {
+    "text": "no",
+    "start": 13.72,
+    "end": 13.86,
+    "id": "w36"
+  },
+  {
+    "text": "te",
+    "start": 13.86,
+    "end": 13.98,
+    "id": "w37"
+  },
+  {
+    "text": "llegan",
+    "start": 14.13,
+    "end": 14.42,
+    "id": "w38"
+  },
+  {
+    "text": "enteros.",
+    "start": 14.42,
+    "end": 15.15,
+    "id": "w39"
+  },
+  {
+    "text": "Hay",
+    "start": 15.15,
+    "end": 15.39,
+    "id": "w40"
+  },
+  {
+    "text": "una",
+    "start": 15.39,
+    "end": 15.49,
+    "id": "w41"
+  },
+  {
+    "text": "regla,",
+    "start": 15.57,
+    "end": 15.85,
+    "id": "w42"
+  },
+  {
+    "text": "los",
+    "start": 15.99,
+    "end": 16.12,
+    "id": "w43"
+  },
+  {
+    "text": "primeros",
+    "start": 16.12,
+    "end": 16.61,
+    "id": "w44"
+  },
+  {
+    "text": "40.000",
+    "start": 16.61,
+    "end": 17.72,
+    "id": "w45"
+  },
+  {
+    "text": "euros",
+    "start": 17.73,
+    "end": 18.02,
+    "id": "w46"
+  },
+  {
+    "text": "de",
+    "start": 18.07,
+    "end": 18.15,
+    "id": "w47"
+  },
+  {
+    "text": "cada",
+    "start": 18.15,
+    "end": 18.21,
+    "id": "w48"
+  },
+  {
+    "text": "premio",
+    "start": 18.64,
+    "end": 18.77,
+    "id": "w49"
+  },
+  {
+    "text": "no",
+    "start": 18.77,
+    "end": 18.88,
+    "id": "w50"
+  },
+  {
+    "text": "pagan",
+    "start": 18.89,
+    "end": 19.16,
+    "id": "w51"
+  },
+  {
+    "text": "nada,",
+    "start": 19.18,
+    "end": 19.68,
+    "id": "w52"
+  },
+  {
+    "text": "del",
+    "start": 19.68,
+    "end": 19.91,
+    "id": "w53"
+  },
+  {
+    "text": "resto",
+    "start": 20.17,
+    "end": 20.26,
+    "id": "w54"
+  },
+  {
+    "text": "Hacienda",
+    "start": 20.32,
+    "end": 20.64,
+    "id": "w55"
+  },
+  {
+    "text": "se",
+    "start": 20.64,
+    "end": 20.87,
+    "id": "w56"
+  },
+  {
+    "text": "queda",
+    "start": 20.87,
+    "end": 21.34,
+    "id": "w57"
+  },
+  {
+    "text": "el",
+    "start": 21.47,
+    "end": 21.58,
+    "id": "w58"
+  },
+  {
+    "text": "20%",
+    "start": 21.58,
+    "end": 22.32,
+    "id": "w59"
+  },
+  {
+    "text": "así",
+    "start": 22.32,
+    "end": 22.51,
+    "id": "w60"
+  },
+  {
+    "text": "que",
+    "start": 22.52,
+    "end": 22.68,
+    "id": "w61"
+  },
+  {
+    "text": "del",
+    "start": 22.68,
+    "end": 23.01,
+    "id": "w62"
+  },
+  {
+    "text": "gordo",
+    "start": 23.01,
+    "end": 23.28,
+    "id": "w63"
+  },
+  {
+    "text": "tributan",
+    "start": 23.32,
+    "end": 23.86,
+    "id": "w64"
+  },
+  {
+    "text": "360.000",
+    "start": 24.18,
+    "end": 25.3,
+    "id": "w65"
+  },
+  {
+    "text": "euros",
+    "start": 25.65,
+    "end": 25.8,
+    "id": "w66"
+  },
+  {
+    "text": "y",
+    "start": 25.8,
+    "end": 25.87,
+    "id": "w67"
+  },
+  {
+    "text": "Hacienda",
+    "start": 25.87,
+    "end": 26.23,
+    "id": "w68"
+  },
+  {
+    "text": "se",
+    "start": 26.42,
+    "end": 26.54,
+    "id": "w69"
+  },
+  {
+    "text": "lleva",
+    "start": 26.54,
+    "end": 26.83,
+    "id": "w70"
+  },
+  {
+    "text": "72.000,",
+    "start": 26.91,
+    "end": 28.16,
+    "id": "w71"
+  },
+  {
+    "text": "te",
+    "start": 28.16,
+    "end": 28.39,
+    "id": "w72"
+  },
+  {
+    "text": "quedan",
+    "start": 28.39,
+    "end": 28.73,
+    "id": "w73"
+  },
+  {
+    "text": "328.000",
+    "start": 28.73,
+    "end": 30.18,
+    "id": "w74"
+  },
+  {
+    "text": "y",
+    "start": 30.18,
+    "end": 30.355,
+    "id": "w75"
+  },
+  {
+    "text": "te",
+    "start": 30.355,
+    "end": 30.53,
+    "id": "w76"
+  },
+  {
+    "text": "los",
+    "start": 30.53,
+    "end": 30.71,
+    "id": "w77"
+  },
+  {
+    "text": "pagan",
+    "start": 30.73,
+    "end": 31.08,
+    "id": "w78"
+  },
+  {
+    "text": "ya",
+    "start": 31.08,
+    "end": 31.19,
+    "id": "w79"
+  },
+  {
+    "text": "descontados",
+    "start": 31.51,
+    "end": 32.02,
+    "id": "w80"
+  },
+  {
+    "text": "y",
+    "start": 32.02,
+    "end": 32.08,
+    "id": "w81"
+  },
+  {
+    "text": "el",
+    "start": 32.08,
+    "end": 32.23,
+    "id": "w82"
+  },
+  {
+    "text": "segundo",
+    "start": 32.23,
+    "end": 32.74,
+    "id": "w83"
+  },
+  {
+    "text": "premio",
+    "start": 32.74,
+    "end": 33.18,
+    "id": "w84"
+  },
+  {
+    "text": "son",
+    "start": 33.18,
+    "end": 33.4,
+    "id": "w85"
+  },
+  {
+    "text": "125.000",
+    "start": 33.4,
+    "end": 34.96,
+    "id": "w86"
+  },
+  {
+    "text": "por",
+    "start": 34.96,
+    "end": 35.18,
+    "id": "w87"
+  },
+  {
+    "text": "décimo",
+    "start": 35.18,
+    "end": 35.67,
+    "id": "w88"
+  },
+  {
+    "text": "y",
+    "start": 35.78,
+    "end": 35.83,
+    "id": "w89"
+  },
+  {
+    "text": "Hacienda",
+    "start": 35.83,
+    "end": 36.26,
+    "id": "w90"
+  },
+  {
+    "text": "se",
+    "start": 36.26,
+    "end": 36.37,
+    "id": "w91"
+  },
+  {
+    "text": "lleva",
+    "start": 36.37,
+    "end": 36.65,
+    "id": "w92"
+  },
+  {
+    "text": "17.000,",
+    "start": 36.65,
+    "end": 37.75,
+    "id": "w93"
+  },
+  {
+    "text": "del",
+    "start": 37.75,
+    "end": 37.83,
+    "id": "w94"
+  },
+  {
+    "text": "cuarto",
+    "start": 38.15,
+    "end": 38.24,
+    "id": "w95"
+  },
+  {
+    "text": "premio",
+    "start": 38.24,
+    "end": 38.53,
+    "id": "w96"
+  },
+  {
+    "text": "para",
+    "start": 38.58,
+    "end": 38.79,
+    "id": "w97"
+  },
+  {
+    "text": "abajo",
+    "start": 38.79,
+    "end": 38.83,
+    "id": "w98"
+  },
+  {
+    "text": "Hacienda",
+    "start": 39.07,
+    "end": 39.49,
+    "id": "w99"
+  },
+  {
+    "text": "no",
+    "start": 39.5,
+    "end": 39.61,
+    "id": "w100"
+  },
+  {
+    "text": "toca",
+    "start": 39.61,
+    "end": 39.78,
+    "id": "w101"
+  },
+  {
+    "text": "nada,",
+    "start": 39.84,
+    "end": 40.11,
+    "id": "w102"
+  },
+  {
+    "text": "son",
+    "start": 40.19,
+    "end": 40.32,
+    "id": "w103"
+  },
+  {
+    "text": "20.000",
+    "start": 40.32,
+    "end": 41.38,
+    "id": "w104"
+  },
+  {
+    "text": "euros",
+    "start": 41.67,
+    "end": 41.77,
+    "id": "w105"
+  },
+  {
+    "text": "o",
+    "start": 41.77,
+    "end": 41.85,
+    "id": "w106"
+  },
+  {
+    "text": "menos",
+    "start": 41.85,
+    "end": 42.13,
+    "id": "w107"
+  },
+  {
+    "text": "y",
+    "start": 42.13,
+    "end": 42.27,
+    "id": "w108"
+  },
+  {
+    "text": "si",
+    "start": 42.27,
+    "end": 42.35,
+    "id": "w109"
+  },
+  {
+    "text": "compartes",
+    "start": 42.35,
+    "end": 42.95,
+    "id": "w110"
+  },
+  {
+    "text": "el",
+    "start": 42.95,
+    "end": 43.08,
+    "id": "w111"
+  },
+  {
+    "text": "décimo",
+    "start": 43.08,
+    "end": 43.47,
+    "id": "w112"
+  },
+  {
+    "text": "los",
+    "start": 43.47,
+    "end": 43.49,
+    "id": "w113"
+  },
+  {
+    "text": "40.000",
+    "start": 43.81,
+    "end": 44.48,
+    "id": "w114"
+  },
+  {
+    "text": "libres",
+    "start": 44.98,
+    "end": 45.28,
+    "id": "w115"
+  },
+  {
+    "text": "también",
+    "start": 45.28,
+    "end": 45.72,
+    "id": "w116"
+  },
+  {
+    "text": "se",
+    "start": 45.72,
+    "end": 45.88,
+    "id": "w117"
+  },
+  {
+    "text": "reparten",
+    "start": 45.88,
+    "end": 46.41,
+    "id": "w118"
+  },
+  {
+    "text": "así",
+    "start": 46.45,
+    "end": 46.72,
+    "id": "w119"
+  },
+  {
+    "text": "que",
+    "start": 46.72,
+    "end": 46.84,
+    "id": "w120"
+  },
+  {
+    "text": "Hacienda",
+    "start": 46.84,
+    "end": 47.41,
+    "id": "w121"
+  },
+  {
+    "text": "se",
+    "start": 47.41,
+    "end": 47.53,
+    "id": "w122"
+  },
+  {
+    "text": "lleva",
+    "start": 47.67,
+    "end": 47.91,
+    "id": "w123"
+  },
+  {
+    "text": "lo",
+    "start": 47.91,
+    "end": 48.05,
+    "id": "w124"
+  },
+  {
+    "text": "mismo.",
+    "start": 48.05,
+    "end": 48.68,
+    "id": "w125"
+  },
+  {
+    "text": "Ahora",
+    "start": 48.91,
+    "end": 49.01,
+    "id": "w126"
+  },
+  {
+    "text": "la",
+    "start": 49.09,
+    "end": 49.24,
+    "id": "w127"
+  },
+  {
+    "text": "cuenta",
+    "start": 49.24,
+    "end": 49.72,
+    "id": "w128"
+  },
+  {
+    "text": "que",
+    "start": 49.72,
+    "end": 49.94,
+    "id": "w129"
+  },
+  {
+    "text": "casi",
+    "start": 50.05,
+    "end": 50.28,
+    "id": "w130"
+  },
+  {
+    "text": "nadie",
+    "start": 50.28,
+    "end": 50.67,
+    "id": "w131"
+  },
+  {
+    "text": "hace,",
+    "start": 50.67,
+    "end": 51.16,
+    "id": "w132"
+  },
+  {
+    "text": "hay",
+    "start": 51.16,
+    "end": 51.4,
+    "id": "w133"
+  },
+  {
+    "text": "100.000",
+    "start": 51.4,
+    "end": 52.96,
+    "id": "w134"
+  },
+  {
+    "text": "números",
+    "start": 52.96,
+    "end": 53.69,
+    "id": "w135"
+  },
+  {
+    "text": "y",
+    "start": 53.69,
+    "end": 53.72,
+    "id": "w136"
+  },
+  {
+    "text": "sólo",
+    "start": 53.72,
+    "end": 54.04,
+    "id": "w137"
+  },
+  {
+    "text": "uno",
+    "start": 54.04,
+    "end": 54.27,
+    "id": "w138"
+  },
+  {
+    "text": "es",
+    "start": 54.27,
+    "end": 54.43,
+    "id": "w139"
+  },
+  {
+    "text": "el",
+    "start": 54.46,
+    "end": 54.6,
+    "id": "w140"
+  },
+  {
+    "text": "gordo,",
+    "start": 54.6,
+    "end": 55.2,
+    "id": "w141"
+  },
+  {
+    "text": "este",
+    "start": 55.2,
+    "end": 55.35,
+    "id": "w142"
+  },
+  {
+    "text": "año",
+    "start": 55.35,
+    "end": 55.48,
+    "id": "w143"
+  },
+  {
+    "text": "salen",
+    "start": 55.71,
+    "end": 55.8,
+    "id": "w144"
+  },
+  {
+    "text": "a",
+    "start": 55.89,
+    "end": 55.93,
+    "id": "w145"
+  },
+  {
+    "text": "la",
+    "start": 55.93,
+    "end": 56.08,
+    "id": "w146"
+  },
+  {
+    "text": "venta",
+    "start": 56.08,
+    "end": 56.45,
+    "id": "w147"
+  },
+  {
+    "text": "4.100",
+    "start": 56.45,
+    "end": 57.5,
+    "id": "w148"
+  },
+  {
+    "text": "millones",
+    "start": 57.85,
+    "end": 58.19,
+    "id": "w149"
+  },
+  {
+    "text": "de",
+    "start": 58.19,
+    "end": 58.34,
+    "id": "w150"
+  },
+  {
+    "text": "euros",
+    "start": 58.34,
+    "end": 58.52,
+    "id": "w151"
+  },
+  {
+    "text": "en",
+    "start": 58.74,
+    "end": 58.81,
+    "id": "w152"
+  },
+  {
+    "text": "décimos",
+    "start": 59,
+    "end": 59.39,
+    "id": "w153"
+  },
+  {
+    "text": "y",
+    "start": 59.39,
+    "end": 59.46,
+    "id": "w154"
+  },
+  {
+    "text": "el",
+    "start": 59.46,
+    "end": 59.6,
+    "id": "w155"
+  },
+  {
+    "text": "70%",
+    "start": 59.6,
+    "end": 60.14,
+    "id": "w156"
+  },
+  {
+    "text": "vuelven",
+    "start": 60.44,
+    "end": 60.66,
+    "id": "w157"
+  },
+  {
+    "text": "premios,",
+    "start": 60.66,
+    "end": 61.33,
+    "id": "w158"
+  },
+  {
+    "text": "o",
+    "start": 61.33,
+    "end": 61.4,
+    "id": "w159"
+  },
+  {
+    "text": "sea",
+    "start": 61.4,
+    "end": 61.76,
+    "id": "w160"
+  },
+  {
+    "text": "de",
+    "start": 61.76,
+    "end": 61.95,
+    "id": "w161"
+  },
+  {
+    "text": "media",
+    "start": 62.19,
+    "end": 62.29,
+    "id": "w162"
+  },
+  {
+    "text": "cada",
+    "start": 62.37,
+    "end": 62.65,
+    "id": "w163"
+  },
+  {
+    "text": "décimo",
+    "start": 62.79,
+    "end": 63.2,
+    "id": "w164"
+  },
+  {
+    "text": "de",
+    "start": 63.2,
+    "end": 63.36,
+    "id": "w165"
+  },
+  {
+    "text": "20",
+    "start": 63.36,
+    "end": 63.85,
+    "id": "w166"
+  },
+  {
+    "text": "euros",
+    "start": 63.85,
+    "end": 64,
+    "id": "w167"
+  },
+  {
+    "text": "devuelve",
+    "start": 64.33,
+    "end": 64.93,
+    "id": "w168"
+  },
+  {
+    "text": "14",
+    "start": 64.93,
+    "end": 65.01,
+    "id": "w169"
+  },
+  {
+    "text": "y",
+    "start": 65.49,
+    "end": 65.51,
+    "id": "w170"
+  },
+  {
+    "text": "eso",
+    "start": 65.51,
+    "end": 65.76,
+    "id": "w171"
+  },
+  {
+    "text": "antes",
+    "start": 65.76,
+    "end": 66.12,
+    "id": "w172"
+  },
+  {
+    "text": "de",
+    "start": 66.19,
+    "end": 66.29,
+    "id": "w173"
+  },
+  {
+    "text": "Hacienda.",
+    "start": 66.37,
+    "end": 67.32,
+    "id": "w174"
+  },
+  {
+    "text": "Este",
+    "start": 67.55,
+    "end": 67.57,
+    "id": "w175"
+  },
+  {
+    "text": "año",
+    "start": 67.57,
+    "end": 67.75,
+    "id": "w176"
+  },
+  {
+    "text": "juegas",
+    "start": 67.75,
+    "end": 68.01,
+    "id": "w177"
+  },
+  {
+    "text": "igual,",
+    "start": 68.15,
+    "end": 68.54,
+    "id": "w178"
+  },
+  {
+    "text": "te",
+    "start": 68.54,
+    "end": 68.58,
+    "id": "w179"
+  },
+  {
+    "text": "leo",
+    "start": 68.69,
+    "end": 68.84,
+    "id": "w180"
+  },
+  {
+    "text": "los",
+    "start": 68.84,
+    "end": 69.02,
+    "id": "w181"
+  },
+  {
+    "text": "comentarios.",
+    "start": 69.02,
+    "end": 69.76,
+    "id": "w182"
+  }
+]

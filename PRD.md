@@ -66,6 +66,14 @@ Se mira la mediana porque, en un estudio de Buffer con millones de publicaciones
 - **Apostar por un nicho:** un vídeo por encima de 100.000 visualizaciones, o un ritmo de crecimiento que lleve a 10.000 seguidores en menos de 3 meses.
 - **Replantear el proyecto:** si a las 12 semanas ninguna cuenta pasa de 1.000 seguidores y ningún vídeo de 50.000 visualizaciones.
 
+**Primeros datos (2 de noviembre, a las pocas horas de publicar):**
+
+- Instagram, El contador loco, `01-ascensor`: unas 1.000 visualizaciones y 43 me gusta (un 4,3 % de me gusta por visualización) con una cuenta recién creada. El vídeo pasó la primera prueba de Instagram con gente que no sigue la cuenta.
+- TikTok: El contador loco aún no despega en las primeras horas, y Las cosas por dentro todavía no ha salido (está programada).
+- TikTok es el foco, porque es donde se cobra (hito 3). Instagram sirve para los packs.
+- No se juzga nada hasta las 2 semanas. Cada vídeo se apunta a las 24 horas y a los 7 días.
+- La reserva se acaba pronto: El contador loco tiene vídeos hasta el miércoles 4 de noviembre, y Las cosas por dentro hasta el reloj (su día 2). Hacen falta el vídeo 6 del contador y el GPS antes del jueves 5, porque cortar el ritmo la primera semana es lo que hay que evitar.
+
 ## Alcance
 
 La primera versión es la fábrica más 3 cuentas de TikTok. Instagram y los packs llegan cuando la fábrica ya tenga resultados que enseñar.
@@ -467,6 +475,21 @@ El objetivo es 3 vídeos al día por cuenta, pero se llega por escalones. Si la 
 - Cuando falta la voz, la escena se monta igual con tiempos estimados (`vozdata.py guion.json` sin transcripción): como todo se ancla a palabras, al llegar la voz real solo hay que producir.
 - Lección: con objetos más grandes que la tarjeta, la cámara se aleja y hay que retrasar también la niebla. Los planos bajos reflejan la luz fría en la mesa barnizada, así que en esa escena la mesa es más mate.
 
+**Dinero sin lío (2 de noviembre), hecho mientras Javier cenaba:**
+- **Motor plano 2D** en `herramientas/dinero/` (`dinero.js` y `dinero.css`), con los colores de la foto de perfil: papel crema, tinta azul marino, oro y rojo. Sin three.js. Comparte con Las cosas por dentro los momentos anclados a la voz, el gancho en grande y los subtítulos (palabra clave subrayada en amarillo), y añade:
+  - `piezas` que entran y salen;
+  - `cifras` que cuentan;
+  - iconos planos con sombra sólida: moneda, billete, décimo, edificio, oficina, persona, maletín, fábrica, tachado, sello y documento.
+- **Sonido:** usa `sonido_pordentro.py`, con `fondo: "claro"` (una base suave y luminosa en vez del zumbido grave). `producir.sh` lo elige solo.
+- **Control:** `control.py` revisa también que cada cifra que cuenta tenga fuente.
+- **Años en los subtítulos:** `vozdata.py` ya no pone punto en los años ("en 2016", no "2.016"), pero sí en las cantidades ("2.000 billetes").
+- **Los 3 primeros vídeos**, producidos con la voz de pago y el control sin errores, a la espera de que Javier los apruebe:
+  - `01-loteria` (71,2 s): Hacienda y el Gordo. 72.000 € de impuesto por décimo, y de media cada décimo de 20 € devuelve 14.
+  - `02-nomina` (62,3 s): por cada 100 € de sueldo, la empresa paga 30,65 € más, a ti te descuentan 6,50 €, y adónde va cada euro (tipos de 2026).
+  - `03-billete` (61,6 s): el billete de 500 € ya no se fabrica, pero sigue siendo de curso legal y no caduca.
+- **Tema descartado de momento:** "la ley solo obliga al banco a guardar 1 € de cada 100" (coeficiente de reservas del BCE). El BCE estudia este otoño subirlo al 2 %, y el vídeo podría quedarse mal. Se retoma cuando el BCE decida.
+- **Truco de los números:** si Whisper oye una cifra de otra forma (por ejemplo, "seis euros y medio" como "6,5"), se cambia el texto del guion a cifras después de hacer la voz. Así el subtítulo coincide y no hay que pagar otra voz. El campo `voz_dice` del guion lo deja anotado.
+
 **Ritmo de salida (decidido por Javier el 2 de noviembre):**
 - **Día 1: 3 vídeos por cuenta,** para que quien entre en el perfil vea ya varios vídeos. Mejor repartidos en las tres franjas (18:00, 20:00 y 22:00) que subidos a la vez, para que cada uno tenga su hueco.
 - **Después, 1 al día por cuenta,** y 2 al día cuando haya una semana de reserva y la calidad aguante (como dice el plan, desde la semana 6 o antes).
@@ -487,6 +510,20 @@ Hay tres formas, de menos a más automática:
 - **Lo que hace Claude en cada vídeo (R12):** un archivo `publicacion.md` con la descripción, los hashtags, la hora y el recordatorio de la etiqueta de IA. La portada es el primer fotograma, que ya lleva la pregunta en grande.
 - **Etiqueta de IA:** TikTok exige etiquetar el contenido hecho con IA que parece real, y puede poner la etiqueta él solo si lo detecta. Los dibujos de bloques no parecen reales y la voz no imita a una persona conocida, pero se activa siempre igualmente, como ya decía el plan. Así no hay riesgo de que retiren un vídeo.
 - **Siempre es tu decisión publicar:** ni Claude ni ningún programa publica un vídeo que no hayas aprobado.
+- **De momento, solo TikTok (decisión de Javier, 2 de noviembre).** TikTok es el foco porque es donde se cobra. Instagram se automatizará más adelante.
+
+**Panel de control para varias cuentas (pedido por Javier el 2 de noviembre).** El problema es que, en TikTok Studio, cambiar de cuenta obliga a cerrar sesión y volver a entrar. Lo que se ha encontrado (investigado el 2 de noviembre; los detalles y enlaces están en las fuentes de esa fecha):
+
+| Opción | Qué resuelve | Coste | Pega |
+| --- | --- | --- | --- |
+| Un perfil de navegador por cuenta (Chrome o Safari) | Cada perfil se queda con su sesión abierta: se cambia de cuenta cambiando de ventana | Gratis | No es un panel: siguen siendo 3 ventanas |
+| Buffer, plan gratis | Hasta 3 canales: justo las 3 cuentas de TikTok, con 10 vídeos programados por cuenta. Tiene interruptor de "generado con IA" en TikTok y dice que admite cuentas personales | Gratis | Las opciones de visibilidad no están confirmadas en el plan gratis. Añadir Instagram ya es de pago (unos 5 o 6 $ por canal al mes) |
+| Metricool Starter | Hasta 5 marcas (3 TikTok y 3 Instagram), con etiqueta de IA en TikTok e Instagram, privacidad y comentarios | Unos 16 € al mes con pago anual | Falta confirmar en la prueba que el plan Starter incluye TikTok y Reels |
+| Panel propio con la API de TikTok | Lo haría todo a medida | Gratis | No es realista: sin auditoría, la API solo publica en privado, y una herramienta personal puede no pasarla. Además no programa: habría que escribir el programador |
+| Panel propio para Instagram | Publicar Reels en las cuentas propias | Gratis | Realista: no hace falta revisión de Meta ni página de Facebook, pero hay que escribir el programador y servir los vídeos desde una web pública |
+
+- **Recomendación:** hoy, probar si tiktok.com enseña "Cambiar de cuenta" en el menú del perfil. Si no lo enseña, usar un perfil de navegador por cuenta. Probar después Buffer gratis para las 3 cuentas de TikTok, comprobando que deja marcar la etiqueta de IA y la visibilidad pública. Cuando entre Instagram, valorar Metricool Starter antes que un panel propio.
+- **El panel de la fábrica** (ver qué vídeos hay, cuáles están aprobados, programados o publicados, y sus métricas) sí se puede hacer en local, sin APIs. Sería una página que lee `videos/` y la hoja de métricas. Está pendiente de que Javier lo decida.
 
 ## Plan de ejecución
 

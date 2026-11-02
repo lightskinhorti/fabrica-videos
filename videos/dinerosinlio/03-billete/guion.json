@@ -1,0 +1,41 @@
+{
+  "titulo": "Este billete ya no se fabrica",
+  "lines": [
+    "Este billete ya no se fabrica.",
+    "Pero sigue valiendo quinientos euros. Al final te digo qué hacer si encuentras uno en casa.",
+    "Llegó con el euro, en enero de dos mil dos, y era el billete más grande de todos.",
+    "Con dos mil de estos, tienes un millón de euros. Y ese era justo el problema.",
+    "En dos mil dieciséis, el Banco Central Europeo decidió dejar de fabricarlo.",
+    "Su motivo: un billete tan grande podía facilitar actividades ilegales.",
+    "Por eso, desde dos mil diecinueve, los bancos centrales ya no lo ponen en circulación.",
+    "Y en la serie nueva de billetes ya no existe: el más grande que se fabrica es el de doscientos.",
+    "Pero ojo: no está prohibido. Sigue siendo de curso legal, y se puede pagar con él.",
+    "Eso sí, en España no puedes pagar en efectivo mil euros o más a una empresa o a un profesional.",
+    "O sea, que con dos billetes de estos ya no puedes pagar.",
+    "¿Y si encuentras uno en casa? Tranquilo: no caduca.",
+    "Lo puedes cambiar en el Banco de España, sin fecha límite, y vale exactamente lo mismo.",
+    "¿Has tenido alguno en la mano? Te leo en los comentarios."
+  ],
+  "claves": [
+    "billete",
+    "valiendo",
+    "grande",
+    "problema",
+    "fabricarlo",
+    "ilegales",
+    "circulación",
+    "serie",
+    "legal",
+    "efectivo",
+    "pagar",
+    "caduca",
+    "cambiar",
+    "comentarios"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "El billete de 500 euros ya no se fabrica, pero sigue siendo de curso legal. Por qué lo quitaron y qué hacer si tienes uno en casa. Datos del Banco Central Europeo.",
+    "hashtags": ["#billetes", "#euro", "#curiosidades"],
+    "portada_en": "billete"
+  }
+}

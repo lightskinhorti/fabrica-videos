@@ -1,0 +1,74 @@
+# Cómo subir y programar los vídeos de Dinero sin lío (@dinerosinlio)
+
+De momento solo se sube a TikTok (decisión del 2 de noviembre). Instagram se automatizará más adelante.
+
+Los vídeos están en `exports/render/` (en el Finder: Escritorio > ProyectoPersonal > VideosYCosas > fabrica-prueba >
+exports > render). Cada uno tiene al lado su portada (`-portada.png`).
+
+Se suben estos tres: `01-loteria.mp4`, `02-nomina.mp4` y `03-billete.mp4`.
+
+## Calendario propuesto
+
+Hoy ya no da tiempo (son casi las 22:00), así que el día 1 es mañana, con las mismas horas que las otras cuentas.
+A las 20:00 va el mejor gancho: la lotería, que además está de actualidad porque ya se venden los décimos.
+
+| Día | Hora | Vídeo | Programado |
+|---|---|---|---|
+| Martes 3 de noviembre | 18:00 | `03-billete.mp4` | [ ] |
+| Martes 3 de noviembre | 20:00 | `01-loteria.mp4` | [ ] |
+| Martes 3 de noviembre | 22:00 | `02-nomina.mp4` | [ ] |
+| Miércoles 4 de noviembre | 20:00 | Vídeo 4 (falta hacerlo) | [ ] |
+
+Si prefieres no quedarte sin reserva, otra opción es uno al día a las 20:00: lotería el martes, nómina el miércoles
+y billete el jueves.
+
+## Paso a paso en TikTok Studio (en el ordenador)
+
+1. Entra en tiktok.com/tiktokstudio/upload y mira arriba a la derecha que la sesión es la de **@dinerosinlio**.
+2. "Seleccionar vídeo" y elige el `.mp4` de esa franja.
+3. **Descripción:** borra lo que ponga TikTok y pega el bloque del vídeo (más abajo), con los hashtags.
+4. **Portada:** el fotograma del gancho (el de la imagen `-portada.png`; súbela si te deja).
+5. **Quién puede verlo:** todo el mundo, con los comentarios activados.
+6. En "Mostrar más", activa **"Contenido generado por IA"**. Siempre. El contenido de marca se queda desactivado.
+7. Sin música de TikTok: los vídeos ya llevan voz, efectos y una base suave.
+8. "Cuándo publicar" > **Programar**, con el día y la hora de la tabla, y pulsa **Programar**.
+9. Comprueba en la lista de TikTok Studio que sale como programado y marca la casilla.
+
+## Descripciones (copiar y pegar)
+
+### 03-billete.mp4 (61,6 s)
+
+```
+El billete de 500 euros ya no se fabrica, pero sigue siendo de curso legal. Por qué lo quitaron y qué hacer si tienes uno en casa. Datos del Banco Central Europeo.
+
+#dinero #finanzaspersonales #economia #parati #billetes #euro #curiosidades
+```
+
+### 01-loteria.mp4 (71,2 s)
+
+```
+Si te toca el Gordo de Navidad, Hacienda se lleva 72.000 euros de tu décimo. Y de media, cada décimo de 20 euros devuelve 14. Así se reparte. Datos del sorteo de 2026.
+
+#dinero #finanzaspersonales #economia #parati #loteriadenavidad #elgordo #hacienda
+```
+
+### 02-nomina.mp4 (62,3 s)
+
+```
+Por cada 100 euros de tu sueldo, tu empresa paga casi 31 más a la Seguridad Social, y a ti te descuentan 6,50. Así se reparte cada euro. Contrato indefinido, tipos de 2026.
+
+#dinero #finanzaspersonales #economia #parati #nomina #seguridadsocial #sueldo
+```
+
+## Cuidado con estos temas
+
+- Son vídeos que explican, nunca recomiendan: ni inversiones ni "juega" o "no juegues". La lotería cuenta impuestos
+  y probabilidades.
+- Si alguien pregunta por su caso concreto (su IRPF, su nómina), no se le da un consejo personal: se le dice que
+  depende de su situación y que lo mire con la Agencia Tributaria o con un gestor.
+
+## Después de publicar
+
+- Las 2 primeras horas, contesta a algunos comentarios.
+- A las 24 horas y a los 7 días, apunta visualizaciones, tiempo medio de visualización y seguidores ganados (hoja de
+  métricas, R14 del PRD).

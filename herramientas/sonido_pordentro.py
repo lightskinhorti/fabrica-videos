@@ -1,4 +1,4 @@
-"""Efectos, fondo y mezcla para un vídeo de Las cosas por dentro.
+"""Efectos, fondo y mezcla para un vídeo de Las cosas por dentro (y de Dinero sin lío, con "fondo": "claro").
 
 Uso (con el Python de voces/.venv, que tiene numpy, scipy y soundfile):
     ../voces/.venv/bin/python sonido_pordentro.py <carpeta del vídeo> <voz.wav>
@@ -152,10 +152,16 @@ for s in ESC.get("sonidos", []):
     else:
         sys.exit(f"Tipo de sonido desconocido: {tipo}")
 
-# warm low drone under everything
-pad = np.sin(2 * np.pi * 55 * t) * 0.5 + np.sin(2 * np.pi * 82.4 * t) * 0.35 + np.sin(2 * np.pi * 110 * t) * 0.25
-pad *= 0.6 + 0.4 * np.sin(2 * np.pi * 0.11 * t)
-out += lowpass(pad, 400) * env(0, 1.5, D - 4.0, 2.4) * 0.05
+if ESC.get("fondo") == "claro":
+    # Dinero sin lío: a soft, bright major chord that breathes slowly, instead of the dark drone
+    pad = sum(g * np.sin(2 * np.pi * f * t) for f, g in ((261.6, 0.4), (329.6, 0.3), (392.0, 0.3), (523.3, 0.12)))
+    pad *= 0.55 + 0.45 * np.sin(2 * np.pi * 0.09 * t)
+    out += lowpass(pad, 1400) * env(0, 1.5, D - 4.0, 2.4) * 0.018
+else:
+    # warm low drone under everything
+    pad = np.sin(2 * np.pi * 55 * t) * 0.5 + np.sin(2 * np.pi * 82.4 * t) * 0.35 + np.sin(2 * np.pi * 110 * t) * 0.25
+    pad *= 0.6 + 0.4 * np.sin(2 * np.pi * 0.11 * t)
+    out += lowpass(pad, 400) * env(0, 1.5, D - 4.0, 2.4) * 0.05
 
 # voice on top, effects ducked a little under it
 voz, sr = sf.read(voz_ruta)
