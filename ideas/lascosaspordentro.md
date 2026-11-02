@@ -32,7 +32,9 @@ Puntuación de 1 a 5:
 | 19 | Detector de humo | "Tu detector de humo tiene una pequeña cámara oscura dentro." | 4 | 4 | 2 | Medio (no recomendar quitarlo) |
 | 20 | Llave sin llave del coche | "Tu coche se abre sin que saques la llave del bolsillo." | 4 | 4 | 4 (tarjeta) | Alto (no explicar robos por relé) |
 
-**Descartado:** el trackpad del portátil. Es justo el tema del vídeo de referencia (@speedy_devv), y la regla es copiar el estilo, nunca los temas.
+**Temas que ya tiene @speedy_devv (comprobado el 2 de noviembre con 6 de sus reels):** trackpad, pantalla táctil, teclado del móvil, cargador inalámbrico, cancelación de ruido (los auriculares, la idea 6) y cuantización de modelos de IA. Su vídeo del cargador cuenta casi lo mismo que el nuestro: las llaves encima, los pulsos de prueba, el móvil descentrado y el anillo de imanes. Aun así, Javier decide publicar el nuestro (2 de noviembre). Para los temas nuevos, primero se comprueba que no los tenga él.
+
+**Descartados:** el trackpad del portátil y la pantalla táctil. Son temas que ya ha hecho @speedy_devv (el trackpad, en la referencia 01; la pantalla, en la 06, con 6 millones de visitas), y la regla es copiar el estilo, nunca los temas. Antes de hacer un objeto nuevo, comprobar que no está en su perfil.
 
 ## Propuesta para la reserva de arranque (5 o 6 vídeos)
 
@@ -49,9 +51,9 @@ Los de mejor gancho y datos, y que comparten piezas para hacerlos más rápido:
 
 - [x] Javier aprueba las 6 ideas de la reserva (2 de noviembre).
 - [x] Motor común sacado de la plantilla de la tarjeta (`render/index.html`), como `herramientas/contador/` en El contador loco: `herramientas/pordentro/` y `herramientas/sonido_pordentro.py` (2 de noviembre).
-- [x] Vídeo 1: tarjeta sin contacto, alargada a más de 60 s, con `fuentes.md`. Hecho el 2 de noviembre: `exports/render/01-tarjeta.mp4` (69,9 s), control sin errores. Falta que Javier lo apruebe.
-- [ ] Vídeo 2: cargador inalámbrico.
-- [ ] Vídeo 3: placa de inducción.
-- [ ] Vídeo 4: pantalla táctil.
+- [x] Vídeo 1: tarjeta sin contacto, alargada a más de 60 s, con `fuentes.md`. Hecho el 2 de noviembre: `exports/render/01-tarjeta.mp4` (69,9 s), control sin errores. Aprobado por Javier el 2 de noviembre.
+- [x] Vídeo 2: cargador inalámbrico. Hecho el 2 de noviembre: `exports/render/02-cargador.mp4` (72,9 s), control sin errores. Aprobado por Javier el 2 de noviembre.
+- [ ] Vídeo 3: placa de inducción. Guion, fuentes y escena hechos el 2 de noviembre (revisada con tiempos estimados). Producido el 2 de noviembre con la voz de pago y rehecho ese mismo día. Ahora el gancho dura unos 2 s ("Tu placa de inducción no se calienta"), deja una pregunta abierta ("lo más raro pasa cuando la levantas") que se resuelve al final, y usa el estilo nuevo: rejilla, leyenda y panel de datos. `exports/render/03-induccion.mp4` (70,8 s), control sin errores. Falta que Javier lo apruebe.
+- [x] ~~Vídeo 4: pantalla táctil.~~ **Descartado por Javier el 2 de noviembre:** @speedy_devv ya tiene uno de ese tema con 6 millones de visitas y mucho mejor hecho (`referencias/06-pantalla-tactil-estilo-objetivo.mp4`). La regla es copiar el estilo, nunca los temas. La carpeta `videos/lascosaspordentro/04-pantalla/` se queda solo como prueba: no se publica.
 - [ ] Vídeo 5: reloj de cuarzo.
 - [ ] Vídeo 6: GPS del móvil.

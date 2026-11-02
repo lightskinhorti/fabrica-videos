@@ -77,6 +77,9 @@ if mp4:
         errores.append(f"volumen {lufs:.1f} LUFS (tiene que estar cerca de {objetivo})")
 if dur <= 60:
     errores.append(f"dura {dur:.1f} s: TikTok solo paga vídeos de más de 1 minuto")
+# the hook (first sentence) has to land in the first 2 or 3 seconds
+if VOZ.get("modo") != "texto" and VOZ["lines"] and VOZ["lines"][0]["e"] > 2.6:
+    avisos.append(f"el gancho (la primera frase) acaba a los {VOZ['lines'][0]['e']:.1f} s: mejor antes de 2,5 s")
 
 # ---------- captions: same grouping as each engine ----------
 PUNTO = re.compile(r"[.,:;?!]$")

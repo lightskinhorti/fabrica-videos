@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <script type="importmap">
+      { "imports": { "three": "./lib/three.module.js", "three/addons/": "./lib/addons/" } }
+    </script>
+    <link rel="stylesheet" href="comun/pordentro.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="70.8" data-width="1080" data-height="1920" data-fps="30">
+      <canvas id="gl" class="clip" data-start="0" data-duration="70.8" data-track-index="0" width="1080" height="1920"></canvas>
+      <div id="shade" class="clip" data-start="0" data-duration="70.8" data-track-index="1"></div>
+      <svg id="leaders" class="clip" data-start="0" data-duration="70.8" data-track-index="2" width="1080" height="1920" data-layout-allow-overlap></svg>
+      <div id="labels" class="clip" data-start="0" data-duration="70.8" data-track-index="3" data-layout-allow-overlap></div>
+      <div id="note" class="clip" data-start="0" data-duration="70.8" data-track-index="4"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="70.8"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="70.8" data-track-index="5" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 69.6, "lines": [{"id": "l1", "s": 0.02, "e": 2.26, "words": [{"w": "Tu", "s": 0.02, "e": 0.12, "key": false}, {"w": "placa", "s": 0.25, "e": 0.45, "key": false}, {"w": "de", "s": 0.45, "e": 0.58, "key": false}, {"w": "inducción", "s": 0.58, "e": 1.13, "key": false}, {"w": "no", "s": 1.25, "e": 1.29, "key": false}, {"w": "se", "s": 1.29, "e": 1.42, "key": false}, {"w": "calienta.", "s": 1.42, "e": 2.26, "key": true}]}, {"id": "l2", "s": 2.26, "e": 6.6, "words": [{"w": "La", "s": 2.26, "e": 2.4, "key": false}, {"w": "que", "s": 2.4, "e": 2.52, "key": false}, {"w": "se", "s": 2.52, "e": 2.62, "key": false}, {"w": "calienta", "s": 2.62, "e": 3.08, "key": false}, {"w": "es", "s": 3.08, "e": 3.27, "key": false}, {"w": "la", "s": 3.27, "e": 3.47, "key": false}, {"w": "sartén.", "s": 3.47, "e": 4.22, "key": true}, {"w": "Y", "s": 4.23, "e": 4.31, "key": false}, {"w": "lo", "s": 4.31, "e": 4.48, "key": false}, {"w": "más", "s": 4.48, "e": 4.64, "key": false}, {"w": "raro", "s": 4.64, "e": 4.84, "key": false}, {"w": "pasa", "s": 5.09, "e": 5.14, "key": false}, {"w": "cuando", "s": 5.14, "e": 5.59, "key": false}, {"w": "la", "s": 5.59, "e": 5.68, "key": false}, {"w": "levantas.", "s": 5.79, "e": 6.6, "key": false}]}, {"id": "l3", "s": 6.6, "e": 9.8, "words": [{"w": "¿Pero", "s": 6.6, "e": 6.87, "key": false}, {"w": "cómo", "s": 6.87, "e": 7.14, "key": false}, {"w": "calienta", "s": 7.24, "e": 7.61, "key": false}, {"w": "algo", "s": 7.63, "e": 7.85, "key": false}, {"w": "sin", "s": 7.88, "e": 8.04, "key": false}, {"w": "fuego", "s": 8.04, "e": 8.33, "key": true}, {"w": "y", "s": 8.33, "e": 8.39, "key": false}, {"w": "sin", "s": 8.39, "e": 8.63, "key": false}, {"w": "tocarlo?", "s": 8.64, "e": 9.8, "key": false}]}, {"id": "l4", "s": 9.8, "e": 15.79, "words": [{"w": "Vamos", "s": 9.8, "e": 9.92, "key": false}, {"w": "a", "s": 9.92, "e": 9.94, "key": false}, {"w": "mirar", "s": 9.94, "e": 10.08, "key": false}, {"w": "debajo", "s": 10.28, "e": 10.48, "key": false}, {"w": "del", "s": 10.48, "e": 10.68, "key": false}, {"w": "cristal.", "s": 10.68, "e": 11.4, "key": false}, {"w": "Ahí", "s": 11.4, "e": 11.62, "key": false}, {"w": "hay", "s": 11.62, "e": 11.84, "key": false}, {"w": "una", "s": 11.84, "e": 12.04, "key": false}, {"w": "bobina", "s": 12.28, "e": 12.49, "key": true}, {"w": "enorme:", "s": 12.49, "e": 13.05, "key": false}, {"w": "un", "s": 13.06, "e": 13.2, "key": false}, {"w": "cable", "s": 13.2, "e": 13.54, "key": false}, {"w": "de", "s": 13.55, "e": 13.68, "key": false}, {"w": "cobre", "s": 13.75, "e": 13.91, "key": false}, {"w": "enrollado", "s": 14.3, "e": 14.69, "key": false}, {"w": "muchas", "s": 14.69, "e": 15.1, "key": false}, {"w": "veces.", "s": 15.15, "e": 15.79, "key": false}]}, {"id": "l5", "s": 15.82, "e": 24.35, "words": [{"w": "Al", "s": 15.82, "e": 15.92, "key": false}, {"w": "encenderla,", "s": 16.05, "e": 16.64, "key": false}, {"w": "la", "s": 16.75, "e": 16.84, "key": false}, {"w": "corriente", "s": 16.84, "e": 17.43, "key": false}, {"w": "va", "s": 17.43, "e": 17.56, "key": false}, {"w": "y", "s": 17.56, "e": 17.62, "key": false}, {"w": "viene", "s": 17.62, "e": 17.77, "key": false}, {"w": "por", "s": 17.77, "e": 18.2, "key": false}, {"w": "ella", "s": 18.2, "e": 18.4, "key": false}, {"w": "decenas", "s": 18.4, "e": 18.85, "key": false}, {"w": "de", "s": 18.85, "e": 18.98, "key": false}, {"w": "miles", "s": 18.98, "e": 19.29, "key": false}, {"w": "de", "s": 19.3, "e": 19.4, "key": false}, {"w": "veces", "s": 19.47, "e": 19.63, "key": false}, {"w": "por", "s": 19.76, "e": 19.89, "key": false}, {"w": "segundo,", "s": 20.03, "e": 20.52, "key": false}, {"w": "y", "s": 20.54, "e": 20.59, "key": false}, {"w": "crea", "s": 20.77, "e": 20.86, "key": false}, {"w": "un", "s": 20.91, "e": 21.07, "key": false}, {"w": "campo", "s": 21.07, "e": 21.36, "key": true}, {"w": "magnético", "s": 21.47, "e": 22.16, "key": false}, {"w": "que", "s": 22.16, "e": 22.41, "key": false}, {"w": "sube", "s": 22.41, "e": 22.72, "key": false}, {"w": "y", "s": 22.72, "e": 22.8, "key": false}, {"w": "atraviesa", "s": 22.92, "e": 23.49, "key": false}, {"w": "el", "s": 23.49, "e": 23.65, "key": false}, {"w": "cristal.", "s": 23.65, "e": 24.35, "key": false}]}, {"id": "l6", "s": 24.53, "e": 31.0, "words": [{"w": "Ese", "s": 24.53, "e": 24.67, "key": false}, {"w": "campo", "s": 24.77, "e": 24.93, "key": false}, {"w": "llega", "s": 24.93, "e": 25.19, "key": false}, {"w": "al", "s": 25.19, "e": 25.28, "key": false}, {"w": "fondo", "s": 25.29, "e": 25.55, "key": false}, {"w": "de", "s": 25.55, "e": 25.65, "key": false}, {"w": "la", "s": 25.65, "e": 25.76, "key": false}, {"w": "sartén,", "s": 25.76, "e": 26.15, "key": false}, {"w": "que", "s": 26.15, "e": 26.29, "key": false}, {"w": "lleva", "s": 26.29, "e": 26.48, "key": false}, {"w": "hierro,", "s": 26.77, "e": 26.97, "key": false}, {"w": "y", "s": 26.97, "e": 27.02, "key": false}, {"w": "dentro", "s": 27.02, "e": 27.33, "key": false}, {"w": "del", "s": 27.33, "e": 27.48, "key": false}, {"w": "metal", "s": 27.48, "e": 27.74, "key": false}, {"w": "se", "s": 27.74, "e": 27.83, "key": false}, {"w": "forman", "s": 27.83, "e": 28.27, "key": false}, {"w": "corrientes", "s": 28.53, "e": 28.92, "key": false}, {"w": "que", "s": 28.92, "e": 29.11, "key": false}, {"w": "giran", "s": 29.11, "e": 29.41, "key": false}, {"w": "como", "s": 29.53, "e": 29.67, "key": false}, {"w": "pequeños", "s": 29.67, "e": 30.18, "key": false}, {"w": "remolinos.", "s": 30.18, "e": 31.0, "key": true}]}, {"id": "l7", "s": 31, "e": 34.76, "words": [{"w": "Esas", "s": 31, "e": 31.22, "key": false}, {"w": "corrientes", "s": 31.22, "e": 31.74, "key": false}, {"w": "chocan", "s": 31.75, "e": 32.08, "key": false}, {"w": "con", "s": 32.08, "e": 32.11, "key": false}, {"w": "el", "s": 32.2, "e": 32.36, "key": false}, {"w": "propio", "s": 32.51, "e": 32.69, "key": false}, {"w": "metal", "s": 32.69, "e": 32.99, "key": false}, {"w": "y", "s": 33.02, "e": 33.06, "key": false}, {"w": "lo", "s": 33.06, "e": 33.25, "key": false}, {"w": "calientan", "s": 33.25, "e": 33.79, "key": false}, {"w": "desde", "s": 33.79, "e": 34.12, "key": false}, {"w": "dentro.", "s": 34.12, "e": 34.76, "key": true}]}, {"id": "l8", "s": 34.76, "e": 40.15, "words": [{"w": "El", "s": 34.76, "e": 34.9, "key": false}, {"w": "calor", "s": 34.9, "e": 34.97, "key": false}, {"w": "nace", "s": 35.34, "e": 35.56, "key": false}, {"w": "en", "s": 35.56, "e": 35.7, "key": false}, {"w": "la", "s": 35.7, "e": 35.84, "key": false}, {"w": "sartén,", "s": 35.84, "e": 36.41, "key": false}, {"w": "no", "s": 36.41, "e": 36.54, "key": false}, {"w": "en", "s": 36.54, "e": 36.69, "key": false}, {"w": "la", "s": 36.69, "e": 36.82, "key": false}, {"w": "placa.", "s": 36.82, "e": 37.52, "key": false}, {"w": "El", "s": 37.52, "e": 37.61, "key": false}, {"w": "cristal", "s": 37.61, "e": 37.94, "key": true}, {"w": "solo", "s": 37.94, "e": 38.11, "key": false}, {"w": "se", "s": 38.19, "e": 38.29, "key": false}, {"w": "calienta", "s": 38.43, "e": 38.72, "key": false}, {"w": "porque", "s": 38.72, "e": 39.02, "key": false}, {"w": "la", "s": 39.13, "e": 39.16, "key": false}, {"w": "sartén", "s": 39.16, "e": 39.48, "key": false}, {"w": "está", "s": 39.48, "e": 39.7, "key": false}, {"w": "encima.", "s": 39.7, "e": 40.15, "key": false}]}, {"id": "l9", "s": 40.15, "e": 43.08, "words": [{"w": "Por", "s": 40.15, "e": 40.365, "key": false}, {"w": "eso", "s": 40.365, "e": 40.58, "key": false}, {"w": "no", "s": 40.58, "e": 40.62, "key": false}, {"w": "vale", "s": 40.62, "e": 40.84, "key": false}, {"w": "cualquier", "s": 40.86, "e": 41.33, "key": false}, {"w": "sartén:", "s": 41.33, "e": 41.75, "key": false}, {"w": "tiene", "s": 41.75, "e": 42.0, "key": false}, {"w": "que", "s": 42.1, "e": 42.24, "key": false}, {"w": "llevar", "s": 42.49, "e": 42.6, "key": false}, {"w": "hierro.", "s": 42.63, "e": 43.08, "key": true}]}, {"id": "l10", "s": 43.19, "e": 47.88, "words": [{"w": "Con", "s": 43.19, "e": 43.37, "key": false}, {"w": "una", "s": 43.49, "e": 43.57, "key": false}, {"w": "de", "s": 43.57, "e": 43.7, "key": false}, {"w": "aluminio,", "s": 43.7, "e": 44.21, "key": true}, {"w": "el", "s": 44.32, "e": 44.43, "key": false}, {"w": "campo", "s": 44.64, "e": 44.77, "key": false}, {"w": "apenas", "s": 44.77, "e": 45.15, "key": false}, {"w": "la", "s": 45.15, "e": 45.36, "key": false}, {"w": "calienta", "s": 45.36, "e": 46.02, "key": false}, {"w": "y", "s": 46.02, "e": 46.06, "key": false}, {"w": "la", "s": 46.19, "e": 46.26, "key": false}, {"w": "placa", "s": 46.27, "e": 46.67, "key": false}, {"w": "ni", "s": 46.67, "e": 46.75, "key": false}, {"w": "la", "s": 46.75, "e": 46.91, "key": false}, {"w": "reconoce.", "s": 46.91, "e": 47.88, "key": false}]}, {"id": "l11", "s": 47.89, "e": 51.68, "words": [{"w": "El", "s": 47.89, "e": 48.0, "key": false}, {"w": "truco", "s": 48.12, "e": 48.3, "key": false}, {"w": "para", "s": 48.3, "e": 48.55, "key": false}, {"w": "saberlo:", "s": 48.55, "e": 48.98, "key": false}, {"w": "acerca", "s": 48.98, "e": 49.35, "key": false}, {"w": "un", "s": 49.35, "e": 49.45, "key": false}, {"w": "imán", "s": 49.48, "e": 49.7, "key": true}, {"w": "al", "s": 49.71, "e": 49.82, "key": false}, {"w": "fondo.", "s": 49.82, "e": 50.32, "key": false}, {"w": "Si", "s": 50.32, "e": 50.44, "key": false}, {"w": "se", "s": 50.44, "e": 50.56, "key": false}, {"w": "pega,", "s": 50.56, "e": 50.93, "key": false}, {"w": "funciona.", "s": 50.93, "e": 51.68, "key": false}]}, {"id": "l12", "s": 51.78, "e": 56.99, "words": [{"w": "Y", "s": 51.78, "e": 51.814, "key": false}, {"w": "como", "s": 51.814, "e": 51.95, "key": false}, {"w": "no", "s": 52.1, "e": 52.18, "key": false}, {"w": "calienta", "s": 52.18, "e": 52.74, "key": false}, {"w": "el", "s": 52.74, "e": 52.88, "key": false}, {"w": "aire", "s": 53.13, "e": 53.16, "key": false}, {"w": "de", "s": 53.16, "e": 53.3, "key": false}, {"w": "alrededor,", "s": 53.3, "e": 54.01, "key": false}, {"w": "aprovecha", "s": 54.13, "e": 54.7, "key": false}, {"w": "casi", "s": 54.7, "e": 54.85, "key": false}, {"w": "el", "s": 54.98, "e": 55.12, "key": false}, {"w": "triple", "s": 55.28, "e": 55.54, "key": true}, {"w": "de", "s": 55.54, "e": 55.68, "key": false}, {"w": "energía", "s": 55.68, "e": 56.17, "key": false}, {"w": "que", "s": 56.17, "e": 56.37, "key": false}, {"w": "el", "s": 56.37, "e": 56.48, "key": false}, {"w": "gas.", "s": 56.55, "e": 56.99, "key": false}]}, {"id": "l13", "s": 57.04, "e": 61.15, "words": [{"w": "Ese", "s": 57.04, "e": 57.1, "key": false}, {"w": "zumbido", "s": 57.11, "e": 57.37, "key": true}, {"w": "que", "s": 57.37, "e": 57.49, "key": false}, {"w": "a", "s": 57.49, "e": 57.55, "key": false}, {"w": "veces", "s": 57.81, "e": 57.91, "key": false}, {"w": "oyes", "s": 57.95, "e": 58.32, "key": false}, {"w": "es", "s": 58.33, "e": 58.4, "key": false}, {"w": "el", "s": 58.51, "e": 58.61, "key": false}, {"w": "fondo", "s": 58.61, "e": 58.96, "key": false}, {"w": "de", "s": 58.96, "e": 59.1, "key": false}, {"w": "la", "s": 59.1, "e": 59.24, "key": false}, {"w": "sartén", "s": 59.24, "e": 59.53, "key": false}, {"w": "vibrando", "s": 59.87, "e": 60.22, "key": false}, {"w": "con", "s": 60.22, "e": 60.43, "key": false}, {"w": "el", "s": 60.43, "e": 60.56, "key": false}, {"w": "campo.", "s": 60.6, "e": 61.15, "key": false}]}, {"id": "l14", "s": 61.15, "e": 66.95, "words": [{"w": "Y", "s": 61.15, "e": 61.25, "key": false}, {"w": "ahora,", "s": 61.25, "e": 61.75, "key": false}, {"w": "lo", "s": 61.79, "e": 61.9, "key": false}, {"w": "más", "s": 61.9, "e": 62.12, "key": false}, {"w": "raro:", "s": 62.12, "e": 62.67, "key": false}, {"w": "si", "s": 62.74, "e": 62.75, "key": false}, {"w": "levantas", "s": 62.76, "e": 63.11, "key": false}, {"w": "la", "s": 63.13, "e": 63.24, "key": false}, {"w": "sartén,", "s": 63.3, "e": 63.72, "key": false}, {"w": "la", "s": 63.72, "e": 63.83, "key": false}, {"w": "placa", "s": 63.83, "e": 64.14, "key": false}, {"w": "deja", "s": 64.14, "e": 64.37, "key": false}, {"w": "de", "s": 64.38, "e": 64.5, "key": false}, {"w": "calentar", "s": 64.5, "e": 64.94, "key": false}, {"w": "al", "s": 64.98, "e": 65.09, "key": false}, {"w": "instante,", "s": 65.34, "e": 65.68, "key": true}, {"w": "aunque", "s": 65.7, "e": 66.06, "key": false}, {"w": "siga", "s": 66.06, "e": 66.3, "key": false}, {"w": "encendida.", "s": 66.3, "e": 66.95, "key": false}]}, {"id": "l15", "s": 67.28, "e": 69.32, "words": [{"w": "Mándaselo", "s": 67.28, "e": 67.46, "key": false}, {"w": "a", "s": 67.46, "e": 67.51, "key": false}, {"w": "alguien", "s": 67.51, "e": 67.77, "key": false}, {"w": "que", "s": 67.77, "e": 67.88, "key": false}, {"w": "todavía", "s": 67.89, "e": 68.16, "key": false}, {"w": "piensa", "s": 68.16, "e": 68.39, "key": false}, {"w": "que", "s": 68.39, "e": 68.51, "key": false}, {"w": "la", "s": 68.51, "e": 68.58, "key": false}, {"w": "inducción", "s": 68.59, "e": 68.93, "key": false}, {"w": "es", "s": 68.93, "e": 69.01, "key": false}, {"w": "magia.", "s": 69.01, "e": 69.32, "key": true}]}]}</script>
+    <script id="escena" type="application/json">
+      {
+        "momentos": [
+          { "id": "TAP", "clave": "placa" },
+          { "id": "FUEGO", "clave": "fuego" },
+          { "id": "MIRAR", "clave": "mirar" },
+          { "id": "BOBINA", "clave": "bobina" },
+          { "id": "ENROLLADO", "clave": "enrollado" },
+          { "id": "ENCENDER", "clave": "encenderla" },
+          { "id": "CAMPO", "clave": "campo" },
+          { "id": "FONDO", "clave": "fondo" },
+          { "id": "REMOLINOS", "clave": "remolinos" },
+          { "id": "DENTRO", "clave": "dentro" },
+          { "id": "CRISTAL", "clave": "cristal" },
+          { "id": "VALE", "clave": "vale" },
+          { "id": "ALUMINIO", "clave": "aluminio" },
+          { "id": "RECONOCE", "clave": "reconoce" },
+          { "id": "IMAN", "clave": "iman" },
+          { "id": "PEGA", "clave": "pega" },
+          { "id": "APROVECHA", "clave": "aprovecha" },
+          { "id": "TRIPLE", "clave": "triple" },
+          { "id": "ZUMBIDO", "clave": "zumbido" },
+          { "id": "LEVANTAS", "clave": "levantas" },
+          { "id": "INSTANTE", "clave": "instante" },
+          { "id": "MANDA", "clave": "mandaselo" }
+        ],
+        "etiquetas": [
+          { "texto": "BOBINA DE COBRE", "pieza": "bobina", "desde": "BOBINA", "hasta": "ENCENDER", "dy": -220 },
+          { "texto": "CAMPO MAGNÉTICO", "pieza": "campo", "desde": "CAMPO", "hasta": "FONDO", "dy": -180 },
+          { "texto": "FONDO CON HIERRO", "pieza": "fondo", "desde": "FONDO", "hasta": "REMOLINOS", "dy": -200 },
+          { "texto": "CORRIENTES EN REMOLINO", "pieza": "remolino", "desde": "REMOLINOS", "hasta": "DENTRO", "dy": -200 },
+          { "texto": "EL METAL SE CALIENTA", "pieza": "fondo", "desde": "DENTRO", "hasta": "CRISTAL", "dy": -200 },
+          { "texto": "CALIENTE SOLO POR CONTACTO", "pieza": "cristal", "desde": "CRISTAL", "hasta": "VALE", "dy": -200 },
+          { "texto": "ALUMINIO: NO LA RECONOCE", "pieza": "alu", "desde": "RECONOCE", "hasta": "IMAN", "dy": -200 },
+          { "texto": "SE PEGA: FUNCIONA", "pieza": "iman", "desde": "PEGA", "hasta": "APROVECHA", "dy": -180 },
+          { "texto": "INDUCCIÓN: 85 %", "pieza": "barra1", "desde": "APROVECHA", "hasta": "ZUMBIDO", "dx": 60, "dy": -80 },
+          { "texto": "GAS: 32 %", "pieza": "barra2", "desde": "APROVECHA", "hasta": "ZUMBIDO", "dx": 60, "dy": -80 },
+          { "texto": "EL FONDO VIBRA", "pieza": "fondo", "desde": "ZUMBIDO", "hasta": "LEVANTAS", "dy": -200 },
+          { "texto": "DEJA DE CALENTAR", "pieza": "bobina", "desde": "INSTANTE", "hasta": "MANDA", "dy": -220 }
+        ],
+        "notas": [
+          { "texto": "Ilustración simplificada", "desde": "MIRAR" },
+          { "texto": "Campo mostrado en ámbar: en realidad es invisible", "desde": "CAMPO" },
+          { "texto": "Ojo: el cristal sí quema después de cocinar", "desde": "CRISTAL" },
+          { "texto": "Rendimiento según ENERGY STAR (EE. UU.)", "desde": "APROVECHA" },
+          { "texto": "Ojo: el cristal sí quema después de cocinar", "desde": "LEVANTAS" },
+          { "texto": "", "desde": "MANDA" }
+        ],
+        "iconos": { "magnético": "onda" },
+        "estilo": "rejilla",
+        "desenfoque": { "apertura": 0.0015, "max": 0.006 },
+        "leyenda": [
+          { "color": "#ff7a2a", "forma": "flecha", "texto": "corriente, dentro del cobre", "desde": "ENCENDER" },
+          { "color": "#ffb347", "forma": "onda", "texto": "campo magnético, invisible", "desde": "CAMPO" },
+          { "color": "#ff4a1a", "forma": "punto", "texto": "calor, solo en el metal", "desde": "DENTRO" }
+        ],
+        "paneles": [
+          { "id": "frec", "titulo": "VECES POR SEGUNDO", "desde": "ENCENDER", "hasta": "FONDO", "x": 330, "y": 470 }
+        ],
+        "sonidos": [
+          { "tipo": "hervor", "desde": 0, "hasta": "VALE" },
+          { "tipo": "abre", "en": "MIRAR" },
+          { "tipo": "brillo", "en": "BOBINA" },
+          { "tipo": "sube", "en": "ENCENDER" },
+          { "tipo": "zumbido", "desde": "ENCENDER", "hasta": "VALE", "volumen": 0.6 },
+          { "tipo": "pop", "en": "FONDO" },
+          { "tipo": "brillo", "en": "REMOLINOS" },
+          { "tipo": "sube", "en": "DENTRO", "mas": -0.2 },
+          { "tipo": "desliza", "en": "VALE" },
+          { "tipo": "toque", "en": "ALUMINIO", "mas": 0.1 },
+          { "tipo": "error", "en": "RECONOCE" },
+          { "tipo": "desliza", "en": "IMAN", "mas": -0.8 },
+          { "tipo": "metal", "en": "PEGA" },
+          { "tipo": "toque", "en": "PEGA", "mas": 2.4 },
+          { "tipo": "hervor", "desde": "APROVECHA", "hasta": "INSTANTE" },
+          { "tipo": "brillo", "en": "APROVECHA" },
+          { "tipo": "zumbido", "desde": "ZUMBIDO", "hasta": "LEVANTAS", "volumen": 1.6 },
+          { "tipo": "desliza", "en": "LEVANTAS" },
+          { "tipo": "pop", "en": "INSTANTE" },
+          { "tipo": "toque", "en": "MANDA", "mas": 0.9 },
+          { "tipo": "hervor", "desde": "MANDA", "hasta": 999 }
+        ]
+      }
+    </script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 70.8 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import * as THREE from "three";
+      import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
+      import { crearPorDentro } from "./comun/pordentro.js";
+
+      const C = crearPorDentro(THREE);
+      const { T, D, ESC, scene, v3, lerp, clamp, ramp, ventana, hash, canvasTex, espiral, brillo, cuando } = C;
+      // 1 unit = 2 cm here: the hob is 28 x 32 cm and the pan 21 cm across, so the camera is far
+      // ("rejilla" style: black grid backdrop, no desk and no fog)
+      const dummy = new THREE.Object3D();
+      const tubo = (curve, r, mat, seg = 1600) => new THREE.Mesh(new THREE.TubeGeometry(curve, seg, r, 8, false), mat);
+
+      // ---------- portable induction hob: housing, black glass, coil, ferrite bars, board and fan ----------
+      const hob = new THREE.Group(); scene.add(hob);
+      const bodyMat = new THREE.MeshPhysicalMaterial({ color: 0x26272a, roughness: 0.5, metalness: 0.3, transparent: true });
+      const body = new THREE.Mesh(new RoundedBoxGeometry(14, 1.9, 16, 3, 0.4), bodyMat); body.position.y = 0.95; hob.add(body);
+      // satin rather than mirror: a mirror-black glass throws the spot light straight into low shots
+      const glassMat = new THREE.MeshPhysicalMaterial({ color: 0x070708, roughness: 0.38, clearcoat: 0.35, clearcoatRoughness: 0.4, transparent: true });
+      const glass = new THREE.Mesh(new RoundedBoxGeometry(14.2, 0.25, 16.2, 3, 0.12), glassMat); glass.position.y = 2.0; hob.add(glass);
+      const TOP = 2.13;
+      const zone = new THREE.Mesh(new THREE.TorusGeometry(5.0, 0.04, 6, 140), new THREE.MeshBasicMaterial({ color: 0x8a8a8a, transparent: true, opacity: 0.55 }));
+      zone.rotation.x = Math.PI / 2; zone.position.y = TOP + 0.005; hob.add(zone);
+      const disp = canvasTex(400, 150, () => {});
+      const dispMesh = new THREE.Mesh(new THREE.PlaneGeometry(3.2, 1.2), new THREE.MeshBasicMaterial({ map: disp.tex, transparent: true, toneMapped: false }));
+      dispMesh.rotation.x = -Math.PI / 2; dispMesh.position.set(0, TOP + 0.01, 6.4); hob.add(dispMesh);
+      const cobre = new THREE.MeshPhysicalMaterial({ color: 0xc06a32, metalness: 1, roughness: 0.34, emissive: 0xff6a12, emissiveIntensity: 0 });
+      const espHob = espiral(0.8, 4.9, 16, 1.62);
+      hob.add(tubo(espHob, 0.07, cobre, 2400));
+      const ferrita = new THREE.MeshStandardMaterial({ color: 0x2a2a2c, roughness: 0.7 });
+      for (let i = 0; i < 8; i++) {
+        const a = (i / 8) * Math.PI * 2, f = new THREE.Mesh(new THREE.BoxGeometry(3.8, 0.25, 0.55), ferrita);
+        f.position.set(3.0 * Math.cos(a), 1.38, 3.0 * Math.sin(a)); f.rotation.y = -a; hob.add(f);
+      }
+      const board = new THREE.Mesh(new THREE.BoxGeometry(8, 0.15, 2.6), new THREE.MeshStandardMaterial({ color: 0x0f3b2a, roughness: 0.6 }));
+      board.position.set(-1.5, 0.45, -6.2); hob.add(board);
+      const fan = new THREE.Mesh(new THREE.CylinderGeometry(1.2, 1.2, 0.5, 32), new THREE.MeshStandardMaterial({ color: 0x1a1b1d, roughness: 0.5 }));
+      fan.position.set(4.6, 0.9, -6.0); hob.add(fan);
+      hob.add(tubo(new THREE.CatmullRomCurve3([v3(0, 0.6, -8), v3(0, 0.3, -11), v3(-4, 0.25, -18), v3(-12, 0.25, -30)]), 0.3, new THREE.MeshPhysicalMaterial({ color: 0x1c1d20, roughness: 0.6 }), 80));
+      const coilSparkMat = new THREE.MeshBasicMaterial({ color: 0xffb060, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false });
+      const NS = 120, coilSparks = new THREE.InstancedMesh(new THREE.SphereGeometry(0.09, 8, 6), coilSparkMat, NS); hob.add(coilSparks);
+      const cometMat = new THREE.MeshBasicMaterial({ color: 0xffc080, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false });
+      const NC = 18, comet = new THREE.InstancedMesh(new THREE.SphereGeometry(0.16, 10, 8), cometMat, NC); hob.add(comet);
+      // warm spot on the glass, only where the pan touches it
+      const warmMat = new THREE.MeshBasicMaterial({ color: 0xff5a20, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false });
+      const warmDisc = new THREE.Mesh(new THREE.CircleGeometry(4.6, 64), warmMat); warmDisc.rotation.x = -Math.PI / 2; warmDisc.position.y = TOP + 0.02; hob.add(warmDisc);
+
+      // ---------- pans: steel (with an iron base) and aluminium ----------
+      const perfil = [[0, 0], [4.6, 0], [4.85, 0.2], [5.25, 2.45], [5.4, 2.55], [5.12, 2.52], [4.75, 0.35], [4.5, 0.25], [0, 0.25]].map(([x, y]) => new THREE.Vector2(x + 0.0001, y));
+      function sarten(color, mango, rough) {
+        const g = new THREE.Group(); scene.add(g);
+        const mat = new THREE.MeshPhysicalMaterial({ color, metalness: 1, roughness: rough, side: THREE.DoubleSide, transparent: true });
+        g.add(new THREE.Mesh(new THREE.LatheGeometry(perfil, 96), mat));
+        const h = new THREE.Mesh(new THREE.CylinderGeometry(0.32, 0.26, 7.5, 16), new THREE.MeshPhysicalMaterial({ color: mango, roughness: 0.5, metalness: mango === color ? 1 : 0 }));
+        h.rotation.z = Math.PI / 2 + 0.18; h.position.set(9.0, 2.75, 0); g.add(h);
+        return { g, mat };
+      }
+      const acero = sarten(0xb8bcc2, 0xb8bcc2, 0.32), alu = sarten(0xd9dbde, 0x1a1a1a, 0.5);
+      // the iron base, drawn just over the inner bottom: dark, so the eddies and the heat read in orange
+      const fondoMat = new THREE.MeshPhysicalMaterial({ color: 0x2a2a2e, metalness: 0.5, roughness: 0.6, emissive: 0xff6a10, emissiveIntensity: 0 });
+      const fondo = new THREE.Mesh(new THREE.CylinderGeometry(4.45, 4.45, 0.04, 64), fondoMat); fondo.position.y = 0.28; acero.g.add(fondo);
+      const waterMat = new THREE.MeshPhysicalMaterial({ color: 0x24404c, roughness: 0.5, transparent: true, opacity: 0.25, depthWrite: false });
+      const water = new THREE.Mesh(new THREE.CylinderGeometry(4.95, 4.62, 1.2, 64), waterMat); water.position.y = 0.86; acero.g.add(water);
+      const glowPan = brillo("255,80,20"); glowPan.scale.set(11, 11, 1); glowPan.position.y = 0.4; glowPan.material.depthTest = false; acero.g.add(glowPan);
+      // eddy currents: six small whirls and one big loop in the iron base
+      const NV = 6, PV = 14, NE = NV * PV + 40;
+      const eddyMat = new THREE.MeshBasicMaterial({ color: 0xffa050, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false });
+      const eddies = new THREE.InstancedMesh(new THREE.SphereGeometry(0.17, 8, 6), eddyMat, NE); acero.g.add(eddies);
+      // steam over the water
+      const steam = Array.from({ length: 12 }, () => { const s = brillo("230,232,238"); s.material.depthWrite = false; acero.g.add(s); return s; });
+      const HERVOR = ESC.sonidos.filter((s) => s.tipo === "hervor").map((s) => [cuando(s.desde), cuando(s.hasta)]);
+
+      // ---------- magnet, efficiency bars, field rings ----------
+      const imanMat = new THREE.MeshPhysicalMaterial({ color: 0xd8322a, roughness: 0.4, transparent: true });
+      const iman = new THREE.Mesh(new RoundedBoxGeometry(1.6, 0.4, 0.9, 2, 0.12), imanMat); scene.add(iman);
+      const barMat1 = new THREE.MeshPhysicalMaterial({ color: 0xc06a32, metalness: 0.6, roughness: 0.4, emissive: 0xff6a12, emissiveIntensity: 0.35 });
+      const barMat2 = new THREE.MeshPhysicalMaterial({ color: 0x3d7bf0, metalness: 0.2, roughness: 0.5, emissive: 0x3d7bf0, emissiveIntensity: 0.25 });
+      const bar1 = new THREE.Mesh(new THREE.BoxGeometry(2.2, 1, 2.2), barMat1), bar2 = new THREE.Mesh(new THREE.BoxGeometry(2.2, 1, 2.2), barMat2);
+      bar1.position.set(-2.6, 0, -12); bar2.position.set(2.6, 0, -12); scene.add(bar1, bar2);
+      const barTop1 = new THREE.Object3D(), barTop2 = new THREE.Object3D(); scene.add(barTop1, barTop2);
+      const NR = 6, rings = [], ringMat = [];
+      for (let i = 0; i < NR; i++) {
+        const m = new THREE.MeshBasicMaterial({ color: 0xff9a3c, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false });
+        const ring = new THREE.Mesh(new THREE.TorusGeometry(1, 0.05, 8, 160), m); ring.rotation.x = Math.PI / 2; scene.add(ring); rings.push(ring); ringMat.push(m);
+      }
+
+      // label anchors
+      const campoAnc = new THREE.Object3D(); scene.add(campoAnc);
+      C.pieza("bobina", hob, v3(4.9, 1.62, 1.0));
+      C.pieza("campo", campoAnc, v3(0, 0, 0));
+      C.pieza("fondo", acero.g, v3(3.8, 0.3, 1.5));
+      C.pieza("remolino", acero.g, v3(2.6, 0.35, 0));
+      C.pieza("cristal", hob, v3(-4.8, TOP, 2.0));
+      C.pieza("alu", alu.g, v3(4.0, 2.0, 2.4));
+      C.pieza("iman", iman, v3(0.8, 0, 0));
+      C.pieza("barra1", barTop1, v3(1.1, 0, 0));
+      C.pieza("barra2", barTop2, v3(1.1, 0, 0));
+
+      // hob display: power level, or a blinking pan symbol when there is no pan it recognises
+      function drawDisplay(estado) {
+        const g = disp.g; g.clearRect(0, 0, 400, 150);
+        g.fillStyle = "#ff3a1a"; g.strokeStyle = "#ff3a1a"; g.lineWidth = 10; g.lineCap = "round";
+        if (estado === "nivel") { g.font = "700 110px Inter"; g.textAlign = "center"; g.fillText("9", 200, 115); }
+        else if (estado === "sin") { g.beginPath(); g.arc(180, 80, 42, 0, Math.PI * 2); g.stroke(); g.beginPath(); g.moveTo(222, 80); g.lineTo(300, 80); g.stroke(); }
+        disp.tex.needsUpdate = true;
+      }
+      let dispKey = "";
+
+      // ---------- story ----------
+      const PON = v3(0, TOP, 0), PDER = v3(24, 7, -2), PIZQ = v3(-24, 7, -2), PTILT = v3(0, 9, 3), PUP = v3(0, 7.5, 0);
+      const camAt = C.camara([
+        { t: 0, p: v3(-6, 26, 30), q: v3(1.5, 2.5, 0) },
+        { t: "MIRAR", mas: -0.3, p: v3(-6.6, 25, 29), q: v3(1.5, 2.5, 0) },
+        { t: "MIRAR", mas: 0.8, p: v3(-8, 30, 22), q: v3(0, 1.7, 0) },
+        { t: "CAMPO", mas: -0.4, p: v3(-7.4, 29, 21), q: v3(0, 1.7, 0) },
+        { t: "CAMPO", mas: 0.5, p: v3(-25, 12.5, 22), q: v3(0, 2.8, 0) },
+        { t: "FONDO", mas: -0.3, p: v3(-24, 12.2, 21), q: v3(0, 2.8, 0) },
+        { t: "FONDO", mas: 0.5, p: v3(-4, 28, 14), q: v3(0, 2.3, 0) },
+        { t: "DENTRO", mas: -0.3, p: v3(-4, 27, 13.4), q: v3(0, 2.3, 0) },
+        { t: "DENTRO", mas: 0.5, p: v3(-14, 18, 24), q: v3(0, 2.5, 0) },
+        { t: "CRISTAL", mas: -0.3, p: v3(-13.4, 17.6, 23.4), q: v3(0, 2.5, 0) },
+        { t: "CRISTAL", mas: 0.5, p: v3(-19, 13, 24), q: v3(0, 2.2, 0) },
+        { t: "VALE", mas: -0.3, p: v3(-18.4, 12.6, 23.4), q: v3(0, 2.2, 0) },
+        { t: "VALE", mas: 0.6, p: v3(-8, 24, 32), q: v3(0, 3, 0) },
+        { t: "IMAN", mas: -0.9, p: v3(-7.6, 23.4, 31.2), q: v3(0, 3, 0) },
+        { t: "IMAN", mas: 0.2, p: v3(-5, 14, 26), q: v3(0, 8, 3) },
+        { t: "PEGA", mas: 1.4, p: v3(-4.8, 13.6, 25.4), q: v3(0, 8, 3) },
+        { t: "APROVECHA", mas: -0.2, p: v3(-6, 24, 38), q: v3(0, 4.5, -5) },
+        { t: "ZUMBIDO", mas: -0.3, p: v3(-5.6, 23.4, 37), q: v3(0, 4.5, -5) },
+        { t: "ZUMBIDO", mas: 0.5, p: v3(-10, 16, 22), q: v3(0, 3, 0) },
+        { t: "LEVANTAS", mas: -0.3, p: v3(-9.6, 15.6, 21.4), q: v3(0, 3, 0) },
+        { t: "LEVANTAS", mas: 0.6, p: v3(-15, 18, 26), q: v3(0, 3.8, 0) },
+        { t: "MANDA", mas: -0.2, p: v3(-14.4, 17.6, 25.4), q: v3(0, 3.8, 0) },
+        { t: "MANDA", mas: 1.0, p: v3(-6, 24, 30), q: v3(1.5, 2.5, 0) },
+        { t: D, p: v3(-5.4, 23, 28.6), q: v3(1.5, 2.5, 0) },
+      // every shot pulls back 1.45 times from its target so the pan and its handle fit the vertical frame
+      ].map((k) => ({ ...k, p: k.q.clone().add(k.p.clone().sub(k.q).multiplyScalar(1.45)) })));
+
+      // ---------- frame ----------
+      function renderAt(t) {
+        // steel pan: on the hob, out for the aluminium one, back tilted for the magnet, down again, lifted, down
+        const out1 = ramp(t, T.VALE - 0.2, T.ALUMINIO - 0.5);
+        const back1 = ramp(t, T.IMAN - 0.9, T.IMAN + 0.1);
+        // back down on the hob once the magnet has stuck ("si se pega, funciona")
+        const down1 = ramp(t, T.PEGA + 1.4, T.PEGA + 2.4);
+        const up2 = ramp(t, T.LEVANTAS, T.LEVANTAS + 0.7), down2 = ramp(t, T.MANDA + 0.2, T.MANDA + 0.9);
+        const ps = PON.clone().lerp(PDER, out1); ps.y += Math.sin(Math.PI * out1) * 3;
+        ps.lerp(PTILT, back1); ps.lerp(PON, down1);
+        ps.lerp(PUP, up2 * (1 - down2));
+        const buzz = ventana(t, T.ZUMBIDO, T.LEVANTAS, 0.2);
+        ps.x += buzz * 0.04 * Math.sin(t * 157); ps.z += buzz * 0.03 * Math.sin(t * 131);
+        acero.g.position.copy(ps);
+        acero.g.rotation.x = -1.2 * back1 * (1 - down1);
+        acero.g.updateMatrixWorld();
+        // aluminium pan: comes in from the left and leaves before the magnet
+        const inA = ramp(t, T.ALUMINIO - 0.6, T.ALUMINIO + 0.1), outA = ramp(t, T.IMAN - 1.4, T.IMAN - 0.6);
+        const pa = PIZQ.clone().lerp(PON, inA); pa.y += Math.sin(Math.PI * inA) * 3;
+        pa.lerp(PIZQ, outA); alu.g.position.copy(pa); alu.g.visible = inA > 0 && outA < 1;
+
+        // the pan the hob recognises, and whether it heats
+        const steelOn = t < T.VALE - 0.1 || (t > T.PEGA + 2.4 && t < T.LEVANTAS + 0.2) || t > T.MANDA + 0.9;
+        const aluOn = inA >= 1 && outA <= 0;
+        const power = (steelOn ? 1 : 0) * (1 - ventana(t, T.INSTANTE - 0.3, T.MANDA + 0.9, 0.2));
+
+        // x-ray of the hob (and the steel pan while showing the coil under it)
+        const xr = ventana(t, T.MIRAR - 0.1, T.MANDA + 0.6, 0.6);
+        glassMat.opacity = 1 - 0.75 * xr; glassMat.depthWrite = xr < 0.05; glass.castShadow = xr < 0.4;
+        bodyMat.opacity = 1 - 0.85 * xr; bodyMat.depthWrite = xr < 0.05; body.castShadow = xr < 0.4;
+        const panSee = ventana(t, T.MIRAR, T.FONDO, 0.5);
+        acero.mat.opacity = 1 - 0.75 * panSee; acero.mat.depthWrite = panSee < 0.05;
+        waterMat.opacity = 0.25 * (1 - 0.8 * panSee);
+
+        // coil: flashes when named, a comet traces it, current runs through it while it powers a pan
+        const flash = ramp(t, T.BOBINA, T.BOBINA + 0.25) * (1 - ramp(t, T.BOBINA + 1.0, T.BOBINA + 1.7));
+        const trace = ventana(t, T.ENROLLADO - 0.2, T.ENCENDER, 0.3), head = clamp((t - T.ENROLLADO + 0.2) / 2.0);
+        cometMat.opacity = trace;
+        for (let i = 0; i < NC; i++) {
+          dummy.position.copy(espHob.getPointAt(Math.max(0, head - i * 0.005))); dummy.position.y += 0.06;
+          const s = trace * (1 - i / NC); dummy.scale.set(s, s, s); dummy.rotation.set(0, 0, 0); dummy.updateMatrix(); comet.setMatrixAt(i, dummy.matrix);
+        }
+        comet.instanceMatrix.needsUpdate = true;
+        const shown = ramp(t, T.ENCENDER, T.ENCENDER + 0.5) * xr;
+        const cur = shown * Math.max(power, aluOn ? 0.35 : 0);
+        cobre.emissiveIntensity = Math.max(0.55 * flash, 0.5 * cur * (0.85 + 0.15 * Math.sin(t * 9)));
+        coilSparkMat.opacity = cur;
+        for (let i = 0; i < NS; i++) {
+          const u = (((i / NS) + t * 0.06) % 1 + 1) % 1;
+          dummy.position.copy(espHob.getPointAt(u)); dummy.position.y += 0.08;
+          const s = cur * (0.8 + 0.5 * hash(i)); dummy.scale.set(s, s, s); dummy.rotation.set(0, 0, 0); dummy.updateMatrix(); coilSparks.setMatrixAt(i, dummy.matrix);
+        }
+        coilSparks.instanceMatrix.needsUpdate = true;
+
+        // field rings rise through the glass into the pan; through the aluminium one they go on, almost untouched
+        // with the steel pan the rings show only while explaining the field and the buzz (not over the eddies)
+        const field = ramp(t, T.CAMPO, T.CAMPO + 0.6) * xr * Math.max(power * (ventana(t, T.CAMPO, T.REMOLINOS - 0.2, 0.4) + ventana(t, T.ZUMBIDO - 0.3, T.LEVANTAS, 0.4)), aluOn ? 1 : 0);
+        const top = aluOn ? 7.5 : TOP + 1.3;
+        rings.forEach((ring, i) => {
+          const ph = ((0.6 * t + i / NR) % 1 + 1) % 1, r = lerp(1.2, 4.6, ph);
+          ring.scale.set(r, r, 1); ring.position.set(0, lerp(1.7, top, ph), 0);
+          ringMat[i].opacity = field * Math.sin(Math.PI * ph) * (aluOn ? 0.45 : 0.75);
+        });
+        campoAnc.position.set(3.6, TOP + 0.4, 1.2);
+
+        // eddies in the iron base, then heat
+        const ed = ventana(t, T.REMOLINOS - 0.4, T.CRISTAL, 0.4) * (steelOn ? 1 : 0);
+        eddyMat.opacity = ed;
+        for (let v = 0; v < NV; v++) {
+          const a0 = (v / NV) * Math.PI * 2, cx = 2.6 * Math.cos(a0), cz = 2.6 * Math.sin(a0);
+          for (let k = 0; k < PV; k++) {
+            const a = (k / PV) * Math.PI * 2 + t * 4 * (v % 2 ? 1 : -1);
+            dummy.position.set(cx + 0.9 * Math.cos(a), 0.34, cz + 0.9 * Math.sin(a));
+            dummy.scale.setScalar(ed * (0.6 + 0.4 * (k / PV))); dummy.rotation.set(0, 0, 0); dummy.updateMatrix(); eddies.setMatrixAt(v * PV + k, dummy.matrix);
+          }
+        }
+        for (let k = 0; k < 40; k++) {
+          const a = (k / 40) * Math.PI * 2 - t * 2.5;
+          dummy.position.set(4.0 * Math.cos(a), 0.34, 4.0 * Math.sin(a)); dummy.scale.setScalar(ed * 0.8); dummy.rotation.set(0, 0, 0); dummy.updateMatrix(); eddies.setMatrixAt(NV * PV + k, dummy.matrix);
+        }
+        eddies.instanceMatrix.needsUpdate = true;
+        // heat: shown from "dentro"; it stays a while after the pan is lifted (it cools slowly)
+        const heatShow = ramp(t, T.DENTRO - 0.2, T.DENTRO + 0.5) * (1 - ventana(t, T.VALE - 0.2, T.APROVECHA + 0.3, 0.5));
+        const heat = heatShow * (1 - 0.6 * ramp(t, T.LEVANTAS + 0.5, T.MANDA)) * (0.85 + 0.15 * Math.sin(t * 3));
+        fondoMat.emissiveIntensity = 0.7 * heat; glowPan.material.opacity = 0.3 * heat;
+        // the glass keeps a faint warm spot after the pan is lifted (kept faint so the coil does not look on)
+        warmMat.opacity = 0.35 * ventana(t, T.CRISTAL, T.VALE, 0.4) + 0.05 * ventana(t, T.LEVANTAS + 0.4, T.MANDA + 0.8, 0.5);
+
+        // steam while it simmers
+        let hv = 0;
+        for (const [a, b] of HERVOR) hv = Math.max(hv, ventana(t, a, b, 1.0));
+        steam.forEach((s, i) => {
+          const ph = ((t * 0.22 + hash(i)) % 1 + 1) % 1;
+          s.position.set((hash(i + 3) - 0.5) * 6 + Math.sin(t * 0.7 + i) * 0.6 * ph, 1.6 + 6 * ph, (hash(i + 7) - 0.5) * 6);
+          // thin wisps: a lot less while explaining, so they never cover the pan
+          s.scale.setScalar(1.6 + 2.6 * ph); s.material.opacity = hv * Math.sin(Math.PI * ph) * 0.12 * (1 - 0.75 * xr);
+        });
+
+        // magnet: flies to the tilted base and sticks; fades when the pan goes back down
+        const mIn = ramp(t, T.PEGA - 0.9, T.PEGA - 0.05);
+        const stuck = acero.g.localToWorld(v3(0, -0.22, 0));
+        iman.position.copy(v3(3, 6, 18).lerp(stuck, mIn));
+        iman.quaternion.copy(acero.g.quaternion);
+        imanMat.opacity = ramp(t, T.PEGA - 1.0, T.PEGA - 0.7) * (1 - ramp(t, T.PEGA + 1.3, T.PEGA + 1.7));
+        iman.visible = imanMat.opacity > 0.01;
+
+        // efficiency bars behind the hob: induction 85 %, gas 32 %
+        const grow = ramp(t, T.APROVECHA - 0.2, T.APROVECHA + 0.8) * (1 - ramp(t, T.ZUMBIDO, T.ZUMBIDO + 0.6));
+        const h1 = Math.max(0.001, 8.5 * grow), h2 = Math.max(0.001, 3.2 * grow);
+        bar1.scale.y = h1; bar1.position.y = h1 / 2; bar2.scale.y = h2; bar2.position.y = h2 / 2;
+        bar1.visible = bar2.visible = grow > 0.01;
+        barTop1.position.set(-2.6, h1, -12); barTop2.position.set(2.6, h2, -12);
+
+        // display
+        const blink = Math.floor(t * 2.5) % 2 === 0;
+        let est = power > 0.5 ? "nivel" : "";
+        if ((aluOn && t > T.RECONOCE - 0.3) || (t > T.INSTANTE - 0.3 && t < T.MANDA + 0.9)) est = blink ? "sin" : "";
+        if (est !== dispKey) { drawDisplay(est); dispKey = est; }
+        // 20 to 100 kHz, depending on the hob (fuentes.md)
+        C.panel("frec", "20.000 a 100.000");
+
+        C.mirar(camAt(t));
+        C.pintar(t);
+      }
+
+      C.arrancar(renderAt);
+    </script>
+  </body>
+</html>

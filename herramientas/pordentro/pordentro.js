@@ -10,11 +10,18 @@
 //   notas: [{ texto, desde }]  (cada nota dura hasta la siguiente; texto "" la quita)
 //   iconos: { palabra: "bateria" | "rayo" | "onda" | "candado" | "reloj" }
 //   sonidos: los usa sonido_pordentro.py
+// Opciones del estilo de @speedy_devv (referencias 06 y speedy_devv/), para los vídeos nuevos:
+//   estilo: "rejilla"  (fondo negro con rejilla suave y los objetos flotando, sin mesa)
+//   leyenda: [{ color, forma: "flecha" | "onda" | "punto", texto, desde?, hasta? }]  (fija abajo, como en un mapa)
+//   paneles: [{ id, titulo, desde, hasta, x, y }]  (cifra grande con un rótulo; el vídeo pone la cifra con panel(id, texto))
+//   desenfoque: { apertura, max }  (profundidad de campo: enfoca a la distancia del punto que mira la cámara)
+//   y en la cámara, una clave con corte: true empieza un plano nuevo de golpe, sin movimiento desde el anterior
 
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
+import { BokehPass } from "three/addons/postprocessing/BokehPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 
 export function crearPorDentro(THREE) {
@@ -102,6 +109,21 @@ export function crearPorDentro(THREE) {
       d -= segs[i];
     }
   }
+  // flat copper spiral (a coil seen from above), from radius r0 out to r1, lying at height y
+  function espiral(r0, r1, vueltas, y = 0, porVuelta = 120) {
+    const pts = [];
+    for (let k = 0; k <= vueltas * porVuelta; k++) {
+      const u = k / porVuelta, r = r0 + (r1 - r0) * (u / vueltas), a = 2 * Math.PI * u;
+      pts.push(v3(r * Math.cos(a), y, r * Math.sin(a)));
+    }
+    return new THREE.CatmullRomCurve3(pts, false, "centripetal");
+  }
+  // a device "talking" by load modulation: P-A-G-O in morse from t0, 0.09 s per unit, 1 = on
+  // (sonido_pordentro.py plays the same pattern)
+  const UNIDADES = [];
+  for (const ch of ".--. .- --. ---") UNIDADES.push(...(ch === "." ? [1, 0] : ch === "-" ? [1, 1, 1, 0] : [0, 0]));
+  UNIDADES.push(0, 0, 0, 0);
+  const morse = (t, t0) => { const u = Math.floor((t - t0) / 0.09); return u < 0 ? 0 : UNIDADES[u % UNIDADES.length]; };
   // soft additive glow (copper, amber, gold), for what lights up
   function brillo(rgb = "255,150,60") {
     const tex = canvasTex(256, 256, (g, w, h) => {
@@ -153,9 +175,29 @@ export function crearPorDentro(THREE) {
   const desk = new THREE.Mesh(new THREE.PlaneGeometry(220, 220), new THREE.MeshPhysicalMaterial({ map: wood.tex, roughness: 0.48, clearcoat: 0.35, clearcoatRoughness: 0.35 }));
   desk.rotation.x = -Math.PI / 2; desk.receiveShadow = true; scene.add(desk);
 
-  // ---------- post: bloom on what glows ----------
+  // ---------- "rejilla" style: black backdrop with a faint grid, objects floating (no desk, no fog) ----------
+  if (ESC.estilo === "rejilla") {
+    desk.visible = false; scene.fog = null;
+    const bg = canvasTex(1080, 1920, (g, w, h) => {
+      g.fillStyle = "#08080a"; g.fillRect(0, 0, w, h);
+      g.strokeStyle = "rgba(255,255,255,0.05)"; g.lineWidth = 2;
+      for (let x = 30; x < w; x += 60) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, h); g.stroke(); }
+      for (let y = 0; y < h; y += 60) { g.beginPath(); g.moveTo(0, y); g.lineTo(w, y); g.stroke(); }
+      const v = g.createRadialGradient(w / 2, h * 0.55, h * 0.2, w / 2, h * 0.55, h * 0.75);
+      v.addColorStop(0, "rgba(0,0,0,0)"); v.addColorStop(1, "rgba(0,0,0,0.75)");
+      g.fillStyle = v; g.fillRect(0, 0, w, h);
+    });
+    scene.background = bg.tex;
+    hemi.color.setHex(0x9aa4b4); hemi.groundColor.setHex(0x0a0a0c); hemi.intensity = 0.6;
+    key.color.setHex(0xfff1e6); warm.intensity = 12;
+    scene.environmentIntensity = 0.55;
+  }
+
+  // ---------- post: (depth of field), bloom on what glows ----------
   const composer = new EffectComposer(renderer); composer.setPixelRatio(2); composer.setSize(W, H);
   composer.addPass(new RenderPass(scene, camera));
+  const bokeh = ESC.desenfoque ? new BokehPass(scene, camera, { focus: 20, aperture: ESC.desenfoque.apertura ?? 0.002, maxblur: ESC.desenfoque.max ?? 0.008 }) : null;
+  if (bokeh) composer.addPass(bokeh);
   composer.addPass(new UnrealBloomPass(new THREE.Vector2(W / 2, H / 2), 0.6, 0.55, 0.86));
   composer.addPass(new OutputPass());
 
@@ -186,19 +228,24 @@ export function crearPorDentro(THREE) {
   }
 
   // ---------- camera by keyframes ----------
-  // claves: [{ t, p, q }] with t in seconds or a moment id (+ mas); two keys of the same shot make a slow drift
+  // claves: [{ t, p, q, corte? }] with t in seconds or a moment id (+ mas); two keys of the same shot make a slow
+  // drift; a key with corte: true starts a new shot at once (the previous shot holds until then)
   function camara(claves) {
     const K = claves.map((k) => ({ ...k, t: cuando(k.t) + (k.mas || 0) })).sort((a, b) => a.t - b.t);
     return (t) => {
       let i = 0;
-      while (i < K.length - 2 && t > K[i + 1].t) i++;
-      const a = K[i], b = K[i + 1], k = ease(clamp((t - a.t) / (b.t - a.t)));
+      while (i < K.length - 2 && t >= K[i + 1].t) i++;
+      const a = K[i], b = K[i + 1];
+      if (b.corte && t < b.t) return { p: a.p.clone(), q: a.q.clone() };
+      if (t >= b.t) return { p: b.p.clone(), q: b.q.clone() };
+      const k = ease(clamp((t - a.t) / (b.t - a.t)));
       return { p: a.p.clone().lerp(b.p, k), q: a.q.clone().lerp(b.q, k) };
     };
   }
   function mirar(c) {
     camera.position.copy(c.p); camera.lookAt(c.q); camera.updateMatrixWorld();
     key.target.position.copy(c.q);
+    if (bokeh) bokeh.uniforms.focus.value = c.p.distanceTo(c.q);
   }
 
   // ---------- captions: up to 4 words cut at punctuation, never leaving one word alone ----------
@@ -298,12 +345,49 @@ export function crearPorDentro(THREE) {
     noteEl.style.opacity = n ? ramp(t, n.t, n.t + 0.4) : 0;
   }
 
+  // ---------- legend, fixed at the bottom like a map key ----------
+  const FORMAS = {
+    flecha: (c) => `<svg viewBox="0 0 34 14"><path d="M1 7h26M21 2l7 5-7 5" fill="none" stroke="${c}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    onda: (c) => `<svg viewBox="0 0 34 14"><path d="M2 7q4-6 8 0t8 0t8 0t8 0" fill="none" stroke="${c}" stroke-width="2.6" stroke-linecap="round"/></svg>`,
+    punto: (c) => `<svg viewBox="0 0 34 14"><circle cx="17" cy="7" r="5" fill="${c}"/></svg>`,
+  };
+  const leyendaEl = document.createElement("div"); leyendaEl.className = "leyenda";
+  document.getElementById("labels").appendChild(leyendaEl);
+  const leyenda = (ESC.leyenda || []).map((l) => {
+    const row = document.createElement("div"); row.className = "fila";
+    row.innerHTML = (FORMAS[l.forma || "flecha"] || FORMAS.flecha)(l.color || "#ffb347") + `<span>${l.texto}</span>`;
+    leyendaEl.appendChild(row);
+    return { l, row };
+  });
+  function drawLegend(t) {
+    for (const { l, row } of leyenda) row.style.opacity = ventana(t, l.desde !== undefined ? cuando(l.desde) : 0, l.hasta !== undefined ? cuando(l.hasta) : D + 1, 0.4);
+  }
+
+  // ---------- data panels: a big figure with a small title, set by the video with panel(id, texto) ----------
+  const panelEls = {};
+  for (const p of ESC.paneles || []) {
+    const el = document.createElement("div"); el.className = "panel";
+    el.innerHTML = `<div class="cifra"></div><div class="titulo">${p.titulo}</div>`;
+    el.style.left = (p.x ?? 70) + "px"; el.style.top = (p.y ?? 520) + "px";
+    document.getElementById("labels").appendChild(el);
+    panelEls[p.id] = { p, el, cifra: el.querySelector(".cifra") };
+  }
+  const panel = (id, texto) => { if (panelEls[id]) panelEls[id].cifra.textContent = texto; };
+  function drawPanels(t) {
+    for (const { p, el } of Object.values(panelEls)) {
+      const a = ventana(t, cuando(p.desde), cuando(p.hasta), 0.3);
+      el.style.opacity = a; el.style.transform = `translateY(${(1 - a) * 12}px)`;
+    }
+  }
+
   // draws the 3D scene (camera already placed) and every overlay for time t
   function pintar(t) {
     composer.render();
     drawCaps(t);
     drawLabels(t);
     drawNote(t);
+    drawLegend(t);
+    drawPanels(t);
   }
 
   async function arrancar(renderAt) {
@@ -324,8 +408,8 @@ export function crearPorDentro(THREE) {
   return {
     VOZ, ESC, W, H, D, T, cuando, words,
     clamp, lerp, ease, smooth, ramp, ventana, v3, hash, norm, UP,
-    rrShape, slab, canvasTex, rrPoint, brillo,
+    rrShape, slab, canvasTex, rrPoint, espiral, morse, brillo,
     renderer, composer, scene, camera, hemi, key, rim, warm, desk,
-    dedo, camara, mirar, pieza, toScreen, pintar, arrancar,
+    dedo, camara, mirar, pieza, toScreen, panel, pintar, arrancar,
   };
 }

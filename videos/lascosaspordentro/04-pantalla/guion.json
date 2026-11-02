@@ -1,0 +1,43 @@
+{
+  "titulo": "Tu pantalla no ve tu dedo",
+  "lines": [
+    "Tu pantalla no ve tu dedo: nota su electricidad.",
+    "Entonces, ¿cómo sabe exactamente dónde lo has puesto?",
+    "Vamos a quitar el cristal. Debajo hay una rejilla de hilos: unos van de lado a lado y otros de arriba abajo.",
+    "Están hechos de un material que conduce la electricidad y deja pasar la luz. Por eso no los ves.",
+    "Cada cruce de hilos forma un pequeño campo eléctrico.",
+    "Tu cuerpo también conduce la electricidad, así que, al acercar el dedo, te llevas una parte de ese campo.",
+    "Un chip mide todos los cruces, uno a uno, y donde la señal baja, ahí está tu dedo.",
+    "Muchos móviles lo revisan doscientas cuarenta veces por segundo. Por eso responde al instante.",
+    "Y como cada cruce se mide por separado, nota varios dedos a la vez. Así puedes hacer zoom.",
+    "Con guantes no funciona: la tela no conduce, y el campo ni se entera.",
+    "Los guantes táctiles llevan hilos de metal en la punta de los dedos.",
+    "Y con la pantalla mojada se vuelve loca, porque el agua también conduce y parece un dedo más.",
+    "Por eso, en Corea, hubo gente que usaba salchichas para tocar el móvil sin quitarse los guantes.",
+    "Así que no hace falta apretar: basta con rozarla.",
+    "Mándaselo a alguien que todavía aprieta la pantalla con fuerza."
+  ],
+  "claves": [
+    "electricidad",
+    "dónde",
+    "rejilla",
+    "luz",
+    "cruce",
+    "dedo",
+    "chip",
+    "instante",
+    "zoom",
+    "guantes",
+    "metal",
+    "agua",
+    "salchichas",
+    "rozarla",
+    "fuerza"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "Tu pantalla no ve tu dedo: nota su electricidad. Por dentro hay una rejilla de hilos invisibles y un chip que la revisa cientos de veces por segundo. Ilustración simplificada.",
+    "hashtags": ["#pantallatactil", "#movil", "#ciencia"],
+    "portada_en": "electricidad"
+  }
+}

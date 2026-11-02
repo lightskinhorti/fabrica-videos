@@ -40,6 +40,12 @@ También hay una copia en el proyecto "Side hustle" de claude.ai, en `claude/est
 4. **Cómo funciona:** de 3 a 5 pasos, con una idea por plano y un cambio en pantalla cada 2 o 3 segundos.
 5. **El dato final y el cierre.**
 
+Gancho y final (lo que pidió Javier el 2 de noviembre: "que el hook sea perfecto y luego hacer que la gente quiera saber el final"):
+- **El gancho, perfecto:** una frase corta que acabe antes de 2,5 s (`control.py` avisa si no) y que choque con lo que todos creen ("Tu tarjeta no tiene batería"). La imagen del primer fotograma ya tiene que estar en movimiento, sin presentación.
+- **Una pregunta abierta desde el principio:** prometer algo que solo se cuenta al final ("y lo más raro es lo que hace el chip al final", "quédate, que el último paso es el que nadie sabe"), y cumplirlo de verdad.
+- **El dato más sorprendente se guarda para el final**, y por el camino cada paso va a más que el anterior. A mitad de vídeo, un segundo gancho ("pero aquí viene lo bueno").
+- El cierre resuelve la pregunta del principio y luego pide que lo compartan o comenten.
+
 Reglas del guion:
 - Cada frase tiene una sola palabra clave.
 - Escribe los números con letras en el texto de la voz.
@@ -102,6 +108,33 @@ Reglas del guion:
 - **Texto dentro del 3D:** escríbelo con Inter 400 o 700, que son los únicos pesos incluidos.
 - **Velocidad:** en la nube, sin gráfica, sale a unos 6 segundos por fotograma, así que 21 segundos de vídeo tardan una hora. Renderiza siempre en el Mac, con `--browser-gpu`.
 - **HeyGen:** no inicies sesión. Usa solo las herramientas ya elegidas, que son gratis.
+
+## 4 bis. Estilo de edición objetivo (referencia 06, elegida por Javier el 2 de noviembre)
+
+`referencias/06-pantalla-tactil-estilo-objetivo.mp4`, de @speedy_devv: 84,6 s, unos 12 cortes secos (planos de 4 a 5 s de media) y movimientos de cámara dentro de cada plano. Javier dice que es "el estilo de edición exacto" que quiere. Su tema (la pantalla táctil) no se hace: solo se copia el estilo.
+
+Lo que tiene y nosotros todavía no:
+- **Planos de corte lateral, como un diagrama:** las capas apiladas en horizontal (cristal, sensor, fila de píxeles de colores rojo, verde y azul) y el dedo bajando desde arriba. Teleobjetivo, casi sin perspectiva.
+- **Macro con profundidad de campo:** cámara pegadísima, con el primer plano y el fondo desenfocados. Fondo negro azulado con motas de luz.
+- **Líneas de campo como arcos dorados:** arcos entre electrodos que se doblan hacia el dedo y se meten en él, en vez de anillos.
+- **Cifras medidas en pantalla:** valores debajo de cada punto (100, 100, 81, 62, 84…) que bajan donde está el dedo, con la nota "Values illustrative".
+- **Planos de la vida real:** una mano con guante sujetando el móvil, una llamada entrante con "slide to answer", un boli o una pantalla de mensajes. Dan contexto entre los planos técnicos.
+- **Cortes secos** entre planos muy distintos (macro, mano, cuadrícula vista de arriba), no solo movimientos suaves.
+
+Lo que ya hacemos igual: subtítulos arriba con la palabra clave seleccionada en azul con tiradores, iconos pequeños delante de algunas palabras, etiquetas en mayúsculas con línea fina ("GLASS", "ROW", "CROSSING"), notas honestas abajo ("Magnified illustration") y el cierre "mándaselo a alguien".
+
+**Su formato actual, visto en 4 reels más** (`referencias/speedy_devv/`, bajados el 2 de noviembre: teclado del móvil, cargador inalámbrico, cancelación de ruido y cuantización de modelos de IA). Hace entre 7 y 11 cortes por vídeo, con planos de 3 a 7 s de mediana, y los vídeos duran de 79 a 141 s:
+- **Fondo negro con una rejilla muy suave**, no la mesa de madera de su vídeo antiguo del trackpad.
+- **Un presentador de dibujos en el tercio de abajo** (su avatar: camiseta roja y gafas de sol verdes) que cambia de postura en cada plano: señala, piensa, se encoge de hombros, hace el signo de la paz… Es suyo y no se copia. Si lo usamos, tiene que ser un personaje propio y distinto.
+- **Productos limpios estilo anuncio** (auriculares, móvil, cargador blanco) y **cortes de diagrama** vistos de lado, con zonas rotuladas ("IN YOUR PHONE", "IN THE CHARGER") y etiquetas de pieza ("PAD COIL", "PHONE COIL", "RING OF MAGNETS").
+- **Leyenda fija abajo**, como en un mapa: "→ electricity, inside copper", "magnetic field, invisible", "sound shown in colour, invisible in air".
+- **Paneles de datos:** medidores de potencia (0,2 W, 7,5 W), contadores ("99.574 flips a second"), porcentajes que cambian (0 % / 96 %).
+- **Algún plano real** (el móvil con las llaves sobre una mesa) y algún plano de fondo blanco para cambiar de ritmo.
+- Cierra con la pantalla de mensajes del móvil y el botón "Send": el "mándaselo a alguien" hecho imagen.
+
+**Temas que ya ha hecho @speedy_devv (no los hacemos):** trackpad, pantalla táctil, teclado del móvil, cargador inalámbrico, cancelación de ruido y cuantización de modelos de IA. Su perfil no se puede ver sin iniciar sesión: Javier va pasando enlaces y se bajan con el método de abajo.
+
+**Cómo bajar un reel para verlo (sin iniciar sesión):** en el navegador integrado, abrir `https://www.instagram.com/p/<ID>/embed/captioned/`, leer con JavaScript el `src` del `<video>` (está en el propio servidor de Instagram, `cdninstagram.com` o `fbcdn.net`) y el texto del pie, y bajarlo con `curl` a `referencias/speedy_devv/<ID>-<tema>.mp4`. La página normal del post no da el vídeo sin sesión.
 
 ## 5. Lo que falta para igualar el vídeo de referencia
 

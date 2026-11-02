@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <script type="importmap">
+      { "imports": { "three": "./lib/three.module.js", "three/addons/": "./lib/addons/" } }
+    </script>
+    <link rel="stylesheet" href="comun/pordentro.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="67.5" data-width="1080" data-height="1920" data-fps="30">
+      <canvas id="gl" class="clip" data-start="0" data-duration="67.5" data-track-index="0" width="1080" height="1920"></canvas>
+      <div id="shade" class="clip" data-start="0" data-duration="67.5" data-track-index="1"></div>
+      <svg id="leaders" class="clip" data-start="0" data-duration="67.5" data-track-index="2" width="1080" height="1920" data-layout-allow-overlap></svg>
+      <div id="labels" class="clip" data-start="0" data-duration="67.5" data-track-index="3" data-layout-allow-overlap></div>
+      <div id="note" class="clip" data-start="0" data-duration="67.5" data-track-index="4"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="67.5"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="67.5" data-track-index="5" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 66.28, "lines": [{"id": "l1", "s": 0.16, "e": 3.66, "words": [{"w": "Tu", "s": 0.16, "e": 0.21, "key": false}, {"w": "pantalla", "s": 0.21, "e": 0.81, "key": false}, {"w": "no", "s": 0.81, "e": 0.96, "key": false}, {"w": "ve", "s": 0.97, "e": 1.04, "key": false}, {"w": "tu", "s": 1.13, "e": 1.29, "key": false}, {"w": "dedo:", "s": 1.29, "e": 1.77, "key": false}, {"w": "nota", "s": 1.8, "e": 2.04, "key": false}, {"w": "su", "s": 2.04, "e": 2.14, "key": false}, {"w": "electricidad.", "s": 2.14, "e": 3.66, "key": true}]}, {"id": "l2", "s": 3.87, "e": 6.71, "words": [{"w": "Entonces,", "s": 3.87, "e": 4.257, "key": false}, {"w": "¿cómo", "s": 4.257, "e": 4.45, "key": false}, {"w": "sabe", "s": 4.45, "e": 4.66, "key": false}, {"w": "exactamente", "s": 4.66, "e": 5.11, "key": false}, {"w": "dónde", "s": 5.46, "e": 5.72, "key": true}, {"w": "lo", "s": 5.72, "e": 5.89, "key": false}, {"w": "has", "s": 5.89, "e": 6.08, "key": false}, {"w": "puesto?", "s": 6.2, "e": 6.71, "key": false}]}, {"id": "l3", "s": 7.19, "e": 13.42, "words": [{"w": "Vamos", "s": 7.19, "e": 7.36, "key": false}, {"w": "a", "s": 7.36, "e": 7.42, "key": false}, {"w": "quitar", "s": 7.43, "e": 7.88, "key": false}, {"w": "el", "s": 7.88, "e": 8.02, "key": false}, {"w": "cristal.", "s": 8.11, "e": 8.82, "key": false}, {"w": "Debajo", "s": 8.93, "e": 9.15, "key": false}, {"w": "hay", "s": 9.15, "e": 9.27, "key": false}, {"w": "una", "s": 9.32, "e": 9.49, "key": false}, {"w": "rejilla", "s": 9.49, "e": 9.86, "key": true}, {"w": "de", "s": 9.95, "e": 9.98, "key": false}, {"w": "hilos:", "s": 9.98, "e": 10.28, "key": false}, {"w": "unos", "s": 10.28, "e": 10.62, "key": false}, {"w": "van", "s": 10.62, "e": 10.76, "key": false}, {"w": "de", "s": 10.76, "e": 10.87, "key": false}, {"w": "lado", "s": 10.87, "e": 11.18, "key": false}, {"w": "a", "s": 11.18, "e": 11.24, "key": false}, {"w": "lado", "s": 11.36, "e": 11.58, "key": false}, {"w": "y", "s": 11.58, "e": 11.68, "key": false}, {"w": "otros", "s": 11.68, "e": 11.74, "key": false}, {"w": "de", "s": 11.74, "e": 11.98, "key": false}, {"w": "arriba", "s": 12.26, "e": 12.59, "key": false}, {"w": "abajo.", "s": 12.59, "e": 13.42, "key": false}]}, {"id": "l4", "s": 13.57, "e": 18.63, "words": [{"w": "Están", "s": 13.57, "e": 13.67, "key": false}, {"w": "hechos", "s": 13.67, "e": 13.97, "key": false}, {"w": "de", "s": 13.97, "e": 14.07, "key": false}, {"w": "un", "s": 14.07, "e": 14.17, "key": false}, {"w": "material", "s": 14.17, "e": 14.57, "key": false}, {"w": "que", "s": 14.57, "e": 14.72, "key": false}, {"w": "conduce", "s": 14.72, "e": 15.07, "key": false}, {"w": "la", "s": 15.07, "e": 15.22, "key": false}, {"w": "electricidad", "s": 15.22, "e": 15.82, "key": false}, {"w": "y", "s": 15.82, "e": 15.84, "key": false}, {"w": "deja", "s": 15.96, "e": 16.19, "key": false}, {"w": "pasar", "s": 16.19, "e": 16.34, "key": false}, {"w": "la", "s": 16.34, "e": 16.7, "key": false}, {"w": "luz.", "s": 16.84, "e": 17.18, "key": true}, {"w": "Por", "s": 17.39, "e": 17.45, "key": false}, {"w": "eso", "s": 17.45, "e": 17.72, "key": false}, {"w": "no", "s": 17.72, "e": 17.9, "key": false}, {"w": "los", "s": 17.9, "e": 18.17, "key": false}, {"w": "ves.", "s": 18.17, "e": 18.63, "key": false}]}, {"id": "l5", "s": 18.95, "e": 21.66, "words": [{"w": "Cada", "s": 18.95, "e": 18.99, "key": false}, {"w": "cruce", "s": 18.99, "e": 19.3, "key": true}, {"w": "de", "s": 19.3, "e": 19.42, "key": false}, {"w": "hilos", "s": 19.42, "e": 19.73, "key": false}, {"w": "forma", "s": 19.73, "e": 20.05, "key": false}, {"w": "un", "s": 20.05, "e": 20.17, "key": false}, {"w": "pequeño", "s": 20.17, "e": 20.62, "key": false}, {"w": "campo", "s": 20.62, "e": 20.91, "key": false}, {"w": "eléctrico.", "s": 20.96, "e": 21.66, "key": false}]}, {"id": "l6", "s": 21.66, "e": 27.59, "words": [{"w": "Tu", "s": 21.66, "e": 21.99, "key": false}, {"w": "cuerpo", "s": 21.99, "e": 22.23, "key": false}, {"w": "también", "s": 22.23, "e": 22.63, "key": false}, {"w": "conduce", "s": 22.63, "e": 23.01, "key": false}, {"w": "la", "s": 23.02, "e": 23.12, "key": false}, {"w": "electricidad,", "s": 23.12, "e": 23.95, "key": false}, {"w": "así", "s": 24, "e": 24.16, "key": false}, {"w": "que,", "s": 24.16, "e": 24.43, "key": false}, {"w": "al", "s": 24.5, "e": 24.57, "key": false}, {"w": "acercar", "s": 24.58, "e": 25.0, "key": false}, {"w": "el", "s": 25, "e": 25.2, "key": false}, {"w": "dedo,", "s": 25.2, "e": 25.5, "key": true}, {"w": "te", "s": 25.52, "e": 25.6, "key": false}, {"w": "llevas", "s": 25.63, "e": 25.86, "key": false}, {"w": "una", "s": 25.95, "e": 26.13, "key": false}, {"w": "parte", "s": 26.35, "e": 26.57, "key": false}, {"w": "de", "s": 26.57, "e": 26.71, "key": false}, {"w": "ese", "s": 26.76, "e": 27.0, "key": false}, {"w": "campo.", "s": 27, "e": 27.59, "key": false}]}, {"id": "l7", "s": 27.59, "e": 33.3, "words": [{"w": "Un", "s": 27.59, "e": 27.91, "key": false}, {"w": "chip", "s": 27.91, "e": 28.16, "key": true}, {"w": "mide", "s": 28.2, "e": 28.47, "key": false}, {"w": "todos", "s": 28.47, "e": 28.86, "key": false}, {"w": "los", "s": 28.86, "e": 29.09, "key": false}, {"w": "cruces,", "s": 29.09, "e": 29.67, "key": false}, {"w": "uno", "s": 29.73, "e": 29.93, "key": false}, {"w": "a", "s": 29.93, "e": 30.01, "key": false}, {"w": "uno,", "s": 30.01, "e": 30.56, "key": false}, {"w": "y", "s": 30.56, "e": 30.637, "key": false}, {"w": "donde", "s": 30.637, "e": 31.02, "key": false}, {"w": "la", "s": 31.06, "e": 31.13, "key": false}, {"w": "señal", "s": 31.18, "e": 31.55, "key": false}, {"w": "baja,", "s": 31.55, "e": 32.0, "key": false}, {"w": "ahí", "s": 32, "e": 32.03, "key": false}, {"w": "está", "s": 32.36, "e": 32.53, "key": false}, {"w": "tu", "s": 32.59, "e": 32.69, "key": false}, {"w": "dedo.", "s": 32.69, "e": 33.3, "key": false}]}, {"id": "l8", "s": 33.51, "e": 38.13, "words": [{"w": "Muchos", "s": 33.51, "e": 33.66, "key": false}, {"w": "móviles", "s": 33.66, "e": 34.08, "key": false}, {"w": "lo", "s": 34.08, "e": 34.23, "key": false}, {"w": "revisan", "s": 34.26, "e": 34.68, "key": false}, {"w": "240", "s": 34.68, "e": 35.23, "key": false}, {"w": "veces", "s": 35.23, "e": 35.53, "key": false}, {"w": "por", "s": 35.53, "e": 35.71, "key": false}, {"w": "segundo.", "s": 35.71, "e": 36.22, "key": false}, {"w": "Por", "s": 36.22, "e": 36.62, "key": false}, {"w": "eso", "s": 36.62, "e": 37.02, "key": false}, {"w": "responde", "s": 37.02, "e": 37.23, "key": false}, {"w": "al", "s": 37.23, "e": 37.36, "key": false}, {"w": "instante.", "s": 37.36, "e": 38.13, "key": true}]}, {"id": "l9", "s": 38.14, "e": 43.54, "words": [{"w": "Y", "s": 38.14, "e": 38.196, "key": false}, {"w": "como", "s": 38.196, "e": 38.42, "key": false}, {"w": "cada", "s": 38.46, "e": 38.68, "key": false}, {"w": "cruce", "s": 38.68, "e": 38.98, "key": false}, {"w": "se", "s": 38.98, "e": 39.07, "key": false}, {"w": "mide", "s": 39.1, "e": 39.34, "key": false}, {"w": "por", "s": 39.34, "e": 39.52, "key": false}, {"w": "separado,", "s": 39.52, "e": 40.11, "key": false}, {"w": "nota", "s": 40.17, "e": 40.31, "key": false}, {"w": "varios", "s": 40.36, "e": 40.73, "key": false}, {"w": "dedos", "s": 40.73, "e": 41.03, "key": false}, {"w": "a", "s": 41.03, "e": 41.06, "key": false}, {"w": "la", "s": 41.08, "e": 41.09, "key": false}, {"w": "vez.", "s": 41.09, "e": 41.66, "key": false}, {"w": "Así", "s": 41.87, "e": 41.92, "key": false}, {"w": "puedes", "s": 41.92, "e": 42.45, "key": false}, {"w": "hacer", "s": 42.45, "e": 42.88, "key": false}, {"w": "zoom.", "s": 42.89, "e": 43.54, "key": true}]}, {"id": "l10", "s": 43.54, "e": 47.37, "words": [{"w": "Con", "s": 43.54, "e": 43.75, "key": false}, {"w": "guantes", "s": 43.75, "e": 44.19, "key": true}, {"w": "no", "s": 44.19, "e": 44.32, "key": false}, {"w": "funciona:", "s": 44.32, "e": 44.97, "key": false}, {"w": "la", "s": 44.97, "e": 45.0, "key": false}, {"w": "tela", "s": 45.33, "e": 45.36, "key": false}, {"w": "no", "s": 45.36, "e": 45.49, "key": false}, {"w": "conduce,", "s": 45.49, "e": 45.95, "key": false}, {"w": "y", "s": 45.95, "e": 45.96, "key": false}, {"w": "el", "s": 46.02, "e": 46.14, "key": false}, {"w": "campo", "s": 46.14, "e": 46.45, "key": false}, {"w": "ni", "s": 46.47, "e": 46.49, "key": false}, {"w": "se", "s": 46.49, "e": 46.72, "key": false}, {"w": "entera.", "s": 46.91, "e": 47.37, "key": false}]}, {"id": "l11", "s": 47.37, "e": 50.9, "words": [{"w": "Los", "s": 47.37, "e": 47.59, "key": false}, {"w": "guantes", "s": 47.59, "e": 47.95, "key": false}, {"w": "táctiles", "s": 48, "e": 48.42, "key": false}, {"w": "llevan", "s": 48.51, "e": 48.82, "key": false}, {"w": "hilos", "s": 48.82, "e": 49.12, "key": false}, {"w": "de", "s": 49.18, "e": 49.24, "key": false}, {"w": "metal", "s": 49.24, "e": 49.53, "key": true}, {"w": "en", "s": 49.55, "e": 49.66, "key": false}, {"w": "la", "s": 49.66, "e": 49.78, "key": false}, {"w": "punta", "s": 49.78, "e": 50.03, "key": false}, {"w": "de", "s": 50.1, "e": 50.2, "key": false}, {"w": "los", "s": 50.2, "e": 50.3, "key": false}, {"w": "dedos.", "s": 50.56, "e": 50.9, "key": false}]}, {"id": "l12", "s": 50.9, "e": 56.22, "words": [{"w": "Y", "s": 50.9, "e": 50.96, "key": false}, {"w": "con", "s": 50.96, "e": 51.14, "key": false}, {"w": "la", "s": 51.14, "e": 51.26, "key": false}, {"w": "pantalla", "s": 51.26, "e": 51.74, "key": false}, {"w": "mojada", "s": 51.74, "e": 52.1, "key": false}, {"w": "se", "s": 52.1, "e": 52.22, "key": false}, {"w": "vuelve", "s": 52.22, "e": 52.58, "key": false}, {"w": "loca,", "s": 52.7, "e": 52.98, "key": false}, {"w": "porque", "s": 52.98, "e": 53.32, "key": false}, {"w": "el", "s": 53.32, "e": 53.44, "key": false}, {"w": "agua", "s": 53.44, "e": 53.67, "key": true}, {"w": "también", "s": 53.67, "e": 53.84, "key": false}, {"w": "conduce", "s": 54.32, "e": 54.48, "key": false}, {"w": "y", "s": 54.48, "e": 54.53, "key": false}, {"w": "parece", "s": 54.64, "e": 54.94, "key": false}, {"w": "un", "s": 54.94, "e": 54.98, "key": false}, {"w": "dedo", "s": 55.07, "e": 55.22, "key": false}, {"w": "más.", "s": 55.43, "e": 56.22, "key": false}]}, {"id": "l13", "s": 56.22, "e": 60.85, "words": [{"w": "Por", "s": 56.22, "e": 56.43, "key": false}, {"w": "eso,", "s": 56.43, "e": 56.56, "key": false}, {"w": "en", "s": 56.56, "e": 56.66, "key": false}, {"w": "Corea,", "s": 56.67, "e": 56.95, "key": false}, {"w": "hubo", "s": 56.95, "e": 57.15, "key": false}, {"w": "gente", "s": 57.18, "e": 57.45, "key": false}, {"w": "que", "s": 57.45, "e": 57.63, "key": false}, {"w": "usaba", "s": 57.63, "e": 57.91, "key": false}, {"w": "salchichas", "s": 58.02, "e": 58.47, "key": true}, {"w": "para", "s": 58.47, "e": 58.64, "key": false}, {"w": "tocar", "s": 58.76, "e": 58.99, "key": false}, {"w": "el", "s": 58.99, "e": 59.1, "key": false}, {"w": "móvil", "s": 59.1, "e": 59.38, "key": false}, {"w": "sin", "s": 59.38, "e": 59.52, "key": false}, {"w": "quitarse", "s": 59.64, "e": 60.0, "key": false}, {"w": "los", "s": 60, "e": 60.17, "key": false}, {"w": "guantes.", "s": 60.17, "e": 60.85, "key": false}]}, {"id": "l14", "s": 60.85, "e": 63.5, "words": [{"w": "Así", "s": 60.85, "e": 61.09, "key": false}, {"w": "que", "s": 61.09, "e": 61.22, "key": false}, {"w": "no", "s": 61.22, "e": 61.32, "key": false}, {"w": "hace", "s": 61.33, "e": 61.56, "key": false}, {"w": "falta", "s": 61.56, "e": 61.84, "key": false}, {"w": "apretar:", "s": 61.85, "e": 62.32, "key": false}, {"w": "basta", "s": 62.32, "e": 62.68, "key": false}, {"w": "con", "s": 62.68, "e": 62.81, "key": false}, {"w": "rozarla.", "s": 62.81, "e": 63.5, "key": true}]}, {"id": "l15", "s": 63.5, "e": 65.9, "words": [{"w": "Mándaselo", "s": 63.5, "e": 63.86, "key": false}, {"w": "a", "s": 63.86, "e": 63.9, "key": false}, {"w": "alguien", "s": 63.9, "e": 64.19, "key": false}, {"w": "que", "s": 64.19, "e": 64.31, "key": false}, {"w": "todavía", "s": 64.31, "e": 64.54, "key": false}, {"w": "aprieta", "s": 64.63, "e": 64.92, "key": false}, {"w": "la", "s": 64.92, "e": 64.96, "key": false}, {"w": "pantalla", "s": 65.3, "e": 65.33, "key": false}, {"w": "con", "s": 65.33, "e": 65.45, "key": false}, {"w": "fuerza.", "s": 65.45, "e": 65.9, "key": true}]}]}</script>
+    <script id="escena" type="application/json">
+      {
+        "momentos": [
+          { "id": "TAP", "clave": "dedo" },
+          { "id": "ELEC", "clave": "electricidad" },
+          { "id": "DONDE", "clave": "donde" },
+          { "id": "QUITAR", "clave": "quitar" },
+          { "id": "REJILLA", "clave": "rejilla" },
+          { "id": "LADO", "clave": "lado" },
+          { "id": "ARRIBA", "clave": "arriba" },
+          { "id": "LUZ", "clave": "luz" },
+          { "id": "CRUCE", "clave": "cruce" },
+          { "id": "CAMPO", "clave": "campo" },
+          { "id": "ACERCAR", "clave": "acercar" },
+          { "id": "LLEVAS", "clave": "llevas" },
+          { "id": "CHIP", "clave": "chip" },
+          { "id": "BAJA", "clave": "baja" },
+          { "id": "REVISAN", "clave": "revisan" },
+          { "id": "INSTANTE", "clave": "instante" },
+          { "id": "VARIOS", "clave": "varios" },
+          { "id": "ZOOM", "clave": "zoom" },
+          { "id": "GUANTES", "clave": "guantes" },
+          { "id": "TELA", "clave": "tela" },
+          { "id": "METAL", "clave": "metal" },
+          { "id": "MOJADA", "clave": "mojada" },
+          { "id": "AGUA", "clave": "agua" },
+          { "id": "COREA", "clave": "corea" },
+          { "id": "SALCHICHAS", "clave": "salchichas" },
+          { "id": "APRETAR", "clave": "apretar" },
+          { "id": "ROZARLA", "clave": "rozarla" },
+          { "id": "MANDA", "clave": "mandaselo" }
+        ],
+        "etiquetas": [
+          { "texto": "CRISTAL", "pieza": "cristal", "desde": "QUITAR", "hasta": "REJILLA", "dy": -200 },
+          { "texto": "REJILLA DE HILOS", "pieza": "rejilla", "desde": "REJILLA", "hasta": "LUZ", "dy": -200 },
+          { "texto": "TRANSPARENTES", "pieza": "rejilla", "desde": "LUZ", "hasta": "CRUCE", "dy": -200 },
+          { "texto": "UN CAMPO EN CADA CRUCE", "pieza": "cruce", "desde": "CRUCE", "hasta": "ACERCAR", "dy": -200 },
+          { "texto": "EL DEDO SE LLEVA EL CAMPO", "pieza": "toque", "desde": "LLEVAS", "hasta": "CHIP", "dy": -220 },
+          { "texto": "CHIP", "pieza": "chip", "desde": "CHIP", "hasta": "BAJA", "dy": -200 },
+          { "texto": "AQUÍ ESTÁ TU DEDO", "pieza": "marca", "desde": "BAJA", "hasta": "REVISAN", "dy": -220 },
+          { "texto": "240 VECES POR SEGUNDO", "pieza": "chip", "desde": "REVISAN", "hasta": "VARIOS", "dy": -200 },
+          { "texto": "VARIOS DEDOS A LA VEZ", "pieza": "marca", "desde": "VARIOS", "hasta": "GUANTES", "dy": -240 },
+          { "texto": "LA TELA NO CONDUCE", "pieza": "toque", "desde": "TELA", "hasta": "METAL", "dy": -220 },
+          { "texto": "HILOS DE METAL", "pieza": "toque", "desde": "METAL", "hasta": "MOJADA", "dy": -220 },
+          { "texto": "EL AGUA PARECE UN DEDO", "pieza": "gota", "desde": "AGUA", "hasta": "COREA", "dy": -200 },
+          { "texto": "TAMBIÉN CONDUCE", "pieza": "toque", "desde": "SALCHICHAS", "hasta": "APRETAR", "dy": -220 },
+          { "texto": "SIN APRETAR", "pieza": "toque", "desde": "ROZARLA", "hasta": "MANDA", "dy": -220 }
+        ],
+        "notas": [
+          { "texto": "Ilustración ampliada: los hilos reales son invisibles y mucho más finos", "desde": "QUITAR" },
+          { "texto": "Campo mostrado en ámbar: en realidad es invisible", "desde": "CAMPO" },
+          { "texto": "Ilustración: un móvil real tiene muchos más cruces", "desde": "CHIP" },
+          { "texto": "", "desde": "MANDA" }
+        ],
+        "iconos": { "electricidad": "rayo" },
+        "sonidos": [
+          { "tipo": "toque", "en": "TAP" },
+          { "tipo": "brillo", "en": "ELEC" },
+          { "tipo": "abre", "en": "QUITAR" },
+          { "tipo": "brillo", "en": "REJILLA" },
+          { "tipo": "pop", "en": "CRUCE" },
+          { "tipo": "sube", "en": "LLEVAS" },
+          { "tipo": "chip", "en": "CHIP" },
+          { "tipo": "ping", "desde": "CHIP", "mas": 0.3, "hasta": "REVISAN", "cada": 0.17, "volumen": 0.5 },
+          { "tipo": "sube", "en": "REVISAN" },
+          { "tipo": "toque", "en": "VARIOS" },
+          { "tipo": "pop", "en": "ZOOM" },
+          { "tipo": "toque", "en": "GUANTES", "mas": 0.3, "volumen": 0.5 },
+          { "tipo": "error", "en": "TELA" },
+          { "tipo": "toque", "en": "METAL", "mas": 0.3 },
+          { "tipo": "chip", "en": "METAL", "mas": 0.4 },
+          { "tipo": "pop", "en": "MOJADA" },
+          { "tipo": "error", "en": "AGUA", "volumen": 0.6 },
+          { "tipo": "toque", "en": "SALCHICHAS", "mas": 0.2 },
+          { "tipo": "brillo", "en": "SALCHICHAS", "mas": 0.4 },
+          { "tipo": "toque", "en": "ROZARLA", "volumen": 0.4 },
+          { "tipo": "brillo", "en": "MANDA" }
+        ]
+      }
+    </script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 67.5 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import * as THREE from "three";
+      import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
+      import { crearPorDentro } from "./comun/pordentro.js";
+
+      const C = crearPorDentro(THREE);
+      const { T, D, scene, v3, lerp, ramp, ventana, canvasTex, brillo, UP } = C;
+      // the phone is 15 cm long: the camera is farther than for the card, and the fog with it
+      scene.fog.near = 55; scene.fog.far = 130;
+      C.desk.material.clearcoat = 0.12; C.desk.material.roughness = 0.62;
+      const dummy = new THREE.Object3D();
+
+      // ---------- phone lying on the desk: body, display, touch grid and cover glass (1 unit = 1 cm) ----------
+      const movil = new THREE.Group(); scene.add(movil);
+      const body = new THREE.Mesh(new RoundedBoxGeometry(7.2, 0.8, 15, 4, 0.55), new THREE.MeshPhysicalMaterial({ color: 0x2b3340, metalness: 0.2, roughness: 0.55 }));
+      body.position.y = 0.4; movil.add(body);
+      const scr = canvasTex(680, 1460, () => {});
+      const screenMat = new THREE.MeshStandardMaterial({ color: 0x000000, emissive: 0xffffff, emissiveMap: scr.tex, emissiveIntensity: 0.7, roughness: 0.6 });
+      const screen = new THREE.Mesh(new THREE.PlaneGeometry(6.8, 14.6), screenMat); screen.rotation.x = -Math.PI / 2; screen.position.y = 0.805; movil.add(screen);
+      // touch grid: 16 rows (side to side) and 8 columns (top to bottom)
+      const grid = new THREE.Group(); movil.add(grid);
+      const NROW = 16, NCOL = 8, PR = 0.9, PC = 0.9;
+      const rowZ = (r) => (r - (NROW - 1) / 2) * PR, colX = (c) => (c - (NCOL - 1) / 2) * PC;
+      const rowMat = new THREE.MeshBasicMaterial({ color: 0x9fd8ff, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false });
+      const colMat = rowMat.clone();
+      const scanMat = new THREE.MeshBasicMaterial({ color: 0xffd28a, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false });
+      for (let r = 0; r < NROW; r++) { const m = new THREE.Mesh(new THREE.BoxGeometry(6.6, 0.01, 0.07), rowMat); m.position.z = rowZ(r); grid.add(m); }
+      for (let c = 0; c < NCOL; c++) { const m = new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.01, 14.2), colMat); m.position.x = colX(c); m.position.y = 0.012; grid.add(m); }
+      const scanLine = new THREE.Mesh(new THREE.BoxGeometry(6.8, 0.02, 0.16), scanMat); grid.add(scanLine);
+      // a small field at every crossing
+      const fieldMat = new THREE.MeshBasicMaterial({ color: 0xffa040, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false });
+      const fields = new THREE.InstancedMesh(new THREE.SphereGeometry(0.16, 10, 8), fieldMat, NROW * NCOL); grid.add(fields);
+      // where the chip finds a touch
+      const markMat = new THREE.MeshBasicMaterial({ color: 0xff5a3c, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false });
+      const marks = Array.from({ length: 6 }, () => { const m = new THREE.Mesh(new THREE.TorusGeometry(0.42, 0.05, 8, 48), markMat); m.rotation.x = Math.PI / 2; grid.add(m); return m; });
+      // satin glass: a mirror finish throws the spot light into the low shots as a white blob
+      const glassMat = new THREE.MeshPhysicalMaterial({ color: 0x9fb2c4, roughness: 0.35, metalness: 0, transparent: true, opacity: 0.12, clearcoat: 0.2, clearcoatRoughness: 0.4, depthWrite: false });
+      const glass = new THREE.Mesh(new RoundedBoxGeometry(7.0, 0.08, 14.8, 2, 0.04), glassMat); movil.add(glass);
+      // touch controller chip on a flex cable at the bottom edge
+      const chipMat = new THREE.MeshPhysicalMaterial({ color: 0x141518, roughness: 0.3, metalness: 0.3, emissive: 0xffa040, emissiveIntensity: 0 });
+      const chip = new THREE.Mesh(new THREE.BoxGeometry(1.4, 0.18, 1.0), chipMat); movil.add(chip);
+      const flex = new THREE.Mesh(new THREE.BoxGeometry(2.4, 0.03, 1.2), new THREE.MeshStandardMaterial({ color: 0xb8762a, roughness: 0.5 })); movil.add(flex);
+      // water drops on the glass
+      const dropMat = new THREE.MeshPhysicalMaterial({ color: 0xcfe6ff, roughness: 0.05, transparent: true, opacity: 0, clearcoat: 1 });
+      const DROPS = [[-2.0, -3.2], [1.6, -1.2], [-0.6, 0.9], [2.2, 3.4], [-2.4, 4.6]];
+      const drops = DROPS.map(([x, z], i) => { const d = new THREE.Mesh(new THREE.SphereGeometry(0.5 + 0.12 * (i % 2), 24, 12), dropMat); d.scale.y = 0.3; d.position.set(x, 0, z); movil.add(d); return d; });
+
+      // ---------- fingers, glove and sausage ----------
+      const F1 = C.dedo(), F2 = C.dedo();
+      const skin = F1.finger.children[0].material, nail = F1.finger.children[1];
+      const glove = new THREE.MeshPhysicalMaterial({ color: 0x3a3d44, roughness: 0.95, sheen: 0.6, sheenColor: new THREE.Color(0x8890a0) });
+      const tipMat = new THREE.MeshPhysicalMaterial({ color: 0xd6d8dc, metalness: 1, roughness: 0.35 });
+      const tip = new THREE.Mesh(new THREE.SphereGeometry(0.88, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2.4), tipMat);
+      tip.rotation.x = Math.PI; tip.position.y = 0.86; F1.finger.add(tip);
+      // a sausage, its round tip at the group's origin
+      const salchicha = new THREE.Group(); scene.add(salchicha);
+      const sMesh = new THREE.Mesh(new THREE.CapsuleGeometry(0.85, 9, 8, 24), new THREE.MeshPhysicalMaterial({ color: 0xb4553a, roughness: 0.45, clearcoat: 0.5 }));
+      sMesh.position.y = 5.35; salchicha.add(sMesh);
+      function colocarSalchicha(contact, dir, away) {
+        const d = dir.clone().normalize(), z = UP.clone().sub(d.clone().multiplyScalar(d.dot(UP))).normalize(), x = new THREE.Vector3().crossVectors(d, z).normalize();
+        salchicha.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(x, d, z));
+        salchicha.position.copy(contact.clone().add(d.clone().multiplyScalar(away)));
+        salchicha.visible = away < 11.5;
+      }
+      const DIR = v3(0.75, 0.62, 0.2), DIR2 = v3(0.62, 0.62, 0.48);
+
+      // label anchors
+      const toqueAnc = new THREE.Object3D(), marcaAnc = new THREE.Object3D(); scene.add(toqueAnc, marcaAnc);
+      C.pieza("cristal", glass, v3(3.4, 0.05, 2.0));
+      C.pieza("rejilla", grid, v3(colX(7), 0, rowZ(4)));
+      C.pieza("cruce", grid, v3(colX(6), 0, rowZ(9)));
+      C.pieza("chip", chip, v3(0.7, 0.1, 0));
+      C.pieza("toque", toqueAnc, v3(0, 0, 0));
+      C.pieza("marca", marcaAnc, v3(0, 0, 0));
+      C.pieza("gota", drops[1], v3(0.5, 0, 0));
+
+      // display: a photo-like landscape that can zoom, and a ripple where it is touched
+      function drawScreen(zoom) {
+        const g = scr.g, w = 680, h = 1460;
+        g.save(); g.translate(w / 2, h * 0.55); g.scale(zoom, zoom); g.translate(-w / 2, -h * 0.55);
+        const sky = g.createLinearGradient(0, 0, 0, h); sky.addColorStop(0, "#1d3a5c"); sky.addColorStop(0.55, "#d9895a"); sky.addColorStop(1, "#2a2230");
+        g.fillStyle = sky; g.fillRect(-w, -h, 3 * w, 3 * h);
+        g.fillStyle = "#ffd59a"; g.beginPath(); g.arc(w * 0.62, h * 0.47, 70, 0, Math.PI * 2); g.fill();
+        g.fillStyle = "#3b2f45"; g.beginPath(); g.moveTo(-w, h * 0.62); g.lineTo(w * 0.2, h * 0.42); g.lineTo(w * 0.45, h * 0.56); g.lineTo(w * 0.75, h * 0.38); g.lineTo(2 * w, h * 0.6); g.lineTo(2 * w, 2 * h); g.lineTo(-w, 2 * h); g.fill();
+        g.fillStyle = "#1f1a28"; g.beginPath(); g.moveTo(-w, h * 0.72); g.lineTo(w * 0.35, h * 0.6); g.lineTo(2 * w, h * 0.74); g.lineTo(2 * w, 2 * h); g.lineTo(-w, 2 * h); g.fill();
+        g.restore();
+        g.fillStyle = "rgba(255,255,255,0.9)"; g.font = "700 64px Inter"; g.textAlign = "center"; g.fillText("20:00", w / 2, 120);
+        scr.tex.needsUpdate = true;
+      }
+      let zoomKey = -1;
+      const rippleMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false });
+      const ripple = new THREE.Mesh(new THREE.TorusGeometry(1, 0.04, 8, 64), rippleMat); ripple.rotation.x = Math.PI / 2; movil.add(ripple);
+      const glow = brillo("255,170,90"); glow.scale.set(1.6, 1.6, 1); glow.material.depthTest = false; movil.add(glow);
+
+      // ---------- story ----------
+      // touch points on the screen (x, z), in cm from the centre
+      const P1 = [1.0, 1.5], P2 = [-0.9, -1.8], P3 = [0.4, 0.6], P4 = [0.6, 2.6], P5 = [-0.5, 1.2], P6 = [0.8, -0.6];
+      const camAt = C.camara([
+        { t: 0, p: v3(-4, 17, 15), q: v3(0.5, 1, 1.0) },
+        { t: "QUITAR", mas: -0.3, p: v3(-4.4, 16.4, 14.4), q: v3(0.5, 1, 1.0) },
+        { t: "QUITAR", mas: 0.7, p: v3(-13, 7.5, 12), q: v3(0, 2.2, 0) },
+        { t: "REJILLA", mas: -0.2, p: v3(-12.4, 7.4, 11.6), q: v3(0, 2.2, 0) },
+        { t: "REJILLA", mas: 0.6, p: v3(-3, 20, 8), q: v3(0, 2.2, 0.5) },
+        { t: "CRUCE", mas: -0.3, p: v3(-2.8, 19.4, 7.8), q: v3(0, 2.2, 0.5) },
+        { t: "CRUCE", mas: 0.5, p: v3(-2, 13, 7), q: v3(-0.5, 2.2, -1) },
+        { t: "ACERCAR", mas: -0.5, p: v3(-1.8, 12.6, 6.8), q: v3(-0.5, 2.2, -1) },
+        { t: "ACERCAR", mas: 0.4, p: v3(-9, 11, 10), q: v3(-0.9, 2.6, -1.8) },
+        { t: "CHIP", mas: -0.4, p: v3(-8.6, 10.6, 9.6), q: v3(-0.9, 2.6, -1.8) },
+        { t: "CHIP", mas: 0.4, p: v3(-3, 18, 11), q: v3(0, 2.2, 1.5) },
+        { t: "VARIOS", mas: -0.4, p: v3(-2.8, 17.4, 10.6), q: v3(0, 2.2, 1.5) },
+        { t: "VARIOS", mas: 0.4, p: v3(-4, 18, 13), q: v3(0.4, 2.5, 0.6) },
+        { t: "GUANTES", mas: -0.4, p: v3(-3.8, 17.6, 12.6), q: v3(0.4, 2.5, 0.6) },
+        { t: "GUANTES", mas: 0.4, p: v3(-6, 13, 12), q: v3(0.6, 2.8, 2.6) },
+        { t: "MOJADA", mas: -0.4, p: v3(-5.8, 12.6, 11.6), q: v3(0.6, 2.8, 2.6) },
+        { t: "MOJADA", mas: 0.4, p: v3(-3, 17, 12), q: v3(0, 3, 0.6) },
+        { t: "COREA", mas: -0.2, p: v3(-2.8, 16.6, 11.6), q: v3(0, 3, 0.6) },
+        { t: "COREA", mas: 0.6, p: v3(-6, 13, 12), q: v3(-0.5, 3, 1.2) },
+        { t: "APRETAR", mas: -0.3, p: v3(-5.8, 12.6, 11.6), q: v3(-0.5, 3, 1.2) },
+        { t: "APRETAR", mas: 0.4, p: v3(-7, 12, 12), q: v3(0.4, 3.4, -0.4) },
+        { t: "MANDA", mas: -0.2, p: v3(-6.6, 11.6, 11.6), q: v3(0.4, 3.4, -0.4) },
+        { t: "MANDA", mas: 0.9, p: v3(-4, 17, 15), q: v3(0.5, 1, 1.0) },
+        { t: D, p: v3(-3.6, 16.4, 14.4), q: v3(0.5, 1, 1.0) },
+      // the phone is 15 cm long: every shot pulls back 1.7 times from its target
+      ].map((k) => ({ ...k, p: k.q.clone().add(k.p.clone().sub(k.q).multiplyScalar(1.7)) })));
+
+      // ---------- frame ----------
+      function renderAt(t) {
+        // exploded view: grid and glass rise while explaining, and close at the end
+        const ex = ventana(t, T.QUITAR, T.MANDA + 0.6, 0.9);
+        const yGrid = lerp(0.84, 2.2, ex), yGlass = lerp(0.88, 3.6, ex), top = yGlass + 0.04;
+        grid.position.y = yGrid; glass.position.y = yGlass;
+        glassMat.opacity = lerp(0.12, 0.22, ex);
+        // the chip sits inside the body (hidden) until the phone opens
+        chip.position.set(0, lerp(0.5, 1.4, ex), 6.6); flex.position.set(0, lerp(0.5, 1.4, ex) - 0.05, 6.0);
+        drops.forEach((d) => { d.position.y = top + 0.05; d.visible = dropMat.opacity > 0.01; });
+        movil.updateMatrixWorld();
+
+        // grid: rows and columns light up as the voice names them, almost vanish for "the light passes"
+        const shown = ramp(t, T.REJILLA - 0.2, T.REJILLA + 0.5) * ex;
+        const faint = 1 - 0.75 * ventana(t, T.LUZ, T.CRUCE, 0.4);
+        rowMat.opacity = shown * faint * (0.55 + 0.4 * ventana(t, T.LADO, T.ARRIBA, 0.25));
+        colMat.opacity = shown * faint * (0.55 + 0.4 * ventana(t, T.ARRIBA, T.LUZ, 0.25));
+
+        // touches: which object touches where, and whether it conducts
+        const touches = [];
+        let lead = null;
+        const add = (x, z, k, conduce) => { touches.push({ x, z, k, conduce }); if (!lead || k > lead.k) lead = { x, z, k }; };
+        // 1. hook tap
+        const a1 = ventana(t, T.TAP - 0.3, T.DONDE + 0.4, 0.3); if (a1 > 0) add(P1[0], P1[1], a1, true);
+        // 2. one finger takes part of the field
+        const a2 = ventana(t, T.LLEVAS - 0.2, T.VARIOS - 0.4, 0.4); if (a2 > 0) add(P2[0], P2[1], a2, true);
+        // 3. two fingers, pinch to zoom
+        const pinch = ramp(t, T.ZOOM - 0.1, T.ZOOM + 1.0), a3 = ventana(t, T.VARIOS - 0.2, T.GUANTES - 0.3, 0.3);
+        const PA = [P3[0] - 0.9 - 0.9 * pinch, P3[1] - 1.2 - 1.2 * pinch], PB = [P3[0] + 0.9 + 0.9 * pinch, P3[1] + 1.2 + 1.2 * pinch];
+        if (a3 > 0) { add(PA[0], PA[1], a3, true); add(PB[0], PB[1], a3, true); }
+        // 4. glove (does not conduct), then glove with metal threads
+        const a4 = ventana(t, T.GUANTES + 0.1, T.METAL - 0.2, 0.3), a5 = ventana(t, T.METAL + 0.2, T.MOJADA - 0.3, 0.3);
+        if (a4 > 0) add(P4[0], P4[1], a4, false);
+        if (a5 > 0) add(P4[0], P4[1], a5, true);
+        // 5. water drops
+        const wet = ventana(t, T.MOJADA, T.COREA, 0.3), wetSig = ventana(t, T.AGUA - 0.3, T.COREA, 0.3);
+        dropMat.opacity = 0.75 * wet;
+        drops.forEach((d) => (d.visible = wet > 0.01));
+        if (wetSig > 0) DROPS.forEach(([x, z]) => touches.push({ x, z, k: wetSig, conduce: true }));
+        // 6. sausage, 7. a light touch
+        const a6 = ventana(t, T.SALCHICHAS - 0.1, T.APRETAR - 0.2, 0.3), a7 = ventana(t, T.ROZARLA - 0.3, T.MANDA, 0.3);
+        if (a6 > 0) add(P5[0], P5[1], a6, true);
+        if (a7 > 0) add(P6[0], P6[1], a7, true);
+
+        // fields at the crossings: a conductor nearby takes part of them
+        const fShow = ramp(t, T.CRUCE - 0.2, T.CRUCE + 0.5) * ex;
+        fieldMat.opacity = fShow * 0.9;
+        let k = 0;
+        for (let r = 0; r < NROW; r++) for (let c = 0; c < NCOL; c++) {
+          let drain = 0;
+          for (const q of touches) if (q.conduce) drain += q.k * Math.exp(-((colX(c) - q.x) ** 2 + (rowZ(r) - q.z) ** 2) / 0.9);
+          const s = Math.max(0.05, 1 - 0.85 * Math.min(1, drain)) * (0.8 + 0.2 * Math.sin(t * 3 + r + c));
+          dummy.position.set(colX(c), 0.02, rowZ(r)); dummy.scale.setScalar(s); dummy.rotation.set(0, 0, 0); dummy.updateMatrix();
+          fields.setMatrixAt(k++, dummy.matrix);
+        }
+        fields.instanceMatrix.needsUpdate = true;
+
+        // the chip scans row by row (slowly to show it, then far too fast to follow) and marks each touch
+        const scanOn = ventana(t, T.CHIP, T.INSTANTE + 0.8, 0.3) * ex;
+        const rate = t < T.REVISAN ? 6 : 90, row = Math.floor((t - T.CHIP) * rate) % NROW;
+        scanLine.position.set(0, 0.03, rowZ(Math.max(0, row))); scanMat.opacity = scanOn * (t < T.REVISAN ? 0.9 : 0.5 + 0.5 * Math.sin(t * 60));
+        chipMat.emissiveIntensity = 0.8 * scanOn + 0.3 * ex * ramp(t, T.CHIP, T.CHIP + 0.4);
+        const found = ramp(t, T.BAJA - 0.1, T.BAJA + 0.3);
+        markMat.opacity = found * ex;
+        const conductors = touches.filter((q) => q.conduce && q.k > 0.5);
+        marks.forEach((m, i) => {
+          const q = conductors[i];
+          m.visible = !!q;
+          if (q) { m.position.set(q.x, 0.04, q.z); m.scale.setScalar(1 + 0.1 * Math.sin(t * 8)); }
+        });
+        if (conductors[0]) marcaAnc.position.copy(grid.localToWorld(v3(conductors[0].x, 0.04, conductors[0].z)));
+
+        // fingers and the sausage on the glass
+        const glassPt = (x, z) => movil.localToWorld(v3(x, top, z));
+        const awayOf = (a) => (1 - a) * 9;
+        const gloved = a4 > 0 || a5 > 0;
+        F1.finger.children[0].material = gloved ? glove : skin; nail.visible = !gloved; tip.visible = a5 > 0;
+        let f1 = null;
+        if (a1 > 0) f1 = [P1, a1]; else if (a2 > 0) f1 = [P2, a2]; else if (a3 > 0) f1 = [PB, a3];
+        else if (a4 > 0) f1 = [P4, a4]; else if (a5 > 0) f1 = [P4, a5]; else if (a7 > 0) f1 = [P6, a7];
+        if (f1) F1.colocar(glassPt(f1[0][0], f1[0][1]), DIR, awayOf(f1[1]));
+        else F1.colocar(glassPt(0, 0), DIR, 12);
+        if (a3 > 0) F2.colocar(glassPt(PA[0], PA[1]), DIR2, awayOf(a3));
+        else F2.colocar(glassPt(0, 0), DIR2, 12);
+        colocarSalchicha(glassPt(P5[0], P5[1]), v3(0.6, 0.7, 0.4), a6 > 0 ? awayOf(a6) : 12);
+        if (lead) toqueAnc.position.copy(glassPt(lead.x, lead.z).add(v3(0.6, 0.3, 0)));
+
+        // ripple and glow under each conducting touch
+        const tq = conductors.find((q) => q.k > 0.5);
+        if (tq) { const ph = (t * 1.6) % 1; ripple.position.set(tq.x, 0.82, tq.z); ripple.scale.setScalar(0.4 + 1.6 * ph); rippleMat.opacity = (1 - ph) * 0.6; glow.position.set(tq.x, 0.9, tq.z); glow.material.opacity = 0.25; }
+        else { rippleMat.opacity = 0; glow.material.opacity = 0; }
+
+        // display zoom with the pinch
+        const zoom = Math.round((1 + 0.8 * pinch * (t < T.GUANTES ? 1 : 1 - ramp(t, T.GUANTES, T.GUANTES + 0.8))) * 50) / 50;
+        if (zoom !== zoomKey) { drawScreen(zoom); zoomKey = zoom; }
+        screenMat.emissiveIntensity = 0.7 * (1 - 0.35 * ex);
+
+        C.mirar(camAt(t));
+        C.pintar(t);
+      }
+
+      C.arrancar(renderAt);
+    </script>
+  </body>
+</html>

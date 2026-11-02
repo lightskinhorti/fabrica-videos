@@ -1,0 +1,43 @@
+{
+  "titulo": "Tu placa de inducción no se calienta",
+  "lines": [
+    "Tu placa de inducción no se calienta.",
+    "La que se calienta es la sartén. Y lo más raro pasa cuando la levantas.",
+    "¿Pero cómo calienta algo sin fuego y sin tocarlo?",
+    "Vamos a mirar debajo del cristal. Ahí hay una bobina enorme: un cable de cobre enrollado muchas veces.",
+    "Al encenderla, la corriente va y viene por ella decenas de miles de veces por segundo, y crea un campo magnético que sube y atraviesa el cristal.",
+    "Ese campo llega al fondo de la sartén, que lleva hierro, y dentro del metal se forman corrientes que giran como pequeños remolinos.",
+    "Esas corrientes chocan con el propio metal y lo calientan desde dentro.",
+    "El calor nace en la sartén, no en la placa. El cristal solo se calienta porque la sartén está encima.",
+    "Por eso no vale cualquier sartén: tiene que llevar hierro.",
+    "Con una de aluminio, el campo apenas la calienta y la placa ni la reconoce.",
+    "El truco para saberlo: acerca un imán al fondo. Si se pega, funciona.",
+    "Y como no calienta el aire de alrededor, aprovecha casi el triple de energía que el gas.",
+    "Ese zumbido que a veces oyes es el fondo de la sartén vibrando con el campo.",
+    "Y ahora, lo más raro: si levantas la sartén, la placa deja de calentar al instante, aunque siga encendida.",
+    "Mándaselo a alguien que todavía piensa que la inducción es magia."
+  ],
+  "claves": [
+    "calienta",
+    "sartén",
+    "fuego",
+    "bobina",
+    "campo",
+    "remolinos",
+    "dentro",
+    "cristal",
+    "hierro",
+    "aluminio",
+    "imán",
+    "triple",
+    "zumbido",
+    "instante",
+    "magia"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "Tu placa de inducción no se calienta: se calienta la sartén. Por dentro hay una bobina de cobre y un campo magnético que hace remolinos de corriente en el hierro. Ilustración simplificada.",
+    "hashtags": ["#induccion", "#cocina", "#ciencia"],
+    "portada_en": "calienta"
+  }
+}

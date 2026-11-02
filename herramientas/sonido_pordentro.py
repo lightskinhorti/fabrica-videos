@@ -7,8 +7,10 @@ Lee del index.html del vídeo los bloques vozdata y escena. Cada sonido de "soni
 de un momento (los mismos "momentos" que usa la escena, buscados igual que en pordentro.js):
     { "tipo": "toque", "en": "TAP", "mas": 0.1, "volumen": 0.8 }
     { "tipo": "zumbido", "desde": "CAMPO", "hasta": "SEGUNDO" }
-Tipos: toque, desliza, abre, brillo, pop, sube, chip, pagado, teclas (n, cada), zumbido y morse
-(desde/hasta; el morse repite P-A-G-O con unidades de 0,09 s, como la escena).
+Tipos: toque, desliza, abre, brillo, pop, sube, chip, pagado, metal (una moneda que cae), error, hervor (desde/hasta),
+teclas (n, cada), zumbido y morse (desde/hasta; el morse repite P-A-G-O con unidades de 0,09 s, como la
+escena) y ping (desde + mas hasta hasta, uno cada `cada` s; la escena lee estos mismos datos para dibujarlos).
+En zumbido, "mas" alarga el final; en ping, retrasa el comienzo.
 Escribe <carpeta>/assets/mezcla.wav.
 """
 import json
@@ -114,6 +116,25 @@ for s in ESC.get("sonidos", []):
         hum = np.sin(2 * np.pi * 120 * t) + 0.5 * np.sin(2 * np.pi * 240 * t) + 0.2 * np.sin(2 * np.pi * 360 * t)
         hum *= 0.75 + 0.25 * np.sin(2 * np.pi * 6 * t)
         out += hum * env(a - 0.08, 0.8, max(0, b - a - 0.8), 0.9) * 0.022 * vol
+    elif tipo == "hervor":
+        # water simmering: little bubble pops and a soft hiss (the scene draws steam over the same window)
+        a, b = cuando(s["desde"]), cuando(s["hasta"])
+        w = env(a, 1.0, max(0, min(b, D) - a - 1.0), 0.8)
+        pops = (rng.random(N) < 0.0012) * rng.standard_normal(N)
+        out += (bandpass(pops, 600, 3500) * 0.25 + bandpass(noise, 2000, 7000) * 0.008) * w * vol
+    elif tipo == "metal":
+        for f, g in ((2350.0, 0.05), (3720.0, 0.035), (5180.0, 0.02)):
+            out += tono(f, a, 0.001, 0.005, 0.35, g * vol)
+        out += lowpass(noise, 4000) * env(a, 0.001, 0.004, 0.03) * 0.15 * vol
+    elif tipo == "error":
+        for k in range(2):
+            out += tono(330, a + 0.18 * k, 0.005, 0.08, 0.06, 0.06 * vol)
+    elif tipo == "ping":
+        b, k = cuando(s["hasta"]), 0
+        a = cuando(s["desde"]) + s.get("mas", 0)
+        while a + k * s.get("cada", 0.6) < b:
+            out += tono(1568.0, a + k * s.get("cada", 0.6), 0.003, 0.02, 0.15, 0.03 * vol)
+            k += 1
     elif tipo == "morse":
         a, b = cuando(s["desde"]), cuando(s["hasta"])
         u = np.floor((t - a) / 0.09).astype(int)

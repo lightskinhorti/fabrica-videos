@@ -93,6 +93,22 @@ La primera versión es la fábrica más 3 cuentas de TikTok. Instagram y los pac
 
 ## Formatos de vídeo
 
+**Consejos para que sean virales** (de `referencias/07-consejos-videos-virales.mp4`, que Javier pasó el 2 de noviembre; es un vídeo sobre cómo se hacen los "qué pasaría si" virales con Claude). Cada consejo y cómo lo aplica la fábrica:
+
+| Consejo | Cómo lo aplicamos |
+|---|---|
+| Copia la receta, no el vídeo: mira 3 virales y apunta lo que tienen en común | Las referencias de cada cuenta se analizan fotograma a fotograma antes de cambiar el motor (así se hizo con @speedy_devv) |
+| La pregunta sale en los 2 primeros segundos | El gancho es la primera frase. Hay que vigilar que acabe antes de unos 2,5 s: en la tarjeta acaba a los 2,2 s, pero en el cargador a los 3 s |
+| Un número que avanza todo el rato | En El contador loco, el marcador. En Las cosas por dentro, los paneles de datos (vatios, veces por segundo, porcentajes), como hace @speedy_devv |
+| Un subtítulo corto cada pocos segundos, y cada paso peor (o más fuerte) que el anterior | Grupos de 4 palabras como mucho, y guiones que van a más hasta el dato final |
+| Elige algo con un número que se mueve: una caída, una cuenta atrás | Ideas nuevas para El contador loco de este tipo: caídas, cuentas atrás, cosas que se llenan |
+| Ciencia real: los comentarios lo comprueban, y las cifras reales hacen discutir, y discutir da visualizaciones | `fuentes.md` en cada vídeo y el control de cifras; cerrar con una pregunta para que comenten |
+| Primero la voz, y luego cada subtítulo cuadrado con su frase | Ya es así: voz de Gemini, Whisper y momentos anclados a palabras |
+| Antes de hacer el vídeo entero, una imagen fija de cada subtítulo; se arreglan y luego se hace el vídeo | Ya es así: capturas en los momentos clave antes del render. Mejora pendiente: que `producir.sh` saque solo una captura por momento |
+| Varias rondas de arreglos | Siempre se revisan las capturas del vídeo final |
+| (De Javier) El gancho tiene que ser perfecto, y luego hay que hacer que la gente quiera saber el final | Gancho que acabe antes de 2,5 s (`control.py` avisa); una pregunta abierta al principio que solo se resuelve al final; el dato más fuerte guardado para el final y un segundo gancho a mitad. Receta en la skill `video-por-dentro` |
+| El suelo del vídeo de ejemplo son fotos de satélite reales | Idea para El contador loco: usar fotos de satélite libres (NASA, Copernicus) en los planos desde el cielo |
+
 La fábrica tendrá 3 plantillas reutilizables. Cada vídeo nuevo solo cambia el guion y los datos, no el código, y eso es lo que permite producir mucho sin perder calidad.
 
 **El estilo, copiado del vídeo de referencia:**
@@ -281,6 +297,7 @@ Empezamos con 3 nichos de perfiles distintos: uno universal que se puede traduci
 | 8 | Fútbol explicado con datos y tácticas | Mucha audiencia en España, y la plantilla (campo, fichas y flechas) es la más barata de hacer | Sin imágenes de partidos ni escudos. Paga poco por visualización. Mejor conceptos que jugadas concretas, que sin ver el partido pueden salir mal |
 | 9 | Cómo se fabrica algo cotidiano | Universal | Hacen falta datos fiables de cada proceso |
 | 10 | Videojuegos por dentro: por qué pesan tanto, cómo funciona un motor gráfico | Te interesa | Sin capturas de los juegos |
+| 12 (descartado) | Vídeos satisfactorios animados: canicas, encajes perfectos, dominó, ordenar por colores (idea de Javier, descartada por él el 2 de noviembre) | Sin voz ni idioma, se ven varias veces seguidas y una escena da muchos vídeos. No gasta el límite diario de voces | TikTok solo paga a partir de 1 minuto y lo satisfactorio funciona en 10-30 s; posible "contenido poco original" si es muy repetitivo (sin comprobar); mucha competencia; el sonido es clave. Detalle en `IDEAS_CUENTAS.md` |
 
 **Decisión del 2 de noviembre: el torneo empieza con los nichos 1, 2 y 3.**
 
@@ -311,6 +328,7 @@ El dato de finanzas sale de guías de terceros: hablan de 0,80 a 1,20 $ o más p
 **Ideas nuevas de Claude Code (archivo IDEAS\_CUENTAS.md):**
 
 - **«¿Y si X aumentase cada día?»** (elegido como nicho 1 el 2 de noviembre): una variante de la plantilla «¿Qué pasaría si…?». Un personaje 3D de bloques hace algo normal, un contador enorme crece sin parar y la cámara se aleja con la escala, de casa a planeta. La referencia es el vídeo del chico de bloques. En español casi no hay cuentas así. Conviene alternar el humor escatológico con temas limpios.
+- **Vídeos satisfactorios animados** (idea de Javier, descartada por él el 2 de noviembre): animaciones 3D sin voz (canicas, encajes, dominó). Se descarta por el cobro a partir de 1 minuto, el riesgo de "contenido poco original" y la competencia.
 - **Tácticas de fútbol explicadas** (en lista de espera): encaja en el nicho 8. Vista desde arriba con fichas, flechas y zonas, y cada jornada da temas nuevos. Sin escudos, equipaciones reales ni imágenes de retransmisiones.
 
 ## Instagram: cómo lo hacemos y packs en la bio
@@ -415,8 +433,38 @@ El objetivo es 3 vídeos al día por cuenta, pero se llega por escalones. Si la 
 - Todo se ancla a la voz con "momentos": cada uno es una palabra del guion. Así la escena no depende de segundos escritos a mano y aguanta si la voz cambia.
 - `sonido_pordentro.py` pone los efectos (toque, apertura, zumbido, corriente, chip, morse, teclas, pagado) en esos mismos momentos.
 - `control.py` y `publicacion.py` valen para las dos cuentas. `producir.sh` elige el sonido según la cuenta.
-- Vídeo 1, la tarjeta: 69,9 s con la voz de Gemini (antes, 21 s). Guion de 14 frases y una fuente para cada cifra en `fuentes.md`. Toda la cadena tarda 1 minuto con la voz ya hecha (el render, 38 s) y el control sale sin errores. Está en `exports/render/01-tarjeta.mp4`, a falta de que Javier lo apruebe.
+- Vídeo 1, la tarjeta: 69,9 s con la voz de Gemini (antes, 21 s). Guion de 14 frases y una fuente para cada cifra en `fuentes.md`. Toda la cadena tarda 1 minuto con la voz ya hecha (el render, 38 s) y el control sale sin errores. Está en `exports/render/01-tarjeta.mp4`. Aprobado por Javier el 2 de noviembre.
 - La portada puede ser un segundo o una palabra de la voz (`portada_en` en `guion.json`). En la tarjeta es "batería", con el gancho entero y la palabra seleccionada.
+- Vídeo 2, el cargador inalámbrico (72,9 s): dos bobinas, el campo, los toques de prueba, la respuesta del móvil, la moneda que no carga, el móvil descentrado que pierde energía y los imanes. Reutiliza la "respuesta en morse" de la tarjeta, que ya forma parte del motor, igual que la espiral de cobre (`espiral`), que también servirá para la placa de inducción.
+- Vídeo 3, la placa de inducción: guion, fuentes y escena hechos (bobina, campo, remolinos de corriente en el fondo de hierro, sartén de aluminio que no reconoce, el truco del imán, rendimiento frente al gas según ENERGY STAR, el zumbido y la sartén levantada). Falta la voz.
+- **Límite de la voz, comprobado el 2 de noviembre:** el plan gratis de Gemini TTS deja **10 voces al día** (error 429 "limit: 10 requests per day"). Ese día se gastaron entre los vídeos de prueba, las repeticiones y los dos primeros de esta cuenta. Para el ritmo normal (3 cuentas, 1 vídeo al día cada una) sobra, pero limita hacer la reserva de golpe: como mucho unos 8 vídeos nuevos al día, dejando margen para repetir alguna voz. Si hiciera falta más, la alternativa es activar la facturación en AI Studio, y eso lo decide Javier.
+- **Precio de la voz de pago (página de precios de AI Studio, consultada el 2 de noviembre):** Gemini 3.8 Flash TTS cuesta 9 $ por millón de tokens de audio y 0,50 $ por millón de texto hasta el 31 de diciembre de 2026; desde el 1 de enero de 2027, el doble (18 $ y 1 $). Cada segundo de audio son 25 tokens, así que una voz de 70 s son 1.750 tokens: unos 0,016 $ (1,5 céntimos) en 2026 y 0,03 $ en 2027. Con 3 cuentas a 1 vídeo al día y repeticiones (unas 120 voces al mes), sale por unos 2 $ al mes en 2026 y 4 $ en 2027. Si se activa: tarjeta personal, nunca de eduki, y un aviso de presupuesto (por ejemplo, 5 € al mes), que avisa pero no corta el gasto.
+- **Decisión del 2 de noviembre:** Javier activa la facturación de la voz. Plan recomendado: prepago del mínimo (5 $) sin recarga automática, así el gasto nunca pasa de lo cargado. Cuando se acaba el saldo, la API responde con el error 402 hasta que se recargue. Pasos en la guía oficial de facturación de AI Studio.
+- Vídeo 4, la pantalla táctil: la rejilla de hilos transparentes, el campo de cada cruce, el chip que barre fila a fila, varios dedos, guantes, agua y la salchicha.
+- **La pantalla táctil se descarta (2 de noviembre):** @speedy_devv ya tiene ese tema con 6 millones de visitas. Su vídeo queda como `referencias/06-pantalla-tactil-estilo-objetivo.mp4` y Javier lo marca como el estilo de edición exacto que quiere. Diferencias con lo nuestro, de más a menos fácil de copiar:
+  1. Cortes secos entre planos, cada 4 o 5 s (12 en 85 s), además de los movimientos de cámara. Fácil: un corte en el motor de cámara.
+  2. Profundidad de campo y planos macro. Fácil: three.js tiene el paso de desenfoque (BokehPass) en la carpeta `lib`.
+  3. Planos de corte lateral tipo diagrama, con teleobjetivo. Fácil: una cámara con poco ángulo y las piezas cortadas por la mitad.
+  4. Líneas de campo como arcos dorados que se doblan hacia el dedo, y cifras medidas que bajan donde está el dedo. Medio.
+  5. Planos de la vida real (mano con guante sujetando el móvil, llamada entrante, mensajes). Difícil: las manos realistas son lo más caro de hacer en código. Habría que buscar modelos 3D libres de manos, o dibujarlas más simples.
+  - **Motor acercado a su estilo (2 de noviembre),** como opciones de la escena para no tocar los vídeos ya hechos:
+    - `estilo: "rejilla"`: fondo negro con rejilla y los objetos flotando.
+    - `leyenda`: fija abajo, como en un mapa.
+    - `paneles`: una cifra grande con su rótulo, que el vídeo va cambiando.
+    - `desenfoque`: profundidad de campo.
+    - Cámara con `corte: true` para los cortes secos.
+    - Probado sobre una copia de la placa. Falta un presentador propio, si se quiere: hay que diseñarlo.
+  - **Cuatro reels más de @speedy_devv** bajados el 2 de noviembre en `referencias/speedy_devv/` (teclado, cargador inalámbrico, cancelación de ruido y cuantización de IA). Su formato actual es: fondo negro con rejilla, un presentador de dibujos suyo en el tercio de abajo que cambia de postura en cada plano, diagramas de corte con zonas rotuladas, una leyenda fija abajo, paneles de datos y entre 7 y 11 cortes por vídeo. Detalle en la skill `video-por-dentro`.
+  - **Choque de temas:** también tiene el cargador inalámbrico, contado casi igual que el nuestro (llaves, pulsos de prueba, móvil descentrado, anillo de imanes). Por la regla de no copiar temas, nuestro vídeo 2 no debería publicarse, aunque estuviera aprobado. **Javier decide publicarlo igual (2 de noviembre):** el guion, la escena y el idioma son nuestros, y él va en inglés. A partir de ahora, los temas nuevos se comprueban antes contra su perfil.
+  - **Sonidos reales con Openverse (idea de Javier, 2 de noviembre):** hoy los efectos se sintetizan con numpy y pueden sonar falsos. Openverse busca sonidos con licencia abierta, sobre todo de Freesound, y tiene una API sin clave. Por ejemplo, "whoosh" con licencia CC0 da 240 resultados. Reglas:
+    - Solo CC0, que permite usarlo sin citar a nadie. Como mucho CC BY, citando al autor en la descripción.
+    - Nunca licencias "NC" (no comercial), porque los vídeos se monetizan, ni "ND" (sin modificaciones), porque los sonidos se recortan y se mezclan.
+    - Los sonidos van a una carpeta `sonidos/` con un `licencias.md` (título, autor, licencia y enlace de cada uno), y `sonido_pordentro.py` los usa en vez de sintetizarlos.
+    - Antes de descargar, Claude enseña a Javier la lista de sonidos (nombre, origen y tamaño).
+  - @speedy_devv dice en su bio que edita con una herramienta propia (getkeyframes.com). Su perfil de Instagram no se puede ver sin iniciar sesión, así que la lista de temas que ya ha hecho la tiene que revisar Javier.
+- **Facturación activada el 2 de noviembre** por Javier. Las primeras voces de pago (placa de inducción y pantalla táctil) salieron a la primera. La placa dura 74,7 s y la pantalla 67,5 s, las dos con el control sin errores.
+- Cuando falta la voz, la escena se monta igual con tiempos estimados (`vozdata.py guion.json` sin transcripción): como todo se ancla a palabras, al llegar la voz real solo hay que producir.
+- Lección: con objetos más grandes que la tarjeta, la cámara se aleja y hay que retrasar también la niebla. Los planos bajos reflejan la luz fría en la mesa barnizada, así que en esa escena la mesa es más mate.
 
 **Ritmo de salida (decidido por Javier el 2 de noviembre):**
 - **Día 1: 3 vídeos por cuenta,** para que quien entre en el perfil vea ya varios vídeos. Mejor repartidos en las tres franjas (18:00, 20:00 y 22:00) que subidos a la vez, para que cada uno tenga su hueco.

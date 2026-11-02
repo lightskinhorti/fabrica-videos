@@ -40,6 +40,7 @@ Este Mac es de Javier, pero también lo usa para trabajar en eduki:
   - `04`: En Plata, sobre política.
   - `05`: una creadora que edita con Claude.
   - `que-pasaria-si-escalada-voxel.mp4`: el chico de bloques.
+  - `06`: la pantalla táctil de @speedy_devv (6 millones de visitas). **Es el estilo de edición exacto que quiere Javier** para Las cosas por dentro: cortes laterales tipo diagrama, macro con desenfoque, arcos dorados de campo, cifras medidas, planos de la vida real y cortes secos. Detalle en la skill `video-por-dentro` (sección 4 bis). Su tema no se hace.
 - `render/`: la plantilla del estilo "por dentro" y `sonido.py`, que crea los efectos y la mezcla.
 - `voces/`: el guion y los scripts de voz.
 - `exports/`: todo lo que se genera.
@@ -74,7 +75,12 @@ Hechos el 2 de noviembre: el paso 0 (skill del estilo instalada), el paso 1 (ví
 5. **Siguiente: preparar la fase 2 (torneo).** Por orden: la plantilla de Las cosas por dentro (partiendo de la prueba de la tarjeta, de más de 60 s), la de Dinero sin lío (estilo plano 2D, sin empezar), una reserva de unos 5 o 6 vídeos por cuenta (3 para el día 1 y 2 o 3 días de margen), y la hoja de métricas. El programador de TikTok funciona con cuenta personal (comprobado el 2 de noviembre). Instagram no programa desde la web: se hace con la app del móvil o con Meta Business Suite, con cuenta profesional y como mucho 5 hashtags. Cómo subir y programar cada vídeo: `publicar/elcontadorloco.md`.
    - Las cosas por dentro: 20 ideas propuestas en `ideas/lascosaspordentro.md`, con una reserva de arranque de 5 o 6 (tarjeta, cargador inalámbrico, placa de inducción, pantalla táctil, reloj de cuarzo y GPS). Aprobadas por Javier el 2 de noviembre.
    - Motor común hecho: `herramientas/pordentro/` (cada vídeo enlaza `comun` y `lib`) y `herramientas/sonido_pordentro.py`. La escena se ancla a la voz con "momentos" (palabras del guion), no con segundos. Se produce igual: `bash herramientas/producir.sh videos/lascosaspordentro/<video>`. El ejemplo es `01-tarjeta` (69,9 s).
-   - Siguiente: que Javier revise la tarjeta y, después, los vídeos 2 a 6.
+   - Tarjeta y cargador inalámbrico aprobados por Javier el 2 de noviembre. Placa de inducción producida, pendiente de su revisión. La pantalla táctil se descarta: @speedy_devv ya la tiene (referencia 06). Antes de cada objeto nuevo, comprobar con Javier que no está en el perfil de @speedy_devv (Instagram no deja verlo sin iniciar sesión).
+   - Motor acercado al estilo de @speedy_devv (2 de noviembre), con opciones de la escena: `estilo: "rejilla"`, `leyenda`, `paneles`, `desenfoque` y `corte: true` en la cámara (detalle en el comentario de `pordentro.js` y en la skill `video-por-dentro`). Los vídeos nuevos los usan. Con `estilo: "rejilla"` no hay niebla: no toques `scene.fog`.
+   - Guiones: gancho que acabe antes de 2,5 s (`control.py` avisa), una pregunta abierta al principio que se resuelve al final y el dato más fuerte guardado para el final (consejos de `referencias/07` y de Javier).
+   - Siguiente: el reloj de cuarzo y el GPS con el estilo nuevo, después de comprobar con Javier que @speedy_devv no tiene esos temas.
+   - **Voz de pago activada por Javier el 2 de noviembre** (prepago, sin recarga automática): ya no hay límite de 10 voces al día, pero cada voz cuesta unos 1,5 céntimos y el saldo se acaba. Si la API responde 402, el saldo está a cero: avisa a Javier, no reintentes.
+   - Si alguna vez la voz no está disponible, monta la escena con tiempos estimados (`vozdata.py guion.json`) y produce cuando vuelva: todo se ancla a palabras.
    - Ritmo decidido por Javier: el día 1, 3 vídeos por cuenta repartidos a las 18:00, 20:00 y 22:00; después, 1 al día por cuenta, y 2 cuando haya una semana de reserva.
    - Formato principal: con voz. El modo texto (`--texto`) es solo una opción para vídeos de acción o surrealistas.
 

@@ -40,13 +40,16 @@ else:
 texto_mode = os.path.basename(mp4).endswith("-texto.mp4")
 dur = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", mp4], capture_output=True, text=True).stdout)
 portada = mp4[: -len(".mp4")] + "-portada.png"
-# "portada_en": seconds, or a word of the voice (the frame 0.35 s after it starts: its caption is selected
-# and the next group has not replaced it yet)
+# "portada_en": seconds, or a word of the voice (the frame 0.35 s after it starts, so its caption is selected,
+# but before it ends: a short word can be followed at once by the next caption group)
 en = pub.get("portada_en", 1.0)
 if isinstance(en, str):
     voz = json.load(open(os.path.join(carpeta, "vozdata.json"), encoding="utf-8"))
     quita = lambda s: re.sub(r"\W", "", s.lower())
-    en = next(w["s"] + 0.35 for l in voz["lines"] for w in l["words"] if quita(w["w"]).startswith(quita(en)))
+    todas = [w for l in voz["lines"] for w in l["words"]] + [{"s": 1e9}]
+    i = next(k for k, w in enumerate(todas) if quita(w.get("w", "")).startswith(quita(en)))
+    # the next caption group can start 0.06 s before the next word: stay 0.1 s before it
+    en = min(todas[i]["s"] + 0.35, todas[i + 1]["s"] - 0.1)
 subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{en:.2f}", "-i", mp4, "-frames:v", "1", portada], check=True)
 raiz = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(carpeta))))
 rel = lambda p: os.path.relpath(os.path.abspath(p), raiz)

@@ -73,3 +73,33 @@ Una historia por capítulos con un personaje fijo. Cada vídeo acaba en un momen
 - Quien llegue al capítulo 5 no ha visto los anteriores: cada capítulo necesita un resumen de 3 a 5 segundos al principio.
 - Que la gracia esté en lo que le pasa al personaje, no en reírse de su aspecto. Si el chiste es "mira qué gordo y qué granos", puede acabar denunciado y TikTok le quita alcance.
 - La de los 10 millones podría ser una serie de @dinerosinlio, con cada opción acompañada de un dato real. Antes hay que comprobar qué dice la ley española sobre el dinero encontrado (Código Civil, hallazgo).
+
+## 4. Vídeos satisfactorios animados
+
+**Estado:** descartada por Javier el 2 de noviembre, después de ver los riesgos de abajo (cobro a partir de 1 minuto, posible "contenido poco original" y mucha competencia). Se deja apuntada por si algún día cambia algo.
+
+Animaciones 3D hipnóticas sin explicación: piezas que encajan perfectas, canicas que bajan por un circuito, una prensa que aplasta cosas, fichas de dominó que caen en espiral, bloques que se ordenan por colores, cosas que se cortan en láminas finas. Sin voz: solo el sonido de cada golpe y una canción de moda puesta en TikTok.
+
+**"Hecho con IA", en nuestro caso:** Claude escribe la escena 3D en código (three.js en HyperFrames, como los otros vídeos). Gratis y con el mismo resultado en cada render. Los generadores de vídeo con IA (Veo, Kling y similares) son de pago y ya se descartaron por eso.
+
+**Por qué encaja:**
+- No necesita voz, así que no gasta el límite diario de Gemini (10 voces).
+- No tiene idioma: vale para todo el mundo sin traducir.
+- La gente lo ve varias veces seguidas. Ver el vídeo entero y repetirlo es lo que más pesa en el algoritmo.
+- Es muy de plantilla: una escena (por ejemplo, el circuito de canicas) da decenas de vídeos cambiando colores, piezas y recorrido.
+- Es el formato "texto y canción de moda" que propuso Javier para los vídeos de acción.
+
+**Cuidado:**
+- **Dinero:** TikTok solo paga vídeos de más de 1 minuto, y lo satisfactorio suele funcionar en 10 a 30 segundos. Habría que encadenar 4 o 5 escenas por vídeo, y no está comprobado que la gente aguante el minuto entero.
+- **Contenido "poco original":** el programa de pagos exige contenido original y de calidad. Vídeos muy repetitivos hechos en serie podrían quedarse fuera. No está comprobado: hay que leer las normas actuales antes de abrir la cuenta.
+- **Competencia:** es un nicho enorme, con cuentas de millones de seguidores. Hace falta un toque propio. Por ejemplo, objetos cotidianos de España, o mezclarlo con El contador loco ("¿cuántas canicas caben en…?") o con Las cosas por dentro (objetos que se desmontan pieza a pieza).
+- **Sonido:** es la mitad del efecto. Los sonidos sintetizados con numpy pueden sonar falsos. Habría que probar con sonidos libres (por ejemplo, de Freesound con licencia CC0) o mejorar los sintetizados.
+- **Física:** cortar arena o deformar jabón de forma realista es difícil en three.js. Lo fácil son piezas rígidas (canicas, dominó, engranajes, encajes, ordenar) y lo low poly.
+- **Etiqueta de IA:** siempre activada, como en las otras cuentas.
+
+**Ideas de episodios:**
+- El circuito de canicas más largo: 1.000 canicas por 12 rampas.
+- Piezas que encajan perfectas en su hueco, cada vez más difíciles.
+- Dominó en espiral que dibuja una figura al caer.
+- Ordenar 500 bloques por colores, de caos a degradado.
+- La prensa contra objetos de bloques (sin marcas reales).

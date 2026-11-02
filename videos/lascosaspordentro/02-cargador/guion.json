@@ -1,0 +1,43 @@
+{
+  "titulo": "Tu móvil se carga sin cables",
+  "lines": [
+    "Tu móvil se carga sin que ningún cable lo toque.",
+    "Entonces, ¿cómo pasa la electricidad de la base al móvil?",
+    "Vamos a abrir los dos. Dentro de la base hay una bobina: un cable de cobre enrollado como un caracol.",
+    "Y dentro del móvil, pegada a la tapa de atrás, hay otra casi igual.",
+    "Cuando enchufas la base, su bobina crea un campo magnético que va y viene más de cien mil veces por segundo.",
+    "Ese campo atraviesa el plástico y el cristal, y al llegar a la bobina del móvil, crea en ella una corriente.",
+    "Es lo mismo que pasa en tu tarjeta al pagar, pero con mucha más energía.",
+    "Un chip convierte esa corriente en la que carga la batería.",
+    "Pero antes de empezar, la base da pequeños toques de prueba para saber si hay algo encima.",
+    "Y el móvil le contesta, igual que la tarjeta: le dice cuánta energía quiere, y la base sube o baja.",
+    "Si pones una moneda, nadie le contesta, así que no carga: el metal solo se calentaría.",
+    "Por eso el móvil tiene que estar bien centrado: si las bobinas se separan, se pierde energía.",
+    "Esa energía perdida sale en forma de calor, y por eso cargar sin cable gasta más que con cable.",
+    "Los cargadores nuevos llevan imanes para que el móvil caiga justo en el centro.",
+    "Mándaselo a alguien que deja el móvil torcido en el cargador."
+  ],
+  "claves": [
+    "cable",
+    "electricidad",
+    "bobina",
+    "otra",
+    "campo",
+    "corriente",
+    "tarjeta",
+    "batería",
+    "prueba",
+    "contesta",
+    "calentaría",
+    "centrado",
+    "calor",
+    "imanes",
+    "torcido"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "Tu móvil se carga sin que nada lo toque. Por dentro hay dos bobinas de cobre, un campo magnético y una conversación entre la base y el móvil. Ilustración simplificada.",
+    "hashtags": ["#cargadorinalambrico", "#movil", "#qi"],
+    "portada_en": "cable"
+  }
+}

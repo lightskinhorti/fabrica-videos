@@ -1,0 +1,17 @@
+# Fuentes: Tu móvil se carga sin cables
+
+| Dato del guion | Cifra usada | Fuente |
+|---|---|---|
+| La base y el móvil llevan cada uno una bobina de cobre; la de la base crea un campo magnético que induce corriente en la del móvil | | Estándar Qi del Wireless Power Consortium, explicado en [All About Circuits](https://www.allaboutcircuits.com/news/how-does-qi-wireless-charging-standard-work/) y en [IB-Lenhardt](https://ib-lenhardt.com/kb/qi-wireless-charging) |
+| El campo "va y viene más de cien mil veces por segundo" | Más de 100.000 veces por segundo: Qi 1.x funciona entre 110.000 y 205.000 Hz (110–205 kHz) y Qi2 a 360 kHz | [IB-Lenhardt](https://ib-lenhardt.com/kb/qi-wireless-charging); diseño de referencia de MPS con 110–205 kHz ([PDF](https://www.big-bit.com/meeting/2018znkc/images/hhbd/MPS_02.pdf)) |
+| Un chip convierte la corriente y carga la batería | | El receptor rectifica la corriente alterna de la bobina y la pasa al circuito de carga ([All About Circuits](https://www.allaboutcircuits.com/news/how-does-qi-wireless-charging-standard-work/)) |
+| La base da "toques de prueba" para saber si hay algo encima | | Ping analógico y ping digital del estándar Qi: después del ping digital, el receptor manda paquetes de intensidad de señal ([eeNews Europe](https://cdn.eenewseurope.com/en/qi-wireless-power-transmitter-circuit-with-foreign-object-detection/)) |
+| El móvil contesta y le dice cuánta energía quiere | | Comunicación por modulación de carga: el receptor modula su bobina y eso se refleja en el transmisor, que ajusta la potencia ([IB-Lenhardt](https://ib-lenhardt.com/kb/qi-wireless-charging)) |
+| Con una moneda nadie contesta y no carga; el metal se calentaría | | Sin receptor válido no empieza la carga; con el receptor puesto, la detección de objetos extraños compara la potencia enviada y la recibida y corta antes de que el metal se caliente ([patente US11005304](https://patents.google.com/patent/US11005304), [patente US11424645](https://patents.google.com/patent/US11424645)) |
+| Si las bobinas se separan se pierde energía, y sale como calor | | Simulación de CENOS: si las bobinas no están alineadas baja el acoplamiento y se pierde más energía en forma de calor ([CENOS](https://cenos-platform.com/wireless-charging-simulation-for-mobile-phones-case-study/)) |
+| Cargar sin cable gasta más que con cable | En la prueba de OneZero, unos 21 Wh sin cable frente a 14,26 Wh con cable (un 47 % más) | Prueba de Eric Ravenscraft para OneZero (2020), recogida por [iPhone in Canada](https://www.iphoneincanada.ca/2020/08/06/wireless-efficiency/) y [Slashdot](https://hardware.slashdot.org/story/20/08/05/2031219/heres-exactly-how-inefficient-wireless-charging-is). En el vídeo no se da la cifra, solo que gasta más |
+| Los cargadores nuevos llevan imanes para centrar el móvil | | Perfil magnético de Qi2 (MPP): un anillo de imanes alrededor de la bobina centra el móvil ([Belkin](https://www.belkin.com/jp/company/blog/what-is-qi2-wireless-charging-and-why-you-want-it/), [DevX](https://www.devx.com/daily-news/qi2-charging-standard-adopts-magnetic-technology-similar-to-magsafe/)) |
+
+Cifras solo de la ilustración (no son datos): el porcentaje de batería de la pantalla del móvil, la hora y el número de vueltas de las bobinas.
+
+Notas en pantalla: "Ilustración simplificada · separados para que se vea", "Campo mostrado en ámbar: en realidad es invisible", "Ilustración: los toques de prueba no se ven", "No dejes monedas ni llaves en el cargador" y "Calor exagerado en el dibujo".
