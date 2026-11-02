@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "historyId": "ca67320c-37c3-4b89-b53c-abdee2755a55",
+  "currentRevision": "8e88fed5-d376-43a2-87e6-2b31c5002c71",
+  "pendingChanges": false,
+  "files": {
+    "hyperframes.json": {
+      "hash": "53dbce1e19aa713cbb12ee0bc4d206143b45ab15e6ffbfcaa8f69572d4d24d50",
+      "content": "/Users/javierhortiguelavaliente/.cache/hyperframes/history/ca67320c-37c3-4b89-b53c-abdee2755a55/blobs/53/53dbce1e19aa713cbb12ee0bc4d206143b45ab15e6ffbfcaa8f69572d4d24d50"
+    },
+    "index.html": {
+      "hash": "088b9c247fcf148950022c8b14ac6c871082f60f40b999c7138500c6743f4a4c",
+      "content": "/Users/javierhortiguelavaliente/.cache/hyperframes/history/ca67320c-37c3-4b89-b53c-abdee2755a55/blobs/08/088b9c247fcf148950022c8b14ac6c871082f60f40b999c7138500c6743f4a4c"
+    }
+  },
+  "revisions": {
+    "93697b69-6bcc-49cf-86d8-8ccb64ddc57a": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793617839378,
+      "endedAt": 1793617839378,
+      "files": {
+        "index.html": {
+          "before": "/Users/javierhortiguelavaliente/.cache/hyperframes/history/ca67320c-37c3-4b89-b53c-abdee2755a55/blobs/e4/e4de8ea327ddc025f859845c6860c9d9a2b23f1dc8ff5dd6f726a7c71d280aeb",
+          "after": "/Users/javierhortiguelavaliente/.cache/hyperframes/history/ca67320c-37c3-4b89-b53c-abdee2755a55/blobs/3f/3fd26c9a5e82cb15b8bbb3a3b2db708b29ac268f1a37df1433ccc1420b457b8f"
+        }
+      }
+    },
+    "2b5e82e0-20eb-47b2-8416-97f5cc3a241b": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793617860621,
+      "endedAt": 1793617860621,
+      "files": {
+        "index.html": {
+          "before": "/Users/javierhortiguelavaliente/.cache/hyperframes/history/ca67320c-37c3-4b89-b53c-abdee2755a55/blobs/3f/3fd26c9a5e82cb15b8bbb3a3b2db708b29ac268f1a37df1433ccc1420b457b8f",
+          "after": "/Users/javierhortiguelavaliente/.cache/hyperframes/history/ca67320c-37c3-4b89-b53c-abdee2755a55/blobs/c8/c81de2ac44c64745a7ce675166c38c1ed24ae296e7fb33b52d171aae201b2d5a"
+        }
+      }
+    },
+    "8e88fed5-d376-43a2-87e6-2b31c5002c71": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793617878357,
+      "endedAt": 1793617878358,
+      "files": {
+        "index.html": {
+          "before": "/Users/javierhortiguelavaliente/.cache/hyperframes/history/ca67320c-37c3-4b89-b53c-abdee2755a55/blobs/c8/c81de2ac44c64745a7ce675166c38c1ed24ae296e7fb33b52d171aae201b2d5a",
+          "after": "/Users/javierhortiguelavaliente/.cache/hyperframes/history/ca67320c-37c3-4b89-b53c-abdee2755a55/blobs/08/088b9c247fcf148950022c8b14ac6c871082f60f40b999c7138500c6743f4a4c"
+        }
+      }
+    }
+  },
+  "checks": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "snapshots": {
+    "latest": {
+      "revision": "8e88fed5-d376-43a2-87e6-2b31c5002c71",
+      "id": "58a65e80-a879-46d3-ac6f-019c714bf551-0"
+    },
+    "revisions": {
+      "93697b69-6bcc-49cf-86d8-8ccb64ddc57a": [],
+      "2b5e82e0-20eb-47b2-8416-97f5cc3a241b": [],
+      "8e88fed5-d376-43a2-87e6-2b31c5002c71": [
+        {
+          "scope": "full",
+          "id": "58a65e80-a879-46d3-ac6f-019c714bf551-0",
+          "image": "/private/tmp/claude-501/-Users-javierhortiguelavaliente-Desktop-ProyectoPersonal-VideosYCosas-fabrica-prueba/9e263855-41b8-4cb2-b81a-eb7202c12afb/scratchpad/p_dentro/frame-00-at-0.5s.png",
+          "time": 0.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793617879326,
+          "contentHash": "fa6da0869e134ad55c5e5b5d29374c84f71c7fc1bb9fb829e582c9c751bb08d8",
+          "revision": "8e88fed5-d376-43a2-87e6-2b31c5002c71",
+          "inputFingerprint": "9f79888af5a1770ba481fbde86b2b13fa6756f9a3571bc3de972591261b1f917",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ]
+    },
+    "unversioned": []
+  }
+}

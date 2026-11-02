@@ -402,7 +402,7 @@ Esta lista hay que tenerla hecha antes de publicar el primer vídeo. La parte de
 **Antes de lanzar:**
 
 - [x] Revisar si el contrato de eduki tiene pacto de plena dedicación. Revisado por ti el 2 de noviembre: no hay nada que prohíba este proyecto. Aun así, la ley prohíbe hacer competencia desleal a tu empresa, y por eso siguen fuera los temas de temario escolar.
-- [ ] Crear las cuentas de TikTok como personales, con tus datos reales, porque TikTok lo exige para cobrar.
+- [x] Crear las cuentas de TikTok como personales, con tus datos reales, porque TikTok lo exige para cobrar. Creadas el 2 de noviembre las 3, en TikTok e Instagram: `@elcontadorloco`, `@lascosaspordentro` y `@dinerosinlio`. No se publica nada hasta la fase 2.
 - [ ] Activar en cada vídeo la etiqueta de contenido generado con IA. TikTok la exige para el contenido realista y la recomienda para el resto.
 - [ ] Poner la atribución de las imágenes: "Copernicus Sentinel data" y el año en las de Copernicus, y el crédito a la NASA en las suyas.
 - [ ] Usar solo música y efectos con licencia comercial.
@@ -421,8 +421,12 @@ Esta lista hay que tenerla hecha antes de publicar el primer vídeo. La parte de
 - [x] Mandar como archivo los reels de Instagram de referencia, porque los enlaces no se pueden abrir desde aquí.
 - [x] Confirmar qué ordenador personal vas a usar y si tiene espacio para los renders: tu MacBook Pro M5 de 32 GB, con unos 780 GB libres.
 - [ ] Comprobar si el programador de TikTok funciona con una cuenta personal.
+- [x] Crear el repositorio privado en tu GitHub personal: `lightskinhorti/fabrica-videos`, creado el 2 de noviembre. Git está configurado solo en la carpeta del proyecto, sin tocar tu configuración de trabajo.
 - [x] Elegir la voz sintética en español: Gemini TTS, voz es-es-concierge-12.
-- [ ] Poner nombre a cada cuenta, sin tu nombre real.
+- [x] Poner nombre a cada cuenta, sin tu nombre real. Elegidos el 2 de noviembre, con el mismo @ en TikTok e Instagram (libres ese día en las dos):
+  - «¿Y si X aumentase cada día?»: **El contador loco**, `@elcontadorloco`. Regla de la cuenta: cada vídeo lleva un contador que no para, también los de «¿Qué pasaría si…?».
+  - Objetos por dentro: **Las cosas por dentro**, `@lascosaspordentro`. Primero se eligió «Mira por dentro», pero en Instagram `@mirapordentro` estaba cogido (una cuenta desactivada) y `@mirapordentro_` hace exactamente lo mismo, así que se cambió en las dos plataformas para no confundirse con ella.
+  - Dinero cotidiano: **Dinero sin lío**, `@dinerosinlio`.
 - [ ] Decidir qué incluye cada pack y a qué precio (fase 4).
 - [x] Confirmar si el contrato de eduki tiene pacto de plena dedicación: revisado por ti el 2 de noviembre, no hay nada que prohíba el proyecto.
 

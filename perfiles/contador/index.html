@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1080" />
+    <script src="lib/gsap.min.js"></script>
+    <script type="importmap">
+      { "imports": { "three": "./lib/three.module.js", "three/addons/": "./lib/addons/" } }
+    </script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1080px; overflow: hidden; background: #0d6fd8; }
+      #root { position: relative; width: 1080px; height: 1080px; }
+      #bg {
+        position: absolute; inset: 0;
+        background: radial-gradient(circle at 56% 38%, #3fc4ff 0%, #1592f0 42%, #0a5cc4 100%);
+      }
+      #gl { position: absolute; inset: 0; width: 1080px; height: 1080px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="1" data-width="1080" data-height="1080" data-fps="30">
+      <div id="bg" class="clip" data-start="0" data-duration="1" data-track-index="0"></div>
+      <canvas id="gl" class="clip" data-start="0" data-duration="1" data-track-index="1" width="1080" height="1080"></canvas>
+    </div>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.perfil = new Promise((r) => (window.__perfilReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 1 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import * as THREE from "three";
+
+      const S = 1080;
+      function hash(i) { const s = Math.sin(i * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); }
+
+      const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById("gl"), antialias: true, alpha: true, preserveDrawingBuffer: true });
+      renderer.setPixelRatio(1); renderer.setSize(S, S, false);
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
+      renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 100);
+      camera.position.set(0.2, 0.2, 15); camera.lookAt(0.2, 0.45, 0);
+
+      scene.add(new THREE.HemisphereLight(0xffffff, 0x2a4fae, 1.35));
+      const key = new THREE.DirectionalLight(0xfff1dc, 2.6);
+      key.position.set(-5, 7, 8); key.castShadow = true; key.shadow.mapSize.set(2048, 2048);
+      key.shadow.camera.left = -8; key.shadow.camera.right = 8; key.shadow.camera.top = 8; key.shadow.camera.bottom = -8;
+      scene.add(key);
+      const rim = new THREE.DirectionalLight(0x9fe4ff, 1.4); rim.position.set(6, 3, -6); scene.add(rim);
+
+      const mat = (c, extra = {}) => new THREE.MeshStandardMaterial({ color: c, flatShading: true, roughness: 0.78, metalness: 0, ...extra });
+      const box = (w, h, d, m) => { const o = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), m); o.castShadow = true; o.receiveShadow = true; return o; };
+
+      // ---------- character ----------
+      const SKIN = mat(0xf2b98d), HAT = mat(0xff6a2b), HOODIE = mat(0xffcf2e), DARK = mat(0x2b1d1a), WHITE = mat(0xffffff, { roughness: 0.4 });
+      const kid = new THREE.Group(); kid.position.set(-1.25, -2.05, 0.6); kid.rotation.y = 0.42; scene.add(kid);
+
+      const torso = box(3.3, 2.2, 2.0, HOODIE); torso.position.set(0, -1.15, 0); kid.add(torso);
+      const hood = box(2.5, 0.5, 2.1, mat(0xf2b81c)); hood.position.set(0, 0.05, -0.15); kid.add(hood);
+      for (const sx of [-0.45, 0.45]) { const s = box(0.1, 0.9, 0.1, WHITE); s.position.set(sx, -0.5, 1.02); kid.add(s); }
+      const neck = box(0.8, 0.4, 0.8, SKIN); neck.position.set(0, 0.3, 0); kid.add(neck);
+
+      const head = new THREE.Group(); head.position.set(0, 1.7, 0.1); head.rotation.set(-0.32, 0.12, 0.06); kid.add(head);
+      head.add(box(2.4, 2.4, 2.2, SKIN));
+      const hat = box(2.55, 0.85, 2.35, HAT); hat.position.set(0, 1.15, 0); head.add(hat);
+      const band = box(2.62, 0.32, 2.42, mat(0xd94e17)); band.position.set(0, 0.72, 0); head.add(band);
+      const pom = new THREE.Mesh(new THREE.IcosahedronGeometry(0.42, 0), mat(0xffe3d1)); pom.position.set(0, 1.8, 0); pom.castShadow = true; head.add(pom);
+      for (const sx of [-1, 1]) {
+        const ear = box(0.28, 0.55, 0.45, SKIN); ear.position.set(sx * 1.32, -0.05, 0); head.add(ear);
+        const eye = box(0.62, 0.72, 0.12, WHITE); eye.position.set(sx * 0.52, 0.1, 1.11); head.add(eye);
+        const pupil = box(0.28, 0.32, 0.08, DARK); pupil.position.set(sx * 0.52 + 0.11, 0.24, 1.19); head.add(pupil);
+        const glint = box(0.08, 0.08, 0.04, WHITE); glint.position.set(sx * 0.52 + 0.17, 0.33, 1.24); head.add(glint);
+        const brow = box(0.66, 0.15, 0.12, DARK); brow.position.set(sx * 0.52, 0.55, 1.14); brow.rotation.z = sx * -0.22; head.add(brow);
+      }
+      const nose = box(0.3, 0.32, 0.3, mat(0xe8a57a)); nose.position.set(0, -0.22, 1.22); head.add(nose);
+      const mouth = box(0.48, 0.52, 0.1, mat(0x5a1f1a)); mouth.position.set(0, -0.72, 1.11); head.add(mouth);
+      const tongue = box(0.36, 0.16, 0.06, mat(0xff7b86)); tongue.position.set(0, -0.88, 1.15); head.add(tongue);
+
+      // ---------- counter ----------
+      await document.fonts.ready;
+      const digits = document.createElement("canvas"); digits.width = 1024; digits.height = 384;
+      const g = digits.getContext("2d");
+      g.fillStyle = "#06140c"; g.fillRect(0, 0, 1024, 384);
+      g.font = "700 300px Inter, sans-serif"; g.textAlign = "center"; g.textBaseline = "middle";
+      g.fillStyle = "rgba(57,255,136,0.12)"; g.fillText("888", 512, 205);
+      g.shadowColor = "#39ff88"; g.shadowBlur = 40; g.fillStyle = "#5dffa0"; g.fillText("999", 512, 205);
+      g.shadowBlur = 0; g.font = "700 150px Inter, sans-serif"; g.fillStyle = "#5dffa0"; g.fillText("+", 120, 190);
+      const dTex = new THREE.CanvasTexture(digits); dTex.colorSpace = THREE.SRGBColorSpace;
+
+      const counter = new THREE.Group(); counter.position.set(1.55, 2.0, -0.8); counter.rotation.set(0.08, -0.38, -0.08); scene.add(counter);
+      counter.add(box(4.6, 2.0, 0.9, mat(0x1d1f3a)));
+      const bezel = box(4.25, 1.62, 0.2, mat(0x0e1022)); bezel.position.z = 0.42; counter.add(bezel);
+      const screen = new THREE.Mesh(new THREE.PlaneGeometry(4.0, 1.5), new THREE.MeshBasicMaterial({ map: dTex, toneMapped: false }));
+      screen.position.z = 0.53; counter.add(screen);
+      for (const sx of [-1.9, 1.9]) { const bolt = box(0.22, 0.22, 0.12, mat(0xb7c0d8)); bolt.position.set(sx, 0.82, 0.48); counter.add(bolt); }
+      const leg = box(0.35, 1.6, 0.35, mat(0x1d1f3a)); leg.position.set(0, -1.6, -0.1); counter.add(leg);
+      const lamp = new THREE.Mesh(new THREE.OctahedronGeometry(0.28, 0), new THREE.MeshBasicMaterial({ color: 0xff4f4f, toneMapped: false }));
+      lamp.position.set(2.0, 1.15, 0.1); counter.add(lamp);
+
+      // ---------- flying bits ----------
+      const COLORS = [0xffcf2e, 0xff6a2b, 0xffffff, 0x5dffa0, 0xff5fa2];
+      for (let i = 0; i < 26; i++) {
+        const a = hash(i) * Math.PI * 2, r = 2.6 + hash(i + 40) * 2.6;
+        const geo = i % 3 === 0 ? new THREE.TetrahedronGeometry(0.22 + hash(i + 7) * 0.18, 0) : new THREE.BoxGeometry(0.3, 0.3, 0.3);
+        const bit = new THREE.Mesh(geo, mat(COLORS[i % COLORS.length]));
+        bit.position.set(1.85 + Math.cos(a) * r * 1.15, 2.15 + Math.sin(a) * r * 0.75, -0.8 + (hash(i + 90) - 0.5) * 2);
+        if (bit.position.distanceTo(new THREE.Vector3(-1.5, 0, 0.6)) < 2.6) continue;
+        bit.rotation.set(hash(i + 3) * 6, hash(i + 5) * 6, hash(i + 9) * 6);
+        bit.castShadow = true; scene.add(bit);
+      }
+
+      function renderAt() { renderer.render(scene, camera); }
+      window.addEventListener("hf-seek", () => renderAt());
+      renderAt();
+      window.__perfilReady();
+    </script>
+  </body>
+</html>

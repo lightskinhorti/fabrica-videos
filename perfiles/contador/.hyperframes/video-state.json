@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "historyId": "9e3abbcb-9df6-45bc-bdf4-710d7f3dd4ce",
+  "currentRevision": "b12a1550-6da5-4dd9-93a1-7392924a2a79",
+  "pendingChanges": false,
+  "files": {
+    "hyperframes.json": {
+      "hash": "53dbce1e19aa713cbb12ee0bc4d206143b45ab15e6ffbfcaa8f69572d4d24d50",
+      "content": "/Users/javierhortiguelavaliente/.cache/hyperframes/history/9e3abbcb-9df6-45bc-bdf4-710d7f3dd4ce/blobs/53/53dbce1e19aa713cbb12ee0bc4d206143b45ab15e6ffbfcaa8f69572d4d24d50"
+    },
+    "index.html": {
+      "hash": "09efcfe5773d0c6cda4f22fe76bf126419df918210dc8469ee96f44ff12bacec",
+      "content": "/Users/javierhortiguelavaliente/.cache/hyperframes/history/9e3abbcb-9df6-45bc-bdf4-710d7f3dd4ce/blobs/09/09efcfe5773d0c6cda4f22fe76bf126419df918210dc8469ee96f44ff12bacec"
+    }
+  },
+  "revisions": {
+    "b12a1550-6da5-4dd9-93a1-7392924a2a79": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793617708529,
+      "endedAt": 1793617708529,
+      "files": {
+        "index.html": {
+          "before": "/Users/javierhortiguelavaliente/.cache/hyperframes/history/9e3abbcb-9df6-45bc-bdf4-710d7f3dd4ce/blobs/a3/a30adbd738bd4988d2fdcad6bd1179edd36f269f4b5ab17d16e14cb3eec6df39",
+          "after": "/Users/javierhortiguelavaliente/.cache/hyperframes/history/9e3abbcb-9df6-45bc-bdf4-710d7f3dd4ce/blobs/09/09efcfe5773d0c6cda4f22fe76bf126419df918210dc8469ee96f44ff12bacec"
+        }
+      }
+    }
+  },
+  "checks": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "snapshots": {
+    "latest": {
+      "revision": "b12a1550-6da5-4dd9-93a1-7392924a2a79",
+      "id": "4c21048a-a7ab-4a76-a82f-64d9727e40c0-0"
+    },
+    "revisions": {
+      "b12a1550-6da5-4dd9-93a1-7392924a2a79": [
+        {
+          "scope": "full",
+          "id": "4c21048a-a7ab-4a76-a82f-64d9727e40c0-0",
+          "image": "/private/tmp/claude-501/-Users-javierhortiguelavaliente-Desktop-ProyectoPersonal-VideosYCosas-fabrica-prueba/9e263855-41b8-4cb2-b81a-eb7202c12afb/scratchpad/p_contador/frame-00-at-0.5s.png",
+          "time": 0.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793617709411,
+          "contentHash": "e118367617c0658c49087f1978ed6a6741eed1c7eee15366c2af9258344bc1b1",
+          "revision": "b12a1550-6da5-4dd9-93a1-7392924a2a79",
+          "inputFingerprint": "2bfb2c54f9bcab678e32ba20ab2187ec54b176f7c3261ac9e04565341edefd0f",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ]
+    },
+    "unversioned": []
+  }
+}

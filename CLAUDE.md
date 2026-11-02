@@ -16,7 +16,7 @@ Este Mac es de Javier, pero también lo usa para trabajar en eduki:
 
 - Solo cuentas personales: Google, AI Studio, GitHub y la tarjeta. Nunca credenciales, proyectos de Google Cloud ni repositorios de eduki.
 - Ojo: `gcloud` puede tener configurada la cuenta de eduki. No la uses aquí.
-- Ojo: el correo global de git es el de eduki. En este proyecto, git tiene que usar el correo personal con `git config user.email` dentro de la carpeta (nunca `--global`), y comprobarlo antes del primer commit. Las claves de voz van en variables de entorno de proyectos personales.
+- Ojo: el correo global de git es el de eduki. Este repositorio ya tiene el correo personal configurado solo en la carpeta (ver "Repositorio"). Las claves de voz van en variables de entorno de proyectos personales.
 - Todo el proyecto vive en esta carpeta, fuera de `~/dev`.
 - Se trabaja fuera del horario de trabajo.
 - Nada que compita con eduki: ni material educativo ni temarios escolares.
@@ -54,11 +54,20 @@ Este Mac es de Javier, pero también lo usa para trabajar en eduki:
 - **Personajes:** nunca a Clawd, caricaturas de personas reales ni escudos de clubes. Personajes propios.
 - **Otras cuentas:** se copia la receta y el estilo, nunca sus temas ni sus guiones.
 - **Nichos del torneo (2 de noviembre):** "¿Y si X aumentase cada día?", objetos por dentro y dinero cotidiano. El fútbol táctico queda en lista de espera porque paga poco por visualización. Detalle en el PRD, sección "Nichos y torneo".
+- **Nombres de las cuentas** (mismo @ en TikTok e Instagram): El contador loco `@elcontadorloco`, Las cosas por dentro `@lascosaspordentro` y Dinero sin lío `@dinerosinlio`. Para comprobar si un nombre está libre en Instagram sin iniciar sesión, una cuenta desactivada aparece como libre (pasó con `@mirapordentro`): solo el formulario de registro lo confirma. En El contador loco, cada vídeo lleva un contador que no para.
+- **Las cuentas las crea Javier**, con sus datos reales (TikTok los pide para cobrar). Claude no crea cuentas.
 
 ## Siguiente paso
 
 Hechos el 2 de noviembre: el paso 0 (skill del estilo instalada), el paso 1 (vídeo de la tarjeta con la voz de Gemini, en `exports/render/tarjeta_gemini.mp4`), el paso 2 (nichos del torneo elegidos, ver "Decisiones ya tomadas") y la revisión del contrato con eduki (Javier no ha encontrado nada que lo prohíba).
 
-3. **Resto de la fase 0 del PRD:**
-   - Repositorio privado en el GitHub personal de Javier: `gh` aún no tiene sesión iniciada, y git necesita su correo personal en esta carpeta. Sin subir `node_modules`, `.venv`, ni los vídeos de `referencias/` (son de otras cuentas).
-   - Nombre y foto para las 3 cuentas, sin el nombre real de Javier.
+**Fase 0 terminada el 2 de noviembre:** contrato revisado, repositorio en GitHub, nombres elegidos, fotos de perfil hechas en `exports/perfiles/` (fuentes en `perfiles/<cuenta>/index.html`; se sacan con `npx hyperframes snapshot --at 0.5 --no-end`) y las 3 cuentas creadas por Javier en TikTok e Instagram. Cada cuenta tiene su estilo: low poly en El contador loco, oscuro con cobre en Las cosas por dentro y plano 2D en Dinero sin lío. No se publica nada hasta la fase 2.
+
+4. **Fase 1 del PRD (fábrica mínima):** montar la cadena completa con la plantilla de El contador loco (ideas, investigación, guion, voz, subtítulos, montaje, render y control automático), hacer 5 vídeos de prueba de más de 60 segundos y medir cuántos minutos de Javier necesita cada uno. Antes, instalar los estilos de lemo-opuscar.
+
+## Repositorio
+
+- Privado en GitHub: `lightskinhorti/fabrica-videos`, rama `main`. Creado el 2 de noviembre.
+- Git está configurado solo en esta carpeta (`.git/config`): usuario `lightskinhorti`, su correo personal y credenciales en `.git/credentials` (un token que solo sirve para este repositorio, con permiso de contenido). Ahí se anula el llavero de macOS.
+- **Nunca toques la configuración global de git (`~/.gitconfig`) ni el llavero:** Javier los usa a diario para el GitLab de eduki. No uses `gh auth login` ni `git config --global`.
+- No se suben `node_modules`, `.venv`, `render/lib`, `referencias/` (vídeos de otras cuentas) ni `exports/` (ver `.gitignore`).

@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "historyId": "450da8ff-6693-4957-b366-2e481a75f030",
+  "currentRevision": "1b950a97-abd1-42b7-8fab-82707cd07f29",
+  "pendingChanges": false,
+  "files": {
+    "hyperframes.json": {
+      "hash": "53dbce1e19aa713cbb12ee0bc4d206143b45ab15e6ffbfcaa8f69572d4d24d50",
+      "content": "/Users/javierhortiguelavaliente/.cache/hyperframes/history/450da8ff-6693-4957-b366-2e481a75f030/blobs/53/53dbce1e19aa713cbb12ee0bc4d206143b45ab15e6ffbfcaa8f69572d4d24d50"
+    },
+    "index.html": {
+      "hash": "7a744298c906092af868c2cc7f05f18ea2395dcd70426946146a51ac73113d0a",
+      "content": "/Users/javierhortiguelavaliente/.cache/hyperframes/history/450da8ff-6693-4957-b366-2e481a75f030/blobs/7a/7a744298c906092af868c2cc7f05f18ea2395dcd70426946146a51ac73113d0a"
+    }
+  },
+  "revisions": {
+    "5a508f57-6111-4280-9041-b5d57d10e963": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793617967131,
+      "endedAt": 1793617967131,
+      "files": {
+        "index.html": {
+          "before": "/Users/javierhortiguelavaliente/.cache/hyperframes/history/450da8ff-6693-4957-b366-2e481a75f030/blobs/ed/eda40db9f11f7e8715ae7261f82018d428b572baf0dd4de3865b5919418c23db",
+          "after": "/Users/javierhortiguelavaliente/.cache/hyperframes/history/450da8ff-6693-4957-b366-2e481a75f030/blobs/c2/c22b897a39d8035467af2aa61375d9ce93c873c1a26e612e1a52eff15668bdc7"
+        }
+      }
+    },
+    "1b950a97-abd1-42b7-8fab-82707cd07f29": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793617992708,
+      "endedAt": 1793617992708,
+      "files": {
+        "index.html": {
+          "before": "/Users/javierhortiguelavaliente/.cache/hyperframes/history/450da8ff-6693-4957-b366-2e481a75f030/blobs/c2/c22b897a39d8035467af2aa61375d9ce93c873c1a26e612e1a52eff15668bdc7",
+          "after": "/Users/javierhortiguelavaliente/.cache/hyperframes/history/450da8ff-6693-4957-b366-2e481a75f030/blobs/7a/7a744298c906092af868c2cc7f05f18ea2395dcd70426946146a51ac73113d0a"
+        }
+      }
+    }
+  },
+  "checks": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "snapshots": {
+    "latest": {
+      "revision": "1b950a97-abd1-42b7-8fab-82707cd07f29",
+      "id": "e256a786-17fa-426e-a3a4-468d9f550f37-0"
+    },
+    "revisions": {
+      "5a508f57-6111-4280-9041-b5d57d10e963": [],
+      "1b950a97-abd1-42b7-8fab-82707cd07f29": [
+        {
+          "scope": "full",
+          "id": "e256a786-17fa-426e-a3a4-468d9f550f37-0",
+          "image": "/private/tmp/claude-501/-Users-javierhortiguelavaliente-Desktop-ProyectoPersonal-VideosYCosas-fabrica-prueba/9e263855-41b8-4cb2-b81a-eb7202c12afb/scratchpad/p_dinero/frame-00-at-0.5s.png",
+          "time": 0.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793617993734,
+          "contentHash": "7b9c3f1e1d568d00116738ee6fc2f1c0a8d545220a10d894c5609017936b5243",
+          "revision": "1b950a97-abd1-42b7-8fab-82707cd07f29",
+          "inputFingerprint": "16c58e528cc91e1bd14ee3be0da477e98d574b3d891690efa3cb643321528400",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ]
+    },
+    "unversioned": []
+  }
+}
