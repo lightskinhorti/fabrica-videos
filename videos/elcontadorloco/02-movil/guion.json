@@ -66,5 +66,13 @@
     "apagaría",
     "soltarías"
   ],
-  "pausa_segundos": 0.35
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "Tu móvil, un grado más cada minuto: de la fiebre a la superficie del Sol. No lo intentes: un móvil de verdad avisaría y se apagaría mucho antes.",
+    "hashtags": [
+      "#movil",
+      "#temperatura",
+      "#sol"
+    ]
+  }
 }

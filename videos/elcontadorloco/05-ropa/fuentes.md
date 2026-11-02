@@ -18,6 +18,22 @@ Ritmo: el montón se duplica cada día. Día 0 (hoy): 1 prenda; día n: 2^n pren
 | Dato real para cerrar (España) | 19 kg de residuo textil por persona y año, unas 60 prendas; solo un 13 % se recoge aparte y el 87 % acaba en el vertedero | | Moda re- (cooperativa de Cáritas), informe *Situación actual del sector de la recogida y tratamiento de ropa usada en España*, 3.ª edición, con datos de 2024, presentado el 7 de mayo de 2026 ([Moda re-](https://modare.org/magazine/circular/informe-recogida-tratamiento-ropa-usada-espana-2026/), [CTXT](https://ctxt.es/es/20260501/Firmas/53392/Observatorio-Social-la-Caixa-residuos-textiles-ropa-reciclaje-vertederos.htm)). En 2024 se recogieron aparte 118.951 toneladas |
 | Dato europeo (alternativa) | 19 kg de ropa, calzado y textil del hogar comprados por persona en 2022 (8 kg de ropa, 4 de calzado y 7 de textil del hogar); 17 kg en 2019 | | [Agencia Europea de Medio Ambiente](https://www.eea.europa.eu/en/topics/in-depth/textiles) (total y comparación con 2019); el desglose sale de la nota de prensa de marzo de 2025 recogida por [Bluewin/SDA](https://www.bluewin.ch/en/news/international/europeans-buy-more-clothes-than-ever-before-according-to-the-eu-environment-agency-2622061.html) |
 
+## Cifras exactas de las etiquetas (añadido por Claude)
+
+Altura = 2^día × 0,02 m. Son cálculos, con la suposición de 2 cm por prenda:
+
+| Etiqueta | Día | Altura exacta |
+|---|---|---|
+| PASA LA SILLA | 6 | 1,28 m |
+| TOCA EL TECHO | 7 | 2,56 m |
+| MÁS QUE UNA FAROLA | 9 | 10,24 m |
+| PASA LA TORRE DE CRISTAL | 14 | 327,68 m |
+| ENTRE LAS NUBES | 16 | 1.310,72 m |
+| PASA EL EVEREST | 19 | 10.485,76 m |
+| EN EL ESPACIO | 23 | 167.772,16 m (167,8 km) |
+| 89 % DEL CAMINO A LA LUNA | 34 | 343.597.383,68 m (343.597 km) |
+| LUNA SUPERADA | 35 | 687.194.767,36 m (687.195 km) |
+
 ## Escalones recomendados
 
 1. **Día 6** (64 prendas, 1,28 m): pasa el respaldo de la silla. En menos de una semana.

@@ -14,6 +14,27 @@
     "Y lo peor: para volver a bajar, otros doce.",
     "¿Hasta qué piso aguantarías tú? Te leo en los comentarios."
   ],
-  "claves": ["subir", "metro", "azotea", "España", "mundo", "Everest", "aviones", "espacio", "Estación", "Luna", "doce", "comentarios"],
-  "pausa_segundos": 0.35
+  "claves": [
+    "subir",
+    "metro",
+    "azotea",
+    "España",
+    "mundo",
+    "Everest",
+    "aviones",
+    "espacio",
+    "Estación",
+    "Luna",
+    "doce",
+    "comentarios"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "Un ascensor a un metro por segundo que no para nunca: de tu planta a la Luna. ¿Hasta qué piso aguantarías tú? Valores aproximados.",
+    "hashtags": [
+      "#ascensor",
+      "#espacio",
+      "#luna"
+    ]
+  }
 }

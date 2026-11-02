@@ -200,7 +200,16 @@ git clone https://github.com/JohnHeibel/ClaudeAnimationBase.git
 
 - **Los 5 vídeos de prueba están hechos y aprobados (2 de noviembre),** todos de más de 60 segundos, en `exports/render/`: 01-ascensor (61,5 s), 02-movil (61,2 s), 03-gato (65,2 s), 04-crecer (64,5 s) y 05-ropa (61,1 s). Cada uno tiene su `fuentes.md` con las cifras y sus fuentes.
 - **Cadena de un solo comando:** `bash herramientas/producir.sh videos/<cuenta>/<video>`. Genera la voz con Gemini si falta (la clave está en `.env`, fuera de git), la transcribe con Whisper, mete los tiempos en la escena, hace la mezcla, ajusta el volumen a -14 LUFS, pasa la revisión de HyperFrames y renderiza.
-- **Paso 4 a medias:** la duración, el volumen (-14 LUFS, medido en el vídeo final) y la revisión de HyperFrames ya se comprueban solos. Falta comprobar automáticamente que los subtítulos caen en la zona visible y que cada cifra tiene fuente (ahora están en `fuentes.md` de cada vídeo).
+- **Fase 1 terminada (2 de noviembre).** El paso 4 está completo:
+  - `herramientas/control.py` (R10) comprueba solo, al final de `producir.sh`:
+    - que el vídeo dure más de 60 s y tenga el volumen a -14 LUFS;
+    - que cada subtítulo quepa en 2 líneas dentro de su caja, midiendo el texto con la misma letra del vídeo, y que el título quepa en 3;
+    - que las cifras quepan en el marcador y en las etiquetas;
+    - que cada cifra de las etiquetas esté en `fuentes.md` (si falta, es un error) y cada cifra de los subtítulos también (si falta, es un aviso).
+    Al estrenarlo encontró 3 cifras sin apuntar en las fuentes, que ya están corregidas. La ortografía no la revisa: la cuida Claude al escribir el guion.
+  - `herramientas/publicacion.py` (R12) deja en cada vídeo un `publicacion.md` con la descripción lista para copiar, los hashtags, la hora y la lista de comprobación (con la etiqueta de IA), más la portada en PNG.
+  - La cadena completa, con la voz ya hecha, tarda unos 40 segundos por vídeo.
+  - **Tus minutos por vídeo:** 1 o 2, que es lo que se tarda en verlo y aprobarlo. La voz, el montaje y el control ya no te piden nada. Lo que lleva tiempo es la escena 3D la primera vez que sale un tema, y eso es trabajo de Claude.
 - **Lo aprendido con la voz real:**
   - Whisper escribe los números en cifras ("249") y el guion los tiene en palabras para que la voz los lea bien. `herramientas/vozdata.py` empareja las dos versiones aunque no coincidan palabra a palabra, y en los subtítulos salen las cifras.
   - La voz real fue más rápida que la estimación: 60 segundos en vez de 73.
@@ -397,6 +406,12 @@ El objetivo es 3 vídeos al día por cuenta, pero se llega por escalones. Si la 
 - Las tres caen fuera de tu horario laboral, así que se pueden publicar a mano si hace falta.
 - A las 2 semanas se ajustan con TikTok Studio, en Audiencia > Actividad de seguidores.
 - TikTok tiene un programador gratuito en su web que deja programar con hasta 10 días de antelación. Una fuente dice que exige cuenta de empresa, que no puede cobrar del programa: hay que comprobarlo con una cuenta personal.
+
+**Ritmo de salida (pregunta de Javier, 2 de noviembre):** ¿empezar con 3 vídeos al día por cuenta en vez de 1? La recomendación de Claude es empezar con 1 por cuenta (3 al día en total) y subir a 2 en cuanto haya una semana de reserva y la calidad aguante:
+- Más volumen sube el techo de los mejores vídeos, pero baja la interacción de cada uno (estudios de Buffer y TT Calculator citados arriba).
+- 9 vídeos al día son 63 a la semana, y ahora hay 5 y una sola plantilla.
+- El plan gratis de la voz de Gemini tiene un límite diario de peticiones (no comprobado cuál).
+Pendiente de que Javier decida.
 
 **Cómo se publica (revisado el 2 de noviembre):**
 

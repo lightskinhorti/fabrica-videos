@@ -16,6 +16,29 @@
     "Aunque en España cada persona genera unos diecinueve kilos de residuo textil al año, y casi todo acaba en el vertedero.",
     "¿Cuántos días aguantarías tú sin doblarla? Te leo en los comentarios."
   ],
-  "claves": ["duplica", "camiseta", "silla", "techo", "farola", "Cristal", "nubes", "Everest", "espacio", "Luna", "largo", "suerte", "vertedero", "comentarios"],
-  "pausa_segundos": 0.35
+  "claves": [
+    "duplica",
+    "camiseta",
+    "silla",
+    "techo",
+    "farola",
+    "Cristal",
+    "nubes",
+    "Everest",
+    "espacio",
+    "Luna",
+    "largo",
+    "suerte",
+    "vertedero",
+    "comentarios"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "Un montón de ropa que se duplica cada día: el día 34 casi llega a la Luna y el 35 la pasa. Así de rápido crece algo que se duplica.",
+    "hashtags": [
+      "#ropa",
+      "#exponencial",
+      "#luna"
+    ]
+  }
 }

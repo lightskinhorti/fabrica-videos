@@ -30,5 +30,13 @@
     "tranquilo",
     "comentarios"
   ],
-  "pausa_segundos": 0.35
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "Un gato que engorda un kilo al día: del labrador a la ballena azul. Tranquilo, tu gato está perfecto como está. Valores aproximados.",
+    "hashtags": [
+      "#gatos",
+      "#animales",
+      "#gatosdetiktok"
+    ]
+  }
 }

@@ -16,6 +16,29 @@
     "Y ya no cabrías en ningún ascensor.",
     "¿Hasta qué altura te gustaría crecer? Te leo en los comentarios."
   ],
-  "claves": ["centímetro", "adulto", "puerta", "techo", "canasta", "jirafa", "edificio", "ballena", "Giralda", "Sagrada", "vivieras", "Cristal", "ascensor", "comentarios"],
-  "pausa_segundos": 0.35
+  "claves": [
+    "centímetro",
+    "adulto",
+    "puerta",
+    "techo",
+    "canasta",
+    "jirafa",
+    "edificio",
+    "ballena",
+    "Giralda",
+    "Sagrada",
+    "vivieras",
+    "Cristal",
+    "ascensor",
+    "comentarios"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "Si crecieras un centímetro cada día, ¿hasta dónde llegarías en toda tu vida? De la puerta de casa a la Torre de Cristal. Valores aproximados.",
+    "hashtags": [
+      "#altura",
+      "#edificios",
+      "#espana"
+    ]
+  }
 }
