@@ -1,0 +1,21 @@
+{
+  "titulo": "¿Y si tu montón de ropa se duplicara cada día?",
+  "lines": [
+    "Tu montón de ropa sin doblar tiene una regla: cada día que no lo doblas, se duplica.",
+    "Hoy es una camiseta. Mañana, dos. Pasado, cuatro. Nada grave.",
+    "Al sexto día, ya pasa el respaldo de la silla.",
+    "Al séptimo, toca el techo de tu cuarto.",
+    "Al noveno, es más alto que una farola: diez metros de ropa.",
+    "El día catorce, pasa la Sagrada Familia y la Torre de Cristal.",
+    "El día dieciséis, se mete entre las nubes.",
+    "El día diecinueve, deja atrás el Everest y a los aviones.",
+    "El día veintitrés, tu ropa sucia ya está en el espacio.",
+    "Y ahora viene lo bueno: el día treinta y cuatro, ha recorrido casi el noventa por ciento del camino a la Luna.",
+    "Solo un día después, la pasa de largo. Cada día crece tanto como todos los anteriores juntos.",
+    "Por suerte, la ropa de verdad no funciona así.",
+    "Aunque en España cada persona genera unos diecinueve kilos de residuo textil al año, y casi todo acaba en el vertedero.",
+    "¿Cuántos días aguantarías tú sin doblarla? Te leo en los comentarios."
+  ],
+  "claves": ["duplica", "camiseta", "silla", "techo", "farola", "Cristal", "nubes", "Everest", "espacio", "Luna", "largo", "suerte", "vertedero", "comentarios"],
+  "pausa_segundos": 0.35
+}

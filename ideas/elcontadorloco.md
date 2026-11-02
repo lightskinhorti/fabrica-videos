@@ -31,6 +31,8 @@ Puntuación de 1 a 5:
 | 19 | ¿Y si un dado tuviera una cara más cada vez que lo tiras? | Caras del dado | Dado de rol, balón, esfera perfecta | 3 | 3 | Bajo |
 | 20 | ¿Y si dejaras de dormir? | Horas despierto | Ojeras, récords, alucinaciones | 5 | 3 | Alto (salud: mejor no por ahora) |
 
+**Nota sobre la #7 (decibelios):** Javier ha visto que este formato funciona en inglés con un audio de meme ("bomboclaat"). Para la versión en español no se mete un audio de meme dentro del vídeo: suelen ser fragmentos de tele, cine o canciones con la voz de una persona real, y TikTok puede silenciarlos (y un vídeo silenciado no cobra). Opciones: un grito-meme propio de la cuenta (el personaje de bloques gritando una frase corta cada vez más fuerte), o añadir el sonido de meme desde la biblioteca de TikTok al publicar.
+
 ## Propuesta para los 5 vídeos de prueba de la fase 1
 
 Los que tienen mejor gancho, datos fáciles y riesgo bajo, y además usan escalas distintas (altura, temperatura, peso, longitud), para probar que la plantilla aguanta temas diferentes:
@@ -43,4 +45,11 @@ Los que tienen mejor gancho, datos fáciles y riesgo bajo, y además usan escala
 
 ## Estado
 
-- [ ] Javier aprueba las 5 ideas (o cambia alguna).
+- [x] Javier aprueba las 5 ideas (2 de noviembre).
+- [x] Vídeo 1: ascensor (61,5 s). Aprobado por Javier el 2 de noviembre.
+- [ ] Vídeo 2: móvil que se calienta (61,2 s). Hecho; también en modo texto (`02-movil-texto.mp4`).
+- [ ] Vídeo 3: gato que engorda (65,2 s). Hecho.
+- [ ] Vídeo 4: crecer 1 cm al día (64,5 s). Hecho.
+- [ ] Vídeo 5: montón de ropa que se duplica (61,1 s). Hecho.
+
+Todos en `exports/render/`; falta que Javier apruebe del 2 al 5.

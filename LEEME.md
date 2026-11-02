@@ -112,6 +112,14 @@ python3 voz_gemini.py
 - El estilo se cambia en la variable `ESTILO` de `voz_gemini.py`.
 - Crea `gemini_<voz>.wav`. Si sale un error 429, es el límite del plan gratis: espera un minuto y repite.
 
+**Para que Claude genere las voces sin ti** (solo una vez): guarda la clave en el archivo `.env` de la raíz del proyecto. Git lo ignora y `chmod 600` hace que solo tu usuario del Mac pueda leerlo. Desde la raíz del proyecto:
+
+```
+read -s "K?Pega tu clave de AI Studio: " && printf 'GEMINI_API_KEY=%s\n' "$K" > .env && chmod 600 .env && unset K && echo
+```
+
+Desde entonces `voz_gemini.py` lee la clave de ahí si no hay variable, y `herramientas/producir.sh` genera la voz del vídeo cuando falta.
+
 Precio de pago: 0,00225 $ por cada 10 s de audio hasta el 31-12-2026 y 0,0045 $ desde el 1-1-2027. Para 9 vídeos de 70 s al día son unos 4 $ al mes, y unos 8,5 $ desde enero.
 
 Opcional: `voz_elevenlabs.py` prueba ElevenLabs (variable `ELEVENLABS_KEY`). No se ha probado todavía y su API cuesta unos 0,08 $ por cada 1.000 caracteres, unos 24 $ al mes al mismo ritmo.

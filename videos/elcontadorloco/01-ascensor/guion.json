@@ -1,0 +1,19 @@
+{
+  "titulo": "¿Y si tu ascensor no parara de subir?",
+  "lines": [
+    "Tu ascensor se ha vuelto loco y ya no para de subir.",
+    "Va a un metro por segundo, como el de tu edificio. ¿Hasta dónde llegarías?",
+    "Al principio, nada raro: pasas tu planta, la del vecino, la azotea.",
+    "A los cuatro minutos, pasas la Torre de Cristal, el edificio más alto de España: doscientos cuarenta y nueve metros.",
+    "A los catorce minutos, dejas atrás el Burj Khalifa, el rascacielos más alto del mundo.",
+    "Dos horas y media después, estás a la altura del Everest: ocho mil ochocientos cuarenta y nueve metros.",
+    "A las tres horas, los aviones pasan por debajo de ti. Fuera hace unos cincuenta y seis grados bajo cero.",
+    "En algo más de un día, cruzas los cien kilómetros. Según la definición más usada, ya estás en el espacio.",
+    "Casi cinco días después, pasas junto a la Estación Espacial, a unos cuatrocientos veinte kilómetros.",
+    "¿Y la Luna? A esta velocidad, tardarías doce años. Doce años sin salir del ascensor.",
+    "Y lo peor: para volver a bajar, otros doce.",
+    "¿Hasta qué piso aguantarías tú? Te leo en los comentarios."
+  ],
+  "claves": ["subir", "metro", "azotea", "España", "mundo", "Everest", "aviones", "espacio", "Estación", "Luna", "doce", "comentarios"],
+  "pausa_segundos": 0.35
+}

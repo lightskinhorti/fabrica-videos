@@ -1,0 +1,21 @@
+{
+  "titulo": "¿Y si crecieras un centímetro cada día?",
+  "lines": [
+    "Imagina que desde hoy creces un centímetro cada día. Parece poco. ¿Hasta dónde llegarías?",
+    "Empiezas midiendo un metro setenta, más o menos lo que mide un adulto en España.",
+    "Al mes, ya te das con el marco de la puerta.",
+    "A los dos meses y medio, rozas el techo de casa.",
+    "A los cuatro meses y medio, llegas a la canasta sin saltar.",
+    "Al año, miras a una jirafa a los ojos: cinco metros y medio.",
+    "A los dos años, eres más alto que un edificio de tres plantas.",
+    "A los ocho años, mides lo mismo que una ballena azul de la cabeza a la cola.",
+    "A los veintiocho, superas la Giralda de Sevilla.",
+    "A los cuarenta y siete, la Sagrada Familia: ciento setenta y dos metros y medio.",
+    "Si empezaras a los dieciocho años y vivieras lo que vive de media un español, unos ochenta y cuatro, acabarías midiendo doscientos cuarenta y tres metros.",
+    "Te quedarías a solo seis metros de la Torre de Cristal, el edificio más alto de España.",
+    "Y ya no cabrías en ningún ascensor.",
+    "¿Hasta qué altura te gustaría crecer? Te leo en los comentarios."
+  ],
+  "claves": ["centímetro", "adulto", "puerta", "techo", "canasta", "jirafa", "edificio", "ballena", "Giralda", "Sagrada", "vivieras", "Cristal", "ascensor", "comentarios"],
+  "pausa_segundos": 0.35
+}

@@ -1,0 +1,1106 @@
+[
+  {
+    "text": "Imagina",
+    "start": 0.21,
+    "end": 0.57,
+    "id": "w0"
+  },
+  {
+    "text": "que",
+    "start": 0.57,
+    "end": 0.81,
+    "id": "w1"
+  },
+  {
+    "text": "desde",
+    "start": 0.99,
+    "end": 1.23,
+    "id": "w2"
+  },
+  {
+    "text": "hoy",
+    "start": 1.23,
+    "end": 1.48,
+    "id": "w3"
+  },
+  {
+    "text": "creces",
+    "start": 1.48,
+    "end": 1.92,
+    "id": "w4"
+  },
+  {
+    "text": "un",
+    "start": 2.07,
+    "end": 2.16,
+    "id": "w5"
+  },
+  {
+    "text": "centímetro",
+    "start": 2.16,
+    "end": 2.96,
+    "id": "w6"
+  },
+  {
+    "text": "cada",
+    "start": 2.96,
+    "end": 3.27,
+    "id": "w7"
+  },
+  {
+    "text": "día.",
+    "start": 3.27,
+    "end": 3.67,
+    "id": "w8"
+  },
+  {
+    "text": "Parece",
+    "start": 3.82,
+    "end": 4.27,
+    "id": "w9"
+  },
+  {
+    "text": "poco.¿Hasta",
+    "start": 4.28,
+    "end": 5.44,
+    "id": "w10"
+  },
+  {
+    "text": "dónde",
+    "start": 5.44,
+    "end": 5.76,
+    "id": "w11"
+  },
+  {
+    "text": "llegarías?",
+    "start": 5.99,
+    "end": 6.7,
+    "id": "w12"
+  },
+  {
+    "text": "Empiezas",
+    "start": 6.97,
+    "end": 7.34,
+    "id": "w13"
+  },
+  {
+    "text": "midiendo",
+    "start": 7.34,
+    "end": 7.93,
+    "id": "w14"
+  },
+  {
+    "text": "un",
+    "start": 7.93,
+    "end": 8.07,
+    "id": "w15"
+  },
+  {
+    "text": "metro",
+    "start": 8.07,
+    "end": 8.44,
+    "id": "w16"
+  },
+  {
+    "text": "setenta,",
+    "start": 8.44,
+    "end": 9.11,
+    "id": "w17"
+  },
+  {
+    "text": "más",
+    "start": 9.11,
+    "end": 9.27,
+    "id": "w18"
+  },
+  {
+    "text": "o",
+    "start": 9.27,
+    "end": 9.32,
+    "id": "w19"
+  },
+  {
+    "text": "menos",
+    "start": 9.32,
+    "end": 9.55,
+    "id": "w20"
+  },
+  {
+    "text": "lo",
+    "start": 9.6,
+    "end": 9.69,
+    "id": "w21"
+  },
+  {
+    "text": "que",
+    "start": 9.69,
+    "end": 9.86,
+    "id": "w22"
+  },
+  {
+    "text": "mide",
+    "start": 9.86,
+    "end": 10.06,
+    "id": "w23"
+  },
+  {
+    "text": "un",
+    "start": 10.06,
+    "end": 10.08,
+    "id": "w24"
+  },
+  {
+    "text": "adulto",
+    "start": 10.17,
+    "end": 10.56,
+    "id": "w25"
+  },
+  {
+    "text": "en",
+    "start": 10.58,
+    "end": 10.64,
+    "id": "w26"
+  },
+  {
+    "text": "España.",
+    "start": 10.64,
+    "end": 11.54,
+    "id": "w27"
+  },
+  {
+    "text": "Al",
+    "start": 11.54,
+    "end": 11.81,
+    "id": "w28"
+  },
+  {
+    "text": "mes",
+    "start": 11.81,
+    "end": 12,
+    "id": "w29"
+  },
+  {
+    "text": "ya",
+    "start": 12,
+    "end": 12.11,
+    "id": "w30"
+  },
+  {
+    "text": "te",
+    "start": 12.15,
+    "end": 12.32,
+    "id": "w31"
+  },
+  {
+    "text": "das",
+    "start": 12.32,
+    "end": 12.39,
+    "id": "w32"
+  },
+  {
+    "text": "con",
+    "start": 12.59,
+    "end": 12.8,
+    "id": "w33"
+  },
+  {
+    "text": "el",
+    "start": 12.8,
+    "end": 12.96,
+    "id": "w34"
+  },
+  {
+    "text": "marco",
+    "start": 12.96,
+    "end": 13.31,
+    "id": "w35"
+  },
+  {
+    "text": "de",
+    "start": 13.36,
+    "end": 13.51,
+    "id": "w36"
+  },
+  {
+    "text": "la",
+    "start": 13.67,
+    "end": 13.68,
+    "id": "w37"
+  },
+  {
+    "text": "puerta.",
+    "start": 13.68,
+    "end": 14.48,
+    "id": "w38"
+  },
+  {
+    "text": "A",
+    "start": 14.48,
+    "end": 14.56,
+    "id": "w39"
+  },
+  {
+    "text": "los",
+    "start": 14.69,
+    "end": 14.82,
+    "id": "w40"
+  },
+  {
+    "text": "dos",
+    "start": 14.82,
+    "end": 15.08,
+    "id": "w41"
+  },
+  {
+    "text": "meses",
+    "start": 15.08,
+    "end": 15.52,
+    "id": "w42"
+  },
+  {
+    "text": "y",
+    "start": 15.52,
+    "end": 15.59,
+    "id": "w43"
+  },
+  {
+    "text": "medio",
+    "start": 15.6,
+    "end": 16,
+    "id": "w44"
+  },
+  {
+    "text": "rozas",
+    "start": 16.07,
+    "end": 16.41,
+    "id": "w45"
+  },
+  {
+    "text": "el",
+    "start": 16.55,
+    "end": 16.64,
+    "id": "w46"
+  },
+  {
+    "text": "techo",
+    "start": 16.64,
+    "end": 17.07,
+    "id": "w47"
+  },
+  {
+    "text": "de",
+    "start": 17.07,
+    "end": 17.24,
+    "id": "w48"
+  },
+  {
+    "text": "casa.",
+    "start": 17.24,
+    "end": 17.78,
+    "id": "w49"
+  },
+  {
+    "text": "A",
+    "start": 17.92,
+    "end": 17.99,
+    "id": "w50"
+  },
+  {
+    "text": "los",
+    "start": 18.13,
+    "end": 18.22,
+    "id": "w51"
+  },
+  {
+    "text": "cuatro",
+    "start": 18.22,
+    "end": 18.67,
+    "id": "w52"
+  },
+  {
+    "text": "meses",
+    "start": 18.67,
+    "end": 19.07,
+    "id": "w53"
+  },
+  {
+    "text": "y",
+    "start": 19.07,
+    "end": 19.14,
+    "id": "w54"
+  },
+  {
+    "text": "medio",
+    "start": 19.14,
+    "end": 19.56,
+    "id": "w55"
+  },
+  {
+    "text": "llegas",
+    "start": 19.56,
+    "end": 20.09,
+    "id": "w56"
+  },
+  {
+    "text": "a",
+    "start": 20.09,
+    "end": 20.15,
+    "id": "w57"
+  },
+  {
+    "text": "la",
+    "start": 20.23,
+    "end": 20.35,
+    "id": "w58"
+  },
+  {
+    "text": "canasta",
+    "start": 20.4,
+    "end": 20.94,
+    "id": "w59"
+  },
+  {
+    "text": "sin",
+    "start": 20.99,
+    "end": 21.21,
+    "id": "w60"
+  },
+  {
+    "text": "saltar.",
+    "start": 21.21,
+    "end": 22.08,
+    "id": "w61"
+  },
+  {
+    "text": "Al",
+    "start": 22.08,
+    "end": 22.29,
+    "id": "w62"
+  },
+  {
+    "text": "año",
+    "start": 22.29,
+    "end": 22.51,
+    "id": "w63"
+  },
+  {
+    "text": "miras",
+    "start": 22.51,
+    "end": 22.89,
+    "id": "w64"
+  },
+  {
+    "text": "a",
+    "start": 22.89,
+    "end": 23.07,
+    "id": "w65"
+  },
+  {
+    "text": "una",
+    "start": 23.07,
+    "end": 23.28,
+    "id": "w66"
+  },
+  {
+    "text": "girafa",
+    "start": 23.28,
+    "end": 23.78,
+    "id": "w67"
+  },
+  {
+    "text": "a",
+    "start": 23.78,
+    "end": 23.86,
+    "id": "w68"
+  },
+  {
+    "text": "los",
+    "start": 23.86,
+    "end": 24,
+    "id": "w69"
+  },
+  {
+    "text": "ojos,",
+    "start": 24.15,
+    "end": 24.68,
+    "id": "w70"
+  },
+  {
+    "text": "cinco",
+    "start": 24.68,
+    "end": 25.05,
+    "id": "w71"
+  },
+  {
+    "text": "metros",
+    "start": 25.05,
+    "end": 25.37,
+    "id": "w72"
+  },
+  {
+    "text": "y",
+    "start": 25.37,
+    "end": 25.9,
+    "id": "w73"
+  },
+  {
+    "text": "medio.",
+    "start": 25.9,
+    "end": 26.18,
+    "id": "w74"
+  },
+  {
+    "text": "A",
+    "start": 26.2,
+    "end": 26.27,
+    "id": "w75"
+  },
+  {
+    "text": "los",
+    "start": 26.41,
+    "end": 26.49,
+    "id": "w76"
+  },
+  {
+    "text": "dos",
+    "start": 26.49,
+    "end": 26.65,
+    "id": "w77"
+  },
+  {
+    "text": "años",
+    "start": 26.7,
+    "end": 26.98,
+    "id": "w78"
+  },
+  {
+    "text": "eres",
+    "start": 27.19,
+    "end": 27.3,
+    "id": "w79"
+  },
+  {
+    "text": "más",
+    "start": 27.31,
+    "end": 27.53,
+    "id": "w80"
+  },
+  {
+    "text": "alto",
+    "start": 27.53,
+    "end": 27.82,
+    "id": "w81"
+  },
+  {
+    "text": "que",
+    "start": 27.82,
+    "end": 28.05,
+    "id": "w82"
+  },
+  {
+    "text": "un",
+    "start": 28.05,
+    "end": 28.13,
+    "id": "w83"
+  },
+  {
+    "text": "edificio",
+    "start": 28.27,
+    "end": 28.8,
+    "id": "w84"
+  },
+  {
+    "text": "de",
+    "start": 28.8,
+    "end": 28.95,
+    "id": "w85"
+  },
+  {
+    "text": "tres",
+    "start": 28.95,
+    "end": 29.22,
+    "id": "w86"
+  },
+  {
+    "text": "plantas.",
+    "start": 29.25,
+    "end": 30.04,
+    "id": "w87"
+  },
+  {
+    "text": "A",
+    "start": 30.04,
+    "end": 30.11,
+    "id": "w88"
+  },
+  {
+    "text": "los",
+    "start": 30.25,
+    "end": 30.33,
+    "id": "w89"
+  },
+  {
+    "text": "ocho",
+    "start": 30.33,
+    "end": 30.62,
+    "id": "w90"
+  },
+  {
+    "text": "años",
+    "start": 30.62,
+    "end": 30.86,
+    "id": "w91"
+  },
+  {
+    "text": "mides",
+    "start": 30.98,
+    "end": 31.27,
+    "id": "w92"
+  },
+  {
+    "text": "lo",
+    "start": 31.27,
+    "end": 31.41,
+    "id": "w93"
+  },
+  {
+    "text": "mismo",
+    "start": 31.41,
+    "end": 31.74,
+    "id": "w94"
+  },
+  {
+    "text": "que",
+    "start": 31.8,
+    "end": 31.97,
+    "id": "w95"
+  },
+  {
+    "text": "una",
+    "start": 32.11,
+    "end": 32.22,
+    "id": "w96"
+  },
+  {
+    "text": "ballena",
+    "start": 32.22,
+    "end": 32.69,
+    "id": "w97"
+  },
+  {
+    "text": "azul",
+    "start": 32.74,
+    "end": 33.01,
+    "id": "w98"
+  },
+  {
+    "text": "de",
+    "start": 33.01,
+    "end": 33.16,
+    "id": "w99"
+  },
+  {
+    "text": "la",
+    "start": 33.16,
+    "end": 33.29,
+    "id": "w100"
+  },
+  {
+    "text": "cabeza",
+    "start": 33.29,
+    "end": 33.37,
+    "id": "w101"
+  },
+  {
+    "text": "a",
+    "start": 33.37,
+    "end": 33.86,
+    "id": "w102"
+  },
+  {
+    "text": "la",
+    "start": 33.86,
+    "end": 33.95,
+    "id": "w103"
+  },
+  {
+    "text": "cola.",
+    "start": 33.95,
+    "end": 34.39,
+    "id": "w104"
+  },
+  {
+    "text": "A",
+    "start": 34.56,
+    "end": 34.64,
+    "id": "w105"
+  },
+  {
+    "text": "los",
+    "start": 34.77,
+    "end": 34.89,
+    "id": "w106"
+  },
+  {
+    "text": "veintiocho",
+    "start": 34.89,
+    "end": 35.71,
+    "id": "w107"
+  },
+  {
+    "text": "superas",
+    "start": 35.71,
+    "end": 36.26,
+    "id": "w108"
+  },
+  {
+    "text": "la",
+    "start": 36.32,
+    "end": 36.44,
+    "id": "w109"
+  },
+  {
+    "text": "giralda",
+    "start": 36.44,
+    "end": 36.99,
+    "id": "w110"
+  },
+  {
+    "text": "de",
+    "start": 37.04,
+    "end": 37.17,
+    "id": "w111"
+  },
+  {
+    "text": "Sevilla.",
+    "start": 37.17,
+    "end": 37.88,
+    "id": "w112"
+  },
+  {
+    "text": "A",
+    "start": 38.08,
+    "end": 38.15,
+    "id": "w113"
+  },
+  {
+    "text": "los",
+    "start": 38.29,
+    "end": 38.38,
+    "id": "w114"
+  },
+  {
+    "text": "cuarenta",
+    "start": 38.38,
+    "end": 38.93,
+    "id": "w115"
+  },
+  {
+    "text": "y",
+    "start": 38.93,
+    "end": 39.07,
+    "id": "w116"
+  },
+  {
+    "text": "siete",
+    "start": 39.07,
+    "end": 39.43,
+    "id": "w117"
+  },
+  {
+    "text": "la",
+    "start": 39.43,
+    "end": 39.58,
+    "id": "w118"
+  },
+  {
+    "text": "sagrada",
+    "start": 39.58,
+    "end": 40,
+    "id": "w119"
+  },
+  {
+    "text": "familia,",
+    "start": 40.15,
+    "end": 40.87,
+    "id": "w120"
+  },
+  {
+    "text": "172",
+    "start": 40.87,
+    "end": 41.8,
+    "id": "w121"
+  },
+  {
+    "text": "metros",
+    "start": 41.9,
+    "end": 42.42,
+    "id": "w122"
+  },
+  {
+    "text": "y",
+    "start": 42.42,
+    "end": 42.43,
+    "id": "w123"
+  },
+  {
+    "text": "medio.",
+    "start": 42.52,
+    "end": 43.36,
+    "id": "w124"
+  },
+  {
+    "text": "Si",
+    "start": 43.36,
+    "end": 43.57,
+    "id": "w125"
+  },
+  {
+    "text": "empezaras",
+    "start": 43.57,
+    "end": 44.09,
+    "id": "w126"
+  },
+  {
+    "text": "a",
+    "start": 44.09,
+    "end": 44.15,
+    "id": "w127"
+  },
+  {
+    "text": "los",
+    "start": 44.15,
+    "end": 44.16,
+    "id": "w128"
+  },
+  {
+    "text": "dieciocho",
+    "start": 44.35,
+    "end": 44.88,
+    "id": "w129"
+  },
+  {
+    "text": "años",
+    "start": 44.95,
+    "end": 45.27,
+    "id": "w130"
+  },
+  {
+    "text": "y",
+    "start": 45.28,
+    "end": 45.29,
+    "id": "w131"
+  },
+  {
+    "text": "vivieras",
+    "start": 45.43,
+    "end": 45.79,
+    "id": "w132"
+  },
+  {
+    "text": "lo",
+    "start": 45.84,
+    "end": 45.94,
+    "id": "w133"
+  },
+  {
+    "text": "que",
+    "start": 45.94,
+    "end": 46.12,
+    "id": "w134"
+  },
+  {
+    "text": "vive",
+    "start": 46.12,
+    "end": 46.36,
+    "id": "w135"
+  },
+  {
+    "text": "de",
+    "start": 46.36,
+    "end": 46.48,
+    "id": "w136"
+  },
+  {
+    "text": "media",
+    "start": 46.48,
+    "end": 46.66,
+    "id": "w137"
+  },
+  {
+    "text": "un",
+    "start": 46.82,
+    "end": 46.91,
+    "id": "w138"
+  },
+  {
+    "text": "español,",
+    "start": 47.18,
+    "end": 47.4,
+    "id": "w139"
+  },
+  {
+    "text": "unos",
+    "start": 47.61,
+    "end": 47.72,
+    "id": "w140"
+  },
+  {
+    "text": "ochenta",
+    "start": 47.72,
+    "end": 48.21,
+    "id": "w141"
+  },
+  {
+    "text": "y",
+    "start": 48.21,
+    "end": 48.39,
+    "id": "w142"
+  },
+  {
+    "text": "cuatro,",
+    "start": 48.39,
+    "end": 48.92,
+    "id": "w143"
+  },
+  {
+    "text": "acabarías",
+    "start": 48.99,
+    "end": 49.58,
+    "id": "w144"
+  },
+  {
+    "text": "midiendo",
+    "start": 49.58,
+    "end": 50.12,
+    "id": "w145"
+  },
+  {
+    "text": "doscientos",
+    "start": 50.12,
+    "end": 50.72,
+    "id": "w146"
+  },
+  {
+    "text": "cuarenta",
+    "start": 50.81,
+    "end": 51.33,
+    "id": "w147"
+  },
+  {
+    "text": "y",
+    "start": 51.33,
+    "end": 51.35,
+    "id": "w148"
+  },
+  {
+    "text": "tres",
+    "start": 51.44,
+    "end": 51.66,
+    "id": "w149"
+  },
+  {
+    "text": "metros.",
+    "start": 51.66,
+    "end": 52.39,
+    "id": "w150"
+  },
+  {
+    "text": "Te",
+    "start": 52.39,
+    "end": 52.61,
+    "id": "w151"
+  },
+  {
+    "text": "quedarías",
+    "start": 52.61,
+    "end": 53.06,
+    "id": "w152"
+  },
+  {
+    "text": "a",
+    "start": 53.06,
+    "end": 53.12,
+    "id": "w153"
+  },
+  {
+    "text": "sólo",
+    "start": 53.12,
+    "end": 53.19,
+    "id": "w154"
+  },
+  {
+    "text": "seis",
+    "start": 53.39,
+    "end": 53.6,
+    "id": "w155"
+  },
+  {
+    "text": "metros",
+    "start": 53.6,
+    "end": 53.92,
+    "id": "w156"
+  },
+  {
+    "text": "de",
+    "start": 53.99,
+    "end": 54.08,
+    "id": "w157"
+  },
+  {
+    "text": "la",
+    "start": 54.08,
+    "end": 54.2,
+    "id": "w158"
+  },
+  {
+    "text": "Torre",
+    "start": 54.2,
+    "end": 54.5,
+    "id": "w159"
+  },
+  {
+    "text": "de",
+    "start": 54.5,
+    "end": 54.62,
+    "id": "w160"
+  },
+  {
+    "text": "Cristal,",
+    "start": 54.62,
+    "end": 55.16,
+    "id": "w161"
+  },
+  {
+    "text": "el",
+    "start": 55.16,
+    "end": 55.28,
+    "id": "w162"
+  },
+  {
+    "text": "edificio",
+    "start": 55.28,
+    "end": 55.71,
+    "id": "w163"
+  },
+  {
+    "text": "más",
+    "start": 55.71,
+    "end": 56.22,
+    "id": "w164"
+  },
+  {
+    "text": "alto",
+    "start": 56.22,
+    "end": 56.28,
+    "id": "w165"
+  },
+  {
+    "text": "de",
+    "start": 56.28,
+    "end": 56.35,
+    "id": "w166"
+  },
+  {
+    "text": "España.",
+    "start": 56.44,
+    "end": 57.12,
+    "id": "w167"
+  },
+  {
+    "text": "Yya",
+    "start": 57.12,
+    "end": 57.36,
+    "id": "w168"
+  },
+  {
+    "text": "no",
+    "start": 57.36,
+    "end": 57.52,
+    "id": "w169"
+  },
+  {
+    "text": "cabrías",
+    "start": 57.52,
+    "end": 57.91,
+    "id": "w170"
+  },
+  {
+    "text": "en",
+    "start": 58.11,
+    "end": 58.21,
+    "id": "w171"
+  },
+  {
+    "text": "ningún",
+    "start": 58.22,
+    "end": 58.64,
+    "id": "w172"
+  },
+  {
+    "text": "ascensor.¿Hasta",
+    "start": 58.71,
+    "end": 59.96,
+    "id": "w173"
+  },
+  {
+    "text": "qué",
+    "start": 59.96,
+    "end": 60.04,
+    "id": "w174"
+  },
+  {
+    "text": "altura",
+    "start": 60.15,
+    "end": 60.4,
+    "id": "w175"
+  },
+  {
+    "text": "te",
+    "start": 60.59,
+    "end": 60.63,
+    "id": "w176"
+  },
+  {
+    "text": "gustaría",
+    "start": 60.63,
+    "end": 61.12,
+    "id": "w177"
+  },
+  {
+    "text": "crecer?",
+    "start": 61.12,
+    "end": 61.72,
+    "id": "w178"
+  },
+  {
+    "text": "Te",
+    "start": 61.72,
+    "end": 61.83,
+    "id": "w179"
+  },
+  {
+    "text": "leo",
+    "start": 61.91,
+    "end": 62.02,
+    "id": "w180"
+  },
+  {
+    "text": "en",
+    "start": 62.02,
+    "end": 62.14,
+    "id": "w181"
+  },
+  {
+    "text": "los",
+    "start": 62.14,
+    "end": 62.33,
+    "id": "w182"
+  },
+  {
+    "text": "comentarios.",
+    "start": 62.33,
+    "end": 63.17,
+    "id": "w183"
+  }
+]

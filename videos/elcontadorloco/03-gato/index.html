@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <script type="importmap">
+      { "imports": { "three": "./lib/three.module.js", "three/addons/": "./lib/addons/" } }
+    </script>
+    <link rel="stylesheet" href="comun/contador.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Nunito", sans-serif; }
+      #alt, #clock { font-family: "Archivo Black", sans-serif; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="65.2" data-width="1080" data-height="1920" data-fps="30">
+      <div id="sky" class="clip" data-start="0" data-duration="65.2" data-track-index="0"></div>
+      <canvas id="gl" class="clip" data-start="0" data-duration="65.2" data-track-index="1" width="1080" height="1920"></canvas>
+      <svg id="leaders" class="clip" data-start="0" data-duration="65.2" data-track-index="2" width="1080" height="1920" data-layout-allow-overlap></svg>
+      <div id="labels" class="clip" data-start="0" data-duration="65.2" data-track-index="3" data-layout-allow-overlap></div>
+      <div id="hud" class="clip" data-start="0" data-duration="65.2" data-track-index="4">
+        <div id="alt">0<small>kg</small></div>
+        <div id="since"></div>
+        <div id="clock">0 s</div>
+        <div id="extra"></div>
+        <div id="note"></div>
+      </div>
+      <div id="title" class="clip" data-start="0" data-duration="65.2" data-track-index="6"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="65.2"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="65.2" data-track-index="7" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 64.0, "lines": [{"id": "l1", "s": 0.23, "e": 6.02, "words": [{"w": "Imagina", "s": 0.23, "e": 0.46, "key": false}, {"w": "que", "s": 0.57, "e": 0.82, "key": false}, {"w": "tu", "s": 0.82, "e": 0.98, "key": false}, {"w": "gato", "s": 0.98, "e": 1.3, "key": false}, {"w": "engorda", "s": 1.3, "e": 1.87, "key": false}, {"w": "un", "s": 1.87, "e": 2.03, "key": false}, {"w": "kilo", "s": 2.03, "e": 2.36, "key": true}, {"w": "cada", "s": 2.36, "e": 2.69, "key": false}, {"w": "día.", "s": 2.69, "e": 3.0, "key": false}, {"w": "Es", "s": 3.38, "e": 3.39, "key": false}, {"w": "imposible,", "s": 3.39, "e": 3.94, "key": false}, {"w": "pero", "s": 4.05, "e": 4.22, "key": false}, {"w": "¿hasta", "s": 4.35, "e": 4.54, "key": false}, {"w": "dónde", "s": 4.54, "e": 4.86, "key": false}, {"w": "llegaría?", "s": 4.86, "e": 6.02, "key": false}]}, {"id": "l2", "s": 6.25, "e": 12.56, "words": [{"w": "Ahora", "s": 6.25, "e": 6.39, "key": false}, {"w": "es", "s": 6.39, "e": 6.48, "key": false}, {"w": "un", "s": 6.59, "e": 6.69, "key": false}, {"w": "gato", "s": 6.69, "e": 6.98, "key": false}, {"w": "normal:", "s": 6.98, "e": 7.56, "key": true}, {"w": "unos", "s": 7.56, "e": 7.86, "key": false}, {"w": "4", "s": 7.86, "e": 8.08, "key": false}, {"w": "kilos.", "s": 8.08, "e": 8.72, "key": false}, {"w": "Mañana,", "s": 8.72, "e": 8.99, "key": false}, {"w": "5.", "s": 9.4, "e": 9.89, "key": false}, {"w": "Pasado,", "s": 9.89, "e": 10.54, "key": false}, {"w": "6.", "s": 10.54, "e": 11.23, "key": false}, {"w": "Y", "s": 11.23, "e": 11.273, "key": false}, {"w": "no", "s": 11.273, "e": 11.36, "key": false}, {"w": "para", "s": 11.41, "e": 11.84, "key": false}, {"w": "nunca.", "s": 12, "e": 12.56, "key": false}]}, {"id": "l3", "s": 12.56, "e": 17.5, "words": [{"w": "A", "s": 12.56, "e": 12.78, "key": false}, {"w": "las", "s": 12.78, "e": 12.96, "key": false}, {"w": "4", "s": 12.96, "e": 13.03, "key": false}, {"w": "semanas,", "s": 13.25, "e": 13.91, "key": false}, {"w": "ya", "s": 13.91, "e": 14.18, "key": false}, {"w": "pesa", "s": 14.18, "e": 14.36, "key": false}, {"w": "como", "s": 14.36, "e": 14.65, "key": false}, {"w": "un", "s": 14.65, "e": 14.79, "key": false}, {"w": "labrador.", "s": 14.79, "e": 15.56, "key": true}, {"w": "Ya", "s": 15.56, "e": 15.7, "key": false}, {"w": "no", "s": 15.7, "e": 15.84, "key": false}, {"w": "cabe", "s": 15.84, "e": 16.13, "key": false}, {"w": "en", "s": 16.13, "e": 16.27, "key": false}, {"w": "el", "s": 16.27, "e": 16.32, "key": false}, {"w": "transportín.", "s": 16.45, "e": 17.5, "key": false}]}, {"id": "l4", "s": 17.5, "e": 24.16, "words": [{"w": "A", "s": 17.5, "e": 17.52, "key": false}, {"w": "los", "s": 17.56, "e": 17.72, "key": false}, {"w": "dos", "s": 17.72, "e": 17.88, "key": false}, {"w": "meses,", "s": 17.99, "e": 18.15, "key": false}, {"w": "pesa", "s": 18.27, "e": 18.39, "key": false}, {"w": "lo", "s": 18.45, "e": 18.51, "key": false}, {"w": "mismo", "s": 18.51, "e": 18.82, "key": false}, {"w": "que", "s": 18.82, "e": 19.1, "key": false}, {"w": "una", "s": 19.1, "e": 19.26, "key": false}, {"w": "persona", "s": 19.26, "e": 19.73, "key": true}, {"w": "adulta:", "s": 19.79, "e": 20.19, "key": false}, {"w": "unos", "s": 20.35, "e": 20.54, "key": false}, {"w": "70", "s": 20.54, "e": 20.92, "key": false}, {"w": "kilos.", "s": 21.04, "e": 21.42, "key": false}, {"w": "Cuando", "s": 21.42, "e": 21.78, "key": false}, {"w": "se", "s": 21.78, "e": 21.85, "key": false}, {"w": "te", "s": 21.96, "e": 22.09, "key": false}, {"w": "sube", "s": 22.22, "e": 22.35, "key": false}, {"w": "encima,", "s": 22.35, "e": 22.76, "key": false}, {"w": "ya", "s": 22.76, "e": 22.8, "key": false}, {"w": "no", "s": 22.91, "e": 23.02, "key": false}, {"w": "es", "s": 23.02, "e": 23.07, "key": false}, {"w": "tan", "s": 23.19, "e": 23.31, "key": false}, {"w": "gracioso.", "s": 23.38, "e": 24.16, "key": false}]}, {"id": "l5", "s": 24.16, "e": 28.81, "words": [{"w": "A", "s": 24.16, "e": 24.59, "key": false}, {"w": "los", "s": 24.59, "e": 24.6, "key": false}, {"w": "6", "s": 24.6, "e": 24.82, "key": false}, {"w": "meses,", "s": 24.93, "e": 25.23, "key": false}, {"w": "iguala", "s": 25.29, "e": 25.69, "key": false}, {"w": "a", "s": 25.69, "e": 25.85, "key": false}, {"w": "un", "s": 25.85, "e": 25.98, "key": false}, {"w": "león.", "s": 25.98, "e": 26.3, "key": true}, {"w": "Y", "s": 26.3, "e": 26.38, "key": false}, {"w": "sigue", "s": 26.38, "e": 26.74, "key": false}, {"w": "maullando", "s": 26.87, "e": 27.33, "key": false}, {"w": "igual", "s": 27.74, "e": 27.93, "key": false}, {"w": "de", "s": 27.93, "e": 28.09, "key": false}, {"w": "bajito.", "s": 28.09, "e": 28.81, "key": false}]}, {"id": "l6", "s": 28.81, "e": 31.63, "words": [{"w": "Al", "s": 28.81, "e": 28.97, "key": false}, {"w": "año", "s": 28.97, "e": 29.21, "key": false}, {"w": "y", "s": 29.21, "e": 29.29, "key": false}, {"w": "3", "s": 29.29, "e": 29.52, "key": false}, {"w": "meses,", "s": 29.52, "e": 29.69, "key": false}, {"w": "pesa", "s": 29.75, "e": 30.26, "key": false}, {"w": "como", "s": 30.35, "e": 30.76, "key": false}, {"w": "un", "s": 30.76, "e": 30.99, "key": false}, {"w": "oso", "s": 30.99, "e": 31.21, "key": true}, {"w": "polar.", "s": 31.21, "e": 31.63, "key": false}]}, {"id": "l7", "s": 31.69, "e": 36.1, "words": [{"w": "Y", "s": 31.69, "e": 31.75, "key": false}, {"w": "poco", "s": 31.75, "e": 32.09, "key": false}, {"w": "después,", "s": 32.25, "e": 32.74, "key": false}, {"w": "como", "s": 32.74, "e": 33.1, "key": false}, {"w": "una", "s": 33.1, "e": 33.37, "key": false}, {"w": "vaca.", "s": 33.37, "e": 33.76, "key": true}, {"w": "Su", "s": 34.14, "e": 34.18, "key": false}, {"w": "arenero", "s": 34.18, "e": 34.7, "key": false}, {"w": "ya", "s": 34.81, "e": 34.98, "key": false}, {"w": "ocupa", "s": 35.09, "e": 35.44, "key": false}, {"w": "el", "s": 35.44, "e": 35.62, "key": false}, {"w": "salón.", "s": 35.62, "e": 36.1, "key": false}]}, {"id": "l8", "s": 36.15, "e": 41.04, "words": [{"w": "A", "s": 36.15, "e": 36.42, "key": false}, {"w": "los", "s": 36.42, "e": 36.59, "key": false}, {"w": "4", "s": 36.74, "e": 36.84, "key": false}, {"w": "años,", "s": 36.84, "e": 37.08, "key": false}, {"w": "pesa", "s": 37.33, "e": 37.43, "key": false}, {"w": "más", "s": 37.43, "e": 37.68, "key": false}, {"w": "que", "s": 37.68, "e": 37.93, "key": false}, {"w": "un", "s": 37.93, "e": 38.09, "key": false}, {"w": "coche.", "s": 38.1, "e": 38.77, "key": true}, {"w": "Ya", "s": 38.77, "e": 38.94, "key": false}, {"w": "no", "s": 38.94, "e": 39.11, "key": false}, {"w": "cabe", "s": 39.11, "e": 39.45, "key": false}, {"w": "por", "s": 39.45, "e": 39.7, "key": false}, {"w": "ninguna", "s": 39.7, "e": 40.06, "key": false}, {"w": "puerta.", "s": 40.48, "e": 41.04, "key": false}]}, {"id": "l9", "s": 41.15, "e": 47.54, "words": [{"w": "Un", "s": 41.15, "e": 41.26, "key": false}, {"w": "gato", "s": 41.26, "e": 41.5, "key": false}, {"w": "vive", "s": 41.5, "e": 41.74, "key": false}, {"w": "entre", "s": 41.74, "e": 42.05, "key": false}, {"w": "12", "s": 42.05, "e": 42.39, "key": false}, {"w": "y", "s": 42.41, "e": 42.44, "key": false}, {"w": "15", "s": 42.51, "e": 42.67, "key": false}, {"w": "años.", "s": 43.08, "e": 43.32, "key": false}, {"w": "A", "s": 43.32, "e": 43.39, "key": false}, {"w": "los", "s": 43.39, "e": 43.64, "key": false}, {"w": "15,", "s": 43.64, "e": 44.06, "key": false}, {"w": "pesaría", "s": 44.06, "e": 44.54, "key": false}, {"w": "más", "s": 44.61, "e": 44.73, "key": false}, {"w": "de", "s": 44.89, "e": 44.93, "key": false}, {"w": "5", "s": 44.93, "e": 45.15, "key": false}, {"w": "toneladas:", "s": 45.15, "e": 45.94, "key": true}, {"w": "como", "s": 45.94, "e": 46.23, "key": false}, {"w": "3", "s": 46.23, "e": 46.37, "key": false}, {"w": "coches", "s": 46.59, "e": 46.88, "key": false}, {"w": "y", "s": 46.88, "e": 46.95, "key": false}, {"w": "medio.", "s": 46.95, "e": 47.54, "key": false}]}, {"id": "l10", "s": 47.54, "e": 51.72, "words": [{"w": "Para", "s": 47.54, "e": 47.83, "key": false}, {"w": "pesar", "s": 47.83, "e": 48.2, "key": false}, {"w": "como", "s": 48.2, "e": 48.49, "key": false}, {"w": "un", "s": 48.49, "e": 48.63, "key": false}, {"w": "elefante,", "s": 48.63, "e": 49.38, "key": true}, {"w": "tendría", "s": 49.61, "e": 49.84, "key": false}, {"w": "que", "s": 49.95, "e": 50.08, "key": false}, {"w": "cumplir", "s": 50.08, "e": 50.52, "key": false}, {"w": "16", "s": 50.59, "e": 51.01, "key": false}, {"w": "años", "s": 51.01, "e": 51.29, "key": false}, {"w": "y", "s": 51.29, "e": 51.36, "key": false}, {"w": "medio.", "s": 51.36, "e": 51.72, "key": false}]}, {"id": "l11", "s": 51.72, "e": 57.18, "words": [{"w": "¿Y", "s": 51.72, "e": 51.76, "key": false}, {"w": "como", "s": 51.89, "e": 52.07, "key": false}, {"w": "una", "s": 52.07, "e": 52.27, "key": false}, {"w": "ballena", "s": 52.27, "e": 52.77, "key": true}, {"w": "azul?", "s": 52.77, "e": 53.26, "key": false}, {"w": "Para", "s": 53.26, "e": 53.54, "key": false}, {"w": "eso", "s": 53.54, "e": 53.75, "key": false}, {"w": "tendría", "s": 53.75, "e": 54.24, "key": false}, {"w": "que", "s": 54.24, "e": 54.45, "key": false}, {"w": "vivir", "s": 54.45, "e": 54.68, "key": false}, {"w": "410", "s": 55.17, "e": 56.19, "key": false}, {"w": "años.", "s": 56.19, "e": 57.18, "key": false}]}, {"id": "l12", "s": 57.18, "e": 60.24, "words": [{"w": "Así", "s": 57.18, "e": 57.33, "key": false}, {"w": "que", "s": 57.45, "e": 57.5, "key": false}, {"w": "tranquilo:", "s": 57.5, "e": 58.08, "key": true}, {"w": "tu", "s": 58.09, "e": 58.19, "key": false}, {"w": "gato", "s": 58.24, "e": 58.4, "key": false}, {"w": "está", "s": 58.4, "e": 58.61, "key": false}, {"w": "perfecto", "s": 58.61, "e": 59.04, "key": false}, {"w": "como", "s": 59.04, "e": 59.32, "key": false}, {"w": "está.", "s": 59.32, "e": 60.24, "key": false}]}, {"id": "l13", "s": 60.34, "e": 63.78, "words": [{"w": "¿Hasta", "s": 60.34, "e": 60.56, "key": false}, {"w": "qué", "s": 60.56, "e": 60.64, "key": false}, {"w": "peso", "s": 60.64, "e": 60.92, "key": false}, {"w": "lo", "s": 60.92, "e": 60.98, "key": false}, {"w": "seguirías", "s": 60.98, "e": 61.42, "key": false}, {"w": "llamando", "s": 61.65, "e": 61.88, "key": false}, {"w": "gatito?", "s": 61.88, "e": 62.41, "key": false}, {"w": "Te", "s": 62.42, "e": 62.54, "key": false}, {"w": "leo", "s": 62.54, "e": 62.72, "key": false}, {"w": "en", "s": 62.72, "e": 62.75, "key": false}, {"w": "los", "s": 62.91, "e": 63.03, "key": false}, {"w": "comentarios.", "s": 63.03, "e": 63.78, "key": true}]}]}</script>
+    <script id="escena" type="application/json">
+      {
+        "titulo": "¿Y si tu gato engordara un kilo cada día?",
+        "nota": "Valores aproximados · +1 kg al día",
+        "formato": "peso",
+        "desde": "ENGORDANDO DESDE HACE",
+        "inicio": 4,
+        "ritmo": 0.000011574074074074,
+        "hitos": [
+          { "clave": "kilo", "v": 4 },
+          { "clave": "labrador", "v": 32, "etiqueta": "LABRADOR" },
+          { "clave": "persona", "v": 70, "etiqueta": "PERSONA ADULTA" },
+          { "clave": "leon", "v": 190, "etiqueta": "LEÓN" },
+          { "clave": "oso", "v": 450, "etiqueta": "OSO POLAR" },
+          { "clave": "vaca", "v": 600, "etiqueta": "VACA" },
+          { "clave": "coche", "v": 1550, "etiqueta": "COCHE" },
+          { "clave": "toneladas", "v": 5483, "etiqueta": "TU GATO A LOS 15 AÑOS" },
+          { "clave": "elefante", "v": 6000, "etiqueta": "ELEFANTE" },
+          { "clave": "ballena", "v": 150000, "etiqueta": "BALLENA AZUL" }
+        ]
+      }
+    </script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 65.2 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import * as THREE from "three";
+      import { crearContador } from "./comun/contador.js";
+
+      // Everything here is in real metres: the cat grows with the cube root of its weight
+      // (same shape, so twice the weight is 1.26 times bigger) and each animal or object that
+      // weighs the same drops in on the left, at its real size, with our character in between.
+      const C = crearContador(THREE);
+      const { anchors, scene, camera, key, mat, glow, box, at, v3, hash, clamp, ramp, ease, lerp, V, D } = C;
+      scene.fog = new THREE.Fog(0xcfefff, 120, 900);
+      const cyl = (rt, rb, h, m, seg = 10) => new THREE.Mesh(new THREE.CylinderGeometry(rt, rb, h, seg), m);
+      const cone = (r, h, m, seg = 6) => new THREE.Mesh(new THREE.ConeGeometry(r, h, seg), m);
+      const SHADOW = new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.18, depthWrite: false });
+      const shadow = (rx, rz) => { const s = new THREE.Mesh(new THREE.CircleGeometry(1, 24), SHADOW); s.rotation.x = -Math.PI / 2; s.scale.set(rx, rz, 1); s.position.y = 0.01; return s; };
+
+      // ---------- the park ----------
+      scene.add(at(box(3000, 0.2, 3000, mat(0x86c96e)), 0, -0.1, 0));
+      scene.add(at(box(3000, 0.02, 4, mat(0xd9c9a3)), 0, 0.01, 6));
+      for (let i = 0; i < 40; i++) {
+        const tr = new THREE.Group(), h = 5 + hash(i) * 5, x = (hash(i + 10) - 0.5) * 260, z = -14 - hash(i + 20) * 160;
+        tr.add(at(cyl(0.25, 0.35, h * 0.4, mat(0x7a5233), 6), 0, h * 0.2, 0));
+        tr.add(at(cone(h * 0.28, h * 0.75, mat([0x4f9e4a, 0x5fae58, 0x3f8e44][i % 3])), 0, h * 0.62, 0));
+        tr.position.set(x, 0, z); scene.add(tr);
+      }
+      for (let i = 0; i < 14; i++) {
+        const w = 9 + hash(i + 40) * 6, h = 7 + hash(i + 50) * 10, hs = new THREE.Group();
+        hs.add(at(box(w, h, 8, mat([0xe8d7c0, 0xf0e2cf, 0xdcc9b0, 0xc9d6e3][i % 4])), 0, h / 2, 0));
+        hs.add(at(box(w + 0.6, 0.6, 8.6, mat(0xb5532e)), 0, h + 0.3, 0));
+        for (let f = 0; f < Math.floor(h / 3); f++) for (let k = 0; k < 3; k++) hs.add(at(box(1.2, 1.4, 0.1, glow(0xffe7a6, 0.9)), -w / 3 + k * w / 3, 2 + f * 3, 4.05));
+        hs.position.set(-130 + i * 20, 0, -60 - hash(i + 60) * 30); scene.add(hs);
+      }
+
+      // ---------- the cat (faces +x) ----------
+      const FUR = mat(0xf0a040), STRIPE = mat(0xc06a20), CREAM = mat(0xfff4e6), PINK = mat(0xff9aa8);
+      const cat = new THREE.Group(); scene.add(cat);
+      const torso = new THREE.Group(); cat.add(torso);
+      torso.add(at(box(0.46, 0.2, 0.24, FUR), 0, 0.22, 0));
+      torso.add(at(box(0.3, 0.05, 0.2, CREAM), 0.04, 0.115, 0));
+      for (const x of [-0.13, -0.02, 0.09]) torso.add(at(box(0.05, 0.012, 0.25, STRIPE), x, 0.325, 0));
+      for (const [x, z] of [[0.16, 0.08], [0.16, -0.08], [-0.16, 0.08], [-0.16, -0.08]]) { cat.add(at(box(0.065, 0.13, 0.065, FUR), x, 0.065, z)); cat.add(at(box(0.07, 0.025, 0.07, CREAM), x, 0.012, z)); }
+      const head = new THREE.Group(); head.position.set(0.27, 0.34, 0); cat.add(head);
+      head.add(box(0.17, 0.15, 0.17, FUR));
+      head.add(at(box(0.04, 0.05, 0.09, CREAM), 0.075, -0.04, 0));
+      for (const z of [-0.055, 0.055]) { const e = at(cone(0.04, 0.07, FUR, 4), 0, 0.1, z); e.rotation.y = Math.PI / 4; head.add(e); }
+      for (const z of [-0.04, 0.04]) { head.add(at(box(0.012, 0.04, 0.03, glow(0x9be36b)), 0.086, 0.02, z)); head.add(at(box(0.014, 0.03, 0.01, mat(0x1d1f3a)), 0.088, 0.02, z)); }
+      head.add(at(box(0.014, 0.02, 0.025, PINK), 0.096, -0.02, 0));
+      const tail = at(box(0.035, 0.24, 0.035, FUR), -0.27, 0.34, 0); tail.rotation.z = 0.45; cat.add(tail);
+      cat.add(shadow(0.3, 0.17));
+
+      // ---------- our character, between the comparison and the cat ----------
+      const { kid, head: kidHead } = C.personaje(); kid.scale.setScalar(0.246); kid.position.set(0, 0, 0.25); kid.rotation.y = -0.35; scene.add(kid);
+      scene.add(at(shadow(0.4, 0.25), 0, 0, 0.25));
+
+      // ---------- the comparisons (each faces +x, real size; L = length, H = height) ----------
+      function perro() {
+        const g = new THREE.Group(), A = mat(0xe2b46a), B = mat(0xc89a52);
+        g.add(at(box(0.85, 0.32, 0.3, A), 0, 0.55, 0));
+        for (const [x, z] of [[0.3, 0.1], [0.3, -0.1], [-0.3, 0.1], [-0.3, -0.1]]) g.add(at(box(0.09, 0.42, 0.09, A), x, 0.21, z));
+        const h = at(box(0.26, 0.24, 0.24, A), 0.5, 0.8, 0); g.add(h);
+        h.add(at(box(0.14, 0.12, 0.16, A), 0.17, -0.05, 0)); h.add(at(box(0.04, 0.05, 0.06, mat(0x2b1d1a)), 0.25, -0.01, 0));
+        for (const z of [-0.13, 0.13]) h.add(at(box(0.1, 0.16, 0.04, B), -0.02, -0.03, z));
+        const t = at(box(0.05, 0.32, 0.05, A), -0.46, 0.68, 0); t.rotation.z = 0.8; g.add(t);
+        return { g, L: 1.05, H: 0.95 };
+      }
+      function leon() {
+        const g = new THREE.Group(), A = mat(0xd9a55a), M = mat(0x9a5a2a);
+        g.add(at(box(1.6, 0.62, 0.6, A), 0, 0.95, 0));
+        for (const [x, z] of [[0.6, 0.2], [0.6, -0.2], [-0.6, 0.2], [-0.6, -0.2]]) g.add(at(box(0.17, 0.66, 0.17, A), x, 0.33, z));
+        g.add(at(box(0.5, 0.75, 0.82, M), 0.78, 1.25, 0));
+        const h = at(box(0.42, 0.4, 0.42, A), 1.0, 1.25, 0); g.add(h);
+        h.add(at(box(0.16, 0.16, 0.24, mat(0xf0c07a)), 0.25, -0.08, 0)); h.add(at(box(0.04, 0.06, 0.1, mat(0x2b1d1a)), 0.34, -0.02, 0));
+        const t = at(box(0.06, 0.75, 0.06, A), -0.95, 1.05, 0); t.rotation.z = 1.0; g.add(t); g.add(at(box(0.14, 0.16, 0.14, M), -1.27, 1.25, 0));
+        return { g, L: 2.4, H: 1.7 };
+      }
+      function oso() {
+        const g = new THREE.Group(), A = mat(0xf3efe2);
+        g.add(at(box(2.0, 0.95, 0.95, A), 0, 1.0, 0));
+        for (const [x, z] of [[0.7, 0.3], [0.7, -0.3], [-0.7, 0.3], [-0.7, -0.3]]) g.add(at(box(0.3, 0.6, 0.3, A), x, 0.3, z));
+        const h = at(box(0.5, 0.45, 0.45, A), 1.15, 1.15, 0); g.add(h);
+        h.add(at(box(0.22, 0.2, 0.26, A), 0.3, -0.08, 0)); h.add(at(box(0.05, 0.07, 0.11, mat(0x1d1f3a)), 0.42, -0.03, 0));
+        for (const z of [-0.17, 0.17]) h.add(at(box(0.08, 0.1, 0.08, A), -0.1, 0.26, z));
+        return { g, L: 2.6, H: 1.5 };
+      }
+      function vaca() {
+        const g = new THREE.Group(), A = mat(0xf7f7f2), B = mat(0x2b2b33);
+        g.add(at(box(2.2, 1.0, 0.8, A), 0, 1.25, 0));
+        [[-0.5, 1.4, 0.41, 0.6, 0.5], [0.4, 1.1, 0.41, 0.5, 0.4], [0.1, 1.5, -0.41, 0.7, 0.45], [-0.6, 1.05, -0.41, 0.4, 0.35]].forEach(([x, y, z, w, h]) => g.add(at(box(w, h, 0.02, B), x, y, z)));
+        for (const [x, z] of [[0.8, 0.25], [0.8, -0.25], [-0.8, 0.25], [-0.8, -0.25]]) g.add(at(box(0.16, 0.8, 0.16, A), x, 0.4, z));
+        g.add(at(box(0.3, 0.15, 0.3, PINK), -0.5, 0.7, 0));
+        const h = at(box(0.5, 0.45, 0.4, A), 1.3, 1.55, 0); g.add(h);
+        h.add(at(box(0.16, 0.22, 0.36, PINK), 0.3, -0.12, 0));
+        for (const z of [-0.18, 0.18]) { const c = at(cone(0.05, 0.22, mat(0xe8dcc0), 5), -0.05, 0.3, z); c.rotation.x = z > 0 ? -0.5 : 0.5; h.add(c); }
+        return { g, L: 2.7, H: 1.9 };
+      }
+      function coche() {
+        const g = new THREE.Group(), R = mat(0xd63a3a, { roughness: 0.4, metalness: 0.2 }), GL = glow(0x9fd8ff, 0.95);
+        g.add(at(box(4.3, 0.7, 1.8, R), 0, 0.65, 0));
+        g.add(at(box(2.3, 0.62, 1.62, R), -0.25, 1.3, 0));
+        for (const z of [-0.82, 0.82]) g.add(at(box(2.0, 0.42, 0.02, GL), -0.25, 1.32, z));
+        g.add(at(box(0.02, 0.45, 1.4, GL), 0.91, 1.32, 0));
+        for (const [x, z] of [[1.35, 0.92], [1.35, -0.92], [-1.35, 0.92], [-1.35, -0.92]]) { const w = at(cyl(0.34, 0.34, 0.24, mat(0x22242e), 14), x, 0.34, z); w.rotation.x = Math.PI / 2; g.add(w); }
+        for (const z of [-0.6, 0.6]) g.add(at(box(0.04, 0.16, 0.3, glow(0xfff2c4)), 2.16, 0.75, z));
+        return { g, L: 4.3, H: 1.62 };
+      }
+      function elefante() {
+        const g = new THREE.Group(), A = mat(0x8c8f99), T = mat(0xf4efe2);
+        g.add(at(box(4.0, 2.3, 2.3, A), 0, 2.6, 0));
+        for (const [x, z] of [[1.4, 0.75], [1.4, -0.75], [-1.4, 0.75], [-1.4, -0.75]]) g.add(at(box(0.75, 1.5, 0.75, A), x, 0.75, z));
+        const h = at(box(1.4, 1.5, 1.4, A), 2.3, 3.0, 0); g.add(h);
+        for (const z of [-0.9, 0.9]) { const e = at(box(0.15, 1.6, 1.3, mat(0x7d808a)), -0.2, 0.1, z); e.rotation.y = z > 0 ? -0.35 : 0.35; h.add(e); }
+        [[0.85, -0.6, 0.38], [0.95, -1.15, 0.34], [1.05, -1.65, 0.3]].forEach(([x, y, s]) => h.add(at(box(s, 0.6, s, A), x, y, 0)));
+        for (const z of [-0.36, 0.36]) { const tu = at(cone(0.1, 0.8, T, 5), 0.9, -0.75, z); tu.rotation.z = -2.2; h.add(tu); }
+        return { g, L: 5.4, H: 3.9 };
+      }
+      function ballena() {
+        const g = new THREE.Group(), A = mat(0x4f6d8f), B = mat(0x9fb3c8);
+        g.add(at(box(18, 3.4, 3.8, A), 0, 1.9, 0));
+        g.add(at(box(6, 2.9, 3.5, A), 11.5, 1.65, 0));
+        for (let i = 0; i < 6; i++) g.add(at(box(5.5, 0.1, 3.6, B), 11 - i * 0.2, 0.25 + i * 0.12, 0));
+        g.add(at(box(5, 2.0, 2.4, A), -11.2, 1.4, 0));
+        g.add(at(box(2.2, 0.4, 7.5, A), -14.5, 1.2, 0));
+        for (const z of [-2.2, 2.2]) g.add(at(box(3.0, 0.3, 1.2, A), 5.5, 0.9, z));
+        for (const z of [-1.76, 1.76]) g.add(at(box(0.2, 0.3, 0.3, mat(0x1d1f3a)), 13.8, 2.2, z));
+        return { g, L: 31, H: 3.6 };
+      }
+      const MODELOS = { "LABRADOR": perro, "LEÓN": leon, "OSO POLAR": oso, "VACA": vaca, "COCHE": coche, "ELEFANTE": elefante, "BALLENA AZUL": ballena };
+      // each comparison stays on stage from its landmark until the next comparison arrives
+      const comps = [];
+      for (const a of anchors) {
+        const fab = MODELOS[a.hito.etiqueta];
+        if (!fab) continue;
+        const m = fab(); m.a = a; m.x = -0.5 - m.L / 2; m.g.add(shadow(m.L * 0.55, Math.max(0.35, m.L * 0.16))); m.g.visible = false; scene.add(m.g);
+        comps.push(m);
+      }
+      comps.forEach((m, i) => (m.fin = comps[i + 1] ? comps[i + 1].a.t - 0.3 : Infinity));
+
+      const labPos = { "PERSONA ADULTA": [kid, v3(0, 7.3, 0)], "TU GATO A LOS 15 AÑOS": [cat, v3(0.2, 0.48, 0)] };
+      for (const m of comps) labPos[m.a.hito.etiqueta] = [m.g, v3(m.L * 0.25, m.H, 0)];
+      C.etiquetas(labPos, [cat, v3(0.2, 0.48, 0)]);
+
+      // the years go by: the afternoon turns golden at the very end
+      const SKY = [[7, "#4fbfff", "#cfefff"], [38, "#4fbfff", "#cfefff"], [52, "#ff9a5a", "#ffe0b8"]];
+
+      function renderAt(t) {
+        const y = C.yAt(t), w = V(y), s = Math.cbrt(w / 4);
+        // fatter as it grows: wider and a little rounder, same legs
+        const fat = 1 + 0.18 * clamp(Math.log10(w / 4) / 2);
+        cat.scale.setScalar(s); torso.scale.set(1, fat, fat * 1.08);
+        cat.position.set(0.45 + 0.34 * s, 0, 0);
+        head.rotation.y = -0.55 + Math.sin(t * 0.8) * 0.12; tail.rotation.z = 0.45 + Math.sin(t * 2.1) * 0.2;
+        const catFront = cat.position.x + 0.37 * s, catH = 0.48 * s;
+        // comparisons: drop in with a bounce, pop out when the next arrives
+        let left = -0.5, objH = 0;
+        for (const m of comps) {
+          const kin = clamp((t - (m.a.t - 0.35)) / 0.55), kout = clamp((t - m.fin) / 0.3);
+          const vis = kin * (1 - kout);
+          m.g.visible = vis > 0.001;
+          if (!m.g.visible) continue;
+          const squash = kin > 0.7 ? 0.25 * Math.sin(Math.PI * (kin - 0.7) / 0.3) : 0;
+          m.g.position.set(m.x, (1 - ease(kin)) * m.H * 2.5, 0);
+          m.g.scale.set(1 + squash * 0.5, 1 - squash, 1 + squash * 0.5).multiplyScalar(1 - ease(kout));
+          left = Math.min(left, lerp(-0.5, -0.6 - m.L, ease(kin) * (1 - ease(kout))));
+          objH = Math.max(objH, m.H * vis);
+        }
+        // the kid keeps looking up at the cat
+        kidHead.rotation.x = -0.15 - 0.45 * clamp((catH - 0.6) / 3);
+        // frame cat + kid + comparison inside the band between the HUD and the captions
+        // at the start the whole character is in shot (1.8 m), so the cat looks as small as it is
+        const right = catFront + 0.15 * s, width = right - left, hS = Math.max(catH, objH, 1.8);
+        const Hv = Math.max((width / 0.5625) * 1.12, hS / 0.25), cx = (left + right) / 2;
+        const sway = Math.sin(t * 0.5) * 0.015 * Hv;
+        const dist = (Hv / 0.6886) * (1 + 0.12 * ramp(t, D - 4.5, D - 1));
+        camera.position.set(cx + sway, hS * 0.5 + Hv * 0.14, dist);
+        camera.lookAt(cx, hS * 0.5, 0);
+        camera.far = Math.max(400, dist * 6); camera.updateProjectionMatrix(); camera.updateMatrixWorld();
+        key.position.set(cx - Hv * 0.5, Hv, Hv * 0.7); key.target.position.set(cx, 0, 0);
+        C.fondo(SKY, y);
+        C.pintar(t, y);
+      }
+      await C.arrancar(renderAt);
+    </script>
+  </body>
+</html>

@@ -20,3 +20,5 @@ exports/
 
 # biblioteca de estilos lemo-opuscar (copia de github.com/lemomo-ai/lemo-opuscar, licencia MIT)
 lemo-opuscar/
+videos/*/*/assets/mezcla.wav
+videos/*/*/.hyperframes/

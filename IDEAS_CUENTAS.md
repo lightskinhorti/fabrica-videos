@@ -51,3 +51,25 @@ Cada vídeo coge algo cotidiano y lo hace crecer sin parar (cada segundo, cada d
 - El rondo: el ejercicio que explica todo un estilo de juego.
 
 **Cuidado:** sin escudos, equipaciones reales ni imágenes de retransmisiones, porque tienen derechos. Nombrar equipos y jugadores en el texto o en la voz sí se puede.
+
+## 3. Historias interactivas: los comentarios deciden
+
+**Estado:** apuntada el 2 de noviembre, sin cuenta asignada todavía.
+
+Una historia por capítulos con un personaje fijo. Cada vídeo acaba en un momento de decisión con 2 o 3 opciones en pantalla ("A, B o C: comenta"), y la opción más votada es la que pasa en el siguiente capítulo.
+
+**Ejemplos de Javier:**
+- Un chaval que lleva años encerrado en su cuarto (granos, desorden, cero vida social) consigue una cita, y los comentarios deciden qué se pone, qué dice, a dónde la lleva…
+- Un chaval se encuentra 10 millones de euros, y en cada capítulo elige entre varias opciones: devolverlos, gastárselos, invertirlos, desaparecer…
+
+**Por qué encaja:**
+- Pedir que comenten para elegir genera muchos comentarios, y los comentarios pesan mucho en el algoritmo de TikTok.
+- La gente sigue la cuenta para saber cómo acaba: crea seguidores, no solo visualizaciones sueltas.
+- El personaje low poly y la voz de Gemini ya están hechos.
+
+**Cuidado:**
+- Al principio habrá pocos comentarios. Hay que decidir antes qué pasa si casi nadie vota (gana el comentario con más "me gusta", o decides tú).
+- No se pueden adelantar capítulos: cada uno espera a la votación del anterior, así que la producción va al ritmo de la historia (1 o 2 días por capítulo).
+- Quien llegue al capítulo 5 no ha visto los anteriores: cada capítulo necesita un resumen de 3 a 5 segundos al principio.
+- Que la gracia esté en lo que le pasa al personaje, no en reírse de su aspecto. Si el chiste es "mira qué gordo y qué granos", puede acabar denunciado y TikTok le quita alcance.
+- La de los 10 millones podría ser una serie de @dinerosinlio, con cada opción acompañada de un dato real. Antes hay que comprobar qué dice la ley española sobre el dinero encontrado (Código Civil, hallazgo).

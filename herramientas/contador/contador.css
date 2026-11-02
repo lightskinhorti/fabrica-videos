@@ -1,0 +1,57 @@
+/* Estilos comunes de El contador loco: marcador, etiquetas, título y subtítulos. */
+:root {
+  --ink: #ffffff;
+  --stroke: #0b1a3a;
+  --yellow: #ffcf2e;
+  --navy: #1d1f3a;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1592f0; }
+#root { position: relative; width: 1080px; height: 1920px; font-family: "Nunito", sans-serif; }
+#sky { position: absolute; inset: 0; background: linear-gradient(#3fc4ff, #a8e4ff); }
+#gl { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+#leaders { position: absolute; inset: 0; }
+#labels { position: absolute; inset: 0; pointer-events: none; }
+.lab {
+  position: absolute; padding: 10px 18px; border-radius: 14px; background: rgba(13, 22, 48, 0.82);
+  color: #fff; font-weight: 900; font-size: 30px; letter-spacing: 0.06em; white-space: nowrap; opacity: 0;
+}
+.lab b { color: var(--yellow); font-weight: 900; }
+#hud {
+  position: absolute; left: 0; right: 0; top: 176px; margin: 0 auto; width: fit-content; min-width: 640px;
+  padding: 26px 56px 24px; border-radius: 40px; text-align: center; color: var(--ink);
+  background: rgba(13, 22, 48, 0.86); border: 6px solid var(--stroke); box-shadow: 0 14px 0 rgba(11, 26, 58, 0.45);
+}
+#alt {
+  font-family: "Archivo Black", sans-serif; font-size: 148px; line-height: 1; letter-spacing: -0.02em;
+  text-shadow: 0 8px 0 var(--stroke), 0 0 30px rgba(0, 0, 0, 0.25);
+}
+#alt small { font-size: 0.5em; margin-left: 0.12em; }
+#since { margin-top: 22px; font-weight: 900; font-size: 30px; letter-spacing: 0.16em; opacity: 0.92; text-shadow: 0 3px 0 var(--stroke); }
+#clock {
+  font-family: "Archivo Black", sans-serif; font-size: 66px; color: var(--yellow); margin-top: 4px;
+  text-shadow: 0 5px 0 var(--stroke);
+}
+#extra { font-weight: 900; font-size: 40px; color: #fff; margin-top: 10px; opacity: 0; text-shadow: 0 4px 0 var(--stroke); }
+#note { margin-top: 14px; font-size: 28px; font-weight: 700; color: rgba(255, 255, 255, 0.72); }
+#title {
+  position: absolute; left: 80px; right: 120px; top: 1110px; text-align: center; color: #fff;
+  font-weight: 900; font-size: 92px; line-height: 1.05; letter-spacing: -0.01em;
+  -webkit-text-stroke: 14px var(--stroke); paint-order: stroke fill;
+}
+#caps {
+  /* bottom edge at 1420 px: lower than the middle, still above TikTok's name and description */
+  position: absolute; left: 110px; right: 170px; top: 1230px; height: 190px;
+  display: flex; align-items: flex-end; justify-content: center; text-align: center;
+}
+#caps .line { font-weight: 900; font-size: 72px; line-height: 1.12; color: #fff; }
+#caps .w {
+  display: inline-block; margin: 0 0.13em; opacity: 0; position: relative;
+  -webkit-text-stroke: 12px var(--stroke); paint-order: stroke fill;
+}
+#caps .w.now { color: var(--yellow); }
+#caps .w.key { color: var(--navy); -webkit-text-stroke: 0; }
+#caps .w.key .pill {
+  position: absolute; left: -14px; right: -14px; top: 4px; bottom: -2px; border-radius: 18px;
+  background: var(--yellow); border: 6px solid var(--stroke); z-index: -1; opacity: 0;
+}

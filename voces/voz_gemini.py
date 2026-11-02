@@ -2,11 +2,15 @@
 
 Necesita una clave de API de Google AI Studio (aistudio.google.com) con tu
 cuenta PERSONAL, de un proyecto SIN facturación para usar el plan gratis. La
-clave se lee de la variable GEMINI_API_KEY. Solo usa la biblioteca estándar.
+clave se lee de la variable GEMINI_API_KEY o, si no está, de la línea
+GEMINI_API_KEY=... del archivo .env de la raíz del proyecto (fuera de git).
+Solo usa la biblioteca estándar.
 
 Uso:
     python3 voz_gemini.py              # las 3 voces de hombre de España más jóvenes
     python3 voz_gemini.py ID1 ID2 ...  # voces concretas (ver voces_gemini_lista.txt)
+    python3 voz_gemini.py --guion ruta/guion.json --salida nombre es-es-concierge-12
+                                       # otro guion; guarda exports/voces/nombre.wav
 
 Siempre guarda en voces_gemini_lista.txt todas las voces de hombre de España.
 """
@@ -20,16 +24,27 @@ import urllib.parse
 import urllib.request
 import wave
 
+HERE = os.path.dirname(os.path.abspath(__file__))
 KEY = os.environ.get("GEMINI_API_KEY")
+ENV = os.path.join(HERE, "..", ".env")
+if not KEY and os.path.exists(ENV):
+    for linea in open(ENV, encoding="utf-8"):
+        if linea.startswith("GEMINI_API_KEY="):
+            KEY = linea.split("=", 1)[1].strip()
 if not KEY:
-    sys.exit("Falta la clave: ejecuta primero  export GEMINI_API_KEY=tu_clave")
+    sys.exit("Falta la clave: ponla en el archivo .env de la raíz del proyecto (ver LEEME, sección 4)")
 
 BASE = "https://generativelanguage.googleapis.com/v1beta"
 MODELO = "gemini-3.8-flash-tts"
-HERE = os.path.dirname(os.path.abspath(__file__))
 SALIDA = os.path.normpath(os.path.join(HERE, "..", "exports", "voces"))
 os.makedirs(SALIDA, exist_ok=True)
-guion = json.load(open(os.path.join(HERE, "guion.json"), encoding="utf-8"))
+args = sys.argv[1:]
+GUION, NOMBRE = os.path.join(HERE, "guion.json"), None
+if "--guion" in args:
+    i = args.index("--guion"); GUION = os.path.abspath(args[i + 1]); del args[i:i + 2]
+if "--salida" in args:
+    i = args.index("--salida"); NOMBRE = args[i + 1]; del args[i:i + 2]
+guion = json.load(open(GUION, encoding="utf-8"))
 texto = " ".join(guion["lines"])
 SR = 24000
 
@@ -70,7 +85,7 @@ with open(os.path.join(HERE, "voces_gemini_lista.txt"), "w", encoding="utf-8") a
         f.write(f"{v['id']} | {v.get('display_name')} | {v.get('description', '')}\n")
 print(f"{len(catalogo)} voces de hombre de España guardadas en voces_gemini_lista.txt")
 
-voces = sys.argv[1:] or [v["id"] for v in catalogo[:3]]
+voces = args or [v["id"] for v in catalogo[:3]]
 for v in catalogo:
     if v["id"] in voces:
         print("Pruebo:", v["id"], "|", v.get("description", "")[:100])
@@ -104,7 +119,8 @@ for voz in voces:
         continue
     audio = base64.b64decode(audios[-1])
     nombre = "".join(c for c in voz.lower() if c.isalnum())
-    salida = os.path.join(SALIDA, f"gemini_{nombre}.wav")
+    archivo = f"gemini_{nombre}.wav" if not NOMBRE else (f"{NOMBRE}.wav" if len(voces) == 1 else f"{NOMBRE}_{nombre}.wav")
+    salida = os.path.join(SALIDA, archivo)
     if audio[:4] == b"RIFF":
         with open(salida, "wb") as f:
             f.write(audio)

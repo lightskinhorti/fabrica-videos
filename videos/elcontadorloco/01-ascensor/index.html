@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <script type="importmap">
+      { "imports": { "three": "./lib/three.module.js", "three/addons/": "./lib/addons/" } }
+    </script>
+    <link rel="stylesheet" href="comun/contador.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Nunito", sans-serif; }
+      #alt, #clock { font-family: "Archivo Black", sans-serif; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="61.5" data-width="1080" data-height="1920" data-fps="30">
+      <div id="sky" class="clip" data-start="0" data-duration="61.5" data-track-index="0"></div>
+      <canvas id="gl" class="clip" data-start="0" data-duration="61.5" data-track-index="1" width="1080" height="1920"></canvas>
+      <svg id="leaders" class="clip" data-start="0" data-duration="61.5" data-track-index="2" width="1080" height="1920" data-layout-allow-overlap></svg>
+      <div id="labels" class="clip" data-start="0" data-duration="61.5" data-track-index="3" data-layout-allow-overlap></div>
+      <div id="hud" class="clip" data-start="0" data-duration="61.5" data-track-index="4">
+        <div id="alt">0<small>m</small></div>
+        <div id="since"></div>
+        <div id="clock">0 s</div>
+        <div id="extra"></div>
+        <div id="note"></div>
+      </div>
+      <div id="title" class="clip" data-start="0" data-duration="61.5" data-track-index="6"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="61.5"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="61.5" data-track-index="7" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 60.28, "lines": [{"id": "l1", "s": 0.13, "e": 2.73, "words": [{"w": "Tu", "s": 0.13, "e": 0.24, "key": false}, {"w": "ascensor", "s": 0.24, "e": 0.64, "key": false}, {"w": "se", "s": 0.64, "e": 0.76, "key": false}, {"w": "ha", "s": 0.82, "e": 0.9, "key": false}, {"w": "vuelto", "s": 0.9, "e": 1.26, "key": false}, {"w": "loco", "s": 1.33, "e": 1.46, "key": false}, {"w": "y", "s": 1.61, "e": 1.63, "key": false}, {"w": "ya", "s": 1.63, "e": 1.77, "key": false}, {"w": "no", "s": 1.77, "e": 1.91, "key": false}, {"w": "para", "s": 1.91, "e": 2.15, "key": false}, {"w": "de", "s": 2.18, "e": 2.32, "key": false}, {"w": "subir.", "s": 2.32, "e": 2.73, "key": true}]}, {"id": "l2", "s": 2.86, "e": 7.0, "words": [{"w": "Va", "s": 2.86, "e": 2.88, "key": false}, {"w": "a", "s": 2.88, "e": 2.95, "key": false}, {"w": "un", "s": 2.95, "e": 3.09, "key": false}, {"w": "metro", "s": 3.2, "e": 3.45, "key": true}, {"w": "por", "s": 3.45, "e": 3.66, "key": false}, {"w": "segundo,", "s": 3.66, "e": 4.21, "key": false}, {"w": "como", "s": 4.26, "e": 4.4, "key": false}, {"w": "el", "s": 4.4, "e": 4.5, "key": false}, {"w": "de", "s": 4.5, "e": 4.55, "key": false}, {"w": "tu", "s": 4.56, "e": 4.66, "key": false}, {"w": "edificio.", "s": 4.66, "e": 5.4, "key": false}, {"w": "¿Hasta", "s": 5.8, "e": 6.0, "key": false}, {"w": "dónde", "s": 6, "e": 6.2, "key": false}, {"w": "llegarías?", "s": 6.2, "e": 7.0, "key": false}]}, {"id": "l3", "s": 7, "e": 11.5, "words": [{"w": "Al", "s": 7, "e": 7.24, "key": false}, {"w": "principio,", "s": 7.24, "e": 7.73, "key": false}, {"w": "nada", "s": 7.73, "e": 7.99, "key": false}, {"w": "raro:", "s": 7.99, "e": 8.44, "key": false}, {"w": "pasas", "s": 8.45, "e": 8.78, "key": false}, {"w": "tu", "s": 8.78, "e": 8.91, "key": false}, {"w": "planta,", "s": 8.91, "e": 9.43, "key": false}, {"w": "la", "s": 9.43, "e": 9.52, "key": false}, {"w": "del", "s": 9.52, "e": 9.86, "key": false}, {"w": "vecino,", "s": 9.86, "e": 10.29, "key": false}, {"w": "la", "s": 10.29, "e": 10.42, "key": false}, {"w": "azotea.", "s": 10.42, "e": 11.5, "key": true}]}, {"id": "l4", "s": 11.5, "e": 18.0, "words": [{"w": "A", "s": 11.5, "e": 11.57, "key": false}, {"w": "los", "s": 11.74, "e": 11.79, "key": false}, {"w": "cuatro", "s": 11.79, "e": 12.23, "key": false}, {"w": "minutos,", "s": 12.32, "e": 12.76, "key": false}, {"w": "pasas", "s": 12.82, "e": 13.14, "key": false}, {"w": "la", "s": 13.14, "e": 13.29, "key": false}, {"w": "Torre", "s": 13.29, "e": 13.65, "key": false}, {"w": "de", "s": 13.66, "e": 13.77, "key": false}, {"w": "Cristal,", "s": 13.8, "e": 14.49, "key": false}, {"w": "el", "s": 14.49, "e": 14.59, "key": false}, {"w": "edificio", "s": 14.7, "e": 15.19, "key": false}, {"w": "más", "s": 15.25, "e": 15.45, "key": false}, {"w": "alto", "s": 15.45, "e": 15.7, "key": false}, {"w": "de", "s": 15.76, "e": 15.91, "key": false}, {"w": "España:", "s": 15.91, "e": 16.42, "key": true}, {"w": "249", "s": 16.49, "e": 17.1, "key": false}, {"w": "metros.", "s": 17.3, "e": 18.0, "key": false}]}, {"id": "l5", "s": 18, "e": 23.41, "words": [{"w": "A", "s": 18, "e": 18.07, "key": false}, {"w": "los", "s": 18.24, "e": 18.29, "key": false}, {"w": "14", "s": 18.29, "e": 18.73, "key": false}, {"w": "minutos,", "s": 18.82, "e": 19.26, "key": false}, {"w": "dejas", "s": 19.33, "e": 19.64, "key": false}, {"w": "atrás", "s": 19.64, "e": 19.96, "key": false}, {"w": "el", "s": 20.02, "e": 20.15, "key": false}, {"w": "Burj", "s": 20.17, "e": 20.46, "key": false}, {"w": "Khalifa,", "s": 20.46, "e": 21.06, "key": false}, {"w": "el", "s": 21.06, "e": 21.21, "key": false}, {"w": "rascacielos", "s": 21.21, "e": 22.02, "key": false}, {"w": "más", "s": 22.02, "e": 22.2, "key": false}, {"w": "alto", "s": 22.26, "e": 22.54, "key": false}, {"w": "del", "s": 22.54, "e": 22.76, "key": false}, {"w": "mundo.", "s": 22.76, "e": 23.41, "key": true}]}, {"id": "l6", "s": 23.41, "e": 29.5, "words": [{"w": "Dos", "s": 23.41, "e": 23.75, "key": false}, {"w": "horas", "s": 23.75, "e": 24.17, "key": false}, {"w": "y", "s": 24.17, "e": 24.24, "key": false}, {"w": "media", "s": 24.32, "e": 24.67, "key": false}, {"w": "después,", "s": 24.67, "e": 25.26, "key": false}, {"w": "estás", "s": 25.26, "e": 25.65, "key": false}, {"w": "a", "s": 25.68, "e": 25.73, "key": false}, {"w": "la", "s": 25.73, "e": 25.91, "key": false}, {"w": "altura", "s": 25.92, "e": 26.42, "key": false}, {"w": "del", "s": 26.42, "e": 26.56, "key": false}, {"w": "Everest:", "s": 26.66, "e": 27.4, "key": true}, {"w": "8.849", "s": 27.4, "e": 28.59, "key": false}, {"w": "metros.", "s": 28.68, "e": 29.5, "key": false}]}, {"id": "l7", "s": 29.5, "e": 35.5, "words": [{"w": "A", "s": 29.5, "e": 29.56, "key": false}, {"w": "las", "s": 29.74, "e": 29.76, "key": false}, {"w": "tres", "s": 29.76, "e": 30.03, "key": false}, {"w": "horas,", "s": 30.03, "e": 30.37, "key": false}, {"w": "los", "s": 30.37, "e": 30.55, "key": false}, {"w": "aviones", "s": 30.61, "e": 30.95, "key": true}, {"w": "pasan", "s": 31.11, "e": 31.37, "key": false}, {"w": "por", "s": 31.37, "e": 31.57, "key": false}, {"w": "debajo", "s": 31.57, "e": 31.97, "key": false}, {"w": "de", "s": 31.97, "e": 32.03, "key": false}, {"w": "ti.", "s": 32.12, "e": 32.5, "key": false}, {"w": "Fuera", "s": 32.5, "e": 32.95, "key": false}, {"w": "hace", "s": 32.95, "e": 33.29, "key": false}, {"w": "unos", "s": 33.31, "e": 33.67, "key": false}, {"w": "56", "s": 33.67, "e": 34.21, "key": false}, {"w": "grados", "s": 34.21, "e": 34.75, "key": false}, {"w": "bajo", "s": 34.75, "e": 35.1, "key": false}, {"w": "cero.", "s": 35.2, "e": 35.5, "key": false}]}, {"id": "l8", "s": 35.51, "e": 41.5, "words": [{"w": "En", "s": 35.51, "e": 35.62, "key": false}, {"w": "algo", "s": 35.74, "e": 35.87, "key": false}, {"w": "más", "s": 35.87, "e": 36.05, "key": false}, {"w": "de", "s": 36.05, "e": 36.18, "key": false}, {"w": "un", "s": 36.18, "e": 36.26, "key": false}, {"w": "día,", "s": 36.32, "e": 36.49, "key": false}, {"w": "cruzas", "s": 36.49, "e": 36.87, "key": false}, {"w": "los", "s": 36.87, "e": 36.96, "key": false}, {"w": "100", "s": 37.11, "e": 37.63, "key": false}, {"w": "kilómetros.", "s": 37.63, "e": 38.5, "key": false}, {"w": "Según", "s": 38.5, "e": 38.8, "key": false}, {"w": "la", "s": 38.8, "e": 38.92, "key": false}, {"w": "definición", "s": 38.92, "e": 39.54, "key": false}, {"w": "más", "s": 39.54, "e": 39.7, "key": false}, {"w": "usada,", "s": 39.76, "e": 40.14, "key": false}, {"w": "ya", "s": 40.14, "e": 40.26, "key": false}, {"w": "estás", "s": 40.26, "e": 40.56, "key": false}, {"w": "en", "s": 40.56, "e": 40.62, "key": false}, {"w": "el", "s": 40.71, "e": 40.81, "key": false}, {"w": "espacio.", "s": 40.81, "e": 41.5, "key": true}]}, {"id": "l9", "s": 41.5, "e": 47.5, "words": [{"w": "Casi", "s": 41.5, "e": 41.81, "key": false}, {"w": "cinco", "s": 41.81, "e": 42.2, "key": false}, {"w": "días", "s": 42.22, "e": 42.53, "key": false}, {"w": "después,", "s": 42.53, "e": 42.95, "key": false}, {"w": "pasas", "s": 43.11, "e": 43.45, "key": false}, {"w": "junto", "s": 43.47, "e": 43.84, "key": false}, {"w": "a", "s": 43.87, "e": 43.95, "key": false}, {"w": "la", "s": 43.95, "e": 44.03, "key": false}, {"w": "Estación", "s": 44.35, "e": 44.74, "key": true}, {"w": "Espacial,", "s": 44.74, "e": 45.52, "key": false}, {"w": "a", "s": 45.52, "e": 45.6, "key": false}, {"w": "unos", "s": 45.6, "e": 45.92, "key": false}, {"w": "420", "s": 45.92, "e": 46.59, "key": false}, {"w": "kilómetros.", "s": 46.72, "e": 47.5, "key": false}]}, {"id": "l10", "s": 47.5, "e": 54.0, "words": [{"w": "¿Y", "s": 47.5, "e": 47.6, "key": false}, {"w": "la", "s": 47.6, "e": 47.8, "key": false}, {"w": "Luna?", "s": 47.8, "e": 48.5, "key": true}, {"w": "A", "s": 48.5, "e": 48.54, "key": false}, {"w": "esta", "s": 48.61, "e": 48.91, "key": false}, {"w": "velocidad,", "s": 48.91, "e": 49.65, "key": false}, {"w": "tardarías", "s": 49.65, "e": 50.38, "key": false}, {"w": "12", "s": 50.38, "e": 50.88, "key": false}, {"w": "años.", "s": 50.88, "e": 51.5, "key": false}, {"w": "12", "s": 51.5, "e": 51.91, "key": false}, {"w": "años", "s": 51.91, "e": 52.18, "key": false}, {"w": "sin", "s": 52.18, "e": 52.38, "key": false}, {"w": "salir", "s": 52.38, "e": 52.59, "key": false}, {"w": "del", "s": 52.68, "e": 52.92, "key": false}, {"w": "ascensor.", "s": 52.92, "e": 54.0, "key": false}]}, {"id": "l11", "s": 54, "e": 56.561, "words": [{"w": "Y", "s": 54, "e": 54.073, "key": false}, {"w": "lo", "s": 54.073, "e": 54.22, "key": false}, {"w": "peor:", "s": 54.24, "e": 54.67, "key": false}, {"w": "para", "s": 54.67, "e": 54.97, "key": false}, {"w": "volver", "s": 54.97, "e": 55.43, "key": false}, {"w": "a", "s": 55.43, "e": 55.46, "key": false}, {"w": "bajar,", "s": 55.61, "e": 55.88, "key": false}, {"w": "otros", "s": 55.88, "e": 56.23, "key": false}, {"w": "12.", "s": 56.23, "e": 56.561, "key": true}]}, {"id": "l12", "s": 56.561, "e": 60.0, "words": [{"w": "¿Hasta", "s": 56.561, "e": 57.39, "key": false}, {"w": "qué", "s": 57.39, "e": 57.54, "key": false}, {"w": "piso", "s": 57.6, "e": 57.85, "key": false}, {"w": "aguantarías", "s": 57.85, "e": 58.56, "key": false}, {"w": "tú?", "s": 58.62, "e": 58.92, "key": false}, {"w": "Te", "s": 59, "e": 59.09, "key": false}, {"w": "leo", "s": 59.18, "e": 59.22, "key": false}, {"w": "en", "s": 59.24, "e": 59.31, "key": false}, {"w": "los", "s": 59.31, "e": 59.4, "key": false}, {"w": "comentarios.", "s": 59.46, "e": 60.0, "key": true}]}]}</script>
+    <script id="escena" type="application/json">
+      {
+        "titulo": "¿Y si tu ascensor no parara de subir?",
+        "nota": "Valores aproximados · ascensor a 1 m/s",
+        "formato": "altura",
+        "desde": "SUBIENDO DESDE HACE",
+        "inicio": 0,
+        "ritmo": 1,
+        "hitos": [
+          { "clave": "subir", "v": 0 },
+          { "clave": "planta", "v": 6 },
+          { "clave": "vecino", "v": 12 },
+          { "clave": "azotea", "v": 24, "etiqueta": "LA AZOTEA" },
+          { "clave": "cristal", "v": 249, "etiqueta": "TORRE DE CRISTAL" },
+          { "clave": "khalifa", "v": 828, "etiqueta": "BURJ KHALIFA" },
+          { "clave": "everest", "v": 8849, "etiqueta": "EVEREST" },
+          { "clave": "aviones", "v": 11000, "etiqueta": "AVIONES" },
+          { "clave": "kilometros", "v": 100000, "etiqueta": "EMPIEZA EL ESPACIO" },
+          { "clave": "estacion", "v": 420000, "etiqueta": "ESTACIÓN ESPACIAL" },
+          { "clave": "tardarias", "v": 384400000, "etiqueta": "LA LUNA" }
+        ],
+        "extra": { "clave": "bajar", "texto": "y otros 12 años para bajar" },
+        "sonido": { "campanilla": true, "motor": true, "viento": true, "etereo_desde": 45 }
+      }
+    </script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 61.5 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import * as THREE from "three";
+      import { crearContador } from "./comun/contador.js";
+
+      const C = crearContador(THREE);
+      const { scene, camera, key, hemi, mat, glow, box, at, v3, hash, clamp, ramp, Y, D } = C;
+      scene.fog = new THREE.Fog(0xa8e4ff, 30, 70);
+      // a block spanning two altitudes (in metres)
+      const spanBox = (w, d, h0, h1, m) => { const y0 = Y(h0), y1 = Y(h1); return at(box(w, y1 - y0, d, m), 0, (y0 + y1) / 2, 0); };
+
+      // ---------- the elevator and our character ----------
+      const cab = new THREE.Group(); scene.add(cab);
+      const METAL = mat(0x2b2f45), GLASS = new THREE.MeshStandardMaterial({ color: 0xbfe8ff, transparent: true, opacity: 0.22, roughness: 0.1, depthWrite: false });
+      cab.add(at(box(1.6, 0.12, 1.4, METAL), 0, 0, 0));
+      cab.add(at(box(1.6, 0.14, 1.4, METAL), 0, 2.1, 0));
+      for (const [x, z] of [[-0.76, -0.66], [0.76, -0.66], [-0.76, 0.66], [0.76, 0.66]]) cab.add(at(box(0.08, 2.1, 0.08, METAL), x, 1.05, z));
+      cab.add(at(box(1.52, 2.0, 0.02, GLASS), 0, 1.05, 0.66));
+      cab.add(at(box(0.02, 2.0, 1.32, GLASS), -0.76, 1.05, 0));
+      cab.add(at(box(0.02, 2.0, 1.32, GLASS), 0.76, 1.05, 0));
+      cab.add(at(box(1.52, 2.0, 0.02, mat(0x3b4260)), 0, 1.05, -0.66));
+      cab.add(at(box(0.5, 0.04, 0.3, glow(0xfff2c4)), 0, 2.02, 0));
+      cab.add(at(box(0.05, 400, 0.05, mat(0x1d1f3a)), 0, 202.1, 0));
+      const { kid, head } = C.personaje(); kid.scale.setScalar(0.3); kid.position.set(0, 0.08, 0.05); cab.add(kid);
+
+      // ---------- the world, placed at its real altitude ----------
+      // street and our block of flats
+      const city = new THREE.Group(); scene.add(city);
+      city.add(at(box(80, 0.2, 80, mat(0x5d6b7a)), 0, -0.1, 0));
+      const WALL = mat(0xe8d7c0), WIN = glow(0xffe7a6);
+      for (let k = 0; k < 8; k++) {
+        const f = spanBox(4.2, 3.2, k * 3, k * 3 + 3, k % 2 ? WALL : mat(0xdcc9b0)); f.position.set(-0.2, f.position.y, -2.2); city.add(f);
+        const ww = Y(k * 3 + 3) - Y(k * 3);
+        for (const x of [-1.4, -0.5, 0.5, 1.4]) city.add(at(box(0.5, ww * 0.45, 0.05, WIN), x - 0.2, f.position.y, -0.58));
+      }
+      const roof = spanBox(4.4, 3.4, 24, 25, mat(0x9a8b78)); roof.position.z = -2.2; city.add(roof);
+      for (let i = 0; i < 14; i++) {
+        const hh = 6 + hash(i) * 40, b = spanBox(2 + hash(i + 3) * 2, 2 + hash(i + 5) * 2, 0, hh, mat([0xc9d6e3, 0xe8d7c0, 0xb8c4d6, 0xf0e2cf][i % 4]));
+        b.position.set((i % 2 ? 1 : -1) * (5 + hash(i + 7) * 9), b.position.y, -4 - hash(i + 11) * 12); city.add(b);
+      }
+
+      // Torre de Cristal: glass slab with a lit crown
+      const tower = new THREE.Group(); tower.position.set(3.4, 0, -3.2); scene.add(tower);
+      tower.add(spanBox(1.8, 1.8, 0, 225, mat(0x5fa8d8, { roughness: 0.3, metalness: 0.2 })));
+      tower.add(spanBox(1.95, 1.95, 225, 249, mat(0x9fe8c8, { emissive: 0x3fbf8f, emissiveIntensity: 0.4 })));
+      // Burj Khalifa: stacked setbacks and a spire
+      const burj = new THREE.Group(); burj.position.set(-3.6, 0, -4.6); scene.add(burj);
+      [[0, 300, 2.2], [300, 500, 1.7], [500, 650, 1.25], [650, 740, 0.85]].forEach(([a, b, w]) => burj.add(spanBox(w, w, a, b, mat(0xc7ced8, { metalness: 0.3, roughness: 0.4 }))));
+      burj.add(spanBox(0.18, 0.18, 740, 828, mat(0xe8eef5, { metalness: 0.5, roughness: 0.3 })));
+      // clouds between 1 and 4 km
+      const clouds = new THREE.Group(); scene.add(clouds);
+      for (let i = 0; i < 22; i++) {
+        const c = new THREE.Group(); const n = 3 + Math.floor(hash(i + 20) * 3);
+        for (let j = 0; j < n; j++) c.add(at(new THREE.Mesh(new THREE.IcosahedronGeometry(0.7 + hash(i * 7 + j) * 0.6, 0), mat(0xffffff, { roughness: 1 })), j * 0.8 - n * 0.4, hash(i * 3 + j) * 0.4, hash(i * 5 + j) * 0.5));
+        c.position.set((hash(i + 40) - 0.5) * 16, Y(1000 + hash(i + 60) * 3500), -2 - hash(i + 80) * 9);
+        if (Math.abs(c.position.x) < 1.6 && c.position.z > -3) c.position.x += 3.5 * Math.sign(c.position.x || 1);
+        clouds.add(c);
+      }
+      // Everest: only the summit, rising out of a sea of clouds (a whole mountain would fill the log scale)
+      const peak = new THREE.Group(); peak.position.set(2.4, 0, -10); scene.add(peak);
+      function summit(r, h0, h1, snowFrom, x, z, rockC) {
+        const g = new THREE.Group(); g.position.set(x, 0, z);
+        const hh = Y(h1) - Y(h0), sh = Y(h1) - Y(snowFrom);
+        g.add(at(new THREE.Mesh(new THREE.ConeGeometry(r, hh, 7, 1), mat(rockC)), 0, Y(h0) + hh / 2, 0));
+        g.add(at(new THREE.Mesh(new THREE.ConeGeometry(r * (sh / hh) * 1.03, sh, 7, 1), mat(0xf4f7fb)), 0, Y(h1) - sh / 2 + 0.02, 0));
+        return g;
+      }
+      peak.add(summit(4.2, 4500, 8849, 7000, 0, 0, 0x6b6e7a));
+      peak.add(summit(3.2, 4500, 7200, 6200, -9, -4, 0x5b5e6a));
+      for (let i = 0; i < 12; i++) {
+        const c = at(new THREE.Mesh(new THREE.IcosahedronGeometry(1.1 + hash(i + 500) * 0.8, 0), mat(0xffffff, { roughness: 1 })), (hash(i + 510) - 0.5) * 22, Y(4300) + hash(i + 520) * 0.6, -3 + (hash(i + 530) - 0.5) * 8);
+        peak.add(c);
+      }
+      // two planes cruising at ~11 km
+      function plane(c) {
+        const p = new THREE.Group();
+        p.add(at(box(2.6, 0.38, 0.38, mat(0xffffff)), 0, 0, 0));
+        p.add(at(box(0.6, 0.06, 2.6, mat(c)), 0.1, 0, 0));
+        p.add(at(box(0.4, 0.6, 0.06, mat(c)), -1.15, 0.3, 0));
+        p.add(at(box(0.3, 0.06, 0.9, mat(c)), -1.15, 0.05, 0));
+        return p;
+      }
+      const planes = [plane(0xff6a2b), plane(0x2b6fd8)];
+      planes[0].position.set(0, Y(10500), -3); planes[1].position.set(0, Y(11800), -6); planes[1].rotation.y = Math.PI;
+      planes.forEach((p) => scene.add(p));
+      // edge of space at 100 km: a thin glowing line
+      const edge = at(box(60, 0.05, 0.05, glow(0x8ff3ff, 0.9)), 0, Y(100000), -3); scene.add(edge);
+      // International Space Station
+      const iss = new THREE.Group(); iss.position.set(2.4, Y(420000) + 0.6, -4); iss.scale.setScalar(1.5); scene.add(iss);
+      iss.add(box(2.6, 0.12, 0.12, mat(0xd0d4dc)));
+      for (const x of [-1.2, -0.8, 0.8, 1.2]) iss.add(at(box(0.32, 0.02, 1.6, mat(0x2a4fae, { emissive: 0x1b3a8a, emissiveIntensity: 0.4 })), x, 0, 0));
+      iss.add(at(new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.14, 0.9, 8), mat(0xeeeeee)), 0, 0, 0.0)).rotation.z = Math.PI / 2;
+      // the Moon, beside the cabin, below the HUD and above the captions
+      const moon = new THREE.Group(); moon.position.set(2.06, Y(384400000) - 0.24, -8); moon.scale.setScalar(0.75); scene.add(moon);
+      moon.add(new THREE.Mesh(new THREE.IcosahedronGeometry(2.6, 1), mat(0xc9c9c4, { roughness: 1 })));
+      for (let i = 0; i < 9; i++) {
+        const d = v3(hash(i + 1) - 0.5, hash(i + 2) - 0.5, hash(i + 3) * 0.6 + 0.2).normalize().multiplyScalar(2.45);
+        const cr = new THREE.Mesh(new THREE.IcosahedronGeometry(0.25 + hash(i + 4) * 0.35, 0), mat(0x9a9a95, { roughness: 1 })); cr.position.copy(d); moon.add(cr);
+      }
+      // Earth seen from above: kept below the camera, shrinking as we climb
+      const earth = new THREE.Group(); scene.add(earth);
+      const eg = new THREE.IcosahedronGeometry(24, 3).toNonIndexed(); const col = [];
+      const pos = eg.attributes.position;
+      for (let i = 0; i < pos.count; i += 3) {
+        const cx = (pos.getX(i) + pos.getX(i + 1) + pos.getX(i + 2)) / 3, cz = (pos.getZ(i) + pos.getZ(i + 1) + pos.getZ(i + 2)) / 3;
+        const land = Math.sin(cx * 0.31) + Math.cos(cz * 0.27 + 1.3) + Math.sin((cx + cz) * 0.17) > 1.1;
+        const c = new THREE.Color(land ? 0x5bb35b : 0x2a7fd4); for (let k = 0; k < 3; k++) col.push(c.r, c.g, c.b);
+      }
+      eg.setAttribute("color", new THREE.Float32BufferAttribute(col, 3));
+      earth.add(new THREE.Mesh(eg, new THREE.MeshStandardMaterial({ vertexColors: true, flatShading: true, roughness: 0.9 })));
+      earth.add(new THREE.Mesh(new THREE.SphereGeometry(25.2, 48, 32), new THREE.MeshBasicMaterial({ color: 0x8fd0ff, transparent: true, opacity: 0.18, side: THREE.BackSide, depthWrite: false })));
+      // stars around the camera
+      const starGeo = new THREE.BufferGeometry(); const sp = [];
+      for (let i = 0; i < 700; i++) { const a = hash(i) * Math.PI * 2, b = (hash(i + 900) - 0.5) * Math.PI, r = 120; sp.push(r * Math.cos(b) * Math.cos(a), r * Math.sin(b), r * Math.cos(b) * Math.sin(a) - 40); }
+      starGeo.setAttribute("position", new THREE.Float32BufferAttribute(sp, 3));
+      const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xffffff, size: 2.2, sizeAttenuation: false, transparent: true, opacity: 0, depthWrite: false })); scene.add(stars);
+      // speed streaks
+      const streaks = new THREE.Group(); scene.add(streaks); const streakMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0, depthWrite: false });
+      for (let i = 0; i < 40; i++) streaks.add(at(box(0.04, 1.8 + hash(i + 300) * 2, 0.04, streakMat), (hash(i + 100) - 0.5) * 9, 0, -1 - hash(i + 200) * 6));
+
+      // sky colours by altitude
+      const SKY = [[0, "#3fc4ff", "#a8e4ff"], [30, "#1592f0", "#7fd0ff"], [41, "#0a3f9e", "#3d8fe0"], [50, "#060c2c", "#0b2a6a"], [58, "#02030a", "#05081a"]];
+      C.etiquetas({ "TORRE DE CRISTAL": [tower, v3(0, Y(249), 0)], "BURJ KHALIFA": [burj, v3(0, Y(828), 0)], "EVEREST": [peak, v3(0, Y(8849), 0)],
+        "AVIONES": [planes[0], v3(0, 0, 0)], "EMPIEZA EL ESPACIO": [edge, v3(6, 0, 0)], "ESTACIÓN ESPACIAL": [iss, v3(0, 0, 0)], "LA LUNA": [moon, v3(0, 2.6, 0)], "LA AZOTEA": [roof, v3(-1.6, 0.3, 0)] }, [cab, v3(0, 2.2, 0)]);
+
+      function renderAt(t) {
+        const y = C.yAt(t), yv = (C.yAt(t + 1 / 30) - C.yAt(t - 1 / 30)) * 15;
+        cab.position.y = y;
+        // camera follows, pulling back as we climb
+        const dist = 13.5 + 0.06 * y + 3 * ramp(t, D - 4.5, D - 1);
+        const sway = Math.sin(t * 0.6) * 0.5;
+        camera.position.set(2.6 + sway, y + 1.6 + 0.02 * y, dist);
+        camera.lookAt(0.3, y + 0.45 + 0.012 * y, 0);
+        camera.updateMatrixWorld();
+        key.position.set(-6, y + 9, 7); key.target.position.set(0, y, 0);
+        // kid looks around, then up
+        head.rotation.y = Math.sin(t * 0.9) * 0.25; head.rotation.x = -0.15 - 0.35 * clamp((y - 75) / 10);
+        // sky, fog, stars, sun light fading
+        const [, bot] = C.fondo(SKY, y);
+        scene.fog.color.set(bot); scene.fog.near = 25 + clamp((y - 40) / 15) * 200; scene.fog.far = 70 + clamp((y - 40) / 15) * 300;
+        stars.material.opacity = clamp((y - 44) / 8); stars.position.y = y;
+        hemi.intensity = 1.3 - 0.6 * clamp((y - 45) / 10);
+        // earth below once we are high enough
+        earth.visible = y > 43;
+        const gap = 3 + clamp((y - 45) / 41) * 60;
+        earth.position.set(-2, y - 24 - gap, -18 - gap * 0.6); earth.rotation.y = t * 0.03;
+        // moving things
+        planes[0].position.x = -10 + ((t * 2.2) % 20); planes[1].position.x = 10 - ((t * 1.6) % 20);
+        iss.rotation.y = t * 0.2; moon.rotation.y = t * 0.05; clouds.position.x = Math.sin(t * 0.1) * 0.6;
+        // streaks when moving fast
+        streakMat.opacity = clamp((yv - 1.5) / 6) * 0.55;
+        streaks.children.forEach((s, i) => { s.position.y = y + 4 - (((t * (8 + hash(i) * 6) + hash(i + 50) * 14) % 14)); });
+        C.pintar(t, y);
+      }
+      await C.arrancar(renderAt);
+    </script>
+  </body>
+</html>

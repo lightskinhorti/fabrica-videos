@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <script type="importmap">
+      { "imports": { "three": "./lib/three.module.js", "three/addons/": "./lib/addons/" } }
+    </script>
+    <link rel="stylesheet" href="comun/contador.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Nunito", sans-serif; }
+      #alt, #clock { font-family: "Archivo Black", sans-serif; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="61.1" data-width="1080" data-height="1920" data-fps="30">
+      <div id="sky" class="clip" data-start="0" data-duration="61.1" data-track-index="0"></div>
+      <canvas id="gl" class="clip" data-start="0" data-duration="61.1" data-track-index="1" width="1080" height="1920"></canvas>
+      <svg id="leaders" class="clip" data-start="0" data-duration="61.1" data-track-index="2" width="1080" height="1920" data-layout-allow-overlap></svg>
+      <div id="labels" class="clip" data-start="0" data-duration="61.1" data-track-index="3" data-layout-allow-overlap></div>
+      <div id="hud" class="clip" data-start="0" data-duration="61.1" data-track-index="4">
+        <div id="alt">0<small>m</small></div>
+        <div id="since"></div>
+        <div id="clock">0 s</div>
+        <div id="extra"></div>
+        <div id="note"></div>
+      </div>
+      <div id="title" class="clip" data-start="0" data-duration="61.1" data-track-index="6"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="61.1"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="61.1" data-track-index="7" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 59.88, "lines": [{"id": "l1", "s": 0.01, "e": 5.0, "words": [{"w": "Tu", "s": 0.01, "e": 0.14, "key": false}, {"w": "montón", "s": 0.26, "e": 0.52, "key": false}, {"w": "de", "s": 0.58, "e": 0.7, "key": false}, {"w": "ropa", "s": 0.7, "e": 0.98, "key": false}, {"w": "sin", "s": 0.98, "e": 1.19, "key": false}, {"w": "doblar", "s": 1.19, "e": 1.5, "key": false}, {"w": "tiene", "s": 1.61, "e": 1.95, "key": false}, {"w": "una", "s": 1.95, "e": 2.16, "key": false}, {"w": "regla:", "s": 2.16, "e": 2.7, "key": false}, {"w": "cada", "s": 2.8, "e": 2.99, "key": false}, {"w": "día", "s": 3.04, "e": 3.21, "key": false}, {"w": "que", "s": 3.21, "e": 3.43, "key": false}, {"w": "no", "s": 3.43, "e": 3.57, "key": false}, {"w": "lo", "s": 3.57, "e": 3.71, "key": false}, {"w": "doblas,", "s": 3.71, "e": 4.32, "key": false}, {"w": "se", "s": 4.43, "e": 4.45, "key": false}, {"w": "duplica.", "s": 4.48, "e": 5.0, "key": true}]}, {"id": "l2", "s": 5, "e": 9.89, "words": [{"w": "Hoy", "s": 5, "e": 5.26, "key": false}, {"w": "es", "s": 5.26, "e": 5.42, "key": false}, {"w": "una", "s": 5.42, "e": 5.67, "key": false}, {"w": "camiseta.", "s": 5.67, "e": 6.64, "key": true}, {"w": "Mañana,", "s": 6.64, "e": 7.18, "key": false}, {"w": "dos.", "s": 7.18, "e": 7.63, "key": false}, {"w": "Pasado,", "s": 7.8, "e": 8.17, "key": false}, {"w": "cuatro.", "s": 8.17, "e": 8.98, "key": false}, {"w": "Nada", "s": 8.98, "e": 9.06, "key": false}, {"w": "grave.", "s": 9.44, "e": 9.89, "key": false}]}, {"id": "l3", "s": 9.89, "e": 13.0, "words": [{"w": "Al", "s": 9.89, "e": 10.26, "key": false}, {"w": "sexto", "s": 10.26, "e": 10.52, "key": false}, {"w": "día,", "s": 10.52, "e": 10.88, "key": false}, {"w": "ya", "s": 10.88, "e": 11.02, "key": false}, {"w": "pasa", "s": 11.04, "e": 11.32, "key": false}, {"w": "el", "s": 11.33, "e": 11.47, "key": false}, {"w": "respaldo", "s": 11.5, "e": 12.07, "key": false}, {"w": "de", "s": 12.07, "e": 12.21, "key": false}, {"w": "la", "s": 12.21, "e": 12.3, "key": false}, {"w": "silla.", "s": 12.44, "e": 13.0, "key": true}]}, {"id": "l4", "s": 13.04, "e": 15.97, "words": [{"w": "Al", "s": 13.04, "e": 13.17, "key": false}, {"w": "séptimo,", "s": 13.17, "e": 13.93, "key": false}, {"w": "toca", "s": 13.93, "e": 14.06, "key": false}, {"w": "el", "s": 14.42, "e": 14.44, "key": false}, {"w": "techo", "s": 14.48, "e": 14.86, "key": true}, {"w": "de", "s": 14.86, "e": 14.9, "key": false}, {"w": "tu", "s": 14.97, "e": 15.2, "key": false}, {"w": "cuarto.", "s": 15.61, "e": 15.97, "key": false}]}, {"id": "l5", "s": 15.97, "e": 19.98, "words": [{"w": "Al", "s": 15.97, "e": 16.26, "key": false}, {"w": "noveno,", "s": 16.26, "e": 16.85, "key": false}, {"w": "es", "s": 16.85, "e": 17.02, "key": false}, {"w": "más", "s": 17.02, "e": 17.28, "key": false}, {"w": "alto", "s": 17.28, "e": 17.63, "key": false}, {"w": "que", "s": 17.63, "e": 17.89, "key": false}, {"w": "una", "s": 17.89, "e": 18.15, "key": false}, {"w": "farola:", "s": 18.15, "e": 19.0, "key": true}, {"w": "10", "s": 19.04, "e": 19.26, "key": false}, {"w": "metros", "s": 19.37, "e": 19.56, "key": false}, {"w": "de", "s": 19.56, "e": 19.65, "key": false}, {"w": "ropa.", "s": 19.65, "e": 19.98, "key": false}]}, {"id": "l6", "s": 19.98, "e": 23.98, "words": [{"w": "El", "s": 19.98, "e": 20.26, "key": false}, {"w": "día", "s": 20.26, "e": 20.38, "key": false}, {"w": "14,", "s": 20.38, "e": 20.85, "key": false}, {"w": "pasa", "s": 20.85, "e": 21.15, "key": false}, {"w": "la", "s": 21.16, "e": 21.3, "key": false}, {"w": "Sagrada", "s": 21.31, "e": 21.85, "key": false}, {"w": "Familia", "s": 21.85, "e": 22.23, "key": false}, {"w": "y", "s": 22.23, "e": 22.46, "key": false}, {"w": "la", "s": 22.46, "e": 22.61, "key": false}, {"w": "Torre", "s": 22.8, "e": 22.99, "key": false}, {"w": "de", "s": 23.04, "e": 23.14, "key": false}, {"w": "Cristal.", "s": 23.14, "e": 23.98, "key": true}]}, {"id": "l7", "s": 23.98, "e": 26.97, "words": [{"w": "El", "s": 23.98, "e": 24.26, "key": false}, {"w": "día", "s": 24.26, "e": 24.45, "key": false}, {"w": "16,", "s": 24.45, "e": 24.99, "key": false}, {"w": "se", "s": 24.99, "e": 25.17, "key": false}, {"w": "mete", "s": 25.17, "e": 25.5, "key": false}, {"w": "entre", "s": 25.61, "e": 25.98, "key": false}, {"w": "las", "s": 25.98, "e": 26.24, "key": false}, {"w": "nubes.", "s": 26.24, "e": 26.97, "key": true}]}, {"id": "l8", "s": 26.97, "e": 31.0, "words": [{"w": "El", "s": 26.97, "e": 27.15, "key": false}, {"w": "día", "s": 27.15, "e": 27.42, "key": false}, {"w": "19,", "s": 27.42, "e": 27.96, "key": false}, {"w": "deja", "s": 27.96, "e": 28.06, "key": false}, {"w": "atrás", "s": 28.44, "e": 28.75, "key": false}, {"w": "el", "s": 28.8, "e": 28.89, "key": false}, {"w": "Everest", "s": 28.89, "e": 29.61, "key": true}, {"w": "y", "s": 29.61, "e": 29.67, "key": false}, {"w": "a", "s": 29.67, "e": 29.76, "key": false}, {"w": "los", "s": 29.76, "e": 29.97, "key": false}, {"w": "aviones.", "s": 30.03, "e": 31.0, "key": false}]}, {"id": "l9", "s": 31, "e": 34.98, "words": [{"w": "El", "s": 31, "e": 31.26, "key": false}, {"w": "día", "s": 31.26, "e": 31.47, "key": false}, {"w": "23,", "s": 31.47, "e": 32.02, "key": false}, {"w": "tu", "s": 32.04, "e": 32.23, "key": false}, {"w": "ropa", "s": 32.23, "e": 32.5, "key": false}, {"w": "sucia", "s": 32.61, "e": 33.07, "key": false}, {"w": "ya", "s": 33.07, "e": 33.25, "key": false}, {"w": "está", "s": 33.25, "e": 33.32, "key": false}, {"w": "en", "s": 33.8, "e": 33.83, "key": false}, {"w": "el", "s": 33.83, "e": 34.01, "key": false}, {"w": "espacio.", "s": 34.04, "e": 34.98, "key": true}]}, {"id": "l10", "s": 35, "e": 39.98, "words": [{"w": "Y", "s": 35, "e": 35.012, "key": false}, {"w": "ahora", "s": 35.012, "e": 35.07, "key": false}, {"w": "viene", "s": 35.43, "e": 35.5, "key": false}, {"w": "lo", "s": 35.5, "e": 35.59, "key": false}, {"w": "bueno:", "s": 35.59, "e": 35.9, "key": false}, {"w": "el", "s": 36.01, "e": 36.14, "key": false}, {"w": "día", "s": 36.26, "e": 36.36, "key": false}, {"w": "34,", "s": 36.36, "e": 36.8, "key": false}, {"w": "ha", "s": 36.8, "e": 36.9, "key": false}, {"w": "recorrido", "s": 36.96, "e": 37.5, "key": false}, {"w": "casi", "s": 37.61, "e": 37.89, "key": false}, {"w": "el", "s": 37.89, "e": 38.03, "key": false}, {"w": "noventa", "s": 38.03, "e": 38.249, "key": false}, {"w": "por", "s": 38.249, "e": 38.343, "key": false}, {"w": "ciento", "s": 38.343, "e": 38.53, "key": false}, {"w": "del", "s": 38.53, "e": 38.8, "key": false}, {"w": "camino", "s": 38.8, "e": 39.2, "key": false}, {"w": "a", "s": 39.2, "e": 39.26, "key": false}, {"w": "la", "s": 39.37, "e": 39.41, "key": false}, {"w": "Luna.", "s": 39.41, "e": 39.98, "key": true}]}, {"id": "l11", "s": 39.99, "e": 46.0, "words": [{"w": "Solo", "s": 39.99, "e": 40.4, "key": false}, {"w": "un", "s": 40.44, "e": 40.59, "key": false}, {"w": "día", "s": 40.6, "e": 40.89, "key": false}, {"w": "después,", "s": 41.61, "e": 41.63, "key": false}, {"w": "la", "s": 41.63, "e": 41.83, "key": false}, {"w": "pasa", "s": 41.83, "e": 42.24, "key": false}, {"w": "de", "s": 42.24, "e": 42.42, "key": false}, {"w": "largo.", "s": 42.43, "e": 43.0, "key": true}, {"w": "Cada", "s": 43, "e": 43.26, "key": false}, {"w": "día", "s": 43.26, "e": 43.43, "key": false}, {"w": "crece", "s": 43.43, "e": 43.73, "key": false}, {"w": "tanto", "s": 43.73, "e": 44.02, "key": false}, {"w": "como", "s": 44.04, "e": 44.29, "key": false}, {"w": "todos", "s": 44.29, "e": 44.5, "key": false}, {"w": "los", "s": 44.61, "e": 44.78, "key": false}, {"w": "anteriores", "s": 44.78, "e": 45.3, "key": false}, {"w": "juntos.", "s": 45.75, "e": 46.0, "key": false}]}, {"id": "l12", "s": 46, "e": 48.82, "words": [{"w": "Por", "s": 46, "e": 46.26, "key": false}, {"w": "suerte,", "s": 46.26, "e": 46.64, "key": true}, {"w": "la", "s": 46.65, "e": 46.77, "key": false}, {"w": "ropa", "s": 46.79, "e": 47.07, "key": false}, {"w": "de", "s": 47.07, "e": 47.21, "key": false}, {"w": "verdad", "s": 47.21, "e": 47.65, "key": false}, {"w": "no", "s": 47.65, "e": 47.79, "key": false}, {"w": "funciona", "s": 47.79, "e": 48.23, "key": false}, {"w": "así.", "s": 48.6, "e": 48.82, "key": false}]}, {"id": "l13", "s": 48.82, "e": 55.811, "words": [{"w": "Aunque", "s": 48.82, "e": 49.26, "key": false}, {"w": "en", "s": 49.26, "e": 49.4, "key": false}, {"w": "España", "s": 49.4, "e": 49.98, "key": false}, {"w": "cada", "s": 49.98, "e": 50.06, "key": false}, {"w": "persona", "s": 50.44, "e": 50.75, "key": false}, {"w": "genera", "s": 50.8, "e": 51.23, "key": false}, {"w": "unos", "s": 51.23, "e": 51.61, "key": false}, {"w": "19", "s": 51.61, "e": 51.96, "key": false}, {"w": "kilos", "s": 51.96, "e": 52.31, "key": false}, {"w": "de", "s": 52.36, "e": 52.42, "key": false}, {"w": "residuo", "s": 52.77, "e": 52.98, "key": false}, {"w": "textil", "s": 52.98, "e": 53.41, "key": false}, {"w": "al", "s": 53.41, "e": 53.46, "key": false}, {"w": "año,", "s": 53.87, "e": 54.0, "key": false}, {"w": "y", "s": 54.01, "e": 54.072, "key": false}, {"w": "casi", "s": 54.072, "e": 54.32, "key": false}, {"w": "todo", "s": 54.32, "e": 54.52, "key": false}, {"w": "acaba", "s": 54.58, "e": 54.9, "key": false}, {"w": "en", "s": 54.91, "e": 55.02, "key": false}, {"w": "el", "s": 55.04, "e": 55.17, "key": false}, {"w": "vertedero.", "s": 55.17, "e": 55.811, "key": true}]}, {"id": "l14", "s": 55.811, "e": 60.0, "words": [{"w": "¿Cuántos", "s": 55.811, "e": 56.31, "key": false}, {"w": "días", "s": 56.56, "e": 56.58, "key": false}, {"w": "aguantarías", "s": 56.75, "e": 57.15, "key": false}, {"w": "tú", "s": 57.15, "e": 57.25, "key": false}, {"w": "sin", "s": 57.25, "e": 57.4, "key": false}, {"w": "doblarla?", "s": 57.4, "e": 57.98, "key": false}, {"w": "Te", "s": 57.99, "e": 58.06, "key": false}, {"w": "leo", "s": 58.38, "e": 58.45, "key": false}, {"w": "en", "s": 58.48, "e": 58.66, "key": false}, {"w": "los", "s": 58.66, "e": 58.89, "key": false}, {"w": "comentarios.", "s": 59.61, "e": 60.0, "key": true}]}]}</script>
+    <script id="escena" type="application/json">
+      {
+        "titulo": "¿Y si tu montón de ropa se duplicara cada día?",
+        "nota": "Valores aproximados · 2 cm por prenda",
+        "formato": "pila",
+        "desde": "SIN DOBLAR DESDE HACE",
+        "inicio": 0.02,
+        "crecimiento": "doble",
+        "periodo": 86400,
+        "hitos": [
+          { "clave": "camiseta", "v": 0.02 },
+          { "clave": "silla", "v": 1.28, "etiqueta": "PASA LA SILLA" },
+          { "clave": "techo", "v": 2.56, "etiqueta": "TOCA EL TECHO" },
+          { "clave": "farola", "v": 10.24, "etiqueta": "MÁS QUE UNA FAROLA" },
+          { "clave": "cristal", "v": 327.68, "etiqueta": "PASA LA TORRE DE CRISTAL" },
+          { "clave": "nubes", "v": 1310.72, "etiqueta": "ENTRE LAS NUBES" },
+          { "clave": "everest", "v": 10485.76, "etiqueta": "PASA EL EVEREST" },
+          { "clave": "espacio", "v": 167772.16, "etiqueta": "EN EL ESPACIO" },
+          { "clave": "luna", "v": 343597383.68, "etiqueta": "89 % DEL CAMINO A LA LUNA" },
+          { "clave": "largo", "v": 687194767.36, "etiqueta": "LUNA SUPERADA" }
+        ],
+        "sonido": { "viento": true, "etereo_desde": 45 }
+      }
+    </script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 61.1 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import * as THREE from "three";
+      import { crearContador } from "./comun/contador.js";
+
+      // Same log-scale world as the elevator (every ×10 in metres is 10 units up): the pile of clothes
+      // is the column that climbs, and the camera follows its top.
+      const C = crearContador(THREE);
+      const { scene, camera, key, hemi, mat, glow, box, at, v3, hash, clamp, ramp, Y, D } = C;
+      scene.fog = new THREE.Fog(0xa8e4ff, 30, 70);
+      const spanBox = (w, d, h0, h1, m) => { const y0 = Y(h0), y1 = Y(h1); return at(box(w, y1 - y0, d, m), 0, (y0 + y1) / 2, 0); };
+      const cone = (r, h, m, seg = 8) => new THREE.Mesh(new THREE.ConeGeometry(r, h, seg), m);
+
+      // ---------- the pile: one box per garment layer, revealed up to the current height ----------
+      const CAPAS = 760, PASO = 0.12;
+      const ROPA = [0xd63a3a, 0x2b6fd8, 0xf2c14e, 0x5bb35b, 0xf4efe2, 0x1d1f3a, 0xff9aa8, 0x8c5a33, 0x6b4fa8, 0x3fbfbf];
+      const pile = new THREE.InstancedMesh(new THREE.BoxGeometry(1, 1, 1), mat(0xffffff, { roughness: 0.95 }), CAPAS);
+      const m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), e = new THREE.Euler();
+      for (let i = 0; i < CAPAS; i++) {
+        e.set(0, (hash(i + 7) - 0.5) * 0.9, (hash(i + 11) - 0.5) * 0.08); q.setFromEuler(e);
+        m4.compose(v3((hash(i + 3) - 0.5) * 0.18, PASO * (i + 0.5), (hash(i + 5) - 0.5) * 0.18), q, v3(1.15 + hash(i) * 0.35, PASO * 1.15, 0.85 + hash(i + 1) * 0.3));
+        pile.setMatrixAt(i, m4); pile.setColorAt(i, new THREE.Color(ROPA[Math.floor(hash(i + 13) * ROPA.length)]));
+      }
+      // its bounding box is a single garment at the floor, so three.js would cull it once the camera climbs
+      pile.frustumCulled = false;
+      scene.add(pile);
+      const top = new THREE.Object3D(); scene.add(top);
+      // a few garments always falling onto the top
+      const falling = [0, 1, 2].map((i) => { const f = box(1.1, 0.06, 0.8, mat(ROPA[(i * 3 + 1) % ROPA.length])); scene.add(f); return f; });
+
+      // ---------- the bedroom: floor, wall with a window, ceiling, the chair, our character ----------
+      scene.add(at(box(80, 0.2, 80, mat(0x8a6a4a)), 0, -0.1, 0));
+      scene.add(at(box(9, Y(2.5), 0.2, mat(0xe8d7c0)), 0, Y(2.5) / 2, -2.4));
+      scene.add(at(box(2.2, 1.6, 0.05, glow(0xbfe8ff, 0.95)), -2.6, 3.4, -2.28));
+      const ceiling = at(box(9, 0.18, 1.4, mat(0xf4efe2)), 0, Y(2.5), -1.7); scene.add(ceiling);
+      const chair = new THREE.Group(); chair.position.set(1.55, 0, -0.4); chair.rotation.y = -0.4; scene.add(chair);
+      const WOOD = mat(0xb07a4a);
+      for (const [x, z] of [[-0.4, -0.4], [0.4, -0.4], [-0.4, 0.4], [0.4, 0.4]]) chair.add(at(spanBox(0.09, 0.09, 0, 0.45, WOOD), x, Y(0.45) / 2, z));
+      chair.add(spanBox(1.0, 1.0, 0.43, 0.47, WOOD));
+      chair.add(at(spanBox(1.0, 0.1, 0.47, 0.9, WOOD), 0, (Y(0.47) + Y(0.9)) / 2, -0.45));
+      const { kid, head } = C.personaje(); kid.scale.setScalar(0.45); kid.position.set(-2.2, 0, -0.3); kid.rotation.y = 0.5; scene.add(kid);
+
+      // ---------- outside: street lamp, town, Sagrada Familia, Torre de Cristal ----------
+      const farola = new THREE.Group(); farola.position.set(3.2, 0, -4.2); scene.add(farola);
+      farola.add(spanBox(0.14, 0.14, 0, 9, mat(0x3b4260)));
+      farola.add(at(box(0.9, 0.18, 0.35, mat(0x3b4260)), 0.35, Y(9), 0)); farola.add(at(box(0.5, 0.08, 0.25, glow(0xfff2c4)), 0.5, Y(9) - 0.12, 0));
+      const city = new THREE.Group(); scene.add(city);
+      for (let i = 0; i < 14; i++) {
+        const hh = 6 + hash(i) * 40, b = spanBox(2 + hash(i + 3) * 2, 2 + hash(i + 5) * 2, 0, hh, mat([0xc9d6e3, 0xe8d7c0, 0xb8c4d6, 0xf0e2cf][i % 4]));
+        b.position.set((i % 2 ? 1 : -1) * (5 + hash(i + 7) * 9), b.position.y, -6 - hash(i + 11) * 12); city.add(b);
+      }
+      const sagrada = new THREE.Group(); sagrada.position.set(-3.8, 0, -6); scene.add(sagrada);
+      const PIEDRA = mat(0xd8c9a8);
+      sagrada.add(spanBox(3.4, 2.2, 0, 45, mat(0xc9b68f)));
+      [[-1.3, 0.8, 105], [-0.45, 0.8, 110], [0.45, 0.8, 110], [1.3, 0.8, 105], [-0.9, -0.6, 135], [0.9, -0.6, 135], [0, -0.9, 138], [0, 0, 172.5]].forEach(([x, z, h]) => {
+        const w = h > 170 ? 0.5 : 0.32; const t = spanBox(w, w, 45, h * 0.94, PIEDRA); t.position.x = x; t.position.z = z; sagrada.add(t);
+        sagrada.add(at(cone(w * 0.6, Y(h) - Y(h * 0.94) + 0.3, PIEDRA), x, Y(h * 0.94) + (Y(h) - Y(h * 0.94)) / 2, z));
+      });
+      const tower = new THREE.Group(); tower.position.set(3.6, 0, -3.4); scene.add(tower);
+      tower.add(spanBox(1.8, 1.8, 0, 225, mat(0x5fa8d8, { roughness: 0.3, metalness: 0.2 })));
+      tower.add(spanBox(1.95, 1.95, 225, 249, mat(0x9fe8c8, { emissive: 0x3fbf8f, emissiveIntensity: 0.4 })));
+
+      // ---------- the sky: clouds, Everest, planes, edge of space, Earth, stars, Moon (as in the elevator) ----------
+      const clouds = new THREE.Group(); scene.add(clouds);
+      for (let i = 0; i < 22; i++) {
+        const c = new THREE.Group(); const n = 3 + Math.floor(hash(i + 20) * 3);
+        for (let j = 0; j < n; j++) c.add(at(new THREE.Mesh(new THREE.IcosahedronGeometry(0.7 + hash(i * 7 + j) * 0.6, 0), mat(0xffffff, { roughness: 1 })), j * 0.8 - n * 0.4, hash(i * 3 + j) * 0.4, hash(i * 5 + j) * 0.5));
+        c.position.set((hash(i + 40) - 0.5) * 16, Y(800 + hash(i + 60) * 2500), -2 - hash(i + 80) * 9);
+        if (Math.abs(c.position.x) < 1.6 && c.position.z > -3) c.position.x += 3.5 * Math.sign(c.position.x || 1);
+        clouds.add(c);
+      }
+      const peak = new THREE.Group(); peak.position.set(2.4, 0, -10); scene.add(peak);
+      function summit(r, h0, h1, snowFrom, x, z, rockC) {
+        const g = new THREE.Group(); g.position.set(x, 0, z);
+        const hh = Y(h1) - Y(h0), sh = Y(h1) - Y(snowFrom);
+        g.add(at(new THREE.Mesh(new THREE.ConeGeometry(r, hh, 7, 1), mat(rockC)), 0, Y(h0) + hh / 2, 0));
+        g.add(at(new THREE.Mesh(new THREE.ConeGeometry(r * (sh / hh) * 1.03, sh, 7, 1), mat(0xf4f7fb)), 0, Y(h1) - sh / 2 + 0.02, 0));
+        return g;
+      }
+      peak.add(summit(4.2, 4500, 8849, 7000, 0, 0, 0x6b6e7a));
+      peak.add(summit(3.2, 4500, 7200, 6200, -9, -4, 0x5b5e6a));
+      for (let i = 0; i < 12; i++) peak.add(at(new THREE.Mesh(new THREE.IcosahedronGeometry(1.1 + hash(i + 500) * 0.8, 0), mat(0xffffff, { roughness: 1 })), (hash(i + 510) - 0.5) * 22, Y(4300) + hash(i + 520) * 0.6, -3 + (hash(i + 530) - 0.5) * 8));
+      function plane(c) {
+        const p = new THREE.Group();
+        p.add(at(box(2.6, 0.38, 0.38, mat(0xffffff)), 0, 0, 0));
+        p.add(at(box(0.6, 0.06, 2.6, mat(c)), 0.1, 0, 0));
+        p.add(at(box(0.4, 0.6, 0.06, mat(c)), -1.15, 0.3, 0));
+        p.add(at(box(0.3, 0.06, 0.9, mat(c)), -1.15, 0.05, 0));
+        return p;
+      }
+      const planes = [plane(0xff6a2b), plane(0x2b6fd8)];
+      planes[0].position.set(0, Y(10500), -3); planes[1].position.set(0, Y(11800), -6); planes[1].rotation.y = Math.PI;
+      planes.forEach((p) => scene.add(p));
+      const edge = at(box(60, 0.05, 0.05, glow(0x8ff3ff, 0.9)), 0, Y(100000), -3); scene.add(edge);
+      const moon = new THREE.Group(); moon.position.set(2.2, Y(384400000), -8); moon.scale.setScalar(0.75); scene.add(moon);
+      moon.add(new THREE.Mesh(new THREE.IcosahedronGeometry(2.6, 1), mat(0xc9c9c4, { roughness: 1 })));
+      for (let i = 0; i < 9; i++) {
+        const d = v3(hash(i + 1) - 0.5, hash(i + 2) - 0.5, hash(i + 3) * 0.6 + 0.2).normalize().multiplyScalar(2.45);
+        const cr = new THREE.Mesh(new THREE.IcosahedronGeometry(0.25 + hash(i + 4) * 0.35, 0), mat(0x9a9a95, { roughness: 1 })); cr.position.copy(d); moon.add(cr);
+      }
+      const earth = new THREE.Group(); scene.add(earth);
+      const eg = new THREE.IcosahedronGeometry(24, 3).toNonIndexed(); const col = [];
+      const pos = eg.attributes.position;
+      for (let i = 0; i < pos.count; i += 3) {
+        const cx = (pos.getX(i) + pos.getX(i + 1) + pos.getX(i + 2)) / 3, cz = (pos.getZ(i) + pos.getZ(i + 1) + pos.getZ(i + 2)) / 3;
+        const land = Math.sin(cx * 0.31) + Math.cos(cz * 0.27 + 1.3) + Math.sin((cx + cz) * 0.17) > 1.1;
+        const c = new THREE.Color(land ? 0x5bb35b : 0x2a7fd4); for (let k = 0; k < 3; k++) col.push(c.r, c.g, c.b);
+      }
+      eg.setAttribute("color", new THREE.Float32BufferAttribute(col, 3));
+      earth.add(new THREE.Mesh(eg, new THREE.MeshStandardMaterial({ vertexColors: true, flatShading: true, roughness: 0.9 })));
+      earth.add(new THREE.Mesh(new THREE.SphereGeometry(25.2, 48, 32), new THREE.MeshBasicMaterial({ color: 0x8fd0ff, transparent: true, opacity: 0.18, side: THREE.BackSide, depthWrite: false })));
+      const starGeo = new THREE.BufferGeometry(); const sp = [];
+      for (let i = 0; i < 700; i++) { const a = hash(i) * Math.PI * 2, b = (hash(i + 900) - 0.5) * Math.PI, r = 120; sp.push(r * Math.cos(b) * Math.cos(a), r * Math.sin(b), r * Math.cos(b) * Math.sin(a) - 40); }
+      starGeo.setAttribute("position", new THREE.Float32BufferAttribute(sp, 3));
+      const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xffffff, size: 2.2, sizeAttenuation: false, transparent: true, opacity: 0, depthWrite: false })); scene.add(stars);
+
+      const SKY = [[0, "#3fc4ff", "#a8e4ff"], [30, "#1592f0", "#7fd0ff"], [41, "#0a3f9e", "#3d8fe0"], [50, "#060c2c", "#0b2a6a"], [58, "#02030a", "#05081a"]];
+      C.etiquetas({
+        "PASA LA SILLA": [chair, v3(0, Y(0.9), -0.45)], "TOCA EL TECHO": [ceiling, v3(1.2, 0, 0.7)], "MÁS QUE UNA FAROLA": [farola, v3(0.4, Y(9), 0)],
+        "PASA LA TORRE DE CRISTAL": [tower, v3(0, Y(249), 0)], "PASA EL EVEREST": [peak, v3(0, Y(8849), 0)], "EN EL ESPACIO": [edge, v3(6, 0, 0)],
+      }, [top, v3(0, 0, 0)]);
+
+      function renderAt(t) {
+        const y = C.yAt(t);
+        // reveal the pile up to its height
+        pile.count = Math.max(1, Math.min(CAPAS, Math.ceil(y / PASO)));
+        top.position.set(0, y, 0);
+        falling.forEach((f, i) => { const k = (t * 1.3 + i / 3) % 1; f.position.set((hash(i + 40) - 0.5) * 0.5, y + 0.15 + (1 - k) * 2.5, (hash(i + 41) - 0.5) * 0.4); f.rotation.set(0, t * (1 + i), 0.3 * Math.sin(t * 3 + i)); f.visible = k < 0.95; });
+        // camera follows the top of the pile, pulling back as it climbs
+        const dist = 13.5 + 0.06 * y + 3 * ramp(t, D - 4.5, D - 1);
+        const sway = Math.sin(t * 0.6) * 0.5;
+        camera.position.set(2.6 + sway, y + 1.6 + 0.02 * y, dist);
+        camera.lookAt(0.3, y + 0.45 + 0.012 * y, 0);
+        camera.updateMatrixWorld();
+        key.position.set(-6, y + 9, 7); key.target.position.set(0, y, 0);
+        head.rotation.x = -0.2 - 0.4 * clamp(y / 4); head.rotation.y = 0.3 + Math.sin(t * 0.9) * 0.15;
+        const [, bot] = C.fondo(SKY, y);
+        scene.fog.color.set(bot); scene.fog.near = 25 + clamp((y - 40) / 15) * 200; scene.fog.far = 70 + clamp((y - 40) / 15) * 300;
+        stars.material.opacity = clamp((y - 44) / 8); stars.position.y = y;
+        hemi.intensity = 1.3 - 0.6 * clamp((y - 45) / 10);
+        earth.visible = y > 43;
+        const gap = 3 + clamp((y - 45) / 41) * 60;
+        earth.position.set(-2, y - 24 - gap, -18 - gap * 0.6); earth.rotation.y = t * 0.03;
+        planes[0].position.x = -10 + ((t * 2.2) % 20); planes[1].position.x = 10 - ((t * 1.6) % 20);
+        moon.rotation.y = t * 0.05; clouds.position.x = Math.sin(t * 0.1) * 0.6;
+        C.pintar(t, y);
+      }
+      await C.arrancar(renderAt);
+    </script>
+  </body>
+</html>

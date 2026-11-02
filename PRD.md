@@ -196,6 +196,26 @@ git clone https://github.com/JohnHeibel/ClaudeAnimationBase.git
 4. Control automático: duración de más de 60 segundos, subtítulos dentro de la zona visible, volumen y que cada cifra tenga fuente.
 5. Los otros 4 vídeos con la misma plantilla, midiendo cuántos minutos tuyos necesita cada uno.
 
+**Avance de la fase 1 (2 de noviembre):**
+
+- **Los 5 vídeos de prueba están hechos (2 de noviembre),** todos de más de 60 segundos, en `exports/render/`: 01-ascensor (61,5 s, aprobado), 02-movil (61,2 s), 03-gato (65,2 s), 04-crecer (64,5 s) y 05-ropa (61,1 s). Cada uno tiene su `fuentes.md` con las cifras y sus fuentes. Falta que apruebes del 2 al 5.
+- **Cadena de un solo comando:** `bash herramientas/producir.sh videos/<cuenta>/<video>`. Genera la voz con Gemini si falta (la clave está en `.env`, fuera de git), la transcribe con Whisper, mete los tiempos en la escena, hace la mezcla, ajusta el volumen a -14 LUFS, pasa la revisión de HyperFrames y renderiza.
+- **Paso 4 a medias:** la duración, el volumen (-14 LUFS, medido en el vídeo final) y la revisión de HyperFrames ya se comprueban solos. Falta comprobar automáticamente que los subtítulos caen en la zona visible y que cada cifra tiene fuente (ahora están en `fuentes.md` de cada vídeo).
+- **Lo aprendido con la voz real:**
+  - Whisper escribe los números en cifras ("249") y el guion los tiene en palabras para que la voz los lea bien. `herramientas/vozdata.py` empareja las dos versiones aunque no coincidan palabra a palabra, y en los subtítulos salen las cifras.
+  - La voz real fue más rápida que la estimación: 60 segundos en vez de 73.
+  - Cada hito se queda en pantalla hasta que acaba su frase, para que el contador no se adelante a lo que dice la voz.
+- **Tus minutos en el vídeo 1:** aprobar la idea, guardar la clave una vez y ver el vídeo. Se medirá bien con los vídeos 2 a 5, que ya no necesitan que hagas nada con la voz.
+- **Tus minutos en los vídeos 2 a 5:** ninguno durante la producción. Tu parte es aprobar las ideas y ver cada vídeo terminado (uno o dos minutos por vídeo). Lo que sí lleva tiempo es la escena 3D de cada vídeo nuevo: la primera vez de cada tema, Claude tarda en montarla y revisarla. Repetir un tema con otro guion (otro ascensor, otro gato) ya sería casi automático.
+- **Lo aprendido en los vídeos 2 a 5:**
+  - El guion tiene que tener unas 185 palabras para pasar de 60 segundos con esta voz.
+  - Los subtítulos van en grupos de 4 palabras y más abajo (hasta 1.420 px), a petición de Javier.
+  - HyperFrames sube el volumen unos 3 dB al renderizar, así que el ajuste a -14 LUFS se hace sobre el vídeo final.
+  - Tres formas de escena que ya funcionan: subir por una escala (ascensor, termómetro del móvil, montón de ropa), crecer en el sitio con comparaciones a tamaño real al lado (gato, personaje) y los hitos de "solo etiqueta" para comparar sin mover el contador.
+- **Motor común (2 de noviembre):** las piezas que se repiten en todos los vídeos de El contador loco (marcador, subtítulos, etiquetas, anclas a la voz, formato de cifras y el personaje de bloques) están en `herramientas/contador/`. Cada vídeo solo construye su escena 3D. Se comprobó con el ascensor: las capturas salen idénticas píxel a píxel.
+- **El formato principal es con voz,** como el del ascensor, que a Javier le gustó.
+- **Modo texto, solo como opción:** en vídeos de este tipo mucha gente no pone voz, sino frases cortas en pantalla y una canción de moda (referencia en `referencias/contador-texto-y-cancion.mp4`). Fue una idea de Javier, no un cambio de formato. La fábrica puede hacer esa versión con `producir.sh --texto` si un guion trae frases cortas en `texto`: solo efectos de sonido a -20 LUFS, y la canción se añade al publicar desde la biblioteca de TikTok (meterla en el vídeo haría que TikTok lo silenciara). Se probó con el vídeo 2. Si algún día se prueba en la fase 2, no se publica el mismo vídeo dos veces.
+
 **Primera prueba del estilo del Mac (1 de noviembre).** Vídeo de 21 segundos sobre la tarjeta que paga sin batería. Lo hicieron Claude Code y HyperFrames de principio a fin, sin editar nada a mano. Incluye voz Kokoro en español, efectos de sonido hechos con código y subtítulos con la palabra seleccionada.
 
 - **Ya funciona:** los subtítulos con caja de selección, la tarjeta abierta por dentro con su etiqueta, el campo del datáfono, la corriente por el cobre, el chip que se enciende y el final con «Pagado».
@@ -371,6 +391,21 @@ El objetivo es 3 vídeos al día por cuenta, pero se llega por escalones. Si la 
 - Las tres caen fuera de tu horario laboral, así que se pueden publicar a mano si hace falta.
 - A las 2 semanas se ajustan con TikTok Studio, en Audiencia > Actividad de seguidores.
 - TikTok tiene un programador gratuito en su web que deja programar con hasta 10 días de antelación. Una fuente dice que exige cuenta de empresa, que no puede cobrar del programa: hay que comprobarlo con una cuenta personal.
+
+**Cómo se publica (revisado el 2 de noviembre):**
+
+Hay tres formas, de menos a más automática:
+
+| Forma | Cómo va | Coste | Problema |
+| --- | --- | --- | --- |
+| A. TikTok Studio en la web | Claude deja cada vídeo con su texto, hashtags y hora. Tú lo subes y lo programas una vez a la semana, hasta 10 días antes | Gratis | Unos 2 o 3 minutos tuyos por vídeo. Sin comprobar si una cuenta personal puede programar |
+| B. Metricool | Programador español que publica solo en TikTok e Instagram con las APIs oficiales. Su ayuda dice que vale para cuentas personales | Gratis para 1 marca (1 TikTok y 1 Instagram); 3 cuentas pasan al plan de pago | Fuentes contradictorias sobre si el plan gratis publica solo y cuántos vídeos al mes deja |
+| C. Programa propio con la API de TikTok | Claude escribe un programa que publica cada vídeo aprobado | Gratis | TikTok tiene que auditar la aplicación antes: hasta entonces solo publica en privado y como mucho para 5 usuarios al día. La auditoría pide web, política de privacidad y un vídeo de demostración |
+
+- **Decisión propuesta:** forma A en la fase 2, mientras el torneo decide la cuenta ganadora. En la fase 4, la cuenta ganadora pasa a B o a C, junto con Instagram. Instagram también tiene API para publicar Reels, pero exige cuenta profesional y no está claro si vale la de creador o solo la de empresa.
+- **Lo que hace Claude en cada vídeo (R12):** un archivo `publicacion.md` con la descripción, los hashtags, la hora y el recordatorio de la etiqueta de IA. La portada es el primer fotograma, que ya lleva la pregunta en grande.
+- **Etiqueta de IA:** TikTok exige etiquetar el contenido hecho con IA que parece real, y puede poner la etiqueta él solo si lo detecta. Los dibujos de bloques no parecen reales y la voz no imita a una persona conocida, pero se activa siempre igualmente, como ya decía el plan. Así no hay riesgo de que retiren un vídeo.
+- **Siempre es tu decisión publicar:** ni Claude ni ningún programa publica un vídeo que no hayas aprobado.
 
 ## Plan de ejecución
 

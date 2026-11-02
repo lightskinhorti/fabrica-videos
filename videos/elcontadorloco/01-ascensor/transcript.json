@@ -1,0 +1,998 @@
+[
+  {
+    "text": "Tu",
+    "start": 0.13,
+    "end": 0.24,
+    "id": "w0"
+  },
+  {
+    "text": "ascensor",
+    "start": 0.24,
+    "end": 0.64,
+    "id": "w1"
+  },
+  {
+    "text": "se",
+    "start": 0.64,
+    "end": 0.76,
+    "id": "w2"
+  },
+  {
+    "text": "ha",
+    "start": 0.82,
+    "end": 0.9,
+    "id": "w3"
+  },
+  {
+    "text": "vuelto",
+    "start": 0.9,
+    "end": 1.26,
+    "id": "w4"
+  },
+  {
+    "text": "loco",
+    "start": 1.33,
+    "end": 1.46,
+    "id": "w5"
+  },
+  {
+    "text": "y",
+    "start": 1.61,
+    "end": 1.63,
+    "id": "w6"
+  },
+  {
+    "text": "ya",
+    "start": 1.63,
+    "end": 1.77,
+    "id": "w7"
+  },
+  {
+    "text": "no",
+    "start": 1.77,
+    "end": 1.91,
+    "id": "w8"
+  },
+  {
+    "text": "para",
+    "start": 1.91,
+    "end": 2.15,
+    "id": "w9"
+  },
+  {
+    "text": "de",
+    "start": 2.18,
+    "end": 2.32,
+    "id": "w10"
+  },
+  {
+    "text": "subir.",
+    "start": 2.32,
+    "end": 2.73,
+    "id": "w11"
+  },
+  {
+    "text": "Va",
+    "start": 2.86,
+    "end": 2.88,
+    "id": "w12"
+  },
+  {
+    "text": "a",
+    "start": 2.88,
+    "end": 2.95,
+    "id": "w13"
+  },
+  {
+    "text": "un",
+    "start": 2.95,
+    "end": 3.09,
+    "id": "w14"
+  },
+  {
+    "text": "metro",
+    "start": 3.2,
+    "end": 3.45,
+    "id": "w15"
+  },
+  {
+    "text": "por",
+    "start": 3.45,
+    "end": 3.66,
+    "id": "w16"
+  },
+  {
+    "text": "segundo,",
+    "start": 3.66,
+    "end": 4.21,
+    "id": "w17"
+  },
+  {
+    "text": "como",
+    "start": 4.26,
+    "end": 4.4,
+    "id": "w18"
+  },
+  {
+    "text": "el",
+    "start": 4.4,
+    "end": 4.5,
+    "id": "w19"
+  },
+  {
+    "text": "de",
+    "start": 4.5,
+    "end": 4.55,
+    "id": "w20"
+  },
+  {
+    "text": "tu",
+    "start": 4.56,
+    "end": 4.66,
+    "id": "w21"
+  },
+  {
+    "text": "edificio,",
+    "start": 4.66,
+    "end": 5.4,
+    "id": "w22"
+  },
+  {
+    "text": "hasta",
+    "start": 5.8,
+    "end": 6,
+    "id": "w23"
+  },
+  {
+    "text": "donde",
+    "start": 6,
+    "end": 6.2,
+    "id": "w24"
+  },
+  {
+    "text": "llegarías.",
+    "start": 6.2,
+    "end": 7,
+    "id": "w25"
+  },
+  {
+    "text": "Al",
+    "start": 7,
+    "end": 7.24,
+    "id": "w26"
+  },
+  {
+    "text": "principio",
+    "start": 7.24,
+    "end": 7.73,
+    "id": "w27"
+  },
+  {
+    "text": "nada",
+    "start": 7.73,
+    "end": 7.99,
+    "id": "w28"
+  },
+  {
+    "text": "raro.",
+    "start": 7.99,
+    "end": 8.44,
+    "id": "w29"
+  },
+  {
+    "text": "Pasas",
+    "start": 8.45,
+    "end": 8.78,
+    "id": "w30"
+  },
+  {
+    "text": "tu",
+    "start": 8.78,
+    "end": 8.91,
+    "id": "w31"
+  },
+  {
+    "text": "planta,",
+    "start": 8.91,
+    "end": 9.43,
+    "id": "w32"
+  },
+  {
+    "text": "la",
+    "start": 9.43,
+    "end": 9.52,
+    "id": "w33"
+  },
+  {
+    "text": "del",
+    "start": 9.52,
+    "end": 9.86,
+    "id": "w34"
+  },
+  {
+    "text": "vecino,",
+    "start": 9.86,
+    "end": 10.29,
+    "id": "w35"
+  },
+  {
+    "text": "la",
+    "start": 10.29,
+    "end": 10.42,
+    "id": "w36"
+  },
+  {
+    "text": "azotea...",
+    "start": 10.42,
+    "end": 11.5,
+    "id": "w37"
+  },
+  {
+    "text": "A",
+    "start": 11.5,
+    "end": 11.57,
+    "id": "w38"
+  },
+  {
+    "text": "los",
+    "start": 11.74,
+    "end": 11.79,
+    "id": "w39"
+  },
+  {
+    "text": "cuatro",
+    "start": 11.79,
+    "end": 12.23,
+    "id": "w40"
+  },
+  {
+    "text": "minutos",
+    "start": 12.32,
+    "end": 12.76,
+    "id": "w41"
+  },
+  {
+    "text": "pasas",
+    "start": 12.82,
+    "end": 13.14,
+    "id": "w42"
+  },
+  {
+    "text": "la",
+    "start": 13.14,
+    "end": 13.29,
+    "id": "w43"
+  },
+  {
+    "text": "Torre",
+    "start": 13.29,
+    "end": 13.65,
+    "id": "w44"
+  },
+  {
+    "text": "de",
+    "start": 13.66,
+    "end": 13.77,
+    "id": "w45"
+  },
+  {
+    "text": "Cristal,",
+    "start": 13.8,
+    "end": 14.49,
+    "id": "w46"
+  },
+  {
+    "text": "el",
+    "start": 14.49,
+    "end": 14.59,
+    "id": "w47"
+  },
+  {
+    "text": "edificio",
+    "start": 14.7,
+    "end": 15.19,
+    "id": "w48"
+  },
+  {
+    "text": "más",
+    "start": 15.25,
+    "end": 15.45,
+    "id": "w49"
+  },
+  {
+    "text": "alto",
+    "start": 15.45,
+    "end": 15.7,
+    "id": "w50"
+  },
+  {
+    "text": "de",
+    "start": 15.76,
+    "end": 15.91,
+    "id": "w51"
+  },
+  {
+    "text": "España,",
+    "start": 15.91,
+    "end": 16.42,
+    "id": "w52"
+  },
+  {
+    "text": "249",
+    "start": 16.49,
+    "end": 17.1,
+    "id": "w53"
+  },
+  {
+    "text": "metros.",
+    "start": 17.3,
+    "end": 18,
+    "id": "w54"
+  },
+  {
+    "text": "A",
+    "start": 18,
+    "end": 18.07,
+    "id": "w55"
+  },
+  {
+    "text": "los",
+    "start": 18.24,
+    "end": 18.29,
+    "id": "w56"
+  },
+  {
+    "text": "14",
+    "start": 18.29,
+    "end": 18.73,
+    "id": "w57"
+  },
+  {
+    "text": "minutos",
+    "start": 18.82,
+    "end": 19.26,
+    "id": "w58"
+  },
+  {
+    "text": "dejas",
+    "start": 19.33,
+    "end": 19.64,
+    "id": "w59"
+  },
+  {
+    "text": "atrás",
+    "start": 19.64,
+    "end": 19.96,
+    "id": "w60"
+  },
+  {
+    "text": "el",
+    "start": 20.02,
+    "end": 20.15,
+    "id": "w61"
+  },
+  {
+    "text": "Burg",
+    "start": 20.17,
+    "end": 20.46,
+    "id": "w62"
+  },
+  {
+    "text": "Califa,",
+    "start": 20.46,
+    "end": 21.06,
+    "id": "w63"
+  },
+  {
+    "text": "el",
+    "start": 21.06,
+    "end": 21.21,
+    "id": "w64"
+  },
+  {
+    "text": "rascacielos",
+    "start": 21.21,
+    "end": 22.02,
+    "id": "w65"
+  },
+  {
+    "text": "más",
+    "start": 22.02,
+    "end": 22.2,
+    "id": "w66"
+  },
+  {
+    "text": "alto",
+    "start": 22.26,
+    "end": 22.54,
+    "id": "w67"
+  },
+  {
+    "text": "del",
+    "start": 22.54,
+    "end": 22.76,
+    "id": "w68"
+  },
+  {
+    "text": "mundo.",
+    "start": 22.76,
+    "end": 23.41,
+    "id": "w69"
+  },
+  {
+    "text": "Dos",
+    "start": 23.41,
+    "end": 23.75,
+    "id": "w70"
+  },
+  {
+    "text": "horas",
+    "start": 23.75,
+    "end": 24.17,
+    "id": "w71"
+  },
+  {
+    "text": "y",
+    "start": 24.17,
+    "end": 24.24,
+    "id": "w72"
+  },
+  {
+    "text": "media",
+    "start": 24.32,
+    "end": 24.67,
+    "id": "w73"
+  },
+  {
+    "text": "después",
+    "start": 24.67,
+    "end": 25.26,
+    "id": "w74"
+  },
+  {
+    "text": "estás",
+    "start": 25.26,
+    "end": 25.65,
+    "id": "w75"
+  },
+  {
+    "text": "a",
+    "start": 25.68,
+    "end": 25.73,
+    "id": "w76"
+  },
+  {
+    "text": "la",
+    "start": 25.73,
+    "end": 25.91,
+    "id": "w77"
+  },
+  {
+    "text": "altura",
+    "start": 25.92,
+    "end": 26.42,
+    "id": "w78"
+  },
+  {
+    "text": "de",
+    "start": 26.42,
+    "end": 26.56,
+    "id": "w79"
+  },
+  {
+    "text": "Leverest,",
+    "start": 26.66,
+    "end": 27.4,
+    "id": "w80"
+  },
+  {
+    "text": "8.849",
+    "start": 27.4,
+    "end": 28.59,
+    "id": "w81"
+  },
+  {
+    "text": "metros.",
+    "start": 28.68,
+    "end": 29.5,
+    "id": "w82"
+  },
+  {
+    "text": "A",
+    "start": 29.5,
+    "end": 29.56,
+    "id": "w83"
+  },
+  {
+    "text": "las",
+    "start": 29.74,
+    "end": 29.76,
+    "id": "w84"
+  },
+  {
+    "text": "tres",
+    "start": 29.76,
+    "end": 30.03,
+    "id": "w85"
+  },
+  {
+    "text": "horas",
+    "start": 30.03,
+    "end": 30.37,
+    "id": "w86"
+  },
+  {
+    "text": "los",
+    "start": 30.37,
+    "end": 30.55,
+    "id": "w87"
+  },
+  {
+    "text": "aviones",
+    "start": 30.61,
+    "end": 30.95,
+    "id": "w88"
+  },
+  {
+    "text": "pasan",
+    "start": 31.11,
+    "end": 31.37,
+    "id": "w89"
+  },
+  {
+    "text": "por",
+    "start": 31.37,
+    "end": 31.57,
+    "id": "w90"
+  },
+  {
+    "text": "debajo",
+    "start": 31.57,
+    "end": 31.97,
+    "id": "w91"
+  },
+  {
+    "text": "de",
+    "start": 31.97,
+    "end": 32.03,
+    "id": "w92"
+  },
+  {
+    "text": "ti.",
+    "start": 32.12,
+    "end": 32.5,
+    "id": "w93"
+  },
+  {
+    "text": "Fuera",
+    "start": 32.5,
+    "end": 32.95,
+    "id": "w94"
+  },
+  {
+    "text": "hace",
+    "start": 32.95,
+    "end": 33.29,
+    "id": "w95"
+  },
+  {
+    "text": "unos",
+    "start": 33.31,
+    "end": 33.67,
+    "id": "w96"
+  },
+  {
+    "text": "56",
+    "start": 33.67,
+    "end": 34.21,
+    "id": "w97"
+  },
+  {
+    "text": "grados",
+    "start": 34.21,
+    "end": 34.75,
+    "id": "w98"
+  },
+  {
+    "text": "bajo",
+    "start": 34.75,
+    "end": 35.1,
+    "id": "w99"
+  },
+  {
+    "text": "cero.",
+    "start": 35.2,
+    "end": 35.5,
+    "id": "w100"
+  },
+  {
+    "text": "En",
+    "start": 35.51,
+    "end": 35.62,
+    "id": "w101"
+  },
+  {
+    "text": "algo",
+    "start": 35.74,
+    "end": 35.87,
+    "id": "w102"
+  },
+  {
+    "text": "más",
+    "start": 35.87,
+    "end": 36.05,
+    "id": "w103"
+  },
+  {
+    "text": "de",
+    "start": 36.05,
+    "end": 36.18,
+    "id": "w104"
+  },
+  {
+    "text": "un",
+    "start": 36.18,
+    "end": 36.26,
+    "id": "w105"
+  },
+  {
+    "text": "día",
+    "start": 36.32,
+    "end": 36.49,
+    "id": "w106"
+  },
+  {
+    "text": "cruzas",
+    "start": 36.49,
+    "end": 36.87,
+    "id": "w107"
+  },
+  {
+    "text": "los",
+    "start": 36.87,
+    "end": 36.96,
+    "id": "w108"
+  },
+  {
+    "text": "100",
+    "start": 37.11,
+    "end": 37.63,
+    "id": "w109"
+  },
+  {
+    "text": "kilómetros.",
+    "start": 37.63,
+    "end": 38.5,
+    "id": "w110"
+  },
+  {
+    "text": "Según",
+    "start": 38.5,
+    "end": 38.8,
+    "id": "w111"
+  },
+  {
+    "text": "la",
+    "start": 38.8,
+    "end": 38.92,
+    "id": "w112"
+  },
+  {
+    "text": "definición",
+    "start": 38.92,
+    "end": 39.54,
+    "id": "w113"
+  },
+  {
+    "text": "más",
+    "start": 39.54,
+    "end": 39.7,
+    "id": "w114"
+  },
+  {
+    "text": "usada,",
+    "start": 39.76,
+    "end": 40.14,
+    "id": "w115"
+  },
+  {
+    "text": "ya",
+    "start": 40.14,
+    "end": 40.26,
+    "id": "w116"
+  },
+  {
+    "text": "estás",
+    "start": 40.26,
+    "end": 40.56,
+    "id": "w117"
+  },
+  {
+    "text": "en",
+    "start": 40.56,
+    "end": 40.62,
+    "id": "w118"
+  },
+  {
+    "text": "el",
+    "start": 40.71,
+    "end": 40.81,
+    "id": "w119"
+  },
+  {
+    "text": "espacio.",
+    "start": 40.81,
+    "end": 41.5,
+    "id": "w120"
+  },
+  {
+    "text": "Casi",
+    "start": 41.5,
+    "end": 41.81,
+    "id": "w121"
+  },
+  {
+    "text": "cinco",
+    "start": 41.81,
+    "end": 42.2,
+    "id": "w122"
+  },
+  {
+    "text": "días",
+    "start": 42.22,
+    "end": 42.53,
+    "id": "w123"
+  },
+  {
+    "text": "después",
+    "start": 42.53,
+    "end": 42.95,
+    "id": "w124"
+  },
+  {
+    "text": "pasas",
+    "start": 43.11,
+    "end": 43.45,
+    "id": "w125"
+  },
+  {
+    "text": "junto",
+    "start": 43.47,
+    "end": 43.84,
+    "id": "w126"
+  },
+  {
+    "text": "a",
+    "start": 43.87,
+    "end": 43.95,
+    "id": "w127"
+  },
+  {
+    "text": "la",
+    "start": 43.95,
+    "end": 44.03,
+    "id": "w128"
+  },
+  {
+    "text": "estación",
+    "start": 44.35,
+    "end": 44.74,
+    "id": "w129"
+  },
+  {
+    "text": "espacial,",
+    "start": 44.74,
+    "end": 45.52,
+    "id": "w130"
+  },
+  {
+    "text": "a",
+    "start": 45.52,
+    "end": 45.6,
+    "id": "w131"
+  },
+  {
+    "text": "unos",
+    "start": 45.6,
+    "end": 45.92,
+    "id": "w132"
+  },
+  {
+    "text": "420",
+    "start": 45.92,
+    "end": 46.59,
+    "id": "w133"
+  },
+  {
+    "text": "kilómetros.",
+    "start": 46.72,
+    "end": 47.5,
+    "id": "w134"
+  },
+  {
+    "text": "Yla",
+    "start": 47.5,
+    "end": 47.8,
+    "id": "w135"
+  },
+  {
+    "text": "Luna.",
+    "start": 47.8,
+    "end": 48.5,
+    "id": "w136"
+  },
+  {
+    "text": "A",
+    "start": 48.5,
+    "end": 48.54,
+    "id": "w137"
+  },
+  {
+    "text": "esta",
+    "start": 48.61,
+    "end": 48.91,
+    "id": "w138"
+  },
+  {
+    "text": "velocidad",
+    "start": 48.91,
+    "end": 49.65,
+    "id": "w139"
+  },
+  {
+    "text": "tardarías",
+    "start": 49.65,
+    "end": 50.38,
+    "id": "w140"
+  },
+  {
+    "text": "12",
+    "start": 50.38,
+    "end": 50.88,
+    "id": "w141"
+  },
+  {
+    "text": "años.",
+    "start": 50.88,
+    "end": 51.5,
+    "id": "w142"
+  },
+  {
+    "text": "12",
+    "start": 51.5,
+    "end": 51.91,
+    "id": "w143"
+  },
+  {
+    "text": "años",
+    "start": 51.91,
+    "end": 52.18,
+    "id": "w144"
+  },
+  {
+    "text": "sin",
+    "start": 52.18,
+    "end": 52.38,
+    "id": "w145"
+  },
+  {
+    "text": "salir",
+    "start": 52.38,
+    "end": 52.59,
+    "id": "w146"
+  },
+  {
+    "text": "del",
+    "start": 52.68,
+    "end": 52.92,
+    "id": "w147"
+  },
+  {
+    "text": "ascensor.",
+    "start": 52.92,
+    "end": 54,
+    "id": "w148"
+  },
+  {
+    "text": "Ylo",
+    "start": 54,
+    "end": 54.22,
+    "id": "w149"
+  },
+  {
+    "text": "peor,",
+    "start": 54.24,
+    "end": 54.67,
+    "id": "w150"
+  },
+  {
+    "text": "para",
+    "start": 54.67,
+    "end": 54.97,
+    "id": "w151"
+  },
+  {
+    "text": "volver",
+    "start": 54.97,
+    "end": 55.43,
+    "id": "w152"
+  },
+  {
+    "text": "a",
+    "start": 55.43,
+    "end": 55.46,
+    "id": "w153"
+  },
+  {
+    "text": "bajar",
+    "start": 55.61,
+    "end": 55.88,
+    "id": "w154"
+  },
+  {
+    "text": "otros",
+    "start": 55.88,
+    "end": 56.23,
+    "id": "w155"
+  },
+  {
+    "text": "12.¿Hasta",
+    "start": 56.23,
+    "end": 57.39,
+    "id": "w156"
+  },
+  {
+    "text": "qué",
+    "start": 57.39,
+    "end": 57.54,
+    "id": "w157"
+  },
+  {
+    "text": "piso",
+    "start": 57.6,
+    "end": 57.85,
+    "id": "w158"
+  },
+  {
+    "text": "aguantarías",
+    "start": 57.85,
+    "end": 58.56,
+    "id": "w159"
+  },
+  {
+    "text": "tú?",
+    "start": 58.62,
+    "end": 58.92,
+    "id": "w160"
+  },
+  {
+    "text": "Te",
+    "start": 59,
+    "end": 59.09,
+    "id": "w161"
+  },
+  {
+    "text": "leo",
+    "start": 59.18,
+    "end": 59.22,
+    "id": "w162"
+  },
+  {
+    "text": "en",
+    "start": 59.24,
+    "end": 59.31,
+    "id": "w163"
+  },
+  {
+    "text": "los",
+    "start": 59.31,
+    "end": 59.4,
+    "id": "w164"
+  },
+  {
+    "text": "comentarios.",
+    "start": 59.46,
+    "end": 60,
+    "id": "w165"
+  }
+]
