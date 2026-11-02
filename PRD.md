@@ -198,7 +198,7 @@ git clone https://github.com/JohnHeibel/ClaudeAnimationBase.git
 
 **Avance de la fase 1 (2 de noviembre):**
 
-- **Los 5 vídeos de prueba están hechos (2 de noviembre),** todos de más de 60 segundos, en `exports/render/`: 01-ascensor (61,5 s, aprobado), 02-movil (61,2 s), 03-gato (65,2 s), 04-crecer (64,5 s) y 05-ropa (61,1 s). Cada uno tiene su `fuentes.md` con las cifras y sus fuentes. Falta que apruebes del 2 al 5.
+- **Los 5 vídeos de prueba están hechos y aprobados (2 de noviembre),** todos de más de 60 segundos, en `exports/render/`: 01-ascensor (61,5 s), 02-movil (61,2 s), 03-gato (65,2 s), 04-crecer (64,5 s) y 05-ropa (61,1 s). Cada uno tiene su `fuentes.md` con las cifras y sus fuentes.
 - **Cadena de un solo comando:** `bash herramientas/producir.sh videos/<cuenta>/<video>`. Genera la voz con Gemini si falta (la clave está en `.env`, fuera de git), la transcribe con Whisper, mete los tiempos en la escena, hace la mezcla, ajusta el volumen a -14 LUFS, pasa la revisión de HyperFrames y renderiza.
 - **Paso 4 a medias:** la duración, el volumen (-14 LUFS, medido en el vídeo final) y la revisión de HyperFrames ya se comprueban solos. Falta comprobar automáticamente que los subtítulos caen en la zona visible y que cada cifra tiene fuente (ahora están en `fuentes.md` de cada vídeo).
 - **Lo aprendido con la voz real:**
@@ -214,6 +214,12 @@ git clone https://github.com/JohnHeibel/ClaudeAnimationBase.git
   - Tres formas de escena que ya funcionan: subir por una escala (ascensor, termómetro del móvil, montón de ropa), crecer en el sitio con comparaciones a tamaño real al lado (gato, personaje) y los hitos de "solo etiqueta" para comparar sin mover el contador.
 - **Motor común (2 de noviembre):** las piezas que se repiten en todos los vídeos de El contador loco (marcador, subtítulos, etiquetas, anclas a la voz, formato de cifras y el personaje de bloques) están en `herramientas/contador/`. Cada vídeo solo construye su escena 3D. Se comprobó con el ascensor: las capturas salen idénticas píxel a píxel.
 - **El formato principal es con voz,** como el del ascensor, que a Javier le gustó.
+- **Mejora de gráficos (2 de noviembre), a petición de Javier, mirando el vídeo voxel de referencia:**
+  - El personaje tiene brazos, piernas, zapatillas y expresiones: sonríe con la boca cerrada, parpadea, respira y en cada hito pone cara de sorpresa (cejas arriba, boca abierta y brazos fuera) antes de volver a sonreír. Antes tenía siempre la boca abierta.
+  - Sombras de verdad del sol (antes, círculos oscuros falsos), cielo dibujado dentro de la escena y un brillo suave en las luces.
+  - Se acabó el parpadeo de los modelos lejanos: la cámara ajusta su plano cercano a la distancia (las caras casi pegadas se peleaban) y la imagen se dibuja al doble de tamaño y se reduce, lo que suaviza los bordes finos.
+  - La oclusión ambiental (GTAO) se probó y se descartó: con esta configuración dejaba un rectángulo oscuro detrás del personaje.
+  - El render sigue tardando unos 25 segundos por vídeo.
 - **Modo texto, solo como opción:** en vídeos de este tipo mucha gente no pone voz, sino frases cortas en pantalla y una canción de moda (referencia en `referencias/contador-texto-y-cancion.mp4`). Fue una idea de Javier, no un cambio de formato. La fábrica puede hacer esa versión con `producir.sh --texto` si un guion trae frases cortas en `texto`: solo efectos de sonido a -20 LUFS, y la canción se añade al publicar desde la biblioteca de TikTok (meterla en el vídeo haría que TikTok lo silenciara). Se probó con el vídeo 2. Si algún día se prueba en la fase 2, no se publica el mismo vídeo dos veces.
 
 **Primera prueba del estilo del Mac (1 de noviembre).** Vídeo de 21 segundos sobre la tarjeta que paga sin batería. Lo hicieron Claude Code y HyperFrames de principio a fin, sin editar nada a mano. Incluye voz Kokoro en español, efectos de sonido hechos con código y subtítulos con la palabra seleccionada.

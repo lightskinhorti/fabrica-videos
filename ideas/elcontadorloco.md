@@ -47,9 +47,33 @@ Los que tienen mejor gancho, datos fáciles y riesgo bajo, y además usan escala
 
 - [x] Javier aprueba las 5 ideas (2 de noviembre).
 - [x] Vídeo 1: ascensor (61,5 s). Aprobado por Javier el 2 de noviembre.
-- [ ] Vídeo 2: móvil que se calienta (61,2 s). Hecho; también en modo texto (`02-movil-texto.mp4`).
-- [ ] Vídeo 3: gato que engorda (65,2 s). Hecho.
-- [ ] Vídeo 4: crecer 1 cm al día (64,5 s). Hecho.
-- [ ] Vídeo 5: montón de ropa que se duplica (61,1 s). Hecho.
+- [x] Vídeo 2: móvil que se calienta (61,2 s). Hecho; también en modo texto (`02-movil-texto.mp4`).
+- [x] Vídeo 3: gato que engorda (65,2 s). Hecho.
+- [x] Vídeo 4: crecer 1 cm al día (64,5 s). Hecho.
+- [x] Vídeo 5: montón de ropa que se duplica (61,1 s). Hecho.
 
-Todos en `exports/render/`; falta que Javier apruebe del 2 al 5.
+Todos en `exports/render/`, aprobados por Javier el 2 de noviembre (con los gráficos mejorados).
+
+## Ideas realistas: hábitos de cada día (propuestas por Javier el 2 de noviembre)
+
+En lugar de algo imposible, un hábito real que el contador va sumando durante días, años o toda una vida. El gancho es que le pasa a mucha gente de verdad.
+
+| # | Pregunta | Qué marca el contador | Escalones (ejemplos) | Gancho | Datos | Riesgo |
+|---|---|---|---|---|---|---|
+| 21 | ¿Y si comieras comida rápida todos los días? | Sal, azúcar o calorías acumuladas, y dinero gastado | El máximo de sal diario de la OMS, un saco de azúcar, tu propio peso en hamburguesas | 5 | 4 | Medio (salud) |
+| 22 | ¿Y si bebieras un refresco al día? | Kilos de azúcar | Una lata, un paquete de azúcar, un saco; unos 13 kg al año | 5 | 5 | Medio (salud) |
+| 23 | ¿Y si caminaras 10.000 pasos al día? | Kilómetros | Madrid–Toledo, el Camino de Santiago, la vuelta a España, la vuelta al mundo | 4 | 5 | Bajo |
+| 24 | ¿Y si miraras el móvil 4 horas al día? | Horas de vida | Una semana, un mes, años enteros mirando la pantalla | 5 | 4 | Bajo |
+| 25 | ¿Y si durmieras 8 horas toda tu vida? | Años durmiendo | Una carrera universitaria, la vida de un perro, unos 25 años en la cama | 4 | 5 | Bajo |
+| 26 | ¿Y si te tomaras 3 cafés al día? | Litros y euros | Una bañera de café, un coche pagado en cafés | 4 | 4 | Bajo |
+| 27 | ¿Y si tiraras la comida que te sobra cada día? | Kilos de comida | Tu peso, un coche, lo que tira España en un año | 4 | 4 | Bajo |
+| 28 | ¿Y si fueras en coche al trabajo cada día? | Kilómetros, horas en atascos y euros de gasolina | La vuelta al mundo, semanas enteras parado en atascos | 4 | 4 | Bajo |
+
+**Cuidado con las de salud (21 y 22):**
+- Solo cifras acumuladas con fuente oficial (OMS, AESAN, Ministerio de Sanidad). Nada de "te pasará esto en el cuerpo" sin fuente, ni consejos médicos o de dieta.
+- Sin marcas: "una hamburguesa de cadena", no el nombre del restaurante.
+- Tono de dato curioso, sin meter miedo ni burlarse de nadie por su peso.
+
+**Fumar se descarta:** TikTok limita el contenido con tabaco y no compensa el riesgo.
+
+**El ahorro (1 € o 5 € al día)** encaja mejor en Dinero sin lío (@dinerosinlio).

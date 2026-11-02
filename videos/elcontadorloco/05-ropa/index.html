@@ -107,7 +107,7 @@
       for (const [x, z] of [[-0.4, -0.4], [0.4, -0.4], [-0.4, 0.4], [0.4, 0.4]]) chair.add(at(spanBox(0.09, 0.09, 0, 0.45, WOOD), x, Y(0.45) / 2, z));
       chair.add(spanBox(1.0, 1.0, 0.43, 0.47, WOOD));
       chair.add(at(spanBox(1.0, 0.1, 0.47, 0.9, WOOD), 0, (Y(0.47) + Y(0.9)) / 2, -0.45));
-      const { kid, head } = C.personaje(); kid.scale.setScalar(0.45); kid.position.set(-2.2, 0, -0.3); kid.rotation.y = 0.5; scene.add(kid);
+      const P = C.personaje(), { kid, head } = P; kid.scale.setScalar(0.45); kid.position.set(-2.2, 0, -0.3); kid.rotation.y = 0.5; scene.add(kid);
 
       // ---------- outside: street lamp, town, Sagrada Familia, Torre de Cristal ----------
       const farola = new THREE.Group(); farola.position.set(3.2, 0, -4.2); scene.add(farola);
@@ -201,7 +201,8 @@
         camera.position.set(2.6 + sway, y + 1.6 + 0.02 * y, dist);
         camera.lookAt(0.3, y + 0.45 + 0.012 * y, 0);
         camera.updateMatrixWorld();
-        key.position.set(-6, y + 9, 7); key.target.position.set(0, y, 0);
+        C.escala(v3(0.3, y + 1, 0), dist);
+        P.animar(t);
         head.rotation.x = -0.2 - 0.4 * clamp(y / 4); head.rotation.y = 0.3 + Math.sin(t * 0.9) * 0.15;
         const [, bot] = C.fondo(SKY, y);
         scene.fog.color.set(bot); scene.fog.near = 25 + clamp((y - 40) / 15) * 200; scene.fog.far = 70 + clamp((y - 40) / 15) * 300;

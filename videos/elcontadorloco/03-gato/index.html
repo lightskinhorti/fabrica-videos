@@ -78,8 +78,8 @@
       scene.fog = new THREE.Fog(0xcfefff, 120, 900);
       const cyl = (rt, rb, h, m, seg = 10) => new THREE.Mesh(new THREE.CylinderGeometry(rt, rb, h, seg), m);
       const cone = (r, h, m, seg = 6) => new THREE.Mesh(new THREE.ConeGeometry(r, h, seg), m);
-      const SHADOW = new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.18, depthWrite: false });
-      const shadow = (rx, rz) => { const s = new THREE.Mesh(new THREE.CircleGeometry(1, 24), SHADOW); s.rotation.x = -Math.PI / 2; s.scale.set(rx, rz, 1); s.position.y = 0.01; return s; };
+      // real shadows come from the sun now; these placeholders keep the old calls working
+      const shadow = () => new THREE.Object3D();
 
       // ---------- the park ----------
       scene.add(at(box(3000, 0.2, 3000, mat(0x86c96e)), 0, -0.1, 0));
@@ -116,7 +116,7 @@
       cat.add(shadow(0.3, 0.17));
 
       // ---------- our character, between the comparison and the cat ----------
-      const { kid, head: kidHead } = C.personaje(); kid.scale.setScalar(0.246); kid.position.set(0, 0, 0.25); kid.rotation.y = -0.35; scene.add(kid);
+      const P = C.personaje(), { kid, head: kidHead } = P; kid.scale.setScalar(0.246); kid.position.set(0, 0, 0.25); kid.rotation.y = -0.35; scene.add(kid);
       scene.add(at(shadow(0.4, 0.25), 0, 0, 0.25));
 
       // ---------- the comparisons (each faces +x, real size; L = length, H = height) ----------
@@ -231,6 +231,7 @@
           objH = Math.max(objH, m.H * vis);
         }
         // the kid keeps looking up at the cat
+        P.animar(t);
         kidHead.rotation.x = -0.15 - 0.45 * clamp((catH - 0.6) / 3);
         // frame cat + kid + comparison inside the band between the HUD and the captions
         // at the start the whole character is in shot (1.8 m), so the cat looks as small as it is
@@ -240,8 +241,9 @@
         const dist = (Hv / 0.6886) * (1 + 0.12 * ramp(t, D - 4.5, D - 1));
         camera.position.set(cx + sway, hS * 0.5 + Hv * 0.14, dist);
         camera.lookAt(cx, hS * 0.5, 0);
-        camera.far = Math.max(400, dist * 6); camera.updateProjectionMatrix(); camera.updateMatrixWorld();
-        key.position.set(cx - Hv * 0.5, Hv, Hv * 0.7); key.target.position.set(cx, 0, 0);
+        camera.updateMatrixWorld(); C.escala(v3(cx, hS * 0.5, 0), dist);
+        // haze starts beyond the subject, whatever the zoom
+        scene.fog.near = Math.max(120, dist * 1.4); scene.fog.far = Math.max(900, dist * 6);
         C.fondo(SKY, y);
         C.pintar(t, y);
       }

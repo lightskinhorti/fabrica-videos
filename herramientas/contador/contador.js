@@ -11,6 +11,12 @@
 //          solo_etiqueta: sale la etiqueta pero el contador no va a ese valor)
 //   extra: { clave, texto }  (línea extra del marcador que aparece con esa palabra)
 
+import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
+import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
+import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
+import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
+
+
 export function crearContador(THREE) {
   const VOZ = JSON.parse(document.getElementById("vozdata").textContent);
   const ESC = JSON.parse(document.getElementById("escena").textContent);
@@ -84,15 +90,39 @@ export function crearContador(THREE) {
   const tiempoDe = (v) => (ESC.crecimiento === "doble" ? ESC.periodo * Math.log2(Math.max(v, inicio) / inicio) : (v - inicio) / (ESC.ritmo ?? ESC.velocidad ?? 1));
 
   // ---------- renderer ----------
-  const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById("gl"), antialias: true, alpha: true, preserveDrawingBuffer: true });
-  renderer.setPixelRatio(1); renderer.setSize(W, H, false);
+  // drawn at 2x (2160x3840) and shown at 1080x1920, so thin and far details do not shimmer
+  const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById("gl"), antialias: true, preserveDrawingBuffer: true });
+  renderer.setPixelRatio(2); renderer.setSize(W, H, false);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
-  renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
+  renderer.toneMapping = THREE.NeutralToneMapping; renderer.toneMappingExposure = 1.0;
+  renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(38, W / H, 0.1, 400);
   const hemi = new THREE.HemisphereLight(0xffffff, 0x2a4fae, 1.3); scene.add(hemi);
   const key = new THREE.DirectionalLight(0xfff1dc, 2.4); scene.add(key); scene.add(key.target);
+  key.castShadow = true; key.shadow.mapSize.set(4096, 4096); key.shadow.bias = -0.0003;
   const rim = new THREE.DirectionalLight(0x9fe4ff, 1.2); rim.position.set(6, 3, -6); scene.add(rim);
+
+  // the sky gradient is painted inside the scene, so tone mapping and post treat it like the rest
+  const skyCanvas = document.createElement("canvas"); skyCanvas.width = 4; skyCanvas.height = 256;
+  const skyCtx = skyCanvas.getContext("2d");
+  const skyTex = new THREE.CanvasTexture(skyCanvas); skyTex.colorSpace = THREE.SRGBColorSpace; scene.background = skyTex;
+
+  // post: render -> soft bloom on lights -> tone mapping
+  const composer = new EffectComposer(renderer); composer.setPixelRatio(2); composer.setSize(W, H);
+  composer.addPass(new RenderPass(scene, camera));
+  composer.addPass(new UnrealBloomPass(new THREE.Vector2(W, H), 0.2, 0.5, 0.95));
+  composer.addPass(new OutputPass());
+
+  // camera clipping, sun and shadow box follow the size of the shot (centimetres or kilometres):
+  // a near plane far from the camera is what keeps distant faces from fighting each other (flicker)
+  function escala(centro, dist) {
+    camera.near = Math.max(0.05, dist * 0.03); camera.far = Math.max(400, dist * 14); camera.updateProjectionMatrix();
+    key.position.set(centro.x - 0.45 * dist, centro.y + 0.75 * dist, centro.z + 0.55 * dist); key.target.position.copy(centro);
+    const sc = key.shadow.camera, r = dist * 0.55;
+    sc.left = -r; sc.right = r; sc.top = r; sc.bottom = -r; sc.near = dist * 0.05; sc.far = dist * 3; sc.updateProjectionMatrix();
+    key.shadow.normalBias = dist * 0.0015;
+  }
 
   const mat = (c, extra = {}) => new THREE.MeshStandardMaterial({ color: c, flatShading: true, roughness: 0.8, metalness: 0, ...extra });
   const glow = (c, o = 1) => new THREE.MeshBasicMaterial({ color: c, transparent: o < 1, opacity: o, toneMapped: false });
@@ -100,26 +130,67 @@ export function crearContador(THREE) {
   const at = (o, x, y, z) => { o.position.set(x, y, z); return o; };
 
   // ---------- the account's block character (same as the profile picture) ----------
+  // animar(t) gives it life: it blinks, breathes and reacts to every landmark (eyebrows up, mouth open,
+  // arms out), then settles back into a smile.
   function personaje() {
-    const SKIN = mat(0xf2b98d), HAT = mat(0xff6a2b), HOODIE = mat(0xffcf2e), DARK = mat(0x2b1d1a), WHITE = mat(0xffffff, { roughness: 0.4 });
+    const SKIN = mat(0xf2b98d), HAT = mat(0xff6a2b), HOODIE = mat(0xffcf2e), HOOD2 = mat(0xe8b81f), PANTS = mat(0x2b3a6b);
+    const SHOE = mat(0xf4efe2), DARK = mat(0x2b1d1a), WHITE = mat(0xffffff, { roughness: 0.4 }), MOUTH = mat(0x5a1f1a);
     const kid = new THREE.Group();
-    const legs = at(box(1.0, 1.6, 0.9, mat(0x2b3a6b)), 0, 0.8, 0); kid.add(legs);
-    const body = at(box(3.0, 2.2, 1.9, HOODIE), 0, 2.7, 0); kid.add(body);
-    for (const sx of [-0.4, 0.4]) kid.add(at(box(0.1, 0.9, 0.1, WHITE), sx, 3.2, 0.97));
+    for (const sx of [-1, 1]) {
+      kid.add(at(box(0.62, 1.45, 0.8, PANTS), sx * 0.36, 0.9, 0));
+      kid.add(at(box(0.72, 0.32, 1.05, SHOE), sx * 0.36, 0.16, 0.1));
+    }
+    const body = new THREE.Group(); body.position.y = 1.6; kid.add(body);
+    body.add(at(box(2.3, 2.35, 1.55, HOODIE), 0, 1.18, 0));
+    body.add(at(box(1.5, 0.55, 0.06, HOOD2), 0, 0.6, 0.79));
+    body.add(at(box(1.9, 0.5, 0.5, HOOD2), 0, 2.2, -0.62));
+    for (const sx of [-0.3, 0.3]) body.add(at(box(0.08, 0.7, 0.06, WHITE), sx, 1.75, 0.8));
+    const arms = [-1, 1].map((sx) => {
+      const sh = new THREE.Group(); sh.position.set(sx * 1.47, 2.15, 0); body.add(sh);
+      sh.add(at(box(0.62, 1.55, 0.72, HOODIE), 0, -0.72, 0));
+      sh.add(at(box(0.66, 0.2, 0.76, HOOD2), 0, -1.45, 0));
+      sh.add(at(box(0.5, 0.5, 0.55, SKIN), 0, -1.8, 0));
+      return sh;
+    });
     const head = new THREE.Group(); head.position.set(0, 5.1, 0.1); kid.add(head);
     head.add(box(2.4, 2.4, 2.2, SKIN));
-    head.add(at(box(2.55, 0.85, 2.35, HAT), 0, 1.15, 0));
-    head.add(at(box(2.62, 0.32, 2.42, mat(0xd94e17)), 0, 0.72, 0));
-    head.add(at(new THREE.Mesh(new THREE.IcosahedronGeometry(0.42, 0), mat(0xffe3d1)), 0, 1.8, 0));
+    head.add(at(box(2.55, 0.8, 2.35, HAT), 0, 1.22, 0));
+    head.add(at(box(2.62, 0.3, 2.42, mat(0xd94e17)), 0, 0.82, 0));
+    head.add(at(new THREE.Mesh(new THREE.IcosahedronGeometry(0.42, 0), mat(0xffe3d1)), 0, 1.85, 0));
+    const lids = [], brows = [], pupils = [];
     for (const sx of [-1, 1]) {
       head.add(at(box(0.28, 0.55, 0.45, SKIN), sx * 1.32, -0.05, 0));
-      head.add(at(box(0.62, 0.72, 0.12, WHITE), sx * 0.52, 0.1, 1.11));
-      head.add(at(box(0.28, 0.32, 0.08, DARK), sx * 0.52, 0.18, 1.19));
-      const brow = at(box(0.66, 0.15, 0.12, DARK), sx * 0.52, 0.55, 1.14); brow.rotation.z = sx * -0.22; head.add(brow);
+      head.add(at(box(0.6, 0.66, 0.1, WHITE), sx * 0.52, 0.08, 1.1));
+      const pu = at(box(0.3, 0.36, 0.08, DARK), sx * 0.5, 0.06, 1.16); head.add(pu); pupils.push(pu);
+      pu.add(at(box(0.1, 0.1, 0.02, glow(0xffffff)), 0.06, 0.09, 0.05));
+      const lid = new THREE.Group(); lid.position.set(sx * 0.52, 0.43, 1.215); head.add(lid);
+      lid.add(at(box(0.66, 0.72, 0.04, SKIN), 0, -0.36, 0)); lids.push(lid);
+      const brow = at(box(0.62, 0.14, 0.1, DARK), sx * 0.52, 0.5, 1.13); head.add(brow); brows.push(brow);
     }
-    head.add(at(box(0.3, 0.32, 0.3, mat(0xe8a57a)), 0, -0.22, 1.22));
-    const mouth = at(box(0.48, 0.52, 0.1, mat(0x5a1f1a)), 0, -0.72, 1.11); head.add(mouth);
-    return { kid, head, body, legs, mouth };
+    head.add(at(box(0.3, 0.34, 0.3, mat(0xe8a57a)), 0, -0.22, 1.22));
+    // mouth: a smile line with raised corners that opens into an "O" with teeth
+    const mouth = new THREE.Group(); mouth.position.set(0, -0.72, 1.11); head.add(mouth);
+    const lips = box(0.5, 0.5, 0.06, MOUTH); mouth.add(lips);
+    const teeth = at(box(0.4, 0.1, 0.02, WHITE), 0, 0.17, 0.035); mouth.add(teeth);
+    const corners = [-1, 1].map((sx) => { const c = at(box(0.16, 0.09, 0.06, MOUTH), sx * 0.3, 0.05, 0); c.rotation.z = sx * 0.6; mouth.add(c); return c; });
+    const reacciones = anchors.slice(1).map((a) => a.t);
+    function animar(t) {
+      let s = 0;
+      for (const ta of reacciones) {
+        const d = t - ta;
+        if (d > -0.2 && d < 4) s = Math.max(s, d < 0.05 ? ease((d + 0.2) / 0.25) : Math.exp(-(d - 0.05) / 0.7));
+      }
+      // a blink every 3.4 s (not while surprised)
+      const k = (t + 0.7) % 3.4, blink = k < 0.14 ? Math.sin((Math.PI * k) / 0.14) : 0;
+      lids.forEach((l) => (l.scale.y = Math.max(0.001, (0.12 + 0.88 * blink) * (1 - s))));
+      brows.forEach((b, i) => { b.position.y = 0.5 + 0.12 * s; b.rotation.z = (i ? -1 : 1) * 0.12 * s; });
+      pupils.forEach((pu) => pu.scale.setScalar(1 + 0.15 * s));
+      lips.scale.set(1 - 0.25 * s, 0.16 + 0.84 * s, 1); lips.position.y = -0.2 * s;
+      teeth.visible = s > 0.35; corners.forEach((c) => (c.visible = s < 0.35));
+      arms.forEach((a, i) => { const sx = i ? 1 : -1; a.rotation.z = sx * (0.08 + 0.9 * s + 0.03 * Math.sin(t * 1.3 + i)); a.rotation.x = -0.25 * s; });
+      body.scale.y = 1 + 0.012 * Math.sin(t * 2.2);
+    }
+    return { kid, head, body, arms, animar };
   }
 
   // ---------- background gradient by scene height ----------
@@ -130,6 +201,8 @@ export function crearContador(THREE) {
     const mix = (p, q) => "#" + new THREE.Color(p).lerp(new THREE.Color(q), k).getHexString();
     const top = mix(a[1], b[1]), bot = mix(a[2], b[2]);
     skyEl.style.background = `linear-gradient(${top}, ${bot})`;
+    const g = skyCtx.createLinearGradient(0, 0, 0, 256); g.addColorStop(0, top); g.addColorStop(1, bot);
+    skyCtx.fillStyle = g; skyCtx.fillRect(0, 0, 4, 256); skyTex.needsUpdate = true;
     return [top, bot];
   }
 
@@ -208,7 +281,7 @@ export function crearContador(THREE) {
 
   // draws the 3D scene (camera already placed) and every overlay for time t at scene height y
   function pintar(t, y) {
-    renderer.render(scene, camera);
+    composer.render();
     const v = V(y);
     const [num, unit] = fmtValor(v);
     altEl.innerHTML = `${num}<small>${unit}</small>`;
@@ -223,6 +296,8 @@ export function crearContador(THREE) {
   }
 
   async function arrancar(renderAt) {
+    // every solid object casts and receives the sun's shadow; lights, glass and glows do not
+    scene.traverse((o) => { if (o.isMesh) { const solid = !o.material.transparent && !o.material.isMeshBasicMaterial; o.castShadow = solid; o.receiveShadow = !o.material.isMeshBasicMaterial; } });
     window.addEventListener("hf-seek", (e) => renderAt(e.detail.time));
     await document.fonts.ready;
     renderAt(0);
@@ -232,7 +307,7 @@ export function crearContador(THREE) {
   return {
     VOZ, ESC, W, H, D, words, anchors, extraWord,
     clamp, lerp, ease, smooth, ramp, v3, hash, norm, miles, Y, V, yAt, fmtValor, fmtTime, tiempoDe,
-    renderer, scene, camera, hemi, key, rim, mat, glow, box, at,
-    personaje, fondo, etiquetas, pintar, arrancar,
+    renderer, composer, scene, camera, hemi, key, rim, mat, glow, box, at,
+    personaje, fondo, escala, etiquetas, pintar, arrancar,
   };
 }

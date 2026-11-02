@@ -78,8 +78,8 @@
       scene.fog = new THREE.Fog(0xcfefff, 300, 3000);
       const cyl = (rt, rb, h, m, seg = 10) => new THREE.Mesh(new THREE.CylinderGeometry(rt, rb, h, seg), m);
       const cone = (r, h, m, seg = 6) => new THREE.Mesh(new THREE.ConeGeometry(r, h, seg), m);
-      const SHADOW = new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.18, depthWrite: false });
-      const shadow = (rx, rz) => { const s = new THREE.Mesh(new THREE.CircleGeometry(1, 24), SHADOW); s.rotation.x = -Math.PI / 2; s.scale.set(rx, rz, 1); s.position.y = 0.01; return s; };
+      // real shadows come from the sun now; these placeholders keep the old calls working
+      const shadow = () => new THREE.Object3D();
       const windows = (g, w, h, d, floors, cols, c = 0xffe7a6) => { for (let f = 0; f < floors; f++) for (let k = 0; k < cols; k++) g.add(at(box(w / (cols * 2), (h / floors) * 0.45, 0.1, glow(c, 0.9)), -w / 2 + (k + 0.5) * (w / cols), (f + 0.55) * (h / floors), d / 2 + 0.05)); };
 
       // ---------- the town ----------
@@ -92,7 +92,7 @@
       }
 
       // ---------- our character ----------
-      const { kid, head } = C.personaje(); scene.add(kid); const kidShadow = shadow(1, 0.6); scene.add(kidShadow);
+      const P = C.personaje(), { kid, head } = P; scene.add(kid); const kidShadow = shadow(1, 0.6); scene.add(kidShadow);
 
       // ---------- the landmarks (real size, centred on their own x; L = width, H = height) ----------
       function casa() {
@@ -188,7 +188,7 @@
         m.fin = comps[i + 1] ? comps[i + 1].a.t - 0.3 : Infinity;
         // stand just left of where the character will be at its widest while this one is on stage
         const hMax = V(C.yAt(Math.min(m.fin, D)));
-        m.x = -(0.217 * hMax + Math.max(0.35, 0.06 * hMax) + m.L / 2);
+        m.x = -(0.26 * hMax + Math.max(0.35, 0.06 * hMax) + m.L / 2);
       });
 
       const labPos = { "TÚ, A LOS 84 AÑOS": [kid, v3(0, 7.0, 0)] };
@@ -202,9 +202,10 @@
       function renderAt(t) {
         const y = C.yAt(t), h = V(y), k = 0.246 * (h / 1.7);
         kid.scale.setScalar(k); kidShadow.scale.set(0.3 * h, 0.18 * h, 1);
+        P.animar(t);
         head.rotation.y = 0.2 + Math.sin(t * 0.7) * 0.2; head.rotation.x = Math.sin(t * 0.9) * 0.05;
         // landmarks rise out of the ground with a little overshoot, and sink when the next one comes
-        let left = -0.3 * h, objH = 0;
+        let left = -0.32 * h, objH = 0;
         for (const m of comps) {
           const kin = m.desde < 0 ? 1 : clamp((t - m.desde) / 0.6), kout = clamp((t - m.fin) / 0.35);
           const vis = kin * (1 - kout);
@@ -213,18 +214,19 @@
           const up = kin < 1 ? 1 - Math.pow(1 - kin, 3) + 0.12 * Math.sin(Math.PI * kin) : 1;
           m.g.position.set(m.x, 0, 0);
           m.g.scale.set(1, Math.max(0.001, up * (1 - ease(kout))), 1);
-          left = Math.min(left, lerp(-0.3 * h, m.x - m.L / 2 - 0.2, ease(kin) * (1 - ease(kout))));
+          left = Math.min(left, lerp(-0.32 * h, m.x - m.L / 2 - 0.2, ease(kin) * (1 - ease(kout))));
           objH = Math.max(objH, m.H * vis);
         }
         // frame the character and the landmark between the HUD and the captions
-        const right = 0.3 * h, width = right - left, hS = Math.max(h, objH);
+        const right = 0.32 * h, width = right - left, hS = Math.max(h, objH);
         const Hv = Math.max((width / 0.5625) * 1.12, hS / 0.25), cx = (left + right) / 2;
         const sway = Math.sin(t * 0.5) * 0.015 * Hv;
         const dist = (Hv / 0.6886) * (1 + 0.12 * ramp(t, D - 4.5, D - 1));
         camera.position.set(cx + sway, hS * 0.5 + Hv * 0.14, dist);
         camera.lookAt(cx, hS * 0.5, 0);
-        camera.far = Math.max(400, dist * 8); camera.updateProjectionMatrix(); camera.updateMatrixWorld();
-        key.position.set(cx - Hv * 0.5, Hv, Hv * 0.7); key.target.position.set(cx, 0, 0);
+        camera.updateMatrixWorld(); C.escala(v3(cx, hS * 0.5, 0), dist);
+        // haze starts beyond the subject, whatever the zoom
+        scene.fog.near = Math.max(300, dist * 1.4); scene.fog.far = Math.max(3000, dist * 6);
         const [, bot] = C.fondo(SKY, y); scene.fog.color.set(bot);
         C.pintar(t, y);
       }
