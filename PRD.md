@@ -182,6 +182,20 @@ claude plugin install lemo-opuscar@lemolab
 git clone https://github.com/JohnHeibel/ClaudeAnimationBase.git
 ```
 
+**Cómo se instaló de verdad (2 de noviembre).** Nada se instaló para todo Claude Code, para no mezclarlo con tu trabajo en eduki:
+
+- **HyperFrames:** sus 3 skills están copiadas solo en este proyecto (`.claude/skills/`).
+- **lemo-opuscar:** solo como biblioteca de consulta, en `lemo-opuscar/` (fuera de git). Tiene sus guías, sus herramientas y las 68 fichas de estilo, sin demos ni imágenes. Su programa de render y sus dependencias no están instalados: los vídeos los hace HyperFrames, y el sistema de permisos bloqueó ejecutar su script de instalación descargado de internet. Sus archivos `CLAUDE.md` y `AGENTS.md` se renombraron, porque Claude Code los cargaba como instrucciones y son de terceros.
+- **ClaudeAnimationBase:** solo su guía de ritmo, con la licencia, en `guias/ClaudeAnimationBase/`.
+
+**Plan de la fase 1, empezado el 2 de noviembre:**
+
+1. Ideas: 20 ideas para El contador loco, puntuadas, en `ideas/elcontadorloco.md`. Se proponen 5 para los vídeos de prueba y las apruebas tú.
+2. Plantilla de El contador loco en HyperFrames con three.js, partiendo del personaje de bloques de la foto de perfil. Del estilo `lowpoly-island` de lemo-opuscar se toman el sombreado plano sin texturas, la llegada de cada pieza con rebote y nota musical, y el zoom para mostrar la escala. El contador enorme arriba y la cámara que se aleja (de casa a planeta) son fijos en todos los vídeos.
+3. Primer vídeo completo con la idea más fuerte: investigación con fuentes, guion de más de 60 segundos, voz de Gemini, subtítulos con Whisper, efectos y render.
+4. Control automático: duración de más de 60 segundos, subtítulos dentro de la zona visible, volumen y que cada cifra tenga fuente.
+5. Los otros 4 vídeos con la misma plantilla, midiendo cuántos minutos tuyos necesita cada uno.
+
 **Primera prueba del estilo del Mac (1 de noviembre).** Vídeo de 21 segundos sobre la tarjeta que paga sin batería. Lo hicieron Claude Code y HyperFrames de principio a fin, sin editar nada a mano. Incluye voz Kokoro en español, efectos de sonido hechos con código y subtítulos con la palabra seleccionada.
 
 - **Ya funciona:** los subtítulos con caja de selección, la tarjeta abierta por dentro con su etiqueta, el campo del datáfono, la corriente por el cobre, el chip que se enciende y el final con «Pagado».
