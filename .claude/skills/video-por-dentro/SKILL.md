@@ -1,6 +1,6 @@
 ---
 name: video-por-dentro
-description: Hacer vídeos verticales cortos de "cómo funciona por dentro" para Las cosas por dentro, con el estilo de detalle de @speedy_devv aprobado por Javier el 3 de noviembre (encuadre nuevo cada 2 s, cortes laterales tipo diagrama, arcos dorados, cifras que cambian, objetos con materiales reales) usando HyperFrames, three.js, las piezas de herramientas/pordentro/detalle.js y la voz de Gemini TTS.
+description: Hacer vídeos verticales cortos de "cómo funciona por dentro" para Las cosas por dentro, con el estilo de detalle de @speedy_devv aprobado por Javier el 3 de noviembre (encuadre nuevo cada 2-3 s unido con transiciones suaves, nunca cortes secos seguidos; cortes laterales tipo diagrama, arcos dorados, cifras que cambian, objetos con materiales reales) usando HyperFrames, three.js, las piezas de herramientas/pordentro/detalle.js y la voz de Gemini TTS.
 ---
 
 # Vídeos "por dentro" (estilo trackpad del Mac)
@@ -21,13 +21,14 @@ También hay una copia en el proyecto "Side hustle" de claude.ai, en `claude/est
 Javier aprobó como estilo de Las cosas por dentro el resultado del estudio que recrea el reel de la pantalla táctil de @speedy_devv ("me gusta mucho como ha quedado el resultado, guárdalo como estilo para los futuros vídeos de esa cuenta"). Si algo de las secciones de abajo choca con esto, gana esto.
 
 - **El ejemplo que se mira:** `exports/estudio/pantalla-speedy.mp4`, con su código en `estudio/pantalla-speedy/index.html` y la explicación en `estudio/pantalla-speedy/NOTAS.md`. Las hojas `exports/estudio/comparacion_01.jpg` a `_04.jpg` enseñan su nivel al lado del original. Ese estudio no se publica nunca: copia su vídeo plano a plano.
-- **Las piezas:** `herramientas/pordentro/detalle.js` (sistema de planos con cortes secos, deriva lenta, objetivo y desenfoque por plano; corte lateral de capas; arcos dorados con luz que corre y se doblan hacia un objeto; cifras en monoespaciada; dedo con huellas; boli; móvil; manos; iones; partículas; texturas de lana, metal cepillado, cristal con polvo, piel, oro y titanio) y `pantallas.js` (pantallas del móvil en español y sin marcas). Lee su comentario de cabecera antes de empezar.
+- **Las piezas:** `herramientas/pordentro/detalle.js` (sistema de planos unidos con transiciones, deriva lenta, objetivo y desenfoque por plano; corte lateral de capas; arcos dorados con luz que corre y se doblan hacia un objeto; cifras en monoespaciada; dedo con huellas; boli; móvil; manos; iones; partículas; texturas de lana, metal cepillado, cristal con polvo, piel, oro y titanio) y `pantallas.js` (pantallas del móvil en español y sin marcas). Lee su comentario de cabecera antes de empezar.
 - **Las reglas:**
-  1. Un encuadre nuevo cada 1 o 2,5 segundos (corte seco, otro ángulo, un macro, la vista de arriba o una cifra que cambia). Nunca más de 2,5 s con el mismo plano, y dentro de cada plano siempre se mueve o aparece algo. Un vídeo de 70 s lleva de 25 a 40 planos.
-  2. Sobre todo planos de corte, diagramas y macros, que es donde llegamos al 65-75 % de su detalle.
-  3. Nada de planos de la vida real con manos o personas hechos a medias (se quedan en el 45 %). Donde él pone una mano, nosotros ponemos el objeto limpio, como en un anuncio. No se pagan imágenes generadas (decisión de Javier del 3 de noviembre).
-  4. Rótulos en mayúsculas con línea fina, cifras en monoespaciada que cambian, notas honestas abajo a la izquierda ("Ilustración ampliada", "Valores ilustrativos") y fondo azul casi negro con motas de luz.
-- **Lecciones del estudio:** si `renderAt` falla en un momento, HyperFrames repite el fotograma anterior sin avisar; recorre la línea de tiempo en la consola del navegador una vez. Usa las mismas luces en todos los grupos de planos y dibuja cada grupo una vez antes de empezar, para que no se recompilen los shaders a mitad del render.
+  1. **Transiciones, no cortes (corrección de Javier del 3 de noviembre):** "es difícil seguirlo porque hay muchos cortes muy rápidos; speedy hace transiciones de planos, sutiles y no frenéticas". Medido en sus 13 reels: casi ningún corte seco (0 de 33 cambios en la pantalla táctil); cada cambio dura de 4 a 10 fotogramas. Dentro de la misma escena la cámara viaja de un encuadre al siguiente, y al cambiar de escena una imagen se funde en la otra en unas décimas mientras las dos se mueven. El motor ya lo hace solo (`X.planos`: "deslizar" 0,7 s en el mismo set, "fundido" 0,35 s al cambiar de set; `entrada: "corte"` solo si hace falta un golpe).
+  2. **Ritmo:** un encuadre nuevo cada 2 o 3 segundos de media, con alguno de hasta 4 s mientras la voz explica algo y alguno de 1 s en un momento de golpe, nunca una ráfaga de planos de 1 s. Un vídeo de 70 s lleva de 28 a 35 planos (él: unos 33 en 84 s, la mediana 1,8 s y un tercio de más de 3 s). Dentro de cada plano siempre se mueve o aparece algo.
+  3. Sobre todo planos de corte, diagramas y macros, que es donde llegamos al 65-75 % de su detalle.
+  4. Nada de planos de la vida real con manos o personas hechos a medias (se quedan en el 45 %). Donde él pone una mano, nosotros ponemos el objeto limpio, como en un anuncio. No se pagan imágenes generadas (decisión de Javier del 3 de noviembre).
+  5. Rótulos en mayúsculas con línea fina, cifras en monoespaciada que cambian, notas honestas abajo a la izquierda ("Ilustración ampliada", "Valores ilustrativos") y fondo azul casi negro con motas de luz.
+- **Lecciones del estudio:** el vídeo pinta con `PLN.pintar(t, dibujar)` (las plantillas ya lo hacen): `dibujar(t, e)` pinta todo menos la cámara y en una transición se llama dos veces, una por plano. Si `renderAt` falla en un momento, HyperFrames repite el fotograma anterior sin avisar; recorre la línea de tiempo en la consola del navegador una vez. Usa las mismas luces en todos los grupos de planos y dibuja cada grupo una vez antes de empezar, para que no se recompilen los shaders a mitad del render.
 - **Las plantillas (desde el 3 de noviembre, se usan siempre):** `herramientas/pordentro/plantillas.js` y la biblioteca `herramientas/pordentro/objetos/`. Un vídeo es `crearPlantillas(THREE, C, X)` más `sets`, `flujos` y `planos` en el JSON de la escena; lee "Cómo usar las plantillas" en su cabecera. Si un objeto no está en la biblioteca, se añade allí (no en el vídeo) para que sirva a los siguientes. El ejemplo es `videos/lascosaspordentro/08-nevera` (28,5 minutos de trabajo). `07-microondas` es anterior a las plantillas y está hecho a mano.
 - **El primer vídeo publicable con este estilo** es `videos/lascosaspordentro/07-microondas`.
 
@@ -126,7 +127,7 @@ Reglas del guion:
 
 ## 4 bis. Estilo de edición objetivo (referencia 06, elegida por Javier el 2 de noviembre)
 
-`referencias/06-pantalla-tactil-estilo-objetivo.mp4`, de @speedy_devv: 84,6 s, unos 12 cortes secos (planos de 4 a 5 s de media) y movimientos de cámara dentro de cada plano. Javier dice que es "el estilo de edición exacto" que quiere. Su tema (la pantalla táctil) no se hace: solo se copia el estilo.
+`referencias/06-pantalla-tactil-estilo-objetivo.mp4`, de @speedy_devv: 84,6 s, unos 33 cambios de encuadre (2,5 s de media), casi todos con transición suave y no con corte seco, y movimientos de cámara dentro de cada plano. Javier dice que es "el estilo de edición exacto" que quiere. Su tema (la pantalla táctil) no se hace: solo se copia el estilo.
 
 Lo que tiene y nosotros todavía no:
 - **Planos de corte lateral, como un diagrama:** las capas apiladas en horizontal (cristal, sensor, fila de píxeles de colores rojo, verde y azul) y el dedo bajando desde arriba. Teleobjetivo, casi sin perspectiva.
@@ -134,11 +135,13 @@ Lo que tiene y nosotros todavía no:
 - **Líneas de campo como arcos dorados:** arcos entre electrodos que se doblan hacia el dedo y se meten en él, en vez de anillos.
 - **Cifras medidas en pantalla:** valores debajo de cada punto (100, 100, 81, 62, 84…) que bajan donde está el dedo, con la nota "Values illustrative".
 - **Planos de la vida real:** una mano con guante sujetando el móvil, una llamada entrante con "slide to answer", un boli o una pantalla de mensajes. Dan contexto entre los planos técnicos.
-- **Cortes secos** entre planos muy distintos (macro, mano, cuadrícula vista de arriba), no solo movimientos suaves.
+- **Transiciones cortas** entre planos muy distintos (macro, mano, cuadrícula vista de arriba): un fundido de unas décimas con las dos cámaras en movimiento, o la cámara que viaja de un encuadre a otro. Casi nunca un corte seco.
 
 Lo que ya hacemos igual: subtítulos arriba con la palabra clave seleccionada en azul con tiradores, iconos pequeños delante de algunas palabras, etiquetas en mayúsculas con línea fina ("GLASS", "ROW", "CROSSING"), notas honestas abajo ("Magnified illustration") y el cierre "mándaselo a alguien".
 
 **Su formato actual, visto en 13 reels** (`referencias/lascosaspordentro/`, bajados el 2 y el 3 de noviembre). Los vídeos duran de 55 a 141 s.
+
+**Medida del 3 de noviembre por la tarde** (`herramientas/transiciones.py`, que compara cada fotograma con el de 0,4 s después): en sus 13 reels hay 3 cortes secos en total; el resto de cambios se reparte en 4 a 10 fotogramas. Planos de 2,4 s de media en la pantalla táctil (mediana 1,8 s, un tercio de más de 3 s). Nuestro microondas tenía 60 cambios en 78 s (1,3 s de media, ninguno de más de 3 s) y la nevera 26 cortes secos: por eso a Javier le costaba seguirlos. Desde esa tarde el motor une los planos con transiciones (sección 0, regla 1).
 
 **Corrección del 3 de noviembre:** el detector de cortes de ffmpeg contaba de 7 a 11 cortes por vídeo, pero se equivoca con los fondos oscuros. Mirando un fotograma por segundo, **cambia de encuadre cada 1 o 2,5 segundos** (corte seco, otro ángulo, un macro o un plano de la vida real), y dentro de cada plano siempre hay algo que se mueve o aparece. Nosotros aguantábamos el mismo plano de 5 a 10 s: es la mayor diferencia, junto con el detalle de los objetos (piel con huellas, guante de lana con su punto, cristal con grosor y brillos, piezas pequeñas). Javier calcula que estamos al 30 % de su detalle y quiere llegar al 85 %. El estudio que recrea su vídeo de la pantalla táctil está en `estudio/pantalla-speedy/`.
 

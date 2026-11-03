@@ -59,9 +59,13 @@
 //   compartir   el cierre: móvil sin manos con la hoja de compartir (elegir: momento, enviar: momento).
 //   libre       cámara a mano: de: { p, q, fov }, a: { p, q, fov } en unidades del set.
 //
-// Regla automática: si un plano dura más de 2,2 s y no lleva variar: false, se parte en trozos de 1–2,2 s
-// cortando en el comienzo de una palabra, y cada trozo es una variación (otro ángulo, un empuje, otro encuadre).
-// Así ningún encuadre pasa de ~2,5 s. Los estados con rampa siguen contando desde el plano original.
+// Regla automática: si un plano dura más de 4 s y no lleva variar: false, se parte en trozos de 1,4–4 s en el
+// comienzo de una palabra, y cada trozo es una variación (otro ángulo, un empuje, otro encuadre) a la que la cámara
+// llega deslizándose, sin corte. Los estados con rampa siguen contando desde el plano original.
+// Transiciones (3 de noviembre, como @speedy_devv): dentro del mismo set la cámara viaja de un encuadre al siguiente
+// (0,7 s); al cambiar de set, el plano anterior se funde en el nuevo (0,35 s). En un plano: entrada ("deslizar",
+// "fundido" o "corte") y transicion (segundos). Ritmo: un encuadre nuevo cada 2-3 s, alguno de hasta 4 s cuando la
+// voz explica algo, nunca una ráfaga de cortes.
 // ======================================================================================================
 
 import * as UI from "./pantallas.js";
@@ -542,18 +546,18 @@ export function crearPlantillas(THREE, C, X, opciones = {}) {
     else s._set = s.set || objetivo(s).S.nombre;
     for (const n of s.flujos || []) if (!FLUJOS[n]) throw new Error(`El plano ${s._uid0} usa el flujo "${n}", que no existe`);
   }
-  // automatic rule: no framing longer than ~2.5 s
-  const LARGO = opciones.largo ?? 2.2;
+  // automatic rule: a framing longer than ~4 s becomes a slow camera move through 2 or more framings
+  const LARGO = opciones.largo ?? 3.2;
   const L = [];
   for (const s of ORIG) {
     const dur = s._tb1 - s._tb0;
-    const n = s.variar === false || dur <= LARGO + 0.3 ? 1 : Math.ceil(dur / LARGO);
+    const n = s.variar === false || dur <= LARGO + 0.8 ? 1 : Math.ceil(dur / LARGO);
     const cortes = [s._tb0];
     for (let i = 1; i < n; i++) {
       const ideal = s._tb0 + (i * dur) / n, prev = cortes[cortes.length - 1], sig = i < n - 1 ? s._tb0 + ((i + 1) * dur) / n : s._tb1;
       let best = ideal, bd = 0.36;
-      // snap to the start of a word, as long as no piece goes under 0.7 s or over 2.5 s
-      for (const w of palabras) { const d = Math.abs(w - ideal); if (d < bd && w - prev > 0.7 && w - prev <= 2.5 && sig - w > 0.7 && sig - w <= 2.5) { bd = d; best = w; } }
+      // snap to the start of a word, as long as no piece goes under 1.4 s or over 4 s
+      for (const w of palabras) { const d = Math.abs(w - ideal); if (d < bd && w - prev > 1.4 && w - prev <= 4 && sig - w > 1.4 && sig - w <= 4) { bd = d; best = w; } }
       cortes.push(best);
     }
     cortes.forEach((t0, i) => {
@@ -568,8 +572,9 @@ export function crearPlantillas(THREE, C, X, opciones = {}) {
   const hooks = [];
   const leyendaFilas = [...document.querySelectorAll(".leyenda .fila")];
   const bokehP = C.composer.passes.find((x) => x.uniforms && x.uniforms.maxblur), maxBase = bokehP ? bokehP.uniforms.maxblur.value : 0;
-  function renderAt(t) {
-    const e = PLN.aplicar(t), s = e.plano._p, S = SETS[s._set];
+  // everything but the camera, for shot e (PLN.pintar places the camera and calls it twice during a cross-fade)
+  function dibujar(t, e) {
+    const s = e.plano._p, S = SETS[s._set];
     for (const o of S.objetos) o.reiniciar(t);
     for (const f of S.extras) f();
     for (const F of Object.values(FLUJOS)) if (F.S === S) F.cin.malla.visible = false;
@@ -594,12 +599,13 @@ export function crearPlantillas(THREE, C, X, opciones = {}) {
     // legend rows: only the visible ones, one under the other
     let y = 0; for (const f of leyendaFilas) { f.style.top = y + "px"; if (parseFloat(f.style.opacity || "0") > 0.01) y += 36; }
   }
+  const renderAt = (t) => PLN.pintar(t, dibujar);
 
   // cut list for review: __plantillas.tabla() in the browser console
-  function cortes() { return PLN.lista.map((p) => ({ t: +p.t0.toFixed(2), fin: +p.t1.toFixed(2), dur: +(p.t1 - p.t0).toFixed(2), id: p.id, tipo: p._p.tipo, set: p.set })); }
+  function cortes() { return PLN.lista.map((p) => ({ t: +p.t0.toFixed(2), fin: +p.t1.toFixed(2), dur: +(p.t1 - p.t0).toFixed(2), id: p.id, tipo: p._p.tipo, set: p.set, entrada: p._entrada })); }
   function tabla() {
     const c = cortes(), largo = Math.max(...c.map((x) => x.dur));
-    return c.map((x) => `${x.t.toFixed(2).padStart(6)}  ${x.dur.toFixed(2)}s${x.dur > 2.5 ? " LARGO" : x.dur < 0.6 ? " CORTO" : ""}  ${x.tipo.padEnd(10)} ${x.id}`).join("\n") + `\n${c.length} planos, el más largo ${largo.toFixed(2)} s`;
+    return c.map((x) => `${x.t.toFixed(2).padStart(6)}  ${x.dur.toFixed(2)}s${x.dur > 4.5 ? " LARGO" : x.dur < 1.2 ? " CORTO" : ""}  ${x.entrada.padEnd(9)} ${x.tipo.padEnd(10)} ${x.id}`).join("\n") + `\n${c.length} planos, el más largo ${largo.toFixed(2)} s`;
   }
 
   function arrancar() {

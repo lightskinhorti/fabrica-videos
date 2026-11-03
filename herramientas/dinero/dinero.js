@@ -8,7 +8,8 @@
 //             voz, buscada en orden; sin palabras de números, que Whisper escribe en cifras)
 //   gancho: { texto, clave }  (el gancho en grande durante los primeros segundos; los subtítulos esperan)
 //   piezas: [{ id, desde, hasta?, entra?, sale?, dura? }]  (id de un elemento del HTML; desde y hasta = momento o
-//           segundos; entra y sale: "sube", "baja", "izq", "der", "escala", "sello" o "fundido")
+//           segundos; entra y sale: "sube", "baja", "izq", "der", "escala", "sello" o "fundido"; las que entran
+//           antes del segundo 1 ya están en el fotograma 0, que es la portada de TikTok)
 //   cifras: [{ id, desde, a, de?, dura?, formato?: "euros" | "numero" | "pct", dec? }]  (el texto del elemento
 //           cuenta de `de` a `a`; varias entradas con el mismo id van una detrás de otra)
 //   notas: [{ texto, desde }]  (cada nota dura hasta la siguiente; texto "" la quita)
@@ -205,11 +206,14 @@ export function crearDinero() {
       default: return {};
     }
   }
+  // pieces that come in during the first second are already there in frame 0: TikTok takes frame 0 as the
+  // cover, and the hook needs its picture next to the text (Javier, 3 Nov)
+  const PORTADA = 1.0;
   function drawPiezas(t) {
     for (const p of piezas) {
       const a = cuando(p.desde), b = p.hasta !== undefined ? cuando(p.hasta) : Infinity;
       const d = p.dura ?? (p.entra === "sello" ? 0.22 : 0.45), tin = p.entra || "sube", tout = p.sale || "fundido";
-      const kin = clamp((t - a) / d), kout = 1 - clamp((t - (b - 0.35)) / 0.35);
+      const kin = a < PORTADA ? 1 : clamp((t - a) / d), kout = 1 - clamp((t - (b - 0.35)) / 0.35);
       const ki = tin === "escala" ? backOut(kin) : tin === "sello" ? kin : ease(kin);
       const A = desplaza(tin, ki), B = desplaza(tout, ease(kout)), X = EXTRA[p.id] || {};
       const x = (A.x || 0) + (B.x || 0) + (X.x || 0), y = (A.y || 0) + (B.y || 0) + (X.y || 0);

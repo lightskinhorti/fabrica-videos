@@ -1089,20 +1089,6 @@
    "empuje": 0.08
   },
   {
-   "tipo": "macro",
-   "pieza": "nevera.pantalla",
-   "desde": "FRIO1",
-   "mas": -0.25,
-   "angulo": 12,
-   "altura": 4,
-   "variar": false,
-   "desplaza": [
-    0,
-    4,
-    0
-   ]
-  },
-  {
    "tipo": "corte",
    "pieza": "nevera",
    "eje": "x",
@@ -1119,28 +1105,9 @@
    }
   },
   {
-   "tipo": "macro",
-   "pieza": "nevera.yogur",
-   "cortar": true,
-   "eje": "x",
-   "angulo": 90,
-   "altura": 6,
-   "radio": 9,
-   "desde": "COMIDA1",
-   "flujos": [
-    "calorComida1"
-   ],
-   "estado": {
-    "frio": 0.6
-   },
-   "exposicion": 0.42
-  },
-  {
-   "tipo": "anuncio",
+   "tipo": "cifra",
    "pieza": "nevera",
    "desde": "DEJAS",
-   "angulo": -22,
-   "altura": 6,
    "estado": {
     "puerta": {
      "de": 0,
@@ -1152,15 +1119,6 @@
      "a": 1,
      "dur": 0.5
     }
-   }
-  },
-  {
-   "tipo": "cifra",
-   "pieza": "nevera",
-   "desde": "ENFRIA",
-   "estado": {
-    "puerta": 1,
-    "luz": 1
    },
    "lectura": {
     "texto": "21,0 °C",
@@ -1194,54 +1152,12 @@
    }
   },
   {
-   "tipo": "flujo",
-   "set": "cocina",
-   "flujos": [
-    "descarga3d",
-    "condensa3d",
-    "capilar3d",
-    "evapora3d",
-    "aspira3d"
-   ],
-   "desde": "CIRCUITO",
-   "angulo": 160,
-   "altura": 18,
-   "estado": {
-    "rayosX": 1,
-    "frio": 1,
-    "calor": 1
-   }
-  },
-  {
-   "tipo": "particulas",
-   "clase": "gas",
-   "desde": "REFRIG",
-   "temp": 0.35,
-   "caja": [
-    36,
-    44,
-    24
-   ],
-   "n": 140
-  },
-  {
-   "tipo": "macro",
-   "pieza": "nevera.compresor",
-   "desde": "ABAJO",
-   "angulo": 150,
-   "altura": 12,
-   "estado": {
-    "motor": 1,
-    "vibra": 1
-   }
-  },
-  {
    "tipo": "corte",
    "set": "motor",
    "pieza": "comp",
    "eje": "z",
    "radio": 13,
-   "desde": "COMPRESOR",
+   "desde": "ABAJO",
    "estado": {
     "motor": 1
    },
@@ -1273,39 +1189,8 @@
   },
   {
    "tipo": "anuncio",
-   "set": "motor",
-   "pieza": "comp",
-   "desde": "CALIENTA",
-   "angulo": 30,
-   "altura": 14,
-   "estado": {
-    "calor": {
-     "de": 0,
-     "a": 1,
-     "dur": 0.8
-    },
-    "motor": 1
-   }
-  },
-  {
-   "tipo": "flujo",
-   "set": "cocina",
-   "flujos": [
-    "descarga3d"
-   ],
-   "desde": "CALIENTE1",
-   "angulo": 150,
-   "altura": 8,
-   "estado": {
-    "calor": 1,
-    "rayosX": 1
-   },
-   "crece": true
-  },
-  {
-   "tipo": "anuncio",
    "pieza": "nevera.atras",
-   "desde": "REJILLA",
+   "desde": "CALIENTE1",
    "angulo": 185,
    "altura": 6,
    "estado": {
@@ -1438,39 +1323,8 @@
   },
   {
    "tipo": "macro",
-   "pieza": "nevera.condensador",
-   "radio": 12,
-   "desplaza": [
-    10,
-    -20,
-    0
-   ],
-   "angulo": 160,
-   "altura": 4,
-   "desde": "TEMPLADA",
-   "estado": {
-    "calor": 1
-   }
-  },
-  {
-   "tipo": "macro",
-   "pieza": "nevera.filtro",
-   "desde": "LUEGO",
-   "angulo": 200,
-   "altura": 10,
-   "radio": 9,
-   "flujos": [
-    "capilar3d"
-   ],
-   "crece": true,
-   "estado": {
-    "frio": 0.5
-   }
-  },
-  {
-   "tipo": "macro",
    "pieza": "nevera.capilar",
-   "desde": "CAPILAR",
+   "desde": "LUEGO",
    "angulo": 170,
    "altura": 25,
    "radio": 7,
@@ -1573,44 +1427,6 @@
    "exposicion": 0.42
   },
   {
-   "tipo": "rayosX",
-   "pieza": "nevera.evaporador",
-   "desde": "FONDO",
-   "angulo": -25,
-   "altura": 6,
-   "de": 1,
-   "a": 1,
-   "estado": {
-    "frio": 1
-   },
-   "flujos": [
-    "evapora3d"
-   ],
-   "resaltar": [
-    "nevera.evaporador"
-   ],
-   "colorResalte": "120,190,255",
-   "fuerzaResalte": 0.5,
-   "exposicion": 0.75
-  },
-  {
-   "tipo": "flujo",
-   "set": "cocina",
-   "flujos": [
-    "aspira3d"
-   ],
-   "desde": "VUELVE",
-   "angulo": 150,
-   "altura": 12,
-   "radio": 22,
-   "estado": {
-    "rayosX": 1,
-    "frio": 0.6
-   },
-   "crece": true,
-   "exposicion": 0.7
-  },
-  {
    "tipo": "flujo",
    "set": "cocina",
    "flujos": [
@@ -1620,7 +1436,7 @@
     "evapora3d",
     "aspira3d"
    ],
-   "desde": "VUELTA",
+   "desde": "VUELVE",
    "angulo": 135,
    "altura": 16,
    "estado": {
@@ -1646,21 +1462,6 @@
    "orbita": 4
   },
   {
-   "tipo": "anuncio",
-   "set": "motor",
-   "pieza": "comp",
-   "desde": "APAGA",
-   "angulo": -25,
-   "altura": 10,
-   "estado": {
-    "motor": {
-     "de": 1,
-     "a": 0,
-     "dur": 0.5
-    }
-   }
-  },
-  {
    "tipo": "cifra",
    "pieza": "nevera",
    "desde": "UNOS",
@@ -1671,22 +1472,6 @@
     "unidad": "°C",
     "titulo": "DENTRO DE LA NEVERA",
     "dur": 0.8
-   }
-  },
-  {
-   "tipo": "anuncio",
-   "set": "motor",
-   "pieza": "comp",
-   "desde": "ENCIENDE",
-   "angulo": 40,
-   "altura": 8,
-   "estado": {
-    "motor": {
-     "de": 0,
-     "a": 1,
-     "dur": 0.4
-    },
-    "vibra": 1
    }
   },
   {
@@ -1712,13 +1497,6 @@
    "eje": "x",
    "radio": 7,
    "desde": "IMAN"
-  },
-  {
-   "tipo": "anuncio",
-   "pieza": "nevera",
-   "desde": "ENTRE",
-   "angulo": 35,
-   "altura": 8
   },
   {
    "tipo": "anuncio",

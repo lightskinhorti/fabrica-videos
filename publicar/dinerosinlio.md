@@ -18,7 +18,7 @@ A las 20:00 va el mejor gancho: la lotería, que además está de actualidad por
 | Martes 3 de noviembre | 20:00 | `01-loteria.mp4` | [ ] |
 | Martes 3 de noviembre | 22:00 | `02-nomina.mp4` | [ ] |
 | Miércoles 4 de noviembre | 20:00 | `04-rebajas.mp4` | [ ] |
-| Jueves 5 de noviembre | 20:00 | `05-cafe.mp4` (falta que lo apruebes) | [ ] |
+| Jueves 5 de noviembre | 20:00 | `05-cafe.mp4` | [ ] |
 | Viernes 6 de noviembre | 20:00 | Vídeo 6 (falta hacerlo) | [ ] |
 
 ## Paso a paso en TikTok Studio (en el ordenador)
@@ -26,7 +26,7 @@ A las 20:00 va el mejor gancho: la lotería, que además está de actualidad por
 1. Entra en tiktok.com/tiktokstudio/upload y mira arriba a la derecha que la sesión es la de **@dinerosinlio**.
 2. "Seleccionar vídeo" y elige el `.mp4` de esa franja.
 3. **Descripción:** borra lo que ponga TikTok y pega el bloque del vídeo (más abajo), con los hashtags.
-4. **Portada:** el fotograma del gancho (el de la imagen `-portada.png`; súbela si te deja).
+4. **Portada:** desde `05-cafe`, el primer fotograma ya lleva el gancho con su imagen, así que vale la portada que pone TikTok. En 01 a 04 el fotograma 0 solo tiene el texto: si TikTok Studio te deja editar la portada, elige el segundo 1 (o sube la imagen `-portada.png`).
 5. **Quién puede verlo:** todo el mundo, con los comentarios activados.
 6. En "Mostrar más", activa **"Contenido generado por IA"**. Siempre. El contenido de marca se queda desactivado.
 7. Sin música de TikTok: los vídeos ya llevan voz, efectos y una base suave.

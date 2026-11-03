@@ -58,13 +58,21 @@
 //   X.celdas({ n, lado })       celdas grandes de cristal oscuro en rombo con puentes blancos en los cruces.
 //   X.tejido({ cols, filas })   punto de lana en 3D (hilo con torsión), con una fila de hilo conductor plateado
 //                               que se puede encender en dorado.
-// Planos (una composición nueva cada ~2 s):
-//   X.planos(lista, sets) con lista = [{ id, desde, set, de: { p, q }, a: { p, q }, fov, foco, apertura, curva }]
-//     desde: segundos o id de momento; cada plano empieza con corte seco y se desliza despacio de `de` a `a`
-//     (p = cámara, q = punto al que mira, en coordenadas del set); fov en grados (14 = teleobjetivo, casi sin
-//     perspectiva); foco = distancia enfocada (por defecto la de p a q); apertura = desenfoque (0 = nada).
-//     sets = { nombre: { grupo, centro } }. P.en(t) dice qué plano toca; P.aplicar(t) coloca la cámara, el foco
-//     y enseña solo el grupo del set del plano. Hace falta "desenfoque" en la escena para que haya BokehPass.
+// Planos (una composición nueva cada 2-3 s, unidas con transiciones; sin cortes secos desde el 3 de noviembre):
+//   X.planos(lista, sets, { deslizar, fundido }) con lista = [{ id, desde, set, de: { p, q }, a: { p, q }, fov,
+//     foco, apertura, curva, entrada, transicion }]
+//     desde: segundos o id de momento; cada plano se desliza despacio de `de` a `a` (p = cámara, q = punto al que
+//     mira, en coordenadas del set); fov en grados (14 = teleobjetivo, casi sin perspectiva); foco = distancia
+//     enfocada (por defecto la de p a q); apertura = desenfoque (0 = nada).
+//     entrada: cómo llega el plano. Por defecto "deslizar" si el set es el mismo que el del plano anterior (la cámara
+//     viaja de un encuadre al otro en `deslizar` = 0,7 s, girando alrededor del objeto, y lo que cambie en el objeto
+//     se funde a la vez) y "fundido" si cambia (el plano anterior se funde en el nuevo en `fundido` = 0,35 s, los
+//     dos en movimiento); "corte" = corte seco.
+//     transicion: segundos de esa entrada (nunca más de la mitad del plano).
+//     sets = { nombre: { grupo, centro } }. P.en(t) dice qué plano toca. P.pintar(t, dibujar) coloca la cámara y
+//     llama a dibujar(t, e), que pinta todo lo demás (objetos, rótulos y C.pintar); en un fundido lo llama dos
+//     veces. P.aplicar(t) solo coloca la cámara (un fundido se ve como corte). Hace falta "desenfoque" en la
+//     escena para que haya BokehPass.
 // Fondo:
 //   X.fondo({ arriba, medio, abajo })  negro azulado con viñeta y motas finas (sustituye scene.background).
 // Añadido el 3 de noviembre con 07-microondas (no cambia nada de lo anterior):
@@ -969,36 +977,95 @@ export function crearDetalle(THREE, C) {
     return bg.tex;
   }
 
-  // ---------- shots: a new framing every ~2 s ----------
-  function planos(lista, sets) {
+  // ---------- shots: a new framing every 2-3 s, joined by transitions (3 Nov: no dry cuts) ----------
+  // Like @speedy_devv: inside the same set the camera glides from one framing to the next; between sets the old
+  // shot fades into the new one while both keep moving. entrada: "corte" on a shot keeps the old dry cut.
+  function planos(lista, sets, { deslizar = 0.7, fundido = 0.35 } = {}) {
     const L = lista.map((p) => ({ ...p, t0: C.cuando(p.desde) + (p.mas || 0) })).sort((a, b) => a.t0 - b.t0);
     L.forEach((p, i) => (p.t1 = i < L.length - 1 ? L[i + 1].t0 : C.D + 0.001));
+    L.forEach((p, i) => {
+      const prev = L[i - 1];
+      p._entrada = !prev ? "corte" : p.entrada || (prev.set === p.set ? "deslizar" : "fundido");
+      const tt = p.transicion ?? (p._entrada === "deslizar" ? deslizar : fundido);
+      // at most half of this shot and most of the previous one
+      p._tt = p._entrada === "corte" ? 0 : Math.min(tt, (p.t1 - p.t0) * 0.5, (prev.t1 - prev.t0) * 0.8);
+    });
     const bokeh = C.composer.passes.find((x) => x.uniforms && x.uniforms.aperture);
     const curvas = { lineal: (k) => k, suave: (k) => 0.5 - 0.5 * Math.cos(PI * k), entra: (k) => 1 - (1 - k) * (1 - k), sale: (k) => k * k, rapido: (k) => 1 - Math.pow(1 - k, 4) };
-    function en(t) {
-      let i = 0; while (i < L.length - 1 && t >= L[i + 1].t0) i++;
-      const p = L[i], dur = Math.max(0.001, p.t1 - p.t0);
+    // camera of shot p at time t: its slow drift from `de` to `a`
+    function pose(p, t) {
+      const dur = Math.max(0.001, p.t1 - p.t0);
       const k = clamp((t - p.t0) / dur);
       const kk = (curvas[p.curva] || curvas.lineal)(k);
       const de = p.de, a = p.a || p.de;
       const c = (sets[p.set] && sets[p.set].centro) || v3(0, 0, 0);
       const pp = de.p.clone().lerp(a.p, kk).add(c), q = de.q.clone().lerp(a.q, kk).add(c);
       const fov = lerp(de.fov ?? p.fov ?? 30, a.fov ?? p.fov ?? 30, kk);
-      return { i, plano: p, id: p.id, set: p.set, k, kk, local: t - p.t0, dur, p: pp, q, fov };
+      return { k, kk, local: t - p.t0, dur, p: pp, q, fov, foco: p.foco ?? pp.distanceTo(q), apertura: p.apertura ?? 0 };
     }
-    function aplicar(t) {
-      const e = en(t);
+    // glide between two framings: the aim slides, the camera turns around it (never straight through the object)
+    // and the framed height changes smoothly even when the lens changes
+    const giro = new THREE.Quaternion(), parte = new THREE.Quaternion();
+    function entre(A, B, m) {
+      const q = A.q.clone().lerp(B.q, m);
+      const oa = A.p.clone().sub(A.q), ob = B.p.clone().sub(B.q);
+      const ha = oa.length() * Math.tan((A.fov * PI) / 360), hb = ob.length() * Math.tan((B.fov * PI) / 360);
+      const fov = lerp(A.fov, B.fov, m), d = lerp(ha, hb, m) / Math.tan((fov * PI) / 360);
+      giro.setFromUnitVectors(oa.normalize(), ob.normalize());
+      parte.identity().slerp(giro, m);
+      return { p: oa.applyQuaternion(parte).multiplyScalar(d).add(q), q, fov, foco: lerp(A.foco, B.foco, m), apertura: lerp(A.apertura, B.apertura, m) };
+    }
+    function en(t) {
+      let i = 0; while (i < L.length - 1 && t >= L[i + 1].t0) i++;
+      const p = L[i], e = { i, plano: p, id: p.id, set: p.set, ...pose(p, t) };
+      if (p._tt > 0 && t < p.t0 + p._tt) {
+        // the previous shot stays on top and fades out; in a glide both are seen from the moving camera, so a change
+        // of state (an object cut open, a light, a label) dissolves instead of popping in the middle of the move
+        const m = curvas.suave(clamp((t - p.t0) / p._tt));
+        e.fundido = { i: i - 1, k: m };
+        if (p._entrada === "deslizar") { Object.assign(e, entre(pose(L[i - 1], t), e, m)); e.fundido.camara = true; }
+      }
+      return e;
+    }
+    function colocar(e) {
       for (const s in sets) if (sets[s].grupo) sets[s].grupo.visible = s === e.set;
       C.camera.fov = e.fov; C.camera.updateProjectionMatrix();
       C.mirar({ p: e.p, q: e.q });
       if (bokeh) {
-        bokeh.uniforms.focus.value = e.plano.foco ?? e.p.distanceTo(e.q);
-        bokeh.uniforms.aperture.value = e.plano.apertura ?? 0;
-        bokeh.enabled = (e.plano.apertura ?? 0) > 0;
+        bokeh.uniforms.focus.value = e.foco;
+        bokeh.uniforms.aperture.value = e.apertura;
+        bokeh.enabled = e.apertura > 0;
       }
       return e;
     }
-    return { lista: L, en, aplicar };
+    // places the camera only, without the fade (a change of set shows as a dry cut): use pintar
+    const aplicar = (t) => colocar(en(t));
+    // the previous shot during a cross-fade: a 2D copy of the WebGL canvas right above it, fading out
+    let capa = null;
+    if (L.some((p) => p._tt > 0)) {
+      const gl = C.renderer.domElement;
+      capa = document.createElement("canvas");
+      capa.id = "gl-fundido"; capa.width = gl.width; capa.height = gl.height;
+      capa.style.cssText = `position:absolute;left:0;top:0;width:${C.W}px;height:${C.H}px;pointer-events:none;opacity:0`;
+      gl.insertAdjacentElement("afterend", capa);
+    }
+    // the whole frame at t: dibujar(t, e) draws everything but the camera (3D objects, overlays and C.pintar).
+    // During a cross-fade it draws the previous shot first and keeps it on top, fading out.
+    function pintar(t, dibujar) {
+      const e = en(t);
+      if (e.fundido && capa) {
+        const p = L[e.fundido.i], ea = { i: e.fundido.i, plano: p, id: p.id, set: p.set, ...pose(p, t) };
+        if (e.fundido.camara) Object.assign(ea, { p: e.p, q: e.q, fov: e.fov, foco: e.foco, apertura: e.apertura });
+        colocar(ea); dibujar(t, ea);
+        const g = capa.getContext("2d");
+        g.clearRect(0, 0, capa.width, capa.height);
+        g.drawImage(C.renderer.domElement, 0, 0, capa.width, capa.height);
+        capa.style.opacity = 1 - e.fundido.k;
+      } else if (capa) capa.style.opacity = 0;
+      colocar(e); dibujar(t, e);
+      return e;
+    }
+    return { lista: L, en, aplicar, pintar };
   }
 
   // ---------- (added 3 Nov, 07-microondas) glowing ribbons along any path: waves, bouncing rays, flows ----------
