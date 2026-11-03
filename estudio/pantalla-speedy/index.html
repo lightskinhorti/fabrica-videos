@@ -1,0 +1,677 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <script type="importmap">
+      { "imports": { "three": "./lib/three.module.js", "three/addons/": "./lib/addons/" } }
+    </script>
+    <link rel="stylesheet" href="comun/pordentro.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+      .mono { font-family: "JetBrains Mono", monospace; position: absolute; left: -2000px; top: 0; }
+      /* the study's captions are only the shot names: smaller, like the reference */
+      #caps .line { font-size: 54px; }
+    </style>
+  </head>
+  <body>
+    <!-- ESTUDIO INTERNO (no se publica): recrea plano a plano la imagen del reel de la pantalla táctil de
+         @speedy_devv para aprender su nivel de detalle. Sin voz, sin su guion y sin sus píxeles: todo lo dibuja
+         nuestro código. Los subtítulos son solo el nombre de cada plano. -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="84.6" data-width="1080" data-height="1920" data-fps="30">
+      <canvas id="gl" class="clip" data-start="0" data-duration="84.6" data-track-index="0" width="1080" height="1920"></canvas>
+      <div id="shade" class="clip" data-start="0" data-duration="84.6" data-track-index="1"></div>
+      <svg id="leaders" class="clip" data-start="0" data-duration="84.6" data-track-index="2" width="1080" height="1920" data-layout-allow-overlap></svg>
+      <div id="labels" class="clip" data-start="0" data-duration="84.6" data-track-index="3" data-layout-allow-overlap><span class="mono">0123456789</span></div>
+      <div id="note" class="clip" data-start="0" data-duration="84.6" data-track-index="4"></div>
+      <div id="caps" class="clip" data-start="0" data-duration="84.6" data-track-index="5" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 83.4, "lines": [{"id": "p1", "s": 0.12, "e": 2.3, "words": [{"w": "corte", "s": 0.12, "e": 0.27, "key": false}, {"w": "con", "s": 0.28, "e": 0.43, "key": false}, {"w": "dedo", "s": 0.44, "e": 2.3, "key": true}]}, {"id": "p2", "s": 3.72, "e": 4.14, "words": [{"w": "baja", "s": 3.72, "e": 3.87, "key": false}, {"w": "el", "s": 3.88, "e": 4.03, "key": false}, {"w": "boli", "s": 4.04, "e": 4.14, "key": true}]}, {"id": "p3", "s": 5.29, "e": 5.71, "words": [{"w": "dedo", "s": 5.29, "e": 5.44, "key": false}, {"w": "y", "s": 5.45, "e": 5.6, "key": false}, {"w": "boli", "s": 5.61, "e": 5.71, "key": true}]}, {"id": "p4", "s": 6.67, "e": 8.6, "words": [{"w": "el", "s": 6.67, "e": 6.82, "key": false}, {"w": "boli", "s": 6.83, "e": 6.98, "key": false}, {"w": "aprieta", "s": 6.99, "e": 8.6, "key": true}]}, {"id": "p5", "s": 10.02, "e": 10.47, "words": [{"w": "dedo", "s": 10.02, "e": 10.17, "key": false}, {"w": "grande", "s": 10.18, "e": 10.47, "key": true}]}, {"id": "p6", "s": 11.89, "e": 12.15, "words": [{"w": "mano", "s": 11.89, "e": 12.04, "key": false}, {"w": "entera", "s": 12.05, "e": 12.15, "key": true}]}, {"id": "p7", "s": 12.52, "e": 13.4, "words": [{"w": "guante", "s": 12.52, "e": 12.67, "key": true}, {"w": "y", "s": 12.68, "e": 12.83, "key": false}, {"w": "bloqueo", "s": 12.84, "e": 13.4, "key": false}]}, {"id": "p8", "s": 14.82, "e": 15.08, "words": [{"w": "llamada", "s": 14.82, "e": 14.97, "key": true}, {"w": "entrante", "s": 14.98, "e": 15.08, "key": false}]}, {"id": "p9", "s": 16.42, "e": 16.84, "words": [{"w": "bajo", "s": 16.42, "e": 16.57, "key": false}, {"w": "el", "s": 16.58, "e": 16.73, "key": false}, {"w": "cristal", "s": 16.74, "e": 16.84, "key": true}]}, {"id": "p10", "s": 17.82, "e": 18.24, "words": [{"w": "aparece", "s": 17.82, "e": 17.97, "key": false}, {"w": "la", "s": 17.98, "e": 18.13, "key": false}, {"w": "rejilla", "s": 18.14, "e": 18.24, "key": true}]}, {"id": "p11", "s": 19.32, "e": 21.97, "words": [{"w": "filas", "s": 19.32, "e": 19.47, "key": true}, {"w": "y", "s": 19.48, "e": 19.63, "key": false}, {"w": "columnas", "s": 19.64, "e": 21.97, "key": false}]}, {"id": "p12", "s": 23.39, "e": 23.81, "words": [{"w": "cruces", "s": 23.39, "e": 23.54, "key": true}, {"w": "de", "s": 23.55, "e": 23.7, "key": false}, {"w": "lejos", "s": 23.71, "e": 23.81, "key": false}]}, {"id": "p13", "s": 23.59, "e": 26.3, "words": [{"w": "cruce", "s": 23.59, "e": 23.74, "key": false}, {"w": "en", "s": 23.75, "e": 23.9, "key": false}, {"w": "macro", "s": 23.91, "e": 26.3, "key": true}]}, {"id": "p14", "s": 27.72, "e": 28.87, "words": [{"w": "todos", "s": 27.72, "e": 27.87, "key": false}, {"w": "los", "s": 27.88, "e": 28.03, "key": false}, {"w": "cruces", "s": 28.04, "e": 28.87, "key": true}]}, {"id": "p15", "s": 30.29, "e": 30.71, "words": [{"w": "corte", "s": 30.29, "e": 30.44, "key": false}, {"w": "con", "s": 30.45, "e": 30.6, "key": false}, {"w": "cifras", "s": 30.61, "e": 30.71, "key": true}]}, {"id": "p16", "s": 31.32, "e": 31.8, "words": [{"w": "dedo", "s": 31.32, "e": 31.47, "key": false}, {"w": "con", "s": 31.48, "e": 31.63, "key": false}, {"w": "iones", "s": 31.64, "e": 31.8, "key": true}]}, {"id": "p17", "s": 33.22, "e": 33.64, "words": [{"w": "yema", "s": 33.22, "e": 33.37, "key": false}, {"w": "con", "s": 33.38, "e": 33.53, "key": false}, {"w": "huella", "s": 33.54, "e": 33.64, "key": true}]}, {"id": "p18", "s": 34.87, "e": 35.29, "words": [{"w": "la", "s": 34.87, "e": 35.02, "key": false}, {"w": "yema", "s": 35.03, "e": 35.18, "key": false}, {"w": "baja", "s": 35.19, "e": 35.29, "key": true}]}, {"id": "p19", "s": 36.65, "e": 38.8, "words": [{"w": "tira", "s": 36.65, "e": 36.8, "key": false}, {"w": "de", "s": 36.81, "e": 36.96, "key": false}, {"w": "la", "s": 36.97, "e": 37.12, "key": false}, {"w": "carga", "s": 37.13, "e": 38.8, "key": true}]}, {"id": "p20", "s": 40.22, "e": 42.97, "words": [{"w": "rejilla", "s": 40.22, "e": 40.37, "key": false}, {"w": "del", "s": 40.38, "e": 40.53, "key": false}, {"w": "móvil", "s": 40.54, "e": 42.97, "key": true}]}, {"id": "p21", "s": 44.39, "e": 44.81, "words": [{"w": "toque", "s": 44.39, "e": 44.54, "key": true}, {"w": "en", "s": 44.55, "e": 44.7, "key": false}, {"w": "pantalla", "s": 44.71, "e": 44.81, "key": false}]}, {"id": "p22", "s": 45.12, "e": 48.03, "words": [{"w": "barrido", "s": 45.12, "e": 45.27, "key": false}, {"w": "de", "s": 45.28, "e": 45.43, "key": false}, {"w": "cruces", "s": 45.44, "e": 48.03, "key": true}]}, {"id": "p23", "s": 49.45, "e": 49.71, "words": [{"w": "dos", "s": 49.45, "e": 49.6, "key": false}, {"w": "dedos", "s": 49.61, "e": 49.71, "key": true}]}, {"id": "p24", "s": 49.87, "e": 49.97, "words": [{"w": "pellizco", "s": 49.87, "e": 49.97, "key": true}]}, {"id": "p25", "s": 51.09, "e": 51.51, "words": [{"w": "yema", "s": 51.09, "e": 51.24, "key": false}, {"w": "de", "s": 51.25, "e": 51.4, "key": false}, {"w": "lana", "s": 51.41, "e": 51.51, "key": true}]}, {"id": "p26", "s": 52.69, "e": 53.11, "words": [{"w": "guante", "s": 52.69, "e": 52.84, "key": true}, {"w": "de", "s": 52.85, "e": 53.0, "key": false}, {"w": "lado", "s": 53.01, "e": 53.11, "key": false}]}, {"id": "p27", "s": 53.62, "e": 54.73, "words": [{"w": "guante", "s": 53.62, "e": 53.77, "key": false}, {"w": "en", "s": 53.78, "e": 53.93, "key": false}, {"w": "macro", "s": 53.94, "e": 54.73, "key": true}]}, {"id": "p28", "s": 56.15, "e": 56.77, "words": [{"w": "dedo", "s": 56.15, "e": 56.3, "key": true}, {"w": "al", "s": 56.31, "e": 56.46, "key": false}, {"w": "lado", "s": 56.47, "e": 56.77, "key": false}]}, {"id": "p29", "s": 58.19, "e": 58.61, "words": [{"w": "guante", "s": 58.19, "e": 58.34, "key": true}, {"w": "y", "s": 58.35, "e": 58.5, "key": false}, {"w": "llamada", "s": 58.51, "e": 58.61, "key": false}]}, {"id": "p30", "s": 59.49, "e": 59.75, "words": [{"w": "llamada", "s": 59.49, "e": 59.64, "key": true}, {"w": "perdida", "s": 59.65, "e": 59.75, "key": false}]}, {"id": "p31", "s": 60.52, "e": 60.94, "words": [{"w": "inicio", "s": 60.52, "e": 60.67, "key": false}, {"w": "con", "s": 60.68, "e": 60.83, "key": false}, {"w": "lluvia", "s": 60.84, "e": 60.94, "key": true}]}, {"id": "p32", "s": 61.29, "e": 61.39, "words": [{"w": "mapa", "s": 61.29, "e": 61.39, "key": true}]}, {"id": "p33", "s": 61.69, "e": 62.11, "words": [{"w": "inicio", "s": 61.69, "e": 61.84, "key": true}, {"w": "otra", "s": 61.85, "e": 62.0, "key": false}, {"w": "vez", "s": 62.01, "e": 62.11, "key": false}]}, {"id": "p34", "s": 62.29, "e": 62.55, "words": [{"w": "una", "s": 62.29, "e": 62.44, "key": false}, {"w": "gota", "s": 62.45, "e": 62.55, "key": true}]}, {"id": "p35", "s": 62.95, "e": 63.37, "words": [{"w": "gota", "s": 62.95, "e": 63.1, "key": true}, {"w": "y", "s": 63.11, "e": 63.26, "key": false}, {"w": "dedo", "s": 63.27, "e": 63.37, "key": false}]}, {"id": "p36", "s": 63.92, "e": 65.37, "words": [{"w": "gotas", "s": 63.92, "e": 64.07, "key": true}, {"w": "en", "s": 64.08, "e": 64.23, "key": false}, {"w": "pantalla", "s": 64.24, "e": 65.37, "key": false}]}, {"id": "p37", "s": 66.79, "e": 67.05, "words": [{"w": "guante", "s": 66.79, "e": 66.94, "key": false}, {"w": "táctil", "s": 66.95, "e": 67.05, "key": true}]}, {"id": "p38", "s": 67.75, "e": 68.17, "words": [{"w": "dedo", "s": 67.75, "e": 67.9, "key": false}, {"w": "de", "s": 67.91, "e": 68.06, "key": false}, {"w": "guante", "s": 68.07, "e": 68.17, "key": true}]}, {"id": "p39", "s": 68.02, "e": 68.28, "words": [{"w": "hilo", "s": 68.02, "e": 68.17, "key": false}, {"w": "conductor", "s": 68.18, "e": 68.28, "key": true}]}, {"id": "p40", "s": 68.92, "e": 70.23, "words": [{"w": "hilo", "s": 68.92, "e": 69.07, "key": false}, {"w": "en", "s": 69.08, "e": 69.23, "key": false}, {"w": "macro", "s": 69.24, "e": 70.23, "key": true}]}, {"id": "p41", "s": 71.65, "e": 72.07, "words": [{"w": "hilo", "s": 71.65, "e": 71.8, "key": false}, {"w": "con", "s": 71.81, "e": 71.96, "key": false}, {"w": "cifras", "s": 71.97, "e": 72.07, "key": true}]}, {"id": "p42", "s": 72.72, "e": 73.14, "words": [{"w": "contesta", "s": 72.72, "e": 72.87, "key": true}, {"w": "la", "s": 72.88, "e": 73.03, "key": false}, {"w": "llamada", "s": 73.04, "e": 73.14, "key": false}]}, {"id": "p43", "s": 73.82, "e": 74.24, "words": [{"w": "silueta", "s": 73.82, "e": 73.97, "key": true}, {"w": "del", "s": 73.98, "e": 74.13, "key": false}, {"w": "dedo", "s": 74.14, "e": 74.24, "key": false}]}, {"id": "p44", "s": 75.52, "e": 76.37, "words": [{"w": "un", "s": 75.52, "e": 75.67, "key": false}, {"w": "solo", "s": 75.68, "e": 75.83, "key": false}, {"w": "arco", "s": 75.84, "e": 76.37, "key": true}]}, {"id": "p45", "s": 77.79, "e": 78.33, "words": [{"w": "dedo", "s": 77.79, "e": 77.94, "key": false}, {"w": "final", "s": 77.95, "e": 78.33, "key": true}]}, {"id": "p46", "s": 79.75, "e": 83.3, "words": [{"w": "compartir", "s": 79.75, "e": 83.3, "key": true}]}]}</script>
+    <script id="escena" type="application/json">
+      {
+        "estilo": "rejilla",
+        "desenfoque": { "apertura": 0, "max": 0.014 },
+        "etiquetas": [
+          { "texto": "CRISTAL", "pieza": "cristal", "desde": 0.4, "hasta": 3.6, "dx": 10, "dy": -120 },
+          { "texto": "CABLES", "pieza": "cables", "desde": 1.25, "hasta": 3.6, "dx": 10, "dy": -190 },
+          { "texto": "CARGA", "pieza": "carga", "desde": 2.0, "hasta": 3.6, "dx": 10, "dy": -250 },
+          { "texto": "FILA", "pieza": "fila", "desde": 19.75, "hasta": 22.3, "dx": 10, "dy": -40 },
+          { "texto": "COLUMNA", "pieza": "columna", "desde": 21.1, "hasta": 22.3, "dx": 60, "dy": 0 },
+          { "texto": "CRUCE", "pieza": "cruce", "desde": 23.75, "hasta": 25.0, "dx": 160, "dy": -170 },
+          { "texto": "CARGA", "pieza": "carga2", "desde": 26.25, "hasta": 27.6, "dx": 120, "dy": -140 },
+          { "texto": "LANA", "pieza": "lana", "desde": 52.0, "hasta": 53.5, "dx": 90, "dy": 120 },
+          { "texto": "HILO CONDUCTOR", "pieza": "hilo", "desde": 68.0, "hasta": 69.6, "dx": 120, "dy": 110 },
+          { "texto": "MENOS DE 1 pF", "pieza": "arco1", "desde": 75.6, "hasta": 77.67, "dx": 120, "dy": -120 }
+        ],
+        "notas": [
+          { "texto": "Ilustración ampliada", "desde": 0 },
+          { "texto": "", "desde": 12.4 },
+          { "texto": "Los cables son transparentes en un móvil real", "desde": 19.4 },
+          { "texto": "Ilustración ampliada", "desde": 23.5 },
+          { "texto": "Carga dibujada en dorado, invisible a la vista", "desde": 25.3 },
+          { "texto": "Valores ilustrativos", "desde": 27.7 },
+          { "texto": "", "desde": 30.17 },
+          { "texto": "Ilustración ampliada", "desde": 31.3 },
+          { "texto": "Valores ilustrativos", "desde": 37.4 },
+          { "texto": "", "desde": 49.33 },
+          { "texto": "Ilustración ampliada", "desde": 52.0 },
+          { "texto": "Valores ilustrativos", "desde": 56.4 },
+          { "texto": "", "desde": 58.07 },
+          { "texto": "Valores ilustrativos", "desde": 62.5 },
+          { "texto": "", "desde": 63.8 },
+          { "texto": "Ilustración ampliada", "desde": 68.0 },
+          { "texto": "Valores ilustrativos", "desde": 71.6 },
+          { "texto": "", "desde": 72.6 },
+          { "texto": "Valores ilustrativos", "desde": 75.5 },
+          { "texto": "", "desde": 79.63 }
+        ],
+        "paneles": [
+          { "id": "escaneo", "titulo": "ESCANEOS POR SEGUNDO", "desde": 29.3, "hasta": 30.25, "x": 64, "y": 1150 }
+        ]
+      }
+    </script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 84.6 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import * as THREE from "three";
+      import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
+      import { crearPorDentro } from "./comun/pordentro.js";
+      import { crearDetalle } from "./comun/detalle.js";
+      import * as UI from "./comun/pantallas.js";
+
+      await Promise.all(['700 50px "Inter"', '400 50px "Inter"', '700 50px "JetBrains Mono"', '400 50px "JetBrains Mono"'].map((f) => document.fonts.load(f)));
+      const C = crearPorDentro(THREE);
+      const X = crearDetalle(THREE, C);
+      const { v3, clamp, lerp, ramp, ventana, smooth, hash } = C;
+      const PI = Math.PI;
+      const frac = (x) => x - Math.floor(x);
+
+      X.fondo({ arriba: "#07080c", medio: "#141b27", abajo: "#090b0f" });
+      // the engine's lights off; every set brings the same rig, so cutting between sets never recompiles shaders
+      C.key.castShadow = false; C.key.intensity = 0; C.warm.intensity = 0; C.rim.intensity = 0; C.hemi.intensity = 0.3;
+      C.renderer.shadowMap.enabled = false;
+      C.scene.environmentIntensity = 0.42;
+      function rig(g, { key = [-25, 40, 40], ki = 2.4, rim = [15, 10, -30], ri = 1.3, fill = [0, 6, 20], fi = 40, fd = 90, kc = 0xfff3e6, rc = 0xa9c2ff } = {}) {
+        const k = new THREE.DirectionalLight(kc, ki); k.position.set(...key); g.add(k, k.target);
+        const r = new THREE.DirectionalLight(rc, ri); r.position.set(...rim); g.add(r, r.target);
+        const f = new THREE.PointLight(0xffdcb8, fi, fd, 2); f.position.set(...fill); g.add(f);
+        return { k, r, f };
+      }
+      const SETS = {
+        corte: { centro: v3(0, 0, 0) }, movil: { centro: v3(1000, 0, 0) }, rejilla: { centro: v3(0, 0, 1000) },
+        celdas: { centro: v3(-1000, 0, 0) }, lana: { centro: v3(0, 0, -1000) }, final: { centro: v3(1000, 0, 1000) },
+      };
+      for (const k in SETS) { const g = new THREE.Group(); g.position.copy(SETS[k].centro); C.scene.add(g); SETS[k].grupo = g; }
+      // camera helper for the cutaway: telephoto, almost side-on; the strip's height on screen is given by `f` (0 = top)
+      const lado = (x, f, d, { fov = 14, elev = 0.035, yS = 0.6, dx = 0 } = {}) => {
+        const H = 2 * d * Math.tan((fov * PI) / 360);
+        const q = v3(x, yS + (f - 0.5) * H, 0);
+        return { p: v3(x + dx, q.y + d * Math.sin(elev), d * Math.cos(elev)), q, fov };
+      };
+
+      // =====================================================================================
+      // SET 1 · the side cutaway (finger, pen, glove, drop, ions, a single arc)
+      // =====================================================================================
+      const A = SETS.corte.grupo;
+      rig(A, { key: [-25, 40, 45], ki: 1.6, rim: [18, 12, -30], ri: 1.3, fill: [-4, 8, 30], fi: 40, fd: 120 });
+      const CO = X.corte({ n: 130, paso: 1, alto: 1.25 });
+      A.add(CO.grupo);
+      A.add(X.motas({ n: 700, caja: [150, 70, 50], centro: v3(0, 18, -40), tam: 0.16, opacidad: 0.55 }).grupo);
+      const dedoA = X.dedo({ radio: 2.0 }); A.add(dedoA.grupo);
+      const dedoB = X.dedo({ radio: 2.0 }); A.add(dedoB.grupo);
+      const boliA = X.boli({ largo: 36, radio: 0.85 }); A.add(boliA.grupo);
+      const guanteA = X.dedo({ radio: 2.2, guante: true, lazos: 56, lana: { color: [150, 141, 130], fondo: [52, 49, 46] } }); A.add(guanteA.grupo);
+      const ionesA = X.iones({ n: 18, caja: [0.3, 2.2, 1.25], centro: v3(0, 1.45, 0.0), radio: 0.17 }); dedoA.grupo.add(ionesA.grupo);
+      const chispas = X.particulas({ tipo: "chispas", n: 90, caja: [1.8, 2.6, 1], tam: 0.32 }); A.add(chispas.grupo);
+      const gotaGeo = new THREE.SphereGeometry(1, 72, 36, 0, 2 * PI, 0, PI / 2);
+      const gota = new THREE.Mesh(gotaGeo, new THREE.MeshPhysicalMaterial({ color: 0xcfe0f5, transparent: true, opacity: 0.16, roughness: 0.03, clearcoat: 1, clearcoatRoughness: 0.02, specularIntensity: 1, envMapIntensity: 2.2, depthWrite: false }));
+      gota.add(new THREE.Mesh(gotaGeo, new THREE.ShaderMaterial({
+        vertexShader: "varying vec3 vN; varying vec3 vV; varying float vY; void main(){ vec4 mv = modelViewMatrix*vec4(position,1.0); vN = normalize(normalMatrix*normal); vV = normalize(-mv.xyz); vY = position.y; gl_Position = projectionMatrix*mv; }",
+        fragmentShader: "varying vec3 vN; varying vec3 vV; varying float vY; void main(){ float r = 1.0 - abs(dot(normalize(vN), normalize(vV))); float a = pow(r, 3.0) * 0.9 + 0.5 * smoothstep(0.75, 1.0, vY) * pow(r, 1.0) * 0.0; gl_FragColor = vec4(vec3(0.85, 0.92, 1.0) * a, 1.0); }",
+        transparent: true, depthWrite: false, blending: THREE.AdditiveBlending })));
+      const reflejo = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 16, 0.6, 1.2, 0.35, 0.35), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.55, depthWrite: false, toneMapped: false }));
+      reflejo.scale.setScalar(1.01); gota.add(reflejo);
+      A.add(gota);
+      // the finger outline (dashed) for "it never felt your finger"
+      const contornoPts = [];
+      for (let k = 0; k <= 60; k++) contornoPts.push(X.superficie(PI, (1 - k / 60) * 0.55));
+      for (let k = 0; k <= 60; k++) contornoPts.push(X.superficie(0, (k / 60) * 0.55));
+      // dashes as thin quads in the finger's side plane (local x faces the camera in the side views)
+      const dashPos = [];
+      { let acc = 0; const DL = 0.07, GL = 0.06, wd = 0.0055;
+        for (let k = 0; k < contornoPts.length - 1; k++) {
+          const p0 = contornoPts[k], p1 = contornoPts[k + 1], len = p0.distanceTo(p1);
+          const on = (acc % (DL + GL)) < DL; acc += len;
+          if (!on) continue;
+          const d = p1.clone().sub(p0).normalize(), n = v3(0, -d.z, d.y).multiplyScalar(wd);
+          const a0 = p0.clone().add(n), a1 = p0.clone().sub(n), b0 = p1.clone().add(n), b1 = p1.clone().sub(n);
+          for (const q of [a0, a1, b0, a1, b1, b0]) dashPos.push(q.x + 0.02, q.y, q.z);
+        } }
+      const contorno = new THREE.Group();
+      for (const sx of [1, -1]) {
+        const g = new THREE.BufferGeometry(); g.setAttribute("position", new THREE.Float32BufferAttribute(dashPos.map((v, i) => (i % 3 === 0 ? v * sx : v)), 3));
+        contorno.add(new THREE.Mesh(g, new THREE.MeshBasicMaterial({ color: 0xeef3ff, transparent: true, opacity: 0.9, side: THREE.DoubleSide, depthWrite: false, toneMapped: false })));
+      }
+      dedoA.grupo.add(contorno);
+      // one highlighted arc and its dark twin (the charge that went missing)
+      const I0 = 65, xs = CO.xs;
+      const arcoLista = [{ a: v3(xs[I0 - 1], CO.yE + 0.03, 0.42), b: v3(xs[I0 + 1], CO.yE + 0.03, 0.42), h: 1.15, fase: 0.2, peso: 2.4 }];
+      const arcoUno = X.arcos({ lista: arcoLista, ancho: 0.045, minPx: 2, ondas: 1.2, vel: 0.5 }); CO.grupo.add(arcoUno.malla);
+      const arcoOsc = X.arcos({ lista: arcoLista.map((a) => ({ ...a, peso: 1 })), ancho: 0.05, minPx: 2, oscuro: true }); CO.grupo.add(arcoOsc.malla);
+      arcoOsc.malla.renderOrder = 6;
+      // a glowing swirl on the pad: "the finger took it"
+      const espiral = new THREE.Sprite(new THREE.SpriteMaterial({ map: X.lienzo(256, 256, (g) => {
+        g.strokeStyle = "rgba(255,210,120,1)"; g.lineWidth = 6; g.shadowColor = "rgba(255,180,60,1)"; g.shadowBlur = 18; g.beginPath();
+        for (let k = 0; k < 220; k++) { const a = k * 0.12, r = 8 + k * 0.42; g.lineTo(128 + Math.cos(a) * r, 128 + Math.sin(a) * r * 0.55); }
+        g.stroke();
+      }).tex, transparent: true, depthWrite: false, depthTest: false, blending: THREE.AdditiveBlending, opacity: 0 }));
+      espiral.scale.set(2.2, 2.2, 1); A.add(espiral);
+      // the wide shot: a whole hand touching a small piece of the cutaway
+      const maq = X.corte({ n: 26, paso: 1, alto: 1.25, arcosPor: 5 });
+      maq.grupo.position.set(400, 0, 0); A.add(maq.grupo);
+      const manoMaq = X.manoSenala({ radio: 1.35 }); A.add(manoMaq.grupo);
+      const manga = new THREE.Mesh(new THREE.CylinderGeometry(3.4, 3.8, 26, 40), new THREE.MeshPhysicalMaterial({ color: 0x1d2128, roughness: 0.8, sheen: 0.6, sheenColor: new THREE.Color(0x5a6070) }));
+      manga.position.set(0.7, 26, -1.1); manoMaq.grupo.add(manga);
+      // parts the labels point to
+      C.pieza("cristal", CO.grupo, v3(xs[I0 + 3], CO.yC - 0.25, 0.3));
+      C.pieza("cables", CO.grupo, v3(xs[I0 + 5], CO.yE, 0.3));
+      C.pieza("carga", CO.grupo, v3(-2.4, 0.9, 0.2));
+      C.pieza("lana", guanteA.grupo, v3(0, 0.9, -1.15));
+      C.pieza("arco1", CO.grupo, v3(xs[I0] + 0.55, 0.85, 0.42));
+      const pinzaHilo = { obj: null };
+
+      const FD = v3(-0.7, 0.71, 0.1).normalize();
+      const FD2 = v3(-0.5, 0.86, 0.12).normalize();
+      const PD = v3(0.46, 0.87, 0.14).normalize();
+      const cont = (x, z = 0.15) => v3(x, CO.yC, z);
+      const VAL = (vals) => { for (let i = 0; i < xs.length; i++) CO.cifras.poner(i, 100, false); for (const [i, v] of vals) CO.cifras.poner(i, v, v !== 100); };
+      function ocultaA() {
+        for (const o of [dedoA.grupo, dedoB.grupo, boliA.grupo, guanteA.grupo, gota, contorno, ionesA.grupo, manoMaq.grupo, chispas.grupo]) o.visible = false;
+        dedoA.rayosX(0); dedoA.brillo(0); dedoB.brillo(0);
+        dedoA.grupo.scale.setScalar(2.0); boliA.grupo.scale.setScalar(1);
+        dedoA.malla.visible = true; if (dedoA.unya) dedoA.unya.visible = true;
+        arcoUno.malla.visible = false; arcoOsc.malla.visible = false; espiral.material.opacity = 0;
+        CO.toque.material.opacity = 0; CO.cifras.corchete(0, 0, 0); CO.cifras.grupo.visible = true;
+        guanteA.lazoMat.color.setHex(0x6c7179); guanteA.lazoMat.emissiveIntensity = 0;
+      }
+      // a finger near the glass: place it, return the arcs' target (bending grows as it closes in)
+      function dedoEn(dd, x, dir, dist, { conduce = true, r = 3.4, rodar = 0, z = 0.15 } = {}) {
+        dd.grupo.visible = true;
+        const c = cont(x, z);
+        dd.colocar(c, dir, dist, rodar);
+        const gap = dist * dir.y;
+        const k = conduce ? smooth(clamp(1 - gap / 1.1)) : 0;
+        return { p: c.clone().addScaledVector(dir, dist), r, k, abre: 0.32, curva: 0.16 };
+      }
+      function updCorte(t, e) {
+        ocultaA();
+        const obj = [];
+        VAL([]);
+        CO.cifras.grupo.visible = t >= 30;
+        if (t < 9.9) {
+          // finger at the left: touches at 0.75, lifts at 3.75, comes back at 5.6, leaves at 6.5
+          const away = t < 0.75 ? 1.8 * (1 - ramp(t, 0, 0.75)) : t < 3.75 ? 0 : t < 5.4 ? 1.4 * ramp(t, 3.75, 4.3) : t < 6.4 ? 1.4 * (1 - ramp(t, 5.4, 5.75)) : 14 * ramp(t, 6.4, 7.0);
+          const fx = t < 3.6 ? -3.2 : t < 5.17 ? -1.7 : -2.7;
+          if (away < 11) obj.push(dedoEn(dedoA, fx, FD, away));
+          // pen: hovers top right, comes down at 3.6 and presses (sparks); the arcs ignore it
+          const pd = t < 3.6 ? 5.6 - 0.25 * t : 4.7 * (1 - ramp(t, 3.6, 3.95));
+          const px = t < 3.6 ? 3.8 : t < 6.55 ? 2.0 : 0.6;
+          boliA.grupo.visible = true;
+          boliA.grupo.scale.setScalar(t < 3.6 ? 1.2 : t < 6.55 ? 1.65 : 1.55);
+          boliA.colocar(cont(px, 0.2), PD, pd);
+          if (t > 3.95) { chispas.grupo.visible = true; chispas.actualizar(t, ventana(t, 3.95, 6.6, 0.3)); chispas.grupo.position.set(px, CO.yC, 0.3); }
+          CO.toque.position.set(fx, CO.yC, 0.3); CO.toque.material.opacity = 0.55 * (away < 0.2 ? 1 : 0);
+        } else if (t < 11.77) {
+          // big finger: comes down and touches, then glows ("the electricity in your body")
+          const away = 2.8 * (1 - ramp(t, 9.9, 10.8));
+          obj.push(dedoEn(dedoA, 1.5, FD, away, { r: 4 }));
+          dedoA.brillo(0.9 * ramp(t, 11.1, 11.7));
+          CO.toque.position.set(1.5, CO.yC, 0.3); CO.toque.material.opacity = 0.6 * ramp(t, 10.7, 10.9);
+        } else if (t < 12.4) {
+          manoMaq.grupo.visible = true;
+          manoMaq.colocar(v3(400 + 2.5, CO.yC, 0.2), v3(-0.55, 0.8, 0.25).normalize(), 0);
+          manoMaq.dedo.brillo(0.6);
+          maq.arcos.actualizar(t, [{ p: v3(2.5, CO.yC, 0.2), r: 3, k: 1, abre: 0.3, curva: 0.1 }]);
+        } else if (t >= 30.17 && t < 40.1) {
+          // the finger enters, shows its ions, comes close, pulls the charge; the figures drop
+          const away = t < 31.2 ? lerp(9, 3.2, ramp(t, 30.35, 31.2)) : t < 33.1 ? lerp(3.2, 2.7, ramp(t, 31.2, 33.1)) : t < 34.75 ? lerp(2.7, 1.6, ramp(t, 33.1, 34.75)) : t < 36.53 ? lerp(1.6, 0.35, ramp(t, 34.75, 36.4)) : 0.35 * (1 - ramp(t, 36.53, 36.95));
+          obj.push(dedoEn(dedoA, xs[I0], FD2, away, { r: 3.0 }));
+          if (t >= 31.2 && t < 33.1) {
+            const rx = ventana(t, 31.2, 33.1, 0.12);
+            dedoA.rayosX(rx); ionesA.grupo.visible = rx > 0.02; ionesA.actualizar(t, ventana(t, 32.3, 33.0, 0.2), 1);
+          }
+          if (t >= 37.3) VAL(t < 37.9 ? [[I0, 97]] : t < 38.35 ? [[I0 - 1, 82], [I0, 68], [I0 + 1, 88]] : [[I0 - 1, 81], [I0, 62], [I0 + 1, 84]]);
+          CO.cifras.corchete(I0 - 1, I0 + 1, ramp(t, 39.35, 39.6));
+          CO.toque.position.set(xs[I0], CO.yC, 0.3); CO.toque.material.opacity = 0.7 * ramp(t, 36.7, 37.1);
+          dedoA.brillo(0.35 * ramp(t, 36.8, 37.4));
+        } else if (t >= 50.97 && t < 58.4) {
+          // the wool glove: it touches, nothing bends; then a bare finger at its side does
+          if (t < 52.57) {
+            guanteA.grupo.visible = true;
+            guanteA.colocar(cont(0, 0.6), v3(-0.18, 0.78, -0.6).normalize(), lerp(7, 1.4, ramp(t, 50.97, 52.45)));
+          } else if (t < 56.03) {
+            guanteA.grupo.visible = true;
+            guanteA.colocar(cont(0.2), v3(-0.22, 0.97, 0.06).normalize(), 0.6 * (1 - ramp(t, 52.57, 53.2)));
+          } else {
+            guanteA.grupo.visible = true;
+            guanteA.colocar(cont(-4.5), FD2, 0.05);
+            const away = t < 56.3 ? 12 : lerp(6, 0, ramp(t, 56.3, 56.85));
+            obj.push(dedoEn(dedoB, xs[I0 + 4], v3(0.45, 0.87, 0.12).normalize(), away, { r: 3.0 }));
+            if (t >= 56.85) VAL(t < 57.15 ? [[I0 + 3, 88], [I0 + 4, 65], [I0 + 5, 86]] : [[I0 + 3, 84], [I0 + 4, 62], [I0 + 5, 81]]);
+            CO.cifras.corchete(I0 + 3, I0 + 5, ramp(t, 57.3, 57.5));
+          }
+        } else if (t >= 62.17 && t < 63.8) {
+          // a water drop also pulls the charge, like a finger
+          gota.visible = true;
+          if (t < 62.83) { gota.scale.set(3.2, 1.7, 2.2); gota.position.set(0, CO.yC, 0.2); obj.push({ p: v3(0, CO.yC + 0.4, 0.2), r: 3.6, k: 0.85, abre: 0.28, curva: 0.05 }); }
+          else {
+            gota.scale.set(1.9, 1.05, 1.4); gota.position.set(-3, CO.yC, 0.2); obj.push({ p: v3(-3, CO.yC + 0.25, 0.2), r: 2.4, k: 0.8, abre: 0.28, curva: 0.05 });
+            obj.push(dedoEn(dedoA, 3.5, v3(0.5, 0.85, 0.15).normalize(), lerp(3.5, 0, ramp(t, 62.9, 63.35)), { r: 3.0 }));
+            VAL([[I0 - 5, 83], [I0 - 4, 74], [I0 - 3, 94], ...(t > 63.35 ? [[I0 + 2, 81], [I0 + 3, 62], [I0 + 4, 84]] : [])]);
+          }
+        } else if (t >= 68.8 && t < 72.6) {
+          // gloves with conductive thread: the thread lights up and the charge flows into it
+          guanteA.grupo.visible = true;
+          guanteA.colocar(cont(xs[I0]), v3(-0.22, 0.97, 0.06).normalize(), 0.02);
+          guanteA.lazoMat.color.setHex(0xb9bec6);
+          const on = ramp(t, 69.15, 69.8);
+          guanteA.lazoMat.emissiveIntensity = 0.75 * on;
+          obj.push({ p: cont(xs[I0]).add(v3(0, 0.1, 0)), r: 3.2, k: on, abre: 0.4, curva: 0.12 });
+          if (t >= 71.53) VAL(t < 71.95 ? [] : t < 72.25 ? [[I0, 87]] : [[I0, 71]]);
+        } else if (t >= 73.7 && t < 79.63) {
+          if (t < 77.67) {
+            // only the outline of the finger: a single arc reaches it, then that bit of charge goes missing
+            dedoA.grupo.visible = true; dedoA.malla.visible = false; if (dedoA.unya) dedoA.unya.visible = false; contorno.visible = true;
+            dedoA.colocar(cont(xs[I0], 0.42), FD2, 0.5);
+            arcoUno.malla.visible = true;
+            const tgt = { p: cont(xs[I0], 0.42).add(v3(0, 0.45, 0)), r: 3, k: 1, abre: 0, curva: 0 };
+            arcoUno.actualizar(t, [tgt]);
+            const osc = ramp(t, 76.8, 77.2);
+            arcoOsc.malla.visible = osc > 0.01; arcoOsc.material.uniforms.intensidad.value = osc;
+            arcoOsc.actualizar(t, [tgt]);
+            if (t >= 75.4) VAL([[I0, t < 75.95 ? 100 : t < 76.25 ? 88 : t < 76.55 ? 75 : 71]]);
+          } else {
+            obj.push(dedoEn(dedoA, xs[I0], FD2, lerp(1.2, 0.5, ramp(t, 77.67, 78.6)), { r: 3.0 }));
+            espiral.position.copy(cont(xs[I0], 1.2).add(v3(0, 0.75, 0))); espiral.material.opacity = ramp(t, 78.95, 79.25) * (0.75 + 0.25 * Math.sin(t * 9));
+            espiral.material.rotation = t * 1.5;
+          }
+        }
+        CO.arcos.actualizar(t, obj);
+        CO.cifras.dibujar();
+      }
+
+      // =====================================================================================
+      // SET 2 · the phone held by a woolly glove (snow, breath, rain, screens)
+      // =====================================================================================
+      const B = SETS.movil.grupo;
+      rig(B, { key: [-30, 45, 55], ki: 1.5, rim: [28, 18, -30], ri: 1.6, fill: [-40, -28, 30], fi: 40, fd: 220 });
+      B.add(X.motas({ n: 420, caja: [90, 90, 60], centro: v3(0, 0, -35), tam: 0.3, opacidad: 0.5 }).grupo);
+      const M = X.movil(); B.add(M.grupo); M.grupo.rotation.set(0.03, 0.12, -0.06);
+      const NB = v3(0, 0, 1).applyQuaternion(M.grupo.quaternion);
+      const MG = X.manoGuante(); M.grupo.add(MG.grupo);
+      const nieve = X.particulas({ tipo: "nieve", n: 240, centro: v3(0, 2, 6), caja: [40, 46, 18], tam: 0.32 }); B.add(nieve.grupo);
+      const lluvia = X.particulas({ tipo: "lluvia", n: 260, centro: v3(0, 0, 4), caja: [44, 56, 26] }); B.add(lluvia.grupo);
+      const vahoB = X.vaho(); B.add(vahoB.grupo);
+      const manoB = X.manoSenala({ radio: 0.95 }); B.add(manoB.grupo);
+      const manoG = X.manoSenala({ guante: true, radio: 1.12 }); B.add(manoG.grupo);
+      // the glass of the phone lifting off ("under the glass")
+      const losa = new THREE.Mesh(new RoundedBoxGeometry(M.ancho - 0.2, M.alto - 0.2, 0.24, 6, 0.95), new THREE.MeshPhysicalMaterial({ color: 0xf4f8ff, transmission: 1, thickness: 0.4, ior: 1.5, roughness: 0.05, clearcoat: 0.6, transparent: true, opacity: 1, specularIntensity: 0.25, envMapIntensity: 1.0 }));
+      M.grupo.add(losa);
+      // the wire grid under the glass, revealed by a passing band
+      const rejMat = new THREE.ShaderMaterial({
+        uniforms: { banda: { value: -1 }, op: { value: 0 }, escala: { value: 20 }, asp: { value: M.sh / M.sw } },
+        vertexShader: "varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }",
+        fragmentShader: `varying vec2 vUv; uniform float banda; uniform float op; uniform float escala; uniform float asp;
+          void main(){ vec2 p = vec2(vUv.x * escala, vUv.y * escala * asp); vec2 q = vec2(p.x + p.y, p.x - p.y) * 0.7071;
+            vec2 f = abs(fract(q) - 0.5); float edge = min(0.5 - f.x, 0.5 - f.y);
+            float l = smoothstep(0.05, 0.0, edge); float fill = 0.1 + 0.25 * smoothstep(0.0, 0.5, edge);
+            float b = exp(-pow((vUv.x - banda) / 0.13, 2.0));
+            float a = (0.55 * l + 0.6 * fill) * (0.03 + 0.8 * b) * op; gl_FragColor = vec4(vec3(0.97, 0.98, 1.0), a); }`,
+        transparent: true, depthWrite: false,
+      });
+      const rej = new THREE.Mesh(new THREE.PlaneGeometry(M.sw, M.sh), rejMat); rej.position.z = M.grosor / 2 + 0.045; M.grupo.add(rej);
+      // raindrops sitting on the screen
+      const gotaMat = new THREE.MeshPhysicalMaterial({ color: 0xffffff, transmission: 1, thickness: 0.15, ior: 1.33, roughness: 0.02, clearcoat: 1, specularIntensity: 1, envMapIntensity: 2 });
+      const GOTAS = Array.from({ length: 16 }, (_, i) => {
+        const u = 0.12 + 0.76 * hash(i * 3.7), v = 0.3 + 0.55 * hash(i * 5.1), r = 0.12 + 0.12 * hash(i * 7.3);
+        const m = new THREE.Mesh(new THREE.SphereGeometry(1, 24, 12, 0, 2 * PI, 0, PI / 2), gotaMat);
+        m.rotation.x = PI / 2; m.scale.set(r, r, r * 0.5); m.position.copy(M.punto(u, v, M.grosor / 2 + 0.06)); M.grupo.add(m);
+        return { m, u, v, r, t0: 63.9 + 2.4 * hash(i * 9.9) };
+      });
+      const enPantalla = (u, v) => B.worldToLocal(M.grupo.localToWorld(M.punto(u, v)));
+      function updMovil(t, e) {
+        nieve.grupo.visible = t < 16.3 || (t >= 58 && t < 60.4) || (t >= 72.6 && t < 73.7);
+        lluvia.grupo.visible = t >= 60.4 && t < 67.9;
+        if (nieve.grupo.visible) nieve.actualizar(t);
+        if (lluvia.grupo.visible) lluvia.actualizar(t);
+        vahoB.grupo.visible = t > 13.2 && t < 14.6; vahoB.actualizar(ramp(t, 13.3, 14.5), t);
+        manoB.grupo.visible = false; manoG.grupo.visible = false;
+        losa.visible = t >= 16.2 && t < 17.8;
+        const lev = ramp(t, 16.35, 17.4);
+        losa.position.z = M.grosor / 2 + 0.14 + lev * 2.2; losa.material.opacity = 1;
+        rej.visible = t >= 17.6 && t < 19.3;
+        rejMat.uniforms.op.value = ramp(t, 17.75, 17.95); rejMat.uniforms.banda.value = lerp(-0.25, 1.25, ramp(t, 17.85, 19.0));
+        for (const g of GOTAS) g.m.visible = t >= g.t0 && t < 66.67;
+        // screens
+        const P = M.pantalla;
+        if (t < 14.7) P.dibujar((g, w, h) => UI.bloqueo(g, w, h), "bloqueo");
+        else if (t < 19.3) P.dibujar((g, w, h) => UI.llamada(g, w, h, { tenue: t > 17.6 ? 0.15 : 0 }), "llamada" + (t > 17.6));
+        else if (t < 59.37) P.dibujar((g, w, h) => UI.llamada(g, w, h), "llamada");
+        else if (t < 60.4) P.dibujar((g, w, h) => UI.bloqueo(g, w, h, { aviso: { nombre: "Sofía", texto: "Llamada perdida" } }), "perdida");
+        else if (t < 61.17 || (t >= 61.57 && t < 63.8)) P.dibujar((g, w, h) => UI.inicio(g, w, h), "inicio");
+        else if (t < 61.57) P.dibujar((g, w, h) => UI.mapa(g, w, h), "mapa");
+        else if (t < 66.67) {
+          const toques = GOTAS.filter((g) => t >= g.t0).map((g) => ({ x: g.u, y: g.v, r: 0.045 + 0.02 * ramp(t, g.t0, g.t0 + 0.3), a: 1 }));
+          P.dibujar((g, w, h) => UI.inicio(g, w, h, { toques }), "toques" + toques.length);
+        } else if (t < 67.0) P.dibujar((g, w, h) => UI.bloqueo(g, w, h), "bloqueo2");
+        else if (t < 72.6) { const d = ramp(t, 67.15, 67.55) * 0.55; P.dibujar((g, w, h) => UI.llamada(g, w, h, { desliza: d }), "ll" + d.toFixed(3)); }
+        else if (t < 73.15) { const d = ramp(t, 72.7, 73.1); P.dibujar((g, w, h) => UI.llamada(g, w, h, { desliza: d }), "ll" + d.toFixed(3)); }
+        else P.dibujar((g, w, h) => UI.enLlamada(g, w, h, { tiempo: t < 73.6 ? "00:00" : "00:01" }), "en" + (t < 73.6));
+        // hands
+        const knob = (d = 0) => enPantalla(0.16 + d * 0.68, 0.877);
+        const GD = v3(0.55, -0.7, 0.45).normalize();
+        if (t >= 12.4 && t < 13.0) { manoB.grupo.visible = true; manoB.colocar(enPantalla(0.62, 0.62), v3(0.5, -0.65, 0.58).normalize(), 0.3 + 14 * ramp(t, 12.55, 13.0), 0, NB); }
+        if (t >= 14.0 && t < 16.3) { manoG.grupo.visible = true; manoG.colocar(knob(), GD, t < 15.2 ? lerp(12, 0.9, ramp(t, 14.0, 15.0)) : 0.25 + 0.5 * Math.abs(Math.sin((t - 15.2) * 4)), 0, NB); }
+        if (t >= 58.07 && t < 59.37) { manoG.grupo.visible = true; manoG.colocar(knob(), GD, 0.25 + 0.6 * Math.abs(Math.sin((t - 58.07) * 4.5)), 0, NB); }
+        if (t >= 66.2 && t < 66.67) { manoG.grupo.visible = true; manoG.colocar(enPantalla(0.75, 0.5), v3(0.6, -0.3, 0.75).normalize(), lerp(4, 0, ramp(t, 66.2, 66.6)), 0, NB); }
+        if (t >= 66.67 && t < 67.9) { manoG.grupo.visible = true; manoG.colocar(t < 67.0 ? enPantalla(0.5, 0.6) : knob(ramp(t, 67.15, 67.55) * 0.55), GD, t < 67.0 ? 0.6 * (1 - ramp(t, 66.67, 66.9)) : 0, 0, NB); }
+        if (t >= 72.6 && t < 73.7) { manoG.grupo.visible = true; manoG.colocar(knob(ramp(t, 72.7, 73.1)), GD, t < 73.15 ? 0 : 3 * ramp(t, 73.15, 73.6), 0, NB); }
+      }
+
+      // =====================================================================================
+      // SET 3 · the wire grid: diamonds seen from above, and the whole phone in perspective
+      // =====================================================================================
+      const Cg = SETS.rejilla.grupo;
+      rig(Cg, { key: [-25, 50, 25], ki: 1.3, rim: [20, 18, -25], ri: 1.0, fill: [0, 18, 10], fi: 40, fd: 120, rc: 0xe8ecf2 });
+      Cg.add(X.motas({ n: 300, caja: [80, 30, 80], centro: v3(150, -20, 0), tam: 0.25, opacidad: 0.35 }).grupo);
+      const D1 = X.diamantes({ cols: 22, filas: 40, paso: 1, alto: 0.16, color: 0x585c63, contorno: (x, z) => Math.abs(x) < 5.05 && Math.abs(z) < 13 });
+      Cg.add(D1.grupo);
+      const marco1 = new THREE.Mesh(C.slab(C.rrShape(12.6, 30, 2.4, [[0, 0, 10.5, 27.6, 1.6]]), 0.6), X.mat.negro()); marco1.position.y = -0.3; Cg.add(marco1);
+      const J0 = 17, IC = 12;
+      // crossing dots
+      const cruces1 = D1.celdas.filter((c) => c.tipo === "fila" && Math.abs(c.x + 0.5) < 4.9);
+      const cpos = new Float32Array(cruces1.length * 3), ccol = new Float32Array(cruces1.length * 3);
+      cruces1.forEach((c, k) => cpos.set([c.x + 0.5, 0.2, c.z], k * 3));
+      const cgeo = new THREE.BufferGeometry(); cgeo.setAttribute("position", new THREE.BufferAttribute(cpos, 3)); cgeo.setAttribute("color", new THREE.BufferAttribute(ccol, 3));
+      const cpts = new THREE.Points(cgeo, new THREE.PointsMaterial({ size: 0.55, vertexColors: true, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, map: X.lienzo(64, 64, (g) => { const r = g.createRadialGradient(32, 32, 0, 32, 32, 32); r.addColorStop(0, "#fff"); r.addColorStop(0.25, "rgba(255,255,255,0.6)"); r.addColorStop(1, "rgba(255,255,255,0)"); g.fillStyle = r; g.fillRect(0, 0, 64, 64); }).tex }));
+      Cg.add(cpts);
+      C.pieza("fila", Cg, v3(-4.6, 0.2, J0 - 19.5));
+      C.pieza("columna", Cg, v3(IC - 10, 0.2, 4));
+      // the phone-shaped grid, in perspective, with an arc over every crossing and a figure on each
+      const PW = 14.4, PH = 31.2, PR = 2.4;
+      const dentroTel = (x, z, m = 0) => { const ax = Math.abs(x) - (PW / 2 - PR - m), az = Math.abs(z) - (PH / 2 - PR - m); if (ax > PR || az > PR) return false; if (ax > 0 && az > 0) return ax * ax + az * az < PR * PR; return true; };
+      const D2 = X.diamantes({ cols: 16, filas: 34, paso: 1, alto: 0.15, color: 0x2e3137, contorno: (x, z) => dentroTel(x, z, 0.35) });
+      D2.grupo.position.set(300, 0, 0); Cg.add(D2.grupo);
+      const marco2 = new THREE.Mesh(C.slab(C.rrShape(PW + 1.6, PH + 1.6, PR + 0.8, [[0, 0, PW, PH, PR]]), 0.7), X.mat.negro()); marco2.position.y = -0.35; D2.grupo.add(marco2);
+      const borde2 = new THREE.Mesh(C.slab(C.rrShape(PW + 1.9, PH + 1.9, PR + 0.95, [[0, 0, PW + 1.5, PH + 1.5, PR + 0.75]]), 0.75), X.mat.titanio()); borde2.position.y = -0.4; D2.grupo.add(borde2);
+      const cruces2 = D2.celdas.filter((c) => c.tipo === "fila" && dentroTel(c.x + 0.5, c.z, 0.8));
+      const lista2 = [];
+      cruces2.forEach((c, k) => {
+        lista2.push({ a: v3(c.x + 0.05, 0.16, c.z), b: v3(c.x + 0.5, 0.16, c.z - 0.45), h: 0.45 + 0.1 * hash(k), fase: hash(k * 1.7), peso: 1.4 });
+        lista2.push({ a: v3(c.x + 0.95, 0.16, c.z), b: v3(c.x + 0.5, 0.16, c.z + 0.45), h: 0.4 + 0.1 * hash(k * 2.3), fase: hash(k * 3.1), peso: 1.2 });
+        lista2.push({ a: v3(c.x + 0.5, 0.16, c.z - 0.5), b: v3(c.x + 0.5, 0.16, c.z + 0.5), h: 0.3 + 0.08 * hash(k * 4.1), fase: hash(k * 5.3), peso: 1.0 });
+      });
+      const A2 = X.arcos({ lista: lista2, puntos: 16, ancho: 0.028, minPx: 1.6, ondas: 1.5 }); D2.grupo.add(A2.malla);
+      const TI = cruces2.reduce((b, c) => (Math.hypot(c.x + 0.5 - -4.5, c.z - 11) < Math.hypot(b.x + 0.5 - -4.5, b.z - 11) ? c : b));
+      const T1 = v3(TI.x + 0.5, 0.2, TI.z), T2 = v3(2.5 + 0.5, 0.2, 0.5);
+      // figures: one canvas for the whole grid, redrawn when the dip changes
+      const figL = X.lienzo(1600, 3400, () => {});
+      const figMesh = new THREE.Mesh(new THREE.PlaneGeometry(16, 34), new THREE.MeshBasicMaterial({ map: figL.tex, transparent: true, depthWrite: false, toneMapped: false }));
+      figMesh.rotation.x = -PI / 2; figMesh.position.y = 0.2; D2.grupo.add(figMesh);
+      const DIP = [62, 81, 84, 83, 82, 94, 95, 96, 95];
+      let figClave = null;
+      function figuras(dips, clave) {
+        if (clave === figClave) return; figClave = clave;
+        const g = figL.g; g.clearRect(0, 0, 1600, 3400);
+        g.textAlign = "center"; g.textBaseline = "middle";
+        for (const c of cruces2) {
+          const x = c.x + 0.5, z = c.z;
+          let v = 100, fuerte = false;
+          for (const T of dips) { const d = Math.hypot(x - T.x, z - T.z); if (d < 1.6) { const k = Math.round(d * 2.2 + hash(x * 3 + z) * 2); v = DIP[Math.min(DIP.length - 1, k)]; fuerte = true; } }
+          g.font = `${fuerte ? 700 : 700} ${fuerte ? 34 : 27}px "JetBrains Mono", monospace`;
+          g.fillStyle = fuerte ? "#ffffff" : "rgba(232,236,242,0.82)";
+          g.fillText(String(v), (x + 8) * 100, (z + 17) * 100 + 34);
+        }
+        figL.tex.needsUpdate = true;
+      }
+      const anilloMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0, depthWrite: false, side: THREE.DoubleSide, toneMapped: false });
+      const anillo1 = new THREE.Mesh(new THREE.RingGeometry(1.75, 1.79, 96), anilloMat); anillo1.rotation.x = -PI / 2; D2.grupo.add(anillo1);
+      const anillo2 = anillo1.clone(); D2.grupo.add(anillo2);
+      const escMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false, toneMapped: false });
+      const escaner = new THREE.Mesh(new THREE.PlaneGeometry(PW, 0.05), escMat); escaner.rotation.x = -PI / 2; escaner.position.y = 0.32; D2.grupo.add(escaner);
+      const pulso = C.brillo("255,255,255"); pulso.scale.setScalar(1.6); D2.grupo.add(pulso);
+      // the call screen shown over the grid ("that's a touch")
+      const llamL = X.lienzo(720, 1560, (g, w, h) => UI.llamada(g, w, h, { toque: 0.4 }));
+      const llamMesh = new THREE.Mesh(new THREE.PlaneGeometry(PW, PH), new THREE.MeshBasicMaterial({ map: llamL.tex, transparent: true, opacity: 0, depthWrite: false, toneMapped: false }));
+      llamMesh.rotation.x = -PI / 2; llamMesh.position.y = 0.36; D2.grupo.add(llamMesh);
+      function updRejilla(t, e) {
+        if (t < 23.27) {
+          D1.limpiar();
+          const kf = ventana(t, 19.55, 22.4, 0.12);
+          const xr = lerp(-6.5, 6.5, ramp(t, 19.6, 20.05));
+          D1.poner((c) => c.tipo === "fila" && c.j === J0 && c.x < xr, kf);
+          const bd = ramp(t, 20.3, 21.0);
+          D1.poner((c) => c.tipo === "fila" && c.j !== J0 && Math.abs(c.x * 0.6 - c.z * 0.5 - lerp(-9, 6, bd)) < 0.9 && hash(c.i * 7.1 + c.j * 3.3) > 0.45, ventana(t, 20.3, 21.05, 0.12) * 0.8);
+          const zc = lerp(-12.5, 12.5, ramp(t, 21.0, 21.45));
+          D1.poner((c) => c.tipo === "col" && c.i === IC && c.z < zc, ventana(t, 20.95, 22.4, 0.12));
+          D1.poner((c) => hash(c.i * 5.3 + c.j * 9.1 + Math.floor(t * 8)) > 0.93, ventana(t, 21.9, 22.4, 0.1) * 0.6);
+          D1.aplicar();
+          cruces1.forEach((c, k) => { const a = clamp((t - (22.3 + hash(k * 4.4) * 0.65)) / 0.12) * (1 - ramp(t, 23.15, 23.27)) * (0.6 + 0.4 * Math.sin(t * 10 + k)); ccol[k * 3] = ccol[k * 3 + 1] = ccol[k * 3 + 2] = a; });
+          cgeo.attributes.color.needsUpdate = true;
+          return;
+        }
+        // phone-shaped grid
+        D2.limpiar();
+        const dips = [];
+        const dip1 = (t >= 41.3 && t < 49.75) ? 1 : 0, dip2 = t >= 47.6 && t < 49.75 ? 1 : 0;
+        if (dip1) dips.push(T1); if (dip2) dips.push(T2);
+        figuras(dips, dips.length + ":" + (t >= 41.3));
+        anilloMat.opacity = 0.55 * ramp(t, 41.3, 41.6) * (t < 49.75 ? 1 : 0);
+        anillo1.position.set(T1.x, 0.34, T1.z); anillo1.visible = dip1 > 0;
+        anillo2.position.set(T2.x, 0.34, T2.z); anillo2.visible = dip2 > 0;
+        const hl = ventana(t, 42.2, 44.27, 0.15) * 0.5;
+        if (hl > 0) D2.poner((c) => Math.hypot(c.x - T1.x, c.z - T1.z) < 1.7, hl);
+        D2.aplicar();
+        // scan line: down the grid (all crossings), then a pulse along the touched row
+        escMat.opacity = 0; pulso.material.opacity = 0;
+        if (t >= 27.6 && t < 30.2) { escaner.rotation.z = 0; escaner.position.set(0, 0.32, lerp(-9, 9, frac((t - 27.9) / 1.5))); escMat.opacity = 0.75; }
+        if (t >= 40.6 && t < 41.3) { escaner.position.set(0, 0.32, lerp(T1.z - 6, T1.z + 3, ramp(t, 40.6, 41.3))); escMat.opacity = 0.7; }
+        if (t >= 45.2 && t < 47.6) { escaner.position.set(0, 0.32, T1.z); escMat.opacity = 0.35; const f = frac((t - 45.2) / 1.1); pulso.position.set(lerp(-PW / 2, PW / 2, f), 0.45, T1.z); pulso.material.opacity = 0.9; }
+        llamMesh.material.opacity = ventana(t, 44.2, 45.05, 0.1) * 0.86;
+        A2.actualizar(t, dips.map((T) => ({ p: v3(T.x, 1.4, T.z), r: 1.6, k: 0.45, abre: 0.3, curva: 0, z: true })));
+      }
+
+      // =====================================================================================
+      // SET 4 · big cells and white bridges, in macro
+      // =====================================================================================
+      const Dg = SETS.celdas.grupo;
+      rig(Dg, { key: [-20, 30, 18], ki: 1.5, rim: [20, 12, -25], ri: 1.3, fill: [2, 9, 8], fi: 35, fd: 60 });
+      const CE = X.celdas({ n: 9, lado: 4, hueco: 0.36 }); Dg.add(CE.grupo);
+      Dg.add(X.motas({ n: 250, caja: [60, 20, 60], centro: v3(0, 8, 0), tam: 0.12, opacidad: 0.35 }).grupo);
+      const BR = CE.puentes.find((b) => b.i === 3 && b.j === 4);
+      const BRW = Dg.worldToLocal(CE.grupo.localToWorld(v3(BR.x, 0, BR.z)));
+      const tile = (i, j) => CE.tiles.find((x) => x.i === i && x.j === j);
+      const TA = tile(3, 4), TB = tile(4, 5), TC = tile(4, 4), TD = tile(3, 5);
+      const al = CE.alto + 0.012;
+      const lista4 = [];
+      for (let k = 0; k < 14; k++) {
+        const de = [TA, TC, TD, TB][k % 4], a = [TC, TB, TA, TD][(k + 1) % 4];
+        const pa = v3(lerp(de.x, BR.x, 0.1 + 0.55 * hash(k)), al, lerp(de.z, BR.z, 0.1 + 0.55 * hash(k * 1.3))).add(v3((hash(k * 2.1) - 0.5) * 2.2, 0, (hash(k * 2.7) - 0.5) * 2.2));
+        const pb = v3(lerp(a.x, BR.x, 0.1 + 0.55 * hash(k * 3.3)), al, lerp(a.z, BR.z, 0.1 + 0.55 * hash(k * 3.9))).add(v3((hash(k * 4.1) - 0.5) * 2.2, 0, (hash(k * 4.7) - 0.5) * 2.2));
+        lista4.push({ a: pa, b: pb, h: 0.9 + 1.0 * hash(k * 5.5), fase: hash(k * 6.1), peso: 0, t0: 25.35 + 1.1 * hash(k * 8.8) });
+      }
+      const A4 = X.arcos({ lista: lista4, puntos: 34, ancho: 0.035, minPx: 1.8, ondas: 1.4, vel: 0.5 }); CE.grupo.add(A4.malla);
+      const marcas = lista4.flatMap((a) => [a.a, a.b]).map((p) => { const m = new THREE.Mesh(new THREE.RingGeometry(0.09, 0.12, 32), new THREE.MeshBasicMaterial({ color: 0xffc070, transparent: true, opacity: 0, depthWrite: false, toneMapped: false })); m.rotation.x = -PI / 2; m.position.copy(p).add(v3(0, 0.005, 0)); CE.grupo.add(m); return m; });
+      const chispa = C.brillo("255,200,110"); chispa.scale.setScalar(1.2); CE.grupo.add(chispa);
+      const F4 = X.cifras([v3(BR.x + 0.4, CE.alto + 0.9, BR.z + 0.9)], { tam: 0.55 }); CE.grupo.add(F4.grupo);
+      const esc4 = new THREE.Mesh(new THREE.PlaneGeometry(60, 0.035), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false, toneMapped: false }));
+      esc4.rotation.x = -PI / 2; Dg.add(esc4);
+      C.pieza("cruce", CE.grupo, v3(BR.x, CE.alto * 1.3, BR.z));
+      C.pieza("carga2", CE.grupo, lista4[3].a.clone().lerp(lista4[3].b, 0.5).add(v3(0, lista4[3].h, 0)));
+      function updCeldas(t, e) {
+        const lejos = t < 23.47;
+        CE.puentes.forEach((b, k) => (b.g.material.opacity = lejos ? 0.55 : 0));
+        const carga = ramp(t, 24.85, 25.25);
+        TA.m.material.emissiveIntensity = 0.1 * carga; TA.m.material.color.setHex(0x4a4e56).lerp(new THREE.Color(0x6f6648), carga);
+        chispa.material.opacity = ventana(t, 24.9, 25.6, 0.15);
+        chispa.position.copy(v3(lerp(TA.x, BR.x, ramp(t, 24.9, 25.5)), al + 0.15, lerp(TA.z, BR.z, ramp(t, 24.9, 25.5))));
+        lista4.forEach((a, k) => (a.peso = 1.5 * ramp(t, a.t0, a.t0 + 0.35)));
+        marcas.forEach((m, k) => (m.material.opacity = 0.9 * ramp(t, lista4[k >> 1].t0, lista4[k >> 1].t0 + 0.3)));
+        A4.actualizar(t, []);
+        F4.poner(0, t < 27.2 ? 96 : 100, true); F4.grupo.visible = t >= 26.95; F4.dibujar();
+        F4.items[0].mesh.quaternion.copy(C.camera.quaternion);
+        esc4.material.opacity = ventana(t, 26.9, 27.6, 0.1) * 0.8;
+        esc4.position.set(0, 0.45, lerp(-8, 6, ramp(t, 26.9, 27.5)));
+      }
+
+      // =====================================================================================
+      // SET 5 · knitted wool in macro, with one row of conductive thread
+      // =====================================================================================
+      const Eg = SETS.lana.grupo;
+      rig(Eg, { key: [-12, 22, 26], ki: 1.7, rim: [14, 10, -18], ri: 1.5, fill: [3, -2, 30], fi: 30, fd: 80 });
+      const TJ = X.tejido({ cols: 26, filas: 30, fila: 17 }); Eg.add(TJ.grupo);
+      C.pieza("hilo", TJ.grupo, v3(1.4, TJ.yFila, 0.25));
+      function updLana(t) {}
+
+      // =====================================================================================
+      // SET 6 · the phone without gloves: pinch to zoom, and the closing share sheet
+      // =====================================================================================
+      const Fg = SETS.final.grupo;
+      rig(Fg, { key: [-30, 45, 55], ki: 1.4, rim: [28, 18, -30], ri: 1.6, fill: [-40, -28, 30], fi: 40, fd: 220 });
+      Fg.add(X.motas({ n: 300, caja: [90, 90, 60], centro: v3(0, 0, -35), tam: 0.3, opacidad: 0.45 }).grupo);
+      const MF = X.movil(); Fg.add(MF.grupo); MF.grupo.rotation.set(0.02, 0.06, 0.0);
+      const NF = v3(0, 0, 1).applyQuaternion(MF.grupo.quaternion);
+      const manoF = X.manoSenala({ radio: 0.78 }); Fg.add(manoF.grupo);
+      const dedoP1 = X.dedo({ radio: 0.85 }), dedoP2 = X.dedo({ radio: 0.85 }); Fg.add(dedoP1.grupo, dedoP2.grupo);
+      const palmaP = new THREE.Mesh(new THREE.SphereGeometry(1, 40, 28), X.mat.piel({ huella: 0 })); palmaP.scale.set(4, 4.6, 2.4); Fg.add(palmaP);
+      const gotasF = Array.from({ length: 12 }, (_, i) => {
+        const u = 0.15 + 0.7 * hash(i * 2.9), v = 0.25 + 0.6 * hash(i * 6.1), r = 0.14 + 0.1 * hash(i * 8.3);
+        const m = new THREE.Mesh(new THREE.SphereGeometry(1, 24, 12, 0, 2 * PI, 0, PI / 2), gotaMat);
+        m.rotation.x = PI / 2; m.scale.set(r, r, r * 0.5); m.position.copy(MF.punto(u, v, MF.grosor / 2 + 0.06)); MF.grupo.add(m);
+        return { m, u, v, t0: 81.7 + 2.2 * hash(i * 4.4) };
+      });
+      const enF = (u, v) => Fg.worldToLocal(MF.grupo.localToWorld(MF.punto(u, v)));
+      function updFinal(t) {
+        manoF.grupo.visible = false; dedoP1.grupo.visible = dedoP2.grupo.visible = palmaP.visible = false;
+        for (const g of gotasF) g.m.visible = t >= g.t0;
+        const P = MF.pantalla;
+        if (t < 51) {
+          const z = 1 + 0.5 * ramp(t, 50.0, 50.9);
+          const sep = ramp(t, 50.0, 50.9);
+          P.dibujar((g, w, h) => { UI.foto(g, w, h, { zoom: z }); UI.anillos(g, [{ x: w * (0.42 - 0.12 * sep), y: h * (0.6 + 0.08 * sep), r: w * 0.07, a: 1 }, { x: w * (0.66 + 0.1 * sep), y: h * (0.3 - 0.06 * sep), r: w * 0.07, a: 1 }]); }, "foto" + z.toFixed(3));
+          dedoP1.grupo.visible = dedoP2.grupo.visible = palmaP.visible = true;
+          dedoP1.colocar(enF(0.42 - 0.12 * sep, 0.6 + 0.08 * sep), v3(0.45, -0.55, 0.7).normalize(), 0.03, 0, NF);
+          dedoP2.colocar(enF(0.66 + 0.1 * sep, 0.3 - 0.06 * sep), v3(0.25, -0.7, 0.67).normalize(), 0.03, 0, NF);
+          palmaP.position.copy(enF(0.8, 0.95)).add(v3(3.5, -5, 7.5));
+          return;
+        }
+        // closing: tap share, choose a contact, send
+        const sube = ramp(t, 80.5, 80.85) * (1 - ramp(t, 83.0, 83.3));
+        const elegido = t >= 81.15 ? 0 : -1, enviado = t >= 82.55;
+        if (sube > 0.001) P.dibujar((g, w, h) => { UI.videoApp(g, w, h, { seguir: true }); UI.compartir(g, w, h, { sube, elegido, enviado }); }, "c" + sube.toFixed(3) + elegido + enviado);
+        else P.dibujar((g, w, h) => UI.videoApp(g, w, h, { seguir: t > 79.9, enviado: t > 83.0 ? "Lucía" : null }), "v" + (t > 79.9) + (t > 83));
+        manoF.grupo.visible = true;
+        const tap = (t0) => 0.9 * (1 - ventana(t, t0 - 0.12, t0 + 0.15, 0.1));
+        let u = 0.9, v = 0.61, d = 0.9;
+        if (t < 80.4) { u = 0.65; v = 0.72; d = t < 79.95 ? lerp(4, 0.9, ramp(t, 79.63, 79.85)) : tap(80.0); }
+        else if (t < 80.9) { u = 0.9; v = 0.61; d = tap(80.4); }
+        else if (t < 81.5) { u = 0.15; v = 0.44; d = tap(81.15); }
+        else if (t < 83.0) { u = 0.6; v = 0.67; d = tap(82.5); }
+        else { u = 0.88; v = 0.78; d = 0.9; }
+        manoF.colocar(enF(u, v), v3(0.05, -0.85, 0.52).normalize(), d, 0, NF);
+      }
+
+      // =====================================================================================
+      // SHOTS: a new framing every 1–2.5 s, cut times taken from the reference (± 0.2 s)
+      // =====================================================================================
+      const P = X.planos([
+        { id: "corte-dedo", desde: 0, set: "corte", de: lado(0, 0.57, 84), a: lado(0, 0.57, 80) },
+        { id: "baja-boli", desde: 3.6, set: "corte", de: lado(2.0, 0.65, 58), a: lado(2.0, 0.65, 55) },
+        { id: "dedo-boli", desde: 5.17, set: "corte", de: lado(0.6, 0.62, 60), a: lado(0.4, 0.6, 58) },
+        { id: "boli-sube", desde: 6.55, set: "corte", de: lado(0.4, 0.58, 66), a: lado(0.6, 0.68, 66), curva: "suave" },
+        { id: "boli-aprieta", desde: 7.3, set: "corte", de: lado(0.6, 0.69, 66), a: lado(0.6, 0.69, 62) },
+        { id: "dedo-grande", desde: 9.9, set: "corte", de: lado(0.9, 0.69, 52), a: lado(1.0, 0.69, 49) },
+        { id: "mano-entera", desde: 11.77, set: "corte", de: { p: v3(400 + 22, 22, 66), q: v3(400 - 2, 10, 0), fov: 30 }, a: { p: v3(400 + 21, 21, 63), q: v3(400 - 2, 10, 0), fov: 30 } },
+        { id: "guante-bloqueo", desde: 12.4, set: "movil", de: { p: v3(0.6, -2.4, 62), q: v3(0.4, -2.2, 0), fov: 24 }, a: { p: v3(0.4, -2.0, 58), q: v3(0.4, -2.0, 0), fov: 24 } },
+        { id: "llamada", desde: 14.7, set: "movil", de: { p: v3(0.8, -2.0, 60), q: v3(0.4, -2.0, 0), fov: 24 }, a: { p: v3(0.6, -2.2, 57), q: v3(0.4, -2.2, 0), fov: 24 } },
+        { id: "bajo-cristal", desde: 16.3, set: "movil", de: { p: v3(0.4, -1.5, 46), q: v3(0.3, -1.0, 0), fov: 24 }, a: { p: v3(0.2, -1.2, 32), q: v3(0.2, -1.0, 0), fov: 24 }, curva: "suave" },
+        { id: "rejilla-aparece", desde: 17.7, set: "movil", de: { p: v3(0.3, -2.4, 20), q: v3(0.3, -2.4, 0), fov: 24 }, a: { p: v3(0.3, -2.4, 18.5), q: v3(0.3, -2.4, 0), fov: 24 } },
+        { id: "filas-columnas", desde: 19.2, set: "rejilla", de: { p: v3(0, 88, 2), q: v3(0, 0, 0), fov: 14 }, a: { p: v3(0, 84, 2), q: v3(0, 0, 0), fov: 14 } },
+        { id: "cruces-lejos", desde: 23.27, set: "celdas", de: { p: v3(BRW.x - 9, 30, BRW.z + 24), q: v3(BRW.x, 0, BRW.z), fov: 30 }, a: { p: v3(BRW.x - 8, 27, BRW.z + 21), q: v3(BRW.x, 0, BRW.z), fov: 30 } },
+        { id: "cruce-macro", desde: 23.47, set: "celdas", de: { p: v3(BRW.x - 5.5, 14.5, BRW.z + 12.5), q: v3(BRW.x + 0.3, 0, BRW.z + 0.8), fov: 30 }, a: { p: v3(BRW.x - 4.8, 14, BRW.z + 12), q: v3(BRW.x + 0.3, 0, BRW.z + 0.8), fov: 30 }, apertura: 0.0006 },
+        { id: "todos-cruces", desde: 27.6, set: "rejilla", de: { p: v3(300, 66, 1.5), q: v3(300, 0, -1), fov: 14 }, a: { p: v3(300, 62, 1.5), q: v3(300, 0, -1), fov: 14 } },
+        { id: "corte-cifras", desde: 30.17, set: "corte", de: lado(xs[I0], 0.72, 80), a: lado(xs[I0], 0.82, 50), curva: "suave" },
+        { id: "dedo-iones", desde: 31.2, set: "corte", de: lado(xs[I0], 0.84, 44), a: lado(xs[I0], 0.84, 42) },
+        { id: "yema-huella", desde: 33.1, set: "corte", de: lado(xs[I0], 0.84, 44), a: lado(xs[I0], 0.72, 40), curva: "sale" },
+        { id: "yema-baja", desde: 34.75, set: "corte", de: lado(xs[I0], 0.66, 38), a: lado(xs[I0], 0.65, 36), apertura: 0.00025 },
+        { id: "tira-carga", desde: 36.53, set: "corte", de: lado(xs[I0], 0.62, 35), a: lado(xs[I0], 0.62, 33), apertura: 0.00025 },
+        { id: "rejilla-movil", desde: 40.1, set: "rejilla", de: { p: v3(300 + T1.x - 8, 9, T1.z + 13), q: v3(300 + T1.x + 2, 0, T1.z - 4), fov: 30 }, a: { p: v3(300 + T1.x - 7.5, 8.6, T1.z + 12.5), q: v3(300 + T1.x + 2, 0, T1.z - 4), fov: 30 }, apertura: 0.0006 },
+        { id: "toque-pantalla", desde: 44.27, set: "rejilla", de: { p: v3(300 + T1.x - 8, 10, T1.z + 14), q: v3(300 + T1.x + 2, 0, T1.z - 4), fov: 30 }, a: { p: v3(300 + T1.x - 8, 10, T1.z + 14), q: v3(300 + T1.x + 2, 0, T1.z - 4), fov: 30 } },
+        { id: "barrido", desde: 45.0, set: "rejilla", de: { p: v3(300 + T1.x - 7, 8, T1.z + 12), q: v3(300 + T1.x + 4, 0, T1.z - 6), fov: 30 }, a: { p: v3(300 + T1.x - 5, 9, T1.z + 11), q: v3(300 + T1.x + 5, 0, T1.z - 7), fov: 30 }, apertura: 0.0005 },
+        { id: "dos-dedos", desde: 49.33, set: "rejilla", de: { p: v3(300 - 6, 42, 24), q: v3(300, 0, 2), fov: 30 }, a: { p: v3(300 - 6, 40, 23), q: v3(300, 0, 2), fov: 30 } },
+        { id: "pellizco", desde: 49.75, set: "final", de: { p: v3(0.5, 1.5, 44), q: v3(0.5, -1.5, 0), fov: 24 }, a: { p: v3(0.5, 1.5, 41), q: v3(0.5, -1.5, 0), fov: 24 } },
+        { id: "yema-lana", desde: 50.97, set: "corte", de: lado(0, 0.7, 66, { elev: 0.16 }), a: lado(0, 0.68, 62, { elev: 0.16 }) },
+        { id: "guante-lado", desde: 52.57, set: "corte", de: lado(0.2, 0.72, 40), a: lado(0.2, 0.72, 38) },
+        { id: "guante-macro", desde: 53.5, set: "corte", de: lado(0.2, 0.76, 27), a: lado(0.2, 0.76, 25), apertura: 0.0003 },
+        { id: "dedo-al-lado", desde: 56.03, set: "corte", de: lado(0.2, 0.64, 60), a: lado(0.2, 0.64, 57) },
+        { id: "guante-llamada", desde: 58.07, set: "movil", de: { p: v3(0.8, -2.0, 60), q: v3(0.4, -2.0, 0), fov: 24 }, a: { p: v3(0.6, -2.2, 57), q: v3(0.4, -2.2, 0), fov: 24 } },
+        { id: "llamada-perdida", desde: 59.37, set: "movil", de: { p: v3(0.4, -2.2, 58), q: v3(0.4, -2.2, 0), fov: 24 }, a: { p: v3(0.4, -2.0, 56), q: v3(0.4, -2.0, 0), fov: 24 } },
+        { id: "inicio-lluvia", desde: 60.4, set: "movil", de: { p: v3(0.6, -2.0, 58), q: v3(0.4, -2.0, 0), fov: 24 }, a: { p: v3(0.4, -2.0, 56), q: v3(0.4, -2.0, 0), fov: 24 } },
+        { id: "mapa", desde: 61.17, set: "movil", de: { p: v3(0.4, -2.0, 56), q: v3(0.4, -2.0, 0), fov: 24 } },
+        { id: "inicio-2", desde: 61.57, set: "movil", de: { p: v3(0.4, -2.0, 56), q: v3(0.4, -2.0, 0), fov: 24 }, a: { p: v3(0.3, -1.0, 42), q: v3(0.3, -1.0, 0), fov: 24 }, curva: "sale" },
+        { id: "una-gota", desde: 62.17, set: "corte", de: lado(0, 0.66, 48), a: lado(0, 0.66, 45) },
+        { id: "gota-dedo", desde: 62.83, set: "corte", de: lado(0.3, 0.62, 56), a: lado(0.3, 0.62, 53) },
+        { id: "gotas-pantalla", desde: 63.8, set: "movil", de: { p: v3(0.4, -2.0, 58), q: v3(0.4, -2.0, 0), fov: 24 }, a: { p: v3(0.4, -2.0, 55), q: v3(0.4, -2.0, 0), fov: 24 } },
+        { id: "guante-tactil", desde: 66.67, set: "movil", de: { p: v3(0.4, -2.4, 52), q: v3(0.4, -2.4, 0), fov: 24 }, a: { p: v3(0.4, -2.4, 50), q: v3(0.4, -2.4, 0), fov: 24 } },
+        { id: "dedo-guante", desde: 67.63, set: "movil", de: { p: v3(-1.5, -4, 18), q: v3(-1.2, -4.6, 0), fov: 24 }, a: { p: v3(-1.4, -4, 16), q: v3(-1.2, -4.6, 0), fov: 24 }, apertura: 0.0004 },
+        { id: "hilo", desde: 67.9, set: "lana", de: { p: v3(0.6, TJ.yFila - 9, 36), q: v3(0, TJ.yFila - 4.5, 0), fov: 30 }, a: { p: v3(0.4, TJ.yFila - 8.6, 34), q: v3(0, TJ.yFila - 4.5, 0), fov: 30 }, apertura: 0.0004 },
+        { id: "hilo-macro", desde: 68.8, set: "corte", de: lado(xs[I0], 0.95, 30, { elev: 0.05 }), a: lado(xs[I0], 0.95, 28, { elev: 0.05 }), apertura: 0.00025 },
+        { id: "hilo-cifras", desde: 71.53, set: "corte", de: lado(xs[I0], 0.62, 60), a: lado(xs[I0], 0.62, 56) },
+        { id: "contesta", desde: 72.6, set: "movil", de: { p: v3(0.4, -2.2, 54), q: v3(0.4, -2.2, 0), fov: 24 }, a: { p: v3(0.4, -2.2, 52), q: v3(0.4, -2.2, 0), fov: 24 } },
+        { id: "silueta", desde: 73.7, set: "corte", de: lado(xs[I0], 0.6, 56), a: lado(xs[I0], 0.6, 52) },
+        { id: "un-arco", desde: 75.4, set: "corte", de: lado(xs[I0], 0.68, 26), a: lado(xs[I0], 0.68, 25), apertura: 0.0002 },
+        { id: "dedo-final", desde: 77.67, set: "corte", de: lado(xs[I0], 0.8, 52), a: lado(xs[I0], 0.8, 48) },
+        { id: "compartir", desde: 79.63, set: "final", de: { p: v3(0, 0.5, 47), q: v3(0, -1.8, 0), fov: 24 }, a: { p: v3(0, 0.5, 45), q: v3(0, -1.8, 0), fov: 24 } },
+      ], SETS);
+
+      function renderAt(t) {
+        const e = P.aplicar(t);
+        if (e.set === "corte") updCorte(t, e);
+        else if (e.set === "movil") updMovil(t, e);
+        else if (e.set === "rejilla") updRejilla(t, e);
+        else if (e.set === "celdas") updCeldas(t, e);
+        else if (e.set === "lana") updLana(t, e);
+        else if (e.set === "final") updFinal(t, e);
+        C.panel("escaneo", String(Math.round(lerp(96, 120, ramp(t, 29.3, 29.85)))));
+        C.pintar(t);
+      }
+      // warm-up: draw every set once with all its parts visible, so no shader compiles in the middle of the video
+      const bloom = C.composer.passes.find((x) => x.threshold !== undefined); if (bloom) { bloom.threshold = 0.92; bloom.strength = 0.55; }
+      const bok = C.composer.passes.find((x) => x.uniforms && x.uniforms.aperture);
+      for (const k in SETS) {
+        for (const j in SETS) SETS[j].grupo.visible = j === k;
+        const ocultos = [];
+        SETS[k].grupo.traverse((o) => { if (!o.visible) { ocultos.push(o); o.visible = true; } });
+        C.camera.position.copy(SETS[k].centro).add(v3(0, 5, 60)); C.camera.lookAt(SETS[k].centro); C.camera.updateMatrixWorld();
+        C.renderer.compile(C.scene, C.camera);
+        if (bok) { bok.enabled = true; bok.uniforms.aperture.value = 0.0002; }
+        C.composer.render();
+        for (const o of ocultos) o.visible = false;
+      }
+      window.__estudio = { C, X, P, SETS };
+      C.arrancar(renderAt);
+    </script>
+  </body>
+</html>
