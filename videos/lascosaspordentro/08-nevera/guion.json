@@ -1,0 +1,52 @@
+{
+  "titulo": "Tu nevera no fabrica frío",
+  "lines": [
+    "Tu nevera no fabrica frío.",
+    "Lo que hace es sacar el calor de tu comida.",
+    "¿Y si la dejas abierta, enfría la cocina? Al final lo verás.",
+    "Por dentro corre un gas por un circuito cerrado de tubos: el refrigerante.",
+    "Abajo, detrás, el compresor lo aprieta, y al apretarlo se calienta.",
+    "Ese gas caliente pasa por la rejilla negra de atrás, el condensador.",
+    "Allí suelta su calor en tu cocina, y se vuelve líquido.",
+    "Por eso la parte de atrás de la nevera está templada.",
+    "Luego pasa por un tubo finísimo, el capilar, y la presión cae de golpe.",
+    "Pero aquí viene lo bueno: con tan poca presión, el líquido hierve bajo cero.",
+    "Y para hervir necesita calor: se lo roba a tus yogures por la pared del fondo.",
+    "Ese gas vuelve al compresor, y la vuelta empieza otra vez.",
+    "El termostato apaga el motor cuando dentro hay unos 4 grados, y lo enciende si sube.",
+    "Y la goma de la puerta lleva un imán para que no entre el calor.",
+    "Lo prometido: con la puerta abierta, lo que saca por delante lo devuelve por detrás.",
+    "Y además suma el calor del motor: tu cocina acaba más caliente.",
+    "Mándaselo a quien abre la nevera para refrescarse en verano."
+  ],
+  "claves": [
+    "frío",
+    "sacar",
+    "abierta",
+    "refrigerante",
+    "compresor",
+    "condensador",
+    "líquido",
+    "templada",
+    "capilar",
+    "hierve",
+    "roba",
+    "vuelta",
+    "termostato",
+    "imán",
+    "devuelve",
+    "caliente",
+    "verano"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "Tu nevera no fabrica frío: saca el calor de la comida y lo suelta por detrás, en tu cocina. Por eso dejarla abierta no enfría la cocina: la calienta un poco. Ilustración simplificada.",
+    "hashtags": [
+      "#nevera",
+      "#frigorifico",
+      "#ciencia"
+    ],
+    "portada_en": "frío"
+  },
+  "voz_dice": "La voz se generó con los números en palabras (\"unos cuatro grados\"); aquí van en cifras para que los subtítulos coincidan con lo que oye Whisper."
+}

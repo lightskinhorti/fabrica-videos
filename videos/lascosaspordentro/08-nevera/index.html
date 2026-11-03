@@ -1,0 +1,1844 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <script type="importmap">
+      { "imports": { "three": "./lib/three.module.js", "three/addons/": "./lib/addons/" } }
+    </script>
+    <link rel="stylesheet" href="comun/pordentro.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+      .mono { font-family: "JetBrains Mono", monospace; position: absolute; left: -2000px; top: 0; }
+      .lectura-p .v, .panel .cifra { font-family: "JetBrains Mono", monospace; font-weight: 700; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="69.2" data-width="1080" data-height="1920" data-fps="30">
+      <canvas id="gl" class="clip" data-start="0" data-duration="69.2" data-track-index="0" width="1080" height="1920"></canvas>
+      <div id="shade" class="clip" data-start="0" data-duration="69.2" data-track-index="1"></div>
+      <svg id="leaders" class="clip" data-start="0" data-duration="69.2" data-track-index="2" width="1080" height="1920" data-layout-allow-overlap></svg>
+      <div id="labels" class="clip" data-start="0" data-duration="69.2" data-track-index="3" data-layout-allow-overlap><span class="mono">0123456789</span></div>
+      <div id="note" class="clip" data-start="0" data-duration="69.2" data-track-index="4"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="69.2"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="69.2" data-track-index="5" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 67.92, "lines": [{"id": "l1", "s": 0.11, "e": 1.92, "words": [{"w": "Tu", "s": 0.11, "e": 0.17, "key": false}, {"w": "nevera", "s": 0.17, "e": 0.67, "key": false}, {"w": "no", "s": 0.67, "e": 0.78, "key": false}, {"w": "fabrica", "s": 0.89, "e": 1.43, "key": false}, {"w": "frío.", "s": 1.43, "e": 1.92, "key": true}]}, {"id": "l2", "s": 1.95, "e": 4.01, "words": [{"w": "Lo", "s": 1.95, "e": 2.04, "key": false}, {"w": "que", "s": 2.04, "e": 2.22, "key": false}, {"w": "hace", "s": 2.22, "e": 2.48, "key": false}, {"w": "es", "s": 2.48, "e": 2.56, "key": false}, {"w": "sacar", "s": 2.67, "e": 2.97, "key": true}, {"w": "el", "s": 2.97, "e": 3.11, "key": false}, {"w": "calor", "s": 3.11, "e": 3.48, "key": false}, {"w": "de", "s": 3.48, "e": 3.59, "key": false}, {"w": "tu", "s": 3.65, "e": 3.71, "key": false}, {"w": "comida.", "s": 3.75, "e": 4.01, "key": false}]}, {"id": "l3", "s": 4.75, "e": 9.45, "words": [{"w": "¿Y", "s": 4.75, "e": 4.82, "key": false}, {"w": "si", "s": 4.82, "e": 5.0, "key": false}, {"w": "la", "s": 5, "e": 5.18, "key": false}, {"w": "dejas", "s": 5.18, "e": 5.44, "key": false}, {"w": "abierta,", "s": 5.55, "e": 6.14, "key": true}, {"w": "enfría", "s": 6.14, "e": 6.67, "key": false}, {"w": "la", "s": 6.75, "e": 6.92, "key": false}, {"w": "cocina?", "s": 6.93, "e": 7.74, "key": false}, {"w": "Al", "s": 7.74, "e": 7.93, "key": false}, {"w": "final", "s": 7.94, "e": 8.45, "key": false}, {"w": "lo", "s": 8.45, "e": 8.64, "key": false}, {"w": "verás.", "s": 8.66, "e": 9.45, "key": false}]}, {"id": "l4", "s": 9.67, "e": 13.6, "words": [{"w": "Por", "s": 9.67, "e": 9.75, "key": false}, {"w": "dentro", "s": 9.75, "e": 10.14, "key": false}, {"w": "corre", "s": 10.14, "e": 10.46, "key": false}, {"w": "un", "s": 10.46, "e": 10.59, "key": false}, {"w": "gas", "s": 10.59, "e": 10.78, "key": false}, {"w": "por", "s": 10.78, "e": 10.97, "key": false}, {"w": "un", "s": 10.97, "e": 11.06, "key": false}, {"w": "circuito", "s": 11.51, "e": 11.62, "key": false}, {"w": "cerrado", "s": 11.62, "e": 12.07, "key": false}, {"w": "de", "s": 12.07, "e": 12.12, "key": false}, {"w": "tubos:", "s": 12.22, "e": 12.65, "key": false}, {"w": "el", "s": 12.65, "e": 12.76, "key": false}, {"w": "refrigerante.", "s": 12.78, "e": 13.6, "key": true}]}, {"id": "l5", "s": 13.95, "e": 18.68, "words": [{"w": "Abajo,", "s": 13.95, "e": 14.4, "key": false}, {"w": "detrás,", "s": 14.4, "e": 15.04, "key": false}, {"w": "el", "s": 15.04, "e": 15.2, "key": false}, {"w": "compresor", "s": 15.2, "e": 15.92, "key": true}, {"w": "lo", "s": 15.92, "e": 16.08, "key": false}, {"w": "aprieta,", "s": 16.08, "e": 16.64, "key": false}, {"w": "y", "s": 16.64, "e": 16.66, "key": false}, {"w": "al", "s": 16.75, "e": 16.88, "key": false}, {"w": "apretarlo", "s": 16.88, "e": 17.59, "key": false}, {"w": "se", "s": 17.59, "e": 17.76, "key": false}, {"w": "calienta.", "s": 17.76, "e": 18.68, "key": false}]}, {"id": "l6", "s": 18.74, "e": 22.63, "words": [{"w": "Ese", "s": 18.74, "e": 18.87, "key": false}, {"w": "gas", "s": 18.87, "e": 19.06, "key": false}, {"w": "caliente", "s": 19.06, "e": 19.46, "key": false}, {"w": "pasa", "s": 19.57, "e": 19.82, "key": false}, {"w": "por", "s": 19.84, "e": 20.02, "key": false}, {"w": "la", "s": 20.02, "e": 20.15, "key": false}, {"w": "rejilla", "s": 20.15, "e": 20.6, "key": false}, {"w": "negra", "s": 20.63, "e": 20.92, "key": false}, {"w": "de", "s": 20.92, "e": 20.98, "key": false}, {"w": "atrás,", "s": 21.06, "e": 21.5, "key": false}, {"w": "el", "s": 21.59, "e": 21.64, "key": false}, {"w": "condensador.", "s": 21.64, "e": 22.63, "key": true}]}, {"id": "l7", "s": 22.75, "e": 26.23, "words": [{"w": "Allí", "s": 22.75, "e": 22.94, "key": false}, {"w": "suelta", "s": 22.94, "e": 23.39, "key": false}, {"w": "su", "s": 23.39, "e": 23.54, "key": false}, {"w": "calor", "s": 23.54, "e": 23.87, "key": false}, {"w": "en", "s": 23.95, "e": 24.08, "key": false}, {"w": "tu", "s": 24.08, "e": 24.14, "key": false}, {"w": "cocina,", "s": 24.46, "e": 24.69, "key": false}, {"w": "y", "s": 24.69, "e": 24.75, "key": false}, {"w": "se", "s": 24.84, "e": 24.91, "key": false}, {"w": "vuelve", "s": 24.91, "e": 25.37, "key": false}, {"w": "líquido.", "s": 25.37, "e": 26.23, "key": true}]}, {"id": "l8", "s": 26.39, "e": 29.0, "words": [{"w": "Por", "s": 26.39, "e": 26.46, "key": false}, {"w": "eso", "s": 26.46, "e": 26.63, "key": false}, {"w": "la", "s": 26.64, "e": 26.75, "key": false}, {"w": "parte", "s": 26.77, "e": 27.06, "key": false}, {"w": "de", "s": 27.06, "e": 27.18, "key": false}, {"w": "atrás", "s": 27.18, "e": 27.48, "key": false}, {"w": "de", "s": 27.48, "e": 27.6, "key": false}, {"w": "la", "s": 27.6, "e": 27.72, "key": false}, {"w": "nevera", "s": 27.72, "e": 28.08, "key": false}, {"w": "está", "s": 28.23, "e": 28.32, "key": false}, {"w": "templada.", "s": 28.32, "e": 29.0, "key": true}]}, {"id": "l9", "s": 29.11, "e": 33.8, "words": [{"w": "Luego", "s": 29.11, "e": 29.38, "key": false}, {"w": "pasa", "s": 29.38, "e": 29.68, "key": false}, {"w": "por", "s": 29.68, "e": 29.91, "key": false}, {"w": "un", "s": 29.91, "e": 30.06, "key": false}, {"w": "tubo", "s": 30.06, "e": 30.36, "key": false}, {"w": "finísimo,", "s": 30.36, "e": 31.11, "key": false}, {"w": "el", "s": 31.2, "e": 31.27, "key": false}, {"w": "capilar,", "s": 31.27, "e": 31.95, "key": true}, {"w": "y", "s": 31.95, "e": 32.02, "key": false}, {"w": "la", "s": 32.02, "e": 32.11, "key": false}, {"w": "presión", "s": 32.22, "e": 32.69, "key": false}, {"w": "cae", "s": 32.7, "e": 32.92, "key": false}, {"w": "de", "s": 32.92, "e": 33.01, "key": false}, {"w": "golpe.", "s": 33.07, "e": 33.8, "key": false}]}, {"id": "l10", "s": 33.91, "e": 38.52, "words": [{"w": "Pero", "s": 33.91, "e": 34.1, "key": false}, {"w": "aquí", "s": 34.1, "e": 34.4, "key": false}, {"w": "viene", "s": 34.4, "e": 34.77, "key": false}, {"w": "lo", "s": 34.77, "e": 34.87, "key": false}, {"w": "bueno:", "s": 34.94, "e": 35.46, "key": false}, {"w": "con", "s": 35.46, "e": 35.75, "key": false}, {"w": "tan", "s": 35.75, "e": 35.9, "key": false}, {"w": "poca", "s": 35.9, "e": 36.2, "key": false}, {"w": "presión,", "s": 36.2, "e": 36.72, "key": false}, {"w": "el", "s": 36.72, "e": 36.87, "key": false}, {"w": "líquido", "s": 36.87, "e": 37.39, "key": false}, {"w": "hierve", "s": 37.39, "e": 37.81, "key": true}, {"w": "bajo", "s": 37.83, "e": 37.85, "key": false}, {"w": "cero.", "s": 37.91, "e": 38.52, "key": false}]}, {"id": "l11", "s": 38.59, "e": 43.28, "words": [{"w": "Y", "s": 38.59, "e": 38.646, "key": false}, {"w": "para", "s": 38.646, "e": 38.87, "key": false}, {"w": "hervir", "s": 38.87, "e": 39.29, "key": false}, {"w": "necesita", "s": 39.29, "e": 39.86, "key": false}, {"w": "calor:", "s": 39.86, "e": 40.32, "key": false}, {"w": "se", "s": 40.47, "e": 40.5, "key": false}, {"w": "lo", "s": 40.5, "e": 40.63, "key": false}, {"w": "roba", "s": 40.72, "e": 40.92, "key": true}, {"w": "a", "s": 40.92, "e": 40.99, "key": false}, {"w": "tus", "s": 40.99, "e": 41.2, "key": false}, {"w": "yogures", "s": 41.2, "e": 41.63, "key": false}, {"w": "por", "s": 41.72, "e": 41.9, "key": false}, {"w": "la", "s": 41.9, "e": 42.04, "key": false}, {"w": "pared", "s": 42.04, "e": 42.39, "key": false}, {"w": "del", "s": 42.39, "e": 42.53, "key": false}, {"w": "fondo.", "s": 42.96, "e": 43.28, "key": false}]}, {"id": "l12", "s": 43.35, "e": 47.08, "words": [{"w": "Ese", "s": 43.35, "e": 43.5, "key": false}, {"w": "gas", "s": 43.5, "e": 43.73, "key": false}, {"w": "vuelve", "s": 43.73, "e": 44.19, "key": false}, {"w": "al", "s": 44.19, "e": 44.34, "key": false}, {"w": "compresor,", "s": 44.34, "e": 45.03, "key": false}, {"w": "y", "s": 45.03, "e": 45.1, "key": false}, {"w": "la", "s": 45.23, "e": 45.25, "key": false}, {"w": "vuelta", "s": 45.25, "e": 45.71, "key": true}, {"w": "empieza", "s": 45.71, "e": 46.25, "key": false}, {"w": "otra", "s": 46.25, "e": 46.56, "key": false}, {"w": "vez.", "s": 46.56, "e": 47.08, "key": false}]}, {"id": "l13", "s": 47.19, "e": 52.2, "words": [{"w": "El", "s": 47.19, "e": 47.22, "key": false}, {"w": "termostato", "s": 47.22, "e": 47.86, "key": true}, {"w": "apaga", "s": 47.97, "e": 48.3, "key": false}, {"w": "el", "s": 48.3, "e": 48.45, "key": false}, {"w": "motor", "s": 48.45, "e": 48.58, "key": false}, {"w": "cuando", "s": 49.03, "e": 49.19, "key": false}, {"w": "dentro", "s": 49.28, "e": 49.64, "key": false}, {"w": "hay", "s": 49.74, "e": 49.9, "key": false}, {"w": "unos", "s": 49.99, "e": 50.19, "key": false}, {"w": "4", "s": 50.3, "e": 50.43, "key": false}, {"w": "grados,", "s": 50.43, "e": 50.86, "key": false}, {"w": "y", "s": 50.86, "e": 50.93, "key": false}, {"w": "lo", "s": 50.93, "e": 51.07, "key": false}, {"w": "enciende", "s": 51.07, "e": 51.63, "key": false}, {"w": "si", "s": 51.63, "e": 51.83, "key": false}, {"w": "sube.", "s": 51.83, "e": 52.2, "key": false}]}, {"id": "l14", "s": 52.27, "e": 56.0, "words": [{"w": "Y", "s": 52.27, "e": 52.317, "key": false}, {"w": "la", "s": 52.317, "e": 52.41, "key": false}, {"w": "goma", "s": 52.41, "e": 52.67, "key": false}, {"w": "de", "s": 52.69, "e": 52.83, "key": false}, {"w": "la", "s": 52.83, "e": 52.97, "key": false}, {"w": "puerta", "s": 52.97, "e": 53.4, "key": false}, {"w": "lleva", "s": 53.4, "e": 53.7, "key": false}, {"w": "un", "s": 53.7, "e": 53.99, "key": false}, {"w": "imán", "s": 53.99, "e": 54.18, "key": true}, {"w": "para", "s": 54.18, "e": 54.47, "key": false}, {"w": "que", "s": 54.47, "e": 54.68, "key": false}, {"w": "no", "s": 54.68, "e": 54.76, "key": false}, {"w": "entre", "s": 54.87, "e": 55.17, "key": false}, {"w": "el", "s": 55.18, "e": 55.31, "key": false}, {"w": "calor.", "s": 55.42, "e": 56.0, "key": false}]}, {"id": "l15", "s": 56.11, "e": 61.04, "words": [{"w": "Lo", "s": 56.11, "e": 56.14, "key": false}, {"w": "prometido:", "s": 56.14, "e": 56.92, "key": false}, {"w": "con", "s": 56.92, "e": 57.07, "key": false}, {"w": "la", "s": 57.14, "e": 57.23, "key": false}, {"w": "puerta", "s": 57.31, "e": 57.5, "key": false}, {"w": "abierta,", "s": 57.79, "e": 58.11, "key": false}, {"w": "lo", "s": 58.2, "e": 58.3, "key": false}, {"w": "que", "s": 58.38, "e": 58.54, "key": false}, {"w": "saca", "s": 58.54, "e": 58.82, "key": false}, {"w": "por", "s": 58.91, "e": 59.03, "key": false}, {"w": "delante", "s": 59.03, "e": 59.53, "key": false}, {"w": "lo", "s": 59.53, "e": 59.67, "key": false}, {"w": "devuelve", "s": 59.67, "e": 60.23, "key": true}, {"w": "por", "s": 60.23, "e": 60.44, "key": false}, {"w": "detrás.", "s": 60.65, "e": 61.04, "key": false}]}, {"id": "l16", "s": 61.04, "e": 65.16, "words": [{"w": "Y", "s": 61.04, "e": 61.08, "key": false}, {"w": "además", "s": 61.19, "e": 61.52, "key": false}, {"w": "suma", "s": 61.52, "e": 61.81, "key": false}, {"w": "el", "s": 61.81, "e": 61.86, "key": false}, {"w": "calor", "s": 61.97, "e": 62.31, "key": false}, {"w": "del", "s": 62.39, "e": 62.54, "key": false}, {"w": "motor:", "s": 62.54, "e": 63.16, "key": false}, {"w": "tu", "s": 63.27, "e": 63.3, "key": false}, {"w": "cocina", "s": 63.3, "e": 63.74, "key": false}, {"w": "acaba", "s": 63.74, "e": 64.11, "key": false}, {"w": "más", "s": 64.11, "e": 64.33, "key": false}, {"w": "caliente.", "s": 64.33, "e": 65.16, "key": true}]}, {"id": "l17", "s": 65.2, "e": 67.64, "words": [{"w": "Mándaselo", "s": 65.2, "e": 65.57, "key": false}, {"w": "a", "s": 65.57, "e": 65.61, "key": false}, {"w": "quien", "s": 65.61, "e": 65.84, "key": false}, {"w": "abre", "s": 65.84, "e": 65.94, "key": false}, {"w": "la", "s": 66.05, "e": 66.11, "key": false}, {"w": "nevera", "s": 66.11, "e": 66.38, "key": false}, {"w": "para", "s": 66.38, "e": 66.56, "key": false}, {"w": "refrescarse", "s": 66.56, "e": 67.07, "key": false}, {"w": "en", "s": 67.11, "e": 67.16, "key": false}, {"w": "verano.", "s": 67.16, "e": 67.64, "key": true}]}]}</script>
+    <script id="escena" type="application/json">
+{
+ "momentos": [
+  {
+   "id": "FRIO1",
+   "clave": "frio"
+  },
+  {
+   "id": "SACAR",
+   "clave": "sacar"
+  },
+  {
+   "id": "COMIDA1",
+   "clave": "comida"
+  },
+  {
+   "id": "DEJAS",
+   "clave": "dejas"
+  },
+  {
+   "id": "ABIERTA",
+   "clave": "abierta"
+  },
+  {
+   "id": "ENFRIA",
+   "clave": "enfria"
+  },
+  {
+   "id": "FINAL",
+   "clave": "final"
+  },
+  {
+   "id": "DENTRO",
+   "clave": "dentro"
+  },
+  {
+   "id": "CIRCUITO",
+   "clave": "circuito"
+  },
+  {
+   "id": "REFRIG",
+   "clave": "refrigerante"
+  },
+  {
+   "id": "ABAJO",
+   "clave": "abajo"
+  },
+  {
+   "id": "COMPRESOR",
+   "clave": "compresor"
+  },
+  {
+   "id": "APRIETA",
+   "clave": "aprieta"
+  },
+  {
+   "id": "CALIENTA",
+   "clave": "calienta"
+  },
+  {
+   "id": "CALIENTE1",
+   "clave": "caliente"
+  },
+  {
+   "id": "REJILLA",
+   "clave": "rejilla"
+  },
+  {
+   "id": "CONDENSADOR",
+   "clave": "condensador"
+  },
+  {
+   "id": "SUELTA",
+   "clave": "suelta"
+  },
+  {
+   "id": "LIQUIDO",
+   "clave": "liquido"
+  },
+  {
+   "id": "ATRAS",
+   "clave": "atras"
+  },
+  {
+   "id": "TEMPLADA",
+   "clave": "templada"
+  },
+  {
+   "id": "LUEGO",
+   "clave": "luego"
+  },
+  {
+   "id": "CAPILAR",
+   "clave": "capilar"
+  },
+  {
+   "id": "PRESION",
+   "clave": "presion"
+  },
+  {
+   "id": "BUENO",
+   "clave": "bueno"
+  },
+  {
+   "id": "HIERVE",
+   "clave": "hierve"
+  },
+  {
+   "id": "HERVIR",
+   "clave": "hervir"
+  },
+  {
+   "id": "ROBA",
+   "clave": "roba"
+  },
+  {
+   "id": "FONDO",
+   "clave": "fondo"
+  },
+  {
+   "id": "VUELVE",
+   "clave": "vuelve"
+  },
+  {
+   "id": "VUELTA",
+   "clave": "vuelta"
+  },
+  {
+   "id": "TERMOSTATO",
+   "clave": "termostato"
+  },
+  {
+   "id": "APAGA",
+   "clave": "apaga"
+  },
+  {
+   "id": "UNOS",
+   "clave": "unos"
+  },
+  {
+   "id": "ENCIENDE",
+   "clave": "enciende"
+  },
+  {
+   "id": "GOMA",
+   "clave": "goma"
+  },
+  {
+   "id": "IMAN",
+   "clave": "iman"
+  },
+  {
+   "id": "ENTRE",
+   "clave": "entre"
+  },
+  {
+   "id": "PROMETIDO",
+   "clave": "prometido"
+  },
+  {
+   "id": "ABIERTA2",
+   "clave": "abierta"
+  },
+  {
+   "id": "DELANTE",
+   "clave": "delante"
+  },
+  {
+   "id": "DETRAS",
+   "clave": "detras"
+  },
+  {
+   "id": "SUMA",
+   "clave": "suma"
+  },
+  {
+   "id": "COCINA2",
+   "clave": "cocina"
+  },
+  {
+   "id": "MANDA",
+   "clave": "mandaselo"
+  },
+  {
+   "id": "ABRE",
+   "clave": "abre"
+  },
+  {
+   "id": "VERANO",
+   "clave": "verano"
+  }
+ ],
+ "etiquetas": [
+  {
+   "texto": "AISLANTE",
+   "pieza": "nevera.espuma",
+   "desde": "SACAR",
+   "hasta": "COMIDA1",
+   "dx": 60,
+   "dy": -200
+  },
+  {
+   "texto": "COMIDA",
+   "pieza": "nevera.yogur",
+   "desde": "SACAR",
+   "hasta": "COMIDA1",
+   "dx": 60,
+   "dy": 200
+  },
+  {
+   "texto": "COMPRESOR",
+   "pieza": "nevera.compresor",
+   "desde": "ABAJO",
+   "hasta": "COMPRESOR",
+   "dx": 60,
+   "dy": -240
+  },
+  {
+   "texto": "PISTÓN",
+   "pieza": "comp.piston",
+   "desde": "COMPRESOR",
+   "hasta": "APRIETA",
+   "dx": 60,
+   "dy": -220
+  },
+  {
+   "texto": "CONDENSADOR",
+   "pieza": "nevera.condensador",
+   "desde": "REJILLA",
+   "hasta": "CONDENSADOR",
+   "dx": 60,
+   "dy": -260
+  },
+  {
+   "texto": "FILTRO",
+   "pieza": "nevera.filtro",
+   "desde": "LUEGO",
+   "hasta": "CAPILAR",
+   "dx": 60,
+   "dy": -220
+  },
+  {
+   "texto": "CAPILAR",
+   "pieza": "nevera.capilar",
+   "desde": "CAPILAR",
+   "hasta": "PRESION",
+   "dx": 60,
+   "dy": -220
+  },
+  {
+   "texto": "EVAPORADOR",
+   "pieza": "nevera.evaporador",
+   "desde": "BUENO",
+   "hasta": "HIERVE",
+   "dx": 60,
+   "dy": -240
+  },
+  {
+   "texto": "EVAPORADOR",
+   "pieza": "nevera.evaporador",
+   "desde": "FONDO",
+   "hasta": "VUELVE",
+   "dx": 60,
+   "dy": -240
+  },
+  {
+   "texto": "TERMOSTATO",
+   "pieza": "nevera.termostato",
+   "desde": "TERMOSTATO",
+   "hasta": "APAGA",
+   "dx": 60,
+   "dy": -220
+  },
+  {
+   "texto": "JUNTA DE GOMA",
+   "pieza": "nevera.juntaLado",
+   "desde": "GOMA",
+   "hasta": "IMAN",
+   "dx": 60,
+   "dy": -220
+  },
+  {
+   "texto": "IMÁN",
+   "pieza": "nevera.juntaArriba",
+   "desde": "IMAN",
+   "hasta": "ENTRE",
+   "dx": 60,
+   "dy": 200
+  },
+  {
+   "texto": "MOTOR",
+   "pieza": "comp.bobinado",
+   "desde": "SUMA",
+   "hasta": "COCINA2",
+   "dx": 60,
+   "dy": -220
+  }
+ ],
+ "notas": [
+  {
+   "texto": "",
+   "desde": 0
+  },
+  {
+   "texto": "Ilustración simplificada",
+   "desde": "SACAR"
+  },
+  {
+   "texto": "Calor dibujado en ámbar, invisible",
+   "desde": "COMIDA1"
+  },
+  {
+   "texto": "Valores ilustrativos",
+   "desde": "ENFRIA"
+  },
+  {
+   "texto": "Ilustración simplificada, sin marca",
+   "desde": "FINAL"
+  },
+  {
+   "texto": "Moléculas dibujadas, muy ampliadas",
+   "desde": "REFRIG"
+  },
+  {
+   "texto": "Ilustración simplificada",
+   "desde": "ABAJO"
+  },
+  {
+   "texto": "Moléculas dibujadas, muy ampliadas",
+   "desde": "APRIETA"
+  },
+  {
+   "texto": "Ilustración simplificada",
+   "desde": "CALIENTA"
+  },
+  {
+   "texto": "Moléculas dibujadas, muy ampliadas",
+   "desde": "LIQUIDO"
+  },
+  {
+   "texto": "Valores ilustrativos",
+   "desde": "ATRAS"
+  },
+  {
+   "texto": "Ilustración ampliada",
+   "desde": "LUEGO"
+  },
+  {
+   "texto": "Moléculas dibujadas, muy ampliadas",
+   "desde": "PRESION"
+  },
+  {
+   "texto": "Ilustración simplificada",
+   "desde": "BUENO"
+  },
+  {
+   "texto": "Isobutano, a presión normal",
+   "desde": "HIERVE"
+  },
+  {
+   "texto": "Calor dibujado en ámbar, invisible",
+   "desde": "HERVIR"
+  },
+  {
+   "texto": "Ilustración simplificada",
+   "desde": "VUELVE"
+  },
+  {
+   "texto": "Valores ilustrativos",
+   "desde": "UNOS"
+  },
+  {
+   "texto": "Ilustración ampliada",
+   "desde": "GOMA"
+  },
+  {
+   "texto": "",
+   "desde": "ENTRE"
+  },
+  {
+   "texto": "Aire y calor dibujados, invisibles",
+   "desde": "DELANTE"
+  },
+  {
+   "texto": "Valores ilustrativos",
+   "desde": "COCINA2"
+  },
+  {
+   "texto": "",
+   "desde": "MANDA"
+  }
+ ],
+ "iconos": {
+  "motor": "rayo"
+ },
+ "gancho": {
+  "texto": "Tu nevera no fabrica frío",
+  "clave": "frío"
+ },
+ "estilo": "rejilla",
+ "desenfoque": {
+  "apertura": 0,
+  "max": 0.012
+ },
+ "leyenda": [
+  {
+   "color": "#ffb347",
+   "forma": "onda",
+   "texto": "calor, invisible",
+   "desde": "SACAR",
+   "hasta": "ABIERTA"
+  },
+  {
+   "color": "#ff8a3a",
+   "forma": "flecha",
+   "texto": "gas caliente, a alta presión",
+   "desde": "DENTRO",
+   "hasta": "REFRIG"
+  },
+  {
+   "color": "#7fd4ff",
+   "forma": "flecha",
+   "texto": "refrigerante frío, a baja presión",
+   "desde": "DENTRO",
+   "hasta": "REFRIG"
+  },
+  {
+   "color": "#ffb347",
+   "forma": "onda",
+   "texto": "calor que sale a la cocina",
+   "desde": "SUELTA",
+   "hasta": "LIQUIDO"
+  },
+  {
+   "color": "#ffb347",
+   "forma": "onda",
+   "texto": "calor de la comida",
+   "desde": "HERVIR",
+   "hasta": "VUELVE"
+  },
+  {
+   "color": "#4f9dff",
+   "forma": "flecha",
+   "texto": "refrigerante que hierve",
+   "desde": "HERVIR",
+   "hasta": "VUELVE"
+  },
+  {
+   "color": "#ff8a3a",
+   "forma": "flecha",
+   "texto": "gas caliente",
+   "desde": "VUELTA",
+   "hasta": "TERMOSTATO"
+  },
+  {
+   "color": "#7fd4ff",
+   "forma": "flecha",
+   "texto": "refrigerante frío",
+   "desde": "VUELTA",
+   "hasta": "TERMOSTATO"
+  },
+  {
+   "color": "#8fd0ff",
+   "forma": "flecha",
+   "texto": "aire frío que sale",
+   "desde": "DELANTE",
+   "hasta": "SUMA"
+  },
+  {
+   "color": "#ffb347",
+   "forma": "onda",
+   "texto": "calor que vuelve a la cocina",
+   "desde": "DETRAS",
+   "hasta": "SUMA"
+  }
+ ],
+ "sonidos": [
+  {
+   "tipo": "zumbido",
+   "desde": 0,
+   "hasta": "SACAR",
+   "volumen": 0.4
+  },
+  {
+   "tipo": "brillo",
+   "en": "FRIO1"
+  },
+  {
+   "tipo": "desliza",
+   "en": "SACAR"
+  },
+  {
+   "tipo": "abre",
+   "en": "DEJAS"
+  },
+  {
+   "tipo": "pop",
+   "en": "ENFRIA"
+  },
+  {
+   "tipo": "desliza",
+   "en": "DENTRO"
+  },
+  {
+   "tipo": "sube",
+   "en": "CIRCUITO"
+  },
+  {
+   "tipo": "zumbido",
+   "desde": "ABAJO",
+   "hasta": "CALIENTE1",
+   "volumen": 0.7
+  },
+  {
+   "tipo": "teclas",
+   "en": "APRIETA",
+   "n": 5,
+   "cada": 0.18,
+   "volumen": 0.5
+  },
+  {
+   "tipo": "brillo",
+   "en": "CALIENTA"
+  },
+  {
+   "tipo": "desliza",
+   "en": "REJILLA"
+  },
+  {
+   "tipo": "pop",
+   "en": "ATRAS"
+  },
+  {
+   "tipo": "pop",
+   "en": "CAPILAR"
+  },
+  {
+   "tipo": "sube",
+   "en": "PRESION"
+  },
+  {
+   "tipo": "hervor",
+   "desde": "HIERVE",
+   "hasta": "ROBA",
+   "volumen": 0.6
+  },
+  {
+   "tipo": "desliza",
+   "en": "VUELTA"
+  },
+  {
+   "tipo": "pop",
+   "en": "UNOS"
+  },
+  {
+   "tipo": "zumbido",
+   "desde": "ENCIENDE",
+   "hasta": "GOMA",
+   "volumen": 0.6
+  },
+  {
+   "tipo": "toque",
+   "en": "IMAN"
+  },
+  {
+   "tipo": "abre",
+   "en": "PROMETIDO"
+  },
+  {
+   "tipo": "desliza",
+   "en": "DETRAS"
+  },
+  {
+   "tipo": "pop",
+   "en": "COCINA2"
+  },
+  {
+   "tipo": "desliza",
+   "en": "MANDA"
+  },
+  {
+   "tipo": "toque",
+   "en": "VERANO"
+  }
+ ],
+ "sets": {
+  "cocina": {
+   "objetos": [
+    {
+     "tipo": "nevera",
+     "id": "nevera"
+    }
+   ],
+   "luz": "anuncio",
+   "suelo": true
+  },
+  "motor": {
+   "objetos": [
+    {
+     "tipo": "compresor",
+     "id": "comp"
+    }
+   ],
+   "luz": "estudio",
+   "suelo": true
+  }
+ },
+ "flujos": {
+  "descarga3d": {
+   "ruta": [
+    {
+     "curva": "nevera.descarga"
+    }
+   ],
+   "color": "#ff7a3a",
+   "hebras": 2,
+   "ancho": 0.5,
+   "separa": 0.35,
+   "puntos": 300,
+   "intensidad": 0.9
+  },
+  "condensa3d": {
+   "ruta": [
+    {
+     "curva": "nevera.condensador"
+    }
+   ],
+   "color": "#ffb22e",
+   "hebras": 2,
+   "ancho": 0.45,
+   "separa": 0.35,
+   "puntos": 600,
+   "intensidad": 0.9
+  },
+  "capilar3d": {
+   "ruta": [
+    {
+     "curva": "nevera.salida"
+    },
+    {
+     "curva": "nevera.capilar"
+    }
+   ],
+   "color": "#7fd4ff",
+   "hebras": 1,
+   "ancho": 0.3,
+   "puntos": 500,
+   "intensidad": 0.9
+  },
+  "evapora3d": {
+   "ruta": [
+    {
+     "curva": "nevera.evaporador"
+    },
+    {
+     "curva": "nevera.puente"
+    },
+    {
+     "curva": "nevera.evapCong"
+    }
+   ],
+   "color": "#5aa8ff",
+   "hebras": 2,
+   "ancho": 0.45,
+   "separa": 0.35,
+   "puntos": 600,
+   "intensidad": 0.9
+  },
+  "aspira3d": {
+   "ruta": [
+    {
+     "curva": "nevera.aspiracion"
+    }
+   ],
+   "color": "#9fc8ff",
+   "hebras": 2,
+   "ancho": 0.5,
+   "separa": 0.4,
+   "puntos": 200,
+   "intensidad": 0.9
+  },
+  "calorComida1": {
+   "set": "cocina",
+   "ruta": [
+    [
+     2,
+     98,
+     8
+    ],
+    [
+     2,
+     100,
+     -8
+    ],
+    [
+     2,
+     104,
+     -24
+    ]
+   ],
+   "color": "#ffb347",
+   "hebras": 3,
+   "separa": 2.5,
+   "eje": "x",
+   "ancho": 0.6
+  },
+  "calorComida2": {
+   "set": "cocina",
+   "ruta": [
+    [
+     2,
+     124,
+     6
+    ],
+    [
+     2,
+     126,
+     -8
+    ],
+    [
+     2,
+     130,
+     -24
+    ]
+   ],
+   "color": "#ffb347",
+   "hebras": 3,
+   "separa": 2.5,
+   "eje": "x",
+   "ancho": 0.6
+  },
+  "calorComida3": {
+   "set": "cocina",
+   "ruta": [
+    [
+     2,
+     146,
+     2
+    ],
+    [
+     2,
+     148,
+     -10
+    ],
+    [
+     2,
+     152,
+     -24
+    ]
+   ],
+   "color": "#ffb347",
+   "hebras": 3,
+   "separa": 2.5,
+   "eje": "x",
+   "ancho": 0.6
+  },
+  "calienteCorte": {
+   "set": "cocina",
+   "ruta": [
+    [
+     2,
+     18,
+     -24
+    ],
+    [
+     2,
+     22,
+     -32
+    ],
+    [
+     2,
+     32,
+     -39.5
+    ],
+    [
+     2,
+     172,
+     -39.5
+    ],
+    [
+     2,
+     174,
+     -35
+    ],
+    [
+     2,
+     166,
+     -33
+    ],
+    [
+     2,
+     157,
+     -36
+    ],
+    [
+     2,
+     148,
+     -33
+    ],
+    [
+     2,
+     139,
+     -36
+    ],
+    [
+     2,
+     130,
+     -33
+    ],
+    [
+     2,
+     121,
+     -36
+    ],
+    [
+     2,
+     112,
+     -33
+    ],
+    [
+     2,
+     103,
+     -36
+    ],
+    [
+     2,
+     94,
+     -33
+    ],
+    [
+     2,
+     85,
+     -36
+    ],
+    [
+     2,
+     76,
+     -33
+    ],
+    [
+     2,
+     67,
+     -36
+    ],
+    [
+     2,
+     58,
+     -33
+    ],
+    [
+     2,
+     49,
+     -36
+    ],
+    [
+     2,
+     40,
+     -34
+    ],
+    [
+     2,
+     30,
+     -34
+    ]
+   ],
+   "color": "#ff8a3a",
+   "hebras": 1,
+   "ancho": 0.7,
+   "eje": "x",
+   "puntos": 400
+  },
+  "capilarCorte": {
+   "set": "cocina",
+   "ruta": [
+    [
+     2,
+     32,
+     -34
+    ],
+    [
+     2,
+     52,
+     -33
+    ],
+    [
+     2,
+     60,
+     -29.6
+    ],
+    [
+     2,
+     168,
+     -29.6
+    ],
+    [
+     2,
+     171,
+     -27.6
+    ]
+   ],
+   "color": "#7fd4ff",
+   "hebras": 1,
+   "ancho": 0.35,
+   "eje": "x"
+  },
+  "evapCorte": {
+   "set": "cocina",
+   "ruta": [
+    [
+     2,
+     171,
+     -27.6
+    ],
+    [
+     2,
+     104,
+     -27.6
+    ],
+    [
+     2,
+     60,
+     -27.6
+    ],
+    [
+     2,
+     36,
+     -27.6
+    ],
+    [
+     2,
+     30,
+     -28
+    ],
+    [
+     2,
+     20,
+     -26.5
+    ]
+   ],
+   "color": "#4f9dff",
+   "hebras": 2,
+   "separa": 0.8,
+   "ancho": 0.6,
+   "eje": "x"
+  },
+  "calorCocina1": {
+   "set": "cocina",
+   "ruta": [
+    [
+     2,
+     60,
+     -38
+    ],
+    [
+     2,
+     72,
+     -52
+    ],
+    [
+     2,
+     90,
+     -64
+    ]
+   ],
+   "color": "#ffb347",
+   "hebras": 3,
+   "separa": 3,
+   "eje": "x",
+   "ancho": 0.8
+  },
+  "calorCocina2": {
+   "set": "cocina",
+   "ruta": [
+    [
+     2,
+     110,
+     -38
+    ],
+    [
+     2,
+     124,
+     -52
+    ],
+    [
+     2,
+     142,
+     -64
+    ]
+   ],
+   "color": "#ffb347",
+   "hebras": 3,
+   "separa": 3,
+   "eje": "x",
+   "ancho": 0.8
+  },
+  "calorCocina3": {
+   "set": "cocina",
+   "ruta": [
+    [
+     2,
+     160,
+     -38
+    ],
+    [
+     2,
+     176,
+     -50
+    ],
+    [
+     2,
+     196,
+     -58
+    ]
+   ],
+   "color": "#ffb347",
+   "hebras": 3,
+   "separa": 3,
+   "eje": "x",
+   "ancho": 0.8
+  },
+  "frioSale": {
+   "set": "cocina",
+   "ruta": [
+    [
+     2,
+     120,
+     22
+    ],
+    [
+     2,
+     100,
+     40
+    ],
+    [
+     2,
+     70,
+     55
+    ],
+    [
+     2,
+     40,
+     62
+    ]
+   ],
+   "color": "#8fd0ff",
+   "hebras": 4,
+   "separa": 4,
+   "eje": "x",
+   "ancho": 0.8
+  }
+ },
+ "planos": [
+  {
+   "tipo": "anuncio",
+   "pieza": "nevera",
+   "desde": 0,
+   "angulo": 24,
+   "altura": 4,
+   "orbita": 14,
+   "empuje": 0.08
+  },
+  {
+   "tipo": "macro",
+   "pieza": "nevera.pantalla",
+   "desde": "FRIO1",
+   "mas": -0.25,
+   "angulo": 12,
+   "altura": 4,
+   "variar": false,
+   "desplaza": [
+    0,
+    4,
+    0
+   ]
+  },
+  {
+   "tipo": "corte",
+   "pieza": "nevera",
+   "eje": "x",
+   "radio": 62,
+   "desde": "SACAR",
+   "flujos": [
+    "calorComida1",
+    "calorComida2",
+    "calorComida3"
+   ],
+   "crece": true,
+   "estado": {
+    "frio": 0.6
+   }
+  },
+  {
+   "tipo": "macro",
+   "pieza": "nevera.yogur",
+   "cortar": true,
+   "eje": "x",
+   "angulo": 90,
+   "altura": 6,
+   "radio": 9,
+   "desde": "COMIDA1",
+   "flujos": [
+    "calorComida1"
+   ],
+   "estado": {
+    "frio": 0.6
+   },
+   "exposicion": 0.42
+  },
+  {
+   "tipo": "anuncio",
+   "pieza": "nevera",
+   "desde": "DEJAS",
+   "angulo": -22,
+   "altura": 6,
+   "estado": {
+    "puerta": {
+     "de": 0,
+     "a": 1,
+     "dur": 0.8
+    },
+    "luz": {
+     "de": 0,
+     "a": 1,
+     "dur": 0.5
+    }
+   }
+  },
+  {
+   "tipo": "cifra",
+   "pieza": "nevera",
+   "desde": "ENFRIA",
+   "estado": {
+    "puerta": 1,
+    "luz": 1
+   },
+   "lectura": {
+    "texto": "21,0 °C",
+    "titulo": "TU COCINA"
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "pieza": "nevera.atras",
+   "desde": "FINAL",
+   "angulo": 200,
+   "altura": 10
+  },
+  {
+   "tipo": "rayosX",
+   "pieza": "nevera",
+   "desde": "DENTRO",
+   "angulo": 145,
+   "altura": 14,
+   "flujos": [
+    "descarga3d",
+    "condensa3d",
+    "capilar3d",
+    "evapora3d",
+    "aspira3d"
+   ],
+   "crece": true,
+   "estado": {
+    "frio": 1,
+    "calor": 1
+   }
+  },
+  {
+   "tipo": "flujo",
+   "set": "cocina",
+   "flujos": [
+    "descarga3d",
+    "condensa3d",
+    "capilar3d",
+    "evapora3d",
+    "aspira3d"
+   ],
+   "desde": "CIRCUITO",
+   "angulo": 160,
+   "altura": 18,
+   "estado": {
+    "rayosX": 1,
+    "frio": 1,
+    "calor": 1
+   }
+  },
+  {
+   "tipo": "particulas",
+   "clase": "gas",
+   "desde": "REFRIG",
+   "temp": 0.35,
+   "caja": [
+    36,
+    44,
+    24
+   ],
+   "n": 140
+  },
+  {
+   "tipo": "macro",
+   "pieza": "nevera.compresor",
+   "desde": "ABAJO",
+   "angulo": 150,
+   "altura": 12,
+   "estado": {
+    "motor": 1,
+    "vibra": 1
+   }
+  },
+  {
+   "tipo": "corte",
+   "set": "motor",
+   "pieza": "comp",
+   "eje": "z",
+   "radio": 13,
+   "desde": "COMPRESOR",
+   "estado": {
+    "motor": 1
+   },
+   "resaltar": [
+    "comp.piston"
+   ]
+  },
+  {
+   "tipo": "particulas",
+   "clase": "gas",
+   "desde": "APRIETA",
+   "caja": [
+    30,
+    44,
+    22
+   ],
+   "caja2": [
+    30,
+    16,
+    22
+   ],
+   "piston": true,
+   "temp": {
+    "de": 0.3,
+    "a": 0.95,
+    "dur": 1.6
+   },
+   "dur": 1.4
+  },
+  {
+   "tipo": "anuncio",
+   "set": "motor",
+   "pieza": "comp",
+   "desde": "CALIENTA",
+   "angulo": 30,
+   "altura": 14,
+   "estado": {
+    "calor": {
+     "de": 0,
+     "a": 1,
+     "dur": 0.8
+    },
+    "motor": 1
+   }
+  },
+  {
+   "tipo": "flujo",
+   "set": "cocina",
+   "flujos": [
+    "descarga3d"
+   ],
+   "desde": "CALIENTE1",
+   "angulo": 150,
+   "altura": 8,
+   "estado": {
+    "calor": 1,
+    "rayosX": 1
+   },
+   "crece": true
+  },
+  {
+   "tipo": "anuncio",
+   "pieza": "nevera.atras",
+   "desde": "REJILLA",
+   "angulo": 185,
+   "altura": 6,
+   "estado": {
+    "calor": {
+     "de": 0.3,
+     "a": 1
+    }
+   },
+   "flujos": [
+    "condensa3d"
+   ],
+   "crece": true
+  },
+  {
+   "tipo": "macro",
+   "pieza": "nevera.condensador",
+   "radio": 20,
+   "desplaza": [
+    0,
+    30,
+    0
+   ],
+   "angulo": 205,
+   "altura": 10,
+   "desde": "CONDENSADOR",
+   "estado": {
+    "calor": 1
+   },
+   "flujos": [
+    "condensa3d"
+   ]
+  },
+  {
+   "tipo": "corte",
+   "pieza": "nevera",
+   "eje": "x",
+   "radio": 70,
+   "desplaza": [
+    0,
+    0,
+    -14
+   ],
+   "desde": "SUELTA",
+   "flujos": [
+    "calorCocina1",
+    "calorCocina2",
+    "calorCocina3",
+    "calienteCorte"
+   ],
+   "crece": true,
+   "estado": {
+    "calor": 1
+   }
+  },
+  {
+   "tipo": "particulas",
+   "clase": "cambio",
+   "invertir": true,
+   "desde": "LIQUIDO",
+   "temp": {
+    "de": 0.8,
+    "a": 0.5
+   },
+   "caja": [
+    34,
+    40,
+    22
+   ]
+  },
+  {
+   "tipo": "mapaCalor",
+   "set": "cocina",
+   "desde": "ATRAS",
+   "cortar": true,
+   "eje": "x",
+   "mapa": {
+    "centro": [
+     3,
+     92,
+     -15
+    ],
+    "ancho": 110,
+    "alto": 190,
+    "normal": "x",
+    "paleta": "calor",
+    "opacidad": 0.78,
+    "tam": 11,
+    "puntos": [
+     {
+      "x": -0.136,
+      "y": 0.147,
+      "r": 0.12,
+      "k": 0.08,
+      "texto": "4 °C"
+     },
+     {
+      "x": -0.18,
+      "y": -0.31,
+      "r": 0.1,
+      "k": 0.0,
+      "texto": "−18 °C"
+     },
+     {
+      "x": 0.19,
+      "y": 0.095,
+      "r": 0.14,
+      "k": {
+       "de": 0.3,
+       "a": 0.82
+      },
+      "texto": "35 °C"
+     },
+     {
+      "x": 0.08,
+      "y": -0.405,
+      "r": 0.08,
+      "k": 1,
+      "texto": ""
+     },
+     {
+      "x": -0.45,
+      "y": 0.147,
+      "r": 0.15,
+      "k": 0.42,
+      "texto": "21 °C"
+     }
+    ]
+   },
+   "radio": 72
+  },
+  {
+   "tipo": "macro",
+   "pieza": "nevera.condensador",
+   "radio": 12,
+   "desplaza": [
+    10,
+    -20,
+    0
+   ],
+   "angulo": 160,
+   "altura": 4,
+   "desde": "TEMPLADA",
+   "estado": {
+    "calor": 1
+   }
+  },
+  {
+   "tipo": "macro",
+   "pieza": "nevera.filtro",
+   "desde": "LUEGO",
+   "angulo": 200,
+   "altura": 10,
+   "radio": 9,
+   "flujos": [
+    "capilar3d"
+   ],
+   "crece": true,
+   "estado": {
+    "frio": 0.5
+   }
+  },
+  {
+   "tipo": "macro",
+   "pieza": "nevera.capilar",
+   "desde": "CAPILAR",
+   "angulo": 170,
+   "altura": 25,
+   "radio": 7,
+   "estado": {
+    "frio": 1
+   },
+   "resaltar": [
+    "nevera.capilar"
+   ],
+   "flujos": [
+    "capilar3d"
+   ],
+   "colorResalte": "120,200,255",
+   "fuerzaResalte": 0.6
+  },
+  {
+   "tipo": "particulas",
+   "clase": "liquido",
+   "desde": "PRESION",
+   "caja": [
+    30,
+    18,
+    22
+   ],
+   "caja2": [
+    30,
+    44,
+    22
+   ],
+   "piston": true,
+   "temp": {
+    "de": 0.55,
+    "a": 0.05,
+    "dur": 1.2
+   },
+   "dur": 1.2
+  },
+  {
+   "tipo": "rayosX",
+   "pieza": "nevera.evaporador",
+   "desde": "BUENO",
+   "angulo": 15,
+   "altura": 10,
+   "estado": {
+    "frio": 1
+   },
+   "flujos": [
+    "evapora3d"
+   ],
+   "exposicion": 0.75
+  },
+  {
+   "tipo": "particulas",
+   "clase": "cambio",
+   "desde": "HIERVE",
+   "temp": 0.05,
+   "caja": [
+    34,
+    40,
+    22
+   ],
+   "lectura": {
+    "texto": "−11,8 °C",
+    "titulo": "EL ISOBUTANO HIERVE A",
+    "y": 1190
+   }
+  },
+  {
+   "tipo": "corte",
+   "pieza": "nevera",
+   "eje": "x",
+   "radio": 62,
+   "desde": "HERVIR",
+   "flujos": [
+    "calorComida1",
+    "calorComida2",
+    "calorComida3",
+    "evapCorte"
+   ],
+   "crece": true,
+   "estado": {
+    "frio": 1
+   }
+  },
+  {
+   "tipo": "macro",
+   "pieza": "nevera.yogur",
+   "cortar": true,
+   "eje": "x",
+   "angulo": 90,
+   "altura": 4,
+   "radio": 10,
+   "desde": "ROBA",
+   "flujos": [
+    "calorComida1"
+   ],
+   "estado": {
+    "frio": 1
+   },
+   "exposicion": 0.42
+  },
+  {
+   "tipo": "rayosX",
+   "pieza": "nevera.evaporador",
+   "desde": "FONDO",
+   "angulo": -25,
+   "altura": 6,
+   "de": 1,
+   "a": 1,
+   "estado": {
+    "frio": 1
+   },
+   "flujos": [
+    "evapora3d"
+   ],
+   "resaltar": [
+    "nevera.evaporador"
+   ],
+   "colorResalte": "120,190,255",
+   "fuerzaResalte": 0.5,
+   "exposicion": 0.75
+  },
+  {
+   "tipo": "flujo",
+   "set": "cocina",
+   "flujos": [
+    "aspira3d"
+   ],
+   "desde": "VUELVE",
+   "angulo": 150,
+   "altura": 12,
+   "radio": 22,
+   "estado": {
+    "rayosX": 1,
+    "frio": 0.6
+   },
+   "crece": true,
+   "exposicion": 0.7
+  },
+  {
+   "tipo": "flujo",
+   "set": "cocina",
+   "flujos": [
+    "descarga3d",
+    "condensa3d",
+    "capilar3d",
+    "evapora3d",
+    "aspira3d"
+   ],
+   "desde": "VUELTA",
+   "angulo": 135,
+   "altura": 16,
+   "estado": {
+    "rayosX": 1,
+    "frio": 1,
+    "calor": 1,
+    "motor": 1
+   },
+   "crece": true
+  },
+  {
+   "tipo": "macro",
+   "pieza": "nevera.termostato",
+   "desde": "TERMOSTATO",
+   "angulo": -30,
+   "altura": 6,
+   "radio": 9,
+   "estado": {
+    "puerta": 1,
+    "luz": 0.2
+   },
+   "exposicion": 0.45,
+   "orbita": 4
+  },
+  {
+   "tipo": "anuncio",
+   "set": "motor",
+   "pieza": "comp",
+   "desde": "APAGA",
+   "angulo": -25,
+   "altura": 10,
+   "estado": {
+    "motor": {
+     "de": 1,
+     "a": 0,
+     "dur": 0.5
+    }
+   }
+  },
+  {
+   "tipo": "cifra",
+   "pieza": "nevera",
+   "desde": "UNOS",
+   "angulo": -10,
+   "lectura": {
+    "de": 7,
+    "a": 4,
+    "unidad": "°C",
+    "titulo": "DENTRO DE LA NEVERA",
+    "dur": 0.8
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "set": "motor",
+   "pieza": "comp",
+   "desde": "ENCIENDE",
+   "angulo": 40,
+   "altura": 8,
+   "estado": {
+    "motor": {
+     "de": 0,
+     "a": 1,
+     "dur": 0.4
+    },
+    "vibra": 1
+   }
+  },
+  {
+   "tipo": "macro",
+   "pieza": "nevera.puerta",
+   "desde": "GOMA",
+   "radio": 40,
+   "angulo": 82,
+   "altura": 8,
+   "estado": {
+    "puerta": 1,
+    "luz": 0.4
+   },
+   "exposicion": 0.8,
+   "resaltar": [
+    "nevera.juntaLado"
+   ],
+   "fuerzaResalte": 0.5
+  },
+  {
+   "tipo": "corte",
+   "pieza": "nevera.juntaArriba",
+   "eje": "x",
+   "radio": 7,
+   "desde": "IMAN"
+  },
+  {
+   "tipo": "anuncio",
+   "pieza": "nevera",
+   "desde": "ENTRE",
+   "angulo": 35,
+   "altura": 8
+  },
+  {
+   "tipo": "anuncio",
+   "pieza": "nevera",
+   "desde": "PROMETIDO",
+   "angulo": 30,
+   "altura": 8,
+   "estado": {
+    "puerta": 1,
+    "luz": 1
+   }
+  },
+  {
+   "tipo": "corte",
+   "pieza": "nevera",
+   "eje": "x",
+   "radio": 80,
+   "desplaza": [
+    0,
+    0,
+    22
+   ],
+   "desde": "DELANTE",
+   "estado": {
+    "puerta": 1,
+    "luz": 1
+   },
+   "flujos": [
+    "frioSale"
+   ],
+   "crece": true
+  },
+  {
+   "tipo": "corte",
+   "pieza": "nevera",
+   "eje": "x",
+   "radio": 80,
+   "desplaza": [
+    0,
+    0,
+    -12
+   ],
+   "desde": "DETRAS",
+   "estado": {
+    "puerta": 1,
+    "calor": 1
+   },
+   "flujos": [
+    "calorCocina1",
+    "calorCocina2",
+    "calorCocina3",
+    "frioSale"
+   ],
+   "crece": true
+  },
+  {
+   "tipo": "macro",
+   "set": "motor",
+   "pieza": "comp.bobinado",
+   "cortar": true,
+   "eje": "z",
+   "radio": 6,
+   "desde": "SUMA",
+   "estado": {
+    "calor": 0.35,
+    "motor": 1
+   },
+   "resaltar": [
+    "comp.bobinado"
+   ]
+  },
+  {
+   "tipo": "cifra",
+   "pieza": "nevera",
+   "desde": "COCINA2",
+   "angulo": 20,
+   "estado": {
+    "puerta": 1,
+    "luz": 1
+   },
+   "lectura": {
+    "de": 21.0,
+    "a": 21.4,
+    "decimales": 1,
+    "unidad": "°C",
+    "titulo": "TU COCINA",
+    "dur": 1.2
+   }
+  },
+  {
+   "tipo": "compartir",
+   "desde": "MANDA",
+   "elegir": "ABRE",
+   "enviar": "VERANO"
+  }
+ ]
+}
+    </script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 69.2 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      // 08-nevera: the whole scene is the JSON above (sets, flows and shots), built by the shot templates
+      import * as THREE from "three";
+      import { crearPorDentro } from "./comun/pordentro.js";
+      import { crearDetalle } from "./comun/detalle.js";
+      import { crearPlantillas } from "./comun/plantillas.js";
+      await Promise.all(['700 50px "Inter"', '400 50px "Inter"', '700 50px "JetBrains Mono"', '400 50px "JetBrains Mono"'].map((f) => document.fonts.load(f)));
+      const C = crearPorDentro(THREE);
+      const X = crearDetalle(THREE, C);
+      const P = crearPlantillas(THREE, C, X);
+      P.arrancar();
+    </script>
+  </body>
+</html>

@@ -18,6 +18,7 @@ Día 1 con 3 vídeos y después 1 al día a las 20:00. A las 20:00 del día 1 va
 | Día 2 | 20:00 | `05-reloj.mp4` (si lo apruebas) | [ ] |
 | Miércoles 4 de noviembre | 20:00 | `06-gps.mp4` | [ ] |
 | Jueves 5 de noviembre | 20:00 | `07-microondas.mp4` (falta que lo apruebes; es el primero con el estilo nuevo) | [ ] |
+| Viernes 6 de noviembre | 20:00 | `08-nevera.mp4` (falta que lo apruebes) | [ ] |
 
 Pon como día 1 el que quieras y mueve el resto igual. TikTok deja programar hasta 10 días antes.
 
@@ -82,6 +83,14 @@ Los satélites GPS no saben dónde estás: tu móvil solo escucha su hora y mide
 El microondas no calienta desde dentro: sus ondas solo entran unos centímetros y el centro se calienta después, por conducción. Y los puntos que derriten una tableta de chocolate sirven para calcular la velocidad de la luz. Ilustración simplificada.
 
 #comofunciona #tecnologia #curiosidades #parati #microondas #fisica #ciencia
+```
+
+### 08-nevera.mp4 (69,2 s)
+
+```
+Tu nevera no fabrica frío: saca el calor de la comida y lo suelta por detrás, en tu cocina. Por eso dejarla abierta no enfría la cocina: la calienta un poco. Ilustración simplificada.
+
+#comofunciona #tecnologia #curiosidades #parati #nevera #frigorifico #ciencia
 ```
 
 ## Instagram (Reels)

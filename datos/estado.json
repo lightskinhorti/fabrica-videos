@@ -18,5 +18,6 @@
   "lascosaspordentro/04-pantalla": {"descartado": true, "nota": "Tema que ya tiene @speedy_devv"},
   "lascosaspordentro/05-reloj": {"aprobado": true, "fecha": "2026-11-03", "hora": "20:00", "programado": true},
   "lascosaspordentro/06-gps": {"aprobado": true, "fecha": "2026-11-04", "hora": "20:00"},
-  "lascosaspordentro/07-microondas": {"fecha": "2026-11-05", "hora": "20:00"}
+  "lascosaspordentro/07-microondas": {"fecha": "2026-11-05", "hora": "20:00"},
+  "lascosaspordentro/08-nevera": {"fecha": "2026-11-06", "hora": "20:00"}
 }
