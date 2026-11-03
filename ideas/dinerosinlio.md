@@ -13,7 +13,7 @@ antes de 2,5 s, una pregunta abierta que se resuelve al final y el dato más fue
 Los tres los hizo Claude el 2 de noviembre. Javier los aprobó ese mismo día ("muy muy buenos vídeos") y los programa él.
 
 - [x] 04: Ese descuento puede ser mentira (precio tachado y regla de los 30 días, Black Friday). 65,0 s. Hecho el 2 de noviembre y aprobado por Javier el 3.
-- [ ] 05: Pagar un café con tarjeta: quién cobra (tasas de intercambio). En marcha la noche del 3 de noviembre.
+- [x] 05: Tu café con tarjeta tiene peaje (tasa de descuento y de intercambio, Ley 18/2014 y datos del Banco de España de abril a junio de 2026). 72,8 s. Hecho la noche del 3 de noviembre; falta que Javier lo apruebe.
 
 ## Siguientes ideas (sin aprobar)
 

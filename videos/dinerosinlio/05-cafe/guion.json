@@ -1,0 +1,48 @@
+{
+  "titulo": "Tu café con tarjeta tiene peaje",
+  "lines": [
+    "Tu café con tarjeta tiene peaje.",
+    "No lo pagas tú: lo paga el bar. ¿Y cuánto suma en toda España? Te lo digo al final.",
+    "Imagina un café de dos euros, pagado con tarjeta de débito.",
+    "Al bar no le llegan los dos euros: su banco le cobra una comisión, la tasa de descuento.",
+    "Cada bar negocia la suya. Según el Banco de España, la media en bares y restaurantes es un 0,36%.",
+    "En tu café, eso son siete décimas de céntimo. Al bar le llega casi todo: no le falta ni un céntimo entero.",
+    "¿Y quién se las queda? Una parte va a tu banco: es la tasa de intercambio.",
+    "Esa sí tiene tope por ley: en Europa, un 0,2% con débito.",
+    "Y en España, en pagos de veinte euros o menos, la mitad: un 0,1%.",
+    "En tu café, como mucho, dos décimas de céntimo para tu banco. Con tarjeta de crédito, el tope es el doble.",
+    "El resto, como medio céntimo, se lo reparten el banco del bar y la red de la tarjeta.",
+    "Y otra regla: el bar no puede cobrarte un recargo por pagar con tarjeta.",
+    "¿Y en toda España? De abril a junio, en bares y restaurantes se pagó con tarjeta más de quinientos setenta millones de veces.",
+    "Y esas comisiones sumaron más de treinta y cinco millones de euros.",
+    "¿Pensabas que era más o menos? Te leo en los comentarios."
+  ],
+  "claves": [
+    "peaje",
+    "suma",
+    "débito",
+    "descuento",
+    "negocia",
+    "décimas",
+    "intercambio",
+    "tope",
+    "mitad",
+    "mucho",
+    "reparten",
+    "recargo",
+    "veces",
+    "comisiones",
+    "comentarios"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "Si pagas un café de 2 euros con tarjeta, el bar paga de media unas 7 décimas de céntimo de comisión, y una parte va a tu banco. La ley pone tope a esa parte: Reglamento (UE) 2015/751 y Ley 18/2014, artículo 11. Medias y totales del Banco de España, de abril a junio de 2026.",
+    "hashtags": [
+      "#tarjeta",
+      "#comisiones",
+      "#bancos"
+    ],
+    "portada_en": "peaje"
+  },
+  "voz_dice": "La voz se generó con los porcentajes en palabras (cero coma treinta y seis, cero coma dos y cero coma uno por ciento); aquí van en cifras para que los subtítulos coincidan con lo que oye Whisper."
+}

@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <link rel="stylesheet" href="comun/dinero.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+      .cifra, .fila b, .grande { font-family: "Archivo Black", sans-serif; }
+      /* this video's layout */
+      .ancho { left: 0; width: 1080px; }
+      .fila.marca { background: #f8dc7a; margin: 0 -16px; padding-left: 16px; padding-right: 16px; border-radius: 8px; }
+      .fila b { white-space: nowrap; }
+      .sello.s50 { font-size: 50px; }
+      .sello.s44 { font-size: 44px; }
+      .rotulo.dos { line-height: 1.35; }
+      .rotulo.grande { font-family: "Inter", sans-serif; font-size: 44px; letter-spacing: 0.04em; }
+      #docEU .doc, #docES .doc { width: 500px; }
+      #ticket .doc { width: 640px; }
+      .seg.tu { background: #1d2a44; color: #f2b705; }
+      .seg.resto { background: #f2b705; color: #1d2a44; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="72.8" data-width="1080" data-height="1920" data-fps="30">
+      <div id="fondo" class="clip" data-start="0" data-duration="72.8" data-track-index="0"></div>
+      <div id="escenario" class="clip" data-start="0" data-duration="72.8" data-track-index="1" data-layout-allow-overlap data-layout-allow-overflow>
+        <!-- A: a coffee paid by card, the bar pays the toll, and the open question -->
+        <div class="pieza" id="tazaA" style="left:390px; top:840px" data-dibujo="taza" data-args="[300]"></div>
+        <div class="pieza" id="tarjetaA" style="left:620px; top:1030px" data-dibujo="tarjeta" data-args="[300]"></div>
+        <div class="pieza" id="barA" style="left:340px; top:560px" data-dibujo="bar" data-args='[400, "BAR"]'></div>
+        <div class="pieza" id="selloBar" style="left:241px; top:1010px"><div class="sello s50" style="color:#e5383b; border-color:#e5383b">LO PAGA EL BAR</div></div>
+        <div class="pieza" id="chipCuanto" style="left:165px; top:458px"><div class="chip blanco" style="font-size:38px">¿CUÁNTO SUMA EN TODA ESPAÑA?</div></div>
+
+        <!-- B: the example, a 2 € coffee paid with a debit card -->
+        <div class="pieza rotulo ancho" id="rotB" style="top:466px">EJEMPLO: UN CAFÉ DE 2 €</div>
+        <div class="pieza" id="tazaB" style="left:100px; top:560px" data-dibujo="taza" data-args="[300]"></div>
+        <div class="pieza" id="chipPrecio" style="left:150px; top:910px"><div class="chip" style="font-size:52px">2,00 €</div></div>
+        <div class="pieza" id="datafono" style="left:640px; top:540px" data-dibujo="datafono" data-args="[240]"></div>
+        <div class="pieza" id="tarjetaB" style="left:560px; top:1010px" data-dibujo="tarjeta" data-args="[300]"></div>
+
+        <!-- C: the bar's bank keeps a fee, the discount rate -->
+        <div class="pieza" id="bancoC" style="left:70px; top:600px" data-icono="edificio" data-args='["BANCO DEL BAR", "#fffaf0", 320]'></div>
+        <div class="pieza" id="barC" style="left:610px; top:585px" data-dibujo="bar" data-args='[330, "BAR"]'></div>
+        <div class="pieza" id="flechaC" style="left:432px; top:790px" data-dibujo="flecha" data-args="[160]"></div>
+        <div class="pieza" id="monedaC" style="left:447px; top:630px" data-icono="moneda" data-args='["2 €", 130]'></div>
+        <div class="pieza" id="chipCom" style="left:100px; top:950px"><div class="chip rojo">− COMISIÓN</div></div>
+        <div class="pieza" id="selloDesc" style="left:228px; top:1100px"><div class="sello s44" style="color:#4a78c2; border-color:#4a78c2">TASA DE DESCUENTO</div></div>
+
+        <!-- D: no fixed price, but an official average for bars and restaurants -->
+        <div class="pieza" id="selloNeg" style="left:222px; top:480px"><div class="sello s50" style="color:#4a78c2; border-color:#4a78c2">SIN PRECIO FIJO</div></div>
+        <div class="pieza" id="bdeD" style="left:378px; top:600px" data-icono="edificio" data-args='["BANCO DE ESPAÑA", "#fffaf0", 300]'></div>
+        <div class="pieza" id="barD1" style="left:100px; top:650px" data-dibujo="bar" data-args='[210, "BAR"]'></div>
+        <div class="pieza" id="barD2" style="left:415px; top:650px" data-dibujo="bar" data-args='[210, "CAFÉ"]'></div>
+        <div class="pieza" id="barD3" style="left:730px; top:650px" data-dibujo="bar" data-args='[210, "TAPAS"]'></div>
+        <div class="pieza cifra ancho" id="c036" style="top:900px">0,00 %</div>
+        <div class="pieza rotulo dos ancho" id="rot036" style="top:1045px">TASA DE DESCUENTO MEDIA<br />EN BARES, CAFETERÍAS Y RESTAURANTES</div>
+
+        <!-- E: in your coffee, 0,71 cents -->
+        <div class="pieza cifra roja ancho" id="c071" style="top:480px">0,00</div>
+        <div class="pieza rotulo rojo ancho" id="rot071" style="top:625px">CÉNTIMOS DE COMISIÓN</div>
+        <div class="pieza" id="ticket" style="left:220px; top:720px" data-icono="doc"
+          data-args='["TU CAFÉ DE 2 €", [["PAGAS", "2,0000 €"], ["COMISIÓN", "−0,0000 €", "filaCom", "roja"], ["LE LLEGA AL BAR", "2,0000 €", "filaLlega", "verde"]]]'></div>
+
+        <div class="pieza" id="selloNiUno" style="left:260px; top:1085px"><div class="sello s50" style="color:#2f8f6b; border-color:#2f8f6b">NI UN CÉNTIMO</div></div>
+
+        <!-- F: part of it goes to your bank, the interchange fee -->
+        <div class="pieza" id="chipQuien" style="left:248px; top:466px"><div class="chip blanco">¿QUIÉN SE LAS QUEDA?</div></div>
+        <div class="pieza" id="bancoF" style="left:70px; top:640px" data-icono="edificio" data-args='["BANCO DEL BAR", "#fffaf0", 300]'></div>
+        <div class="pieza" id="tuBancoF" style="left:616px; top:640px" data-icono="edificio" data-args='["TU BANCO", "#f2b705", 300]'></div>
+        <div class="pieza" id="flechaF" style="left:425px; top:830px" data-dibujo="flecha" data-args="[160]"></div>
+        <div class="pieza" id="monedaF" style="left:450px; top:670px" data-icono="moneda" data-args='["€", 110]'></div>
+        <div class="pieza" id="selloInter" style="left:196px; top:1010px"><div class="sello s44" style="color:#4a78c2; border-color:#4a78c2">TASA DE INTERCAMBIO</div></div>
+
+        <!-- G and H: the legal caps, in Europe and in Spain -->
+        <div class="pieza" id="docEU" style="left:90px; top:470px" data-icono="doc"
+          data-args='["EN EUROPA", [["DÉBITO", "0,2 %", "filaEUd"], ["CRÉDITO", "0,3 %", "filaEUc"]]]'></div>
+        <div class="pieza" id="selloTope" style="left:650px; top:540px" data-icono="sello" data-args='["TOPE", "#e5383b"]'></div>
+        <div class="pieza" id="docES" style="left:90px; top:790px" data-icono="doc"
+          data-args='["EN ESPAÑA", [["PAGOS DE HASTA 20 €", "", null, "fuerte"], ["DÉBITO", "0,1 %", "filaESd"], ["CRÉDITO", "0,2 %", "filaESc"]]]'></div>
+        <div class="pieza" id="selloMitad" style="left:560px; top:950px"><div class="sello s50" style="color:#2f8f6b; border-color:#2f8f6b">LA MITAD</div></div>
+
+        <!-- I: in your coffee, 0,2 cents at most for your bank -->
+        <div class="pieza cifra ancho" id="c02" style="top:480px">0,0</div>
+        <div class="pieza rotulo ancho" id="rot02" style="top:625px">CÉNTIMOS, COMO MUCHO</div>
+        <div class="pieza" id="tazaI" style="left:110px; top:720px" data-dibujo="taza" data-args="[250]"></div>
+        <div class="pieza" id="tarjetaI" style="left:110px; top:770px" data-dibujo="tarjeta" data-args='[260, "CRÉDITO", "#e5383b"]'></div>
+        <div class="pieza" id="selloDoble" style="left:352px; top:1070px"><div class="sello s50" style="color:#e5383b; border-color:#e5383b">EL DOBLE</div></div>
+        <div class="pieza" id="flechaI" style="left:410px; top:840px" data-dibujo="flecha" data-args="[170]"></div>
+        <div class="pieza" id="tuBancoI" style="left:616px; top:720px" data-icono="edificio" data-args='["TU BANCO", "#f2b705", 300]'></div>
+
+        <!-- J: the rest, shared by the bar's bank and the card network -->
+        <div class="pieza rotulo ancho" id="rotJ" style="top:470px">LA COMISIÓN DE TU CAFÉ: 0,71 CÉNTIMOS</div>
+        <div class="pieza" id="barraJ" style="left:90px; top:540px; width:900px">
+          <div class="barra"><div class="seg tu" style="width:28%">TU BANCO</div><div class="seg resto" style="width:72%">EL RESTO</div></div>
+        </div>
+        <div class="pieza rotulo grande" id="rotJ1" style="left:90px; top:690px; width:252px">≤ 0,2</div>
+        <div class="pieza rotulo grande" id="rotJ2" style="left:342px; top:690px; width:648px">≈ 0,5</div>
+        <div class="pieza" id="bancoJ" style="left:110px; top:820px" data-icono="edificio" data-args='["BANCO DEL BAR", "#fffaf0", 280]'></div>
+        <div class="pieza cifra media" id="masJ" style="left:470px; top:900px">+</div>
+        <div class="pieza" id="redJ" style="left:600px; top:830px" data-dibujo="red" data-args="[280]"></div>
+        <div class="pieza rotulo" id="rotRed" style="left:540px; top:1090px; width:400px">RED DE LA TARJETA</div>
+
+        <!-- K: no surcharge for paying by card -->
+        <div class="pieza" id="chipRegla" style="left:378px; top:466px"><div class="chip blanco">OTRA REGLA</div></div>
+        <div class="pieza" id="tarjetaK" style="left:110px; top:640px" data-dibujo="tarjeta" data-args="[330]"></div>
+        <div class="pieza" id="tachadoK" style="left:530px; top:560px" data-icono="tachado" data-args="[380]"></div>
+        <div class="pieza" id="chipRecargo" style="left:592px; top:712px"><div class="chip rojo">RECARGO</div></div>
+        <div class="pieza" id="selloSin" style="left:241px; top:1000px" data-icono="sello" data-args='["SIN RECARGO", "#2f8f6b"]'></div>
+
+        <!-- L, M and N: the whole country in three months, and the closing question -->
+        <div class="pieza" id="chipToda" style="left:274px; top:466px"><div class="chip blanco">¿Y EN TODA ESPAÑA?</div></div>
+        <div class="pieza" id="chipAbril" style="left:196px; top:466px"><div class="chip">DE ABRIL A JUNIO DE 2026</div></div>
+        <div class="pieza cifra media ancho" id="c572" style="top:610px">0</div>
+        <div class="pieza rotulo dos ancho" id="rot572" style="top:725px">PAGOS CON TARJETA<br />EN BARES Y RESTAURANTES</div>
+        <div class="pieza cifra media roja ancho" id="c355" style="top:890px">0 €</div>
+        <div class="pieza rotulo rojo ancho" id="rot355" style="top:1005px">EN COMISIONES</div>
+        <div class="pieza" id="selloCent" style="left:228px; top:1090px"><div class="sello s44" style="color:#1d2a44; border-color:#1d2a44">CÉNTIMO A CÉNTIMO</div></div>
+        <div class="pieza" id="chipFin" style="left:132px; top:1250px"><div class="chip" style="font-size:36px">¿MÁS O MENOS DE LO QUE PENSABAS?</div></div>
+      </div>
+      <div id="gancho" class="clip" data-start="0" data-duration="72.8" data-track-index="2"></div>
+      <div id="note" class="clip" data-start="0" data-duration="72.8" data-track-index="3"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="72.8"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="72.8" data-track-index="4" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 71.52, "lines": [{"id": "l1", "s": 0.15, "e": 2.111, "words": [{"w": "Tu", "s": 0.15, "e": 0.25, "key": false}, {"w": "café", "s": 0.25, "e": 0.45, "key": false}, {"w": "con", "s": 0.45, "e": 0.68, "key": false}, {"w": "tarjeta", "s": 0.68, "e": 1.15, "key": false}, {"w": "tiene", "s": 1.31, "e": 1.59, "key": false}, {"w": "peaje.", "s": 1.59, "e": 2.111, "key": true}]}, {"id": "l2", "s": 2.111, "e": 7.87, "words": [{"w": "No", "s": 2.111, "e": 2.32, "key": false}, {"w": "lo", "s": 2.32, "e": 2.43, "key": false}, {"w": "pagas", "s": 2.43, "e": 2.64, "key": false}, {"w": "tú:", "s": 2.77, "e": 2.98, "key": false}, {"w": "lo", "s": 2.98, "e": 3.19, "key": false}, {"w": "paga", "s": 3.19, "e": 3.44, "key": false}, {"w": "el", "s": 3.44, "e": 3.56, "key": false}, {"w": "bar.", "s": 3.57, "e": 3.975, "key": false}, {"w": "¿Y", "s": 3.975, "e": 4.11, "key": false}, {"w": "cuánto", "s": 4.29, "e": 4.74, "key": false}, {"w": "suma", "s": 4.74, "e": 5.0, "key": true}, {"w": "en", "s": 5, "e": 5.24, "key": false}, {"w": "toda", "s": 5.24, "e": 5.46, "key": false}, {"w": "España?", "s": 5.5, "e": 6.15, "key": false}, {"w": "Te", "s": 6.31, "e": 6.39, "key": false}, {"w": "lo", "s": 6.39, "e": 6.58, "key": false}, {"w": "digo", "s": 6.58, "e": 6.88, "key": false}, {"w": "al", "s": 6.88, "e": 7.26, "key": false}, {"w": "final.", "s": 7.26, "e": 7.87, "key": false}]}, {"id": "l3", "s": 8.1, "e": 10.7, "words": [{"w": "Imagina", "s": 8.1, "e": 8.31, "key": false}, {"w": "un", "s": 8.31, "e": 8.41, "key": false}, {"w": "café", "s": 8.41, "e": 8.61, "key": false}, {"w": "de", "s": 8.61, "e": 8.69, "key": false}, {"w": "2", "s": 8.72, "e": 8.74, "key": false}, {"w": "euros,", "s": 8.85, "e": 9.21, "key": false}, {"w": "pagado", "s": 9.29, "e": 9.52, "key": false}, {"w": "con", "s": 9.52, "e": 9.64, "key": false}, {"w": "tarjeta", "s": 9.64, "e": 10.0, "key": false}, {"w": "de", "s": 10, "e": 10.03, "key": false}, {"w": "débito.", "s": 10.26, "e": 10.7, "key": true}]}, {"id": "l4", "s": 10.7, "e": 16.06, "words": [{"w": "Al", "s": 10.7, "e": 10.84, "key": false}, {"w": "bar", "s": 10.84, "e": 11.04, "key": false}, {"w": "no", "s": 11.1, "e": 11.19, "key": false}, {"w": "le", "s": 11.19, "e": 11.35, "key": false}, {"w": "llegan", "s": 11.35, "e": 11.76, "key": false}, {"w": "los", "s": 11.76, "e": 11.92, "key": false}, {"w": "2", "s": 11.92, "e": 12.3, "key": false}, {"w": "euros:", "s": 12.3, "e": 12.68, "key": false}, {"w": "su", "s": 12.81, "e": 12.91, "key": false}, {"w": "banco", "s": 13.14, "e": 13.36, "key": false}, {"w": "le", "s": 13.36, "e": 13.49, "key": false}, {"w": "cobra", "s": 13.49, "e": 13.73, "key": false}, {"w": "una", "s": 13.81, "e": 13.82, "key": false}, {"w": "comisión,", "s": 13.88, "e": 14.66, "key": false}, {"w": "la", "s": 14.66, "e": 14.79, "key": false}, {"w": "tasa", "s": 14.79, "e": 15.04, "key": false}, {"w": "de", "s": 15.04, "e": 15.22, "key": false}, {"w": "descuento.", "s": 15.46, "e": 16.06, "key": true}]}, {"id": "l5", "s": 16.16, "e": 22.64, "words": [{"w": "Cada", "s": 16.16, "e": 16.37, "key": false}, {"w": "bar", "s": 16.53, "e": 16.63, "key": false}, {"w": "negocia", "s": 16.63, "e": 17.1, "key": true}, {"w": "la", "s": 17.13, "e": 17.17, "key": false}, {"w": "suya.", "s": 17.45, "e": 17.86, "key": false}, {"w": "Según", "s": 17.9, "e": 18.09, "key": false}, {"w": "el", "s": 18.09, "e": 18.32, "key": false}, {"w": "Banco", "s": 18.32, "e": 18.55, "key": false}, {"w": "de", "s": 18.55, "e": 18.66, "key": false}, {"w": "España,", "s": 18.66, "e": 19.11, "key": false}, {"w": "la", "s": 19.11, "e": 19.22, "key": false}, {"w": "media", "s": 19.22, "e": 19.51, "key": false}, {"w": "en", "s": 19.51, "e": 19.61, "key": false}, {"w": "bares", "s": 19.61, "e": 19.96, "key": false}, {"w": "y", "s": 19.96, "e": 20.04, "key": false}, {"w": "restaurantes", "s": 20.04, "e": 20.75, "key": false}, {"w": "es", "s": 20.75, "e": 21.01, "key": false}, {"w": "un", "s": 21.01, "e": 21.2, "key": false}, {"w": "0,36%.", "s": 21.2, "e": 22.64, "key": false}]}, {"id": "l6", "s": 22.64, "e": 29.157, "words": [{"w": "En", "s": 22.64, "e": 23.02, "key": false}, {"w": "tu", "s": 23.02, "e": 23.14, "key": false}, {"w": "café,", "s": 23.14, "e": 23.54, "key": false}, {"w": "eso", "s": 23.54, "e": 23.63, "key": false}, {"w": "son", "s": 23.86, "e": 23.99, "key": false}, {"w": "7", "s": 24.05, "e": 24.21, "key": false}, {"w": "décimas", "s": 24.21, "e": 24.5, "key": true}, {"w": "de", "s": 24.6, "e": 24.81, "key": false}, {"w": "céntimo.", "s": 24.81, "e": 25.55, "key": false}, {"w": "Al", "s": 25.55, "e": 25.66, "key": false}, {"w": "bar", "s": 25.66, "e": 25.82, "key": false}, {"w": "le", "s": 25.83, "e": 25.94, "key": false}, {"w": "llega", "s": 25.94, "e": 26.14, "key": false}, {"w": "casi", "s": 26.21, "e": 26.42, "key": false}, {"w": "todo:", "s": 26.42, "e": 26.72, "key": false}, {"w": "no", "s": 26.86, "e": 26.88, "key": false}, {"w": "le", "s": 26.88, "e": 27.12, "key": false}, {"w": "falta", "s": 27.12, "e": 27.52, "key": false}, {"w": "ni", "s": 27.52, "e": 27.68, "key": false}, {"w": "un", "s": 27.68, "e": 27.84, "key": false}, {"w": "céntimo", "s": 27.84, "e": 28.37, "key": false}, {"w": "entero.", "s": 28.42, "e": 29.157, "key": false}]}, {"id": "l7", "s": 29.157, "e": 33.71, "words": [{"w": "¿Y", "s": 29.157, "e": 29.28, "key": false}, {"w": "quién", "s": 29.28, "e": 29.68, "key": false}, {"w": "se", "s": 29.68, "e": 29.75, "key": false}, {"w": "las", "s": 29.98, "e": 30.08, "key": false}, {"w": "queda?", "s": 30.08, "e": 30.62, "key": false}, {"w": "Una", "s": 30.73, "e": 30.88, "key": false}, {"w": "parte", "s": 30.88, "e": 31.025, "key": false}, {"w": "va", "s": 31.025, "e": 31.17, "key": false}, {"w": "a", "s": 31.17, "e": 31.21, "key": false}, {"w": "tu", "s": 31.21, "e": 31.27, "key": false}, {"w": "banco:", "s": 31.37, "e": 32.08, "key": false}, {"w": "es", "s": 32.08, "e": 32.16, "key": false}, {"w": "la", "s": 32.16, "e": 32.22, "key": false}, {"w": "tasa", "s": 32.45, "e": 32.52, "key": false}, {"w": "de", "s": 32.52, "e": 32.67, "key": false}, {"w": "intercambio.", "s": 32.67, "e": 33.71, "key": true}]}, {"id": "l8", "s": 33.77, "e": 37.94, "words": [{"w": "Esa", "s": 33.77, "e": 33.94, "key": false}, {"w": "sí", "s": 33.94, "e": 34.1, "key": false}, {"w": "tiene", "s": 34.1, "e": 34.48, "key": false}, {"w": "tope", "s": 34.48, "e": 34.78, "key": true}, {"w": "por", "s": 34.78, "e": 35.01, "key": false}, {"w": "ley:", "s": 35.01, "e": 35.46, "key": false}, {"w": "en", "s": 35.51, "e": 35.61, "key": false}, {"w": "Europa,", "s": 35.61, "e": 36.23, "key": false}, {"w": "un", "s": 36.23, "e": 36.34, "key": false}, {"w": "0,2%", "s": 36.51, "e": 37.05, "key": false}, {"w": "con", "s": 37.07, "e": 37.28, "key": false}, {"w": "débito.", "s": 37.29, "e": 37.94, "key": false}]}, {"id": "l9", "s": 38.11, "e": 42.75, "words": [{"w": "Y", "s": 38.11, "e": 38.193, "key": false}, {"w": "en", "s": 38.193, "e": 38.36, "key": false}, {"w": "España,", "s": 38.6, "e": 38.92, "key": false}, {"w": "en", "s": 38.97, "e": 39.07, "key": false}, {"w": "pagos", "s": 39.11, "e": 39.48, "key": false}, {"w": "de", "s": 39.48, "e": 39.51, "key": false}, {"w": "20", "s": 39.67, "e": 40.07, "key": false}, {"w": "euros", "s": 40.07, "e": 40.24, "key": false}, {"w": "o", "s": 40.24, "e": 40.62, "key": false}, {"w": "menos,", "s": 40.62, "e": 41.0, "key": false}, {"w": "la", "s": 41.04, "e": 41.19, "key": false}, {"w": "mitad:", "s": 41.19, "e": 41.71, "key": true}, {"w": "un", "s": 41.71, "e": 41.86, "key": false}, {"w": "0,1%.", "s": 41.86, "e": 42.75, "key": false}]}, {"id": "l10", "s": 42.75, "e": 48.86, "words": [{"w": "En", "s": 42.75, "e": 42.9, "key": false}, {"w": "tu", "s": 42.9, "e": 43.0, "key": false}, {"w": "café,", "s": 43.06, "e": 43.46, "key": false}, {"w": "como", "s": 43.52, "e": 43.74, "key": false}, {"w": "mucho,", "s": 43.81, "e": 44.44, "key": true}, {"w": "2", "s": 44.47, "e": 44.64, "key": false}, {"w": "décimas", "s": 44.64, "e": 44.84, "key": false}, {"w": "de", "s": 44.98, "e": 45.04, "key": false}, {"w": "céntimo", "s": 45.16, "e": 45.48, "key": false}, {"w": "para", "s": 45.53, "e": 45.76, "key": false}, {"w": "tu", "s": 45.76, "e": 45.89, "key": false}, {"w": "banco.", "s": 45.89, "e": 46.4, "key": false}, {"w": "Con", "s": 46.4, "e": 46.59, "key": false}, {"w": "tarjeta", "s": 46.59, "e": 47.03, "key": false}, {"w": "de", "s": 47.03, "e": 47.18, "key": false}, {"w": "crédito,", "s": 47.18, "e": 47.74, "key": false}, {"w": "el", "s": 47.74, "e": 47.79, "key": false}, {"w": "tope", "s": 48, "e": 48.13, "key": false}, {"w": "es", "s": 48.13, "e": 48.26, "key": false}, {"w": "el", "s": 48.26, "e": 48.39, "key": false}, {"w": "doble.", "s": 48.39, "e": 48.86, "key": false}]}, {"id": "l11", "s": 48.86, "e": 53.52, "words": [{"w": "El", "s": 48.86, "e": 49.21, "key": false}, {"w": "resto,", "s": 49.21, "e": 49.67, "key": false}, {"w": "como", "s": 49.67, "e": 49.82, "key": false}, {"w": "medio", "s": 49.82, "e": 49.99, "key": false}, {"w": "céntimo,", "s": 50.06, "e": 50.56, "key": false}, {"w": "se", "s": 50.61, "e": 50.71, "key": false}, {"w": "lo", "s": 50.71, "e": 50.84, "key": false}, {"w": "reparten", "s": 50.84, "e": 51.35, "key": true}, {"w": "el", "s": 51.35, "e": 51.48, "key": false}, {"w": "banco", "s": 51.48, "e": 51.72, "key": false}, {"w": "del", "s": 51.79, "e": 51.94, "key": false}, {"w": "bar", "s": 51.94, "e": 52.1, "key": false}, {"w": "y", "s": 52.1, "e": 52.26, "key": false}, {"w": "la", "s": 52.26, "e": 52.37, "key": false}, {"w": "red", "s": 52.37, "e": 52.56, "key": false}, {"w": "de", "s": 52.56, "e": 52.64, "key": false}, {"w": "la", "s": 52.68, "e": 52.82, "key": false}, {"w": "tarjeta.", "s": 52.82, "e": 53.52, "key": false}]}, {"id": "l12", "s": 53.52, "e": 57.79, "words": [{"w": "Y", "s": 53.52, "e": 53.564, "key": false}, {"w": "otra", "s": 53.564, "e": 53.74, "key": false}, {"w": "regla:", "s": 53.84, "e": 54.57, "key": false}, {"w": "el", "s": 54.57, "e": 54.75, "key": false}, {"w": "bar", "s": 54.75, "e": 54.92, "key": false}, {"w": "no", "s": 54.98, "e": 55.04, "key": false}, {"w": "puede", "s": 55.16, "e": 55.38, "key": false}, {"w": "cobrarte", "s": 55.42, "e": 55.9, "key": false}, {"w": "un", "s": 55.9, "e": 56.03, "key": false}, {"w": "recargo", "s": 56.03, "e": 56.49, "key": true}, {"w": "por", "s": 56.49, "e": 56.64, "key": false}, {"w": "pagar", "s": 56.64, "e": 56.86, "key": false}, {"w": "con", "s": 57.17, "e": 57.22, "key": false}, {"w": "tarjeta.", "s": 57.22, "e": 57.79, "key": false}]}, {"id": "l13", "s": 57.99, "e": 64.33, "words": [{"w": "¿Y", "s": 57.99, "e": 58.037, "key": false}, {"w": "en", "s": 58.037, "e": 58.13, "key": false}, {"w": "toda", "s": 58.13, "e": 58.4, "key": false}, {"w": "España?", "s": 58.4, "e": 58.94, "key": false}, {"w": "De", "s": 58.94, "e": 59.04, "key": false}, {"w": "abril", "s": 59.21, "e": 59.41, "key": false}, {"w": "a", "s": 59.43, "e": 59.49, "key": false}, {"w": "junio,", "s": 59.49, "e": 60.02, "key": false}, {"w": "en", "s": 60.09, "e": 60.2, "key": false}, {"w": "bares", "s": 60.32, "e": 60.5, "key": false}, {"w": "y", "s": 60.5, "e": 60.53, "key": false}, {"w": "restaurantes", "s": 60.58, "e": 61.42, "key": false}, {"w": "se", "s": 61.42, "e": 61.54, "key": false}, {"w": "pagó", "s": 61.54, "e": 61.77, "key": false}, {"w": "con", "s": 61.77, "e": 61.96, "key": false}, {"w": "tarjeta", "s": 61.96, "e": 62.37, "key": false}, {"w": "más", "s": 62.38, "e": 62.54, "key": false}, {"w": "de", "s": 62.59, "e": 62.68, "key": false}, {"w": "570", "s": 62.68, "e": 63.23, "key": false}, {"w": "millones", "s": 63.23, "e": 63.72, "key": false}, {"w": "de", "s": 63.72, "e": 63.82, "key": false}, {"w": "veces.", "s": 64.15, "e": 64.33, "key": true}]}, {"id": "l14", "s": 64.37, "e": 67.78, "words": [{"w": "Y", "s": 64.37, "e": 64.422, "key": false}, {"w": "esas", "s": 64.422, "e": 64.63, "key": false}, {"w": "comisiones", "s": 64.63, "e": 65.36, "key": true}, {"w": "sumaron", "s": 65.56, "e": 65.81, "key": false}, {"w": "más", "s": 65.86, "e": 66.03, "key": false}, {"w": "de", "s": 66.03, "e": 66.16, "key": false}, {"w": "35", "s": 66.16, "e": 66.51, "key": false}, {"w": "millones", "s": 66.67, "e": 67.08, "key": false}, {"w": "de", "s": 67.08, "e": 67.24, "key": false}, {"w": "euros.", "s": 67.24, "e": 67.78, "key": false}]}, {"id": "l15", "s": 67.78, "e": 71.08, "words": [{"w": "¿Pensabas", "s": 67.78, "e": 68.23, "key": false}, {"w": "que", "s": 68.46, "e": 68.51, "key": false}, {"w": "era", "s": 68.51, "e": 68.71, "key": false}, {"w": "más", "s": 68.71, "e": 68.9, "key": false}, {"w": "o", "s": 68.91, "e": 68.97, "key": false}, {"w": "menos?", "s": 68.97, "e": 69.48, "key": false}, {"w": "Te", "s": 69.48, "e": 69.65, "key": false}, {"w": "leo", "s": 69.65, "e": 69.83, "key": false}, {"w": "en", "s": 69.85, "e": 69.96, "key": false}, {"w": "los", "s": 69.96, "e": 70.15, "key": false}, {"w": "comentarios.", "s": 70.15, "e": 71.08, "key": true}]}]}</script>
+    <script id="escena" type="application/json">
+      {
+        "momentos": [
+          { "id": "PAGAS", "clave": "pagas" },
+          { "id": "PAGA", "clave": "paga" },
+          { "id": "BAR", "clave": "bar" },
+          { "id": "CUANTO", "clave": "cuanto" },
+          { "id": "IMAGINA", "clave": "imagina" },
+          { "id": "EUROS3", "clave": "euros" },
+          { "id": "PAGADO", "clave": "pagado" },
+          { "id": "TARJETA3", "clave": "tarjeta" },
+          { "id": "DEBITO", "clave": "debito" },
+          { "id": "LLEGAN", "clave": "llegan" },
+          { "id": "BANCO4", "clave": "banco" },
+          { "id": "COMISION4", "clave": "comision" },
+          { "id": "DESCUENTO", "clave": "descuento" },
+          { "id": "NEGOCIA", "clave": "negocia" },
+          { "id": "SEGUN", "clave": "segun" },
+          { "id": "MEDIA", "clave": "media" },
+          { "id": "BARES5", "clave": "bares" },
+          { "id": "RESTAURANTES5", "clave": "restaurantes", "fin": true },
+          { "id": "CAFE6", "clave": "cafe" },
+          { "id": "DECIMAS6", "clave": "decimas" },
+          { "id": "LLEGA6", "clave": "llega" },
+          { "id": "ENTERO", "clave": "entero" },
+          { "id": "QUIEN", "clave": "quien" },
+          { "id": "PARTE", "clave": "parte" },
+          { "id": "BANCO7", "clave": "banco" },
+          { "id": "INTERCAMBIO", "clave": "intercambio" },
+          { "id": "TOPE", "clave": "tope" },
+          { "id": "LEY8", "clave": "ley" },
+          { "id": "EUROPA", "clave": "europa" },
+          { "id": "ESPANA9", "clave": "espana" },
+          { "id": "MITAD", "clave": "mitad" },
+          { "id": "CAFE10", "clave": "cafe" },
+          { "id": "MUCHO10", "clave": "mucho" },
+          { "id": "CREDITO10", "clave": "credito" },
+          { "id": "DOBLE", "clave": "doble" },
+          { "id": "RESTO", "clave": "resto" },
+          { "id": "MEDIO", "clave": "medio" },
+          { "id": "BANCO11", "clave": "banco" },
+          { "id": "RED", "clave": "red" },
+          { "id": "REGLA", "clave": "regla" },
+          { "id": "PUEDE", "clave": "puede" },
+          { "id": "RECARGO", "clave": "recargo" },
+          { "id": "TARJETA12", "clave": "tarjeta" },
+          { "id": "TODA13", "clave": "toda" },
+          { "id": "ABRIL", "clave": "abril" },
+          { "id": "PAGO13", "clave": "pago" },
+          { "id": "COMISIONES", "clave": "comisiones" },
+          { "id": "EUROS14", "clave": "euros" },
+          { "id": "PENSABAS", "clave": "pensabas" }
+        ],
+        "gancho": { "texto": "Tu café con tarjeta tiene peaje", "clave": "peaje" },
+        "piezas": [
+          { "id": "tazaA", "desde": 0.1, "hasta": "PAGA", "entra": "escala", "dura": 0.6 },
+          { "id": "tarjetaA", "desde": 0.6, "hasta": "PAGA", "entra": "der" },
+          { "id": "barA", "desde": "PAGA", "hasta": "IMAGINA", "entra": "escala" },
+          { "id": "selloBar", "desde": "BAR", "hasta": "IMAGINA", "entra": "sello" },
+          { "id": "chipCuanto", "desde": "CUANTO", "hasta": "IMAGINA", "entra": "baja" },
+
+          { "id": "rotB", "desde": "IMAGINA", "hasta": "LLEGAN", "entra": "baja" },
+          { "id": "tazaB", "desde": "IMAGINA", "hasta": "LLEGAN", "entra": "izq" },
+          { "id": "chipPrecio", "desde": "EUROS3", "hasta": "LLEGAN", "entra": "sello" },
+          { "id": "datafono", "desde": "PAGADO", "hasta": "LLEGAN", "entra": "der" },
+          { "id": "tarjetaB", "desde": "TARJETA3", "hasta": "LLEGAN", "entra": "sube" },
+
+          { "id": "barC", "desde": "LLEGAN", "hasta": "NEGOCIA", "entra": "der" },
+          { "id": "monedaC", "desde": "LLEGAN", "hasta": "NEGOCIA", "entra": "escala" },
+          { "id": "bancoC", "desde": "BANCO4", "hasta": "NEGOCIA", "entra": "izq" },
+          { "id": "flechaC", "desde": "BANCO4", "hasta": "NEGOCIA", "entra": "izq" },
+          { "id": "chipCom", "desde": "COMISION4", "hasta": "NEGOCIA", "entra": "sello" },
+          { "id": "selloDesc", "desde": "DESCUENTO", "hasta": "NEGOCIA", "entra": "sello" },
+
+          { "id": "selloNeg", "desde": "NEGOCIA", "hasta": "CAFE6", "entra": "sello" },
+          { "id": "bdeD", "desde": "SEGUN", "hasta": "MEDIA", "entra": "escala" },
+          { "id": "barD1", "desde": "MEDIA", "hasta": "CAFE6", "entra": "sube" },
+          { "id": "barD2", "desde": "BARES5", "hasta": "CAFE6", "entra": "sube" },
+          { "id": "barD3", "desde": "RESTAURANTES5", "hasta": "CAFE6", "entra": "sube" },
+          { "id": "c036", "desde": "RESTAURANTES5", "hasta": "CAFE6", "entra": "escala" },
+          { "id": "rot036", "desde": "RESTAURANTES5", "hasta": "CAFE6" },
+
+          { "id": "c071", "desde": "CAFE6", "hasta": "QUIEN", "entra": "escala" },
+          { "id": "rot071", "desde": "CAFE6", "hasta": "QUIEN" },
+          { "id": "ticket", "desde": "CAFE6", "hasta": "QUIEN", "entra": "sube" },
+          { "id": "selloNiUno", "desde": "ENTERO", "hasta": "QUIEN", "entra": "sello" },
+
+          { "id": "chipQuien", "desde": "QUIEN", "hasta": "TOPE", "entra": "baja" },
+          { "id": "bancoF", "desde": "QUIEN", "hasta": "TOPE", "entra": "izq" },
+          { "id": "flechaF", "desde": "PARTE", "hasta": "TOPE", "entra": "izq" },
+          { "id": "monedaF", "desde": "PARTE", "hasta": "TOPE", "entra": "escala" },
+          { "id": "tuBancoF", "desde": "BANCO7", "hasta": "TOPE", "entra": "der" },
+          { "id": "selloInter", "desde": "INTERCAMBIO", "hasta": "TOPE", "entra": "sello" },
+
+          { "id": "docEU", "desde": "TOPE", "hasta": "CAFE10", "entra": "izq" },
+          { "id": "selloTope", "desde": "LEY8", "hasta": "CAFE10", "entra": "sello" },
+          { "id": "docES", "desde": "ESPANA9", "hasta": "CAFE10", "entra": "izq" },
+          { "id": "selloMitad", "desde": "MITAD", "hasta": "CAFE10", "entra": "sello" },
+
+          { "id": "c02", "desde": "CAFE10", "hasta": "RESTO", "entra": "escala" },
+          { "id": "tazaI", "desde": "CAFE10", "hasta": "CREDITO10", "entra": "izq" },
+          { "id": "tarjetaI", "desde": "CREDITO10", "hasta": "RESTO", "entra": "izq" },
+          { "id": "selloDoble", "desde": "DOBLE", "hasta": "RESTO", "entra": "sello" },
+          { "id": "rot02", "desde": "MUCHO10", "hasta": "RESTO" },
+          { "id": "flechaI", "desde": "MUCHO10", "hasta": "RESTO", "entra": "izq" },
+          { "id": "tuBancoI", "desde": "MUCHO10", "hasta": "RESTO", "entra": "der" },
+
+          { "id": "rotJ", "desde": "RESTO", "hasta": "REGLA", "entra": "baja" },
+          { "id": "barraJ", "desde": "RESTO", "hasta": "REGLA", "entra": "izq" },
+          { "id": "rotJ1", "desde": "RESTO", "hasta": "REGLA", "entra": "sube" },
+          { "id": "rotJ2", "desde": "MEDIO", "hasta": "REGLA", "entra": "sube" },
+          { "id": "bancoJ", "desde": "BANCO11", "hasta": "REGLA", "entra": "sube" },
+          { "id": "masJ", "desde": "RED", "hasta": "REGLA", "entra": "escala" },
+          { "id": "redJ", "desde": "RED", "hasta": "REGLA", "entra": "sube" },
+          { "id": "rotRed", "desde": "RED", "hasta": "REGLA", "entra": "sube" },
+
+          { "id": "chipRegla", "desde": "REGLA", "hasta": "TODA13", "entra": "baja" },
+          { "id": "tarjetaK", "desde": "REGLA", "hasta": "TODA13", "entra": "izq" },
+          { "id": "chipRecargo", "desde": "PUEDE", "hasta": "TODA13", "entra": "escala" },
+          { "id": "tachadoK", "desde": "RECARGO", "hasta": "TODA13", "entra": "escala" },
+          { "id": "selloSin", "desde": "TARJETA12", "hasta": "TODA13", "entra": "sello" },
+
+          { "id": "chipToda", "desde": "TODA13", "hasta": "ABRIL", "entra": "baja" },
+          { "id": "chipAbril", "desde": "ABRIL", "entra": "escala" },
+          { "id": "c572", "desde": "PAGO13", "entra": "escala" },
+          { "id": "rot572", "desde": "PAGO13" },
+          { "id": "c355", "desde": "COMISIONES", "entra": "escala" },
+          { "id": "rot355", "desde": "COMISIONES" },
+          { "id": "selloCent", "desde": "EUROS14", "entra": "sello" },
+          { "id": "chipFin", "desde": "PENSABAS", "entra": "sube", "dura": 0.6 }
+        ],
+        "cifras": [
+          { "id": "c036", "desde": "RESTAURANTES5", "a": 0.36, "formato": "pct", "dec": 2, "dura": 1.0 },
+          { "id": "c071", "desde": "CAFE6", "a": 0.71, "formato": "numero", "dec": 2, "dura": 1.0 },
+          { "id": "filaCom", "desde": "DECIMAS6", "de": 0, "a": 0.0071, "dec": 4, "prefijo": "−", "dura": 1.0 },
+          { "id": "filaLlega", "desde": "LLEGA6", "de": 2, "a": 1.9929, "dec": 4, "dura": 1.0 },
+          { "id": "c02", "desde": "CAFE10", "a": 0.2, "formato": "numero", "dec": 1, "dura": 0.8 },
+          { "id": "c02", "desde": "DOBLE", "de": 0.2, "a": 0.4, "formato": "numero", "dec": 1, "dura": 0.8 },
+          { "id": "c572", "desde": "PAGO13", "a": 572029565, "formato": "numero", "dura": 1.8 },
+          { "id": "c355", "desde": "COMISIONES", "a": 35520000, "dura": 1.8 }
+        ],
+        "notas": [
+          { "texto": "Ejemplo: un café de 2 € pagado con una tarjeta de débito de particular", "desde": "IMAGINA" },
+          { "texto": "Banco de España: media con débito en restaurantes, cafeterías y bares, de abril a junio de 2026. Cada bar negocia la suya", "desde": "NEGOCIA" },
+          { "texto": "Ejemplo con esa media: 2 € × 0,3557 % = 0,71 céntimos (cálculo propio). Cada bar paga lo que haya negociado", "desde": "CAFE6" },
+          { "texto": "", "desde": "QUIEN" },
+          { "texto": "Reglamento (UE) 2015/751, artículos 3 y 4. Tarjetas de particulares", "desde": "TOPE" },
+          { "texto": "Ley 18/2014, artículo 11. Pagos en España con tarjetas de particulares, no de empresa", "desde": "ESPANA9" },
+          { "texto": "Cálculo propio: 2 € × 0,1 % = 0,2 céntimos. La media real en restaurantes fue algo menor, un 0,09 %", "desde": "CAFE10" },
+          { "texto": "Con crédito, en pagos de hasta 20 €, el tope es el 0,2 %: en un café de 2 €, 0,4 céntimos (cálculo propio)", "desde": "CREDITO10" },
+          { "texto": "Ley 18/2014, artículo 10: tasa de descuento = intercambio + red y procesamiento + margen del banco del bar", "desde": "RESTO" },
+          { "texto": "Ley 18/2014, artículo 12. Vale para las tarjetas de particulares", "desde": "REGLA" },
+          { "texto": "", "desde": "TODA13" },
+          { "texto": "Banco de España: tarjetas de particulares, en comercios de España, de abril a junio de 2026", "desde": "ABRIL" }
+        ],
+        "fondo": "claro",
+        "sonidos": [
+          { "tipo": "toque", "en": 0.15 },
+          { "tipo": "pop", "en": 0.65 },
+          { "tipo": "desliza", "en": "PAGA" },
+          { "tipo": "toque", "en": "BAR", "mas": 0.1 },
+          { "tipo": "brillo", "en": "CUANTO" },
+          { "tipo": "desliza", "en": "IMAGINA" },
+          { "tipo": "toque", "en": "EUROS3", "mas": 0.1 },
+          { "tipo": "desliza", "en": "PAGADO" },
+          { "tipo": "pagado", "en": "DEBITO", "mas": 0.3 },
+          { "tipo": "desliza", "en": "LLEGAN" },
+          { "tipo": "pop", "en": "BANCO4" },
+          { "tipo": "error", "en": "COMISION4" },
+          { "tipo": "toque", "en": "DESCUENTO", "mas": 0.1 },
+          { "tipo": "toque", "en": "NEGOCIA", "mas": 0.1 },
+          { "tipo": "pop", "en": "SEGUN" },
+          { "tipo": "pop", "en": "MEDIA" },
+          { "tipo": "pop", "en": "BARES5" },
+          { "tipo": "sube", "en": "RESTAURANTES5" },
+          { "tipo": "metal", "en": "CAFE6" },
+          { "tipo": "chip", "en": "DECIMAS6" },
+          { "tipo": "sube", "en": "LLEGA6" },
+          { "tipo": "toque", "en": "ENTERO", "mas": 0.1 },
+          { "tipo": "brillo", "en": "QUIEN" },
+          { "tipo": "desliza", "en": "PARTE" },
+          { "tipo": "pop", "en": "BANCO7" },
+          { "tipo": "toque", "en": "INTERCAMBIO", "mas": 0.1 },
+          { "tipo": "desliza", "en": "TOPE" },
+          { "tipo": "toque", "en": "LEY8", "mas": 0.1 },
+          { "tipo": "desliza", "en": "ESPANA9" },
+          { "tipo": "toque", "en": "MITAD", "mas": 0.1 },
+          { "tipo": "sube", "en": "CAFE10" },
+          { "tipo": "metal", "en": "MUCHO10" },
+          { "tipo": "desliza", "en": "CREDITO10" },
+          { "tipo": "toque", "en": "DOBLE", "mas": 0.1 },
+          { "tipo": "desliza", "en": "RESTO" },
+          { "tipo": "pop", "en": "BANCO11" },
+          { "tipo": "pop", "en": "RED" },
+          { "tipo": "chip", "en": "REGLA" },
+          { "tipo": "pop", "en": "PUEDE" },
+          { "tipo": "error", "en": "RECARGO" },
+          { "tipo": "toque", "en": "TARJETA12", "mas": 0.1 },
+          { "tipo": "brillo", "en": "TODA13" },
+          { "tipo": "sube", "en": "PAGO13" },
+          { "tipo": "metal", "en": "COMISIONES" },
+          { "tipo": "toque", "en": "EUROS14", "mas": 0.1 },
+          { "tipo": "pop", "en": "PENSABAS" }
+        ]
+      }
+    </script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 72.8 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import { crearDinero, COLOR } from "./comun/dinero.js";
+      const $ = (id) => document.getElementById(id);
+      const K = COLOR;
+
+      // ---------- drawings this video needs, in the account's flat style (navy outline, solid offset shadow) ----------
+      // they are built before the engine looks for the ids of pieces and figures
+      const DIBUJOS = {
+        // a coffee cup on its saucer, with steam (class "vapor", moved by renderAt)
+        taza: (w = 300) => {
+          const asa = "M246 118 C300 118 300 198 236 198";
+          const cuerpo = "M46 92 H254 L240 202 Q236 234 204 234 H96 Q64 234 60 202 Z";
+          return `<svg width="${w}" height="${Math.round((w * 340) / 320)}" viewBox="0 -40 320 340">
+            <g transform="translate(12 12)" fill="${K.tinta}" stroke="${K.tinta}">
+              <ellipse cx="150" cy="250" rx="140" ry="24" stroke-width="8"/>
+              <path d="${asa}" fill="none" stroke-width="30" stroke-linecap="round"/>
+              <path d="${cuerpo}" stroke-width="8"/></g>
+            <ellipse cx="150" cy="250" rx="140" ry="24" fill="${K.blanco}" stroke="${K.tinta}" stroke-width="8"/>
+            <path d="${asa}" fill="none" stroke="${K.tinta}" stroke-width="30" stroke-linecap="round"/>
+            <path d="${asa}" fill="none" stroke="${K.blanco}" stroke-width="13" stroke-linecap="round"/>
+            <path d="${cuerpo}" fill="${K.blanco}"/>
+            <path d="M52 132 H248 L245 158 H55 Z" fill="${K.rojo}"/>
+            <path d="${cuerpo}" fill="none" stroke="${K.tinta}" stroke-width="8" stroke-linejoin="round"/>
+            <ellipse cx="150" cy="94" rx="102" ry="14" fill="#7a4b2a" stroke="${K.tinta}" stroke-width="6"/>
+            <g class="vapor" fill="none" stroke="${K.tinta}" stroke-width="9" stroke-linecap="round" opacity="0.4">
+              <path d="M112 66 q-14 -18 0 -36 q14 -18 0 -36"/><path d="M152 60 q-14 -18 0 -36 q14 -18 0 -36"/><path d="M192 66 q-14 -18 0 -36 q14 -18 0 -36"/></g></svg>`;
+        },
+
+        // a payment card with no brand: chip, contactless waves and hidden digits
+        tarjeta: (w = 300, texto = "DÉBITO", color = K.azul) => {
+          const puntos = [0, 1].map((g) => [0, 1, 2, 3].map((i) => `<circle cx="${46 + g * 104 + i * 20}" cy="172" r="6.5" fill="#fff"/>`).join("")).join("");
+          return `<svg width="${w}" height="${Math.round((w * 232) / 356)}" viewBox="0 0 356 232">
+            <rect x="16" y="16" width="336" height="212" rx="24" fill="${K.tinta}"/>
+            <rect x="4" y="4" width="336" height="212" rx="24" fill="${color}" stroke="${K.tinta}" stroke-width="8"/>
+            <rect x="40" y="72" width="64" height="50" rx="9" fill="${K.oro}" stroke="${K.tinta}" stroke-width="5"/>
+            <path d="M40 97 H104 M72 72 V122" stroke="${K.tinta}" stroke-width="4"/>
+            <g fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round"><path d="M136 82 q12 15 0 30"/><path d="M152 74 q19 23 0 46"/><path d="M168 66 q26 31 0 62"/></g>
+            ${puntos}
+            <text x="316" y="44" text-anchor="end" dominant-baseline="central" font-family="Inter" font-weight="800" font-size="26" letter-spacing="3" fill="#fff">${texto}</text></svg>`;
+        },
+
+        // a card terminal: the screen (dfS, dfT) shows the price and then "PAGADO"
+        datafono: (w = 240) => {
+          const teclas = [];
+          for (let r = 0; r < 4; r++) for (let c = 0; c < 3; c++) {
+            const f = r === 3 ? [K.rojo, K.oro, K.verde][c] : K.papel;
+            teclas.push(`<rect x="${34 + c * 62}" y="${154 + r * 50}" width="50" height="38" rx="9" fill="${f}" stroke="${K.tinta}" stroke-width="5"/>`);
+          }
+          return `<svg width="${w}" height="${Math.round((w * 384) / 260)}" viewBox="0 0 260 384">
+            <rect x="16" y="16" width="228" height="360" rx="30" fill="${K.tinta}"/>
+            <rect x="4" y="4" width="228" height="360" rx="30" fill="${K.blanco}" stroke="${K.tinta}" stroke-width="8"/>
+            <rect id="dfS" x="28" y="30" width="180" height="100" rx="12" fill="${K.tinta}"/>
+            <text id="dfT" x="118" y="82" text-anchor="middle" dominant-baseline="central" font-family="Archivo Black" font-size="40" fill="${K.oro}">2,00 €</text>
+            ${teclas.join("")}</svg>`;
+        },
+
+        // a bar front: sign, striped awning, window and door
+        bar: (w = 400, letrero = "BAR") => {
+          const franjas = Array.from({ length: 8 }, (_, i) => {
+            const x = 8 + i * 50.5, c = i % 2 ? K.blanco : K.rojo;
+            return `<rect x="${x}" y="110" width="50.5" height="56" fill="${c}"/><path d="M${x} 166 a25.25 25.25 0 0 0 50.5 0 Z" fill="${c}" stroke="${K.tinta}" stroke-width="6" stroke-linejoin="round"/>`;
+          }).join("");
+          const tam = letrero.length > 3 ? 34 : 46;
+          return `<svg width="${w}" height="${Math.round((w * 404) / 424)}" viewBox="0 0 424 404">
+            <g transform="translate(12 12)" fill="${K.tinta}"><rect x="20" y="96" width="380" height="290"/><rect x="120" y="26" width="180" height="70" rx="12"/><rect x="8" y="110" width="404" height="56"/></g>
+            <rect x="20" y="96" width="380" height="290" fill="${K.blanco}" stroke="${K.tinta}" stroke-width="8"/>
+            <rect x="120" y="26" width="180" height="70" rx="12" fill="${K.tinta}" stroke="${K.tinta}" stroke-width="8"/>
+            <text x="210" y="63" text-anchor="middle" dominant-baseline="central" font-family="Archivo Black" font-size="${tam}" letter-spacing="2" fill="${K.oro}">${letrero}</text>
+            <rect x="48" y="214" width="190" height="130" rx="8" fill="${K.azul}" stroke="${K.tinta}" stroke-width="6"/>
+            <path d="M74 326 L128 234" stroke="#fff" stroke-width="12" opacity="0.35" stroke-linecap="round"/>
+            <rect x="268" y="214" width="104" height="172" fill="${K.oro}" stroke="${K.tinta}" stroke-width="6"/>
+            <circle cx="352" cy="304" r="8" fill="${K.tinta}"/>
+            ${franjas}
+            <rect x="8" y="110" width="404" height="56" fill="none" stroke="${K.tinta}" stroke-width="7"/></svg>`;
+        },
+
+        // a thick navy arrow pointing right
+        flecha: (w = 160) => `<svg width="${w}" height="${Math.round(w / 2)}" viewBox="0 0 170 85">
+          <path d="M14 42 H134" stroke="${K.tinta}" stroke-width="16" stroke-linecap="round"/>
+          <path d="M108 14 L152 42 L108 70" fill="none" stroke="${K.tinta}" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+
+        // the card network: connected nodes on a card
+        red: (w = 280) => {
+          const n = [[70, 70], [234, 62], [154, 132], [66, 198], [244, 196]];
+          const lados = [[0, 2], [1, 2], [2, 3], [2, 4], [0, 3], [1, 4], [0, 1]];
+          const colores = [K.azul, K.rojo, K.oro, K.verde, K.azul];
+          return `<svg width="${w}" height="${Math.round((w * 264) / 324)}" viewBox="0 0 324 264">
+            <rect x="16" y="16" width="300" height="240" rx="24" fill="${K.tinta}"/>
+            <rect x="4" y="4" width="300" height="240" rx="24" fill="${K.blanco}" stroke="${K.tinta}" stroke-width="8"/>
+            ${lados.map(([a, b]) => `<line x1="${n[a][0]}" y1="${n[a][1]}" x2="${n[b][0]}" y2="${n[b][1]}" stroke="${K.tinta}" stroke-width="7"/>`).join("")}
+            ${n.map(([x, y], i) => `<circle cx="${x}" cy="${y}" r="${i === 2 ? 30 : 22}" fill="${colores[i]}" stroke="${K.tinta}" stroke-width="6"/>`).join("")}</svg>`;
+        },
+      };
+      for (const el of document.querySelectorAll("[data-dibujo]")) el.innerHTML = DIBUJOS[el.dataset.dibujo](...JSON.parse(el.dataset.args || "[]"));
+      const vapores = [...document.querySelectorAll(".vapor")];
+
+      // ---------- the engine ----------
+      const C = crearDinero();
+      const { T, ramp, clamp } = C;
+      const filaClase = (id, clase, on) => { const b = $(id); if (b) b.parentElement.classList.toggle(clase, on); };
+
+      function renderAt(t) {
+        // steam rises and fades in a loop on every cup
+        vapores.forEach((v, i) => {
+          const k = (t * 0.7 + i * 0.33) % 1;
+          v.setAttribute("transform", `translate(0 ${-14 * k})`);
+          v.setAttribute("opacity", (0.45 * Math.sin(Math.PI * k)).toFixed(3));
+        });
+
+        // A: the cup and the card float under the hook
+        C.mover("tazaA", { y: 6 * Math.sin(t * 2.2) });
+        C.mover("tarjetaA", { y: 6 * Math.sin(t * 2.2 + 1.2), r: -12 });
+        C.mover("barA", { y: 5 * Math.sin(t * 2) });
+
+        // B: the card taps the terminal on "débito" and the screen says it is paid
+        const tap = ramp(t, T.DEBITO - 0.25, T.DEBITO + 0.15);
+        C.mover("tarjetaB", { x: 30 * tap, y: -120 * tap, r: -8 * tap });
+        const pagado = t >= T.DEBITO + 0.3;
+        $("dfS").setAttribute("fill", pagado ? K.verde : K.tinta);
+        $("dfT").textContent = pagado ? "PAGADO" : "2,00 €";
+        $("dfT").setAttribute("font-size", pagado ? 34 : 40);
+        $("dfT").setAttribute("fill", pagado ? "#fff" : K.oro);
+        C.mover("tazaB", { y: 5 * Math.sin(t * 2.1) });
+
+        // C: the coin travels from the bar's bank towards the bar
+        const viaje = ramp(t, T.BANCO4, T.BANCO4 + 1.2);
+        C.mover("monedaC", { x: -20 + 40 * viaje, y: 5 * Math.sin(t * 3) });
+
+        // D: the three bars bob a little
+        ["barD1", "barD2", "barD3"].forEach((id, i) => C.mover(id, { y: 4 * Math.sin(t * 2 + i) }));
+
+        // E: the receipt row of what reaches the bar lights up while it counts down
+        filaClase("filaLlega", "marca", t >= T.LLEGA6);
+
+        // F: a coin goes from the bar's bank to your bank
+        const pasa = ramp(t, T.PARTE, T.BANCO7 + 0.5);
+        C.mover("monedaF", { x: -30 + 70 * pasa, y: 5 * Math.sin(t * 3) });
+
+        // G and H: the row the voice talks about lights up
+        filaClase("filaEUd", "marca", t >= T.EUROPA && t < T.ESPANA9);
+        filaClase("filaESd", "marca", t >= T.MITAD);
+
+        // I: the cup and your bank float
+        C.mover("tazaI", { y: 5 * Math.sin(t * 2.2) });
+        C.mover("tuBancoI", { y: 5 * Math.sin(t * 2 + 1) });
+        C.mover("tarjetaI", { y: 5 * Math.sin(t * 2.2), r: -6 });
+
+        // K: the card leans; the surcharge chip shakes when it is crossed out
+        C.mover("tarjetaK", { y: 6 * Math.sin(t * 2.2), r: -6 });
+        const tiembla = clamp((t - T.RECARGO) / 0.4) * (1 - clamp((t - T.RECARGO - 0.4) / 0.3));
+        C.mover("chipRecargo", { x: 8 * Math.sin(t * 60) * tiembla });
+
+        C.pintar(t);
+      }
+
+      C.arrancar(renderAt);
+    </script>
+  </body>
+</html>

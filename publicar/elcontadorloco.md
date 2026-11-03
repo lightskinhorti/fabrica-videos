@@ -20,6 +20,7 @@ el día 1, porque los primeros vídeos le dicen a TikTok a quién enseñarle la 
 | Martes 3 de noviembre | 20:00 | `04-crecer.mp4` | [ ] |
 | Miércoles 4 de noviembre | 20:00 | `02-movil.mp4` | [ ] |
 | Jueves 5 de noviembre | 20:00 | `06-pasos.mp4` | [ ] |
+| Viernes 6 de noviembre | 20:00 | `07-comida.mp4` (falta que lo apruebes) | [ ] |
 
 Si empiezas otro día, mueve todas las fechas igual. TikTok deja programar hasta 10 días antes.
 
@@ -90,6 +91,14 @@ Cada vídeo tiene también su `publicacion.md` en `videos/elcontadorloco/<vídeo
 10.000 pasos al día, todos los días: de la Puerta del Sol a Toledo, al Camino de Santiago, a Nueva York y a la vuelta al mundo. En toda una vida, casi la mitad del camino a la Luna. Valores aproximados, con pasos de 75 cm.
 
 #quepasariasi #curiosidades #datoscuriosos #parati #caminar #pasos #luna
+```
+
+### 07-comida.mp4 (64,0 s)
+
+```
+La comida que se tira en casa, sumada: unos 64 gramos al día por persona, una maleta al año y casi 2 toneladas en toda una vida. Y todos los hogares de España juntos, en un solo año, más de un millón de toneladas. Datos del Ministerio de Agricultura, año 2025. Valores aproximados.
+
+#quepasariasi #curiosidades #datoscuriosos #parati #comida #desperdicioalimentario #cocina
 ```
 
 ## Instagram (Reels)

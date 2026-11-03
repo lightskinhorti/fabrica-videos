@@ -5,7 +5,7 @@ De momento solo se sube a TikTok (decisión del 2 de noviembre). Instagram se au
 Los vídeos están en `exports/render/` (en el Finder: Escritorio > ProyectoPersonal > VideosYCosas > fabrica-prueba >
 exports > render). Cada uno tiene al lado su portada (`-portada.png`).
 
-Se suben `01-loteria.mp4`, `02-nomina.mp4`, `03-billete.mp4` y `04-rebajas.mp4`.
+Se suben `01-loteria.mp4`, `02-nomina.mp4`, `03-billete.mp4`, `04-rebajas.mp4` y `05-cafe.mp4`.
 
 ## Calendario propuesto
 
@@ -18,7 +18,8 @@ A las 20:00 va el mejor gancho: la lotería, que además está de actualidad por
 | Martes 3 de noviembre | 20:00 | `01-loteria.mp4` | [ ] |
 | Martes 3 de noviembre | 22:00 | `02-nomina.mp4` | [ ] |
 | Miércoles 4 de noviembre | 20:00 | `04-rebajas.mp4` | [ ] |
-| Jueves 5 de noviembre | 20:00 | Vídeo 5 (falta hacerlo) | [ ] |
+| Jueves 5 de noviembre | 20:00 | `05-cafe.mp4` (falta que lo apruebes) | [ ] |
+| Viernes 6 de noviembre | 20:00 | Vídeo 6 (falta hacerlo) | [ ] |
 
 ## Paso a paso en TikTok Studio (en el ordenador)
 
@@ -64,6 +65,14 @@ Por cada 100 euros de tu sueldo, tu empresa paga casi 31 más a la Seguridad Soc
 En España, el precio tachado de un descuento tiene que ser el más bajo de los 30 días anteriores (Ley 7/1996, artículo 20). Así se ve si una rebaja de Black Friday lo es de verdad. Ejemplo con precios inventados.
 
 #dinero #finanzaspersonales #economia #parati #blackfriday #rebajas #consumo
+```
+
+### 05-cafe.mp4 (72,8 s)
+
+```
+Si pagas un café de 2 euros con tarjeta, el bar paga de media unas 7 décimas de céntimo de comisión, y una parte va a tu banco. La ley pone tope a esa parte: Reglamento (UE) 2015/751 y Ley 18/2014, artículo 11. Medias y totales del Banco de España, de abril a junio de 2026.
+
+#dinero #finanzaspersonales #economia #parati #tarjeta #comisiones #bancos
 ```
 
 ## Cuidado con estos temas

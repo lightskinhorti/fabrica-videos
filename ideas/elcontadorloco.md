@@ -79,4 +79,4 @@ En lugar de algo imposible, un hábito real que el contador va sumando durante d
 **El ahorro (1 € o 5 € al día)** encaja mejor en Dinero sin lío (@dinerosinlio).
 
 - [x] Vídeo 6: idea 23, 10.000 pasos al día (63,1 s). Hecho el 2 de noviembre y aprobado por Javier el 3.
-- [ ] Vídeo 7: idea 27, la comida que se tira en casa. En marcha la noche del 3 de noviembre.
+- [x] Vídeo 7: idea 27, la comida que se tira en casa (64,0 s), con el informe de desperdicio del Ministerio de Agricultura de 2025. Hecho la noche del 3 de noviembre; falta que Javier lo apruebe.

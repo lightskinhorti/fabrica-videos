@@ -1,0 +1,46 @@
+{
+  "titulo": "¿Cuánta comida tiras en toda tu vida?",
+  "lines": [
+    "La comida que tiras, sumada.",
+    "En España, cada persona tira en casa unos sesenta y cuatro gramos al día. ¿Cuánto suma eso? Al final verás lo que tira el país entero.",
+    "Es más o menos lo que pesa un huevo grande. Parece poco, pero el contador empieza el día que naces y no para.",
+    "En poco más de dos semanas, ya es un paquete de arroz de un kilo.",
+    "Al año, 23,5 kilos: una maleta facturada, y pasada de peso.",
+    "A los tres años, setenta kilos: lo que pesa una persona adulta.",
+    "Con veinticinco años y medio, el montón pesa como una vaca.",
+    "A los sesenta y seis, como un coche entero.",
+    "Y en toda una vida, ochenta y cuatro años, lo que se vive de media en España: casi dos toneladas.",
+    "Pero eso es una sola persona. Ahora, junta todos los hogares de España durante un año.",
+    "Más de un millón de toneladas de comida, a la basura.",
+    "Lo que pesan más de cien torres Eiffel juntas.",
+    "Y más de tres cuartas partes ni se llegaron a usar: sobre todo, fruta y verdura.",
+    "¿Qué es lo que más se te estropea en casa? Te leo en los comentarios."
+  ],
+  "claves": [
+    "comida",
+    "gramos",
+    "huevo",
+    "arroz",
+    "maleta",
+    "persona",
+    "vaca",
+    "coche",
+    "vida",
+    "hogares",
+    "toneladas",
+    "Eiffel",
+    "fruta",
+    "comentarios"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "La comida que se tira en casa, sumada: unos 64 gramos al día por persona, una maleta al año y casi 2 toneladas en toda una vida. Y todos los hogares de España juntos, en un solo año, más de un millón de toneladas. Datos del Ministerio de Agricultura, año 2025. Valores aproximados.",
+    "hashtags": [
+      "#comida",
+      "#desperdicioalimentario",
+      "#cocina"
+    ],
+    "portada_en": "comida"
+  },
+  "voz_dice": "La voz se generó con \"veintitrés kilos y medio\" en palabras; Whisper lo oye como \"23,5 kilos\", así que la línea 5 va en cifras para que el subtítulo no diga \"23,5 kilos y medio\". Después de la voz se añadieron silencios en exports/voces/07-comida.wav: 0,9 s tras \"durante un año\" (una pausa antes de la cifra de toda España), 0,5 s antes de \"¿Qué es lo que más…\" y 0,8 s al final, para que el vídeo pase de 60 s con margen. Con ese reparto Whisper alinea mejor el final; la voz original está sin silencios añadidos."
+}
