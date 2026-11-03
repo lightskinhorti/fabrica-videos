@@ -1,0 +1,724 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <script type="importmap">
+      { "imports": { "three": "./lib/three.module.js", "three/addons/": "./lib/addons/" } }
+    </script>
+    <link rel="stylesheet" href="comun/pordentro.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="73.8" data-width="1080" data-height="1920" data-fps="30">
+      <canvas id="gl" class="clip" data-start="0" data-duration="73.8" data-track-index="0" width="1080" height="1920"></canvas>
+      <div id="shade" class="clip" data-start="0" data-duration="73.8" data-track-index="1"></div>
+      <svg id="leaders" class="clip" data-start="0" data-duration="73.8" data-track-index="2" width="1080" height="1920" data-layout-allow-overlap></svg>
+      <div id="labels" class="clip" data-start="0" data-duration="73.8" data-track-index="3" data-layout-allow-overlap></div>
+      <div id="note" class="clip" data-start="0" data-duration="73.8" data-track-index="4"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="73.8"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="73.8" data-track-index="5" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 72.6, "lines": [{"id": "l1", "s": 0.08, "e": 2.15, "words": [{"w": "Los", "s": 0.08, "e": 0.22, "key": false}, {"w": "satélites", "s": 0.22, "e": 0.79, "key": false}, {"w": "no", "s": 0.95, "e": 1.01, "key": false}, {"w": "saben", "s": 1.01, "e": 1.38, "key": false}, {"w": "dónde", "s": 1.38, "e": 1.75, "key": true}, {"w": "estás.", "s": 1.75, "e": 2.15, "key": false}]}, {"id": "l2", "s": 2.25, "e": 8.82, "words": [{"w": "Tu", "s": 2.25, "e": 2.4, "key": false}, {"w": "móvil", "s": 2.54, "e": 2.76, "key": false}, {"w": "no", "s": 2.76, "e": 2.9, "key": false}, {"w": "les", "s": 2.9, "e": 3.12, "key": false}, {"w": "manda", "s": 3.12, "e": 3.47, "key": false}, {"w": "nada:", "s": 3.48, "e": 3.8, "key": false}, {"w": "solo", "s": 4.1, "e": 4.48, "key": false}, {"w": "escucha.", "s": 4.48, "e": 5.39, "key": true}, {"w": "Y", "s": 5.39, "e": 5.44, "key": false}, {"w": "al", "s": 5.44, "e": 5.54, "key": false}, {"w": "final", "s": 5.62, "e": 5.88, "key": false}, {"w": "verás", "s": 5.93, "e": 6.25, "key": false}, {"w": "por", "s": 6.25, "e": 6.32, "key": false}, {"w": "qué", "s": 6.49, "e": 6.67, "key": false}, {"w": "sus", "s": 6.67, "e": 6.88, "key": false}, {"w": "relojes", "s": 6.88, "e": 7.37, "key": false}, {"w": "van", "s": 7.37, "e": 7.57, "key": false}, {"w": "mal", "s": 7.57, "e": 7.69, "key": false}, {"w": "a", "s": 7.79, "e": 7.86, "key": false}, {"w": "propósito.", "s": 8.15, "e": 8.82, "key": false}]}, {"id": "l3", "s": 8.9, "e": 13.42, "words": [{"w": "Allá", "s": 8.9, "e": 9.07, "key": false}, {"w": "arriba", "s": 9.07, "e": 9.45, "key": false}, {"w": "hay", "s": 9.45, "e": 9.61, "key": false}, {"w": "unos", "s": 9.77, "e": 9.89, "key": false}, {"w": "31", "s": 9.89, "e": 10.27, "key": false}, {"w": "satélites,", "s": 10.27, "e": 10.95, "key": true}, {"w": "a", "s": 10.95, "e": 10.97, "key": false}, {"w": "más", "s": 11.12, "e": 11.19, "key": false}, {"w": "de", "s": 11.19, "e": 11.27, "key": false}, {"w": "20.000", "s": 11.44, "e": 12.48, "key": false}, {"w": "kilómetros.", "s": 12.48, "e": 13.42, "key": false}]}, {"id": "l4", "s": 13.42, "e": 18.3, "words": [{"w": "Cada", "s": 13.42, "e": 13.62, "key": false}, {"w": "uno", "s": 13.63, "e": 13.65, "key": false}, {"w": "lleva", "s": 13.8, "e": 14.01, "key": false}, {"w": "relojes", "s": 14.2, "e": 14.5, "key": false}, {"w": "atómicos", "s": 14.58, "e": 15.18, "key": true}, {"w": "y", "s": 15.18, "e": 15.26, "key": false}, {"w": "repite", "s": 15.26, "e": 15.85, "key": false}, {"w": "sin", "s": 15.85, "e": 16.09, "key": false}, {"w": "parar", "s": 16.09, "e": 16.53, "key": false}, {"w": "dónde", "s": 16.53, "e": 16.86, "key": false}, {"w": "está", "s": 17.12, "e": 17.3, "key": false}, {"w": "y", "s": 17.3, "e": 17.38, "key": false}, {"w": "qué", "s": 17.38, "e": 17.63, "key": false}, {"w": "hora", "s": 17.63, "e": 17.96, "key": false}, {"w": "es.", "s": 17.96, "e": 18.3, "key": false}]}, {"id": "l5", "s": 18.3, "e": 22.78, "words": [{"w": "La", "s": 18.3, "e": 18.61, "key": false}, {"w": "señal", "s": 18.61, "e": 18.85, "key": false}, {"w": "viaja", "s": 18.85, "e": 19.13, "key": false}, {"w": "a", "s": 19.13, "e": 19.19, "key": false}, {"w": "la", "s": 19.19, "e": 19.29, "key": false}, {"w": "velocidad", "s": 19.29, "e": 19.32, "key": false}, {"w": "de", "s": 19.94, "e": 20.0, "key": false}, {"w": "la", "s": 20, "e": 20.14, "key": false}, {"w": "luz", "s": 20.14, "e": 20.35, "key": true}, {"w": "y", "s": 20.35, "e": 20.41, "key": false}, {"w": "tarda", "s": 20.48, "e": 20.64, "key": false}, {"w": "menos", "s": 20.81, "e": 21.12, "key": false}, {"w": "de", "s": 21.12, "e": 21.25, "key": false}, {"w": "una", "s": 21.26, "e": 21.46, "key": false}, {"w": "décima", "s": 21.46, "e": 21.89, "key": false}, {"w": "de", "s": 21.89, "e": 22.01, "key": false}, {"w": "segundo.", "s": 22.47, "e": 22.78, "key": false}]}, {"id": "l6", "s": 22.78, "e": 27.12, "words": [{"w": "Tu", "s": 22.78, "e": 22.92, "key": false}, {"w": "móvil", "s": 22.93, "e": 23.3, "key": false}, {"w": "mide", "s": 23.3, "e": 23.59, "key": false}, {"w": "ese", "s": 23.59, "e": 23.66, "key": false}, {"w": "retraso", "s": 23.96, "e": 24.32, "key": false}, {"w": "y", "s": 24.32, "e": 24.34, "key": false}, {"w": "calcula", "s": 24.41, "e": 24.98, "key": false}, {"w": "a", "s": 24.98, "e": 25.06, "key": false}, {"w": "qué", "s": 25.06, "e": 25.27, "key": false}, {"w": "distancia", "s": 25.27, "e": 25.94, "key": true}, {"w": "está", "s": 25.94, "e": 26.24, "key": false}, {"w": "cada", "s": 26.24, "e": 26.53, "key": false}, {"w": "satélite.", "s": 26.54, "e": 27.12, "key": false}]}, {"id": "l7", "s": 27.12, "e": 33.18, "words": [{"w": "Y", "s": 27.12, "e": 27.13, "key": false}, {"w": "hay", "s": 27.26, "e": 27.41, "key": false}, {"w": "que", "s": 27.59, "e": 27.64, "key": false}, {"w": "medirlo", "s": 27.64, "e": 28.16, "key": false}, {"w": "finísimo:", "s": 28.16, "e": 28.79, "key": false}, {"w": "una", "s": 29.08, "e": 29.19, "key": false}, {"w": "millonésima", "s": 29.19, "e": 29.82, "key": false}, {"w": "de", "s": 29.85, "e": 30.21, "key": false}, {"w": "segundo", "s": 30.3, "e": 30.77, "key": false}, {"w": "de", "s": 30.84, "e": 30.97, "key": false}, {"w": "error", "s": 30.97, "e": 31.39, "key": true}, {"w": "son", "s": 31.39, "e": 31.63, "key": false}, {"w": "300", "s": 31.63, "e": 32.35, "key": false}, {"w": "metros.", "s": 32.83, "e": 33.18, "key": false}]}, {"id": "l8", "s": 33.18, "e": 36.61, "words": [{"w": "Con", "s": 33.18, "e": 33.35, "key": false}, {"w": "un", "s": 33.35, "e": 33.46, "key": false}, {"w": "satélite,", "s": 33.46, "e": 33.91, "key": false}, {"w": "estás", "s": 33.91, "e": 34.02, "key": false}, {"w": "en", "s": 34.3, "e": 34.31, "key": false}, {"w": "algún", "s": 34.33, "e": 34.6, "key": false}, {"w": "punto", "s": 34.6, "e": 34.94, "key": false}, {"w": "de", "s": 34.96, "e": 35.05, "key": false}, {"w": "una", "s": 35.05, "e": 35.26, "key": false}, {"w": "esfera", "s": 35.26, "e": 35.6, "key": true}, {"w": "gigante.", "s": 35.6, "e": 36.61, "key": false}]}, {"id": "l9", "s": 36.7, "e": 38.99, "words": [{"w": "Con", "s": 36.7, "e": 36.84, "key": false}, {"w": "dos,", "s": 36.84, "e": 37.06, "key": false}, {"w": "en", "s": 37.06, "e": 37.17, "key": false}, {"w": "el", "s": 37.24, "e": 37.36, "key": false}, {"w": "círculo", "s": 37.36, "e": 37.88, "key": true}, {"w": "donde", "s": 37.88, "e": 38.24, "key": false}, {"w": "se", "s": 38.25, "e": 38.4, "key": false}, {"w": "cruzan.", "s": 38.4, "e": 38.99, "key": false}]}, {"id": "l10", "s": 38.99, "e": 44.04, "words": [{"w": "Con", "s": 38.99, "e": 39.24, "key": false}, {"w": "tres,", "s": 39.24, "e": 39.51, "key": false}, {"w": "quedan", "s": 39.51, "e": 39.95, "key": false}, {"w": "dos", "s": 39.96, "e": 40.18, "key": false}, {"w": "puntos:", "s": 40.18, "e": 40.78, "key": false}, {"w": "uno", "s": 40.78, "e": 41.0, "key": false}, {"w": "perdido", "s": 41, "e": 41.42, "key": false}, {"w": "en", "s": 41.53, "e": 41.65, "key": false}, {"w": "el", "s": 41.65, "e": 41.98, "key": false}, {"w": "espacio,", "s": 41.98, "e": 42.55, "key": false}, {"w": "y", "s": 42.55, "e": 42.64, "key": false}, {"w": "el", "s": 42.64, "e": 42.68, "key": false}, {"w": "otro", "s": 42.85, "e": 43.19, "key": false}, {"w": "eres", "s": 43.19, "e": 43.56, "key": false}, {"w": "tú.", "s": 43.56, "e": 44.04, "key": true}]}, {"id": "l11", "s": 44.2, "e": 48.93, "words": [{"w": "Pero", "s": 44.2, "e": 44.29, "key": false}, {"w": "el", "s": 44.3, "e": 44.32, "key": false}, {"w": "reloj", "s": 44.51, "e": 44.71, "key": false}, {"w": "de", "s": 44.72, "e": 44.84, "key": false}, {"w": "tu", "s": 44.84, "e": 44.95, "key": false}, {"w": "móvil", "s": 44.96, "e": 45.23, "key": false}, {"w": "es", "s": 45.26, "e": 45.37, "key": false}, {"w": "barato,", "s": 45.38, "e": 45.86, "key": false}, {"w": "así", "s": 46, "e": 46.06, "key": false}, {"w": "que", "s": 46.06, "e": 46.18, "key": false}, {"w": "usa", "s": 46.18, "e": 46.36, "key": false}, {"w": "un", "s": 46.37, "e": 46.51, "key": false}, {"w": "cuarto", "s": 46.51, "e": 46.73, "key": true}, {"w": "satélite", "s": 47.02, "e": 47.47, "key": false}, {"w": "para", "s": 47.47, "e": 47.71, "key": false}, {"w": "corregir", "s": 47.89, "e": 48.27, "key": false}, {"w": "su", "s": 48.27, "e": 48.4, "key": false}, {"w": "hora.", "s": 48.4, "e": 48.93, "key": false}]}, {"id": "l12", "s": 48.93, "e": 54.33, "words": [{"w": "Y", "s": 48.93, "e": 48.983, "key": false}, {"w": "en", "s": 48.983, "e": 49.09, "key": false}, {"w": "Europa,", "s": 49.09, "e": 49.56, "key": false}, {"w": "los", "s": 49.56, "e": 49.74, "key": false}, {"w": "móviles", "s": 49.74, "e": 50.2, "key": false}, {"w": "nuevos", "s": 50.2, "e": 50.61, "key": false}, {"w": "tienen", "s": 50.61, "e": 51.06, "key": false}, {"w": "que", "s": 51.06, "e": 51.18, "key": false}, {"w": "escuchar", "s": 51.18, "e": 51.42, "key": false}, {"w": "también", "s": 51.49, "e": 51.76, "key": false}, {"w": "a", "s": 51.76, "e": 51.98, "key": false}, {"w": "Galileo,", "s": 51.98, "e": 52.69, "key": true}, {"w": "el", "s": 52.85, "e": 52.91, "key": false}, {"w": "sistema", "s": 52.91, "e": 53.5, "key": false}, {"w": "europeo.", "s": 53.5, "e": 54.33, "key": false}]}, {"id": "l13", "s": 54.43, "e": 58.72, "words": [{"w": "Y", "s": 54.43, "e": 54.502, "key": false}, {"w": "ahora,", "s": 54.502, "e": 54.86, "key": false}, {"w": "lo", "s": 54.86, "e": 55.03, "key": false}, {"w": "más", "s": 55.03, "e": 55.23, "key": false}, {"w": "raro:", "s": 55.28, "e": 55.7, "key": false}, {"w": "allí", "s": 56, "e": 56.19, "key": false}, {"w": "arriba,", "s": 56.19, "e": 56.7, "key": false}, {"w": "el", "s": 56.7, "e": 56.73, "key": false}, {"w": "tiempo", "s": 57.28, "e": 57.48, "key": false}, {"w": "pasa", "s": 57.54, "e": 57.75, "key": false}, {"w": "más", "s": 57.75, "e": 57.94, "key": false}, {"w": "deprisa.", "s": 58.02, "e": 58.72, "key": true}]}, {"id": "l14", "s": 58.89, "e": 64.14, "words": [{"w": "Por", "s": 58.89, "e": 58.98, "key": false}, {"w": "la", "s": 58.98, "e": 59.14, "key": false}, {"w": "relatividad,", "s": 59.14, "e": 60.02, "key": true}, {"w": "sus", "s": 60.02, "e": 60.09, "key": false}, {"w": "relojes", "s": 60.18, "e": 60.82, "key": false}, {"w": "ganan", "s": 60.82, "e": 61.22, "key": false}, {"w": "38", "s": 61.22, "e": 61.7, "key": false}, {"w": "millonésimas", "s": 61.7, "e": 62.66, "key": false}, {"w": "de", "s": 62.66, "e": 62.76, "key": false}, {"w": "segundo", "s": 63.32, "e": 63.4, "key": false}, {"w": "al", "s": 63.4, "e": 63.5, "key": false}, {"w": "día.", "s": 63.58, "e": 64.14, "key": false}]}, {"id": "l15", "s": 64.14, "e": 70.46, "words": [{"w": "Por", "s": 64.14, "e": 64.18, "key": false}, {"w": "eso", "s": 64.18, "e": 64.22, "key": false}, {"w": "los", "s": 64.38, "e": 64.5, "key": false}, {"w": "ajustan", "s": 64.5, "e": 64.96, "key": false}, {"w": "para", "s": 64.96, "e": 65.08, "key": false}, {"w": "que", "s": 65.25, "e": 65.43, "key": false}, {"w": "vayan", "s": 65.43, "e": 65.76, "key": false}, {"w": "más", "s": 65.76, "e": 65.96, "key": false}, {"w": "lentos.", "s": 65.96, "e": 66.45, "key": true}, {"w": "Si", "s": 66.6, "e": 66.665, "key": false}, {"w": "no,", "s": 66.665, "e": 66.73, "key": false}, {"w": "el", "s": 66.73, "e": 66.92, "key": false}, {"w": "error", "s": 66.92, "e": 67.22, "key": false}, {"w": "crecería", "s": 67.22, "e": 67.75, "key": false}, {"w": "unos", "s": 67.75, "e": 68.02, "key": false}, {"w": "10", "s": 68.02, "e": 68.42, "key": false}, {"w": "kilómetros", "s": 68.42, "e": 69.08, "key": false}, {"w": "cada", "s": 69.08, "e": 69.14, "key": false}, {"w": "día.", "s": 69.54, "e": 70.46, "key": false}]}, {"id": "l16", "s": 70.46, "e": 72.32, "words": [{"w": "Mándaselo", "s": 70.46, "e": 70.75, "key": false}, {"w": "a", "s": 70.75, "e": 70.78, "key": false}, {"w": "alguien", "s": 70.78, "e": 71.0, "key": false}, {"w": "que", "s": 71.01, "e": 71.11, "key": false}, {"w": "cree", "s": 71.11, "e": 71.24, "key": false}, {"w": "que", "s": 71.24, "e": 71.32, "key": false}, {"w": "los", "s": 71.34, "e": 71.44, "key": false}, {"w": "satélites", "s": 71.44, "e": 71.76, "key": false}, {"w": "le", "s": 71.86, "e": 71.89, "key": false}, {"w": "vigilan.", "s": 71.89, "e": 72.32, "key": true}]}]}</script>
+    <script id="escena" type="application/json">
+      {
+        "momentos": [
+          { "id": "SABEN", "clave": "saben" },
+          { "id": "MANDA1", "clave": "manda" },
+          { "id": "ESCUCHA", "clave": "escucha" },
+          { "id": "FINAL", "clave": "final" },
+          { "id": "RELOJES", "clave": "relojes" },
+          { "id": "PROPOSITO", "clave": "proposito" },
+          { "id": "AHI", "clave": "alla" },
+          { "id": "SATS", "clave": "satelites" },
+          { "id": "KM", "clave": "kilometros" },
+          { "id": "CADA", "clave": "cada" },
+          { "id": "ATOMICOS", "clave": "atomicos" },
+          { "id": "REPITE", "clave": "repite" },
+          { "id": "HORA", "clave": "hora" },
+          { "id": "SENAL", "clave": "senal" },
+          { "id": "VIAJA", "clave": "viaja" },
+          { "id": "LUZ", "clave": "luz" },
+          { "id": "DECIMA", "clave": "decima" },
+          { "id": "MIDE", "clave": "mide" },
+          { "id": "CALCULA", "clave": "calcula" },
+          { "id": "DISTANCIA", "clave": "distancia" },
+          { "id": "MEDIRLO", "clave": "medirlo" },
+          { "id": "MILLONESIMA", "clave": "millonesima" },
+          { "id": "ERROR", "clave": "error" },
+          { "id": "METROS", "clave": "metros" },
+          { "id": "CON1", "clave": "con" },
+          { "id": "ESFERA", "clave": "esfera" },
+          { "id": "DOS", "clave": "con" },
+          { "id": "CIRCULO", "clave": "circulo" },
+          { "id": "TRES", "clave": "con" },
+          { "id": "QUEDAN", "clave": "quedan" },
+          { "id": "PERDIDO", "clave": "perdido" },
+          { "id": "ERES", "clave": "eres" },
+          { "id": "PERO", "clave": "pero" },
+          { "id": "BARATO", "clave": "barato" },
+          { "id": "CUARTO", "clave": "cuarto" },
+          { "id": "CORREGIR", "clave": "corregir" },
+          { "id": "EUROPA", "clave": "europa" },
+          { "id": "GALILEO", "clave": "galileo" },
+          { "id": "AHORA", "clave": "ahora" },
+          { "id": "RARO", "clave": "raro" },
+          { "id": "TIEMPO", "clave": "tiempo" },
+          { "id": "DEPRISA", "clave": "deprisa" },
+          { "id": "RELATIVIDAD", "clave": "relatividad" },
+          { "id": "GANAN", "clave": "ganan" },
+          { "id": "DIA1", "clave": "dia" },
+          { "id": "AJUSTAN", "clave": "ajustan" },
+          { "id": "LENTOS", "clave": "lentos" },
+          { "id": "SINO", "clave": "si" },
+          { "id": "CRECERIA", "clave": "creceria" },
+          { "id": "DIA2", "clave": "dia" },
+          { "id": "MANDA", "clave": "mandaselo" },
+          { "id": "VIGILAN", "clave": "vigilan" }
+        ],
+        "etiquetas": [
+          { "texto": "ANTENA: SOLO RECIBE", "pieza": "antena", "desde": "ESCUCHA", "hasta": "FINAL", "dy": 230 },
+          { "texto": "RELOJES ATÓMICOS", "pieza": "relojes", "desde": "ATOMICOS", "hasta": "REPITE", "dy": -220 },
+          { "texto": "EMITE SU POSICIÓN Y LA HORA", "pieza": "emisor", "desde": "REPITE", "hasta": "SENAL", "dy": -200 },
+          { "texto": "SATÉLITE", "pieza": "satD", "desde": "VIAJA", "hasta": "CALCULA", "dx": 150, "dy": 40 },
+          { "texto": "TU MÓVIL", "pieza": "movilD", "desde": "VIAJA", "hasta": "CALCULA", "dx": 150, "dy": -60 },
+          { "texto": "CHIP GPS", "pieza": "chip", "desde": "CALCULA", "hasta": "MEDIRLO", "dy": -200 },
+          { "texto": "CREE QUE ESTÁS AQUÍ", "pieza": "fantasma", "desde": "ERROR", "hasta": "CON1", "dy": -200 },
+          { "texto": "300 METROS", "pieza": "regla", "desde": "METROS", "hasta": "CON1", "dy": 170 },
+          { "texto": "ESTÁS EN ESTA ESFERA", "pieza": "esfera1", "desde": "ESFERA", "hasta": "DOS", "dy": 160 },
+          { "texto": "AQUÍ SE CRUZAN", "pieza": "aro", "desde": "CIRCULO", "hasta": "TRES", "dy": -140 },
+          { "texto": "PERDIDO EN EL ESPACIO", "pieza": "p2", "desde": "PERDIDO", "hasta": "ERES", "dy": -110 },
+          { "texto": "TÚ", "pieza": "p", "desde": "ERES", "hasta": "PERO", "dy": -170 },
+          { "texto": "RELOJ DE CUARZO", "pieza": "cuarzo", "desde": "BARATO", "hasta": "CUARTO", "dy": -200 },
+          { "texto": "4.º SATÉLITE", "pieza": "s4", "desde": "CUARTO", "hasta": "EUROPA", "dy": -150 },
+          { "texto": "GALILEO", "pieza": "galileo", "desde": "GALILEO", "hasta": "AHORA", "dy": -150 },
+          { "texto": "VA MÁS DEPRISA", "pieza": "relojes", "desde": "DEPRISA", "hasta": "RELATIVIDAD", "dy": -220 },
+          { "texto": "ARRIBA: MÁS DEPRISA", "pieza": "satD", "desde": "RELATIVIDAD", "hasta": "AJUSTAN", "dx": 150, "dy": 60 },
+          { "texto": "AQUÍ ABAJO: MÁS DESPACIO", "pieza": "movilD", "desde": "RELATIVIDAD", "hasta": "AJUSTAN", "dx": 120, "dy": -90 },
+          { "texto": "AJUSTADO PARA IR MÁS LENTO", "pieza": "relojes", "desde": "AJUSTAN", "hasta": "SINO", "dy": -220 },
+          { "texto": "CREE QUE ESTÁS AQUÍ", "pieza": "fantasma", "desde": "CRECERIA", "hasta": "MANDA", "dy": -200 }
+        ],
+        "notas": [
+          { "texto": "Ojo: las apps sí pueden mandar tu ubicación por internet", "desde": "ESCUCHA" },
+          { "texto": "Ilustración, no a escala", "desde": "AHI" },
+          { "texto": "Señal dibujada muchísimo más lenta", "desde": "VIAJA" },
+          { "texto": "", "desde": "CALCULA" },
+          { "texto": "Ilustración simplificada, no a escala", "desde": "CON1" },
+          { "texto": "Simplificado: el móvil usa todos los satélites que ve", "desde": "CORREGIR" },
+          { "texto": "", "desde": "EUROPA" },
+          { "texto": "Estimación: 0,000038 s a la velocidad de la luz son unos 11 km", "desde": "CRECERIA" },
+          { "texto": "", "desde": "MANDA" }
+        ],
+        "iconos": { "señal": "onda", "relojes": "reloj" },
+        "gancho": { "texto": "Los satélites no saben dónde estás", "clave": "dónde" },
+        "estilo": "rejilla",
+        "desenfoque": { "apertura": 0.0003, "max": 0.004 },
+        "leyenda": [
+          { "color": "#ffb347", "forma": "onda", "texto": "señal de radio, invisible", "desde": "ESCUCHA", "hasta": "MANDA" },
+          { "color": "#ffc070", "forma": "punto", "texto": "satélites GPS (EE. UU.)", "desde": "EUROPA", "hasta": "AHORA" },
+          { "color": "#7fb2ff", "forma": "punto", "texto": "satélites Galileo (Europa)", "desde": "GALILEO", "hasta": "AHORA" }
+        ],
+        "paneles": [
+          { "id": "envia", "titulo": "LO QUE MANDA AL ESPACIO", "desde": "MANDA1", "hasta": "FINAL", "x": 70, "y": 470 },
+          { "id": "reloj", "titulo": "RELOJ DEL SATÉLITE", "desde": "RELOJES", "hasta": "AHI", "x": 70, "y": 470 },
+          { "id": "sats", "titulo": "SATÉLITES GPS EN SERVICIO", "desde": "SATS", "hasta": "KM", "x": 70, "y": 470 },
+          { "id": "alt", "titulo": "ALTURA", "desde": "KM", "hasta": "CADA", "x": 70, "y": 470 },
+          { "id": "hora", "titulo": "HORA DEL SATÉLITE", "desde": "HORA", "hasta": "SENAL", "x": 70, "y": 470 },
+          { "id": "crono", "titulo": "TARDA LA SEÑAL", "desde": "VIAJA", "hasta": "CALCULA", "x": 70, "y": 860 },
+          { "id": "dist", "titulo": "DISTANCIA AL SATÉLITE", "desde": "DISTANCIA", "hasta": "MEDIRLO", "x": 70, "y": 470 },
+          { "id": "err", "titulo": "ERROR DE RELOJ", "desde": "MILLONESIMA", "hasta": "CON1", "x": 600, "y": 1150 },
+          { "id": "nsat", "titulo": "SATÉLITES", "desde": "CON1", "hasta": "PERO", "x": 70, "y": 470 },
+          { "id": "nsat4", "titulo": "SATÉLITES", "desde": "CUARTO", "hasta": "EUROPA", "x": 70, "y": 470 },
+          { "id": "gana", "titulo": "SE ADELANTA CADA DÍA", "desde": "GANAN", "hasta": "AJUSTAN", "x": 70, "y": 860 },
+          { "id": "deriva", "titulo": "ERROR SIN CORREGIR", "desde": "CRECERIA", "hasta": "MANDA", "x": 70, "y": 1150 }
+        ],
+        "sonidos": [
+          { "tipo": "ping", "desde": 0, "mas": 0.2, "hasta": "FINAL", "cada": 0.9, "volumen": 0.5 },
+          { "tipo": "brillo", "en": "ESCUCHA" },
+          { "tipo": "abre", "en": "FINAL" },
+          { "tipo": "pop", "en": "RELOJES" },
+          { "tipo": "sube", "en": "SATS", "mas": -0.3 },
+          { "tipo": "pop", "en": "KM" },
+          { "tipo": "tictac", "desde": "CADA", "hasta": "SENAL" },
+          { "tipo": "chip", "en": "ATOMICOS" },
+          { "tipo": "ping", "desde": "REPITE", "hasta": "SENAL", "cada": 0.55, "volumen": 0.6 },
+          { "tipo": "desliza", "en": "VIAJA" },
+          { "tipo": "toque", "en": "DECIMA", "mas": 0.6 },
+          { "tipo": "chip", "en": "CALCULA" },
+          { "tipo": "error", "en": "ERROR" },
+          { "tipo": "brillo", "en": "METROS" },
+          { "tipo": "sube", "en": "CON1" },
+          { "tipo": "sube", "en": "DOS" },
+          { "tipo": "pop", "en": "CIRCULO" },
+          { "tipo": "sube", "en": "TRES" },
+          { "tipo": "pop", "en": "PERDIDO" },
+          { "tipo": "pagado", "en": "ERES" },
+          { "tipo": "tictac", "desde": "PERO", "hasta": "CUARTO" },
+          { "tipo": "sube", "en": "CUARTO" },
+          { "tipo": "brillo", "en": "CORREGIR" },
+          { "tipo": "brillo", "en": "GALILEO" },
+          { "tipo": "abre", "en": "AHORA" },
+          { "tipo": "zumbido", "desde": "RARO", "hasta": "AJUSTAN", "volumen": 0.6 },
+          { "tipo": "ping", "desde": "DEPRISA", "hasta": "RELATIVIDAD", "cada": 0.25, "volumen": 0.4 },
+          { "tipo": "chip", "en": "GANAN" },
+          { "tipo": "chip", "en": "AJUSTAN" },
+          { "tipo": "desliza", "en": "CRECERIA" },
+          { "tipo": "error", "en": "DIA2", "volumen": 0.7 },
+          { "tipo": "brillo", "en": "MANDA" }
+        ]
+      }
+    </script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 73.8 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import * as THREE from "three";
+      import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
+      import { crearPorDentro } from "./comun/pordentro.js";
+
+      const C = crearPorDentro(THREE);
+      const { T, D, scene, v3, lerp, clamp, ramp, ventana, hash, canvasTex, brillo, UP } = C;
+      const dummy = new THREE.Object3D();
+      const frac = (x) => x - Math.floor(x);
+      const coma = (x, d) => x.toFixed(d).replace(".", ",");
+      const deg = Math.PI / 180;
+      const mesh = (geo, mat, x = 0, y = 0, z = 0) => { const m = new THREE.Mesh(geo, mat); m.position.set(x, y, z); return m; };
+      const glowMat = (color, op = 0) => new THREE.MeshBasicMaterial({ color, transparent: true, opacity: op, blending: THREE.AdditiveBlending, depthWrite: false });
+      const tubo = (pts, r, mat) => new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 40, r, 8, false), mat);
+      // translucent sphere lit only at its rim: signal spheres, atmosphere
+      function rimMat(color, base = 0.03, pw = 3, side = THREE.DoubleSide) {
+        return new THREE.ShaderMaterial({
+          uniforms: { col: { value: new THREE.Color(color) }, op: { value: 0 }, base: { value: base }, pw: { value: pw } },
+          vertexShader: "varying vec3 vN; varying vec3 vV; void main(){ vec4 mv = modelViewMatrix * vec4(position, 1.0); vN = normalize(normalMatrix * normal); vV = normalize(-mv.xyz); gl_Position = projectionMatrix * mv; }",
+          fragmentShader: "uniform vec3 col; uniform float op; uniform float base; uniform float pw; varying vec3 vN; varying vec3 vV; void main(){ float r = clamp(1.0 - abs(dot(normalize(vN), normalize(vV))), 0.0, 1.0); float a = (base + pow(r, pw)) * op; gl_FragColor = vec4(col * a, 1.0); }",
+          transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, side,
+        });
+      }
+
+      // ---------- five sets far apart; hard cuts jump between them (only the one in shot is drawn) ----------
+      // s scales the lights to the size of each set; dof scales the depth of field
+      const SETS = {
+        movil: { c: v3(0, 0, 0), s: 1, dof: 1.4 },
+        sat: { c: v3(-300, 0, 0), s: 0.8, dof: 2.0, k: 0.45 },
+        diag: { c: v3(0, 0, -300), s: 1.7, dof: 0.35, k: 0.7 },
+        mapa: { c: v3(0, 0, 300), s: 1.5, dof: 0.7 },
+        tierra: { c: v3(300, 0, 0), s: 1.8, dof: 0.5 },
+      };
+      for (const k in SETS) { const g = new THREE.Group(); g.position.copy(SETS[k].c); scene.add(g); SETS[k].g = g; }
+      const K0 = C.key.intensity, W0 = C.warm.intensity;
+      const bokeh = C.composer.passes.find((p) => p.uniforms && p.uniforms.aperture);
+      const APER = bokeh ? bokeh.uniforms.aperture.value : 0;
+
+      // ---------- 2D maps (canvas) ----------
+      function drawCiudad(g, w, h, seed, k) {
+        g.fillStyle = "#1d232c"; g.fillRect(0, 0, w, h);
+        g.fillStyle = "#1c3427"; g.beginPath(); g.roundRect(w * 0.6, h * 0.1, w * 0.24, h * 0.13, w * 0.02); g.fill();
+        g.lineCap = "round";
+        g.strokeStyle = "#173049"; g.lineWidth = w * 0.075;
+        g.beginPath(); g.moveTo(-60, h * 0.8); g.bezierCurveTo(w * 0.3, h * 0.64, w * 0.62, h * 0.96, w + 60, h * 0.72); g.stroke();
+        const nx = Math.max(4, Math.round(10 / k)), ny = Math.max(4, Math.round((10 * h) / w / k));
+        g.strokeStyle = "#323c4a"; g.lineWidth = w * 0.011 * k;
+        for (let i = 1; i < nx; i++) {
+          const x = ((i + (hash(i + seed) - 0.5) * 0.4) * w) / nx;
+          g.beginPath(); g.moveTo(x, 0); g.lineTo(x + (hash(i + seed + 40) - 0.5) * w * 0.06, h); g.stroke();
+        }
+        for (let j = 1; j < ny; j++) {
+          const y = ((j + (hash(j + seed + 80) - 0.5) * 0.4) * h) / ny;
+          g.beginPath(); g.moveTo(0, y); g.lineTo(w, y + (hash(j + seed + 120) - 0.5) * h * 0.04); g.stroke();
+        }
+        g.strokeStyle = "#4b5768"; g.lineWidth = w * 0.022 * k;
+        g.beginPath(); g.moveTo(0, h * 0.18); g.lineTo(w, h * 0.52); g.stroke();
+        g.beginPath(); g.moveTo(w * 0.43, 0); g.lineTo(w * 0.37, h); g.stroke();
+      }
+      function drawPantalla(g, w, h) {
+        drawCiudad(g, w, h, 3, 1.7);
+        g.fillStyle = "rgba(38,44,54,0.96)"; g.beginPath(); g.roundRect(w * 0.06, h * 0.045, w * 0.88, h * 0.055, h * 0.0275); g.fill();
+        g.fillStyle = "rgba(255,255,255,0.32)"; g.beginPath(); g.roundRect(w * 0.14, h * 0.066, w * 0.38, h * 0.013, 6); g.fill();
+        g.fillStyle = "rgba(30,35,43,0.97)"; g.beginPath(); g.roundRect(0, h * 0.83, w, h * 0.2, 44); g.fill();
+        g.fillStyle = "rgba(255,255,255,0.3)"; g.beginPath(); g.roundRect(w * 0.42, h * 0.845, w * 0.16, 8, 4); g.fill();
+        g.fillStyle = "rgba(255,255,255,0.55)"; g.beginPath(); g.roundRect(w * 0.08, h * 0.875, w * 0.5, h * 0.016, 6); g.fill();
+        g.fillStyle = "rgba(255,255,255,0.25)"; g.beginPath(); g.roundRect(w * 0.08, h * 0.905, w * 0.34, h * 0.012, 6); g.fill();
+      }
+      function drawRegion(g, w, h) {
+        g.fillStyle = "#181d24"; g.fillRect(0, 0, w, h);
+        g.lineCap = "round";
+        g.strokeStyle = "#173049"; g.lineWidth = w * 0.012;
+        g.beginPath(); g.moveTo(-20, h * 0.3); g.bezierCurveTo(w * 0.35, h * 0.45, w * 0.55, h * 0.15, w + 20, h * 0.4); g.stroke();
+        const towns = [[0.5, 0.5, 0.08]];
+        for (let i = 0; i < 18; i++) towns.push([0.05 + 0.9 * hash(i * 3 + 1), 0.05 + 0.9 * hash(i * 3 + 2), 0.012 + 0.022 * hash(i * 3 + 3)]);
+        // country roads: each town to its two nearest neighbours; main roads out of the city
+        g.strokeStyle = "#353e4c"; g.lineWidth = w * 0.0025;
+        towns.forEach((a, i) => {
+          const near = towns.map((b, j) => [Math.hypot(a[0] - b[0], a[1] - b[1]), j]).filter(([, j]) => j !== i).sort((x, y) => x[0] - y[0]).slice(0, 2);
+          for (const [, j] of near) { const b = towns[j]; g.beginPath(); g.moveTo(a[0] * w, a[1] * h); g.lineTo(b[0] * w, b[1] * h); g.stroke(); }
+        });
+        g.strokeStyle = "#566173"; g.lineWidth = w * 0.005;
+        for (const a of [0.3, 1.9, 3.4, 4.8]) { g.beginPath(); g.moveTo(w / 2, h / 2); g.lineTo(w / 2 + Math.cos(a) * w, h / 2 + Math.sin(a) * h); g.stroke(); }
+        g.fillStyle = "#2f3846";
+        towns.forEach(([x, y, r], i) => {
+          const n = Math.round(r * 900);
+          for (let k = 0; k < n; k++) {
+            const a = hash(i * 97 + k) * Math.PI * 2, d = Math.sqrt(hash(i * 53 + k * 7)) * r;
+            g.fillRect((x + d * Math.cos(a)) * w, (y + d * Math.sin(a)) * h, w * 0.006, w * 0.006);
+          }
+        });
+      }
+      // stylised continents, [lon, lat] pairs
+      const TIERRAS = [
+        [-17, 21, -16, 12, -12, 8, -8, 4.5, -2, 5, 5, 6, 9, 4, 10, -1, 13, -6, 12, -17, 15, -27, 18, -34.5, 25, -34, 32, -28, 35, -22, 40, -15, 40, -10, 39, -5, 43, 0, 51, 11, 43, 12, 37, 18, 34, 28, 32, 31, 25, 32, 20, 31, 11, 33, 10, 37, 0, 36, -6, 36, -10, 30, -13, 27],
+        [-9, 37, -9, 43.5, -1.5, 43.5, -1, 46, -4.5, 48.5, 1.5, 50.5, 4, 51.5, 8, 54, 10, 54, 14, 54, 20, 55, 23, 59, 30, 60, 40, 62, 60, 68, 60, 45, 48, 42, 41, 41, 36, 36, 28, 41, 26, 38, 23, 36.5, 19.5, 40, 15, 45, 13.5, 45.7, 12.3, 45.4, 14, 42, 18.5, 40, 16, 38, 15.5, 40, 12, 42, 10, 44, 7, 43.7, 5, 43.3, 3, 42.5, 0, 39, -0.5, 38, -2, 36.7, -5.5, 36],
+        [5, 58, 5, 62, 10, 64, 14, 68, 20, 70, 28, 71, 30, 69, 24, 66, 22, 65, 18, 63, 17, 60, 18, 59, 16, 56, 12, 56, 10, 59, 7, 58],
+        [-5.5, 50, 1.5, 51, 1.7, 52.7, 0, 53.5, -1.5, 55, -2, 57, -4, 58.6, -5.5, 57.5, -4.8, 54.8, -3, 53.5, -4.5, 52, -5, 51.5],
+        [-10, 51.6, -6, 52, -6, 54, -7.5, 55.3, -10, 54],
+        [26, 40, 36, 36, 35, 32, 32, 30, 34, 28, 43, 13, 52, 16, 57, 22, 60, 25, 67, 25, 73, 20, 77, 8, 80, 15, 88, 22, 92, 22, 98, 16, 100, 8, 103, 1, 105, 10, 109, 12, 108, 21, 117, 23, 122, 30, 121, 40, 126, 38, 129, 35, 130, 43, 140, 47, 143, 53, 155, 59, 162, 58, 170, 62, 180, 66, 180, 71, 140, 73, 100, 78, 80, 73, 68, 72, 60, 68, 40, 66, 30, 60],
+        [130, 31, 132, 34, 135, 34.5, 140, 35, 141, 38, 142, 41, 141.5, 45.5, 145, 44, 143, 42, 141, 40, 140.5, 37, 139, 35, 135, 33.5],
+        [-168, 66, -160, 59, -150, 61, -138, 59, -130, 55, -124, 48, -124, 40, -117, 32, -110, 23, -105, 20, -97, 16, -92, 15, -87, 13, -83, 9, -78, 8, -80, 9.5, -83, 15, -88, 16, -87, 21, -90, 21, -97, 22, -97, 28, -90, 29.5, -83, 29, -81, 25, -80, 27, -81, 31, -76, 35, -74, 40, -70, 42, -66, 44, -60, 46, -56, 52, -61, 56, -64, 60, -75, 62, -78, 58, -85, 55, -93, 59, -95, 62, -90, 65, -82, 67, -96, 68, -110, 68, -125, 70, -140, 70, -156, 71, -166, 68],
+        [-80, 9, -77, 8, -72, 12, -62, 11, -52, 5, -50, 0, -35, -5, -39, -14, -41, -22, -48, -26, -53, -34, -58, -38, -62, -41, -65, -45, -68, -50, -69, -55, -74, -52, -75, -46, -73, -37, -71, -30, -70, -18, -76, -14, -81, -6, -80, -1, -78, 2, -77, 7],
+        [114, -22, 114, -34, 117, -35, 123, -34, 131, -31.5, 138, -35, 141, -38, 147, -38, 150, -37, 153, -31, 153, -25, 146, -19, 142, -11, 141, -17, 136, -12, 131, -11, 126, -14, 122, -18],
+        [-73, 78, -60, 82, -30, 83, -20, 80, -20, 72, -30, 68, -42, 60, -50, 64, -55, 70, -60, 76],
+        [44, -25, 47, -25, 50, -15, 49, -12, 44, -16],
+      ];
+      function drawTierra(g, w, h) {
+        const X = (lon) => ((lon + 180) / 360) * w, Y = (lat) => ((90 - lat) / 180) * h;
+        g.fillStyle = "#0d1b2b"; g.fillRect(0, 0, w, h);
+        g.fillStyle = "#2c3c4e"; g.strokeStyle = "#4d6680"; g.lineWidth = 2.5; g.lineJoin = "round";
+        for (const poly of TIERRAS) {
+          g.beginPath();
+          for (let i = 0; i < poly.length; i += 2) (i ? g.lineTo : g.moveTo).call(g, X(poly[i]), Y(poly[i + 1]));
+          g.closePath(); g.fill(); g.stroke();
+        }
+        g.fillRect(0, Y(-68), w, h - Y(-68));
+        g.strokeStyle = "rgba(170,200,230,0.1)"; g.lineWidth = 1.5;
+        for (let lon = -180; lon <= 180; lon += 15) { g.beginPath(); g.moveTo(X(lon), 0); g.lineTo(X(lon), h); g.stroke(); }
+        for (let lat = -75; lat <= 75; lat += 15) { g.beginPath(); g.moveTo(0, Y(lat)); g.lineTo(w, Y(lat)); g.stroke(); }
+      }
+
+      // ---------- shared materials ----------
+      const steel = new THREE.MeshPhysicalMaterial({ color: 0xc9ccd2, metalness: 1, roughness: 0.3 });
+      const blanco = new THREE.MeshStandardMaterial({ color: 0xe6e9ed, roughness: 0.55 });
+      const cobre = new THREE.MeshPhysicalMaterial({ color: 0xc06a32, metalness: 1, roughness: 0.34 });
+      const foilTex = canvasTex(512, 512, (g, w, h) => {
+        g.fillStyle = "#b98a3c"; g.fillRect(0, 0, w, h);
+        for (let i = 0; i < 320; i++) {
+          const x = hash(i) * w, y = hash(i + 300) * h, s = 20 + hash(i + 600) * 70;
+          g.fillStyle = hash(i + 900) > 0.5 ? `rgba(255,232,170,${0.08 + hash(i + 1200) * 0.16})` : `rgba(80,48,12,${0.08 + hash(i + 1500) * 0.16})`;
+          g.beginPath(); g.moveTo(x, y); g.lineTo(x + s, y + s * 0.4 * (hash(i + 2) - 0.5)); g.lineTo(x + s * 0.5 * hash(i + 3), y + s); g.closePath(); g.fill();
+        }
+      });
+      const celdas = canvasTex(256, 320, (g, w, h) => {
+        g.fillStyle = "#0e1a33"; g.fillRect(0, 0, w, h);
+        g.strokeStyle = "rgba(160,182,215,0.5)"; g.lineWidth = 2;
+        for (let x = 0; x <= w; x += 32) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, h); g.stroke(); }
+        for (let y = 0; y <= h; y += 32) { g.beginPath(); g.moveTo(0, y); g.lineTo(w, y); g.stroke(); }
+      });
+      const cellMat = new THREE.MeshPhysicalMaterial({ map: celdas.tex, metalness: 0.5, roughness: 0.28, clearcoat: 0.6 });
+      const marco = new THREE.MeshStandardMaterial({ color: 0x8a8f99, roughness: 0.5, metalness: 0.6 });
+      const foilOpaco = new THREE.MeshPhysicalMaterial({ map: foilTex.tex, metalness: 1, roughness: 0.34 });
+
+      // a generic navigation satellite: gold foil body, two wings of solar panels (along z), antennas underneath (-y)
+      function satelite(foil) {
+        const g = new THREE.Group();
+        g.add(mesh(new THREE.BoxGeometry(2, 2.4, 2), foil));
+        g.add(mesh(new THREE.BoxGeometry(2.04, 0.3, 2.04), blanco, 0, 1.05, 0));
+        for (const s of [-1, 1]) {
+          const boom = mesh(new THREE.CylinderGeometry(0.06, 0.06, 1.0, 10), steel, 0, 0, s * 1.5); boom.rotation.x = Math.PI / 2; g.add(boom);
+          for (let k = 0; k < 3; k++) g.add(mesh(new THREE.BoxGeometry(2.2, 0.06, 2.6), [marco, marco, cellMat, cellMat, marco, marco], 0, 0, s * (3.3 + k * 2.68)));
+        }
+        g.add(mesh(new THREE.CylinderGeometry(0.85, 0.85, 0.08, 40), blanco, 0, -1.24, 0));
+        for (let i = 0; i < 12; i++) {
+          const r = i < 4 ? 0.3 : 0.65, a = (i < 4 ? i / 4 : (i - 4) / 8) * Math.PI * 2 + 0.3;
+          g.add(mesh(new THREE.CylinderGeometry(0.07, 0.07, 0.5, 12), blanco, r * Math.cos(a), -1.52, r * Math.sin(a)));
+        }
+        const dish = mesh(new THREE.SphereGeometry(0.42, 24, 10, 0, Math.PI * 2, 0, Math.PI / 2.6), blanco, 0.45, 1.25, -0.45); g.add(dish);
+        return g;
+      }
+
+      // ================= PHONE (1 unit = 1 cm) =================
+      const PHG = SETS.movil.g;
+      const movil = new THREE.Group(); PHG.add(movil);
+      movil.rotation.set(-0.16, 0.42, 0.05);
+      const bodyMat = new THREE.MeshPhysicalMaterial({ color: 0x262d38, metalness: 0.55, roughness: 0.42, clearcoat: 0.4, transparent: true });
+      movil.add(new THREE.Mesh(new RoundedBoxGeometry(7.2, 15, 0.8, 4, 0.38), bodyMat));
+      const pantalla = canvasTex(720, 1500, drawPantalla);
+      const screenMat = new THREE.MeshStandardMaterial({ color: 0x000000, emissive: 0xffffff, emissiveMap: pantalla.tex, emissiveIntensity: 0.85, roughness: 0.4, transparent: true });
+      movil.add(mesh(new THREE.PlaneGeometry(6.8, 14.6), screenMat, 0, 0, 0.41));
+      // inside: board, battery, GPS chip, GPS antenna, the cheap quartz clock, a copper trace
+      movil.add(mesh(new THREE.BoxGeometry(6.4, 7.6, 0.08), new THREE.MeshStandardMaterial({ color: 0x173326, roughness: 0.6 }), 0, 3.3, -0.05));
+      movil.add(mesh(new RoundedBoxGeometry(6.2, 6.2, 0.45, 2, 0.15), new THREE.MeshStandardMaterial({ color: 0x3a3f48, roughness: 0.5, metalness: 0.3 }), 0, -3.9, -0.05));
+      const chipNegro = new THREE.MeshPhysicalMaterial({ color: 0x141518, roughness: 0.3, metalness: 0.3 });
+      movil.add(mesh(new THREE.BoxGeometry(1.8, 1.6, 0.16), chipNegro, -1.4, 2.4, 0.07));
+      movil.add(mesh(new THREE.BoxGeometry(1.0, 0.8, 0.14), chipNegro, 1.6, 5.0, 0.07));
+      const chipMat = new THREE.MeshPhysicalMaterial({ color: 0x141518, roughness: 0.3, metalness: 0.3, emissive: 0xffa040, emissiveIntensity: 0 });
+      const chipGPS = mesh(new THREE.BoxGeometry(1.2, 1.2, 0.16), chipMat, 1.4, 3.0, 0.07); movil.add(chipGPS);
+      const antMat = new THREE.MeshPhysicalMaterial({ color: 0xe8e2d6, roughness: 0.5, emissive: 0xffb347, emissiveIntensity: 0 });
+      const antena = mesh(new THREE.BoxGeometry(1.7, 0.9, 0.32), antMat, -1.9, 6.4, 0.12); movil.add(antena);
+      movil.add(mesh(new THREE.BoxGeometry(1.3, 0.6, 0.02), cobre, -1.9, 6.4, 0.29));
+      const cuarzoMat = new THREE.MeshPhysicalMaterial({ color: 0xc9ccd2, metalness: 1, roughness: 0.3, emissive: 0xffb347, emissiveIntensity: 0 });
+      const cuarzo = mesh(new THREE.CapsuleGeometry(0.17, 0.55, 6, 16), cuarzoMat, 2.5, 1.6, 0.1); cuarzo.rotation.z = Math.PI / 2; movil.add(cuarzo);
+      const pistaMat = new THREE.MeshPhysicalMaterial({ color: 0xc06a32, metalness: 1, roughness: 0.34, emissive: 0xff8a2a, emissiveIntensity: 0 });
+      movil.add(tubo([v3(-1.9, 5.9, 0.02), v3(-0.4, 4.7, 0.02), v3(1.0, 3.7, 0.02)], 0.06, pistaMat));
+      movil.add(tubo([v3(2.0, 2.4, 0.02), v3(2.3, 1.9, 0.02), v3(2.5, 1.85, 0.02)], 0.05, pistaMat));
+      // blue location dot on the map
+      const dotG = new THREE.Group(); dotG.position.set(0.5, 0.6, 0.43); movil.add(dotG);
+      const dotW = new THREE.MeshBasicMaterial({ color: 0xc9d3e2, transparent: true }), dotB = new THREE.MeshBasicMaterial({ color: 0x3d7bf0, transparent: true });
+      const precMat = new THREE.MeshBasicMaterial({ color: 0x3d7bf0, transparent: true, opacity: 0.2, depthWrite: false });
+      const pulsoMat = new THREE.MeshBasicMaterial({ color: 0x5a92ff, transparent: true, opacity: 0, depthWrite: false });
+      dotG.add(mesh(new THREE.CircleGeometry(1.9, 48), precMat, 0, 0, -0.004));
+      dotG.add(mesh(new THREE.CircleGeometry(0.56, 40), dotW));
+      dotG.add(mesh(new THREE.CircleGeometry(0.45, 40), dotB, 0, 0, 0.004));
+      const dotPulse = mesh(new THREE.RingGeometry(0.62, 0.78, 48), pulsoMat, 0, 0, -0.002); dotG.add(dotPulse);
+      movil.updateMatrixWorld(true);
+      // incoming radio waves: arcs of big circles centred far above the antenna, closing in on it
+      const ANT = antena.getWorldPosition(new THREE.Vector3());
+      const arcos = [0, 1, 2, 3, 4].map(() => {
+        const m = mesh(new THREE.TorusGeometry(1, 0.0032, 6, 64, 0.7), glowMat(0xffb347)); m.rotation.z = -Math.PI / 2 - 0.35; PHG.add(m); return m;
+      });
+      C.pieza("antena", antena, v3(-0.85, 0.2, 0.16));
+      C.pieza("chip", chipGPS, v3(0.6, 0.3, 0.08));
+      C.pieza("cuarzo", cuarzo, v3(0, 0.17, 0));
+
+      // ================= SATELLITE close-up (1 unit ~ 1 m) =================
+      const SAG = SETS.sat.g;
+      const foilMat = new THREE.MeshPhysicalMaterial({ map: foilTex.tex, metalness: 1, roughness: 0.34, transparent: true });
+      const satBig = satelite(foilMat); satBig.rotation.y = 0.25; SAG.add(satBig);
+      // three atomic clocks inside the body, and a board
+      const relojMat = new THREE.MeshPhysicalMaterial({ color: 0x9da2ab, metalness: 0.9, roughness: 0.45, emissive: 0xffb347, emissiveIntensity: 0 });
+      const relojes = [-0.5, 0.05, 0.6].map((x) => mesh(new THREE.CylinderGeometry(0.2, 0.2, 0.75, 24), relojMat, x, -0.15, 0.35));
+      relojes.forEach((r) => satBig.add(r));
+      satBig.add(mesh(new THREE.BoxGeometry(1.5, 0.08, 1.2), new THREE.MeshStandardMaterial({ color: 0x173326, roughness: 0.6 }), 0, -0.6, -0.2));
+      const nucleos = relojes.map((r) => { const s = brillo("255,196,120"); s.scale.set(0.55, 0.55, 1); s.position.copy(r.position); satBig.add(s); return s; });
+      // the same satellite seen whole, wings across the frame, for the wide shot
+      const satHero = satelite(foilOpaco); satHero.position.set(0, 0, -60);
+      satHero.quaternion.setFromUnitVectors(v3(0, 0, 1), v3(0.55, 0.7, -0.45).normalize()); SAG.add(satHero);
+      const heroGlow = brillo("255,196,120"); heroGlow.scale.set(2.2, 2.2, 1); heroGlow.position.copy(satHero.position); SAG.add(heroGlow);
+      const HERO = SETS.sat.c.clone().add(satHero.position);
+      // radio signal leaving the antennas: lower half-spheres that grow and fade
+      const conchas = [0, 1, 2].map(() => {
+        const m = mesh(new THREE.SphereGeometry(1, 48, 16, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2), rimMat(0xffb347, 0.02, 2.4), 0, -1.6, 0);
+        satBig.add(m); return m;
+      });
+      SAG.updateMatrixWorld(true);
+      const CLK = satBig.localToWorld(v3(0.05, -0.15, 0.35));
+      const ANTS = satBig.localToWorld(v3(0, -1.5, 0));
+      const relojAnc = new THREE.Object3D(); relojAnc.position.set(0.6, 0.15, 0.35); satBig.add(relojAnc);
+      const emisorAnc = new THREE.Object3D(); emisorAnc.position.set(0.65, -1.75, 0.2); satBig.add(emisorAnc);
+      C.pieza("relojes", relojAnc, v3(0, 0, 0));
+      C.pieza("emisor", emisorAnc, v3(0, 0, 0));
+
+      // ================= DIAGRAM: one satellite above, the phone on the ground, the signal in between =================
+      const DGG = SETS.diag.g;
+      const satD = satelite(foilOpaco); satD.scale.setScalar(0.75); satD.position.set(0, 10.6, 0); satD.rotation.y = 0.5; DGG.add(satD);
+      const suelo = mesh(new THREE.SphereGeometry(70, 128, 64), new THREE.MeshStandardMaterial({ color: 0x0f1c2b, roughness: 0.9, emissive: 0x0d1b2b, emissiveIntensity: 0.3 }), 0, -10.6 - 70, 0); DGG.add(suelo);
+      const aire = mesh(new THREE.SphereGeometry(70.9, 128, 64), rimMat(0x6fa8ff, 0, 3), 0, -10.6 - 70, 0); aire.material.uniforms.op.value = 0.45; DGG.add(aire);
+      // the clocks up there and down here: the satellite one beats faster
+      const latSat = brillo("255,190,110"); latSat.scale.set(3.2, 3.2, 1); latSat.position.set(0, 10.6, 0.8); DGG.add(latSat);
+      const latMovil = brillo("140,180,255"); latMovil.scale.set(2.6, 2.6, 1); latMovil.position.set(0, -9.0, 0.6); DGG.add(latMovil);
+      const movilD = new THREE.Group(); movilD.position.set(0, -9.0, 0); movilD.rotation.y = -0.35; DGG.add(movilD);
+      movilD.add(new THREE.Mesh(new RoundedBoxGeometry(1.6, 3.2, 0.2, 2, 0.08), new THREE.MeshPhysicalMaterial({ color: 0x262d38, metalness: 0.55, roughness: 0.42 })));
+      const screenD = new THREE.MeshStandardMaterial({ color: 0x000000, emissive: 0xffffff, emissiveMap: pantalla.tex, emissiveIntensity: 0.8 });
+      movilD.add(mesh(new THREE.PlaneGeometry(1.5, 3.1), screenD, 0, 0, 0.105));
+      const Y0 = 9.2, Y1 = -7.3;
+      const rayaMat = glowMat(0xffffff, 0.3);
+      const rayas = new THREE.InstancedMesh(new THREE.BoxGeometry(0.07, 0.36, 0.07), rayaMat, 24); DGG.add(rayas);
+      for (let i = 0; i < 24; i++) { dummy.position.set(0, lerp(Y0 - 0.4, Y1 + 0.4, (i + 0.5) / 24), 0); dummy.scale.set(1, 1, 1); dummy.updateMatrix(); rayas.setMatrixAt(i, dummy.matrix); }
+      const pulso = brillo("255,180,90"); pulso.scale.set(2.4, 2.4, 1); DGG.add(pulso);
+      const ondaD = mesh(new THREE.TorusGeometry(1, 0.006, 6, 64, 0.8), glowMat(0xffb347)); ondaD.rotation.z = -Math.PI / 2 - 0.4; ondaD.position.set(0, Y0, 0); DGG.add(ondaD);
+      C.pieza("satD", satD, v3(0, 0, 0));
+      C.pieza("movilD", movilD, v3(0.8, 0.6, 0));
+
+      // ================= MAP tile (city: 30 units = 1.2 km; region: 30 units = 30 km) =================
+      const MPG = SETS.mapa.g;
+      const ciudad = canvasTex(2048, 2048, (g, w, h) => drawCiudad(g, w, h, 11, 1));
+      const region = canvasTex(2048, 2048, drawRegion);
+      const mapMat = new THREE.MeshStandardMaterial({ color: 0x000000, emissive: 0xffffff, emissiveMap: ciudad.tex, emissiveIntensity: 0.75, roughness: 0.8 });
+      const plano = mesh(new THREE.PlaneGeometry(30, 30), mapMat); plano.rotation.x = -Math.PI / 2; MPG.add(plano);
+      const canto = mesh(new THREE.BoxGeometry(30, 0.6, 30), new THREE.MeshStandardMaterial({ color: 0x101318, roughness: 0.7 }), 0, -0.31, 0); MPG.add(canto);
+      function puntoMapa(color) {
+        const g = new THREE.Group(); g.rotation.x = -Math.PI / 2; MPG.add(g);
+        const w = new THREE.MeshBasicMaterial({ color: 0xc9d3e2, transparent: true }), c = new THREE.MeshBasicMaterial({ color, transparent: true });
+        const halo = new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0.22, depthWrite: false });
+        g.add(mesh(new THREE.CircleGeometry(1.15, 48), halo, 0, 0, 0.02), mesh(new THREE.CircleGeometry(0.5, 40), w, 0, 0, 0.05), mesh(new THREE.CircleGeometry(0.4, 40), c, 0, 0, 0.07));
+        g.mats = [w, c, halo];
+        return g;
+      }
+      const real = puntoMapa(0x3d7bf0); real.position.y = 0.02;
+      const fantasma = puntoMapa(0xff6a4a); fantasma.position.y = 0.04;
+      const reglaMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.85 });
+      const regla = new THREE.InstancedMesh(new THREE.BoxGeometry(1, 0.05, 0.1), reglaMat, 16); MPG.add(regla);
+      const reglaAnc = new THREE.Object3D(); MPG.add(reglaAnc);
+      C.pieza("fantasma", fantasma, v3(0, 0, 0));
+      C.pieza("regla", reglaAnc, v3(0, 0, 0));
+      const DIR_C = v3(0.8, 0, -0.6), DIR_R = v3(-0.7, 0, -0.714);
+
+      // ================= EARTH (radius 6, orbits 13: not to scale) =================
+      const EAG = SETS.tierra.g;
+      const RT = 6, ORB = 13, ORB_G = 14.4;
+      const tierraTex = canvasTex(2048, 1024, drawTierra);
+      const tierraMat = new THREE.MeshStandardMaterial({ map: tierraTex.tex, roughness: 0.85, emissive: 0xffffff, emissiveMap: tierraTex.tex, emissiveIntensity: 0.35 });
+      const giro = new THREE.Group(); EAG.add(giro);
+      giro.add(new THREE.Mesh(new THREE.SphereGeometry(RT, 128, 64), tierraMat));
+      const lonlat = (lat, lon) => { const ph = (lon + 180) * deg, th = (90 - lat) * deg; return v3(-Math.cos(ph) * Math.sin(th), Math.cos(th), Math.sin(ph) * Math.sin(th)); };
+      // Madrid on top of the globe: the phone is there, satellites above it
+      giro.quaternion.setFromUnitVectors(lonlat(40.4, -3.7), UP);
+      const atm = mesh(new THREE.SphereGeometry(RT * 1.035, 96, 48), rimMat(0x6fa8ff, 0, 2.6)); atm.material.uniforms.op.value = 0.55; EAG.add(atm);
+      // constellations: GPS 31 satellites in 6 planes at 55°, Galileo 24 in 3 planes at 56°
+      function constelacion(planos, inc, radio, color, fase) {
+        const ringMat = glowMat(color, 0.15), sats = [];
+        planos.forEach((n, k) => {
+          const pl = new THREE.Group(); pl.rotation.order = "YXZ"; pl.rotation.y = (k * 2 * Math.PI) / planos.length + fase; pl.rotation.x = inc * deg; giro.add(pl);
+          const ring = mesh(new THREE.TorusGeometry(radio, 0.022, 6, 220), ringMat); ring.rotation.x = Math.PI / 2; pl.add(ring);
+          pl.updateMatrix();
+          for (let i = 0; i < n; i++) sats.push({ pl, u0: (i / n) * Math.PI * 2 + k * 0.45 });
+        });
+        const mat = new THREE.MeshBasicMaterial({ color, transparent: true });
+        const inst = new THREE.InstancedMesh(new THREE.SphereGeometry(0.17, 12, 8), mat, sats.length); giro.add(inst);
+        return { sats, inst, mat, ringMat, radio };
+      }
+      const GPS = constelacion([6, 5, 5, 5, 5, 5], 55, ORB, 0xffc070, 0);
+      const GAL = constelacion([8, 8, 8], 56, ORB_G, 0x7fb2ff, 0.5);
+      const posSat = (c, i, t) => { const s = c.sats[i], u = s.u0 + t * 0.11; return v3(c.radio * Math.cos(u), 0, c.radio * Math.sin(u)).applyMatrix4(s.pl.matrix); };
+      const galAnc = new THREE.Object3D(); giro.add(galAnc);
+      const destacado = brillo("255,200,120"); destacado.scale.set(2.6, 2.6, 1); giro.add(destacado);
+      C.pieza("galileo", galAnc, v3(0, 0, 0));
+      // you: a blue pin on top of the globe
+      const P = v3(0, RT, 0);
+      const pin = new THREE.Group(); pin.position.copy(P); EAG.add(pin);
+      const pinMat = new THREE.MeshBasicMaterial({ color: 0x4d8bff, transparent: true });
+      pin.add(mesh(new THREE.SphereGeometry(0.2, 20, 12), pinMat, 0, 0.32, 0));
+      pin.add(mesh(new THREE.CylinderGeometry(0.035, 0.035, 0.3, 8), new THREE.MeshBasicMaterial({ color: 0xffffff }), 0, 0.15, 0));
+      const pinHalo = brillo("90,150,255"); pinHalo.scale.set(1.2, 1.2, 1); pinHalo.position.y = 0.32; pin.add(pinHalo);
+      C.pieza("p", pin, v3(0, 0.35, 0));
+      // trilateration: four satellites above Madrid, a sphere of signal around each that reaches the phone
+      const satDir = (a, b) => v3(Math.sin(a * deg) * Math.cos(b * deg), Math.cos(a * deg), Math.sin(a * deg) * Math.sin(b * deg)).multiplyScalar(ORB);
+      const S = [satDir(26, 150), satDir(24, 300), satDir(22, 40), satDir(30, 240)];
+      const radios = S.map((s) => s.distanceTo(P));
+      const minis = S.map((s) => {
+        const m = satelite(foilOpaco); m.scale.setScalar(0.2); m.position.copy(s);
+        m.quaternion.setFromUnitVectors(v3(0, -1, 0), s.clone().negate().normalize()); EAG.add(m); return m;
+      });
+      const esferas = S.map((s, i) => { const m = mesh(new THREE.SphereGeometry(1, 96, 64), rimMat([0xffb347, 0xffd27a, 0xff7a50, 0xfff0c0][i], 0.012, 3.5, THREE.FrontSide)); m.position.copy(s); EAG.add(m); return m; });
+      // circle where spheres 1 and 2 meet; the two points where sphere 3 cuts it (you, and one lost in space)
+      const dS = S[0].distanceTo(S[1]), uS = S[1].clone().sub(S[0]).normalize();
+      const aS = (radios[0] ** 2 - radios[1] ** 2 + dS * dS) / (2 * dS), hS = Math.sqrt(Math.max(0, radios[0] ** 2 - aS * aS));
+      const centroAro = S[0].clone().add(uS.clone().multiplyScalar(aS));
+      const aroMat = glowMat(0xffffff, 0);
+      const aro = mesh(new THREE.TorusGeometry(hS, 0.05, 8, 200), aroMat); aro.position.copy(centroAro); aro.quaternion.setFromUnitVectors(v3(0, 0, 1), uS); EAG.add(aro);
+      const nP = S[1].clone().sub(S[0]).cross(S[2].clone().sub(S[0])).normalize();
+      const P2 = P.clone().sub(nP.clone().multiplyScalar(2 * P.clone().sub(S[0]).dot(nP)));
+      const p2Mat = new THREE.MeshBasicMaterial({ color: 0xd8dee8, transparent: true, opacity: 0 });
+      const p2 = mesh(new THREE.SphereGeometry(0.2, 20, 12), p2Mat); p2.position.copy(P2); EAG.add(p2);
+      const p2Halo = brillo("210,220,235"); p2Halo.scale.set(1.3, 1.3, 1); p2Halo.position.copy(P2); EAG.add(p2Halo);
+      const esfAnc = new THREE.Object3D(); EAG.add(esfAnc);
+      const aroAnc = new THREE.Object3D(); EAG.add(aroAnc);
+      // a point of the circle away from the Earth, to point the label at
+      const perp = new THREE.Vector3().crossVectors(uS, v3(0, 0, 1)).normalize();
+      aroAnc.position.copy(centroAro).add(perp.multiplyScalar(perp.y < 0 ? -hS : hS));
+      C.pieza("esfera1", esfAnc, v3(0, 0, 0));
+      C.pieza("aro", aroAnc, v3(0, 0, 0));
+      C.pieza("p2", p2, v3(0, 0.2, 0));
+      C.pieza("s4", minis[3], v3(0, 0, 0));
+
+      // ---------- camera: one shot per idea, hard cuts between sets ----------
+      const rel = (q, x, y, z) => ({ p: q.clone().add(v3(x, y, z)), q: q.clone() });
+      const PHC = v3(0, 1.2, 0), CHIPW = chipGPS.getWorldPosition(new THREE.Vector3()), QW = cuarzo.getWorldPosition(new THREE.Vector3());
+      const SATC = SETS.sat.c.clone().add(v3(0, -0.3, 0));
+      const DGC = SETS.diag.c.clone().add(v3(0, 0.8, 0));
+      const MPC = SETS.mapa.c.clone().add(v3(2.5, 0, -2)), MPR = SETS.mapa.c.clone().add(v3(-2.6, 0, -4.4));
+      const ANT2 = ANT.clone().add(v3(1.2, -1.5, 0));
+      const EAW = SETS.tierra.c.clone().add(v3(0, 3, 0)), EAW2 = SETS.tierra.c.clone().add(v3(0, 6, 0));
+      const TRI = SETS.tierra.c.clone().add(v3(0, 10.5, 0));
+      const TRI2 = SETS.tierra.c.clone().add(P2.clone().lerp(v3(0, 11, 0), 0.4));
+      const PW = SETS.tierra.c.clone().add(P).add(v3(0, 1.2, 0));
+      const camAt = C.camara([
+        { t: 0, ...rel(PHC, -8, 5, 52) },
+        { t: "ESCUCHA", mas: -0.15, ...rel(PHC, -6.5, 4, 45) },
+        { t: "ESCUCHA", mas: -0.1, corte: true, ...rel(ANT2, -6, 4, 24) },
+        { t: "FINAL", mas: -0.15, ...rel(ANT2, -5, 3.5, 21) },
+        { t: "FINAL", mas: -0.1, corte: true, ...rel(HERO, 3, -2, 34) },
+        { t: "AHI", mas: -0.15, ...rel(HERO, 2, -1.5, 30) },
+        { t: "AHI", mas: -0.1, corte: true, ...rel(EAW, -18, 30, 64) },
+        { t: "CADA", mas: -0.15, ...rel(EAW, -8, 31, 66) },
+        { t: "CADA", mas: -0.1, corte: true, ...rel(CLK, 3.4, -2.6, 6.8) },
+        { t: "REPITE", mas: -0.2, ...rel(CLK, 3.0, -2.3, 6.2) },
+        { t: "REPITE", mas: 0.5, ...rel(ANTS, 3, -6.5, 8) },
+        { t: "SENAL", mas: -0.15, ...rel(ANTS, 2.6, -6, 7.4) },
+        { t: "SENAL", mas: -0.1, corte: true, ...rel(DGC, 8, 0.5, 78) },
+        { t: "CALCULA", mas: -0.15, ...rel(DGC, 5, 0.5, 73) },
+        { t: "CALCULA", mas: -0.1, corte: true, ...rel(CHIPW, -4.5, 3.6, 15) },
+        { t: "MEDIRLO", mas: -0.15, ...rel(CHIPW, -3.8, 3, 13) },
+        { t: "MEDIRLO", mas: -0.1, corte: true, ...rel(MPC, 0, 38, 27) },
+        { t: "CON1", mas: -0.15, ...rel(MPC, 1.5, 36, 25) },
+        { t: "CON1", mas: -0.1, corte: true, ...rel(TRI, 8, 3, 50) },
+        { t: "TRES", mas: -0.3, ...rel(TRI, 5, 4, 48) },
+        { t: "PERDIDO", mas: -0.2, ...rel(TRI, 2, 4, 46) },
+        { t: "PERDIDO", mas: 0.6, ...rel(TRI2, 3, 2, 40) },
+        { t: "ERES", mas: -0.1, ...rel(TRI2, 3, 2, 39) },
+        { t: "ERES", mas: 0.6, ...rel(PW, 4, 4, 26) },
+        { t: "PERO", mas: -0.15, ...rel(PW, 3.5, 4, 24) },
+        { t: "PERO", mas: -0.1, corte: true, ...rel(QW, -3.4, 2.8, 11) },
+        { t: "CUARTO", mas: -0.15, ...rel(QW, -2.9, 2.4, 10) },
+        { t: "CUARTO", mas: -0.1, corte: true, ...rel(TRI, -12, 5, 47) },
+        { t: "EUROPA", mas: -0.15, ...rel(TRI, -15, 5, 45) },
+        { t: "EUROPA", mas: -0.1, corte: true, ...rel(EAW, 22, 28, 62) },
+        { t: "AHORA", mas: -0.15, ...rel(EAW, 12, 30, 66) },
+        { t: "AHORA", mas: -0.1, corte: true, ...rel(CLK, 3.2, -2.4, 6.4) },
+        { t: "RELATIVIDAD", mas: -0.15, ...rel(CLK, 2.8, -2.1, 5.8) },
+        { t: "RELATIVIDAD", mas: -0.1, corte: true, ...rel(DGC, -7, 1.5, 74) },
+        { t: "AJUSTAN", mas: -0.15, ...rel(DGC, -5, 1.2, 70) },
+        { t: "AJUSTAN", mas: -0.1, corte: true, ...rel(CLK, 1.0, -3.0, 7.4) },
+        { t: "SINO", mas: -0.15, ...rel(CLK, 0.8, -2.7, 6.8) },
+        { t: "SINO", mas: -0.1, corte: true, ...rel(MPR, 0, 42, 30) },
+        { t: "MANDA", mas: -0.15, ...rel(MPR, 0, 46, 33) },
+        { t: "MANDA", mas: -0.1, corte: true, ...rel(PHC, -5, 3.5, 42) },
+        { t: D, ...rel(PHC, -8, 5.5, 56) },
+      ]);
+
+      // ---------- each set, frame by frame ----------
+      function updMovil(t) {
+        const xr = Math.max(ventana(t, T.ESCUCHA - 0.1, T.FINAL, 0.25), ventana(t, T.CALCULA - 0.1, T.MEDIRLO, 0.25), ventana(t, T.PERO - 0.1, T.CUARTO, 0.25));
+        bodyMat.opacity = 1 - 0.8 * xr; bodyMat.depthWrite = xr < 0.05;
+        screenMat.opacity = 1 - 0.92 * xr; screenMat.depthWrite = xr < 0.05;
+        const ph = frac(t * 0.8);
+        dotW.opacity = dotB.opacity = 1 - xr; precMat.opacity = 0.2 * (1 - xr);
+        dotPulse.scale.setScalar(1 + 2.2 * ph); pulsoMat.opacity = 0.6 * (1 - ph) * (1 - xr);
+        antMat.emissiveIntensity = 0.5 * ventana(t, T.ESCUCHA, T.FINAL, 0.3) * (0.6 + 0.4 * Math.sin(t * 6));
+        pistaMat.emissiveIntensity = 0.35 * Math.max(ventana(t, T.CALCULA, T.MEDIRLO, 0.3), ventana(t, T.BARATO, T.CUARTO, 0.3));
+        chipMat.emissiveIntensity = 0.3 * ventana(t, T.CALCULA, T.MEDIRLO, 0.3) * (0.75 + 0.25 * Math.sin(t * 7));
+        cuarzoMat.emissiveIntensity = 0.3 * ventana(t, T.BARATO, T.CUARTO, 0.3) * (0.7 + 0.3 * Math.sin(t * 9));
+        // waves come down to the antenna while the phone listens (opening and ending)
+        const on = Math.max(ventana(t, -1, T.FINAL, 0.3), ventana(t, T.MANDA - 0.2, D + 1, 0.3));
+        const SRC = ANT.clone().add(v3(0, 18, 0));
+        dotG.visible = xr < 0.98;
+        arcos.forEach((m, i) => {
+          const f = frac(t * 0.5 + i / 5), r = 18 * (0.12 + 0.88 * f);
+          m.position.copy(SRC); m.scale.setScalar(r);
+          m.material.opacity = on * 0.9 * Math.sin(Math.PI * f) ** 0.6;
+        });
+      }
+      function updSat(t) {
+        const xr = Math.max(0.55 * ventana(t, T.FINAL - 0.1, T.AHI, 0.25), ventana(t, T.ATOMICOS - 0.2, T.SENAL, 0.25), ventana(t, T.AHORA - 0.1, T.RELATIVIDAD, 0.2), ventana(t, T.AJUSTAN - 0.1, T.SINO, 0.2));
+        foilMat.opacity = 1 - 0.8 * xr; foilMat.depthWrite = xr < 0.05;
+        // the clocks beat: faster for "deprisa", slower once they are adjusted
+        const ritmo = t >= T.DEPRISA - 0.2 && t < T.RELATIVIDAD ? 4 : t >= T.AJUSTAN ? 0.8 : 1.6;
+        const latido = 0.65 + 0.35 * Math.sin(t * Math.PI * 2 * ritmo);
+        relojMat.emissiveIntensity = 0.04 + 0.28 * xr * latido;
+        nucleos.forEach((s) => (s.material.opacity = 0.28 * xr * latido));
+        heroGlow.material.opacity = 0.35 * (0.6 + 0.4 * Math.sin(t * Math.PI * 2 * 1.6));
+        satHero.position.y = heroGlow.position.y = 0.15 * Math.sin(t * 0.8);
+        const emit = ventana(t, T.REPITE - 0.2, T.SENAL, 0.3);
+        conchas.forEach((m, i) => {
+          const f = frac(t * 0.55 + i / 3);
+          m.scale.setScalar(0.5 + 5.5 * f); m.material.uniforms.op.value = emit * (1 - f) * 0.6;
+        });
+      }
+      function updDiag(t) {
+        const k = clamp((t - T.VIAJA) / (T.DECIMA + 0.6 - T.VIAJA));
+        const viajando = k > 0 && k < 1;
+        pulso.position.set(0, lerp(Y0, Y1, k), 0.3);
+        pulso.material.opacity = viajando ? 0.9 : k >= 1 ? 0.9 * (1 - ramp(t, T.DECIMA + 0.6, T.DECIMA + 1.3)) : 0;
+        ondaD.scale.setScalar(Math.max(0.01, (Y0 - Y1) * k)); ondaD.material.opacity = viajando ? 0.85 : 0;
+        rayaMat.opacity = 0.25 + 0.5 * ventana(t, T.MIDE, T.CALCULA, 0.3);
+        screenD.emissiveIntensity = 0.8 + 0.8 * ventana(t, T.DECIMA + 0.5, T.CALCULA, 0.2);
+        const rv = ventana(t, T.RELATIVIDAD - 0.1, T.AJUSTAN, 0.2);
+        latSat.material.opacity = rv * 0.75 * (0.5 + 0.5 * Math.sin(t * Math.PI * 2 * 3));
+        latMovil.material.opacity = rv * 0.6 * (0.5 + 0.5 * Math.sin(t * Math.PI * 2 * 1));
+      }
+      function updMapa(t) {
+        const esRegion = t >= T.SINO - 0.1;
+        mapMat.emissiveMap = esRegion ? region.tex : ciudad.tex;
+        // the region tile is bigger, so its far edge stays out of the shot
+        plano.scale.setScalar(esRegion ? 1.8 : 1); canto.scale.set(esRegion ? 1.8 : 1, 1, esRegion ? 1.8 : 1);
+        const k = esRegion ? clamp((t - T.CRECERIA) / (T.DIA2 + 0.4 - T.CRECERIA)) : ramp(t, T.ERROR, T.METROS + 0.2);
+        const off = (esRegion ? DIR_R : DIR_C).clone().multiplyScalar((esRegion ? 10 : 7.5) * k);
+        fantasma.position.set(off.x, 0.04, off.z);
+        fantasma.visible = k > 0.02;
+        const ph = frac(t * 0.8);
+        real.children[0].scale.setScalar(1 + 0.25 * ph); fantasma.children[0].scale.setScalar(1 + 0.25 * ph);
+        // dashed ruler between the real dot and the wrong one
+        const len = off.length(), ang = Math.atan2(-off.z, off.x);
+        for (let i = 0; i < 16; i++) {
+          dummy.position.set(off.x * (i + 0.5) / 16, 0.06, off.z * (i + 0.5) / 16);
+          dummy.rotation.set(0, ang, 0); dummy.scale.set(Math.max(0.001, (len / 16) * 0.55), 1, 1); dummy.updateMatrix(); regla.setMatrixAt(i, dummy.matrix);
+        }
+        regla.instanceMatrix.needsUpdate = true;
+        reglaMat.opacity = k > 0.02 ? 0.85 : 0;
+        reglaAnc.position.set(off.x * 0.5, 0.1, off.z * 0.5);
+      }
+      function updTierra(t) {
+        const tri = t >= T.CON1 - 0.12 && t < T.EUROPA - 0.12 ? 1 : 0, wide = 1 - tri;
+        // constellations (orbits drawn far faster than real: one turn per minute)
+        const nVis = t < T.CON1 ? Math.round(31 * ramp(t, T.SATS - 0.4, T.SATS + 0.9)) : 31;
+        GPS.sats.forEach((s, i) => { dummy.position.copy(posSat(GPS, i, t)); dummy.rotation.set(0, 0, 0); dummy.scale.setScalar(i < nVis ? 1 : 0.001); dummy.updateMatrix(); GPS.inst.setMatrixAt(i, dummy.matrix); });
+        GPS.inst.instanceMatrix.needsUpdate = true;
+        GPS.mat.opacity = wide; GPS.inst.visible = wide > 0; GPS.ringMat.opacity = 0.15 * wide * (t < T.CON1 ? ramp(t, T.AHI, T.SATS + 0.6) : 1);
+        const gal = wide * ramp(t, T.GALILEO - 0.3, T.GALILEO + 0.5) * (t < T.RELATIVIDAD ? 1 : 0);
+        GAL.sats.forEach((s, i) => { dummy.position.copy(posSat(GAL, i, t)); dummy.scale.setScalar(1); dummy.updateMatrix(); GAL.inst.setMatrixAt(i, dummy.matrix); });
+        GAL.inst.instanceMatrix.needsUpdate = true;
+        GAL.mat.opacity = gal; GAL.inst.visible = gal > 0.01; GAL.ringMat.opacity = 0.13 * gal;
+        galAnc.position.copy(posSat(GAL, 3, t));
+        destacado.position.copy(posSat(GPS, 2, t)); destacado.material.opacity = 0.8 * ventana(t, T.RELATIVIDAD, T.AJUSTAN, 0.2);
+        // trilateration
+        const g = [T.CON1, T.DOS, T.TRES, T.CUARTO].map((a) => ramp(t, a + 0.05, a + 1.2));
+        esferas.forEach((m, i) => {
+          m.scale.setScalar(Math.max(0.001, radios[i] * g[i]));
+          m.material.uniforms.op.value = tri * (g[i] > 0.001 ? 0.6 + 0.6 * (1 - g[i]) : 0);
+          m.visible = tri > 0 && g[i] > 0.001;
+        });
+        minis.forEach((m, i) => (m.visible = tri > 0 && (i < 3 || t >= T.CUARTO - 0.2)));
+        esfAnc.position.copy(S[0]).add(v3(0.85, 0.1, 0.5).normalize().multiplyScalar(radios[0] * g[0]));
+        aroMat.opacity = tri * ramp(t, T.CIRCULO - 0.2, T.CIRCULO + 0.5) * (1 - 0.5 * ramp(t, T.CUARTO, T.CUARTO + 1));
+        const p2a = tri * ramp(t, T.QUEDAN, T.QUEDAN + 0.4) * (1 - ramp(t, T.CUARTO + 0.6, T.CUARTO + 1.5));
+        p2Mat.opacity = p2a; p2Halo.material.opacity = 0.7 * p2a; p2.visible = p2a > 0.01;
+        const tu = Math.max(ventana(t, T.ERES - 0.1, T.PERO, 0.3), ventana(t, T.CORREGIR - 0.4, T.EUROPA, 0.3));
+        pinHalo.material.opacity = 0.55 + 0.45 * tu; pinHalo.scale.setScalar(1.2 + 1.4 * tu);
+        pinMat.color.setHex(0x4d8bff);
+      }
+
+      // ---------- frame ----------
+      function renderAt(t) {
+        const cam = camAt(t);
+        let act = "movil", best = Infinity;
+        for (const k in SETS) { const d = SETS[k].c.distanceTo(cam.q); if (d < best) { best = d; act = k; } }
+        for (const k in SETS) SETS[k].g.visible = k === act;
+        const S0 = SETS[act];
+        C.key.position.copy(S0.c).add(v3(-14, 30, 16).multiplyScalar(S0.s)); C.key.intensity = K0 * S0.s * S0.s * (S0.k ?? 1);
+        C.warm.position.copy(S0.c).add(v3(6, 4, 6).multiplyScalar(S0.s)); C.warm.distance = 22 * S0.s; C.warm.intensity = W0 * S0.s * S0.s;
+        if (bokeh) bokeh.uniforms.aperture.value = APER * S0.dof;
+        ({ movil: updMovil, sat: updSat, diag: updDiag, mapa: updMapa, tierra: updTierra })[act](t);
+
+        // data panels
+        C.panel("envia", "NADA");
+        C.panel("reloj", "¿?");
+        C.panel("sats", String(Math.round(31 * ramp(t, T.SATS - 0.4, T.SATS + 0.9))));
+        C.panel("alt", "20.200 km");
+        const h = Math.max(0, t - T.HORA);
+        C.panel("hora", "18:00:" + String(Math.floor(h) % 60).padStart(2, "0") + "," + String(Math.floor(frac(h) * 1e6)).padStart(6, "0"));
+        C.panel("crono", coma(0.067 * clamp((t - T.VIAJA) / (T.DECIMA + 0.6 - T.VIAJA)), 3) + " s");
+        C.panel("dist", "20.200 km");
+        C.panel("err", "0,000001 s");
+        C.panel("nsat", t < T.DOS ? "1" : t < T.TRES ? "2" : "3");
+        C.panel("nsat4", "4");
+        C.panel("gana", coma(0.000038 * clamp((t - T.GANAN) / (T.DIA1 + 0.3 - T.GANAN)), 6) + " s");
+        C.panel("deriva", Math.round(10 * clamp((t - T.CRECERIA) / (T.DIA2 + 0.4 - T.CRECERIA))) + " km");
+
+        C.mirar(cam);
+        C.pintar(t);
+      }
+
+      C.arrancar(renderAt);
+    </script>
+  </body>
+</html>

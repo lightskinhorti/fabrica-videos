@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <link rel="stylesheet" href="comun/dinero.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+      .cifra, .fila b, .cel b, .menor { font-family: "Archivo Black", sans-serif; }
+      /* this video's layout */
+      .ancho { left: 0; width: 1080px; }
+      .fila.marca { background: #f8dc7a; margin: 0 -16px; padding-left: 16px; padding-right: 16px; border-radius: 8px; }
+      .marcador { background: #f2b705; border-radius: 10px; padding: 0 10px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+      /* the rule card */
+      #regla { width: 820px; padding: 22px 30px; }
+      #regla .rotulo { font-size: 26px; margin-bottom: 10px; }
+      #regla p { font-size: 44px; font-weight: 800; line-height: 1.3; letter-spacing: -0.01em; }
+      /* the 30-day calendar */
+      #cal { width: 798px; padding: 18px; }
+      #cal .rotulo { font-size: 26px; margin-bottom: 10px; }
+      .sem, .rej { display: grid; grid-template-columns: repeat(7, 100px); gap: 8px; }
+      .sem { margin-bottom: 8px; }
+      .sem span { text-align: center; font-size: 24px; font-weight: 800; letter-spacing: 0.08em; height: 30px; }
+      .cel { position: relative; height: 84px; border: 5px solid #1d2a44; border-radius: 12px; background: #fffaf0; }
+      .cel i { position: absolute; left: 8px; top: 4px; font-style: normal; font-size: 18px; font-weight: 800; }
+      .cel b { position: absolute; left: 0; right: 0; bottom: 8px; text-align: center; font-weight: 400; font-size: 34px; line-height: 1; }
+      .cel.fuera { border-style: dashed; border-color: rgba(29, 42, 68, 0.3); color: rgba(29, 42, 68, 0.35); background: transparent; }
+      .cel.c150 { background: #e5383b; color: #fff; }
+      .cel.bf { background: #1d2a44; color: #f2b705; }
+      /* the comparison card and the claim form */
+      #visto { width: 380px; }
+      #visto .rotulo { font-size: 26px; }
+      .menor { font-size: 140px; line-height: 1; color: #1d2a44; }
+      #hoja .doc { width: 460px; padding: 22px 28px 14px; }
+      #hoja .doc-tit { font-size: 22px; letter-spacing: 0.06em; }
+      #hoja .fila { font-size: 28px; }
+      #hoja .fila b { font-size: 30px; }
+      #ley .doc-tit { font-size: 32px; }
+      /* 100 squares, 1 % each */
+      #waffle { display: grid; grid-template-columns: repeat(20, 28px); gap: 8px; }
+      #waffle i { display: block; width: 28px; height: 28px; border-radius: 7px; background: #1d2a44; opacity: 0; }
+      .sello.peq { font-size: 56px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="65" data-width="1080" data-height="1920" data-fps="30">
+      <div id="fondo" class="clip" data-start="0" data-duration="65" data-track-index="0"></div>
+      <div id="escenario" class="clip" data-start="0" data-duration="65" data-track-index="1" data-layout-allow-overlap data-layout-allow-overflow>
+        <!-- A: the price tag with a crossed-out price, the law and the open question -->
+        <div class="pieza" id="tagA" style="left:240px; top:880px" data-tag='{"banda": "BLACK FRIDAY", "viejo": "150 €", "nuevo": "120 €", "ancho": 600}'></div>
+        <div class="pieza" id="chipA" style="left:724px; top:845px"><div class="chip verde">−20 %</div></div>
+        <div class="pieza" id="ley" style="left:220px; top:950px" data-icono="doc"
+          data-args='["LEY 7/1996", [["ARTÍCULO", "20"], ["PRECIO TACHADO", "¿CUÁL?", "filaCual"]]]'></div>
+        <div class="pieza" id="pregunta" style="left:150px; top:1250px"><div class="chip blanco" style="font-size:38px">¿CUÁNTAS OFERTAS LA CUMPLEN?</div></div>
+
+        <!-- B: the worked example, with made-up round prices -->
+        <div class="pieza rotulo ancho" id="rotB" style="top:466px">EJEMPLO: UNOS AURICULARES</div>
+        <div class="pieza" id="auris" style="left:84px; top:540px"></div>
+        <div class="pieza" id="tagB" style="left:330px; top:520px" data-tag='{"banda": "AURICULARES", "viejo": "150 €", "nuevo": "100 €", "ancho": 520}'></div>
+        <div class="pieza" id="chipB" style="left:560px; top:812px"><div class="chip verde">−20 %</div></div>
+        <div class="pieza" id="grafico" style="left:100px; top:905px"></div>
+
+        <!-- C: what the law says, and the 30 days before Black Friday -->
+        <div class="pieza tarjeta" id="regla" style="left:90px; top:466px; text-align:left">
+          <div class="rotulo" style="text-align:left">LO QUE DICE LA LEY</div>
+          <p>PRECIO TACHADO = EL MÁS BAJO<br />DE LOS <span class="marcador">30 DÍAS</span> ANTERIORES</p>
+        </div>
+        <div class="pieza tarjeta" id="cal" style="left:101px; top:690px">
+          <div class="rotulo">LOS 30 DÍAS ANTES DEL BLACK FRIDAY</div>
+          <div class="sem"><span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
+          <div class="rej" id="rej"></div>
+        </div>
+        <div class="pieza" id="chipMin" style="left:250px; top:1300px"><div class="chip verde">EL MÁS BAJO: 100 €</div></div>
+
+        <!-- D: the crossed-out price should be 100 €, so it is a 20 % rise -->
+        <div class="pieza" id="tagD" style="left:240px; top:500px" data-tag='{"banda": "BLACK FRIDAY", "viejo": "150 €", "nuevo": "120 €", "ancho": 600}'></div>
+        <div class="pieza" id="chipD" style="left:724px; top:466px"><div class="chip verde" id="chipDtxt">−20 %</div></div>
+        <div class="pieza cifra roja ancho" id="mas" style="top:900px">+0 %</div>
+        <div class="pieza rotulo verde ancho" id="legal" style="top:880px">EL TACHADO TENDRÍA QUE SER 100 €</div>
+        <div class="pieza rotulo ancho" id="masLab" style="top:1050px">SOBRE LOS 100 € DE OCTUBRE</div>
+        <div class="pieza" id="selloSubida" style="left:250px; top:1130px" data-icono="sello" data-args='["ES UNA SUBIDA", "#e5383b"]'></div>
+
+        <!-- E: how to spot it -->
+        <div class="pieza" id="chipNota" style="left:330px; top:466px"><div class="chip blanco">¿CÓMO SE NOTA?</div></div>
+        <div class="pieza tarjeta" id="visto" style="left:80px; top:610px">
+          <div class="rotulo">LO VISTE A</div>
+          <div class="cifra media verde">100 €</div>
+          <div class="rotulo" style="margin-top:8px">EN LOS 30 DÍAS<br />DE ANTES</div>
+        </div>
+        <div class="pieza menor" id="menor" style="left:478px; top:660px">&lt;</div>
+        <div class="pieza" id="tagE" style="left:566px; top:644px" data-tag='{"banda": "BLACK FRIDAY", "viejo": "150 €", "nuevo": "120 €", "ancho": 360}'></div>
+        <div class="pieza" id="selloNo" style="left:290px; top:960px" data-icono="sello" data-args='["NO CUMPLE", "#e5383b"]'></div>
+
+        <!-- F: where to complain -->
+        <div class="pieza" id="hoja" style="left:80px; top:650px" data-icono="doc"
+          data-args='["HOJA DE RECLAMACIONES", [["TIENDA", "···"], ["PRODUCTO", "···"], ["QUÉ PASÓ", "···"]]]'></div>
+        <div class="pieza" id="consumoEd" style="left:590px; top:636px" data-icono="edificio" data-args='["CONSUMO", "#fffaf0", 300]'></div>
+        <div class="pieza rotulo" id="comLab" style="left:560px; top:944px; width:384px">DE TU COMUNIDAD</div>
+
+        <!-- G: the exception -->
+        <div class="pieza" id="chipOjo" style="left:262px; top:466px"><div class="chip rojo">OJO: UNA EXCEPCIÓN</div></div>
+        <div class="pieza" id="caja" style="left:340px; top:600px"></div>
+        <div class="pieza" id="selloNuevo" style="left:400px; top:700px" data-icono="sello" data-args='["NUEVO", "#4a78c2"]'></div>
+        <div class="pieza rotulo ancho" id="rotG1" style="top:990px">A LA VENTA POR PRIMERA VEZ</div>
+        <div class="pieza rotulo rojo ancho" id="rotG2" style="top:1040px">NO HAY PRECIO ANTERIOR</div>
+
+        <!-- H: how many offers follow the rule -->
+        <div class="pieza" id="pregunta2" style="left:150px; top:466px"><div class="chip blanco" style="font-size:38px">¿CUÁNTAS OFERTAS LA CUMPLEN?</div></div>
+        <div class="pieza" id="chipBF" style="left:250px; top:466px"><div class="chip blanco">BLACK FRIDAY DE 2023</div></div>
+        <div class="pieza cifra ancho" id="duda" style="top:640px">¿?</div>
+        <div class="pieza" id="consumo2" style="left:378px; top:600px" data-icono="edificio" data-args='["CONSUMO", "#fffaf0", 300]'></div>
+        <div class="pieza cifra media ancho" id="c800" style="top:590px">0</div>
+        <div class="pieza rotulo ancho" id="c800Lab" style="top:700px">PRODUCTOS REVISADOS EN INTERNET</div>
+        <div class="pieza" id="waffle" style="left:140px; top:770px"></div>
+        <div class="pieza cifra roja ancho" id="c70" style="top:990px">0 %</div>
+        <div class="pieza rotulo rojo ancho" id="c70Lab" style="top:1140px">NO CUMPLÍA LA REGLA</div>
+
+        <!-- I: the closing question, under the 70 % -->
+        <div class="pieza" id="chipFin" style="left:300px; top:1270px"><div class="chip" style="font-size:52px">¿TE HA PASADO?</div></div>
+      </div>
+      <div id="gancho" class="clip" data-start="0" data-duration="65" data-track-index="2"></div>
+      <div id="note" class="clip" data-start="0" data-duration="65" data-track-index="3"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="65"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="65" data-track-index="4" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 63.72, "lines": [{"id": "l1", "s": 0.01, "e": 2.19, "words": [{"w": "Ese", "s": 0.01, "e": 0.23, "key": false}, {"w": "descuento", "s": 0.33, "e": 0.93, "key": false}, {"w": "puede", "s": 0.93, "e": 1.33, "key": false}, {"w": "ser", "s": 1.33, "e": 1.57, "key": false}, {"w": "mentira.", "s": 1.57, "e": 2.19, "key": true}]}, {"id": "l2", "s": 2.47, "e": 8.4, "words": [{"w": "Hay", "s": 2.47, "e": 2.57, "key": false}, {"w": "una", "s": 2.57, "e": 2.74, "key": false}, {"w": "ley", "s": 2.74, "e": 2.89, "key": false}, {"w": "que", "s": 2.97, "e": 3.08, "key": false}, {"w": "dice", "s": 3.08, "e": 3.29, "key": false}, {"w": "qué", "s": 3.41, "e": 3.48, "key": false}, {"w": "precio", "s": 3.48, "e": 3.84, "key": false}, {"w": "puede", "s": 3.84, "e": 4.12, "key": false}, {"w": "ir", "s": 4.12, "e": 4.19, "key": false}, {"w": "tachado.", "s": 4.2, "e": 5.101, "key": true}, {"w": "¿Y", "s": 5.101, "e": 5.23, "key": false}, {"w": "cuántas", "s": 5.45, "e": 5.69, "key": false}, {"w": "ofertas", "s": 5.69, "e": 6.16, "key": false}, {"w": "la", "s": 6.16, "e": 6.29, "key": false}, {"w": "cumplen?", "s": 6.29, "e": 7.0, "key": false}, {"w": "Te", "s": 7, "e": 7.15, "key": false}, {"w": "lo", "s": 7.15, "e": 7.3, "key": false}, {"w": "digo", "s": 7.3, "e": 7.61, "key": false}, {"w": "al", "s": 7.61, "e": 7.76, "key": false}, {"w": "final.", "s": 7.76, "e": 8.4, "key": false}]}, {"id": "l3", "s": 8.64, "e": 11.89, "words": [{"w": "Imagina", "s": 8.64, "e": 8.82, "key": false}, {"w": "unos", "s": 8.82, "e": 9.06, "key": false}, {"w": "auriculares", "s": 9.06, "e": 9.72, "key": false}, {"w": "que", "s": 9.72, "e": 9.9, "key": false}, {"w": "en", "s": 9.9, "e": 10.02, "key": false}, {"w": "octubre", "s": 10.02, "e": 10.44, "key": true}, {"w": "cuestan", "s": 10.44, "e": 10.86, "key": false}, {"w": "100", "s": 10.89, "e": 11.4, "key": false}, {"w": "euros.", "s": 11.4, "e": 11.89, "key": false}]}, {"id": "l4", "s": 11.97, "e": 15.62, "words": [{"w": "Dos", "s": 11.97, "e": 12.08, "key": false}, {"w": "semanas", "s": 12.17, "e": 12.49, "key": false}, {"w": "antes", "s": 12.49, "e": 12.76, "key": false}, {"w": "del", "s": 12.77, "e": 12.94, "key": false}, {"w": "Black", "s": 12.94, "e": 13.2, "key": false}, {"w": "Friday,", "s": 13.58, "e": 13.6, "key": false}, {"w": "la", "s": 13.61, "e": 13.77, "key": false}, {"w": "tienda", "s": 13.85, "e": 14.27, "key": false}, {"w": "los", "s": 14.27, "e": 14.44, "key": false}, {"w": "sube", "s": 14.44, "e": 14.78, "key": true}, {"w": "a", "s": 14.78, "e": 14.86, "key": false}, {"w": "150.", "s": 14.86, "e": 15.62, "key": false}]}, {"id": "l5", "s": 15.62, "e": 20.68, "words": [{"w": "Y", "s": 15.62, "e": 15.7, "key": false}, {"w": "en", "s": 15.7, "e": 15.79, "key": false}, {"w": "Black", "s": 16.07, "e": 16.29, "key": false}, {"w": "Friday", "s": 16.29, "e": 16.74, "key": false}, {"w": "los", "s": 16.83, "e": 17.05, "key": false}, {"w": "rebaja", "s": 17.05, "e": 17.55, "key": true}, {"w": "a", "s": 17.55, "e": 17.62, "key": false}, {"w": "120,", "s": 17.62, "e": 18.56, "key": false}, {"w": "con", "s": 18.79, "e": 18.81, "key": false}, {"w": "el", "s": 18.81, "e": 18.93, "key": false}, {"w": "150", "s": 19.02, "e": 19.74, "key": false}, {"w": "tachado.", "s": 19.74, "e": 20.68, "key": false}]}, {"id": "l6", "s": 20.68, "e": 24.4, "words": [{"w": "Parece", "s": 20.68, "e": 20.96, "key": true}, {"w": "un", "s": 20.97, "e": 21.17, "key": false}, {"w": "20%", "s": 21.29, "e": 21.91, "key": false}, {"w": "menos.", "s": 21.91, "e": 22.8, "key": false}, {"w": "Pero", "s": 22.8, "e": 23.05, "key": false}, {"w": "la", "s": 23.05, "e": 23.15, "key": false}, {"w": "ley", "s": 23.15, "e": 23.44, "key": false}, {"w": "dice", "s": 23.44, "e": 23.65, "key": false}, {"w": "otra", "s": 23.65, "e": 23.85, "key": false}, {"w": "cosa.", "s": 23.93, "e": 24.4, "key": false}]}, {"id": "l7", "s": 24.4, "e": 28.64, "words": [{"w": "El", "s": 24.4, "e": 24.45, "key": false}, {"w": "precio", "s": 24.53, "e": 24.76, "key": false}, {"w": "tachado", "s": 24.76, "e": 25.08, "key": false}, {"w": "tiene", "s": 25.08, "e": 25.4, "key": false}, {"w": "que", "s": 25.4, "e": 25.62, "key": false}, {"w": "ser", "s": 25.69, "e": 25.85, "key": false}, {"w": "el", "s": 25.85, "e": 25.99, "key": false}, {"w": "más", "s": 26.15, "e": 26.2, "key": false}, {"w": "bajo", "s": 26.2, "e": 26.52, "key": true}, {"w": "que", "s": 26.52, "e": 26.72, "key": false}, {"w": "tuvo", "s": 26.85, "e": 26.99, "key": false}, {"w": "en", "s": 26.99, "e": 27.09, "key": false}, {"w": "los", "s": 27.12, "e": 27.24, "key": false}, {"w": "30", "s": 27.32, "e": 27.73, "key": false}, {"w": "días", "s": 27.73, "e": 28.0, "key": false}, {"w": "anteriores.", "s": 28, "e": 28.64, "key": false}]}, {"id": "l8", "s": 28.67, "e": 34.49, "words": [{"w": "Y", "s": 28.67, "e": 28.72, "key": false}, {"w": "en", "s": 28.72, "e": 28.76, "key": false}, {"w": "esos", "s": 28.99, "e": 29.13, "key": false}, {"w": "30", "s": 29.13, "e": 29.54, "key": false}, {"w": "días,", "s": 29.54, "e": 29.81, "key": false}, {"w": "el", "s": 29.81, "e": 29.94, "key": false}, {"w": "más", "s": 29.94, "e": 30.14, "key": false}, {"w": "bajo", "s": 30.14, "e": 30.38, "key": false}, {"w": "fue", "s": 30.44, "e": 30.61, "key": false}, {"w": "100.", "s": 30.61, "e": 31.51, "key": false}, {"w": "Así", "s": 31.71, "e": 31.72, "key": false}, {"w": "que", "s": 31.72, "e": 31.85, "key": false}, {"w": "lo", "s": 31.94, "e": 32.04, "key": false}, {"w": "tachado", "s": 32.04, "e": 32.45, "key": false}, {"w": "tendría", "s": 32.79, "e": 33.03, "key": true}, {"w": "que", "s": 33.03, "e": 33.26, "key": false}, {"w": "ser", "s": 33.28, "e": 33.51, "key": false}, {"w": "100.", "s": 33.51, "e": 34.49, "key": false}]}, {"id": "l9", "s": 34.49, "e": 38.324, "words": [{"w": "O", "s": 34.49, "e": 34.57, "key": false}, {"w": "sea:", "s": 34.57, "e": 34.97, "key": false}, {"w": "ese", "s": 34.97, "e": 35.21, "key": false}, {"w": "20%", "s": 35.21, "e": 35.75, "key": false}, {"w": "menos", "s": 35.87, "e": 36.15, "key": false}, {"w": "es,", "s": 36.23, "e": 36.31, "key": false}, {"w": "en", "s": 36.38, "e": 36.51, "key": false}, {"w": "realidad,", "s": 36.51, "e": 37.1, "key": true}, {"w": "un", "s": 37.19, "e": 37.33, "key": false}, {"w": "20%", "s": 37.65, "e": 37.9, "key": false}, {"w": "más.", "s": 37.9, "e": 38.324, "key": false}]}, {"id": "l10", "s": 38.324, "e": 43.33, "words": [{"w": "¿Cómo", "s": 38.324, "e": 38.89, "key": false}, {"w": "se", "s": 38.89, "e": 39.0, "key": false}, {"w": "nota?", "s": 39.01, "e": 39.48, "key": true}, {"w": "Si", "s": 39.49, "e": 39.59, "key": false}, {"w": "en", "s": 39.59, "e": 39.81, "key": false}, {"w": "los", "s": 39.81, "e": 39.87, "key": false}, {"w": "30", "s": 39.87, "e": 40.2, "key": false}, {"w": "días", "s": 40.28, "e": 40.43, "key": false}, {"w": "de", "s": 40.48, "e": 40.54, "key": false}, {"w": "antes", "s": 40.64, "e": 40.85, "key": false}, {"w": "lo", "s": 40.85, "e": 40.96, "key": false}, {"w": "viste", "s": 40.96, "e": 41.25, "key": false}, {"w": "más", "s": 41.25, "e": 41.37, "key": false}, {"w": "barato", "s": 41.45, "e": 41.67, "key": false}, {"w": "que", "s": 41.67, "e": 41.95, "key": false}, {"w": "el", "s": 41.95, "e": 42.04, "key": false}, {"w": "tachado,", "s": 42.04, "e": 42.55, "key": false}, {"w": "no", "s": 42.55, "e": 42.62, "key": false}, {"w": "cumple.", "s": 42.71, "e": 43.33, "key": false}]}, {"id": "l11", "s": 43.4, "e": 48.0, "words": [{"w": "Si", "s": 43.4, "e": 43.53, "key": false}, {"w": "pasa,", "s": 43.53, "e": 43.98, "key": false}, {"w": "se", "s": 43.98, "e": 44.04, "key": false}, {"w": "puede", "s": 44.04, "e": 44.14, "key": false}, {"w": "pedir", "s": 44.14, "e": 44.53, "key": false}, {"w": "la", "s": 44.53, "e": 44.63, "key": false}, {"w": "hoja", "s": 44.63, "e": 44.87, "key": false}, {"w": "de", "s": 44.87, "e": 44.92, "key": false}, {"w": "reclamaciones,", "s": 45, "e": 45.8, "key": true}, {"w": "o", "s": 45.8, "e": 45.86, "key": false}, {"w": "reclamar", "s": 45.86, "e": 46.33, "key": false}, {"w": "en", "s": 46.34, "e": 46.4, "key": false}, {"w": "consumo", "s": 46.67, "e": 46.91, "key": false}, {"w": "de", "s": 46.91, "e": 47.03, "key": false}, {"w": "tu", "s": 47.03, "e": 47.09, "key": false}, {"w": "comunidad.", "s": 47.17, "e": 48.0, "key": false}]}, {"id": "l12", "s": 48, "e": 51.745, "words": [{"w": "Ojo:", "s": 48, "e": 48.3, "key": false}, {"w": "la", "s": 48.3, "e": 48.38, "key": false}, {"w": "regla", "s": 48.42, "e": 48.75, "key": false}, {"w": "no", "s": 48.75, "e": 48.86, "key": false}, {"w": "vale", "s": 48.86, "e": 49.29, "key": false}, {"w": "para", "s": 49.29, "e": 49.45, "key": false}, {"w": "productos", "s": 49.48, "e": 50.02, "key": false}, {"w": "que", "s": 50.12, "e": 50.22, "key": false}, {"w": "se", "s": 50.22, "e": 50.34, "key": false}, {"w": "venden", "s": 50.34, "e": 50.71, "key": false}, {"w": "por", "s": 50.71, "e": 50.85, "key": false}, {"w": "primera", "s": 50.93, "e": 51.15, "key": true}, {"w": "vez.", "s": 51.43, "e": 51.745, "key": false}]}, {"id": "l13", "s": 51.745, "e": 61.111, "words": [{"w": "¿Y", "s": 51.745, "e": 51.85, "key": false}, {"w": "cuántas", "s": 51.93, "e": 52.25, "key": false}, {"w": "ofertas", "s": 52.37, "e": 52.81, "key": false}, {"w": "la", "s": 52.88, "e": 52.95, "key": false}, {"w": "cumplen?", "s": 52.95, "e": 53.62, "key": false}, {"w": "En", "s": 53.69, "e": 53.72, "key": false}, {"w": "el", "s": 53.72, "e": 53.8, "key": false}, {"w": "Black", "s": 54.13, "e": 54.17, "key": false}, {"w": "Friday", "s": 54.17, "e": 54.6, "key": false}, {"w": "de", "s": 54.62, "e": 54.75, "key": false}, {"w": "2023,", "s": 54.75, "e": 55.78, "key": false}, {"w": "Consumo", "s": 55.78, "e": 56.3, "key": false}, {"w": "revisó", "s": 56.3, "e": 56.69, "key": false}, {"w": "más", "s": 56.77, "e": 56.94, "key": false}, {"w": "de", "s": 57.03, "e": 57.09, "key": false}, {"w": "800", "s": 57.21, "e": 57.76, "key": false}, {"w": "productos", "s": 57.76, "e": 58.4, "key": false}, {"w": "en", "s": 58.4, "e": 58.46, "key": false}, {"w": "internet,", "s": 58.99, "e": 59.14, "key": false}, {"w": "y", "s": 59.14, "e": 59.22, "key": false}, {"w": "el", "s": 59.22, "e": 59.35, "key": false}, {"w": "70%", "s": 59.36, "e": 59.86, "key": false}, {"w": "no", "s": 59.88, "e": 60.12, "key": false}, {"w": "la", "s": 60.13, "e": 60.28, "key": false}, {"w": "cumplía.", "s": 60.45, "e": 61.111, "key": true}]}, {"id": "l14", "s": 61.111, "e": 63.42, "words": [{"w": "¿Te", "s": 61.111, "e": 61.3, "key": false}, {"w": "ha", "s": 61.3, "e": 61.42, "key": false}, {"w": "pasado", "s": 61.42, "e": 61.8, "key": false}, {"w": "alguna", "s": 61.8, "e": 62.18, "key": false}, {"w": "vez?", "s": 62.18, "e": 62.6, "key": false}, {"w": "Te", "s": 62.6, "e": 62.67, "key": false}, {"w": "leo", "s": 62.67, "e": 62.77, "key": false}, {"w": "en", "s": 62.77, "e": 62.84, "key": false}, {"w": "los", "s": 62.84, "e": 62.95, "key": false}, {"w": "comentarios.", "s": 62.95, "e": 63.42, "key": true}]}]}</script>
+    <script id="escena" type="application/json">
+      {
+        "momentos": [
+          { "id": "LEY", "clave": "ley" },
+          { "id": "TACHADO", "clave": "tachado" },
+          { "id": "CUANTAS", "clave": "cuantas" },
+          { "id": "FINAL", "clave": "final" },
+          { "id": "IMAGINA", "clave": "imagina" },
+          { "id": "OCTUBRE", "clave": "octubre" },
+          { "id": "CUESTAN", "clave": "cuestan" },
+          { "id": "SEMANAS", "clave": "semanas" },
+          { "id": "SUBE", "clave": "sube" },
+          { "id": "REBAJA", "clave": "rebaja" },
+          { "id": "TACHADO5", "clave": "tachado" },
+          { "id": "PARECE", "clave": "parece" },
+          { "id": "LEY6", "clave": "ley" },
+          { "id": "PRECIO7", "clave": "precio" },
+          { "id": "TUVO", "clave": "tuvo" },
+          { "id": "DIAS7", "clave": "dias" },
+          { "id": "ESOS", "clave": "esos" },
+          { "id": "BAJO8", "clave": "bajo" },
+          { "id": "ASI", "clave": "asi" },
+          { "id": "TENDRIA", "clave": "tendria" },
+          { "id": "MENOS9", "clave": "menos" },
+          { "id": "REALIDAD", "clave": "realidad" },
+          { "id": "MAS9", "clave": "mas", "fin": true },
+          { "id": "NOTA", "clave": "nota" },
+          { "id": "VISTE", "clave": "viste" },
+          { "id": "BARATO", "clave": "barato" },
+          { "id": "TACHADO10", "clave": "tachado" },
+          { "id": "CUMPLE", "clave": "cumple" },
+          { "id": "HOJA", "clave": "hoja" },
+          { "id": "CONSUMO", "clave": "consumo" },
+          { "id": "COMUNIDAD", "clave": "comunidad" },
+          { "id": "OJO", "clave": "ojo" },
+          { "id": "PRIMERA", "clave": "primera" },
+          { "id": "CUANTAS13", "clave": "cuantas" },
+          { "id": "BLACK13", "clave": "black" },
+          { "id": "REVISO", "clave": "reviso" },
+          { "id": "SETENTA", "clave": "70" },
+          { "id": "CUMPLIA", "clave": "cumplia" },
+          { "id": "PASADO", "clave": "pasado" }
+        ],
+        "gancho": { "texto": "Ese descuento puede ser mentira", "clave": "mentira" },
+        "piezas": [
+          { "id": "tagA", "desde": 0.1, "hasta": "IMAGINA", "entra": "escala", "dura": 0.6 },
+          { "id": "chipA", "desde": 0.7, "hasta": "IMAGINA", "entra": "sello" },
+          { "id": "ley", "desde": "LEY", "hasta": "IMAGINA", "entra": "sube" },
+          { "id": "pregunta", "desde": "CUANTAS", "hasta": "IMAGINA", "entra": "baja" },
+
+          { "id": "rotB", "desde": "IMAGINA", "hasta": "LEY6", "entra": "baja" },
+          { "id": "auris", "desde": "IMAGINA", "hasta": "LEY6", "entra": "izq" },
+          { "id": "tagB", "desde": "IMAGINA", "hasta": "LEY6", "entra": "der" },
+          { "id": "grafico", "desde": "IMAGINA", "hasta": "LEY6", "entra": "sube", "dura": 0.6 },
+          { "id": "chipB", "desde": "PARECE", "hasta": "LEY6", "entra": "sello" },
+
+          { "id": "regla", "desde": "LEY6", "hasta": "ASI", "entra": "baja" },
+          { "id": "cal", "desde": "PRECIO7", "hasta": "ASI", "entra": "sube" },
+          { "id": "chipMin", "desde": "BAJO8", "hasta": "ASI", "entra": "escala" },
+
+          { "id": "tagD", "desde": "ASI", "hasta": "NOTA", "entra": "escala" },
+          { "id": "chipD", "desde": "MENOS9", "hasta": "NOTA", "entra": "sello" },
+          { "id": "legal", "desde": "TENDRIA", "hasta": "REALIDAD", "entra": "sube" },
+          { "id": "mas", "desde": "REALIDAD", "hasta": "NOTA", "entra": "escala" },
+          { "id": "masLab", "desde": "REALIDAD", "hasta": "NOTA" },
+          { "id": "selloSubida", "desde": "MAS9", "hasta": "NOTA", "entra": "sello" },
+
+          { "id": "chipNota", "desde": "NOTA", "hasta": "HOJA", "entra": "baja" },
+          { "id": "visto", "desde": "VISTE", "hasta": "HOJA", "entra": "izq" },
+          { "id": "menor", "desde": "BARATO", "hasta": "HOJA", "entra": "escala" },
+          { "id": "tagE", "desde": "BARATO", "hasta": "HOJA", "entra": "der" },
+          { "id": "selloNo", "desde": "CUMPLE", "hasta": "HOJA", "entra": "sello" },
+
+          { "id": "hoja", "desde": "HOJA", "hasta": "OJO", "entra": "izq" },
+          { "id": "consumoEd", "desde": "CONSUMO", "hasta": "OJO", "entra": "der" },
+          { "id": "comLab", "desde": "COMUNIDAD", "hasta": "OJO", "entra": "sube" },
+
+          { "id": "chipOjo", "desde": "OJO", "hasta": "CUANTAS13", "entra": "baja" },
+          { "id": "caja", "desde": "OJO", "hasta": "CUANTAS13", "entra": "escala" },
+          { "id": "selloNuevo", "desde": "PRIMERA", "hasta": "CUANTAS13", "entra": "sello" },
+          { "id": "rotG1", "desde": "PRIMERA", "hasta": "CUANTAS13" },
+          { "id": "rotG2", "desde": "PRIMERA", "hasta": "CUANTAS13" },
+
+          { "id": "pregunta2", "desde": "CUANTAS13", "hasta": "BLACK13", "entra": "baja" },
+          { "id": "duda", "desde": "CUANTAS13", "hasta": "BLACK13", "entra": "escala" },
+          { "id": "chipBF", "desde": "BLACK13", "entra": "escala" },
+          { "id": "consumo2", "desde": "BLACK13", "hasta": "REVISO", "entra": "sube" },
+          { "id": "c800", "desde": "REVISO", "entra": "escala" },
+          { "id": "c800Lab", "desde": "REVISO" },
+          { "id": "waffle", "desde": "REVISO", "entra": "fundido" },
+          { "id": "c70", "desde": "SETENTA", "entra": "escala" },
+          { "id": "c70Lab", "desde": "CUMPLIA" },
+
+          { "id": "chipFin", "desde": "PASADO", "entra": "sube", "dura": 0.6 }
+        ],
+        "cifras": [
+          { "id": "tagBN", "desde": "IMAGINA", "de": 100, "a": 100, "dura": 0.1 },
+          { "id": "tagBN", "desde": "SUBE", "de": 100, "a": 150, "dura": 0.8 },
+          { "id": "tagBN", "desde": "REBAJA", "de": 150, "a": 120, "dura": 0.8 },
+          { "id": "mas", "desde": "REALIDAD", "a": 20, "formato": "pct", "prefijo": "+", "dura": 1.0 },
+          { "id": "c800", "desde": "REVISO", "a": 800, "formato": "numero", "prefijo": "MÁS DE ", "dura": 1.2 },
+          { "id": "c70", "desde": "SETENTA", "a": 70, "formato": "pct", "dura": 1.2 }
+        ],
+        "notas": [
+          { "texto": "Ley 7/1996, de Ordenación del Comercio Minorista, artículo 20", "desde": "LEY" },
+          { "texto": "Ejemplo inventado, con precios redondos", "desde": "IMAGINA" },
+          { "texto": "Ley 7/1996, artículo 20.1. Se aplica desde el 28 de mayo de 2022", "desde": "LEY6" },
+          { "texto": "Ejemplo inventado, con precios redondos", "desde": "ASI" },
+          { "texto": "En la misma tienda y para el mismo producto", "desde": "NOTA" },
+          { "texto": "Cada comunidad autónoma regula sus hojas de reclamaciones", "desde": "HOJA" },
+          { "texto": "Tampoco cuentan los alimentos rebajados a punto de caducar", "desde": "OJO" },
+          { "texto": "", "desde": "CUANTAS13" },
+          { "texto": "Consumo: 19 tiendas online, del 23/9 al 20/12 de 2023", "desde": "REVISO" }
+        ],
+        "fondo": "claro",
+        "sonidos": [
+          { "tipo": "pop", "en": 0.15 },
+          { "tipo": "toque", "en": 0.75 },
+          { "tipo": "desliza", "en": "LEY" },
+          { "tipo": "toque", "en": "TACHADO" },
+          { "tipo": "brillo", "en": "CUANTAS" },
+          { "tipo": "desliza", "en": "IMAGINA" },
+          { "tipo": "pop", "en": "CUESTAN" },
+          { "tipo": "chip", "en": "SEMANAS" },
+          { "tipo": "sube", "en": "SUBE" },
+          { "tipo": "pop", "en": "REBAJA" },
+          { "tipo": "toque", "en": "TACHADO5" },
+          { "tipo": "chip", "en": "PARECE" },
+          { "tipo": "error", "en": "LEY6" },
+          { "tipo": "teclas", "en": "DIAS7", "n": 6, "cada": 0.2 },
+          { "tipo": "brillo", "en": "BAJO8" },
+          { "tipo": "desliza", "en": "ASI" },
+          { "tipo": "toque", "en": "TENDRIA" },
+          { "tipo": "pop", "en": "MENOS9" },
+          { "tipo": "error", "en": "REALIDAD" },
+          { "tipo": "toque", "en": "MAS9", "mas": 0.1 },
+          { "tipo": "pop", "en": "NOTA" },
+          { "tipo": "pop", "en": "VISTE" },
+          { "tipo": "pop", "en": "BARATO" },
+          { "tipo": "toque", "en": "CUMPLE", "mas": 0.1 },
+          { "tipo": "desliza", "en": "HOJA" },
+          { "tipo": "pop", "en": "CONSUMO" },
+          { "tipo": "chip", "en": "OJO" },
+          { "tipo": "toque", "en": "PRIMERA", "mas": 0.1 },
+          { "tipo": "brillo", "en": "CUANTAS13" },
+          { "tipo": "sube", "en": "REVISO" },
+          { "tipo": "error", "en": "SETENTA" },
+          { "tipo": "toque", "en": "CUMPLIA", "mas": 0.1 },
+          { "tipo": "pop", "en": "PASADO" }
+        ]
+      }
+    </script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 65 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import { crearDinero, COLOR } from "./comun/dinero.js";
+      const $ = (id) => document.getElementById(id);
+      const K = COLOR;
+
+      // ---------- drawings this video needs (built before the engine looks for cifras' ids) ----------
+      // a shop price tag: red band on top, the old price crossed out, the new price in big red figures
+      // ids inside: <id>B band text, <id>H highlight behind the old price, <id>V old price, <id>T strike line, <id>N new price
+      function etiqueta(id, o) {
+        const W = 620, H = 350, alto = Math.round((o.ancho * H) / W);
+        const cuerpo = (extra) => `<path d="M112 8 H600 V330 H112 L10 169 Z" stroke-linejoin="round" ${extra}/>`;
+        return `<svg width="${o.ancho}" height="${alto}" viewBox="0 0 ${W} ${H}">
+          <g transform="translate(12 12)">${cuerpo(`fill="${K.tinta}" stroke="${K.tinta}" stroke-width="8"`)}</g>
+          ${cuerpo(`fill="${K.blanco}"`)}
+          <rect x="112" y="8" width="488" height="66" fill="${K.rojo}"/>
+          ${cuerpo(`fill="none" stroke="${K.tinta}" stroke-width="8"`)}
+          <line x1="112" y1="74" x2="600" y2="74" stroke="${K.tinta}" stroke-width="6"/>
+          <circle cx="66" cy="169" r="20" fill="${K.papel}" stroke="${K.tinta}" stroke-width="7"/>
+          <text id="${id}B" x="356" y="43" text-anchor="middle" dominant-baseline="central" font-family="Inter" font-weight="800" font-size="32" letter-spacing="4" fill="#fff">${o.banda}</text>
+          <rect id="${id}H" x="138" y="98" width="200" height="70" rx="12" fill="${K.oro}" opacity="0"/>
+          <text id="${id}V" x="150" y="134" dominant-baseline="central" font-family="Archivo Black" font-size="54" fill="${K.tinta}" fill-opacity="0.55">${o.viejo}</text>
+          <line id="${id}T" x1="142" y1="134" x2="142" y2="134" stroke="${K.rojo}" stroke-width="9" stroke-linecap="round"/>
+          <text id="${id}N" x="146" y="256" dominant-baseline="central" font-family="Archivo Black" font-size="112" fill="${K.rojo}">${o.nuevo}</text>
+        </svg>`;
+      }
+      for (const el of document.querySelectorAll("[data-tag]")) el.innerHTML = etiqueta(el.id, JSON.parse(el.dataset.tag));
+
+      // flat headphones with the navy offset shadow
+      const arco = "M50 150 V122 A70 70 0 0 1 190 122 V150";
+      $("auris").innerHTML = `<svg width="230" height="240" viewBox="0 0 250 260">
+        <g transform="translate(11 11)"><path d="${arco}" fill="none" stroke="${K.tinta}" stroke-width="30" stroke-linecap="round"/>
+          <rect x="20" y="128" width="62" height="102" rx="24" fill="${K.tinta}"/><rect x="158" y="128" width="62" height="102" rx="24" fill="${K.tinta}"/></g>
+        <path d="${arco}" fill="none" stroke="${K.tinta}" stroke-width="30" stroke-linecap="round"/>
+        <path d="${arco}" fill="none" stroke="${K.oro}" stroke-width="13" stroke-linecap="round"/>
+        <rect x="20" y="128" width="62" height="102" rx="24" fill="${K.azul}" stroke="${K.tinta}" stroke-width="8"/>
+        <rect x="158" y="128" width="62" height="102" rx="24" fill="${K.azul}" stroke="${K.tinta}" stroke-width="8"/>
+        <rect x="64" y="150" width="20" height="58" rx="8" fill="${K.tinta}"/><rect x="156" y="150" width="20" height="58" rx="8" fill="${K.tinta}"/></svg>`;
+
+      // a cardboard box: a product on sale for the first time
+      const caras = (s) => {
+        const f = (c) => (s ? `fill="${K.tinta}" stroke="${K.tinta}"` : `fill="${c}" stroke="${K.tinta}"`) + ` stroke-width="8" stroke-linejoin="round"`;
+        return `<polygon points="30,110 90,60 350,60 290,110" ${f("#e8b77f")}/><polygon points="290,110 350,60 350,270 290,320" ${f("#b97f45")}/><rect x="30" y="110" width="260" height="210" ${f("#d9a066")}/>`;
+      };
+      $("caja").innerHTML = `<svg width="380" height="345" viewBox="0 0 380 345"><g transform="translate(12 12)">${caras(true)}</g>${caras(false)}
+        <polygon points="150,110 210,60 240,60 180,110" fill="${K.papel}" opacity="0.75"/><rect x="150" y="110" width="30" height="70" fill="${K.papel}" opacity="0.75"/></svg>`;
+
+      // the price line: 45 days, from 14 October to 27 November (made-up example prices)
+      const X = (d) => 80 + d * 15.6, Y = (p) => 470 - (p - 80) * 3.6;
+      const ticks = Array.from({ length: 46 }, (_, d) => `<line x1="${X(d)}" y1="440" x2="${X(d)}" y2="${d % 7 === 0 ? 456 : 450}" stroke="${K.tinta}" stroke-width="3" opacity="0.35"/>`).join("");
+      const linea = (id, d, color = K.tinta) => `<path id="${id}" d="${d}" fill="none" stroke="${color}" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="1"/>`;
+      const txt = (id, x, y, s, extra) => `<text id="${id}" x="${x}" y="${y}" dominant-baseline="central" opacity="0" ${extra}>${s}</text>`;
+      const lab = 'font-family="Inter" font-weight="800" font-size="24" letter-spacing="2"';
+      const num = 'font-family="Archivo Black" font-size="36"';
+      $("grafico").innerHTML = `<svg width="800" height="518" viewBox="0 0 852 552">
+        <rect x="16" y="16" width="832" height="532" rx="24" fill="${K.tinta}"/>
+        <rect x="4" y="4" width="832" height="532" rx="24" fill="${K.blanco}" stroke="${K.tinta}" stroke-width="7"/>
+        <line x1="60" y1="440" x2="800" y2="440" stroke="${K.tinta}" stroke-width="5" opacity="0.45"/>${ticks}
+        <g id="gBF" opacity="0"><line x1="${X(44)}" y1="60" x2="${X(44)}" y2="440" stroke="${K.rojo}" stroke-width="5" stroke-dasharray="12 10"/>
+          <text x="800" y="44" text-anchor="end" dominant-baseline="central" ${lab} fill="${K.rojo}">BLACK FRIDAY</text>
+          <text x="800" y="484" text-anchor="end" dominant-baseline="central" ${lab} fill="${K.tinta}">27 NOV</text></g>
+        <g id="gSem" opacity="0"><path d="M${X(30)} 128 V112 H${X(44)} V128" fill="none" stroke="${K.tinta}" stroke-width="5" stroke-linejoin="round"/>
+          <text x="${X(37)}" y="90" text-anchor="middle" dominant-baseline="central" ${lab} fill="${K.tinta}">2 SEMANAS</text></g>
+        ${linea("s1", `M${X(0)} ${Y(100)} H${X(29.5)}`)}
+        ${linea("s2", `M${X(29.5)} ${Y(100)} V${Y(150)} H${X(43.5)}`)}
+        ${linea("s3", `M${X(43.5)} ${Y(150)} V${Y(120)} H${X(45.4)}`, K.rojo)}
+        ${txt("l100", X(14.5), Y(100) - 34, "100 €", `text-anchor="middle" ${num} fill="${K.tinta}"`)}
+        ${txt("l150", X(36.5), Y(150) - 34, "150 €", `text-anchor="middle" ${num} fill="${K.tinta}"`)}
+        ${txt("l120", X(43.5) - 22, Y(120) + 6, "120 €", `text-anchor="end" ${num} fill="${K.rojo}"`)}
+        ${txt("xOct", X(0), 484, "OCTUBRE", `${lab} fill="${K.tinta}"`)}
+        ${txt("x13", X(29.5), 484, "13 NOV", `text-anchor="middle" ${lab} fill="${K.tinta}"`)}
+      </svg>`;
+
+      // the calendar: Monday 26 October to Sunday 29 November 2026; the 30 days run from 28 October to 26 November
+      const celdas = [];
+      for (let i = 0; i < 35; i++) {
+        const f = new Date(2026, 9, 26 + i), dia = f.getDate(), mes = f.getMonth();
+        let cls = "fuera", precio = "";
+        if (i >= 2 && i <= 31) [cls, precio] = mes === 9 || dia <= 12 ? ["c100", "100"] : ["c150", "150"];
+        if (i === 32) [cls, precio] = ["bf", "120"];
+        celdas.push(`<div class="cel ${cls}"><i>${dia}</i><b>${precio}</b></div>`);
+      }
+      $("rej").innerHTML = celdas.join("");
+      const cels = [...$("rej").children];
+
+      $("waffle").innerHTML = Array.from({ length: 100 }, () => "<i></i>").join("");
+      const cuadros = [...$("waffle").children];
+
+      // ---------- the engine ----------
+      const C = crearDinero();
+      const { T, ramp, clamp, ventana } = C;
+
+      // strike line over an old price: grows from the left with k
+      function tacha(id, k) {
+        const L = $(id + "V").getComputedTextLength();
+        $(id + "T").setAttribute("x2", 142 + (L + 16) * k);
+        $(id + "T").style.opacity = k > 0.01 ? 1 : 0;
+        $(id + "H").setAttribute("width", L + 24);
+      }
+      const dibuja = (id, k) => $(id).setAttribute("stroke-dashoffset", 1 - k);
+      const aparece = (id, k) => ($(id).style.opacity = k);
+
+      function renderAt(t) {
+        // A: the tag floats, then rises to make room for the law; the crossed-out price lights up on "tachado"
+        const subeA = -330 * ramp(t, T.LEY, T.LEY + 0.7);
+        C.mover("tagA", { y: subeA + 6 * Math.sin(t * 2.2) });
+        C.mover("chipA", { y: subeA + 6 * Math.sin(t * 2.2), r: 4 });
+        tacha("tagA", ramp(t, 0.5, 0.9));
+        $("tagAH").setAttribute("opacity", ventana(t, T.TACHADO, T.IMAGINA, 0.25));
+        $("filaCual").parentElement.classList.toggle("marca", t >= T.TACHADO && t < T.IMAGINA);
+
+        // B: the example's price line, one step per sentence
+        dibuja("s1", ramp(t, T.OCTUBRE, T.OCTUBRE + 1.2));
+        aparece("xOct", ramp(t, T.OCTUBRE, T.OCTUBRE + 0.4));
+        aparece("l100", ramp(t, T.CUESTAN, T.CUESTAN + 0.4));
+        aparece("gBF", ramp(t, T.SEMANAS, T.SEMANAS + 0.4));
+        aparece("gSem", ramp(t, T.SEMANAS + 0.2, T.SEMANAS + 0.6));
+        dibuja("s2", ramp(t, T.SUBE, T.SUBE + 0.8));
+        aparece("x13", ramp(t, T.SUBE, T.SUBE + 0.4));
+        aparece("l150", ramp(t, T.SUBE + 0.5, T.SUBE + 0.9));
+        dibuja("s3", ramp(t, T.REBAJA, T.REBAJA + 0.6));
+        aparece("l120", ramp(t, T.REBAJA + 0.4, T.REBAJA + 0.8));
+        // the tag: black, then the Black Friday band, the red price and the crossed-out 150 €
+        const bf = t >= T.REBAJA;
+        $("tagBB").textContent = bf ? "BLACK FRIDAY" : "AURICULARES";
+        $("tagBN").setAttribute("fill", bf ? K.rojo : K.tinta);
+        $("tagBV").style.opacity = ramp(t, T.REBAJA, T.REBAJA + 0.4);
+        tacha("tagB", ramp(t, T.TACHADO5, T.TACHADO5 + 0.4));
+        C.mover("auris", { y: 6 * Math.sin(t * 2.4), r: 3 * Math.sin(t * 1.3) });
+        C.mover("tagB", { y: 5 * Math.sin(t * 2.2 + 1) });
+        C.mover("chipB", { r: 4 });
+
+        // C: the 30 days fill in, then the cheapest ones light up
+        const marca = t >= T.BAJO8;
+        cels.forEach((c, i) => {
+          if (i < 2 || i > 32) return;
+          const a = T.DIAS7 + (i - 2) * 0.035, k = ramp(t, a, a + 0.2);
+          c.querySelector("b").style.opacity = k;
+          if (c.classList.contains("c100")) c.style.background = marca ? K.oro : "";
+          if (c.classList.contains("c150")) {
+            c.style.background = k > 0.5 ? "" : K.blanco;
+            c.style.color = k > 0.5 ? "" : K.tinta;
+            c.style.opacity = 1 - 0.6 * ramp(t, T.BAJO8, T.BAJO8 + 0.4);
+          }
+          if (c.classList.contains("bf")) c.style.opacity = 0.25 + 0.75 * k;
+        });
+
+        // D: the crossed-out 150 € becomes the legal 100 €, and the −20 % turns into +20 %
+        const cambio = t >= T.TENDRIA + 0.2;
+        $("tagDV").textContent = cambio ? "100 €" : "150 €";
+        $("tagDV").setAttribute("fill", cambio ? K.verde : K.tinta);
+        $("tagDV").setAttribute("fill-opacity", cambio ? 1 : 0.55);
+        $("tagDV").style.opacity = 1 - ventana(t, T.TENDRIA, T.TENDRIA + 0.4, 0.2);
+        tacha("tagD", cambio ? ramp(t, T.TENDRIA + 0.4, T.TENDRIA + 0.8) : 1);
+        $("tagDH").setAttribute("opacity", cambio ? 0.8 * ramp(t, T.TENDRIA + 0.4, T.TENDRIA + 0.7) : 0);
+        const sube = t >= T.REALIDAD;
+        $("chipDtxt").textContent = sube ? "+20 %" : "−20 %";
+        $("chipDtxt").className = "chip " + (sube ? "rojo" : "verde");
+        const flip = ventana(t, T.REALIDAD - 0.15, T.REALIDAD + 0.3, 0.15);
+        C.mover("chipD", { s: 1 + 0.25 * flip, r: 4 });
+        C.mover("tagD", { y: 5 * Math.sin(t * 2.2) });
+
+        // E: what you saw against the crossed-out price
+        $("tagEH").setAttribute("opacity", ramp(t, T.TACHADO10, T.TACHADO10 + 0.3));
+        tacha("tagE", 1);
+        C.mover("menor", { s: 1 + 0.06 * Math.sin(t * 4) });
+
+        // F and G: the building and the box float a little
+        C.mover("consumoEd", { y: 5 * Math.sin(t * 2) });
+        C.mover("consumo2", { y: 5 * Math.sin(t * 2) });
+        C.mover("caja", { y: 6 * Math.sin(t * 2.2), r: 2 * Math.sin(t * 1.3) });
+
+        // H: 100 squares, 1 % each; 70 of them turn red
+        cuadros.forEach((q, i) => {
+          const rojo = ramp(t, T.SETENTA + i * 0.012, T.SETENTA + i * 0.012 + 0.15);
+          q.style.opacity = 0.2 * ramp(t, T.REVISO + i * 0.006, T.REVISO + i * 0.006 + 0.2) + (i < 70 ? 0.8 * rojo : 0);
+          q.style.background = i < 70 && rojo > 0 ? K.rojo : K.tinta;
+        });
+
+        C.mover("chipFin", { y: 5 * Math.sin(t * 2.4) });
+
+        C.pintar(t);
+      }
+
+      C.arrancar(renderAt);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <script type="importmap">
+      { "imports": { "three": "./lib/three.module.js", "three/addons/": "./lib/addons/" } }
+    </script>
+    <link rel="stylesheet" href="comun/contador.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Nunito", sans-serif; }
+      #alt, #clock { font-family: "Archivo Black", sans-serif; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="63.1" data-width="1080" data-height="1920" data-fps="30">
+      <div id="sky" class="clip" data-start="0" data-duration="63.1" data-track-index="0"></div>
+      <canvas id="gl" class="clip" data-start="0" data-duration="63.1" data-track-index="1" width="1080" height="1920"></canvas>
+      <svg id="leaders" class="clip" data-start="0" data-duration="63.1" data-track-index="2" width="1080" height="1920" data-layout-allow-overlap></svg>
+      <div id="labels" class="clip" data-start="0" data-duration="63.1" data-track-index="3" data-layout-allow-overlap></div>
+      <div id="hud" class="clip" data-start="0" data-duration="63.1" data-track-index="4">
+        <div id="alt">0<small>km</small></div>
+        <div id="since"></div>
+        <div id="clock">0 s</div>
+        <div id="extra"></div>
+        <div id="note"></div>
+      </div>
+      <div id="title" class="clip" data-start="0" data-duration="63.1" data-track-index="6"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="63.1"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="63.1" data-track-index="7" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 61.84, "lines": [{"id": "l1", "s": 0.28, "e": 2.0, "words": [{"w": "10.000", "s": 0.28, "e": 0.99, "key": false}, {"w": "pasos", "s": 1.08, "e": 1.34, "key": true}, {"w": "cada", "s": 1.34, "e": 1.49, "key": false}, {"w": "día.", "s": 1.75, "e": 2.0, "key": false}]}, {"id": "l2", "s": 2, "e": 8.85, "words": [{"w": "Unos", "s": 2, "e": 2.38, "key": false}, {"w": "7,5", "s": 2.38, "e": 3.21, "key": false}, {"w": "kilómetros,", "s": 3.21, "e": 3.55, "key": false}, {"w": "todos", "s": 3.72, "e": 3.88, "key": false}, {"w": "los", "s": 3.93, "e": 4.08, "key": false}, {"w": "días", "s": 4.08, "e": 4.32, "key": false}, {"w": "de", "s": 4.32, "e": 4.43, "key": false}, {"w": "tu", "s": 4.44, "e": 4.53, "key": false}, {"w": "vida.", "s": 4.58, "e": 5.033, "key": true}, {"w": "¿Hasta", "s": 5.033, "e": 5.6, "key": false}, {"w": "dónde", "s": 5.61, "e": 6.12, "key": false}, {"w": "llegarías?", "s": 6.12, "e": 7.36, "key": false}, {"w": "Al", "s": 7.36, "e": 7.64, "key": false}, {"w": "final", "s": 7.64, "e": 7.97, "key": false}, {"w": "te", "s": 7.97, "e": 8.1, "key": false}, {"w": "lo", "s": 8.15, "e": 8.31, "key": false}, {"w": "digo.", "s": 8.31, "e": 8.85, "key": false}]}, {"id": "l3", "s": 9.18, "e": 12.9, "words": [{"w": "Sales", "s": 9.18, "e": 9.26, "key": false}, {"w": "del", "s": 9.26, "e": 9.44, "key": false}, {"w": "kilómetro", "s": 9.44, "e": 9.95, "key": false}, {"w": "cero", "s": 10.02, "e": 10.22, "key": false}, {"w": "de", "s": 10.22, "e": 10.33, "key": false}, {"w": "España,", "s": 10.33, "e": 10.73, "key": false}, {"w": "en", "s": 10.84, "e": 10.95, "key": false}, {"w": "la", "s": 10.95, "e": 11.08, "key": false}, {"w": "Puerta", "s": 11.08, "e": 11.36, "key": false}, {"w": "del", "s": 11.36, "e": 11.52, "key": false}, {"w": "Sol", "s": 11.52, "e": 11.68, "key": true}, {"w": "de", "s": 11.68, "e": 11.78, "key": false}, {"w": "Madrid.", "s": 11.78, "e": 12.9, "key": false}]}, {"id": "l4", "s": 12.91, "e": 17.2, "words": [{"w": "El", "s": 12.91, "e": 13.05, "key": false}, {"w": "primer", "s": 13.18, "e": 13.52, "key": false}, {"w": "día", "s": 13.52, "e": 13.75, "key": false}, {"w": "no", "s": 13.75, "e": 13.9, "key": false}, {"w": "parece", "s": 13.9, "e": 14.35, "key": false}, {"w": "gran", "s": 14.35, "e": 14.66, "key": false}, {"w": "cosa.", "s": 14.75, "e": 15.14, "key": false}, {"w": "Pero", "s": 15.14, "e": 15.4, "key": false}, {"w": "no", "s": 15.45, "e": 15.6, "key": false}, {"w": "paras", "s": 15.6, "e": 15.99, "key": true}, {"w": "ni", "s": 15.99, "e": 16.14, "key": false}, {"w": "un", "s": 16.14, "e": 16.24, "key": false}, {"w": "solo", "s": 16.24, "e": 16.62, "key": false}, {"w": "día.", "s": 16.62, "e": 17.2, "key": false}]}, {"id": "l5", "s": 17.2, "e": 20.23, "words": [{"w": "En", "s": 17.2, "e": 17.28, "key": false}, {"w": "menos", "s": 17.28, "e": 17.43, "key": false}, {"w": "de", "s": 17.49, "e": 17.55, "key": false}, {"w": "10", "s": 17.55, "e": 17.78, "key": false}, {"w": "días,", "s": 17.78, "e": 18.26, "key": false}, {"w": "ya", "s": 18.29, "e": 18.42, "key": false}, {"w": "has", "s": 18.56, "e": 18.62, "key": false}, {"w": "llegado", "s": 18.62, "e": 19.09, "key": false}, {"w": "andando", "s": 19.09, "e": 19.56, "key": false}, {"w": "a", "s": 19.56, "e": 19.62, "key": false}, {"w": "Toledo.", "s": 19.62, "e": 20.23, "key": true}]}, {"id": "l6", "s": 20.23, "e": 24.6, "words": [{"w": "En", "s": 20.23, "e": 20.37, "key": false}, {"w": "unos", "s": 20.37, "e": 20.63, "key": false}, {"w": "3", "s": 20.64, "e": 20.84, "key": false}, {"w": "meses", "s": 20.84, "e": 21.15, "key": false}, {"w": "y", "s": 21.18, "e": 21.24, "key": false}, {"w": "medio,", "s": 21.24, "e": 21.58, "key": false}, {"w": "has", "s": 21.58, "e": 21.65, "key": false}, {"w": "hecho", "s": 22, "e": 22.13, "key": false}, {"w": "entero", "s": 22.13, "e": 22.51, "key": false}, {"w": "el", "s": 22.55, "e": 22.67, "key": false}, {"w": "Camino", "s": 22.67, "e": 23.15, "key": false}, {"w": "de", "s": 23.29, "e": 23.32, "key": false}, {"w": "Santiago", "s": 23.6, "e": 23.87, "key": true}, {"w": "francés.", "s": 23.9, "e": 24.6, "key": false}]}, {"id": "l7", "s": 24.6, "e": 29.6, "words": [{"w": "En", "s": 24.6, "e": 24.73, "key": false}, {"w": "algo", "s": 24.73, "e": 24.81, "key": false}, {"w": "más", "s": 25.14, "e": 25.23, "key": false}, {"w": "de", "s": 25.23, "e": 25.37, "key": false}, {"w": "2", "s": 25.37, "e": 25.58, "key": false}, {"w": "años,", "s": 25.58, "e": 26.0, "key": false}, {"w": "llegarías", "s": 26, "e": 26.62, "key": false}, {"w": "a", "s": 26.63, "e": 26.69, "key": false}, {"w": "Nueva", "s": 26.69, "e": 27.16, "key": false}, {"w": "York,", "s": 27.16, "e": 27.85, "key": false}, {"w": "si", "s": 27.91, "e": 27.95, "key": false}, {"w": "se", "s": 27.95, "e": 28.02, "key": false}, {"w": "pudiera", "s": 28.02, "e": 28.22, "key": false}, {"w": "andar", "s": 28.33, "e": 28.47, "key": false}, {"w": "sobre", "s": 28.76, "e": 28.83, "key": false}, {"w": "el", "s": 28.83, "e": 28.97, "key": false}, {"w": "océano.", "s": 28.97, "e": 29.6, "key": true}]}, {"id": "l8", "s": 29.6, "e": 34.67, "words": [{"w": "Y", "s": 29.6, "e": 29.67, "key": false}, {"w": "en", "s": 29.67, "e": 29.81, "key": false}, {"w": "menos", "s": 29.81, "e": 29.97, "key": false}, {"w": "de", "s": 30.23, "e": 30.24, "key": false}, {"w": "15", "s": 30.33, "e": 30.72, "key": false}, {"w": "años,", "s": 30.72, "e": 31.07, "key": false}, {"w": "habrás", "s": 31.14, "e": 31.56, "key": false}, {"w": "dado", "s": 31.56, "e": 31.81, "key": false}, {"w": "la", "s": 31.83, "e": 31.87, "key": false}, {"w": "vuelta", "s": 32.2, "e": 32.37, "key": false}, {"w": "al", "s": 32.41, "e": 32.53, "key": false}, {"w": "mundo", "s": 32.54, "e": 32.89, "key": true}, {"w": "sin", "s": 32.89, "e": 33.09, "key": false}, {"w": "subirte", "s": 33.09, "e": 33.68, "key": false}, {"w": "a", "s": 33.69, "e": 33.77, "key": false}, {"w": "un", "s": 33.77, "e": 33.96, "key": false}, {"w": "avión.", "s": 33.96, "e": 34.67, "key": false}]}, {"id": "l9", "s": 34.67, "e": 41.21, "words": [{"w": "Ahora,", "s": 34.67, "e": 35.25, "key": false}, {"w": "la", "s": 35.5, "e": 35.62, "key": false}, {"w": "vida", "s": 35.62, "e": 36.03, "key": true}, {"w": "entera:", "s": 36.04, "e": 36.98, "key": false}, {"w": "de", "s": 36.99, "e": 37.05, "key": false}, {"w": "los", "s": 37.05, "e": 37.4, "key": false}, {"w": "18", "s": 37.4, "e": 37.84, "key": false}, {"w": "años", "s": 37.84, "e": 38.12, "key": false}, {"w": "a", "s": 38.16, "e": 38.21, "key": false}, {"w": "los", "s": 38.26, "e": 38.46, "key": false}, {"w": "84,", "s": 38.47, "e": 39.1, "key": false}, {"w": "lo", "s": 39.19, "e": 39.26, "key": false}, {"w": "que", "s": 39.26, "e": 39.5, "key": false}, {"w": "se", "s": 39.5, "e": 39.66, "key": false}, {"w": "vive", "s": 39.66, "e": 39.96, "key": false}, {"w": "de", "s": 39.96, "e": 40.16, "key": false}, {"w": "media", "s": 40.16, "e": 40.33, "key": false}, {"w": "en", "s": 40.37, "e": 40.51, "key": false}, {"w": "España.", "s": 40.64, "e": 41.21, "key": false}]}, {"id": "l10", "s": 41.21, "e": 46.4, "words": [{"w": "En", "s": 41.21, "e": 41.36, "key": false}, {"w": "total,", "s": 41.36, "e": 41.74, "key": false}, {"w": "unos", "s": 41.74, "e": 41.85, "key": false}, {"w": "180.000", "s": 42.21, "e": 43.69, "key": false}, {"w": "kilómetros:", "s": 43.71, "e": 44.09, "key": false}, {"w": "4", "s": 44.09, "e": 44.32, "key": false}, {"w": "vueltas", "s": 44.32, "e": 44.85, "key": false}, {"w": "y", "s": 44.85, "e": 44.89, "key": false}, {"w": "media", "s": 44.94, "e": 45.24, "key": false}, {"w": "a", "s": 45.37, "e": 45.4, "key": false}, {"w": "la", "s": 45.4, "e": 45.55, "key": false}, {"w": "Tierra.", "s": 45.55, "e": 46.4, "key": true}]}, {"id": "l11", "s": 46.4, "e": 48.88, "words": [{"w": "Eso", "s": 46.4, "e": 46.57, "key": false}, {"w": "es", "s": 46.57, "e": 46.68, "key": false}, {"w": "casi", "s": 46.68, "e": 46.89, "key": false}, {"w": "la", "s": 46.89, "e": 47.01, "key": false}, {"w": "mitad", "s": 47.01, "e": 47.03, "key": false}, {"w": "del", "s": 47.03, "e": 47.6, "key": false}, {"w": "camino", "s": 47.6, "e": 47.99, "key": false}, {"w": "hasta", "s": 47.99, "e": 48.31, "key": false}, {"w": "la", "s": 48.4, "e": 48.51, "key": false}, {"w": "Luna.", "s": 48.51, "e": 48.88, "key": true}]}, {"id": "l12", "s": 49.14, "e": 53.08, "words": [{"w": "Para", "s": 49.14, "e": 49.33, "key": false}, {"w": "llegar", "s": 49.33, "e": 49.78, "key": false}, {"w": "hasta", "s": 49.78, "e": 50.14, "key": false}, {"w": "ella,", "s": 50.14, "e": 50.45, "key": false}, {"w": "tendrías", "s": 50.45, "e": 51.04, "key": false}, {"w": "que", "s": 51.04, "e": 51.26, "key": false}, {"w": "caminar", "s": 51.26, "e": 51.76, "key": true}, {"w": "140", "s": 51.78, "e": 52.19, "key": false}, {"w": "años.", "s": 52.76, "e": 53.08, "key": false}]}, {"id": "l13", "s": 53.08, "e": 56.489, "words": [{"w": "Así", "s": 53.08, "e": 53.28, "key": false}, {"w": "que,", "s": 53.5, "e": 53.64, "key": false}, {"w": "si", "s": 53.64, "e": 53.78, "key": false}, {"w": "un", "s": 53.78, "e": 53.92, "key": false}, {"w": "día", "s": 53.92, "e": 54.14, "key": false}, {"w": "quieres", "s": 54.14, "e": 54.64, "key": false}, {"w": "ir", "s": 54.64, "e": 54.77, "key": false}, {"w": "a", "s": 54.78, "e": 54.79, "key": false}, {"w": "la", "s": 54.86, "e": 54.88, "key": false}, {"w": "Luna,", "s": 55.1, "e": 55.43, "key": false}, {"w": "mejor", "s": 55.43, "e": 55.78, "key": false}, {"w": "en", "s": 55.83, "e": 55.87, "key": false}, {"w": "cohete.", "s": 55.94, "e": 56.489, "key": true}]}, {"id": "l14", "s": 56.489, "e": 59.38, "words": [{"w": "¿Cuántos", "s": 56.489, "e": 57.13, "key": false}, {"w": "pasos", "s": 57.13, "e": 57.49, "key": false}, {"w": "das", "s": 57.49, "e": 57.71, "key": false}, {"w": "tú", "s": 57.71, "e": 57.81, "key": false}, {"w": "al", "s": 57.87, "e": 57.99, "key": false}, {"w": "día?", "s": 57.99, "e": 58.5, "key": false}, {"w": "Te", "s": 58.57, "e": 58.61, "key": false}, {"w": "leo", "s": 58.62, "e": 58.71, "key": false}, {"w": "en", "s": 58.71, "e": 58.83, "key": false}, {"w": "los", "s": 58.83, "e": 58.87, "key": false}, {"w": "comentarios.", "s": 58.87, "e": 59.38, "key": true}]}]}</script>
+    <script id="escena" type="application/json">
+      {
+        "titulo": "¿Y si caminaras 10.000 pasos cada día?",
+        "nota": "Valores aproximados · pasos de 75 cm",
+        "formato": "altura",
+        "desde": "ANDANDO DESDE HACE",
+        "inicio": 0,
+        "ritmo": 0.086805555555556,
+        "hitos": [
+          { "clave": "pasos", "v": 0 },
+          { "clave": "sol", "v": 0, "etiqueta": "KILÓMETRO CERO" },
+          { "clave": "cosa", "v": 7500, "etiqueta": "EL PRIMER DÍA" },
+          { "clave": "toledo", "v": 71000, "etiqueta": "TOLEDO" },
+          { "clave": "santiago", "v": 780000, "etiqueta": "CAMINO DE SANTIAGO" },
+          { "clave": "nueva", "v": 5768000, "etiqueta": "NUEVA YORK" },
+          { "clave": "mundo", "v": 40075000, "etiqueta": "LA VUELTA AL MUNDO" },
+          { "clave": "total", "v": 180800000, "etiqueta": "TODA TU VIDA" },
+          { "clave": "luna", "v": 180800000 },
+          { "clave": "caminar", "v": 384400000, "etiqueta": "LA LUNA" }
+        ],
+        "sonido": { "viento": true, "etereo_desde": 66 }
+      }
+    </script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 63.1 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import * as THREE from "three";
+      import { crearContador } from "./comun/contador.js";
+      import { Line2 } from "three/addons/lines/Line2.js";
+      import { LineMaterial } from "three/addons/lines/LineMaterial.js";
+      import { LineGeometry } from "three/addons/lines/LineGeometry.js";
+
+      // The counter is the distance walked (10.000 steps of 75 cm a day = 7,5 km a day).
+      // One real-scale world in metres: the Puerta del Sol (km 0) is the origin, up = +Y, east = +X,
+      // north = -Z, and the Earth is a sphere of radius R below it. The camera pulls back from the street
+      // to Madrid, Toledo, Spain, the Atlantic, the whole planet and the Moon, keyed to the counter.
+      // The engine writes metres ("altura"); this page shows kilometres in the counter and the labels.
+      const C = crearContador(THREE);
+      const { VOZ, D, words, anchors, scene, camera, key, hemi, renderer, mat, glow, box, at, v3, hash, clamp, lerp, ease, smooth, ramp, norm, Y, V } = C;
+      const W = 1080, H = 1920;
+      await document.fonts.ready;
+
+      // ---------- geography ----------
+      const R = 6371000, RAD = Math.PI / 180, LAT0 = 40.4169, LON0 = -3.7035;
+      const CENTER = v3(0, -R, 0), UP = v3(0, 1, 0);
+      const ecef = (la, lo) => [Math.cos(la * RAD) * Math.cos(lo * RAD), Math.cos(la * RAD) * Math.sin(lo * RAD), Math.sin(la * RAD)];
+      const dot3 = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+      const U0 = ecef(LAT0, LON0), E0 = [-Math.sin(LON0 * RAD), Math.cos(LON0 * RAD), 0];
+      const N0 = [-Math.sin(LAT0 * RAD) * Math.cos(LON0 * RAD), -Math.sin(LAT0 * RAD) * Math.sin(LON0 * RAD), Math.cos(LAT0 * RAD)];
+      // unit vector from the Earth's centre, in world axes
+      const geoDir = (la, lo) => { const e = ecef(la, lo); return v3(dot3(e, E0), dot3(e, U0), -dot3(e, N0)); };
+      const geoPos = (la, lo, alt = 0) => geoDir(la, lo).multiplyScalar(R + alt).add(CENTER);
+      const geoRel = (la, lo, alt = 0) => geoDir(la, lo).multiplyScalar(R + alt);
+      const NP = geoDir(90, 0);
+      function rumbo(la1, lo1, la2, lo2) {
+        const p1 = la1 * RAD, p2 = la2 * RAD, dl = (lo2 - lo1) * RAD;
+        return Math.atan2(Math.sin(dl) * Math.cos(p2), Math.cos(p1) * Math.sin(p2) - Math.sin(p1) * Math.cos(p2) * Math.cos(dl)) / RAD;
+      }
+      // a polyline in (lat, lon) resampled into n equal steps on the ground
+      function ruta(ll, n, alt = 0, rel = false) {
+        const fino = [];
+        for (let i = 0; i < ll.length - 1; i++) for (let k = 0; k < 24; k++) { const f = k / 24; fino.push([lerp(ll[i][0], ll[i + 1][0], f), lerp(ll[i][1], ll[i + 1][1], f)]); }
+        fino.push(ll[ll.length - 1]);
+        const P = fino.map(([la, lo]) => (rel ? geoRel(la, lo, alt) : geoPos(la, lo, alt)));
+        const cum = [0]; for (let i = 1; i < P.length; i++) cum.push(cum[i - 1] + P[i].distanceTo(P[i - 1]));
+        const L = cum[cum.length - 1], out = [];
+        let j = 1;
+        for (let k = 0; k <= n; k++) {
+          const s = (L * k) / n; while (j < P.length - 1 && cum[j] < s) j++;
+          const f = clamp((s - cum[j - 1]) / (cum[j] - cum[j - 1] || 1)); out.push(P[j - 1].clone().lerp(P[j], f));
+        }
+        return out;
+      }
+      const enRuta = (pts, f) => { const x = clamp(f) * (pts.length - 1), i = Math.min(pts.length - 2, Math.floor(x)); return pts[i].clone().lerp(pts[i + 1], x - i); };
+
+      // ---------- small helpers ----------
+      const LRES = new THREE.Vector2(W, H);
+      function linea(pts, color, ancho, o = {}) {
+        const g = new LineGeometry(); g.setPositions(pts.flatMap((p) => [p.x, p.y, p.z]));
+        const m = new LineMaterial({ color, linewidth: ancho, worldUnits: false, transparent: true, opacity: 1, depthWrite: false, fog: false, ...o.mat });
+        m.resolution.copy(LRES);
+        const l = new Line2(g, m); l.computeLineDistances(); l.renderOrder = o.orden ?? 0; l.frustumCulled = false; l.userData.n = pts.length - 1;
+        return l;
+      }
+      // a yellow line with a navy outline, drawn up to a fraction
+      function trazo(pts, ancho, o = {}) {
+        const g = new THREE.Group();
+        const borde = linea(pts, 0x0b1a3a, ancho + 5, { orden: (o.orden ?? 0), mat: o.mat });
+        const color = linea(pts, o.color ?? 0xffcf2e, ancho, { orden: (o.orden ?? 0) + 1, mat: o.mat });
+        g.add(borde, color); g.userData = { borde, color };
+        g.hasta = (f, op = 1) => {
+          const n = Math.round(clamp(f) * borde.userData.n);
+          for (const l of [borde, color]) { l.geometry.instanceCount = n; l.material.opacity = op; l.visible = n > 0 && op > 0.01; }
+        };
+        return g;
+      }
+      const SIEMPRE = { depthFunc: THREE.AlwaysDepth };
+      const plano = (c, extra = {}) => mat(c, { flatShading: false, ...SIEMPRE, ...extra });
+      function textura(dibuja, w = 64, h = w) {
+        const cv = document.createElement("canvas"); cv.width = w; cv.height = h; dibuja(cv.getContext("2d"), w, h);
+        const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = renderer.capabilities.getMaxAnisotropy(); return t;
+      }
+      const texPunto = (fill) => textura((c, s) => {
+        c.fillStyle = "#0b1a3a"; c.beginPath(); c.arc(s / 2, s / 2, s / 2 - 1, 0, 7); c.fill();
+        c.fillStyle = fill; c.beginPath(); c.arc(s / 2, s / 2, s / 2 - 10, 0, 7); c.fill();
+      }, 64);
+      function marca(tex, px) {
+        const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, depthTest: false, depthWrite: false, sizeAttenuation: false, transparent: true, fog: false }));
+        s.userData.px = px; s.scale.setScalar(px / 2788); s.renderOrder = 60; scene.add(s); return s;
+      }
+      const M4 = (x, y, z, sx = 1, sy = 1, sz = 1, ry = 0) => new THREE.Matrix4().compose(v3(x, y, z), new THREE.Quaternion().setFromAxisAngle(UP, ry), v3(sx, sy, sz));
+      function instancias(geo, material, mats, colores) {
+        const im = new THREE.InstancedMesh(geo, material, mats.length);
+        mats.forEach((m, i) => im.setMatrixAt(i, m));
+        if (colores) colores.forEach((c, i) => im.setColorAt(i, new THREE.Color(c)));
+        im.instanceMatrix.needsUpdate = true; return im;
+      }
+      const CUBO = new THREE.BoxGeometry(1, 1, 1), CUBO_SUELO = new THREE.BoxGeometry(1, 1, 1).translate(0, 0.5, 0);
+      const dentro = (x, z, poly) => { let ins = false; for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) { const [xi, zi] = poly[i], [xj, zj] = poly[j]; if (zi > z !== zj > z && x < ((xj - xi) * (z - zi)) / (zj - zi) + xi) ins = !ins; } return ins; };
+      const xz = (la, lo) => { const p = geoPos(la, lo); return [p.x, p.z]; };
+
+      // ---------- the map of the world (lon, lat), painted into the globe textures ----------
+      const TIERRAS = [
+        // Eurasia, from Gibraltar along the Mediterranean, Asia, the Arctic, Scandinavia, the Baltic, France and back round Iberia
+        [-5.35,36.15,-4.42,36.72,-3.5,36.73,-2.46,36.83,-2.19,36.72,-1.83,37.13,-1.58,37.4,-0.98,37.58,-0.69,37.63,-0.75,37.85,-0.48,38.34,0.23,38.73,-0.15,38.97,-0.33,39.45,0.03,39.98,0.52,40.53,0.87,40.72,1.25,41.11,2.18,41.38,2.8,41.7,3.2,41.95,3.32,42.32,
+         3.05,42.6,3.05,43.05,3.7,43.4,4.6,43.4,5.35,43.3,6.2,43.1,7.27,43.7,8.9,44.4,9.8,44.08,10.3,43.55,11.1,42.4,12.3,41.75,13.6,41.25,14.25,40.83,15.0,40.3,15.65,40.05,15.8,39.6,16.1,38.9,15.65,38.0,16.1,37.95,16.55,38.4,17.15,39.0,16.6,39.6,17.2,40.4,18.0,40.15,18.5,40.1,18.0,40.65,16.9,41.1,16.0,41.45,16.15,41.92,14.7,42.1,13.9,42.65,13.6,43.55,12.3,44.3,12.3,45.3,13.6,45.7,13.9,44.9,14.4,45.3,15.9,43.5,17.4,43.0,18.1,42.65,19.4,41.9,19.4,40.8,19.9,39.7,20.7,38.8,21.1,38.3,21.6,36.9,22.5,36.4,23.2,36.5,22.9,37.6,24.0,38.0,23.5,38.5,22.6,39.3,22.9,40.6,24.0,40.75,26.0,40.8,26.4,40.2,26.2,39.5,26.8,38.5,27.3,37.0,28.6,36.8,30.6,36.85,32.5,36.1,34.6,36.8,36.0,36.6,35.9,35.4,35.5,33.9,35.0,32.8,34.5,31.5,33.8,31.1,32.3,31.25,
+         32.55,29.95,33.6,28.2,34.25,27.73,34.9,29.5,36.5,26.0,38.1,24.1,39.2,21.5,40.8,19.0,42.6,16.4,43.2,13.3,43.5,12.7,45.0,12.8,48.5,14.0,52.2,15.6,55.0,17.0,57.8,19.0,59.8,22.5,58.6,23.6,56.4,26.2,55.3,25.3,52.0,24.0,51.6,25.3,50.6,26.2,49.6,27.0,48.0,29.4,48.8,30.0,50.3,29.2,51.4,27.9,54.0,26.6,56.3,27.2,57.3,25.8,61.6,25.2,66.6,25.4,68.4,23.5,70.0,22.4,72.6,21.1,72.8,19.0,73.8,15.4,75.0,12.5,76.3,9.9,77.5,8.1,79.9,10.3,80.3,13.1,81.3,16.3,83.3,17.7,86.5,20.0,88.0,21.6,90.5,22.2,91.8,22.3,92.3,20.8,94.2,18.0,94.4,16.0,95.5,15.8,97.6,16.5,98.4,13.0,98.6,10.0,98.3,8.0,100.3,5.4,101.3,2.8,103.5,1.3,104.2,1.4,103.4,4.0,102.3,6.2,100.8,7.0,100.0,9.5,99.2,10.6,100.0,13.4,101.5,12.6,102.9,11.6,104.8,10.2,105.0,8.7,106.8,10.4,109.2,11.5,109.3,13.8,108.3,16.1,106.6,17.5,105.8,19.0,106.6,20.6,108.0,21.5,109.8,21.5,110.4,20.3,111.0,21.5,113.5,22.2,116.7,23.4,118.1,24.5,119.6,26.0,121.0,28.0,121.9,30.9,120.9,32.6,119.2,34.6,120.3,36.1,122.5,37.4,119.0,37.3,118.0,38.5,117.7,39.0,119.5,39.9,121.4,40.9,121.2,38.8,122.5,40.0,124.4,39.8,125.3,37.7,126.5,37.4,126.3,34.5,127.7,34.7,129.1,35.1,129.4,36.5,128.5,38.4,127.4,39.9,129.8,41.0,131.9,43.1,133.2,42.8,135.4,43.9,138.5,47.0,140.4,48.9,141.4,52.2,140.5,53.2,137.7,54.2,135.1,54.7,137.0,56.0,141.0,58.5,143.3,59.3,148.0,59.4,151.3,59.6,154.5,59.3,156.8,61.6,160.0,61.8,163.2,62.4,161.5,60.0,157.0,57.8,156.0,53.5,156.7,51.0,158.6,53.0,160.0,54.6,162.0,56.1,163.3,58.0,166.0,59.9,170.4,60.0,173.0,61.7,177.5,62.6,179.9,65.0,179.9,68.9,175.0,69.8,170.0,70.1,161.0,69.6,152.0,70.9,143.0,72.7,135.0,71.6,128.0,72.8,113.0,73.7,110.0,76.6,104.0,77.7,98.0,76.2,87.0,74.0,80.5,73.6,80.0,72.2,73.0,71.5,69.0,72.9,66.5,70.6,68.5,68.2,60.5,69.9,54.0,68.3,44.0,68.4,41.0,67.5,39.0,68.0,36.0,69.1,33.0,69.4,28.5,70.7,25.8,71.1,20.0,70.0,15.0,68.5,12.5,66.0,10.0,63.5,5.0,61.9,5.3,60.4,5.6,58.9,7.0,58.0,8.8,58.5,10.5,59.4,11.1,58.9,11.9,57.7,12.8,56.3,12.9,55.4,14.2,55.4,16.4,56.6,16.6,58.5,18.6,59.3,17.3,60.7,17.4,62.4,20.3,63.8,22.2,65.6,25.4,65.0,21.6,63.1,21.4,61.5,22.3,60.4,24.9,60.2,28.7,60.6,29.9,59.9,28.0,59.5,24.1,59.4,23.4,58.4,24.4,57.3,22.6,57.6,21.1,56.9,21.1,55.7,19.8,54.5,18.6,54.4,16.5,54.6,14.3,53.9,12.1,54.2,10.9,54.0,10.0,54.7,10.3,56.2,10.6,57.7,8.6,57.1,8.1,56.0,8.6,55.1,8.9,53.9,7.0,53.4,4.8,52.9,4.2,52.0,3.4,51.4,1.6,50.9,1.6,50.1,0.2,49.7,-1.2,49.4,-1.9,49.7,-1.6,48.6,-3.0,48.8,-4.7,48.4,-4.2,47.8,-2.5,47.3,-1.2,46.2,-1.2,45.6,-1.25,44.6,-1.5,43.5,
+         -1.79,43.37,-2.95,43.42,-3.8,43.47,-4.75,43.42,-5.85,43.66,-7.04,43.56,-7.69,43.79,-8.4,43.37,-9.0,43.2,-9.27,42.88,-8.9,42.5,-8.75,42.23,-8.87,41.87,-8.65,41.15,-8.75,40.64,-8.87,40.15,-9.4,39.36,-9.5,38.78,-9.0,38.48,-8.87,37.95,-8.99,37.02,-7.93,37.0,-7.4,37.17,-6.95,37.2,-6.35,36.8,-6.29,36.53,-5.6,36.01],
+        // Africa
+        [-5.81,35.78,-5.32,35.89,-4.0,35.2,-2.9,35.3,-1.0,35.7,0.1,35.9,3.0,36.8,5.1,36.75,7.8,36.9,10.2,37.2,11.0,37.0,10.6,35.8,10.1,34.3,11.1,33.2,13.2,32.9,15.1,32.4,19.0,30.3,20.1,32.1,22.6,32.8,25.1,31.6,29.9,31.2,32.3,31.25,32.55,29.95,33.8,27.25,35.5,23.9,37.2,19.6,38.5,18.0,39.5,15.6,42.7,13.0,43.1,11.6,44.5,10.4,51.3,11.8,51.0,10.4,49.0,6.0,47.9,4.0,45.3,2.0,42.6,-0.4,39.7,-4.0,39.3,-6.8,40.0,-10.3,40.5,-12.5,40.7,-15.0,37.0,-17.5,34.8,-19.8,35.5,-22.0,35.4,-23.9,32.6,-25.9,32.4,-28.5,31.0,-29.9,27.9,-33.0,25.6,-34.0,22.0,-34.2,20.0,-34.8,18.4,-33.9,18.0,-32.5,17.0,-29.7,15.2,-27.0,14.5,-22.9,13.5,-20.0,11.8,-17.3,12.2,-14.0,13.2,-8.8,12.3,-6.0,11.9,-4.8,9.4,0.4,9.7,4.0,8.5,4.6,6.0,4.3,4.6,6.3,3.4,6.45,-0.2,5.6,-2.0,4.8,-4.0,5.3,-7.7,4.4,-10.8,6.3,-13.2,8.5,-13.7,9.5,-15.0,10.9,-16.7,12.4,-17.5,14.7,-16.5,16.0,-16.0,18.1,-17.05,20.8,-15.9,23.7,-14.5,26.1,-12.9,27.9,-11.0,28.7,-9.6,30.4,-9.8,31.5,-8.5,33.2,-7.6,33.6,-6.8,34.0,-6.15,35.2],
+        // North America
+        [-168,65.6,-166,68.9,-156.8,71.3,-141,69.6,-128,70.2,-115,68.5,-105,68,-95,68.5,-88,68.5,-82,66.5,-79,62.5,-70,61,-64.5,60.3,-61.5,56.5,-58,54,-56,52.2,-60,50.2,-66.5,50.2,-64.5,48.9,-65,47.5,-61,45.6,-60,46.0,-63.5,44.6,-66,43.8,-67,44.8,-70.2,43.6,-70.8,42.5,-70.0,41.7,-71.5,41.4,-73.9,40.6,-74.0,40.0,-74.9,38.9,-75.5,37.9,-76.0,36.9,-75.5,35.2,-77.9,33.9,-79.9,32.8,-81.1,32.0,-81.4,30.3,-80.6,28.4,-80.1,26.1,-80.4,25.2,-81.1,25.1,-81.8,26.5,-82.6,27.9,-83.0,29.1,-84.3,30.0,-86.5,30.4,-88.0,30.7,-89.2,29.1,-90.5,29.1,-93.8,29.7,-94.8,29.3,-97.2,27.8,-97.4,25.9,-97.8,22.3,-96.1,19.2,-94.5,18.2,-92.0,18.6,-90.4,19.8,-90.3,21.1,-87.0,21.5,-87.5,19.5,-88.3,18.5,-88.2,16.0,-86.0,15.9,-83.4,15.0,-83.6,11.0,-82.3,9.0,-79.6,9.6,-77.3,8.4,-78.2,8.3,-79.5,8.9,-80.4,7.3,-82.0,8.2,-83.6,8.5,-85.7,10.0,-87.5,13.0,-89.4,13.5,-91.5,14.0,-94.5,16.2,-96.5,15.7,-99.9,16.8,-102.0,17.9,-105.3,20.6,-106.4,23.2,-108.9,25.7,-110.9,27.9,-114.7,31.7,-112.5,29.0,-111.0,26.0,-109.9,22.9,-112.1,24.8,-114.2,27.6,-116.6,31.8,-117.1,32.6,-118.4,33.9,-120.6,34.6,-121.9,36.6,-122.5,37.8,-124.2,40.4,-124.5,42.8,-124.0,46.2,-124.7,48.4,-123.0,49.0,-127.0,50.8,-130.4,54.3,-133.5,57.3,-136.0,58.2,-139.7,59.6,-145.8,60.5,-149.9,61.2,-151.7,59.2,-154.0,57.6,-158.0,56.5,-162.0,55.0,-164.8,54.4,-161.5,58.6,-164.8,60.9,-165.4,62.7,-163.0,64.5,-166.5,64.5],
+        // South America
+        [-77.3,8.4,-75.5,10.5,-74.2,11.3,-71.6,12.4,-71.0,11.0,-68.4,10.6,-64.5,10.4,-61.9,10.7,-60.8,8.5,-58.0,6.8,-54.0,5.8,-51.5,4.5,-50.0,1.8,-49.0,0.0,-48.5,-1.3,-44.4,-2.5,-41.0,-2.9,-38.5,-3.7,-35.2,-5.8,-34.8,-7.5,-35.3,-9.4,-37.0,-11.0,-38.5,-13.0,-39.0,-16.0,-39.7,-19.5,-40.9,-22.0,-43.2,-22.9,-46.3,-24.0,-48.5,-26.5,-48.6,-28.5,-50.2,-30.5,-52.1,-32.2,-53.4,-33.7,-55.0,-34.9,-58.4,-34.6,-57.6,-36.4,-57.5,-38.1,-62.3,-38.8,-62.1,-40.6,-65.0,-41.0,-64.0,-42.5,-65.3,-45.0,-67.5,-46.4,-65.8,-47.8,-68.4,-50.1,-69.2,-52.2,-68.3,-54.5,-66.5,-55.0,-70.0,-55.2,-74.0,-52.5,-75.0,-48.5,-74.0,-44.5,-73.5,-41.5,-73.4,-37.2,-71.6,-33.0,-71.4,-30.0,-70.4,-23.6,-70.2,-18.5,-75.2,-15.4,-76.3,-13.5,-77.2,-12.0,-79.0,-8.2,-81.2,-6.0,-81.0,-4.2,-80.0,-2.2,-80.9,-1.0,-80.0,0.8,-78.9,1.9,-77.5,4.0,-77.4,6.6],
+        // Greenland, Iceland, Baffin, Ellesmere, Victoria, Svalbard
+        [-44.5,60,-48,61.5,-51,63.5,-53.5,66.5,-54,69.5,-51,70.5,-55,73,-58,75.5,-66,76.5,-73,78.3,-67,80,-60,81.8,-45,82.5,-30,83.6,-20,82.2,-12,81.6,-20,79,-18,76.5,-22,74,-22.5,71.8,-22,70.3,-27,68.5,-33,67.6,-38,65.6,-41,63.5,-43,60.6],
+        [-22.7,64.0,-24.0,65.5,-22.4,66.4,-18.5,66.2,-16.2,66.5,-14.5,65.8,-13.6,65.0,-15.0,64.3,-18.8,63.4,-21.5,63.8],
+        [-61.9,66.6,-66,62.4,-71.5,63,-78,64.6,-81.5,69.2,-86,70,-89.5,72.5,-80,73.7,-72,71.6,-67,69.5],
+        [-62,82,-78,83,-92,81,-89,77,-78,76,-74,78.5],
+        [-118,73.8,-101,73.3,-101,69.5,-117,68.9],
+        [10.5,79.6,16,80,27,80.1,25,78.3,16.5,76.6,13.5,77.8],
+        // British Isles
+        [-5.7,50.05,-3.0,50.6,-1.0,50.75,1.4,51.2,1.75,52.6,0.3,53.4,-0.1,54.5,-1.5,55.6,-2.5,56.6,-1.8,57.6,-3.3,58.65,-5.0,58.6,-5.7,57.6,-5.6,56.5,-5.4,55.7,-5.0,54.8,-3.4,54.9,-3.0,53.9,-3.0,53.4,-4.6,53.3,-4.2,52.2,-5.3,51.8,-4.1,51.6,-3.4,51.4,-4.2,51.2,-5.1,50.6],
+        [-6.0,52.2,-6.3,53.3,-6.0,54.0,-5.5,54.6,-6.2,55.2,-7.4,55.4,-8.5,55.0,-8.6,54.3,-10.0,54.2,-9.8,53.4,-10.3,52.6,-10.4,51.9,-9.6,51.5,-8.0,51.8,-6.4,52.1],
+        // Mediterranean islands
+        [9.4,43.0,9.55,42.1,9.2,41.37,8.6,41.7,8.6,42.6,9.0,42.7],
+        [9.7,41.2,9.8,40.5,9.6,39.2,9.0,39.0,8.4,39.0,8.4,40.0,8.2,40.9,9.2,41.25],
+        [12.4,38.0,13.3,38.2,15.6,38.3,15.1,37.3,15.1,36.7,14.3,37.0,12.5,37.6],
+        [23.5,35.3,24.3,35.4,26.3,35.3,26.2,35.0,24.7,34.95],
+        [32.3,35.0,33.0,35.4,34.6,35.7,34.0,35.0,33.0,34.6],
+        [2.35,39.6,2.75,39.95,3.2,39.95,3.47,39.7,3.3,39.35,2.95,39.35,2.75,39.5,2.5,39.45],
+        [3.8,39.95,3.85,40.05,4.2,40.05,4.3,39.85,3.95,39.9],
+        [1.2,38.95,1.35,39.1,1.6,39.05,1.6,38.9,1.4,38.85],
+        // Canary Islands
+        [-16.9,28.35,-16.5,28.6,-16.1,28.55,-16.45,28.1,-16.75,28.0],
+        [-15.85,27.95,-15.6,28.18,-15.38,28.0,-15.6,27.75],
+        [-14.5,28.05,-13.85,28.75,-13.8,28.4,-14.3,28.05],
+        [-13.9,28.85,-13.45,29.25,-13.4,29.0,-13.85,28.8],
+        [-17.95,28.6,-17.8,28.85,-17.72,28.6,-17.85,28.45],
+        [-17.35,28.1,-17.2,28.2,-17.1,28.08,-17.25,28.0],
+        // Caribbean, Madagascar, Asia-Pacific
+        [-84.9,21.9,-82.6,22.9,-80.5,23.1,-77.5,21.7,-75.6,21.0,-74.2,20.2,-77.7,19.8,-82.0,21.6],
+        [-74.4,18.6,-72.8,19.9,-70.0,19.7,-68.4,18.6,-70.0,18.2,-72.0,18.0,-74.4,18.3],
+        [49.3,-12.0,50.5,-15.5,49.4,-17.5,47.1,-25.0,45.2,-25.5,44.0,-23.0,43.3,-21.5,44.4,-19.7,44.0,-17.0,46.3,-15.7,48.0,-13.5],
+        [79.8,8.0,80.2,9.8,81.9,7.5,81.2,6.2,80.1,6.0],
+        [130.9,34.0,135.0,34.6,139.8,35.0,140.9,35.7,141.0,38.3,141.9,39.6,141.4,41.4,140.0,40.6,139.8,39.0,138.6,37.4,136.7,37.1,135.5,35.6,133.0,35.6],
+        [140.0,41.5,141.7,42.6,143.3,42.0,145.6,43.3,144.5,44.0,141.8,45.4,141.5,43.4],
+        [129.8,33.0,130.9,33.9,131.9,33.1,131.3,31.4,130.2,31.2],
+        [120.1,23.0,121.0,25.2,122.0,25.0,121.4,22.9,120.8,21.9],
+        [120.0,18.5,122.2,18.5,122.0,16.0,121.5,14.1,124.0,13.0,120.6,13.9,120.3,16.2],
+        [122.0,7.0,125.4,9.8,126.5,7.0,125.4,5.6,124.0,6.3],
+        [95.3,5.6,97.5,5.2,100.4,2.3,104.0,-1.0,106.0,-3.2,105.8,-5.8,104.5,-5.9,102.3,-4.0,100.3,-1.0,98.8,1.7,95.6,4.5],
+        [105.2,-6.8,106.8,-6.1,110.4,-6.9,112.7,-7.2,114.6,-7.8,114.4,-8.7,110.0,-8.1,106.4,-7.4],
+        [109.0,1.5,110.4,1.7,113.0,3.2,115.4,5.0,117.0,6.9,118.5,5.0,119.0,1.0,116.5,-3.5,114.5,-4.0,111.0,-3.0,110.0,-1.5,109.0,0.0],
+        [131.0,-1.3,134.2,-0.9,138.0,-1.6,141.0,-2.6,145.8,-5.0,147.5,-6.5,150.2,-10.6,147.0,-10.1,144.0,-7.8,141.0,-9.1,138.0,-8.4,137.5,-5.0,133.0,-4.0,132.0,-2.8],
+        [113.5,-22.0,114.2,-26.0,115.0,-29.5,115.6,-33.5,117.9,-35.1,123.5,-33.9,129.0,-31.6,134.2,-32.6,138.5,-35.0,140.6,-38.0,144.5,-38.2,146.4,-39.1,149.9,-37.5,151.2,-33.9,153.6,-28.2,153.1,-25.0,150.8,-22.6,146.4,-19.0,145.4,-15.0,142.5,-10.7,141.5,-13.5,140.9,-17.4,139.3,-17.4,136.7,-15.9,136.8,-12.2,132.6,-11.5,130.2,-12.6,129.4,-14.9,126.9,-13.8,124.0,-16.5,122.2,-18.2,120.0,-19.9,116.7,-20.6],
+        // Antarctica
+        [-180,-90,-180,-70,-150,-74,-120,-72,-90,-71,-60,-64,-45,-77,-20,-72,0,-69,30,-69,60,-67,90,-66,120,-66,150,-68,170,-72,180,-77,180,-90],
+      ];
+      const ARIDOS = [
+        [-17,21,-16,27,-9,30,0,32,10,33,20,31,30,31,35,28,38,20,35,15,25,14,15,14,5,15,-5,15,-16,17],
+        [36,30,44,30,48,29,52,24,56,22,57,19,52,16,45,14,42,17,38,24],
+        [12,-17,22,-17,25,-22,24,-28,18,-31,14,-25],
+        [115,-22,128,-18,138,-20,142,-25,140,-31,130,-30,120,-30],
+        [45,38,60,40,70,42,80,38,75,33,62,28,52,30],
+        [90,45,110,45,115,40,100,38,88,40],
+        [-118,35,-104,36,-100,30,-106,26,-112,28],
+        [-71,-18,-68,-18,-68,-28,-70,-32,-71.5,-30],
+        [-71,-40,-64,-40,-66,-48,-70,-52,-72,-48],
+      ];
+      const MESETA = [-8.2,42.3,-6,42.9,-4,42.9,-1.6,42.6,0.4,41.6,-0.4,40.2,-1.0,38.9,-2.4,37.6,-5.0,37.3,-7.2,38.2,-7.0,39.8,-7.6,41.2];
+      const HIELOS = [
+        [-44.5,60.8,-50,64,-52.5,69,-56,73.5,-64,77,-62,81,-40,82.8,-24,81.5,-20,77,-24,71.5,-32,68,-40,64],
+        [-180,-90,-180,-71,-150,-75,-120,-73,-90,-72,-60,-66,-45,-78,-20,-73,0,-70,30,-70,60,-68,90,-67,120,-67,150,-69,170,-73,180,-78,180,-90],
+        [10.5,79.6,16,80,27,80.1,25,78.3,16.5,76.6,13.5,77.8],
+      ];
+      const AGUAS = [
+        [29.0,41.2,28.0,41.6,27.6,42.5,28.6,43.7,29.7,45.2,30.7,46.5,31.7,46.6,32.5,45.4,33.5,44.5,35.4,45.0,36.6,45.2,38.3,46.9,39.3,47.2,37.8,44.7,39.7,43.5,41.6,41.6,39.5,41.0,37.0,41.2,35.0,42.0,33.3,42.0,31.2,41.1],
+        [47.5,45.7,49.2,46.4,51.2,47.1,53.0,46.7,53.2,45.3,51.3,44.5,52.7,42.6,52.9,41.0,54.0,40.9,53.9,38.9,53.9,37.3,51.0,36.8,49.0,37.6,48.9,38.4,49.4,40.2,50.3,40.4,48.6,41.8,47.6,43.0,47.5,44.3],
+        [-94.8,59.0,-92.4,57.0,-87.5,55.6,-82.3,55.1,-80.0,51.4,-78.8,54.5,-77.2,58.0,-78.0,60.0,-77.5,62.4,-83,63.9,-87,63.5,-90.5,63.0,-94.0,61.0],
+      ];
+      const FRONTERAS = [
+        [-8.87,41.87,-8.2,42.1,-6.6,41.95,-6.2,41.6,-6.9,41.0,-6.8,40.3,-7.0,39.7,-7.5,39.65,-7.0,39.0,-7.3,38.4,-7.0,38.0,-7.5,37.5,-7.4,37.17],
+        [-1.79,43.37,-1.4,43.25,-0.7,42.85,0.7,42.8,1.45,42.6,2.0,42.4,3.15,42.43],
+        [-2.2,35.1,-1.75,34.7,-1.6,33.0,-3.5,31.5,-8.7,28.7],
+      ];
+      const SIERRAS = [
+        [-7.0,40.15,-5.5,40.45,-4.4,40.85,-3.5,41.15,-3.0,41.2,-3.2,40.95,-4.2,40.55,-5.4,40.15,-6.9,39.95],
+        [-1.6,43.15,-0.5,42.95,0.8,42.85,2.2,42.5,3.0,42.4,2.2,42.2,0.7,42.4,-0.6,42.6,-1.5,42.9],
+        [-7.2,42.9,-6.0,43.15,-4.7,43.2,-3.5,43.1,-3.4,42.9,-4.7,42.95,-6.0,42.85,-7.0,42.55],
+        [-3.2,42.2,-2.3,41.9,-1.5,41.3,-0.8,40.6,-0.6,40.0,-1.3,40.0,-1.8,40.6,-2.5,41.3,-3.3,41.8],
+        [-5.2,36.8,-4.0,37.0,-2.9,37.15,-2.0,37.5,-1.2,38.0,-1.6,38.3,-2.6,37.9,-3.7,37.4,-5.0,37.1],
+        [-6.8,38.0,-5.5,38.2,-4.0,38.35,-3.0,38.4,-3.1,38.2,-4.2,38.1,-5.6,37.95,-6.8,37.75],
+        [-5.0,39.55,-4.2,39.6,-3.7,39.5,-4.2,39.35,-5.0,39.4],
+        [6.0,44.2,7.5,45.8,10.5,46.6,13.5,46.6,16.0,47.5,13.0,47.3,10.0,47.3,7.0,46.6,5.8,45.3],
+        [-6.5,31.0,-4.0,32.5,-1.5,33.8,1.0,34.8,0.0,35.3,-3.0,34.0,-5.5,32.6,-8.5,30.6],
+      ];
+      const CIUDADES = [[2.17,41.39],[-0.38,39.47],[-5.98,37.39],[-2.93,43.26],[-9.14,38.72],[-8.61,41.15],[-0.88,41.65],[-4.42,36.72],[-5.57,42.6],[-3.7,42.34],[-1.64,42.81],[-3.6,37.18],[-4.78,37.88],[-1.13,37.99],[-0.48,38.35],[-4.72,41.65],[-5.66,40.97],[-5.85,43.36],[-8.4,43.37],[-6.97,38.88]];
+      const OCEANO = "#1f73c8", SOMERO = "#3b95df", VERDE = "#7ac25b", ARENA = "#e3cb8f", OCRE = "#bcc56c", HIELO = "#f1f6fb";
+      function pintarMapa(lon0, lon1, lat0, lat1, w, h) {
+        const cv = document.createElement("canvas"); cv.width = w; cv.height = h;
+        const c = cv.getContext("2d"), ppd = w / (lon1 - lon0);
+        const px = (lo) => (lo - lon0) * ppd, py = (la) => (lat1 - la) * (h / (lat1 - lat0));
+        const camino = (f, cerrar = true) => { c.beginPath(); for (let i = 0; i < f.length; i += 2) (i ? c.lineTo : c.moveTo).call(c, px(f[i]), py(f[i + 1])); if (cerrar) c.closePath(); };
+        c.fillStyle = OCEANO; c.fillRect(0, 0, w, h);
+        c.lineJoin = "round"; c.lineCap = "round";
+        c.strokeStyle = SOMERO; c.lineWidth = 0.7 * ppd; for (const f of TIERRAS.slice(0, -1)) { camino(f); c.stroke(); }
+        c.fillStyle = VERDE; for (const f of TIERRAS) { camino(f); c.fill(); }
+        c.save(); c.beginPath(); for (const f of TIERRAS) { for (let i = 0; i < f.length; i += 2) (i ? c.lineTo : c.moveTo).call(c, px(f[i]), py(f[i + 1])); c.closePath(); } c.clip();
+        c.fillStyle = ARENA; for (const f of ARIDOS) { camino(f); c.fill(); }
+        c.fillStyle = OCRE; camino(MESETA); c.fill();
+        c.fillStyle = "#93ad57"; for (const f of SIERRAS) { camino(f); c.fill(); }
+        c.fillStyle = HIELO; for (const f of HIELOS) { camino(f); c.fill(); }
+        c.restore();
+        c.fillStyle = OCEANO; for (const f of AGUAS) { camino(f); c.fill(); }
+        c.strokeStyle = "rgba(255,255,255,0.8)"; c.lineWidth = Math.max(1, 0.035 * ppd); for (const f of FRONTERAS) { camino(f, false); c.stroke(); }
+        if (ppd > 50) { c.fillStyle = "#b3a58f"; for (const [lo, la] of CIUDADES) { c.beginPath(); c.arc(px(lo), py(la), 0.022 * ppd, 0, 7); c.fill(); } }
+        const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = renderer.capabilities.getMaxAnisotropy(); return t;
+      }
+
+      // ---------- the Earth (everything inside is relative to its centre; it can be drawn bigger at the end) ----------
+      const tierra = new THREE.Group(); tierra.position.copy(CENTER); scene.add(tierra);
+      function malla(lonA, lonB, latA, latB, nLon, nLat, tex, orden) {
+        const pos = [], nor = [], uv = [], idx = [];
+        for (let j = 0; j <= nLat; j++) for (let i = 0; i <= nLon; i++) {
+          const d = geoDir(latA + ((latB - latA) * j) / nLat, lonA + ((lonB - lonA) * i) / nLon);
+          pos.push(d.x * R, d.y * R, d.z * R); nor.push(d.x, d.y, d.z); uv.push(i / nLon, j / nLat);
+        }
+        for (let j = 0; j < nLat; j++) for (let i = 0; i < nLon; i++) { const a = j * (nLon + 1) + i, b = a + 1, c = a + nLon + 1, e = c + 1; idx.push(a, b, e, a, e, c); }
+        const g = new THREE.BufferGeometry();
+        g.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute("normal", new THREE.Float32BufferAttribute(nor, 3)); g.setAttribute("uv", new THREE.Float32BufferAttribute(uv, 2)); g.setIndex(idx);
+        const m = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ map: tex, roughness: 0.92, metalness: 0, ...SIEMPRE }));
+        m.renderOrder = orden; return m;
+      }
+      const globo = malla(-180, 180, -90, 90, 180, 90, pintarMapa(-180, 180, -90, 90, 4096, 2048), -30);
+      const parcheIb = malla(-12, 6, 34, 46, 180, 120, pintarMapa(-12, 6, 34, 46, 3072, 2048), -29);
+      tierra.add(globo, parcheIb);
+      const atmos = new THREE.Mesh(new THREE.SphereGeometry(R * 1.022, 96, 48), new THREE.MeshBasicMaterial({ color: 0x86ccff, transparent: true, opacity: 0.32, side: THREE.BackSide, depthWrite: false, fog: false }));
+      tierra.add(atmos);
+      const SUELOS = [globo, parcheIb];
+
+      // ---------- routes ----------
+      const TOLEDO = [39.8567, -4.0244], SANTIAGO = [42.8805, -8.5456], NY = [40.7128, -74.006];
+      const rutaToledo = ruta([[40.4169,-3.7035],[40.404,-3.703],[40.391,-3.695],[40.36,-3.71],[40.307,-3.73],[40.237,-3.77],[40.2,-3.8],[40.122,-3.846],[40.087,-3.87],[40.0,-3.93],[39.945,-3.987],TOLEDO], 1200);
+      const rutaCamino = ruta([[43.163,-1.238],[43.009,-1.319],[42.812,-1.646],[42.672,-1.814],[42.671,-2.03],[42.465,-2.445],[42.416,-2.733],[42.44,-2.953],[42.344,-3.697],[42.288,-4.138],[42.267,-4.406],[42.338,-4.603],[42.371,-5.031],[42.599,-5.567],[42.459,-6.056],[42.546,-6.596],[42.606,-6.811],[42.708,-7.043],[42.781,-7.414],[42.807,-7.616],[42.873,-7.869],[42.927,-8.163],SANTIAGO], 900);
+      const lToledo = trazo(rutaToledo, 6, { orden: -6, mat: SIEMPRE }); scene.add(lToledo);
+      const lCamino = trazo(rutaCamino, 6, { orden: -6, mat: SIEMPRE }); scene.add(lCamino);
+      // the walk keeps going west from Madrid along the great circle that passes over New York, then turns
+      // round the planet again and again (each lap leaves Madrid a little further round): 4,5 laps in a lifetime
+      const VUELTA = 40075000, VIDA = 180800000, LUNA_D = 384400000, VUELTAS = VIDA / VUELTA, PPV = 1440;
+      const bNY = rumbo(LAT0, LON0, NY[0], NY[1]);
+      const lazo = [];
+      for (let k = 0; k <= Math.ceil(VUELTAS * PPV); k++) {
+        const kk = Math.min(Math.floor(k / PPV), 4), ang = (k / PPV - kk) * 2 * Math.PI, b = (bNY + kk * 36) * RAD;
+        const t1 = v3(Math.sin(b), 0, -Math.cos(b));
+        lazo.push(UP.clone().multiplyScalar(Math.cos(ang)).addScaledVector(t1, Math.sin(ang)).multiplyScalar(R + 45000 + kk * 26000));
+      }
+      const lLazo = trazo(lazo, 5, { orden: 2 }); tierra.add(lLazo);
+      const enLazo = (v) => enRuta(lazo, (v / VUELTA) * PPV / (lazo.length - 1));
+
+      // ---------- the Moon, placed later beside the Earth (up and to the right in the final shot) ----------
+      const RM = 1737400;
+      const luna = new THREE.Group(); scene.add(luna);
+      const lunaGeo = new THREE.IcosahedronGeometry(RM, 4);
+      const lunaMesh = new THREE.Mesh(lunaGeo, mat(0xbdbdb6, { roughness: 1 })); luna.add(lunaMesh);
+      for (let i = 0; i < 26; i++) {
+        const d = v3(hash(i + 1) - 0.5, hash(i + 2) - 0.5, hash(i + 3) - 0.5).normalize();
+        const cr = new THREE.Mesh(new THREE.IcosahedronGeometry(RM * (0.08 + hash(i + 4) * 0.12), 1), mat(0x9a9a95, { roughness: 1 }));
+        cr.position.copy(d.multiplyScalar(RM * 0.96)); cr.scale.set(1, 0.35, 1); cr.lookAt(0, 0, 0); cr.rotateX(Math.PI / 2); cr.userData.dir = d.clone().normalize(); luna.add(cr);
+      }
+      const lMoonFondo = linea([CENTER, CENTER], 0xffffff, 3, { mat: { dashed: true, dashSize: 7e6, gapSize: 5e6, opacity: 0.55 } }); scene.add(lMoonFondo);
+      let lMoon = null, moonPts = null, MOON = null;
+
+      // ---------- rivers of the peninsula (crisp lines, from the Toledo shot to the whole of Spain) ----------
+      const rios = new THREE.Group(); scene.add(rios);
+      [
+        [[40.33,-1.7],[40.65,-2.25],[40.55,-2.75],[40.25,-3.0],[40.03,-3.6],[39.95,-3.85],[39.85,-3.98],[39.855,-4.06],[39.96,-4.83],[39.8,-5.5],[39.75,-6.4],[39.63,-7.5],[39.45,-8.3],[39.0,-8.85],[38.7,-9.2]],
+        [[41.98,-2.85],[41.76,-2.47],[41.6,-3.2],[41.67,-3.69],[41.62,-4.4],[41.52,-5.0],[41.5,-5.74],[41.25,-6.4],[41.0,-6.9],[41.15,-7.6],[41.15,-8.65]],
+        [[43.0,-4.1],[42.75,-3.5],[42.47,-2.45],[42.2,-1.7],[41.65,-0.88],[41.3,-0.1],[41.2,0.5],[40.72,0.87]],
+        [[39.0,-2.9],[39.1,-3.6],[38.95,-4.5],[38.92,-6.35],[38.88,-6.97],[38.3,-7.3],[37.6,-7.5],[37.17,-7.4]],
+        [[37.9,-2.9],[38.0,-3.6],[37.88,-4.78],[37.5,-5.6],[37.39,-5.99],[36.8,-6.35]],
+        [[43.0,-7.55],[42.34,-7.86],[42.1,-8.4],[41.87,-8.87]],
+        [[40.07,-2.13],[39.5,-1.9],[39.2,-1.4],[39.15,-0.25]],
+        [[38.1,-2.6],[38.2,-1.5],[38.0,-1.13],[38.1,-0.65]],
+        [[40.75,-3.7],[40.5,-3.6],[40.3,-3.55],[40.1,-3.55],[40.02,-3.58]],
+      ].forEach((r) => rios.add(linea(ruta(r, 400), 0x3b95df, 2.5, { orden: -18, mat: SIEMPRE })));
+
+      // ---------- towns round Madrid and Toledo (on the curved ground, each in its own little frame) ----------
+      const pueblos = new THREE.Group(); scene.add(pueblos);
+      {
+        const PUEBLOS = [[40.305,-3.73,2.2],[40.33,-3.76,2.0],[40.32,-3.86,2.0],[40.28,-3.79,2.0],[40.35,-3.83,1.6],[40.24,-3.77,1.8],[40.48,-3.36,2.6],[40.46,-3.47,1.8],[40.03,-3.6,1.8],[40.12,-3.85,1.3],[39.8567,-4.0244,2.6],[40.63,-3.17,2.2],[40.95,-4.12,1.8],[40.66,-4.7,1.6],[39.96,-4.83,2.0],[40.19,-3.68,1.3],[40.24,-3.7,1.2],[40.1,-3.7,1.0],[39.96,-3.5,0.9],[39.98,-4.28,0.9],[40.29,-4.01,1.0],[40.66,-3.77,1.1],[40.6,-3.71,1.1],[40.54,-3.64,1.6],[40.49,-3.87,1.5],[40.63,-4.0,1.2],[40.3,-3.44,1.2],[40.36,-3.52,1.3],[40.55,-3.63,1.3],[40.42,-3.56,1.2],[39.86,-3.3,0.8],[40.0,-4.1,0.8],[40.22,-4.2,0.9],[39.7,-3.9,0.7],[40.75,-3.4,0.8]];
+        const mats = [], cols = [], TECHOS = [0xc1663f, 0xd27a52, 0xe3d3b8, 0xe9dcc6, 0xd2d4d6];
+        PUEBLOS.forEach(([la, lo, rk], n) => {
+          const c = geoPos(la, lo); if (Math.hypot(c.x, c.z) < 11500) return;
+          const g = new THREE.Group(); g.position.copy(c); g.quaternion.setFromUnitVectors(UP, geoDir(la, lo)); pueblos.add(g);
+          const rr = rk * 1000, disco = new THREE.Mesh(new THREE.CircleGeometry(rr * 1.15, 28), plano(0xcdbfa8)); disco.rotation.x = -Math.PI / 2; disco.renderOrder = -20; g.add(disco);
+          g.updateMatrixWorld(true);
+          for (let i = 0; i < rk * rk * 110; i++) {
+            const a = hash(n * 997 + i) * Math.PI * 2, r = rr * Math.sqrt(hash(n * 991 + i + 5)), h = 7 + hash(n * 983 + i) * 20, w = 60 + hash(n * 977 + i) * 50;
+            mats.push(g.matrixWorld.clone().multiply(M4(Math.cos(a) * r, 0, Math.sin(a) * r, w, h, w, hash(n) * 2))); cols.push(TECHOS[Math.floor(hash(n * 971 + i) * TECHOS.length)]);
+          }
+        });
+        pueblos.add(instancias(CUBO_SUELO, mat(0xffffff), mats, cols));
+      }
+
+      // ---------- Madrid at the city scale ----------
+      const ciudad = new THREE.Group(); scene.add(ciudad);
+      const sueloGeo = new THREE.CircleGeometry(10800, 90);
+      { const p = sueloGeo.attributes.position; for (let i = 1; i < p.count; i++) { const a = Math.atan2(p.getY(i), p.getX(i)), k = 0.86 + 0.08 * Math.sin(a * 3 + 1) + 0.05 * Math.sin(a * 7 + 2) + 0.03 * Math.sin(a * 13); p.setXY(i, p.getX(i) * k, p.getY(i) * k); } }
+      const suelo = new THREE.Mesh(sueloGeo, plano(0xcdbfa8)); suelo.rotation.x = -Math.PI / 2; suelo.renderOrder = -20; ciudad.add(suelo);
+      const poligono = (ll) => ll.map(([la, lo]) => xz(la, lo));
+      const PARQUES = [
+        poligono([[40.4205,-3.6895],[40.4205,-3.6785],[40.4085,-3.6785],[40.4085,-3.6895]]),
+        poligono([[40.43,-3.78],[40.44,-3.76],[40.425,-3.735],[40.405,-3.74],[40.40,-3.77],[40.415,-3.79]]),
+        poligono([[40.52,-3.83],[40.535,-3.74],[40.49,-3.72],[40.47,-3.78],[40.49,-3.84]]),
+      ];
+      for (const pq of PARQUES) {
+        const s = new THREE.Shape(pq.map(([x, z]) => new THREE.Vector2(x, -z)));
+        const m = new THREE.Mesh(new THREE.ShapeGeometry(s), plano(0x6fae4f)); m.rotation.x = -Math.PI / 2; m.renderOrder = -19; ciudad.add(m);
+      }
+      const rio = ruta([[40.47,-3.76],[40.45,-3.745],[40.43,-3.73],[40.41,-3.725],[40.395,-3.715],[40.388,-3.695],[40.375,-3.68],[40.355,-3.665],[40.33,-3.64],[40.3,-3.6]], 200);
+      const lRio = linea(rio, 0x3b95df, 4, { orden: -18, mat: SIEMPRE }); ciudad.add(lRio);
+      const rioXZ = rio.map((p) => [p.x, p.z]);
+      const cercaRio = (x, z) => rioXZ.some(([a, b]) => (a - x) ** 2 + (b - z) ** 2 < 160 * 160);
+      {
+        const mats = [], cols = [], TECHOS = [0xc1663f, 0xc1663f, 0xd27a52, 0xe3d3b8, 0xe9dcc6, 0xd2d4d6, 0xf1ece2];
+        for (let i = -72; i <= 72; i++) for (let j = -72; j <= 72; j++) {
+          const n = i * 1000 + j, x = i * 150 + (hash(n) - 0.5) * 40, z = j * 150 + (hash(n + 7) - 0.5) * 40, r = Math.hypot(x, z);
+          if (r < 160 || r > 9600 * (0.9 + 0.08 * Math.sin(Math.atan2(z, x) * 3 + 1))) continue;
+          if (hash(n + 3) < r / 14000) continue;
+          if (PARQUES.some((p) => dentro(x, z, p)) || cercaRio(x, z)) continue;
+          const w = 70 + hash(n + 11) * 50, dd = 70 + hash(n + 13) * 50;
+          let h = r < 3000 ? 16 + hash(n + 17) * 18 : 8 + hash(n + 17) * 34;
+          if (r > 3000 && hash(n + 19) > 0.96) h = 70 + hash(n + 23) * 60;
+          const ry = 0.22 * Math.sin(x / 2600) + 0.18 * Math.cos(z / 3300);
+          mats.push(M4(x, 0, z, w, h, dd, ry)); cols.push(TECHOS[Math.floor(hash(n + 29) * TECHOS.length)]);
+        }
+        ciudad.add(instancias(CUBO_SUELO, mat(0xffffff), mats, cols));
+        // the four towers at the north end of the Castellana (one of them is the Torre de Cristal, 249 m)
+        const [tx, tz] = xz(40.4766, -3.688);
+        [250, 249, 236, 224].forEach((h, i) => ciudad.add(at(box(48, h, 48, mat(0x7fb3d9, { roughness: 0.3, metalness: 0.2 })), tx + (i % 2) * 90 - 45, h / 2, tz + i * 130 - 200)));
+      }
+
+      // ---------- the Puerta del Sol (street scale) ----------
+      const calle = new THREE.Group(); scene.add(calle);
+      const texLosas = textura((c, s) => {
+        c.fillStyle = "#d8cfbf"; c.fillRect(0, 0, s, s);
+        for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) { c.fillStyle = `rgba(${150 + hash(i * 4 + j) * 60},${140 + hash(i * 4 + j) * 55},${120 + hash(i * 4 + j) * 50},0.18)`; c.fillRect(i * 64 + 2, j * 64 + 2, 60, 60); }
+        c.strokeStyle = "#b3a994"; c.lineWidth = 3; for (let k = 0; k <= 4; k++) { c.beginPath(); c.moveTo(k * 64, 0); c.lineTo(k * 64, s); c.stroke(); c.beginPath(); c.moveTo(0, k * 64); c.lineTo(s, k * 64); c.stroke(); }
+      }, 256);
+      texLosas.wrapS = texLosas.wrapT = THREE.RepeatWrapping; texLosas.repeat.set(70, 70);
+      const plaza = new THREE.Mesh(new THREE.PlaneGeometry(280, 280), plano(0xffffff, { map: texLosas })); plaza.rotation.x = -Math.PI / 2; plaza.renderOrder = -17; calle.add(plaza);
+      // the km 0 plaque
+      const texPlaca = textura((c, w, h) => {
+        c.fillStyle = "#e9e2d2"; c.fillRect(0, 0, w, h); c.fillStyle = "#3a3d47"; c.fillRect(14, 14, w - 28, h - 28);
+        c.strokeStyle = "#d9b45a"; c.lineWidth = 8; c.strokeRect(30, 30, w - 60, h - 60);
+        c.fillStyle = "#e8c66a"; c.textAlign = "center"; c.font = '900 64px "Nunito"'; c.fillText("KILÓMETRO", w / 2, 150); c.font = '900 120px "Nunito"'; c.fillText("0", w / 2, 270);
+      }, 512, 340);
+      const placa = new THREE.Mesh(new THREE.BoxGeometry(1.0, 0.04, 0.66), [mat(0xe9e2d2), mat(0xe9e2d2), mat(0xffffff, { map: texPlaca, flatShading: false }), mat(0xe9e2d2), mat(0xe9e2d2), mat(0xe9e2d2)]);
+      placa.position.set(0, 0.02, 0); calle.add(placa);
+      // facades with rows of windows and balconies (front plane at local z = 0, facing +z)
+      const VID = mat(0x2b3a6b, { roughness: 0.25 }), MARCO = mat(0xf4efe4), HIERRO = mat(0x2b2f45);
+      function fachada(x, z, ry, ancho, plantas, color, conBalcones = true) {
+        const g = new THREE.Group(); g.position.set(x, 0, z); g.rotation.y = ry; calle.add(g);
+        const alto = 4.2 + plantas * 3.3;
+        g.add(at(box(ancho, alto, 12, mat(color)), 0, alto / 2, -6));
+        g.add(at(box(ancho + 0.5, 0.55, 12.6, MARCO), 0, alto + 0.27, -6));
+        g.add(at(box(ancho + 0.2, 1.1, 12.2, mat(0xb9ad98)), 0, 0.55, -6));
+        const nc = Math.max(1, Math.floor(ancho / 3.4)), v = [], mm = [], bb = [], rr = [];
+        for (let p = 0; p < plantas; p++) for (let k = 0; k < nc; k++) {
+          const wx = -ancho / 2 + ((k + 0.5) * ancho) / nc, wy = 5.6 + p * 3.3;
+          v.push(M4(wx, wy, 0.06, 1.15, 1.95, 0.14)); mm.push(M4(wx, wy, 0.03, 1.55, 2.35, 0.1));
+          if (conBalcones && p < plantas - 1) { bb.push(M4(wx, wy - 1.12, 0.38, 1.9, 0.14, 0.75)); rr.push(M4(wx, wy - 0.65, 0.73, 1.9, 0.82, 0.05)); }
+        }
+        for (let k = 0; k < nc; k += 2) { const wx = -ancho / 2 + ((k + 0.5) * ancho) / nc; v.push(M4(wx, 1.9, 0.06, 1.6, 2.6, 0.14)); mm.push(M4(wx, 1.9, 0.03, 2.0, 2.9, 0.1)); }
+        g.add(instancias(CUBO, MARCO, mm), instancias(CUBO, VID, v));
+        if (bb.length) g.add(instancias(CUBO, MARCO, bb), instancias(CUBO, HIERRO, rr));
+        return g;
+      }
+      // the old post office with its clock tower, behind the plaque
+      const correos = fachada(0, -15, 0, 44, 3, 0xc96a44, true);
+      for (const sx of [-1, 1]) correos.add(at(box(1.4, 14.6, 12.4, MARCO), sx * 21.6, 7.3, -6));
+      correos.add(at(box(4.2, 5.2, 0.5, mat(0x5a3a2a)), 0, 2.6, 0.1));
+      const torre = new THREE.Group(); torre.position.set(0, 14.6, -5); correos.add(torre);
+      torre.add(at(box(6.5, 5.5, 6.5, mat(0xc96a44)), 0, 2.75, 0));
+      for (const sx of [-1, 1]) torre.add(at(box(0.8, 5.5, 6.7, MARCO), sx * 3.0, 2.75, 0));
+      const reloj = at(new THREE.Mesh(new THREE.CylinderGeometry(1.9, 1.9, 0.3, 28), mat(0xfbf7ec, { flatShading: false })), 0, 2.9, 3.3); reloj.rotation.x = Math.PI / 2; torre.add(reloj);
+      const aguja1 = at(box(0.16, 1.3, 0.1, HIERRO), 0, 3.4, 3.5), aguja2 = at(box(0.16, 1.7, 0.1, HIERRO), 0.5, 3.0, 3.52); aguja2.rotation.z = -1.2; torre.add(aguja1, aguja2);
+      { const tejado = at(new THREE.Mesh(new THREE.ConeGeometry(4.2, 3.4, 4), mat(0x3b4152)), 0, 7.2, 0); tejado.rotation.y = Math.PI / 4; torre.add(tejado); }
+      torre.add(at(box(0.25, 3.0, 0.25, HIERRO), 0, 9.8, 0));
+      torre.add(at(new THREE.Mesh(new THREE.IcosahedronGeometry(0.7, 1), mat(0xe8c66a, { metalness: 0.4, roughness: 0.4 })), 0, 10.6, 0));
+      // the other buildings round the square
+      [[-24, -2, Math.PI / 2, 22, 5, 0xe8c99a], [-24, 22, Math.PI / 2, 22, 5, 0xf0e2cf], [-24, 46, Math.PI / 2, 22, 6, 0xe2a98a], [24, -2, -Math.PI / 2, 22, 5, 0xf1d9b5],
+       [24, 22, -Math.PI / 2, 22, 6, 0xe9e2d2], [24, 46, -Math.PI / 2, 22, 5, 0xd9a07a], [-40, -30, 0, 30, 6, 0xe6d1b0], [40, -30, 0, 30, 6, 0xeacba6], [0, -46, 0, 50, 7, 0xe8d7c0]]
+        .forEach(([x, z, r, a, p, c]) => fachada(x, z, r, a, p, c));
+      // street lamps and a few pigeons
+      for (const [x, z] of [[-9, -6], [9, -6], [-9, 10], [9, 10], [-9, 26], [9, 26]]) {
+        const f = new THREE.Group(); f.position.set(x, 0, z); calle.add(f);
+        f.add(at(new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.14, 4.4, 8), HIERRO), 0, 2.2, 0));
+        f.add(at(box(0.5, 0.7, 0.5, glow(0xfff0c0)), 0, 4.6, 0), at(new THREE.Mesh(new THREE.ConeGeometry(0.42, 0.35, 4), HIERRO), 0, 5.1, 0));
+      }
+      const palomas = [[-2.2, 5.5, 0.6], [2.4, 8.2, 2.4], [-1.0, 11.0, 4.0]].map(([x, z, r]) => {
+        const p = new THREE.Group(); p.position.set(x, 0, z); p.rotation.y = r; calle.add(p);
+        p.add(at(box(0.3, 0.18, 0.16, mat(0x8d93a3)), 0, 0.14, 0));
+        const cab = at(box(0.11, 0.11, 0.1, mat(0x6f7586)), 0.17, 0.26, 0); cab.add(at(box(0.05, 0.03, 0.03, mat(0xe8a040)), 0.07, -0.01, 0)); p.add(cab);
+        p.userData.cab = cab; return p;
+      });
+
+      // ---------- our character, walking out of the square ----------
+      const P = C.personaje(), { kid, head } = P; kid.scale.setScalar(0.265); calle.add(kid);
+      function conPiernas(PP) {
+        const k = PP.kid, partes = k.children.slice(0, 4), caderas = [];
+        for (let s = 0; s < 2; s++) {
+          const [pant, zap] = [partes[s * 2], partes[s * 2 + 1]];
+          const cad = new THREE.Group(); cad.position.set(pant.position.x, 1.62, 0); k.add(cad);
+          pant.position.set(0, pant.position.y - 1.62, 0); zap.position.set(0, zap.position.y - 1.62, zap.position.z);
+          cad.add(pant, zap); caderas.push(cad);
+        }
+        return caderas;
+      }
+      const caderas = conPiernas(P);
+
+      // ---------- markers ----------
+      const yo = marca(texPunto("#ffcf2e"), 30);
+      const pToledo = marca(texPunto("#ffffff"), 18), pSantiago = marca(texPunto("#ffffff"), 18), pNY = marca(texPunto("#ffffff"), 18);
+      const oToledo = new THREE.Object3D(), oSantiago = new THREE.Object3D(), oDia1 = new THREE.Object3D();
+      oToledo.position.copy(geoPos(...TOLEDO)); oSantiago.position.copy(geoPos(...SANTIAGO)); oDia1.position.copy(enRuta(rutaToledo, 7500 / 71000));
+      scene.add(oToledo, oSantiago, oDia1);
+      const oNY = new THREE.Object3D(); oNY.position.copy(geoRel(NY[0], NY[1], 45000)); tierra.add(oNY);
+      const oMadrid = new THREE.Object3D(); oMadrid.position.set(0, R + 60000, 0); tierra.add(oMadrid);
+
+      // ---------- stars ----------
+      const sp = [];
+      for (let i = 0; i < 1600; i++) { const a = hash(i) * Math.PI * 2, b = Math.asin(2 * hash(i + 900) - 1); sp.push(Math.cos(b) * Math.cos(a), Math.sin(b), Math.cos(b) * Math.sin(a)); }
+      const starGeo = new THREE.BufferGeometry(); starGeo.setAttribute("position", new THREE.Float32BufferAttribute(sp, 3));
+      // drawn first and behind everything (the Earth and the Moon paint over them)
+      const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0x000000, size: 2.4, sizeAttenuation: false, depthTest: false, depthWrite: false, fog: false })); stars.renderOrder = -40; scene.add(stars);
+
+      // ---------- the camera keyframes (target, distance, direction from the target to the camera, up) ----------
+      const dirAzEl = (az, el) => v3(Math.sin(az * RAD) * Math.cos(el * RAD), Math.sin(el * RAD), Math.cos(az * RAD) * Math.cos(el * RAD));
+      function slerpDir(a, b, k) { const q = new THREE.Quaternion().setFromUnitVectors(a, b); return a.clone().applyQuaternion(new THREE.Quaternion().slerp(q, k)).normalize(); }
+      function mezcla(A, B, k) {
+        k = clamp(k); if (k <= 0) return A; if (k >= 1) return B;
+        const d = Math.exp(lerp(Math.log(A.d), Math.log(B.d), k));
+        const w = Math.abs(B.d - A.d) > 1e-6 ? clamp((d - A.d) / (B.d - A.d)) : k;
+        return { T: A.T.clone().lerp(B.T, w), d, dir: slerpDir(A.dir, B.dir, k), up: slerpDir(A.up, B.up, k) };
+      }
+      const t1NY = v3(Math.sin(bNY * RAD), 0, -Math.cos(bNY * RAD)), aNY = 5768000 / (VUELTA / (2 * Math.PI));
+      const midDir = UP.clone().multiplyScalar(Math.cos(aNY / 2)).addScaledVector(t1NY, Math.sin(aNY / 2));
+      const surDir = NP.clone().addScaledVector(midDir, -NP.dot(midDir)).normalize().negate();
+      const cam4 = CENTER.clone().addScaledVector(midDir.clone().multiplyScalar(Math.cos(24 * RAD)).addScaledVector(surDir, Math.sin(24 * RAD)).normalize(), R + 12.5e6);
+      const T4 = CENTER.clone().addScaledVector(midDir, R);
+      const K = [
+        null, // K0 follows the walker (set every frame)
+        { T: enRuta(rutaToledo, 3750 / 71000), d: 21000, dir: dirAzEl(72, 42), up: UP },
+        { T: geoPos(40.14, -3.88), d: 230000, dir: dirAzEl(100, 52), up: UP },
+        { T: geoPos(41.75, -4.9), d: 2.7e6, dir: dirAzEl(5, 57), up: UP },
+        { T: T4, d: cam4.distanceTo(T4), dir: cam4.clone().sub(T4).normalize(), up: NP },
+        { T: CENTER, d: 9.6 * R, dir: geoDir(30, -30), up: NP },
+        { T: CENTER, d: 10.6 * R, dir: geoDir(25, -16), up: NP },
+      ];
+      const YK = [0, 7500, 71000, 780000, 5768000, VUELTA, VIDA].map(Y);
+      // the Moon goes up and to the right of the Earth as seen from K6
+      {
+        const f = K[6].dir.clone().negate(), r = f.clone().cross(NP).normalize(), u = r.clone().cross(f).normalize();
+        MOON = CENTER.clone().addScaledVector(r.multiplyScalar(Math.cos(24 * RAD)).addScaledVector(u, Math.sin(24 * RAD)).normalize(), LUNA_D);
+        luna.position.copy(MOON);
+        moonPts = Array.from({ length: 401 }, (_, i) => CENTER.clone().lerp(MOON, i / 400));
+        lMoon = trazo(moonPts, 6, { orden: 3 }); scene.add(lMoon);
+        lMoonFondo.geometry.setPositions([CENTER.x, CENTER.y, CENTER.z, MOON.x, MOON.y, MOON.z]); lMoonFondo.computeLineDistances();
+      }
+      const K7 = { T: CENTER.clone().lerp(MOON, 0.5), d: 1.62e9, dir: K[6].dir, up: NP };
+      const K8 = { T: CENTER.clone().lerp(MOON, 0.52), d: 1.5e9, dir: slerpDir(K[6].dir, geoDir(15, -10), 0.4), up: NP };
+
+      // ---------- the end: our character on the Moon, next to a little rocket ----------
+      const SM = 6.5; // the Earth and the Moon are drawn 6,5 times bigger once both are in shot
+      const eDir = CENTER.clone().sub(MOON).normalize(), Ld = v3(-0.45, 0.75, 0.55).normalize();
+      const perp = Ld.clone().addScaledVector(eDir, -Ld.dot(eDir)).normalize();
+      // the landing spot: on a face of the low-poly Moon where the Earth stands about 4 degrees over the horizon, in the sun
+      let mejor = null;
+      for (let ia = -6; ia <= 6; ia++) for (let ang = 83; ang <= 88; ang += 0.5) {
+        const p2 = perp.clone().applyAxisAngle(eDir, ia * 8 * RAD);
+        const upC = eDir.clone().multiplyScalar(Math.cos(ang * RAD)).addScaledVector(p2, Math.sin(ang * RAD)).normalize();
+        const h = new THREE.Raycaster(upC.clone().multiplyScalar(RM * 2), upC.clone().negate()).intersectObject(lunaMesh)[0];
+        if (!h) continue;
+        // seen from the character (not from the Moon's centre: that is almost 2 degrees of difference)
+        const eK = CENTER.clone().sub(MOON.clone().addScaledVector(h.point, SM)).normalize();
+        const elev = 90 - eK.angleTo(h.face.normal) / RAD, score = Math.abs(elev - 4.0) * 3 - 2 * h.face.normal.dot(Ld);
+        if (!mejor || score < mejor.score) mejor = { h, score, up: upC, eK };
+      }
+      const lunaUp = mejor.up, hit = mejor.h, eK = mejor.eK;
+      for (const cr of luna.children) if (cr.userData.dir && cr.userData.dir.angleTo(lunaUp) < 0.5) cr.visible = false;
+      const pie = new THREE.Group(); luna.add(pie);
+      const nCara = hit.face.normal.clone();
+      pie.position.copy(hit.point); // the local ground (in metres) sits 1,5 m above the big mesh, which is less precise up close
+      pie.quaternion.setFromUnitVectors(UP, nCara); pie.scale.setScalar(1 / SM);
+      const sueloLuna = new THREE.Mesh(new THREE.CircleGeometry(900, 48), mat(0xbdbdb6, { roughness: 1 })); sueloLuna.rotation.x = -Math.PI / 2; sueloLuna.position.y = 1.5; pie.add(sueloLuna);
+      for (let i = 0; i < 40; i++) {
+        const a = hash(i + 700) * Math.PI * 2, rr = 4 + hash(i + 710) * 60, s = 0.15 + hash(i + 720) * 0.7;
+        const roca = at(new THREE.Mesh(new THREE.IcosahedronGeometry(s, 0), mat(0x9d9d97, { roughness: 1 })), Math.cos(a) * rr, 1.5 + s * 0.3, Math.sin(a) * rr); roca.rotation.set(hash(i), hash(i + 1) * 3, 0); roca.userData.roca = true; pie.add(roca);
+      }
+      for (let i = 0; i < 6; i++) {
+        const a = hash(i + 800) * Math.PI * 2, rr = 14 + hash(i + 810) * 50, s = 3 + hash(i + 820) * 5;
+        const cr = at(new THREE.Mesh(new THREE.RingGeometry(s * 0.7, s, 18), mat(0xa6a6a0, { roughness: 1, side: THREE.DoubleSide })), Math.cos(a) * rr, 1.53, Math.sin(a) * rr); cr.rotation.x = -Math.PI / 2; pie.add(cr);
+      }
+      // where the camera ends: the Earth behind the character, low in the lunar sky
+      const eLocal = eK.clone().applyQuaternion(pie.quaternion.clone().invert());
+      // the camera looks towards the Earth, which sits 5 degrees to the right of the character
+      const azFin = Math.atan2(eLocal.x, eLocal.z) / RAD - 175.5;
+      // no rocks between the camera and the character
+      for (const o of pie.children) if (o.userData.roca) { const a = Math.atan2(o.position.x, o.position.z) / RAD - azFin, dd = Math.hypot(o.position.x, o.position.z); if (Math.abs(((a + 540) % 360) - 180) < 35 && dd < 40) o.visible = false; }
+      const P2 = C.personaje(); P2.kid.scale.setScalar(0.265); P2.kid.position.set(0, 1.5, 0); P2.kid.rotation.y = azFin * RAD; pie.add(P2.kid);
+      const cohete = new THREE.Group(); cohete.scale.setScalar(0.62); pie.add(cohete);
+      { const a = azFin * RAD; cohete.position.set(-Math.sin(a) * 12 - Math.cos(a) * 3.2, 1.5, -Math.cos(a) * 12 + Math.sin(a) * 3.2); }
+      cohete.add(at(new THREE.Mesh(new THREE.CylinderGeometry(0.62, 0.72, 3.6, 12), mat(0xf4f1ea)), 0, 2.4, 0));
+      cohete.add(at(new THREE.Mesh(new THREE.ConeGeometry(0.62, 1.5, 12), mat(0xff6a2b)), 0, 4.95, 0));
+      cohete.add(at(new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.36, 0.6, 10), mat(0x3b4152)), 0, 0.35, 0));
+      for (let i = 0; i < 3; i++) { const f = new THREE.Group(); f.rotation.y = (i * 2 * Math.PI) / 3; f.add(at(box(0.12, 1.4, 0.95, mat(0xff6a2b)), 0, 1.0, 0.85)); cohete.add(f); }
+      const ventana = at(new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.3, 0.12, 16), mat(0x2b6fd8, { emissive: 0x1b3a8a, emissiveIntensity: 0.6 })), 0, 3.3, 0.66); ventana.rotation.x = Math.PI / 2; cohete.add(ventana);
+      cohete.rotation.y = azFin * RAD + 0.4;
+      const eH = v3(eLocal.x, 0, eLocal.z).normalize();
+      const qEspana = new THREE.Quaternion().setFromUnitVectors(UP, eK.clone().negate().addScaledVector(Ld, 0.5).normalize());
+
+      // ---------- labels (the engine writes metres; here they say km) ----------
+      const km = (m) => { const k = m / 1000; return k < 100 ? k.toFixed(1).replace(".", ",").replace(/,0$/, "") : C.miles(k); };
+      C.etiquetas({
+        "KILÓMETRO CERO": [placa, v3(0, 0.05, 0)], "EL PRIMER DÍA": [oDia1, v3()], "TOLEDO": [oToledo, v3()], "CAMINO DE SANTIAGO": [oSantiago, v3()],
+        "NUEVA YORK": [oNY, v3()], "LA VUELTA AL MUNDO": [oMadrid, v3()], "TODA TU VIDA": [oMadrid, v3()], "LA LUNA": [luna, v3(0, RM, 0)],
+      }, [kid, v3(0, 7, 0)]);
+      const conEtiqueta = anchors.filter((a) => a.hito.etiqueta);
+      const labs = [...document.querySelectorAll("#labels .lab")], lns = [...document.querySelectorAll("#leaders line")], dots = [...document.querySelectorAll("#leaders circle")];
+      labs.forEach((el, i) => (el.innerHTML = `${conEtiqueta[i].hito.etiqueta} · <b>${km(conEtiqueta[i].v)} km</b>`));
+      // keep every label clear of TikTok's buttons on the right
+      function encajar() {
+        labs.forEach((el, i) => {
+          if (!el.style.left || el.style.opacity === "0") return;
+          const w = el.offsetWidth, left = parseFloat(el.style.left), nl = clamp(left, 60, 940 - w);
+          if (nl !== left) { el.style.left = nl + "px"; lns[i].setAttribute("x2", nl + (parseFloat(dots[i].getAttribute("cx")) > W / 2 ? w : 0)); }
+        });
+      }
+      const tag = document.createElement("div"); tag.className = "lab"; document.getElementById("labels").appendChild(tag);
+      const altEl = document.getElementById("alt");
+
+      // ---------- times taken from the voice ----------
+      const palabra = (c, desde = 0) => words.findIndex((w, k) => k >= desde && norm(w.w).startsWith(c));
+      const tDe = (c, def) => { const i = palabra(c); return i >= 0 ? words[i].s : def; };
+      const anc = (c) => anchors.find((a) => a.hito.clave === c);
+      const tMitad = VOZ.lines[10] ? VOZ.lines[10].s + 0.1 : D - 16, tLlegada = anc("caminar") ? anc("caminar").t : D - 10;
+      const L13 = VOZ.lines[12], tAsi = L13 ? L13.s : D - 7, tCohete = tDe("cohete", D - 4);
+
+      // sky colours by counter height
+      const SKY = [[0, "#46b6f4", "#c2eaff"], [36, "#46b6f4", "#c2eaff"], [50, "#2b86dc", "#9ad3f7"], [57, "#0b2462", "#1d4f9e"], [63, "#03050f", "#070c22"], [99, "#03050f", "#070c22"]];
+      scene.fog = new THREE.Fog(0xc2eaff, 100, 1000);
+      hemi.intensity = 1.25;
+
+      const tmp = v3();
+      function renderAt(t) {
+        const y = C.yAt(t), v = V(y);
+        // walker on the street
+        const paso = t * 2 * Math.PI * 0.95;
+        kid.position.set(0, 0.03 * Math.abs(Math.cos(paso)), -2.6 + 1.15 * t);
+        P.animar(t);
+        caderas[0].rotation.x = 0.5 * Math.sin(paso); caderas[1].rotation.x = -0.5 * Math.sin(paso);
+        P.arms[0].rotation.x += -0.45 * Math.sin(paso); P.arms[1].rotation.x += 0.45 * Math.sin(paso);
+        head.rotation.y = 0.18 * Math.sin(t * 0.7); head.rotation.x = -0.05;
+        palomas.forEach((p, i) => (p.userData.cab.position.y = 0.26 - 0.08 * Math.max(0, Math.sin(t * 5 + i * 2))));
+
+        // ---- camera: by the counter, then the Moon reveal and the final zoom by time ----
+        K[0] = { T: kid.position.clone().add(v3(0, 0.95, 0)), d: 11.5, dir: dirAzEl(26, 8), up: UP };
+        let cam;
+        if (y >= YK[6]) cam = K[6];
+        else {
+          let i = 0; while (i < 5 && y >= YK[i + 1]) i++;
+          const k = (y - YK[i]) / (YK[i + 1] - YK[i]);
+          cam = mezcla(K[i], K[i + 1], k);
+          // leaving the square: rise first, swing round once above the roofs
+          if (i === 0) cam = { ...cam, dir: dirAzEl(lerp(26, 72, smooth(clamp((k - 0.3) / 0.7))), lerp(8, 42, smooth(clamp(k / 0.35)))) };
+        }
+        const m = smooth(clamp((t - tMitad + 0.3) / 1.8));
+        cam = mezcla(cam, K7, m);
+        cam = mezcla(cam, K8, (y - YK[6]) / (Y(LUNA_D) - YK[6]));
+        const kz = smooth(clamp((t - tAsi - 0.1) / Math.max(1.6, Math.min(2.8, tCohete + 0.3 - tAsi - 0.1))));
+        // sizes: the Earth and the Moon grow (as drawings) when both have to fit in the shot, the Earth shrinks again from the Moon
+        const Se = lerp(1, SM, m) * lerp(1, 0.38, smooth(clamp((t - tAsi) / 1.5))), Sm = lerp(1, SM, m);
+        tierra.scale.setScalar(Se); luna.scale.setScalar(Sm); pie.scale.setScalar(1 / Sm);
+        tierra.quaternion.identity().slerp(qEspana, kz); // from the Moon, Spain turns towards us
+        if (kz > 0) {
+          luna.updateMatrixWorld(true);
+          // the camera comes down from above the character, then tilts up to eye level with the Earth behind
+          const T9 = pie.localToWorld(v3(0, 2.5, 0));
+          const q = new THREE.Quaternion(); pie.getWorldQuaternion(q);
+          const swing = 0.8 * Math.sin((t - tAsi) * 0.4);
+          const d9 = 14 * (1 + 0.15 * ramp(t, D - 3.2, D - 0.3)), upW = UP.clone().applyQuaternion(q), eW = eH.clone().applyQuaternion(q);
+          const dir9 = dirAzEl(azFin + swing, 0).applyQuaternion(q);
+          const dk = Math.exp(lerp(Math.log(cam.d), Math.log(d9), kz)), wk = clamp((dk - cam.d) / (d9 - cam.d));
+          const k1 = clamp(kz / 0.42), k2 = clamp((kz - 0.42) / 0.58);
+          cam = { T: cam.T.clone().lerp(T9, wk), d: dk,
+            dir: kz < 0.42 ? slerpDir(cam.dir, upW, smooth(k1)) : slerpDir(upW, dir9, smooth(k2)),
+            up: kz < 0.42 ? slerpDir(cam.up, eW, smooth(k1)) : slerpDir(eW, upW, smooth(k2)) };
+        }
+        const sway = 0.035 * Math.sin(t * 0.33) * (1 - kz);
+        const dir = cam.dir.clone().applyAxisAngle(cam.up, sway);
+        camera.up.copy(cam.up);
+        camera.position.copy(cam.T).addScaledVector(dir, cam.d);
+        camera.setViewOffset(W, H, 0, 45, W, H);
+        camera.lookAt(cam.T); camera.updateMatrixWorld();
+        C.escala(cam.T, cam.d);
+        camera.far = Math.max(camera.far, cam.d * 3000, 30000); if (kz > 0.9) camera.far = 2e9; camera.updateProjectionMatrix();
+        const d = cam.d;
+
+        // ---- what is on screen at each scale ----
+        calle.visible = d < 3000; kid.visible = d < 500;
+        ciudad.visible = d < 900000 && Se < 1.01; pueblos.visible = d > 3000 && d < 1.5e6 && Se < 1.01;
+        const op = (a, b, c2, e) => clamp((y - a) / (b - a)) * (1 - clamp((y - c2) / (e - c2)));
+        const opR = op(40, 44, 62, 65) * (Se < 1.01 ? 1 : 0); rios.visible = opR > 0.01; rios.children.forEach((l) => { l.material.opacity = opR; l.castShadow = false; });
+        lToledo.hasta(v / 71000, (1 - clamp((y - 60) / 4)) * (Se < 1.01 ? 1 : 0));
+        lCamino.hasta(v / 780000, op(48.6, 50.5, 66, 70) * (Se < 1.01 ? 1 : 0));
+        lLazo.hasta((v / VUELTA) * PPV / (lazo.length - 1), op(58.9, 60.5, 999, 1000) * clamp(1 - kz * 3));
+        const fuera = clamp(1 - kz * 3); lMoon.hasta(v / LUNA_D, m * fuera); lMoonFondo.visible = m * fuera > 0.01; lMoonFondo.material.opacity = 0.55 * m * fuera;
+        luna.visible = m > 0.001 || y > YK[6] + 0.01;
+        atmos.visible = d > 1.2e6;
+        // markers: the walker, and the cities of each stretch
+        let head3 = null, op3 = 0;
+        if (m > 0.5 || y > YK[6] + 0.01) { head3 = enRuta(moonPts, v / LUNA_D); op3 = clamp((m - 0.5) * 3) * clamp(1 - kz * 5); }
+        else if (v <= 71000) { head3 = enRuta(rutaToledo, v / 71000); op3 = clamp((d - 400) / 600); }
+        else if (v <= 780000) { head3 = enRuta(rutaCamino, v / 780000); op3 = 1; }
+        else { tierra.updateMatrixWorld(true); head3 = tierra.localToWorld(enLazo(v)); op3 = 1 - m * 2; }
+        const delante = (p) => p.clone().sub(CENTER).dot(camera.position.clone().sub(p)) > 0 || d < 3e6;
+        yo.position.copy(head3); yo.material.opacity = clamp(op3) * (delante(head3) ? 1 : 0); yo.visible = yo.material.opacity > 0.01;
+        yo.scale.setScalar((yo.userData.px * (1 + 0.1 * Math.sin(t * 6))) / 2788);
+        const ver = (s, p, o) => { s.position.copy(p); s.material.opacity = o * (delante(p) ? 1 : 0); s.visible = s.material.opacity > 0.01; };
+        ver(pToledo, oToledo.position, op(45, 47, 62, 64) * (Se < 1.01 ? 1 : 0));
+        ver(pSantiago, oSantiago.position, op(54, 56, 66, 69) * (Se < 1.01 ? 1 : 0));
+        tierra.updateMatrixWorld(true);
+        ver(pNY, oNY.getWorldPosition(tmp).clone(), op(62, 64.5, 78, 80));
+
+        // ---- sky, fog, lights, stars ----
+        const [, bot] = C.fondo(SKY, y);
+        const niebla = 1 - clamp((y - 58) / 4);
+        scene.fog.color.set(bot);
+        scene.fog.near = niebla > 0 ? Math.max(d * 2.2, 160) / niebla : 1e15; scene.fog.far = niebla > 0 ? Math.max(d * 9, 2600) / niebla : 2e15;
+        hemi.intensity = 1.25 - 0.45 * clamp((y - 58) / 8);
+        stars.material.color.setScalar(clamp((y - 57) / 6)); stars.visible = y > 57;
+        stars.position.copy(camera.position); stars.scale.setScalar(camera.far * 0.45);
+        // nothing flat casts a shadow; the lines and the Earth never do
+        for (const o of [globo, parcheIb, suelo, plaza, sueloLuna, atmos]) o.castShadow = false;
+        for (const l of [lToledo, lCamino, lLazo, lMoon]) l.traverse((o) => (o.castShadow = false));
+        lRio.castShadow = false; lMoonFondo.castShadow = false;
+
+        // ---- the character on the Moon ----
+        pie.visible = kz > 0.001;
+        P2.animar(t);
+        const ola = clamp((t - tCohete - 0.3) / 0.4);
+        P2.arms[1].rotation.z = lerp(P2.arms[1].rotation.z, 2.5 + 0.35 * Math.sin(t * 9), ola);
+
+        // ---- the 47 % tag on the way to the Moon ----
+        const pct = Math.min(100, Math.round((v / LUNA_D) * 100));
+        const tagOp = clamp((m - 0.6) * 4) * (1 - clamp((pct - 88) / 8)) * (1 - kz);
+        tag.style.opacity = tagOp;
+        if (tagOp > 0.01) {
+          const s = head3.clone().project(camera), sx = (s.x + 1) * 0.5 * W, sy = (1 - s.y) * 0.5 * H;
+          tag.innerHTML = `<b>${pct} %</b> DEL CAMINO`;
+          tag.style.left = clamp(sx - tag.offsetWidth / 2, 60, 940 - tag.offsetWidth) + "px"; tag.style.top = sy + 34 + "px";
+        }
+
+        C.pintar(t, y);
+        altEl.innerHTML = `${km(v)}<small>km</small>`;
+        encajar();
+        // the labels leave as soon as the camera dives towards the Moon
+        if (kz > 0) labs.forEach((el, i) => { const o = parseFloat(el.style.opacity || 0) * clamp(1 - kz * 5); el.style.opacity = o; lns[i].setAttribute("opacity", o); dots[i].setAttribute("opacity", o); });
+      }
+      await C.arrancar(renderAt);
+    </script>
+  </body>
+</html>

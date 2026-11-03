@@ -40,7 +40,8 @@ Este Mac es de Javier, pero también lo usa para trabajar en eduki:
   - `04`: En Plata, sobre política.
   - `05`: una creadora que edita con Claude.
   - `que-pasaria-si-escalada-voxel.mp4`: el chico de bloques.
-  - `06`: la pantalla táctil de @speedy_devv (6 millones de visitas). **Es el estilo de edición exacto que quiere Javier** para Las cosas por dentro: cortes laterales tipo diagrama, macro con desenfoque, arcos dorados de campo, cifras medidas, planos de la vida real y cortes secos. Detalle en la skill `video-por-dentro` (sección 4 bis). Su tema no se hace.
+  - `lascosaspordentro/`: 13 reels de @speedy_devv con el estilo de Las cosas por dentro (bajados el 2 y el 3 de noviembre).
+  - `06`: la pantalla táctil de @speedy_devv (hoy 18,1 millones de visitas, su mejor vídeo según Javier). **Es el estilo de edición exacto que quiere Javier** para Las cosas por dentro: cortes laterales tipo diagrama, macro con desenfoque, arcos dorados de campo, cifras medidas, planos de la vida real y cortes secos. Detalle en la skill `video-por-dentro` (sección 4 bis). Su tema no se hace.
 - `render/`: la plantilla del estilo "por dentro" y `sonido.py`, que crea los efectos y la mezcla.
 - `voces/`: el guion y los scripts de voz.
 - `exports/`: todo lo que se genera.
@@ -87,9 +88,17 @@ Hechos el 2 de noviembre: el paso 0 (skill del estilo instalada), el paso 1 (ví
    - **Dinero sin lío (2 de noviembre):**
      - Motor plano 2D en `herramientas/dinero/`, sin three.js, con los colores de la foto de perfil. Admite piezas que entran y salen, cifras que cuentan, iconos planos, gancho y subtítulos. El detalle está en el comentario de `dinero.js`.
      - Usa `sonido_pordentro.py` con `fondo: "claro"`. Se produce igual: `bash herramientas/producir.sh videos/dinerosinlio/<video>`.
-     - Hechos, a la espera de la aprobación de Javier: `01-loteria`, `02-nomina` y `03-billete`. Guía y horario en `publicar/dinerosinlio.md`.
+     - Hechos y aprobados por Javier el 2 de noviembre: `01-loteria`, `02-nomina` y `03-billete`. Los programa él (guía y horario en `publicar/dinerosinlio.md`), así que no se vuelven a renderizar ni se tocan.
      - Regla: explicar, nunca recomendar (ni inversiones ni consejos personales).
-   - **De momento solo se sube a TikTok** (decisión de Javier del 2 de noviembre); Instagram se automatizará más adelante. Javier quiere un panel para manejar varias cuentas sin cerrar sesión: opciones y recomendación en el PRD ("Panel de control para varias cuentas").
+   - **De momento solo se sube a TikTok** (decisión de Javier del 2 de noviembre). En Instagram solo sigue El contador loco, que ya había empezado; las otras dos cuentas de Instagram quedan paradas hasta que se automatice. Para programar sin cerrar sesión: Buffer gratis con las 3 cuentas de TikTok (opciones en el PRD, "Panel de control para varias cuentas").
+   - **Panel de la fábrica** (2 de noviembre):
+     - Se abre con `python3 herramientas/panel.py`, en http://localhost:8790, solo en este Mac.
+     - Enseña la línea de montaje (guion, voz, vídeo, aprobado, programado, publicado) y una nave por cuenta con su cola, el texto para copiar y las métricas.
+     - Lo que se marca se guarda en `datos/estado.json`, que hace de cola (R13) y de hoja de métricas (R14).
+     - Cuando Claude haga un vídeo nuevo, aparece solo. Al aprobarlo o programarlo, se marca ahí.
+     - El puerto 8765 lo usa otra herramienta de Javier: no se toca.
+   - Vídeos del 2 de noviembre por la noche, aprobados por Javier el 3: `elcontadorloco/06-pasos`, `lascosaspordentro/06-gps` y `dinerosinlio/04-rebajas`. Los hicieron tres agentes en paralelo, uno por cuenta, y cada uno solo tocó la carpeta de su vídeo. Así se puede seguir haciendo una tanda.
+   - **Misión desde el 3 de noviembre: igualar el detalle de @speedy_devv en Las cosas por dentro.** Javier dice que tenemos su estilo pero solo un 30 % de su detalle, y quiere al menos un 85 %. Él cambia de encuadre cada 1 o 2,5 segundos y sus objetos parecen reales (piel con huellas, guante de lana, cristal con grosor). Primero se recrea su vídeo de la pantalla táctil como estudio interno (`estudio/pantalla-speedy/`, no se publica nunca) y con las piezas que salgan se hacen los vídeos nuevos. Sus reels de este estilo están en `referencias/lascosaspordentro/` (13, bajados el 2 y el 3 de noviembre). Con la sesión de Javier en su Chrome personal se ve su perfil entero; Claude no inicia sesión.
    - Si Whisper oye un número distinto del guion, se cambia el texto del guion a cifras después de hacer la voz, sin pagar otra (campo `voz_dice`).
    - Formato principal: con voz. El modo texto (`--texto`) es solo una opción para vídeos de acción o surrealistas.
 

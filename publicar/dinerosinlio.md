@@ -5,7 +5,7 @@ De momento solo se sube a TikTok (decisión del 2 de noviembre). Instagram se au
 Los vídeos están en `exports/render/` (en el Finder: Escritorio > ProyectoPersonal > VideosYCosas > fabrica-prueba >
 exports > render). Cada uno tiene al lado su portada (`-portada.png`).
 
-Se suben estos tres: `01-loteria.mp4`, `02-nomina.mp4` y `03-billete.mp4`.
+Se suben `01-loteria.mp4`, `02-nomina.mp4`, `03-billete.mp4` y `04-rebajas.mp4`.
 
 ## Calendario propuesto
 
@@ -17,10 +17,8 @@ A las 20:00 va el mejor gancho: la lotería, que además está de actualidad por
 | Martes 3 de noviembre | 18:00 | `03-billete.mp4` | [ ] |
 | Martes 3 de noviembre | 20:00 | `01-loteria.mp4` | [ ] |
 | Martes 3 de noviembre | 22:00 | `02-nomina.mp4` | [ ] |
-| Miércoles 4 de noviembre | 20:00 | Vídeo 4 (falta hacerlo) | [ ] |
-
-Si prefieres no quedarte sin reserva, otra opción es uno al día a las 20:00: lotería el martes, nómina el miércoles
-y billete el jueves.
+| Miércoles 4 de noviembre | 20:00 | `04-rebajas.mp4` | [ ] |
+| Jueves 5 de noviembre | 20:00 | Vídeo 5 (falta hacerlo) | [ ] |
 
 ## Paso a paso en TikTok Studio (en el ordenador)
 
@@ -58,6 +56,14 @@ Si te toca el Gordo de Navidad, Hacienda se lleva 72.000 euros de tu décimo. Y 
 Por cada 100 euros de tu sueldo, tu empresa paga casi 31 más a la Seguridad Social, y a ti te descuentan 6,50. Así se reparte cada euro. Contrato indefinido, tipos de 2026.
 
 #dinero #finanzaspersonales #economia #parati #nomina #seguridadsocial #sueldo
+```
+
+### 04-rebajas.mp4 (65,0 s)
+
+```
+En España, el precio tachado de un descuento tiene que ser el más bajo de los 30 días anteriores (Ley 7/1996, artículo 20). Así se ve si una rebaja de Black Friday lo es de verdad. Ejemplo con precios inventados.
+
+#dinero #finanzaspersonales #economia #parati #blackfriday #rebajas #consumo
 ```
 
 ## Cuidado con estos temas

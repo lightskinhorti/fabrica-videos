@@ -1,0 +1,46 @@
+{
+  "titulo": "Ese descuento puede ser mentira",
+  "lines": [
+    "Ese descuento puede ser mentira.",
+    "Hay una ley que dice qué precio puede ir tachado. ¿Y cuántas ofertas la cumplen? Te lo digo al final.",
+    "Imagina unos auriculares que en octubre cuestan cien euros.",
+    "Dos semanas antes del Black Friday, la tienda los sube a ciento cincuenta.",
+    "Y en Black Friday los rebaja a ciento veinte, con el ciento cincuenta tachado.",
+    "Parece un 20% menos. Pero la ley dice otra cosa.",
+    "El precio tachado tiene que ser el más bajo que tuvo en los treinta días anteriores.",
+    "Y en esos treinta días, el más bajo fue cien. Así que lo tachado tendría que ser cien.",
+    "O sea: ese 20% menos es, en realidad, un 20% más.",
+    "¿Cómo se nota? Si en los treinta días de antes lo viste más barato que el tachado, no cumple.",
+    "Si pasa, se puede pedir la hoja de reclamaciones, o reclamar en consumo de tu comunidad.",
+    "Ojo: la regla no vale para productos que se venden por primera vez.",
+    "¿Y cuántas ofertas la cumplen? En el Black Friday de dos mil veintitrés, Consumo revisó más de ochocientos productos en internet, y el 70% no la cumplía.",
+    "¿Te ha pasado alguna vez? Te leo en los comentarios."
+  ],
+  "claves": [
+    "mentira",
+    "tachado",
+    "octubre",
+    "sube",
+    "rebaja",
+    "parece",
+    "bajo",
+    "tendría",
+    "realidad",
+    "nota",
+    "reclamaciones",
+    "primera",
+    "cumplía",
+    "comentarios"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "En España, el precio tachado de un descuento tiene que ser el más bajo de los 30 días anteriores (Ley 7/1996, artículo 20). Así se ve si una rebaja de Black Friday lo es de verdad. Ejemplo con precios inventados.",
+    "hashtags": [
+      "#blackfriday",
+      "#rebajas",
+      "#consumo"
+    ],
+    "portada_en": "mentira"
+  },
+  "voz_dice": "La voz se generó con los números en palabras; aquí los porcentajes van en cifras para que los subtítulos coincidan con lo que oye Whisper."
+}

@@ -1,0 +1,1280 @@
+[
+  {
+    "text": "Los",
+    "start": 0.08,
+    "end": 0.22,
+    "id": "w0"
+  },
+  {
+    "text": "satélites",
+    "start": 0.22,
+    "end": 0.79,
+    "id": "w1"
+  },
+  {
+    "text": "no",
+    "start": 0.95,
+    "end": 1.01,
+    "id": "w2"
+  },
+  {
+    "text": "saben",
+    "start": 1.01,
+    "end": 1.38,
+    "id": "w3"
+  },
+  {
+    "text": "dónde",
+    "start": 1.38,
+    "end": 1.75,
+    "id": "w4"
+  },
+  {
+    "text": "estás,",
+    "start": 1.75,
+    "end": 2.15,
+    "id": "w5"
+  },
+  {
+    "text": "tu",
+    "start": 2.25,
+    "end": 2.4,
+    "id": "w6"
+  },
+  {
+    "text": "móvil",
+    "start": 2.54,
+    "end": 2.76,
+    "id": "w7"
+  },
+  {
+    "text": "no",
+    "start": 2.76,
+    "end": 2.9,
+    "id": "w8"
+  },
+  {
+    "text": "les",
+    "start": 2.9,
+    "end": 3.12,
+    "id": "w9"
+  },
+  {
+    "text": "manda",
+    "start": 3.12,
+    "end": 3.47,
+    "id": "w10"
+  },
+  {
+    "text": "nada,",
+    "start": 3.48,
+    "end": 3.8,
+    "id": "w11"
+  },
+  {
+    "text": "solo",
+    "start": 4.1,
+    "end": 4.48,
+    "id": "w12"
+  },
+  {
+    "text": "escucha,",
+    "start": 4.48,
+    "end": 5.39,
+    "id": "w13"
+  },
+  {
+    "text": "y",
+    "start": 5.39,
+    "end": 5.44,
+    "id": "w14"
+  },
+  {
+    "text": "al",
+    "start": 5.44,
+    "end": 5.54,
+    "id": "w15"
+  },
+  {
+    "text": "final",
+    "start": 5.62,
+    "end": 5.88,
+    "id": "w16"
+  },
+  {
+    "text": "verás",
+    "start": 5.93,
+    "end": 6.25,
+    "id": "w17"
+  },
+  {
+    "text": "por",
+    "start": 6.25,
+    "end": 6.32,
+    "id": "w18"
+  },
+  {
+    "text": "qué",
+    "start": 6.49,
+    "end": 6.67,
+    "id": "w19"
+  },
+  {
+    "text": "sus",
+    "start": 6.67,
+    "end": 6.88,
+    "id": "w20"
+  },
+  {
+    "text": "relojes",
+    "start": 6.88,
+    "end": 7.37,
+    "id": "w21"
+  },
+  {
+    "text": "van",
+    "start": 7.37,
+    "end": 7.57,
+    "id": "w22"
+  },
+  {
+    "text": "mal",
+    "start": 7.57,
+    "end": 7.69,
+    "id": "w23"
+  },
+  {
+    "text": "a",
+    "start": 7.79,
+    "end": 7.86,
+    "id": "w24"
+  },
+  {
+    "text": "propósito.",
+    "start": 8.15,
+    "end": 8.82,
+    "id": "w25"
+  },
+  {
+    "text": "Allá",
+    "start": 8.9,
+    "end": 9.07,
+    "id": "w26"
+  },
+  {
+    "text": "arriba",
+    "start": 9.07,
+    "end": 9.45,
+    "id": "w27"
+  },
+  {
+    "text": "hay",
+    "start": 9.45,
+    "end": 9.61,
+    "id": "w28"
+  },
+  {
+    "text": "unos",
+    "start": 9.77,
+    "end": 9.89,
+    "id": "w29"
+  },
+  {
+    "text": "31",
+    "start": 9.89,
+    "end": 10.27,
+    "id": "w30"
+  },
+  {
+    "text": "satélites,",
+    "start": 10.27,
+    "end": 10.95,
+    "id": "w31"
+  },
+  {
+    "text": "a",
+    "start": 10.95,
+    "end": 10.97,
+    "id": "w32"
+  },
+  {
+    "text": "más",
+    "start": 11.12,
+    "end": 11.19,
+    "id": "w33"
+  },
+  {
+    "text": "de",
+    "start": 11.19,
+    "end": 11.27,
+    "id": "w34"
+  },
+  {
+    "text": "20.000",
+    "start": 11.44,
+    "end": 12.48,
+    "id": "w35"
+  },
+  {
+    "text": "kilómetros.",
+    "start": 12.48,
+    "end": 13.42,
+    "id": "w36"
+  },
+  {
+    "text": "Cada",
+    "start": 13.42,
+    "end": 13.62,
+    "id": "w37"
+  },
+  {
+    "text": "uno",
+    "start": 13.63,
+    "end": 13.65,
+    "id": "w38"
+  },
+  {
+    "text": "lleva",
+    "start": 13.8,
+    "end": 14.01,
+    "id": "w39"
+  },
+  {
+    "text": "relojes",
+    "start": 14.2,
+    "end": 14.5,
+    "id": "w40"
+  },
+  {
+    "text": "atómicos",
+    "start": 14.58,
+    "end": 15.18,
+    "id": "w41"
+  },
+  {
+    "text": "y",
+    "start": 15.18,
+    "end": 15.26,
+    "id": "w42"
+  },
+  {
+    "text": "repites",
+    "start": 15.26,
+    "end": 15.85,
+    "id": "w43"
+  },
+  {
+    "text": "sin",
+    "start": 15.85,
+    "end": 16.09,
+    "id": "w44"
+  },
+  {
+    "text": "parar",
+    "start": 16.09,
+    "end": 16.53,
+    "id": "w45"
+  },
+  {
+    "text": "dónde",
+    "start": 16.53,
+    "end": 16.86,
+    "id": "w46"
+  },
+  {
+    "text": "está",
+    "start": 17.12,
+    "end": 17.3,
+    "id": "w47"
+  },
+  {
+    "text": "y",
+    "start": 17.3,
+    "end": 17.38,
+    "id": "w48"
+  },
+  {
+    "text": "qué",
+    "start": 17.38,
+    "end": 17.63,
+    "id": "w49"
+  },
+  {
+    "text": "hora",
+    "start": 17.63,
+    "end": 17.96,
+    "id": "w50"
+  },
+  {
+    "text": "es.",
+    "start": 17.96,
+    "end": 18.3,
+    "id": "w51"
+  },
+  {
+    "text": "La",
+    "start": 18.3,
+    "end": 18.61,
+    "id": "w52"
+  },
+  {
+    "text": "señal",
+    "start": 18.61,
+    "end": 18.85,
+    "id": "w53"
+  },
+  {
+    "text": "viaja",
+    "start": 18.85,
+    "end": 19.13,
+    "id": "w54"
+  },
+  {
+    "text": "a",
+    "start": 19.13,
+    "end": 19.19,
+    "id": "w55"
+  },
+  {
+    "text": "la",
+    "start": 19.19,
+    "end": 19.29,
+    "id": "w56"
+  },
+  {
+    "text": "velocidad",
+    "start": 19.29,
+    "end": 19.32,
+    "id": "w57"
+  },
+  {
+    "text": "de",
+    "start": 19.94,
+    "end": 20,
+    "id": "w58"
+  },
+  {
+    "text": "la",
+    "start": 20,
+    "end": 20.14,
+    "id": "w59"
+  },
+  {
+    "text": "luz",
+    "start": 20.14,
+    "end": 20.35,
+    "id": "w60"
+  },
+  {
+    "text": "y",
+    "start": 20.35,
+    "end": 20.41,
+    "id": "w61"
+  },
+  {
+    "text": "tarda",
+    "start": 20.48,
+    "end": 20.64,
+    "id": "w62"
+  },
+  {
+    "text": "menos",
+    "start": 20.81,
+    "end": 21.12,
+    "id": "w63"
+  },
+  {
+    "text": "de",
+    "start": 21.12,
+    "end": 21.25,
+    "id": "w64"
+  },
+  {
+    "text": "una",
+    "start": 21.26,
+    "end": 21.46,
+    "id": "w65"
+  },
+  {
+    "text": "décima",
+    "start": 21.46,
+    "end": 21.89,
+    "id": "w66"
+  },
+  {
+    "text": "de",
+    "start": 21.89,
+    "end": 22.01,
+    "id": "w67"
+  },
+  {
+    "text": "segundo.",
+    "start": 22.47,
+    "end": 22.78,
+    "id": "w68"
+  },
+  {
+    "text": "Tu",
+    "start": 22.78,
+    "end": 22.92,
+    "id": "w69"
+  },
+  {
+    "text": "móvil",
+    "start": 22.93,
+    "end": 23.3,
+    "id": "w70"
+  },
+  {
+    "text": "mide",
+    "start": 23.3,
+    "end": 23.59,
+    "id": "w71"
+  },
+  {
+    "text": "ese",
+    "start": 23.59,
+    "end": 23.66,
+    "id": "w72"
+  },
+  {
+    "text": "retraso",
+    "start": 23.96,
+    "end": 24.32,
+    "id": "w73"
+  },
+  {
+    "text": "y",
+    "start": 24.32,
+    "end": 24.34,
+    "id": "w74"
+  },
+  {
+    "text": "calcula",
+    "start": 24.41,
+    "end": 24.98,
+    "id": "w75"
+  },
+  {
+    "text": "a",
+    "start": 24.98,
+    "end": 25.06,
+    "id": "w76"
+  },
+  {
+    "text": "qué",
+    "start": 25.06,
+    "end": 25.27,
+    "id": "w77"
+  },
+  {
+    "text": "distancia",
+    "start": 25.27,
+    "end": 25.94,
+    "id": "w78"
+  },
+  {
+    "text": "está",
+    "start": 25.94,
+    "end": 26.24,
+    "id": "w79"
+  },
+  {
+    "text": "cada",
+    "start": 26.24,
+    "end": 26.53,
+    "id": "w80"
+  },
+  {
+    "text": "satélite",
+    "start": 26.54,
+    "end": 27.12,
+    "id": "w81"
+  },
+  {
+    "text": "y",
+    "start": 27.12,
+    "end": 27.13,
+    "id": "w82"
+  },
+  {
+    "text": "hay",
+    "start": 27.26,
+    "end": 27.41,
+    "id": "w83"
+  },
+  {
+    "text": "que",
+    "start": 27.59,
+    "end": 27.64,
+    "id": "w84"
+  },
+  {
+    "text": "medirlo",
+    "start": 27.64,
+    "end": 28.16,
+    "id": "w85"
+  },
+  {
+    "text": "finísimo.",
+    "start": 28.16,
+    "end": 28.79,
+    "id": "w86"
+  },
+  {
+    "text": "Una",
+    "start": 29.08,
+    "end": 29.19,
+    "id": "w87"
+  },
+  {
+    "text": "millonésima",
+    "start": 29.19,
+    "end": 29.82,
+    "id": "w88"
+  },
+  {
+    "text": "de",
+    "start": 29.85,
+    "end": 30.21,
+    "id": "w89"
+  },
+  {
+    "text": "segundo",
+    "start": 30.3,
+    "end": 30.77,
+    "id": "w90"
+  },
+  {
+    "text": "de",
+    "start": 30.84,
+    "end": 30.97,
+    "id": "w91"
+  },
+  {
+    "text": "error",
+    "start": 30.97,
+    "end": 31.39,
+    "id": "w92"
+  },
+  {
+    "text": "son",
+    "start": 31.39,
+    "end": 31.63,
+    "id": "w93"
+  },
+  {
+    "text": "300",
+    "start": 31.63,
+    "end": 32.35,
+    "id": "w94"
+  },
+  {
+    "text": "metros.",
+    "start": 32.83,
+    "end": 33.18,
+    "id": "w95"
+  },
+  {
+    "text": "Con",
+    "start": 33.18,
+    "end": 33.35,
+    "id": "w96"
+  },
+  {
+    "text": "un",
+    "start": 33.35,
+    "end": 33.46,
+    "id": "w97"
+  },
+  {
+    "text": "satélite",
+    "start": 33.46,
+    "end": 33.91,
+    "id": "w98"
+  },
+  {
+    "text": "estás",
+    "start": 33.91,
+    "end": 34.02,
+    "id": "w99"
+  },
+  {
+    "text": "en",
+    "start": 34.3,
+    "end": 34.31,
+    "id": "w100"
+  },
+  {
+    "text": "algún",
+    "start": 34.33,
+    "end": 34.6,
+    "id": "w101"
+  },
+  {
+    "text": "punto",
+    "start": 34.6,
+    "end": 34.94,
+    "id": "w102"
+  },
+  {
+    "text": "de",
+    "start": 34.96,
+    "end": 35.05,
+    "id": "w103"
+  },
+  {
+    "text": "una",
+    "start": 35.05,
+    "end": 35.26,
+    "id": "w104"
+  },
+  {
+    "text": "esfera",
+    "start": 35.26,
+    "end": 35.6,
+    "id": "w105"
+  },
+  {
+    "text": "gigante,",
+    "start": 35.6,
+    "end": 36.61,
+    "id": "w106"
+  },
+  {
+    "text": "con",
+    "start": 36.7,
+    "end": 36.84,
+    "id": "w107"
+  },
+  {
+    "text": "dos",
+    "start": 36.84,
+    "end": 37.06,
+    "id": "w108"
+  },
+  {
+    "text": "en",
+    "start": 37.06,
+    "end": 37.17,
+    "id": "w109"
+  },
+  {
+    "text": "el",
+    "start": 37.24,
+    "end": 37.36,
+    "id": "w110"
+  },
+  {
+    "text": "círculo",
+    "start": 37.36,
+    "end": 37.88,
+    "id": "w111"
+  },
+  {
+    "text": "donde",
+    "start": 37.88,
+    "end": 38.24,
+    "id": "w112"
+  },
+  {
+    "text": "se",
+    "start": 38.25,
+    "end": 38.4,
+    "id": "w113"
+  },
+  {
+    "text": "cruzan,",
+    "start": 38.4,
+    "end": 38.99,
+    "id": "w114"
+  },
+  {
+    "text": "con",
+    "start": 38.99,
+    "end": 39.24,
+    "id": "w115"
+  },
+  {
+    "text": "tres",
+    "start": 39.24,
+    "end": 39.51,
+    "id": "w116"
+  },
+  {
+    "text": "quedan",
+    "start": 39.51,
+    "end": 39.95,
+    "id": "w117"
+  },
+  {
+    "text": "dos",
+    "start": 39.96,
+    "end": 40.18,
+    "id": "w118"
+  },
+  {
+    "text": "puntos,",
+    "start": 40.18,
+    "end": 40.78,
+    "id": "w119"
+  },
+  {
+    "text": "uno",
+    "start": 40.78,
+    "end": 41,
+    "id": "w120"
+  },
+  {
+    "text": "perdido",
+    "start": 41,
+    "end": 41.42,
+    "id": "w121"
+  },
+  {
+    "text": "en",
+    "start": 41.53,
+    "end": 41.65,
+    "id": "w122"
+  },
+  {
+    "text": "el",
+    "start": 41.65,
+    "end": 41.98,
+    "id": "w123"
+  },
+  {
+    "text": "espacio",
+    "start": 41.98,
+    "end": 42.55,
+    "id": "w124"
+  },
+  {
+    "text": "y",
+    "start": 42.55,
+    "end": 42.64,
+    "id": "w125"
+  },
+  {
+    "text": "el",
+    "start": 42.64,
+    "end": 42.68,
+    "id": "w126"
+  },
+  {
+    "text": "otro",
+    "start": 42.85,
+    "end": 43.19,
+    "id": "w127"
+  },
+  {
+    "text": "eres",
+    "start": 43.19,
+    "end": 43.56,
+    "id": "w128"
+  },
+  {
+    "text": "tú.",
+    "start": 43.56,
+    "end": 44.04,
+    "id": "w129"
+  },
+  {
+    "text": "Pero",
+    "start": 44.2,
+    "end": 44.29,
+    "id": "w130"
+  },
+  {
+    "text": "el",
+    "start": 44.3,
+    "end": 44.32,
+    "id": "w131"
+  },
+  {
+    "text": "reloj",
+    "start": 44.51,
+    "end": 44.71,
+    "id": "w132"
+  },
+  {
+    "text": "de",
+    "start": 44.72,
+    "end": 44.84,
+    "id": "w133"
+  },
+  {
+    "text": "tu",
+    "start": 44.84,
+    "end": 44.95,
+    "id": "w134"
+  },
+  {
+    "text": "móvil",
+    "start": 44.96,
+    "end": 45.23,
+    "id": "w135"
+  },
+  {
+    "text": "es",
+    "start": 45.26,
+    "end": 45.37,
+    "id": "w136"
+  },
+  {
+    "text": "barato,",
+    "start": 45.38,
+    "end": 45.86,
+    "id": "w137"
+  },
+  {
+    "text": "así",
+    "start": 46,
+    "end": 46.06,
+    "id": "w138"
+  },
+  {
+    "text": "que",
+    "start": 46.06,
+    "end": 46.18,
+    "id": "w139"
+  },
+  {
+    "text": "usa",
+    "start": 46.18,
+    "end": 46.36,
+    "id": "w140"
+  },
+  {
+    "text": "un",
+    "start": 46.37,
+    "end": 46.51,
+    "id": "w141"
+  },
+  {
+    "text": "cuarto",
+    "start": 46.51,
+    "end": 46.73,
+    "id": "w142"
+  },
+  {
+    "text": "satélite",
+    "start": 47.02,
+    "end": 47.47,
+    "id": "w143"
+  },
+  {
+    "text": "para",
+    "start": 47.47,
+    "end": 47.71,
+    "id": "w144"
+  },
+  {
+    "text": "corregir",
+    "start": 47.89,
+    "end": 48.27,
+    "id": "w145"
+  },
+  {
+    "text": "su",
+    "start": 48.27,
+    "end": 48.4,
+    "id": "w146"
+  },
+  {
+    "text": "hora.",
+    "start": 48.4,
+    "end": 48.93,
+    "id": "w147"
+  },
+  {
+    "text": "Yen",
+    "start": 48.93,
+    "end": 49.09,
+    "id": "w148"
+  },
+  {
+    "text": "Europa",
+    "start": 49.09,
+    "end": 49.56,
+    "id": "w149"
+  },
+  {
+    "text": "los",
+    "start": 49.56,
+    "end": 49.74,
+    "id": "w150"
+  },
+  {
+    "text": "móviles",
+    "start": 49.74,
+    "end": 50.2,
+    "id": "w151"
+  },
+  {
+    "text": "nuevos",
+    "start": 50.2,
+    "end": 50.61,
+    "id": "w152"
+  },
+  {
+    "text": "tienen",
+    "start": 50.61,
+    "end": 51.06,
+    "id": "w153"
+  },
+  {
+    "text": "que",
+    "start": 51.06,
+    "end": 51.18,
+    "id": "w154"
+  },
+  {
+    "text": "escuchar",
+    "start": 51.18,
+    "end": 51.42,
+    "id": "w155"
+  },
+  {
+    "text": "también",
+    "start": 51.49,
+    "end": 51.76,
+    "id": "w156"
+  },
+  {
+    "text": "a",
+    "start": 51.76,
+    "end": 51.98,
+    "id": "w157"
+  },
+  {
+    "text": "Galileo,",
+    "start": 51.98,
+    "end": 52.69,
+    "id": "w158"
+  },
+  {
+    "text": "el",
+    "start": 52.85,
+    "end": 52.91,
+    "id": "w159"
+  },
+  {
+    "text": "sistema",
+    "start": 52.91,
+    "end": 53.5,
+    "id": "w160"
+  },
+  {
+    "text": "europeo.",
+    "start": 53.5,
+    "end": 54.33,
+    "id": "w161"
+  },
+  {
+    "text": "Yahora",
+    "start": 54.43,
+    "end": 54.86,
+    "id": "w162"
+  },
+  {
+    "text": "lo",
+    "start": 54.86,
+    "end": 55.03,
+    "id": "w163"
+  },
+  {
+    "text": "más",
+    "start": 55.03,
+    "end": 55.23,
+    "id": "w164"
+  },
+  {
+    "text": "raro.",
+    "start": 55.28,
+    "end": 55.7,
+    "id": "w165"
+  },
+  {
+    "text": "Allí",
+    "start": 56,
+    "end": 56.19,
+    "id": "w166"
+  },
+  {
+    "text": "arriba",
+    "start": 56.19,
+    "end": 56.7,
+    "id": "w167"
+  },
+  {
+    "text": "el",
+    "start": 56.7,
+    "end": 56.73,
+    "id": "w168"
+  },
+  {
+    "text": "tiempo",
+    "start": 57.28,
+    "end": 57.48,
+    "id": "w169"
+  },
+  {
+    "text": "pasa",
+    "start": 57.54,
+    "end": 57.75,
+    "id": "w170"
+  },
+  {
+    "text": "más",
+    "start": 57.75,
+    "end": 57.94,
+    "id": "w171"
+  },
+  {
+    "text": "deprisa.",
+    "start": 58.02,
+    "end": 58.72,
+    "id": "w172"
+  },
+  {
+    "text": "Por",
+    "start": 58.89,
+    "end": 58.98,
+    "id": "w173"
+  },
+  {
+    "text": "la",
+    "start": 58.98,
+    "end": 59.14,
+    "id": "w174"
+  },
+  {
+    "text": "relatividad",
+    "start": 59.14,
+    "end": 60.02,
+    "id": "w175"
+  },
+  {
+    "text": "sus",
+    "start": 60.02,
+    "end": 60.09,
+    "id": "w176"
+  },
+  {
+    "text": "relojes",
+    "start": 60.18,
+    "end": 60.82,
+    "id": "w177"
+  },
+  {
+    "text": "ganan",
+    "start": 60.82,
+    "end": 61.22,
+    "id": "w178"
+  },
+  {
+    "text": "38",
+    "start": 61.22,
+    "end": 61.7,
+    "id": "w179"
+  },
+  {
+    "text": "millonesimas",
+    "start": 61.7,
+    "end": 62.66,
+    "id": "w180"
+  },
+  {
+    "text": "de",
+    "start": 62.66,
+    "end": 62.76,
+    "id": "w181"
+  },
+  {
+    "text": "segundo",
+    "start": 63.32,
+    "end": 63.4,
+    "id": "w182"
+  },
+  {
+    "text": "al",
+    "start": 63.4,
+    "end": 63.5,
+    "id": "w183"
+  },
+  {
+    "text": "día.",
+    "start": 63.58,
+    "end": 64.14,
+    "id": "w184"
+  },
+  {
+    "text": "Por",
+    "start": 64.14,
+    "end": 64.18,
+    "id": "w185"
+  },
+  {
+    "text": "eso",
+    "start": 64.18,
+    "end": 64.22,
+    "id": "w186"
+  },
+  {
+    "text": "los",
+    "start": 64.38,
+    "end": 64.5,
+    "id": "w187"
+  },
+  {
+    "text": "ajustan",
+    "start": 64.5,
+    "end": 64.96,
+    "id": "w188"
+  },
+  {
+    "text": "para",
+    "start": 64.96,
+    "end": 65.08,
+    "id": "w189"
+  },
+  {
+    "text": "que",
+    "start": 65.25,
+    "end": 65.43,
+    "id": "w190"
+  },
+  {
+    "text": "vayan",
+    "start": 65.43,
+    "end": 65.76,
+    "id": "w191"
+  },
+  {
+    "text": "más",
+    "start": 65.76,
+    "end": 65.96,
+    "id": "w192"
+  },
+  {
+    "text": "lentos,",
+    "start": 65.96,
+    "end": 66.45,
+    "id": "w193"
+  },
+  {
+    "text": "sino",
+    "start": 66.6,
+    "end": 66.73,
+    "id": "w194"
+  },
+  {
+    "text": "el",
+    "start": 66.73,
+    "end": 66.92,
+    "id": "w195"
+  },
+  {
+    "text": "error",
+    "start": 66.92,
+    "end": 67.22,
+    "id": "w196"
+  },
+  {
+    "text": "crecería",
+    "start": 67.22,
+    "end": 67.75,
+    "id": "w197"
+  },
+  {
+    "text": "unos",
+    "start": 67.75,
+    "end": 68.02,
+    "id": "w198"
+  },
+  {
+    "text": "10",
+    "start": 68.02,
+    "end": 68.42,
+    "id": "w199"
+  },
+  {
+    "text": "kilómetros",
+    "start": 68.42,
+    "end": 69.08,
+    "id": "w200"
+  },
+  {
+    "text": "cada",
+    "start": 69.08,
+    "end": 69.14,
+    "id": "w201"
+  },
+  {
+    "text": "día.",
+    "start": 69.54,
+    "end": 70.46,
+    "id": "w202"
+  },
+  {
+    "text": "Mándaselo",
+    "start": 70.46,
+    "end": 70.75,
+    "id": "w203"
+  },
+  {
+    "text": "a",
+    "start": 70.75,
+    "end": 70.78,
+    "id": "w204"
+  },
+  {
+    "text": "alguien",
+    "start": 70.78,
+    "end": 71,
+    "id": "w205"
+  },
+  {
+    "text": "que",
+    "start": 71.01,
+    "end": 71.11,
+    "id": "w206"
+  },
+  {
+    "text": "cree",
+    "start": 71.11,
+    "end": 71.24,
+    "id": "w207"
+  },
+  {
+    "text": "que",
+    "start": 71.24,
+    "end": 71.32,
+    "id": "w208"
+  },
+  {
+    "text": "los",
+    "start": 71.34,
+    "end": 71.44,
+    "id": "w209"
+  },
+  {
+    "text": "satélites",
+    "start": 71.44,
+    "end": 71.76,
+    "id": "w210"
+  },
+  {
+    "text": "le",
+    "start": 71.86,
+    "end": 71.89,
+    "id": "w211"
+  },
+  {
+    "text": "vigilan.",
+    "start": 71.89,
+    "end": 72.32,
+    "id": "w212"
+  }
+]

@@ -463,7 +463,7 @@ El objetivo es 3 vídeos al día por cuenta, pero se llega por escalones. Si la 
     - Cámara con `corte: true` para los cortes secos.
     - Probado sobre una copia de la placa. Falta un presentador propio, si se quiere: hay que diseñarlo.
     - Primer vídeo con el estilo nuevo: la placa de inducción, rehecha con un gancho de 2 s y una pregunta abierta. Aprobada por Javier el 2 de noviembre. Las cosas por dentro tiene así 3 vídeos aprobados (tarjeta, cargador y placa).
-  - **Cuatro reels más de @speedy_devv** bajados el 2 de noviembre en `referencias/speedy_devv/` (teclado, cargador inalámbrico, cancelación de ruido y cuantización de IA). Su formato actual es: fondo negro con rejilla, un presentador de dibujos suyo en el tercio de abajo que cambia de postura en cada plano, diagramas de corte con zonas rotuladas, una leyenda fija abajo, paneles de datos y entre 7 y 11 cortes por vídeo. Detalle en la skill `video-por-dentro`.
+  - **Cuatro reels más de @speedy_devv** bajados el 2 de noviembre en `referencias/lascosaspordentro/` (antes `referencias/speedy_devv/`; el 3 de noviembre se juntaron ahí 13 reels de su estilo) (teclado, cargador inalámbrico, cancelación de ruido y cuantización de IA). Su formato actual es: fondo negro con rejilla, un presentador de dibujos suyo en el tercio de abajo que cambia de postura en cada plano, diagramas de corte con zonas rotuladas, una leyenda fija abajo, paneles de datos y entre 7 y 11 cortes por vídeo. Detalle en la skill `video-por-dentro`.
   - **Choque de temas:** también tiene el cargador inalámbrico, contado casi igual que el nuestro (llaves, pulsos de prueba, móvil descentrado, anillo de imanes). Por la regla de no copiar temas, nuestro vídeo 2 no debería publicarse, aunque estuviera aprobado. **Javier decide publicarlo igual (2 de noviembre):** el guion, la escena y el idioma son nuestros, y él va en inglés. A partir de ahora, los temas nuevos se comprueban antes contra su perfil.
   - **Sonidos reales con Openverse (idea de Javier, 2 de noviembre):** hoy los efectos se sintetizan con numpy y pueden sonar falsos. Openverse busca sonidos con licencia abierta, sobre todo de Freesound, y tiene una API sin clave. Por ejemplo, "whoosh" con licencia CC0 da 240 resultados. Reglas:
     - Solo CC0, que permite usarlo sin citar a nadie. Como mucho CC BY, citando al autor en la descripción.
@@ -483,7 +483,7 @@ El objetivo es 3 vídeos al día por cuenta, pero se llega por escalones. Si la 
 - **Sonido:** usa `sonido_pordentro.py`, con `fondo: "claro"` (una base suave y luminosa en vez del zumbido grave). `producir.sh` lo elige solo.
 - **Control:** `control.py` revisa también que cada cifra que cuenta tenga fuente.
 - **Años en los subtítulos:** `vozdata.py` ya no pone punto en los años ("en 2016", no "2.016"), pero sí en las cantidades ("2.000 billetes").
-- **Los 3 primeros vídeos**, producidos con la voz de pago y el control sin errores, a la espera de que Javier los apruebe:
+- **Los 3 primeros vídeos**, producidos con la voz de pago y el control sin errores. **Aprobados por Javier el 2 de noviembre** ("muy muy buenos vídeos"), que los programa en TikTok:
   - `01-loteria` (71,2 s): Hacienda y el Gordo. 72.000 € de impuesto por décimo, y de media cada décimo de 20 € devuelve 14.
   - `02-nomina` (62,3 s): por cada 100 € de sueldo, la empresa paga 30,65 € más, a ti te descuentan 6,50 €, y adónde va cada euro (tipos de 2026).
   - `03-billete` (61,6 s): el billete de 500 € ya no se fabrica, pero sigue siendo de curso legal y no caduca.
@@ -522,8 +522,20 @@ Hay tres formas, de menos a más automática:
 | Panel propio con la API de TikTok | Lo haría todo a medida | Gratis | No es realista: sin auditoría, la API solo publica en privado, y una herramienta personal puede no pasarla. Además no programa: habría que escribir el programador |
 | Panel propio para Instagram | Publicar Reels en las cuentas propias | Gratis | Realista: no hace falta revisión de Meta ni página de Facebook, pero hay que escribir el programador y servir los vídeos desde una web pública |
 
+- **Para Instagram, cuando entre (consultado el 2 de noviembre):** no hace falta una segunda cuenta gratis de Buffer. No se ha encontrado si sus condiciones lo permiten, y muchos servicios cierran las cuentas duplicadas, así que se podrían perder las dos. Hay dos opciones gratis y oficiales de Meta:
+  - **La app de Instagram:** permite tener varias cuentas a la vez y cambiar entre ellas sin cerrar sesión, y programa Reels con cuenta profesional.
+  - **Meta Business Suite en el ordenador:** gestiona varias cuentas desde un selector y programa Reels, pero cada cuenta de Instagram tiene que estar vinculada a una página de Facebook (gratis).
+  - Falta comprobar en cada una que deja poner la etiqueta de IA.
 - **Recomendación:** hoy, probar si tiktok.com enseña "Cambiar de cuenta" en el menú del perfil. Si no lo enseña, usar un perfil de navegador por cuenta. Probar después Buffer gratis para las 3 cuentas de TikTok, comprobando que deja marcar la etiqueta de IA y la visibilidad pública. Cuando entre Instagram, valorar Metricool Starter antes que un panel propio.
-- **El panel de la fábrica** (ver qué vídeos hay, cuáles están aprobados, programados o publicados, y sus métricas) sí se puede hacer en local, sin APIs. Sería una página que lee `videos/` y la hoja de métricas. Está pendiente de que Javier lo decida.
+- **Panel de la fábrica, hecho el 2 de noviembre** (Javier lo aprobó: "que funcione me sirve"):
+  - Es una página local: `python3 herramientas/panel.py` la abre en http://localhost:8790 y solo escucha en el Mac. Sin dependencias.
+  - Arriba, la línea de montaje con 6 estaciones sobre una cinta (guion, voz, vídeo, aprobado, programado y publicado), con cuántos vídeos hay en cada una y de qué cuenta. Pulsar una estación filtra.
+  - Debajo, una nave por cuenta, con su color. Dice hasta qué día hay vídeos programados (en rojo si mañana no hay ninguno) y reparte los vídeos en "por hacer", "en cola", "publicados" y "descartados".
+  - Cada vídeo tiene su portada, el botón para verlo, el botón para copiar la descripción con los hashtags, las casillas de aprobado y programado (y de Instagram en El contador loco), el día y la hora, y las métricas a las 24 horas y a los 7 días.
+  - Un vídeo programado pasa solo a "publicado" cuando llega su hora.
+  - Lo que se marca se guarda en `datos/estado.json` (en git). Así cubre la cola (R13) y la hoja de métricas (R14).
+  - Se probó en el navegador: filtros, aviso si falta el día o la hora, copiar el texto y ver el vídeo. Se pasó la revisión de diseño (skills `ui-ux-pro-max` y `unslop`).
+- **Instagram (2 de noviembre):** solo sigue El contador loco, que ya había empezado. Las otras dos cuentas esperan a que se automatice.
 
 ## Plan de ejecución
 
@@ -539,6 +551,41 @@ Ninguna fase empieza por fecha: empieza cuando se cumple el filtro de la anterio
 | 3 · Ritmo completo | Entran las plantillas «Cómo funciona por dentro» y «A escala». Tres vídeos al día por cuenta. Cada 2 semanas la peor cuenta se cambia por un nicho nuevo, hasta probar 8 nichos. |
 | 4 · Ganador | La cuenta ganadora recibe todo el tiempo. Se añaden la versión en inglés, la publicación automática en otras redes y la cuenta de Instagram con la página de packs. |
 | 5 · Cobrar | Con 10k seguidores y 100k vistas en 30 días se pide el programa de pago de TikTok. Antes, revisar con el gestor cómo se factura y cómo se declara. |
+
+**Dónde estamos (3 de noviembre de 2026): fase 2, el torneo, en su semana 1.**
+
+- **Hecho:** las fases 0 y 1. Las 3 cuentas tienen vídeos programados: El contador loco y Las cosas por dentro desde el 2 de noviembre, y Dinero sin lío desde el 3. Las bios están en `publicar/bios.md`.
+- **Tanda del 2 de noviembre por la noche,** hecha con tres agentes en paralelo (uno por cuenta), con el control sin errores y aprobada por Javier el 3:
+  - `06-pasos` (63,1 s, para el jueves 5);
+  - `06-gps` (73,8 s, para el miércoles 4);
+  - `04-rebajas` (65,0 s, para el miércoles 4).
+- **Tanda de la noche del 3 de noviembre** (Javier duerme y pide aprovechar la noche):
+  - `elcontadorloco/07-comida`: la comida que se tira en casa (idea 27), para el viernes 6;
+  - `dinerosinlio/05-cafe`: quién cobra cuando pagas un café con tarjeta, para el jueves 5;
+  - Las cosas por dentro: antes de su siguiente vídeo, el estudio de estilo de abajo.
+- **Misión principal de Las cosas por dentro (3 de noviembre): el detalle de @speedy_devv.**
+  - **El problema:** según Javier, tenemos su estilo pero solo un 30 % de su detalle, y quiere al menos un 85 %.
+  - **Lo medido:** él cambia de encuadre cada 1 o 2,5 segundos; nosotros aguantamos el mismo plano de 5 a 10. Sus objetos parecen reales: piel con huellas, guante de lana con su punto, cristal con grosor y brillos, piezas pequeñas, cifras que cambian. Los nuestros son formas simples.
+  - **El plan:**
+    1. Recrear su vídeo de la pantalla táctil (el mejor de su cuenta, 18,1 millones de visitas) como estudio interno en `estudio/pantalla-speedy/`. No se publica nunca y no lleva su voz, su guion ni su personaje.
+    2. Sacar de ahí piezas reutilizables con más detalle (`herramientas/pordentro/detalle.js`) y un sistema de planos que cambie de encuadre cada 2 segundos.
+    3. Comparar fotograma a fotograma con el original hasta acercarse al 85 %.
+    4. Hacer con esas piezas el siguiente vídeo de la cuenta, con un objeto que él no tenga.
+  - **Referencias:** sus 13 reels de este estilo están en `referencias/lascosaspordentro/`. Los temas que ya tiene están en `ideas/lascosaspordentro.md`.
+  - **Límite conocido:** three.js llega lejos con texturas y materiales, pero sus planos de manos y objetos parecen imágenes generadas con IA. Si el estudio no llega al 85 % solo con código, la opción es generar imágenes, con la API de pago de Gemini (unos céntimos por imagen) o con un modelo gratis en este Mac (FLUX.1 schnell, licencia Apache 2.0, una descarga de varios GB). Las dos necesitan el permiso de Javier.
+- **Siguiente tanda:** Las cosas por dentro necesita un vídeo para el jueves 5 y otro para el viernes 6 (con el estilo nuevo), y Dinero sin lío otro para el viernes 6.
+- **Para cerrar la fase 2 falta:**
+  1. **El ritmo:** 1 vídeo al día por cuenta durante las 2 primeras semanas, sin cortes. La fábrica tiene que sacar 3 vídeos al día y conviene ir una semana por delante, con 7 vídeos de reserva por cuenta.
+  2. **La hoja de métricas (R14):** cada vídeo, a las 24 horas y a los 7 días.
+  3. **Tus minutos:** medir los minutos que dedicas a cada vídeo (objetivo: 5 o menos).
+  4. **La primera revisión del torneo,** a las 2 semanas (16 y 17 de noviembre). Se mira la mediana de visualizaciones, el porcentaje que ve el vídeo entero y los seguidores por cada 1.000 visualizaciones.
+  5. **Subir de ritmo:** si la revisión de cada vídeo sigue en 5 minutos o menos y el control no falla, pasar a 2 vídeos al día por cuenta en las semanas 3 y 4 (desde el 16 de noviembre).
+- **Siguiente, la fase 3 (ritmo completo),** desde la semana 5 (30 de noviembre):
+  - 3 vídeos al día por cuenta;
+  - la plantilla «A escala» (mapas e imágenes de satélite);
+  - cada 2 semanas, la peor cuenta deja de publicar y entra un nicho nuevo. El primer sustituto es el nicho 11, política explicada sin opinar.
+  - Revisión general a las 12 semanas, a finales de enero de 2027.
+- **Lo que más frena el ritmo:** tu tiempo de revisión. A 2 vídeos al día por cuenta son 6 vídeos y unos 30 minutos diarios, y a 3 al día son 9 vídeos y unos 45 minutos. Por eso conviene aprobar las ideas por semanas y revisar los vídeos por tandas.
 
 ## Riesgos
 

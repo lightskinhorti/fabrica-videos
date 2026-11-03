@@ -19,7 +19,7 @@ el día 1, porque los primeros vídeos le dicen a TikTok a quién enseñarle la 
 | Lunes 2 de noviembre | 22:00 | `05-ropa.mp4` | [ ] |
 | Martes 3 de noviembre | 20:00 | `04-crecer.mp4` | [ ] |
 | Miércoles 4 de noviembre | 20:00 | `02-movil.mp4` | [ ] |
-| Jueves 5 de noviembre | 20:00 | Vídeo 6 (falta hacerlo) | [ ] |
+| Jueves 5 de noviembre | 20:00 | `06-pasos.mp4` | [ ] |
 
 Si empiezas otro día, mueve todas las fechas igual. TikTok deja programar hasta 10 días antes.
 
@@ -83,6 +83,14 @@ Tu móvil, un grado más cada minuto: de la fiebre a la superficie del Sol. No l
 ```
 
 Cada vídeo tiene también su `publicacion.md` en `videos/elcontadorloco/<vídeo>/`, que sale solo al producirlo.
+
+### 06-pasos.mp4 (63,1 s)
+
+```
+10.000 pasos al día, todos los días: de la Puerta del Sol a Toledo, al Camino de Santiago, a Nueva York y a la vuelta al mundo. En toda una vida, casi la mitad del camino a la Luna. Valores aproximados, con pasos de 75 cm.
+
+#quepasariasi #curiosidades #datoscuriosos #parati #caminar #pasos #luna
+```
 
 ## Instagram (Reels)
 

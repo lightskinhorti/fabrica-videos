@@ -1,0 +1,50 @@
+{
+  "titulo": "Los satélites no saben dónde estás",
+  "lines": [
+    "Los satélites no saben dónde estás.",
+    "Tu móvil no les manda nada: solo escucha. Y al final verás por qué sus relojes van mal a propósito.",
+    "Allá arriba hay unos treinta y un satélites, a más de veinte mil kilómetros.",
+    "Cada uno lleva relojes atómicos y repite sin parar dónde está y qué hora es.",
+    "La señal viaja a la velocidad de la luz y tarda menos de una décima de segundo.",
+    "Tu móvil mide ese retraso y calcula a qué distancia está cada satélite.",
+    "Y hay que medirlo finísimo: una millonésima de segundo de error son trescientos metros.",
+    "Con un satélite, estás en algún punto de una esfera gigante.",
+    "Con dos, en el círculo donde se cruzan.",
+    "Con tres, quedan dos puntos: uno perdido en el espacio, y el otro eres tú.",
+    "Pero el reloj de tu móvil es barato, así que usa un cuarto satélite para corregir su hora.",
+    "Y en Europa, los móviles nuevos tienen que escuchar también a Galileo, el sistema europeo.",
+    "Y ahora, lo más raro: allí arriba, el tiempo pasa más deprisa.",
+    "Por la relatividad, sus relojes ganan treinta y ocho millonésimas de segundo al día.",
+    "Por eso los ajustan para que vayan más lentos. Si no, el error crecería unos diez kilómetros cada día.",
+    "Mándaselo a alguien que cree que los satélites le vigilan."
+  ],
+  "claves": [
+    "dónde",
+    "escucha",
+    "satélites",
+    "atómicos",
+    "luz",
+    "distancia",
+    "error",
+    "esfera",
+    "círculo",
+    "tú",
+    "cuarto",
+    "Galileo",
+    "deprisa",
+    "relatividad",
+    "lentos",
+    "vigilan"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "Los satélites GPS no saben dónde estás: tu móvil solo escucha su hora y mide cuánto tarda cada señal en llegar. Y sus relojes van mal a propósito, por la relatividad. Ilustración simplificada.",
+    "hashtags": [
+      "#gps",
+      "#satelites",
+      "#ciencia"
+    ],
+    "portada_en": "estás"
+  },
+  "voz_dice": "La voz de Gemini dice \"Allá arriba\" en vez de \"Ahí arriba\" (lo oyen así Whisper small y medium): el guion lo copia para que los subtítulos coincidan. La voz se recortó 0,16 s de silencio al principio para que el gancho acabe antes de 2,5 s."
+}

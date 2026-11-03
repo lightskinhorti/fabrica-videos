@@ -1,0 +1,46 @@
+{
+  "titulo": "¿Y si caminaras 10.000 pasos cada día?",
+  "lines": [
+    "Diez mil pasos cada día.",
+    "Unos 7,5 kilómetros, todos los días de tu vida. ¿Hasta dónde llegarías? Al final te lo digo.",
+    "Sales del kilómetro cero de España, en la Puerta del Sol de Madrid.",
+    "El primer día no parece gran cosa. Pero no paras ni un solo día.",
+    "En menos de diez días, ya has llegado andando a Toledo.",
+    "En unos tres meses y medio, has hecho entero el Camino de Santiago francés.",
+    "En algo más de dos años, llegarías a Nueva York, si se pudiera andar sobre el océano.",
+    "Y en menos de quince años, habrás dado la vuelta al mundo sin subirte a un avión.",
+    "Ahora, la vida entera: de los dieciocho años a los ochenta y cuatro, lo que se vive de media en España.",
+    "En total, unos ciento ochenta mil kilómetros: cuatro vueltas y media a la Tierra.",
+    "Eso es casi la mitad del camino hasta la Luna.",
+    "Para llegar hasta ella, tendrías que caminar ciento cuarenta años.",
+    "Así que, si un día quieres ir a la Luna, mejor en cohete.",
+    "¿Cuántos pasos das tú al día? Te leo en los comentarios."
+  ],
+  "claves": [
+    "pasos",
+    "vida",
+    "Sol",
+    "paras",
+    "Toledo",
+    "Santiago",
+    "océano",
+    "mundo",
+    "vida",
+    "Tierra",
+    "Luna",
+    "caminar",
+    "cohete",
+    "comentarios"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "10.000 pasos al día, todos los días: de la Puerta del Sol a Toledo, al Camino de Santiago, a Nueva York y a la vuelta al mundo. En toda una vida, casi la mitad del camino a la Luna. Valores aproximados, con pasos de 75 cm.",
+    "hashtags": [
+      "#caminar",
+      "#pasos",
+      "#luna"
+    ],
+    "portada_en": "pasos"
+  },
+  "voz_dice": "La voz se generó con \"siete kilómetros y medio\" en palabras; Whisper lo oye como \"7.5 km\", así que la línea 2 va en cifras para que el subtítulo no diga \"7,5 kilómetros y medio\". Después de la voz se añadieron 2,2 s de silencio en exports/voces/06-pasos.wav para que el vídeo pase de 60 s con margen (el final en la Luna dura un poco más)."
+}

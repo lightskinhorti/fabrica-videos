@@ -123,7 +123,11 @@ Lo que tiene y nosotros todavía no:
 
 Lo que ya hacemos igual: subtítulos arriba con la palabra clave seleccionada en azul con tiradores, iconos pequeños delante de algunas palabras, etiquetas en mayúsculas con línea fina ("GLASS", "ROW", "CROSSING"), notas honestas abajo ("Magnified illustration") y el cierre "mándaselo a alguien".
 
-**Su formato actual, visto en 4 reels más** (`referencias/speedy_devv/`, bajados el 2 de noviembre: teclado del móvil, cargador inalámbrico, cancelación de ruido y cuantización de modelos de IA). Hace entre 7 y 11 cortes por vídeo, con planos de 3 a 7 s de mediana, y los vídeos duran de 79 a 141 s:
+**Su formato actual, visto en 13 reels** (`referencias/lascosaspordentro/`, bajados el 2 y el 3 de noviembre). Los vídeos duran de 55 a 141 s.
+
+**Corrección del 3 de noviembre:** el detector de cortes de ffmpeg contaba de 7 a 11 cortes por vídeo, pero se equivoca con los fondos oscuros. Mirando un fotograma por segundo, **cambia de encuadre cada 1 o 2,5 segundos** (corte seco, otro ángulo, un macro o un plano de la vida real), y dentro de cada plano siempre hay algo que se mueve o aparece. Nosotros aguantábamos el mismo plano de 5 a 10 s: es la mayor diferencia, junto con el detalle de los objetos (piel con huellas, guante de lana con su punto, cristal con grosor y brillos, piezas pequeñas). Javier calcula que estamos al 30 % de su detalle y quiere llegar al 85 %. El estudio que recrea su vídeo de la pantalla táctil está en `estudio/pantalla-speedy/`.
+
+Lo que tiene:
 - **Fondo negro con una rejilla muy suave**, no la mesa de madera de su vídeo antiguo del trackpad.
 - **Un presentador de dibujos en el tercio de abajo** (su avatar: camiseta roja y gafas de sol verdes) que cambia de postura en cada plano: señala, piensa, se encoge de hombros, hace el signo de la paz… Es suyo y no se copia. Si lo usamos, tiene que ser un personaje propio y distinto.
 - **Productos limpios estilo anuncio** (auriculares, móvil, cargador blanco) y **cortes de diagrama** vistos de lado, con zonas rotuladas ("IN YOUR PHONE", "IN THE CHARGER") y etiquetas de pieza ("PAD COIL", "PHONE COIL", "RING OF MAGNETS").
@@ -134,7 +138,7 @@ Lo que ya hacemos igual: subtítulos arriba con la palabra clave seleccionada en
 
 **Temas que ya ha hecho @speedy_devv (no los hacemos):** trackpad, pantalla táctil, teclado del móvil, cargador inalámbrico, cancelación de ruido y cuantización de modelos de IA. Su perfil no se puede ver sin iniciar sesión: Javier va pasando enlaces y se bajan con el método de abajo.
 
-**Cómo bajar un reel para verlo (sin iniciar sesión):** en el navegador integrado, abrir `https://www.instagram.com/p/<ID>/embed/captioned/`, leer con JavaScript el `src` del `<video>` (está en el propio servidor de Instagram, `cdninstagram.com` o `fbcdn.net`) y el texto del pie, y bajarlo con `curl` a `referencias/speedy_devv/<ID>-<tema>.mp4`. La página normal del post no da el vídeo sin sesión.
+**Cómo bajar un reel para verlo (sin iniciar sesión):** en el navegador integrado, abrir `https://www.instagram.com/p/<ID>/embed/captioned/`, leer con JavaScript el `src` del `<video>` (está en el propio servidor de Instagram, `cdninstagram.com` o `fbcdn.net`) y el texto del pie, y bajarlo con `curl` a `referencias/lascosaspordentro/<ID>-<tema>.mp4`. Con la sesión de Javier en su Chrome se ve el perfil entero (la lista de reels sale bajando la página con la rueda del ratón); los vídeos se siguen bajando con el método de la página `embed`. La página normal del post no da el vídeo sin sesión.
 
 ## 5. Lo que falta para igualar el vídeo de referencia
 

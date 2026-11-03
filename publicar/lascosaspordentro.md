@@ -16,7 +16,7 @@ Día 1 con 3 vídeos y después 1 al día a las 20:00. A las 20:00 del día 1 va
 | Día 1 | 20:00 | `01-tarjeta.mp4` | [ ] |
 | Día 1 | 22:00 | `02-cargador.mp4` | [ ] |
 | Día 2 | 20:00 | `05-reloj.mp4` (si lo apruebas) | [ ] |
-| Día 3 | 20:00 | El GPS (falta hacerlo) | [ ] |
+| Día 3 (miércoles 4 si empezaste el lunes 2) | 20:00 | `06-gps.mp4` (antes, comprueba que @speedy_devv no tiene el GPS) | [ ] |
 
 Pon como día 1 el que quieras y mueve el resto igual. TikTok deja programar hasta 10 días antes.
 
@@ -65,6 +65,14 @@ Tu móvil se carga sin que nada lo toque. Por dentro hay dos bobinas de cobre, u
 Tu reloj tiene un cristal de cuarzo que tiembla 32.768 veces por segundo, y ese número no es casualidad. Así funciona por dentro. Ilustración simplificada.
 
 #comofunciona #tecnologia #curiosidades #parati #reloj #cuarzo #ciencia
+```
+
+### 06-gps.mp4 (73,8 s)
+
+```
+Los satélites GPS no saben dónde estás: tu móvil solo escucha su hora y mide cuánto tarda cada señal en llegar. Y sus relojes van mal a propósito, por la relatividad. Ilustración simplificada.
+
+#comofunciona #tecnologia #curiosidades #parati #gps #satelites #ciencia
 ```
 
 ## Instagram (Reels)

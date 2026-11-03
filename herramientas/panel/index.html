@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fábrica de vídeos</title>
+    <link rel="stylesheet" href="/panel.css" />
+  </head>
+  <body>
+    <header class="cabecera">
+      <div>
+        <h1>Fábrica de vídeos</h1>
+        <p class="sub" id="hoy"></p>
+      </div>
+      <div class="cabecera-acciones">
+        <p class="aviso-guardado" id="guardado" role="status" aria-live="polite"></p>
+        <button type="button" class="boton" id="actualizar">Actualizar</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="linea" aria-labelledby="titulo-linea">
+        <div class="seccion-cabecera">
+          <h2 id="titulo-linea">Línea de montaje</h2>
+          <p class="sub" id="filtro-texto">Pulsa una estación para ver solo lo que hay en ella</p>
+        </div>
+        <div class="cinta" id="estaciones"></div>
+      </section>
+
+      <section class="naves" id="naves" aria-label="Las tres cuentas"></section>
+    </main>
+
+    <dialog id="visor" aria-labelledby="visor-titulo">
+      <div class="visor-cabecera">
+        <h2 id="visor-titulo"></h2>
+        <button type="button" class="boton" id="visor-cerrar">Cerrar</button>
+      </div>
+      <video id="visor-video" controls playsinline></video>
+    </dialog>
+
+    <script src="/panel.js"></script>
+  </body>
+</html>
