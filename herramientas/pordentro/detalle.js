@@ -67,6 +67,10 @@
 //     y enseña solo el grupo del set del plano. Hace falta "desenfoque" en la escena para que haya BokehPass.
 // Fondo:
 //   X.fondo({ arriba, medio, abajo })  negro azulado con viñeta y motas finas (sustituye scene.background).
+// Añadido el 3 de noviembre con 07-microondas (no cambia nada de lo anterior):
+//   X.cinta({ hebras, puntos, ancho, color, ondas, vel })  cintas de luz por cualquier camino (ondas, rayos que
+//                               rebotan, flujos): poner(i, f, { peso, fase }) con f(u, out) para u de 0 a 1; tiempo(t).
+//   X.tex.perforada({ cols, filas, radio })  chapa perforada para alphaMap (rejilla de la puerta, rejillas de ventilación).
 
 import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
 import { ParametricGeometry } from "three/addons/geometries/ParametricGeometry.js";
@@ -997,11 +1001,70 @@ export function crearDetalle(THREE, C) {
     return { lista: L, en, aplicar };
   }
 
+  // ---------- (added 3 Nov, 07-microondas) glowing ribbons along any path: waves, bouncing rays, flows ----------
+  // Same shader as the arcs. poner(i, f, { peso, fase }) fills strand i with f(u, out) for u from 0 to 1 (f returns a
+  // Vector3); peso is a number or a function of u (0 hides that stretch); tiempo(t) moves the light along the strands.
+  function cinta({ hebras = 1, puntos = 64, ancho = 0.02, minPx = 1.6, color = 0xffb22e, intensidad = 0.85, ondas = 2.2, vel = 0.45, oscuro = false } = {}) {
+    const N = hebras, M = puntos, NV = N * M * 2;
+    const pos = new Float32Array(NV * 3), sig = new Float32Array(NV * 3), lado = new Float32Array(NV), uu = new Float32Array(NV), sem = new Float32Array(NV), pes = new Float32Array(NV);
+    const idx = new Uint32Array(N * (M - 1) * 6);
+    let q = 0;
+    for (let i = 0; i < N; i++) for (let j = 0; j < M; j++) {
+      const v = (i * M + j) * 2;
+      lado[v] = -1; lado[v + 1] = 1; uu[v] = uu[v + 1] = j / (M - 1);
+      if (j < M - 1) { idx[q++] = v; idx[q++] = v + 1; idx[q++] = v + 2; idx[q++] = v + 1; idx[q++] = v + 3; idx[q++] = v + 2; }
+    }
+    const geo = new THREE.BufferGeometry();
+    const aPos = new THREE.BufferAttribute(pos, 3), aSig = new THREE.BufferAttribute(sig, 3), aPes = new THREE.BufferAttribute(pes, 1), aSem = new THREE.BufferAttribute(sem, 1);
+    for (const a of [aPos, aSig, aPes, aSem]) a.setUsage(THREE.DynamicDrawUsage);
+    geo.setAttribute("position", aPos); geo.setAttribute("sig", aSig); geo.setAttribute("lado", new THREE.BufferAttribute(lado, 1));
+    geo.setAttribute("u", new THREE.BufferAttribute(uu, 1)); geo.setAttribute("semilla", aSem); geo.setAttribute("peso", aPes);
+    geo.setIndex(new THREE.BufferAttribute(idx, 1));
+    const mat = new THREE.ShaderMaterial({
+      uniforms: { resol: { value: new THREE.Vector2(C.W * 2, C.H * 2) }, ancho: { value: ancho }, minPx: { value: minPx }, color: { value: new THREE.Color(color) }, tiempo: { value: 0 }, ondas: { value: ondas }, vel: { value: vel }, intensidad: { value: intensidad }, oscuro: { value: oscuro ? 1 : 0 } },
+      vertexShader: ARCO_VS, fragmentShader: ARCO_FS, transparent: true, depthWrite: false,
+      blending: oscuro ? THREE.NormalBlending : THREE.AdditiveBlending, side: THREE.DoubleSide,
+    });
+    const malla = new THREE.Mesh(geo, mat); malla.frustumCulled = false;
+    const P = new Float32Array(M * 3), tmp = new THREE.Vector3();
+    function poner(i, f, { peso = 1, fase = 0 } = {}) {
+      if (i < 0 || i >= N) return;
+      for (let j = 0; j < M; j++) { const r = f(j / (M - 1), tmp) || tmp; P[j * 3] = r.x; P[j * 3 + 1] = r.y; P[j * 3 + 2] = r.z; }
+      for (let j = 0; j < M; j++) {
+        const v = (i * M + j) * 2, u = j / (M - 1);
+        const jn = j < M - 1 ? j + 1 : j - 1, sg = j < M - 1 ? 1 : -1;
+        const px = P[j * 3], py = P[j * 3 + 1], pz = P[j * 3 + 2];
+        const sx = px + sg * (P[jn * 3] - px), sy = py + sg * (P[jn * 3 + 1] - py), sz = pz + sg * (P[jn * 3 + 2] - pz);
+        const w = typeof peso === "function" ? peso(u) : peso;
+        for (let k = 0; k < 2; k++) {
+          pos[(v + k) * 3] = px; pos[(v + k) * 3 + 1] = py; pos[(v + k) * 3 + 2] = pz;
+          sig[(v + k) * 3] = sx; sig[(v + k) * 3 + 1] = sy; sig[(v + k) * 3 + 2] = sz;
+          pes[v + k] = w; sem[v + k] = fase;
+        }
+      }
+      aPos.needsUpdate = true; aSig.needsUpdate = true; aPes.needsUpdate = true; aSem.needsUpdate = true;
+    }
+    // hides strand i (weight 0)
+    function apagar(i) { for (let j = 0; j < M * 2; j++) pes[i * M * 2 + j] = 0; aPes.needsUpdate = true; }
+    return { malla, material: mat, poner, apagar, hebras: N, tiempo(t) { mat.uniforms.tiempo.value = t; } };
+  }
+  // (added 3 Nov, 07-microondas) perforated sheet for an alphaMap: white = metal, black = round hole, staggered rows
+  // (a microwave door's mesh, a speaker grille, a vent); repeat it with rep()
+  function texPerforada({ cols = 16, filas = 16, radio = 0.32, w = 512, h = 512, escalonada = true } = {}) {
+    return lienzo(w, h, (g) => {
+      g.fillStyle = "#fff"; g.fillRect(0, 0, w, h); g.fillStyle = "#000";
+      const cw = w / cols, rh = h / filas;
+      for (let r = -1; r <= filas; r++) for (let c = -1; c <= cols; c++) {
+        g.beginPath(); g.arc((c + 0.5 + (escalonada && ((r + 2) % 2) ? 0.5 : 0)) * cw, (r + 0.5) * rh, radio * cw, 0, PI * 2); g.fill();
+      }
+    }, false).tex;
+  }
+
   return {
     lienzo, ruido, normalDesde, rep,
-    tex: { lana: texLana, metal: texMetal, rayado: texRayado, cristal: texCristal, trama: texTrama },
+    tex: { lana: texLana, metal: texMetal, rayado: texRayado, cristal: texCristal, trama: texTrama, perforada: texPerforada },
     mat: { piel: matPiel, unya: matUnya, lana: matLana, cristal: matCristal, oro: matOro, titanio: matTitanio, negro: matNegro, plastico: matPlastico },
     superficie, dedo, boli, movil, manoGuante, manoSenala, capsula,
-    arcos, cifras, corte, iones, motas, particulas, vaho, diamantes, celdas, tejido, fondo, planos,
+    arcos, cifras, corte, iones, motas, particulas, vaho, diamantes, celdas, tejido, fondo, planos, cinta,
   };
 }

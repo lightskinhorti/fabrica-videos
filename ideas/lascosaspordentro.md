@@ -51,6 +51,8 @@ Los de mejor gancho y datos, y que comparten piezas para hacerlos más rápido:
 
 ## Estado
 
+- [x] Vídeo 7: microondas, el primero con el estilo nuevo (58 planos, un corte cada 1,35 s de media). `exports/render/07-microondas.mp4` (78,3 s), control sin errores. Hecho el 3 de noviembre en 52 minutos de trabajo de Claude; falta que Javier lo apruebe. @speedy_devv no tiene el microondas entre sus 25 reels.
+
 - [x] Javier aprueba las 6 ideas de la reserva (2 de noviembre).
 - [x] Motor común sacado de la plantilla de la tarjeta (`render/index.html`), como `herramientas/contador/` en El contador loco: `herramientas/pordentro/` y `herramientas/sonido_pordentro.py` (2 de noviembre).
 - [x] Vídeo 1: tarjeta sin contacto, alargada a más de 60 s, con `fuentes.md`. Hecho el 2 de noviembre: `exports/render/01-tarjeta.mp4` (69,9 s), control sin errores. Aprobado por Javier el 2 de noviembre.

@@ -3,18 +3,19 @@
   "dinerosinlio/02-nomina": {"aprobado": true, "fecha": "2026-11-03", "hora": "22:00", "programado": true},
   "dinerosinlio/03-billete": {"aprobado": true, "fecha": "2026-11-03", "hora": "18:00", "programado": true},
   "dinerosinlio/04-rebajas": {"aprobado": true, "fecha": "2026-11-04", "hora": "20:00"},
-  "dinerosinlio/05-cafe": {"fecha": "2026-11-05", "hora": "20:00"},
+  "dinerosinlio/05-cafe": {"aprobado": true, "fecha": "2026-11-05", "hora": "20:00"},
   "elcontadorloco/01-ascensor": {"aprobado": true, "fecha": "2026-11-02", "hora": "20:00", "instagram": true, "programado": true},
   "elcontadorloco/02-movil": {"aprobado": true, "fecha": "2026-11-04", "hora": "20:00", "programado": true},
   "elcontadorloco/03-gato": {"aprobado": true, "fecha": "2026-11-02", "hora": "18:00", "programado": true},
   "elcontadorloco/04-crecer": {"aprobado": true, "fecha": "2026-11-03", "hora": "20:00", "programado": true},
   "elcontadorloco/05-ropa": {"aprobado": true, "fecha": "2026-11-02", "hora": "22:00", "programado": true},
   "elcontadorloco/06-pasos": {"aprobado": true, "fecha": "2026-11-05", "hora": "20:00"},
-  "elcontadorloco/07-comida": {"fecha": "2026-11-06", "hora": "20:00"},
+  "elcontadorloco/07-comida": {"aprobado": true, "fecha": "2026-11-06", "hora": "20:00"},
   "lascosaspordentro/01-tarjeta": {"aprobado": true, "fecha": "2026-11-02", "hora": "20:00", "programado": true},
   "lascosaspordentro/02-cargador": {"aprobado": true, "fecha": "2026-11-02", "hora": "22:00", "programado": true},
   "lascosaspordentro/03-induccion": {"aprobado": true, "fecha": "2026-11-02", "hora": "18:00", "programado": true},
   "lascosaspordentro/04-pantalla": {"descartado": true, "nota": "Tema que ya tiene @speedy_devv"},
   "lascosaspordentro/05-reloj": {"aprobado": true, "fecha": "2026-11-03", "hora": "20:00", "programado": true},
-  "lascosaspordentro/06-gps": {"aprobado": true, "fecha": "2026-11-04", "hora": "20:00", "nota": "Antes de programarlo, comprobar que @speedy_devv no tiene el GPS"}
+  "lascosaspordentro/06-gps": {"aprobado": true, "fecha": "2026-11-04", "hora": "20:00"},
+  "lascosaspordentro/07-microondas": {"fecha": "2026-11-05", "hora": "20:00"}
 }

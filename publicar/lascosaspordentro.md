@@ -16,7 +16,8 @@ Día 1 con 3 vídeos y después 1 al día a las 20:00. A las 20:00 del día 1 va
 | Día 1 | 20:00 | `01-tarjeta.mp4` | [ ] |
 | Día 1 | 22:00 | `02-cargador.mp4` | [ ] |
 | Día 2 | 20:00 | `05-reloj.mp4` (si lo apruebas) | [ ] |
-| Día 3 (miércoles 4 si empezaste el lunes 2) | 20:00 | `06-gps.mp4` (antes, comprueba que @speedy_devv no tiene el GPS) | [ ] |
+| Miércoles 4 de noviembre | 20:00 | `06-gps.mp4` | [ ] |
+| Jueves 5 de noviembre | 20:00 | `07-microondas.mp4` (falta que lo apruebes; es el primero con el estilo nuevo) | [ ] |
 
 Pon como día 1 el que quieras y mueve el resto igual. TikTok deja programar hasta 10 días antes.
 
@@ -73,6 +74,14 @@ Tu reloj tiene un cristal de cuarzo que tiembla 32.768 veces por segundo, y ese 
 Los satélites GPS no saben dónde estás: tu móvil solo escucha su hora y mide cuánto tarda cada señal en llegar. Y sus relojes van mal a propósito, por la relatividad. Ilustración simplificada.
 
 #comofunciona #tecnologia #curiosidades #parati #gps #satelites #ciencia
+```
+
+### 07-microondas.mp4 (78,3 s)
+
+```
+El microondas no calienta desde dentro: sus ondas solo entran unos centímetros y el centro se calienta después, por conducción. Y los puntos que derriten una tableta de chocolate sirven para calcular la velocidad de la luz. Ilustración simplificada.
+
+#comofunciona #tecnologia #curiosidades #parati #microondas #fisica #ciencia
 ```
 
 ## Instagram (Reels)

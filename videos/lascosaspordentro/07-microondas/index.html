@@ -1,0 +1,1171 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <script type="importmap">
+      { "imports": { "three": "./lib/three.module.js", "three/addons/": "./lib/addons/" } }
+    </script>
+    <link rel="stylesheet" href="comun/pordentro.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+      .mono { font-family: "JetBrains Mono", monospace; position: absolute; left: -2000px; top: 0; }
+      .panel .cifra { font-family: "JetBrains Mono", monospace; font-weight: 700; letter-spacing: -0.03em; }
+      /* legend rows placed one under the other only while they are visible (the video sets their top) */
+      .leyenda { display: block; }
+      .leyenda .fila { position: absolute; left: 0; white-space: nowrap; }
+      /* the arithmetic of the ending, line by line, in monospace */
+      #cuenta { position: absolute; left: 64px; top: 1010px; padding: 22px 28px 20px; border-radius: 18px; opacity: 0;
+        background: rgba(14, 14, 18, 0.84); border: 2px solid rgba(255, 255, 255, 0.12); font-family: "JetBrains Mono", monospace; }
+      #cuenta .l { font-size: 40px; font-weight: 700; color: #fff; line-height: 1.32; white-space: nowrap; opacity: 0; }
+      #cuenta .l.suave { color: rgba(255, 255, 255, 0.6); font-weight: 400; }
+      #cuenta .l .oro { color: #ffc062; }
+      #cuenta .tit { font-family: "Inter", sans-serif; font-size: 22px; font-weight: 700; letter-spacing: 0.12em; color: rgba(255, 255, 255, 0.6); margin-bottom: 8px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="78.3" data-width="1080" data-height="1920" data-fps="30">
+      <canvas id="gl" class="clip" data-start="0" data-duration="78.3" data-track-index="0" width="1080" height="1920"></canvas>
+      <div id="shade" class="clip" data-start="0" data-duration="78.3" data-track-index="1"></div>
+      <svg id="leaders" class="clip" data-start="0" data-duration="78.3" data-track-index="2" width="1080" height="1920" data-layout-allow-overlap></svg>
+      <div id="labels" class="clip" data-start="0" data-duration="78.3" data-track-index="3" data-layout-allow-overlap><span class="mono">0123456789</span>
+        <div id="cuenta"><div class="tit">LA CUENTA</div><div class="l">6,1 cm × 2 = 12,2 cm</div><div class="l">12,2 cm × 2.450.000.000/s</div><div class="l">= <span class="oro">298.900 km/s</span></div><div class="l suave">luz: 299.792 km/s</div></div>
+      </div>
+      <div id="note" class="clip" data-start="0" data-duration="78.3" data-track-index="4"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="78.3"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="78.3" data-track-index="5" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 77.04, "lines": [{"id": "l1", "s": 0.08, "e": 2.32, "words": [{"w": "El", "s": 0.08, "e": 0.13, "key": false}, {"w": "microondas", "s": 0.13, "e": 0.8, "key": false}, {"w": "no", "s": 0.8, "e": 0.93, "key": false}, {"w": "calienta", "s": 0.93, "e": 1.46, "key": false}, {"w": "desde", "s": 1.46, "e": 1.79, "key": false}, {"w": "dentro.", "s": 1.79, "e": 2.32, "key": true}]}, {"id": "l2", "s": 2.37, "e": 6.77, "words": [{"w": "Y", "s": 2.37, "e": 2.38, "key": false}, {"w": "al", "s": 2.38, "e": 2.5, "key": false}, {"w": "final", "s": 2.5, "e": 2.82, "key": false}, {"w": "verás", "s": 2.82, "e": 3.16, "key": false}, {"w": "cómo", "s": 3.16, "e": 3.4, "key": false}, {"w": "una", "s": 3.4, "e": 3.58, "key": false}, {"w": "tableta", "s": 3.58, "e": 4.0, "key": false}, {"w": "de", "s": 4, "e": 4.08, "key": false}, {"w": "chocolate", "s": 4.08, "e": 4.58, "key": true}, {"w": "mide", "s": 4.66, "e": 4.94, "key": false}, {"w": "la", "s": 4.94, "e": 5.12, "key": false}, {"w": "velocidad", "s": 5.12, "e": 5.95, "key": false}, {"w": "de", "s": 5.95, "e": 6.13, "key": false}, {"w": "la", "s": 6.13, "e": 6.3, "key": false}, {"w": "luz.", "s": 6.3, "e": 6.77, "key": false}]}, {"id": "l3", "s": 6.98, "e": 12.64, "words": [{"w": "Detrás", "s": 6.98, "e": 7.28, "key": false}, {"w": "del", "s": 7.37, "e": 7.53, "key": false}, {"w": "panel", "s": 7.53, "e": 7.88, "key": false}, {"w": "hay", "s": 7.88, "e": 8.09, "key": false}, {"w": "un", "s": 8.09, "e": 8.23, "key": false}, {"w": "magnetrón:", "s": 8.23, "e": 9.01, "key": true}, {"w": "un", "s": 9.01, "e": 9.11, "key": false}, {"w": "tubo", "s": 9.27, "e": 9.43, "key": false}, {"w": "con", "s": 9.43, "e": 9.64, "key": false}, {"w": "imanes", "s": 9.64, "e": 10.06, "key": false}, {"w": "donde", "s": 10.06, "e": 10.41, "key": false}, {"w": "los", "s": 10.41, "e": 10.62, "key": false}, {"w": "electrones", "s": 10.62, "e": 11.33, "key": false}, {"w": "dan", "s": 11.33, "e": 11.54, "key": false}, {"w": "vueltas.", "s": 11.54, "e": 12.64, "key": false}]}, {"id": "l4", "s": 12.72, "e": 18.2, "words": [{"w": "Así", "s": 12.72, "e": 12.88, "key": false}, {"w": "fabrica", "s": 12.88, "e": 13.45, "key": false}, {"w": "ondas", "s": 13.45, "e": 13.85, "key": false}, {"w": "que", "s": 13.85, "e": 14.09, "key": false}, {"w": "oscilan", "s": 14.09, "e": 14.65, "key": true}, {"w": "2.450", "s": 14.65, "e": 15.8, "key": false}, {"w": "millones", "s": 15.88, "e": 16.51, "key": false}, {"w": "de", "s": 16.51, "e": 16.67, "key": false}, {"w": "veces", "s": 16.67, "e": 17.07, "key": false}, {"w": "por", "s": 17.07, "e": 17.3, "key": false}, {"w": "segundo.", "s": 17.31, "e": 18.2, "key": false}]}, {"id": "l5", "s": 18.28, "e": 22.31, "words": [{"w": "Una", "s": 18.28, "e": 18.43, "key": false}, {"w": "guía", "s": 18.43, "e": 18.73, "key": false}, {"w": "de", "s": 18.73, "e": 18.88, "key": false}, {"w": "metal", "s": 18.88, "e": 19.26, "key": false}, {"w": "las", "s": 19.26, "e": 19.49, "key": false}, {"w": "lleva", "s": 19.49, "e": 19.87, "key": false}, {"w": "a", "s": 19.87, "e": 19.92, "key": false}, {"w": "la", "s": 19.94, "e": 20.09, "key": false}, {"w": "caja,", "s": 20.09, "e": 20.39, "key": false}, {"w": "y", "s": 20.39, "e": 20.41, "key": false}, {"w": "rebotan", "s": 20.57, "e": 20.99, "key": true}, {"w": "de", "s": 20.99, "e": 21.14, "key": false}, {"w": "pared", "s": 21.14, "e": 21.51, "key": false}, {"w": "en", "s": 21.51, "e": 21.66, "key": false}, {"w": "pared.", "s": 21.66, "e": 22.31, "key": false}]}, {"id": "l6", "s": 22.42, "e": 26.74, "words": [{"w": "Cada", "s": 22.42, "e": 22.61, "key": false}, {"w": "molécula", "s": 22.61, "e": 23.14, "key": true}, {"w": "de", "s": 23.14, "e": 23.28, "key": false}, {"w": "agua", "s": 23.28, "e": 23.55, "key": false}, {"w": "de", "s": 23.55, "e": 23.69, "key": false}, {"w": "la", "s": 23.69, "e": 23.82, "key": false}, {"w": "comida", "s": 23.83, "e": 24.23, "key": false}, {"w": "tiene", "s": 24.23, "e": 24.53, "key": false}, {"w": "un", "s": 24.71, "e": 24.72, "key": false}, {"w": "lado", "s": 24.72, "e": 24.95, "key": false}, {"w": "positivo", "s": 25.05, "e": 25.5, "key": false}, {"w": "y", "s": 25.58, "e": 25.59, "key": false}, {"w": "otro", "s": 25.61, "e": 25.88, "key": false}, {"w": "negativo.", "s": 25.88, "e": 26.74, "key": false}]}, {"id": "l7", "s": 26.82, "e": 31.4, "words": [{"w": "El", "s": 26.82, "e": 26.88, "key": false}, {"w": "campo", "s": 26.88, "e": 27.23, "key": false}, {"w": "cambia", "s": 27.23, "e": 27.65, "key": false}, {"w": "de", "s": 27.65, "e": 27.79, "key": false}, {"w": "sentido", "s": 27.79, "e": 28.23, "key": false}, {"w": "sin", "s": 28.28, "e": 28.46, "key": false}, {"w": "parar,", "s": 28.48, "e": 28.95, "key": false}, {"w": "y", "s": 28.95, "e": 29.11, "key": false}, {"w": "las", "s": 29.11, "e": 29.26, "key": false}, {"w": "moléculas", "s": 29.26, "e": 29.88, "key": false}, {"w": "intentan", "s": 29.89, "e": 30.45, "key": false}, {"w": "girar", "s": 30.45, "e": 30.8, "key": true}, {"w": "con", "s": 30.8, "e": 30.96, "key": false}, {"w": "él.", "s": 31.04, "e": 31.4, "key": false}]}, {"id": "l8", "s": 31.48, "e": 35.72, "words": [{"w": "Al", "s": 31.48, "e": 31.55, "key": false}, {"w": "girar,", "s": 31.55, "e": 32.07, "key": false}, {"w": "chocan", "s": 32.07, "e": 32.47, "key": false}, {"w": "y", "s": 32.53, "e": 32.59, "key": false}, {"w": "se", "s": 32.59, "e": 32.74, "key": false}, {"w": "rozan", "s": 32.74, "e": 33.11, "key": false}, {"w": "con", "s": 33.11, "e": 33.33, "key": false}, {"w": "sus", "s": 33.33, "e": 33.54, "key": false}, {"w": "vecinas:", "s": 33.55, "e": 34.28, "key": false}, {"w": "eso", "s": 34.28, "e": 34.56, "key": false}, {"w": "es", "s": 34.56, "e": 34.75, "key": false}, {"w": "el", "s": 34.75, "e": 34.94, "key": false}, {"w": "calor.", "s": 34.94, "e": 35.72, "key": true}]}, {"id": "l9", "s": 35.8, "e": 38.56, "words": [{"w": "Pero", "s": 35.8, "e": 35.97, "key": false}, {"w": "las", "s": 35.97, "e": 36.1, "key": false}, {"w": "ondas", "s": 36.19, "e": 36.45, "key": false}, {"w": "solo", "s": 36.45, "e": 36.7, "key": false}, {"w": "entran", "s": 36.7, "e": 37.06, "key": false}, {"w": "unos", "s": 37.06, "e": 37.31, "key": false}, {"w": "pocos", "s": 37.31, "e": 37.61, "key": true}, {"w": "centímetros.", "s": 37.61, "e": 38.56, "key": false}]}, {"id": "l10", "s": 38.64, "e": 42.96, "words": [{"w": "Lo", "s": 38.64, "e": 38.7, "key": false}, {"w": "de", "s": 38.7, "e": 38.84, "key": false}, {"w": "fuera", "s": 38.84, "e": 39.2, "key": true}, {"w": "se", "s": 39.2, "e": 39.34, "key": false}, {"w": "calienta", "s": 39.34, "e": 39.92, "key": false}, {"w": "antes,", "s": 39.92, "e": 40.28, "key": false}, {"w": "y", "s": 40.28, "e": 40.34, "key": false}, {"w": "el", "s": 40.35, "e": 40.49, "key": false}, {"w": "centro", "s": 40.49, "e": 40.75, "key": false}, {"w": "después,", "s": 40.93, "e": 41.56, "key": false}, {"w": "como", "s": 41.58, "e": 41.86, "key": false}, {"w": "en", "s": 41.86, "e": 42.0, "key": false}, {"w": "una", "s": 42, "e": 42.17, "key": false}, {"w": "sartén.", "s": 42.24, "e": 42.96, "key": false}]}, {"id": "l11", "s": 43.03, "e": 46.75, "words": [{"w": "Y", "s": 43.03, "e": 43.082, "key": false}, {"w": "ahora", "s": 43.082, "e": 43.34, "key": false}, {"w": "lo", "s": 43.43, "e": 43.54, "key": false}, {"w": "mejor:", "s": 43.54, "e": 44.03, "key": false}, {"w": "al", "s": 44.09, "e": 44.19, "key": false}, {"w": "cruzarse,", "s": 44.19, "e": 44.77, "key": false}, {"w": "las", "s": 44.77, "e": 44.99, "key": false}, {"w": "ondas", "s": 44.99, "e": 45.35, "key": false}, {"w": "se", "s": 45.35, "e": 45.49, "key": false}, {"w": "quedan", "s": 45.49, "e": 45.92, "key": false}, {"w": "quietas.", "s": 45.92, "e": 46.75, "key": true}]}, {"id": "l12", "s": 46.84, "e": 51.76, "words": [{"w": "Hay", "s": 46.84, "e": 46.94, "key": false}, {"w": "puntos", "s": 46.94, "e": 47.3, "key": false}, {"w": "que", "s": 47.3, "e": 47.47, "key": false}, {"w": "queman,", "s": 47.48, "e": 47.96, "key": true}, {"w": "separados", "s": 47.96, "e": 48.48, "key": false}, {"w": "unos", "s": 48.49, "e": 48.74, "key": false}, {"w": "6", "s": 48.74, "e": 48.92, "key": false}, {"w": "centímetros,", "s": 48.92, "e": 49.72, "key": false}, {"w": "y", "s": 49.72, "e": 49.8, "key": false}, {"w": "entre", "s": 49.8, "e": 50.2, "key": false}, {"w": "ellos,", "s": 50.2, "e": 50.6, "key": false}, {"w": "puntos", "s": 50.6, "e": 51.08, "key": false}, {"w": "fríos.", "s": 51.08, "e": 51.76, "key": false}]}, {"id": "l13", "s": 51.84, "e": 55.37, "words": [{"w": "Por", "s": 51.84, "e": 51.99, "key": false}, {"w": "eso", "s": 51.99, "e": 52.14, "key": false}, {"w": "gira", "s": 52.23, "e": 52.52, "key": false}, {"w": "el", "s": 52.52, "e": 52.67, "key": false}, {"w": "plato:", "s": 52.67, "e": 53.05, "key": true}, {"w": "para", "s": 53.05, "e": 53.36, "key": false}, {"w": "que", "s": 53.36, "e": 53.59, "key": false}, {"w": "la", "s": 53.59, "e": 53.74, "key": false}, {"w": "comida", "s": 53.74, "e": 54.2, "key": false}, {"w": "pase", "s": 54.2, "e": 54.51, "key": false}, {"w": "por", "s": 54.51, "e": 54.74, "key": false}, {"w": "todos.", "s": 54.74, "e": 55.37, "key": false}]}, {"id": "l14", "s": 55.52, "e": 60.92, "words": [{"w": "Las", "s": 55.52, "e": 55.61, "key": false}, {"w": "ondas", "s": 55.61, "e": 55.82, "key": false}, {"w": "miden", "s": 55.91, "e": 56.17, "key": false}, {"w": "unos", "s": 56.17, "e": 56.4, "key": false}, {"w": "12", "s": 56.4, "e": 56.75, "key": false}, {"w": "centímetros:", "s": 56.75, "e": 57.63, "key": false}, {"w": "por", "s": 57.72, "e": 57.85, "key": false}, {"w": "la", "s": 57.85, "e": 57.99, "key": false}, {"w": "rejilla", "s": 57.99, "e": 58.47, "key": true}, {"w": "de", "s": 58.53, "e": 58.63, "key": false}, {"w": "la", "s": 58.63, "e": 58.71, "key": false}, {"w": "puerta", "s": 58.77, "e": 59.2, "key": false}, {"w": "no", "s": 59.2, "e": 59.34, "key": false}, {"w": "caben,", "s": 59.34, "e": 59.83, "key": false}, {"w": "pero", "s": 59.83, "e": 60.12, "key": false}, {"w": "la", "s": 60.12, "e": 60.24, "key": false}, {"w": "luz", "s": 60.35, "e": 60.47, "key": false}, {"w": "sí.", "s": 60.47, "e": 60.92, "key": false}]}, {"id": "l15", "s": 60.98, "e": 65.64, "words": [{"w": "Y", "s": 60.98, "e": 61.023, "key": false}, {"w": "el", "s": 61.023, "e": 61.11, "key": false}, {"w": "chocolate:", "s": 61.11, "e": 61.86, "key": false}, {"w": "sin", "s": 61.86, "e": 62.05, "key": false}, {"w": "plato", "s": 62.06, "e": 62.39, "key": false}, {"w": "que", "s": 62.39, "e": 62.59, "key": false}, {"w": "gire,", "s": 62.59, "e": 62.97, "key": false}, {"w": "se", "s": 62.97, "e": 63.11, "key": false}, {"w": "derrite", "s": 63.11, "e": 63.53, "key": true}, {"w": "solo", "s": 63.63, "e": 63.85, "key": false}, {"w": "en", "s": 63.85, "e": 63.98, "key": false}, {"w": "esos", "s": 63.98, "e": 64.25, "key": false}, {"w": "puntos", "s": 64.25, "e": 64.66, "key": false}, {"w": "calientes.", "s": 64.66, "e": 65.64, "key": false}]}, {"id": "l16", "s": 65.72, "e": 73.64, "words": [{"w": "La", "s": 65.72, "e": 65.78, "key": false}, {"w": "distancia", "s": 65.78, "e": 66.43, "key": false}, {"w": "entre", "s": 66.43, "e": 66.79, "key": false}, {"w": "manchas,", "s": 66.79, "e": 67.42, "key": false}, {"w": "por", "s": 67.43, "e": 67.63, "key": false}, {"w": "2", "s": 67.63, "e": 67.84, "key": false}, {"w": "y", "s": 67.84, "e": 68.01, "key": false}, {"w": "por", "s": 68.01, "e": 68.13, "key": false}, {"w": "la", "s": 68.13, "e": 68.24, "key": false}, {"w": "frecuencia,", "s": 68.35, "e": 69.2, "key": false}, {"w": "da", "s": 69.2, "e": 69.25, "key": false}, {"w": "casi", "s": 69.32, "e": 69.53, "key": false}, {"w": "300.000", "s": 69.58, "e": 70.9, "key": false}, {"w": "kilómetros", "s": 70.9, "e": 70.96, "key": false}, {"w": "por", "s": 71.06, "e": 71.21, "key": false}, {"w": "segundo:", "s": 71.21, "e": 71.72, "key": false}, {"w": "la", "s": 71.8, "e": 71.9, "key": false}, {"w": "velocidad", "s": 71.9, "e": 72.72, "key": false}, {"w": "de", "s": 72.72, "e": 72.9, "key": false}, {"w": "la", "s": 72.9, "e": 73.08, "key": false}, {"w": "luz.", "s": 73.08, "e": 73.64, "key": true}]}, {"id": "l17", "s": 73.69, "e": 76.72, "words": [{"w": "Mándaselo", "s": 73.69, "e": 74.14, "key": false}, {"w": "a", "s": 74.14, "e": 74.19, "key": false}, {"w": "quien", "s": 74.19, "e": 74.47, "key": false}, {"w": "se", "s": 74.53, "e": 74.59, "key": false}, {"w": "quema", "s": 74.59, "e": 74.87, "key": false}, {"w": "con", "s": 74.87, "e": 75.04, "key": false}, {"w": "el", "s": 75.04, "e": 75.13, "key": false}, {"w": "borde", "s": 75.18, "e": 75.42, "key": false}, {"w": "y", "s": 75.43, "e": 75.48, "key": false}, {"w": "el", "s": 75.48, "e": 75.59, "key": false}, {"w": "centro", "s": 75.59, "e": 75.83, "key": false}, {"w": "sigue", "s": 76.01, "e": 76.22, "key": false}, {"w": "frío.", "s": 76.22, "e": 76.72, "key": true}]}]}</script>
+    <script id="escena" type="application/json">
+      {
+        "momentos": [
+          { "id": "CALIENTA", "clave": "calienta" },
+          { "id": "FINAL", "clave": "final" },
+          { "id": "CHOCO1", "clave": "chocolate" },
+          { "id": "VEL1", "clave": "velocidad" },
+          { "id": "DETRAS", "clave": "detras" },
+          { "id": "MAGNE", "clave": "magnetron" },
+          { "id": "TUBO", "clave": "tubo" },
+          { "id": "IMANES", "clave": "imanes" },
+          { "id": "ELEC", "clave": "electrones" },
+          { "id": "VUELTAS", "clave": "vueltas" },
+          { "id": "FABRICA", "clave": "fabrica" },
+          { "id": "OSCILAN", "clave": "oscilan" },
+          { "id": "MILLONES", "clave": "millones" },
+          { "id": "VECES", "clave": "veces" },
+          { "id": "SEGUNDO1", "clave": "segundo" },
+          { "id": "GUIA", "clave": "guia" },
+          { "id": "LLEVA", "clave": "lleva" },
+          { "id": "CAJA", "clave": "caja" },
+          { "id": "REBOTAN", "clave": "rebotan" },
+          { "id": "PARED", "clave": "pared" },
+          { "id": "CADA", "clave": "cada" },
+          { "id": "MOLEC", "clave": "molecula" },
+          { "id": "AGUA", "clave": "agua" },
+          { "id": "COMIDA1", "clave": "comida" },
+          { "id": "POSITIVO", "clave": "positivo" },
+          { "id": "NEG", "clave": "negativo" },
+          { "id": "CAMPO", "clave": "campo" },
+          { "id": "SENTIDO", "clave": "sentido" },
+          { "id": "MOLECS", "clave": "moleculas" },
+          { "id": "GIRAR", "clave": "girar" },
+          { "id": "CHOCAN", "clave": "chocan" },
+          { "id": "VECINAS", "clave": "vecinas" },
+          { "id": "CALOR", "clave": "calor" },
+          { "id": "PERO1", "clave": "pero" },
+          { "id": "ENTRAN", "clave": "entran" },
+          { "id": "POCOS", "clave": "pocos" },
+          { "id": "FUERA", "clave": "fuera" },
+          { "id": "CENTRO1", "clave": "centro" },
+          { "id": "SARTEN", "clave": "sarten" },
+          { "id": "MEJOR", "clave": "mejor" },
+          { "id": "CRUZARSE", "clave": "cruzarse" },
+          { "id": "QUIETAS", "clave": "quietas" },
+          { "id": "PUNTOS", "clave": "puntos" },
+          { "id": "SEPARADOS", "clave": "separados" },
+          { "id": "ENTRE", "clave": "entre" },
+          { "id": "FRIOS", "clave": "frios" },
+          { "id": "GIRA", "clave": "gira" },
+          { "id": "PLATO1", "clave": "plato" },
+          { "id": "COMIDA2", "clave": "comida" },
+          { "id": "TODOS", "clave": "todos" },
+          { "id": "MIDEN", "clave": "miden" },
+          { "id": "REJILLA", "clave": "rejilla" },
+          { "id": "PUERTA", "clave": "puerta" },
+          { "id": "CABEN", "clave": "caben" },
+          { "id": "PERO2", "clave": "pero" },
+          { "id": "LUZ1", "clave": "luz" },
+          { "id": "CHOCO2", "clave": "chocolate" },
+          { "id": "GIRE", "clave": "gire" },
+          { "id": "DERRITE", "clave": "derrite" },
+          { "id": "CALIENTES", "clave": "calientes" },
+          { "id": "DIST", "clave": "distancia" },
+          { "id": "POR2", "clave": "por" },
+          { "id": "FREC", "clave": "frecuencia" },
+          { "id": "CASI", "clave": "casi" },
+          { "id": "KM", "clave": "kilometros" },
+          { "id": "VEL2", "clave": "velocidad" },
+          { "id": "LUZ2", "clave": "luz" },
+          { "id": "MANDA", "clave": "mandaselo" },
+          { "id": "BORDE", "clave": "borde" },
+          { "id": "CENTRO2", "clave": "centro" },
+          { "id": "FRIO2", "clave": "frio" }
+        ],
+        "etiquetas": [
+          { "texto": "GUÍA DE ONDAS", "pieza": "guiaH", "desde": "DETRAS", "hasta": "TUBO", "dx": 40, "dy": -230 },
+          { "texto": "TRANSFORMADOR", "pieza": "transf", "desde": "DETRAS", "hasta": "MAGNE", "dx": 60, "dy": 170 },
+          { "texto": "VENTILADOR", "pieza": "ventilador", "desde": "DETRAS", "hasta": "MAGNE", "dx": 40, "dy": -150 },
+          { "texto": "MAGNETRÓN", "pieza": "magH", "desde": "MAGNE", "hasta": "TUBO", "dx": 60, "dy": -260 },
+          { "texto": "ÁNODO DE COBRE", "pieza": "anodo", "desde": "TUBO", "hasta": "ELEC", "dx": 60, "dy": 230 },
+          { "texto": "IMANES", "pieza": "iman", "desde": "IMANES", "hasta": "ELEC", "dx": 60, "dy": -200 },
+          { "texto": "ELECTRONES", "pieza": "electron", "desde": "ELEC", "hasta": "FABRICA", "dx": 80, "dy": -230 },
+          { "texto": "CÁTODO CALIENTE", "pieza": "catodo", "desde": "VUELTAS", "hasta": "FABRICA", "dx": 80, "dy": 220 },
+          { "texto": "CAVIDAD DE COBRE", "pieza": "cavidad", "desde": "FABRICA", "hasta": "OSCILAN", "dx": 60, "dy": -220 },
+          { "texto": "ANTENA", "pieza": "antena", "desde": "OSCILAN", "hasta": "GUIA", "dx": 80, "dy": -150 },
+          { "texto": "MAGNETRÓN", "pieza": "magD", "desde": "GUIA", "hasta": "REBOTAN", "dx": 40, "dy": -170 },
+          { "texto": "GUÍA DE ONDAS", "pieza": "guiaD", "desde": "GUIA", "hasta": "REBOTAN", "dx": 60, "dy": 200 },
+          { "texto": "CAJA DE METAL", "pieza": "cajaD", "desde": "REBOTAN", "hasta": "PARED", "dx": 60, "dy": -150 },
+          { "texto": "LADO POSITIVO", "pieza": "hPos", "desde": "POSITIVO", "hasta": "CAMPO", "dx": 60, "dy": -200 },
+          { "texto": "LADO NEGATIVO", "pieza": "oNeg", "desde": "NEG", "hasta": "CAMPO", "dx": 60, "dy": 200 },
+          { "texto": "CAMPO ELÉCTRICO", "pieza": "flecha", "desde": "CAMPO", "hasta": "MOLECS", "dx": 60, "dy": -180 },
+          { "texto": "SE CALIENTA", "pieza": "bordeC", "desde": "FUERA", "hasta": "SARTEN", "dx": 60, "dy": -230 },
+          { "texto": "AÚN FRÍO", "pieza": "centroC", "desde": "CENTRO1", "hasta": "SARTEN", "dx": 60, "dy": 230 },
+          { "texto": "PUNTO CALIENTE", "pieza": "calD", "desde": "PUNTOS", "hasta": "SEPARADOS", "dx": 30, "dy": -220 },
+          { "texto": "PUNTO FRÍO", "pieza": "frioD", "desde": "PUNTOS", "hasta": "SEPARADOS", "dx": 30, "dy": 220 },
+          { "texto": "6,1 CM", "pieza": "reglaP", "desde": "SEPARADOS", "hasta": "FRIOS", "dx": 30, "dy": -160 },
+          { "texto": "12,2 CM", "pieza": "reglaL", "desde": "MIDEN", "hasta": "REJILLA", "dx": 20, "dy": -140 },
+          { "texto": "REJILLA DE METAL", "pieza": "rejH", "desde": "REJILLA", "hasta": "CABEN", "dx": 60, "dy": -260 },
+          { "texto": "DENTRO", "pieza": "dentroQ", "desde": "PUERTA", "hasta": "PERO2", "dx": 10, "dy": -60 },
+          { "texto": "FUERA", "pieza": "fueraQ", "desde": "PUERTA", "hasta": "PERO2", "dx": 10, "dy": -60 },
+          { "texto": "AGUJEROS DE ~1 MM", "pieza": "hueco", "desde": "CABEN", "hasta": "LUZ1", "dx": 60, "dy": 260 },
+          { "texto": "LA LUZ SÍ PASA", "pieza": "rayoLuz", "desde": "LUZ1", "hasta": "CHOCO2", "dx": 60, "dy": -220 },
+          { "texto": "PUNTO FUNDIDO", "pieza": "fundido", "desde": "CALIENTES", "hasta": "DIST", "dx": 60, "dy": -230 },
+          { "texto": "6,1 CM", "pieza": "reglaP2", "desde": "DIST", "hasta": "FREC", "dx": 30, "dy": -160 },
+          { "texto": "× 2 = 12,2 CM", "pieza": "reglaD", "desde": "POR2", "hasta": "FREC", "dx": 40, "dy": -260 },
+          { "texto": "AQUÍ QUEMA", "pieza": "bordeC", "desde": "BORDE", "hasta": "FRIO2", "dx": 60, "dy": -230 },
+          { "texto": "AQUÍ, FRÍO", "pieza": "centroC", "desde": "CENTRO2", "hasta": "FRIO2", "dx": 60, "dy": 230 }
+        ],
+        "notas": [
+          { "texto": "", "desde": 0 },
+          { "texto": "Ilustración simplificada", "desde": "DETRAS" },
+          { "texto": "Ilustración ampliada, sin marca", "desde": "TUBO" },
+          { "texto": "Ondas dibujadas, invisibles y mucho más lentas", "desde": "OSCILAN" },
+          { "texto": "Ilustración ampliada", "desde": "MOLEC" },
+          { "texto": "Campo dibujado muy ralentizado", "desde": "CAMPO" },
+          { "texto": "Valores ilustrativos", "desde": "CALOR" },
+          { "texto": "Ondas dibujadas, invisibles", "desde": "PERO1" },
+          { "texto": "Valores ilustrativos", "desde": "FUERA" },
+          { "texto": "Ilustración simplificada", "desde": "MEJOR" },
+          { "texto": "Valores ilustrativos", "desde": "SEPARADOS" },
+          { "texto": "Ilustración simplificada", "desde": "GIRA" },
+          { "texto": "Ilustración, no a escala", "desde": "MIDEN" },
+          { "texto": "Ilustración simplificada", "desde": "CHOCO2" },
+          { "texto": "Cálculo propio, con 6,1 cm teóricos", "desde": "FREC" },
+          { "texto": "", "desde": "MANDA" },
+          { "texto": "Valores ilustrativos", "desde": "BORDE" },
+          { "texto": "", "desde": "FRIO2" }
+        ],
+        "iconos": { "ondas": "onda" },
+        "gancho": { "texto": "El microondas no calienta desde dentro", "clave": "dentro" },
+        "estilo": "rejilla",
+        "desenfoque": { "apertura": 0, "max": 0.012 },
+        "leyenda": [
+          { "color": "#9fd0ff", "forma": "punto", "texto": "electrones", "desde": "ELEC", "hasta": "OSCILAN" },
+          { "color": "#ffb347", "forma": "onda", "texto": "microondas, invisibles", "desde": "OSCILAN", "hasta": "CADA" },
+          { "color": "#e0574c", "forma": "punto", "texto": "oxígeno: lado negativo", "desde": "MOLEC", "hasta": "PERO1" },
+          { "color": "#f4f4f4", "forma": "punto", "texto": "hidrógeno: lado positivo", "desde": "MOLEC", "hasta": "PERO1" },
+          { "color": "#ffb347", "forma": "flecha", "texto": "campo eléctrico, ralentizado", "desde": "CAMPO", "hasta": "PERO1" },
+          { "color": "#ffb347", "forma": "onda", "texto": "microondas, invisibles", "desde": "PERO1", "hasta": "FUERA" },
+          { "color": "#ffcf6e", "forma": "punto", "texto": "caliente", "desde": "FUERA", "hasta": "MEJOR" },
+          { "color": "#5f84c8", "forma": "punto", "texto": "frío", "desde": "FUERA", "hasta": "MEJOR" },
+          { "color": "#ffb347", "forma": "onda", "texto": "microondas, invisibles", "desde": "MEJOR", "hasta": "REJILLA" },
+          { "color": "#ffcf6e", "forma": "punto", "texto": "punto caliente", "desde": "PUNTOS", "hasta": "MIDEN" },
+          { "color": "#fff1d6", "forma": "flecha", "texto": "luz visible", "desde": "CABEN", "hasta": "CHOCO2" },
+          { "color": "#ffb347", "forma": "onda", "texto": "microondas, invisibles", "desde": "CABEN", "hasta": "CHOCO2" }
+        ],
+        "paneles": [
+          { "id": "luz0", "titulo": "VELOCIDAD DE LA LUZ", "desde": "VEL1", "hasta": "DETRAS", "x": 64, "y": 1150 },
+          { "id": "freq", "titulo": "FRECUENCIA", "desde": "OSCILAN", "hasta": "GUIA", "x": 64, "y": 470 },
+          { "id": "osc", "titulo": "OSCILACIONES POR SEGUNDO", "desde": "MILLONES", "hasta": "GUIA", "x": 64, "y": 1150 },
+          { "id": "cambios", "titulo": "CAMBIOS DE SENTIDO POR SEGUNDO", "desde": "SENTIDO", "hasta": "CHOCAN", "x": 64, "y": 1150 },
+          { "id": "temp", "titulo": "TEMPERATURA", "desde": "CALOR", "hasta": "PERO1", "x": 64, "y": 470 },
+          { "id": "prof", "titulo": "LAS ONDAS ENTRAN", "desde": "POCOS", "hasta": "FUERA", "x": 64, "y": 1150 },
+          { "id": "lambda", "titulo": "LONGITUD DE ONDA", "desde": "MIDEN", "hasta": "REJILLA", "x": 64, "y": 1150 },
+          { "id": "sep", "titulo": "ENTRE PUNTOS CALIENTES", "desde": "SEPARADOS", "hasta": "FRIOS", "x": 64, "y": 1150 },
+          { "id": "luz", "titulo": "VELOCIDAD DE LA LUZ", "desde": "VEL2", "hasta": "MANDA", "x": 64, "y": 470 }
+        ],
+        "sonidos": [
+          { "tipo": "zumbido", "desde": 0, "hasta": "FINAL", "volumen": 0.5 },
+          { "tipo": "brillo", "en": "CHOCO1" },
+          { "tipo": "pop", "en": "VEL1" },
+          { "tipo": "abre", "en": "DETRAS" },
+          { "tipo": "pop", "en": "MAGNE" },
+          { "tipo": "desliza", "en": "TUBO" },
+          { "tipo": "zumbido", "desde": "ELEC", "hasta": "GUIA", "volumen": 0.7 },
+          { "tipo": "chip", "en": "FABRICA" },
+          { "tipo": "ping", "desde": "OSCILAN", "hasta": "GUIA", "cada": 0.2, "volumen": 0.35 },
+          { "tipo": "desliza", "en": "GUIA" },
+          { "tipo": "ping", "desde": "REBOTAN", "hasta": "CADA", "cada": 0.32, "volumen": 0.5 },
+          { "tipo": "pop", "en": "MOLEC" },
+          { "tipo": "brillo", "en": "POSITIVO" },
+          { "tipo": "sube", "en": "CAMPO" },
+          { "tipo": "teclas", "en": "CHOCAN", "n": 6, "cada": 0.18, "volumen": 0.5 },
+          { "tipo": "hervor", "desde": "CALOR", "hasta": "MEJOR" },
+          { "tipo": "desliza", "en": "PERO1" },
+          { "tipo": "pop", "en": "FUERA" },
+          { "tipo": "abre", "en": "MEJOR" },
+          { "tipo": "brillo", "en": "QUIETAS" },
+          { "tipo": "pop", "en": "FRIOS" },
+          { "tipo": "sube", "en": "GIRA" },
+          { "tipo": "pop", "en": "MIDEN" },
+          { "tipo": "error", "en": "CABEN", "volumen": 0.7 },
+          { "tipo": "brillo", "en": "LUZ1" },
+          { "tipo": "hervor", "desde": "DERRITE", "hasta": "DIST", "volumen": 0.6 },
+          { "tipo": "teclas", "en": "FREC", "n": 4, "cada": 0.3, "volumen": 0.6 },
+          { "tipo": "pagado", "en": "KM" },
+          { "tipo": "desliza", "en": "MANDA" },
+          { "tipo": "toque", "en": "FRIO2" }
+        ]
+      }
+    </script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 78.3 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import * as THREE from "three";
+      import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
+      import { crearPorDentro } from "./comun/pordentro.js";
+      import { crearDetalle } from "./comun/detalle.js";
+      import * as UI from "./comun/pantallas.js";
+
+      await Promise.all(['700 50px "Inter"', '400 50px "Inter"', '700 50px "JetBrains Mono"', '400 50px "JetBrains Mono"'].map((f) => document.fonts.load(f)));
+      const C = crearPorDentro(THREE);
+      C.camera.far = 3000; C.camera.updateProjectionMatrix();
+      const X = crearDetalle(THREE, C);
+      const { v3, clamp, lerp, ramp, ventana, smooth, hash } = C;
+      const PI = Math.PI;
+      const T = (id, mas = 0) => C.cuando(id) + mas;
+      const frac = (x) => x - Math.floor(x);
+      const v2 = (x, y) => new THREE.Vector2(x, y);
+      const LAMBDA = 12.24;
+
+      X.fondo({ arriba: "#07080c", medio: "#131a26", abajo: "#090b0f" });
+      C.key.castShadow = false; C.key.intensity = 0; C.warm.intensity = 0; C.rim.intensity = 0; C.hemi.intensity = 0.3;
+      C.renderer.shadowMap.enabled = false;
+      C.renderer.localClippingEnabled = true;
+      C.scene.environmentIntensity = 0.5;
+      function rig(g, { key = [-25, 40, 40], ki = 2.4, rim = [15, 10, -30], ri = 1.3, fill = [0, 6, 20], fi = 40, fd = 90, kc = 0xfff3e6, rc = 0xa9c2ff } = {}) {
+        const k = new THREE.DirectionalLight(kc, ki); k.position.set(...key); g.add(k, k.target);
+        const r = new THREE.DirectionalLight(rc, ri); r.position.set(...rim); g.add(r, r.target);
+        const f = new THREE.PointLight(0xffdcb8, fi, fd, 2); f.position.set(...fill); g.add(f);
+        return { k, r, f };
+      }
+      const SETS = {
+        horno: { centro: v3(0, 0, 0) }, mag: { centro: v3(1000, 0, 0) }, guia: { centro: v3(0, 0, 1000) }, mol: { centro: v3(-1000, 0, 0) },
+        cuenco: { centro: v3(0, 0, -1000) }, plato: { centro: v3(1000, 0, 1000) }, puerta: { centro: v3(-1000, 0, 1000) }, final: { centro: v3(1000, 0, -1000) },
+      };
+      for (const k in SETS) { const g = new THREE.Group(); g.position.copy(SETS[k].centro); C.scene.add(g); SETS[k].grupo = g; }
+
+      // ---------------- materials ----------------
+      const metalTex = (c, rx = 2, ry = 2) => X.rep(X.tex.metal({ color: c }), rx, ry);
+      const acero = new THREE.MeshPhysicalMaterial({ color: 0xc6cad0, metalness: 1, roughness: 0.33, map: metalTex("#b6bac0"), clearcoat: 0.25, clearcoatRoughness: 0.3 });
+      const aceroOsc = new THREE.MeshPhysicalMaterial({ color: 0x6a6e75, metalness: 1, roughness: 0.38, map: metalTex("#72767d") });
+      const grafito = new THREE.MeshPhysicalMaterial({ color: 0x17191d, metalness: 0.35, roughness: 0.42, clearcoat: 0.6, clearcoatRoughness: 0.25 });
+      const negro = X.mat.negro();
+      const cobre = new THREE.MeshPhysicalMaterial({ color: 0xd27b4b, metalness: 1, roughness: 0.27, clearcoat: 0.35, side: THREE.DoubleSide });
+      const aluminio = new THREE.MeshPhysicalMaterial({ color: 0xd9dce0, metalness: 1, roughness: 0.36, map: metalTex("#cfd2d6", 1, 1), side: THREE.DoubleSide });
+      const ferrita = new THREE.MeshPhysicalMaterial({ color: 0x4a4c51, metalness: 0.15, roughness: 0.8, map: X.rep(X.tex.rayado({ fondo: "#55575c", linea: "rgba(0,0,0,0.12)", paso: 5 }), 2, 1), side: THREE.DoubleSide });
+      const cincado = new THREE.MeshPhysicalMaterial({ color: 0xaeb6c0, metalness: 1, roughness: 0.3, map: metalTex("#a7afba", 1, 1), side: THREE.DoubleSide });
+      const ceramica = new THREE.MeshPhysicalMaterial({ color: 0xe4dfd6, roughness: 0.3, clearcoat: 0.55, clearcoatRoughness: 0.15, envMapIntensity: 0.7 });
+      const cerCorte = new THREE.MeshStandardMaterial({ color: 0xcfc6b8, roughness: 0.9 });
+      const plastico = X.mat.plastico(0x2a2d33);
+      const bobTex = X.lienzo(256, 256, (g, w, h) => { g.fillStyle = "#b8653a"; g.fillRect(0, 0, w, h); for (let y = 0; y < h; y += 4) { g.fillStyle = `rgba(255,220,180,${0.15 + 0.1 * hash(y)})`; g.fillRect(0, y, w, 1.5); g.fillStyle = "rgba(60,20,5,0.35)"; g.fillRect(0, y + 2.5, w, 1); } }).tex;
+      const bobinado = new THREE.MeshPhysicalMaterial({ color: 0xe08a55, metalness: 0.9, roughness: 0.3, map: X.rep(bobTex, 1, 3), clearcoat: 0.6 });
+      const laminas = new THREE.MeshPhysicalMaterial({ color: 0x5d6067, metalness: 0.8, roughness: 0.42, map: X.rep(X.tex.rayado({ fondo: "#5a5d63", linea: "rgba(0,0,0,0.35)", paso: 4, diagonal: false }), 1, 2) });
+      const sopaTex = X.lienzo(512, 512, (g, w, h) => {
+        const gr = g.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w / 2); gr.addColorStop(0, "#bf5f2c"); gr.addColorStop(1, "#8c3c1a");
+        g.fillStyle = gr; g.fillRect(0, 0, w, h);
+        for (let i = 0; i < 300; i++) {
+          const x = hash(i * 1.3) * w, y = hash(i * 2.9) * h, r = 3 + hash(i * 4.1) * 11;
+          g.fillStyle = ["#d9772f", "#eaa24c", "#5d7d2c", "#c4502a", "#f2c27a", "#7a3216"][i % 6]; g.globalAlpha = 0.3 + 0.45 * hash(i * 5.3);
+          g.beginPath(); g.ellipse(x, y, r, r * (0.5 + 0.5 * hash(i * 6.7)), hash(i) * 3, 0, 7); g.fill();
+        }
+        g.globalAlpha = 1;
+        for (let i = 0; i < 110; i++) { const x = hash(i * 7.7) * w, y = hash(i * 8.3) * h, r = 2 + hash(i * 9.1) * 7; g.strokeStyle = "rgba(255,225,160,0.55)"; g.lineWidth = 1.6; g.beginPath(); g.arc(x, y, r, 0, 7); g.stroke(); }
+      }).tex;
+      const sopaMat = new THREE.MeshPhysicalMaterial({ map: sopaTex, roughness: 0.22, clearcoat: 1, clearcoatRoughness: 0.06 });
+      const chocoMat = new THREE.MeshPhysicalMaterial({ color: 0x23110a, roughness: 0.5, clearcoat: 0.3, clearcoatRoughness: 0.45, sheen: 0.25, sheenColor: new THREE.Color(0x7a4a2c), envMapIntensity: 0.7 });
+      const chocoFundido = new THREE.MeshPhysicalMaterial({ color: 0x2c160c, roughness: 0.24, clearcoat: 0.4, clearcoatRoughness: 0.16, specularIntensity: 0.3, envMapIntensity: 0.35 });
+      const charcoGeo = (() => { const g = new THREE.SphereGeometry(1, 64, 24, 0, 2 * PI, 0, PI / 2); const p = g.attributes.position; for (let i = 0; i < p.count; i++) { const x = p.getX(i), z = p.getZ(i), a = Math.atan2(z, x); const f = 1 + 0.06 * Math.sin(a * 3 + 1) + 0.04 * Math.sin(a * 5 + 2) + 0.025 * Math.sin(a * 9); p.setX(i, x * f); p.setZ(i, z * f); } g.computeVertexNormals(); return g; })();
+      const vidrioPlatoMat = new THREE.MeshPhysicalMaterial({ color: 0x9fb8ae, roughness: 0.06, transparent: true, opacity: 0.26, clearcoat: 1, clearcoatRoughness: 0.04, depthWrite: false, envMapIntensity: 1.0 });
+      const vidrioOscuro = new THREE.MeshPhysicalMaterial({ color: 0x2c3a36, roughness: 0.08, transparent: true, opacity: 0.2, clearcoat: 0.8, clearcoatRoughness: 0.05, depthWrite: false, envMapIntensity: 0.5 });
+      const ceramicaMate = new THREE.MeshPhysicalMaterial({ color: 0xbdb6ab, roughness: 0.55, clearcoat: 0.2, clearcoatRoughness: 0.4, envMapIntensity: 0.45 });
+      const sopaMate = new THREE.MeshPhysicalMaterial({ map: null, color: 0x7a3518, roughness: 0.55, clearcoat: 0.15 });
+      const brilloTex = (rgb) => X.lienzo(128, 128, (g, w, h) => { const r = g.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, w / 2); r.addColorStop(0, `rgba(${rgb},1)`); r.addColorStop(0.35, `rgba(${rgb},0.4)`); r.addColorStop(1, `rgba(${rgb},0)`); g.fillStyle = r; g.fillRect(0, 0, w, h); }).tex;
+      const basica = (color, op = 1, extra = {}) => new THREE.MeshBasicMaterial({ color, transparent: true, opacity: op, depthWrite: false, toneMapped: false, ...extra });
+
+      // heat colour map, same in JS and GLSL: navy (cold) → amber → white-gold (hot)
+      const GLSL_CALOR = `
+        vec3 calor(float k) {
+          k = clamp(k, 0.0, 1.0);
+          vec3 a = vec3(0.010, 0.022, 0.060), b = vec3(0.030, 0.060, 0.120), c = vec3(0.50, 0.11, 0.015), d = vec3(1.0, 0.42, 0.06), e = vec3(1.0, 0.86, 0.52);
+          if (k < 0.3) return mix(a, b, k / 0.3);
+          if (k < 0.6) return mix(b, c, (k - 0.3) / 0.3);
+          if (k < 0.85) return mix(c, d, (k - 0.6) / 0.25);
+          return mix(d, e, (k - 0.85) / 0.15);
+        }`;
+
+      // a thin white dimension line with end ticks (grows from the left with poner(k))
+      function regla(largo, { tic = 0.7, grosor = 0.07, color = 0xffffff } = {}) {
+        const g = new THREE.Group(), m = basica(color, 0.95);
+        const l = new THREE.Mesh(new THREE.PlaneGeometry(1, grosor), m); g.add(l);
+        const t0 = new THREE.Mesh(new THREE.PlaneGeometry(grosor, tic), m); t0.position.x = -largo / 2; g.add(t0);
+        const t1 = new THREE.Mesh(new THREE.PlaneGeometry(grosor, tic), m); g.add(t1);
+        const marcas = [];
+        for (let i = 1; i < 10; i++) { const mk = new THREE.Mesh(new THREE.PlaneGeometry(grosor * 0.6, tic * 0.35), basica(color, 0.5)); mk.position.set(-largo / 2 + (largo * i) / 10, -tic * 0.17, 0); g.add(mk); marcas.push(mk); }
+        function poner(k) {
+          g.visible = k > 0.001; const L = largo * clamp(k);
+          l.scale.x = Math.max(1e-3, L); l.position.x = -largo / 2 + L / 2; t1.position.x = -largo / 2 + L; t1.visible = k > 0.98;
+          marcas.forEach((mk, i) => (mk.visible = (i + 1) / 10 <= k));
+        }
+        poner(0);
+        return { grupo: g, poner, largo };
+      }
+      // samples a polyline by arc length
+      function camino(pts) {
+        const seg = []; let L = 0;
+        for (let i = 0; i < pts.length - 1; i++) { const l = pts[i].distanceTo(pts[i + 1]); seg.push({ a: pts[i], b: pts[i + 1], l, s0: L }); L += l; }
+        const dir = new THREE.Vector3();
+        function at(s, out, nrm) {
+          s = clamp(s, 0, L); let k = 0; while (k < seg.length - 1 && s > seg[k].s0 + seg[k].l) k++;
+          const g = seg[k], u = g.l ? (s - g.s0) / g.l : 0;
+          out.copy(g.a).lerp(g.b, u);
+          if (nrm) { dir.copy(g.b).sub(g.a).normalize(); nrm.set(-dir.y, dir.x, 0); }
+          return out;
+        }
+        return { L, at, seg };
+      }
+      // reflections of a ray inside a rectangle (x0..x1, y0..y1) in the XY plane
+      function reflejos(p0, d0, largo, b) {
+        const pts = [p0.clone()]; let p = p0.clone(); const d = d0.clone().normalize(); let resto = largo;
+        for (let k = 0; k < 30 && resto > 1e-3; k++) {
+          const tx = d.x > 0 ? (b.x1 - p.x) / d.x : d.x < 0 ? (b.x0 - p.x) / d.x : Infinity;
+          const ty = d.y > 0 ? (b.y1 - p.y) / d.y : d.y < 0 ? (b.y0 - p.y) / d.y : Infinity;
+          const tt = Math.min(tx, ty, resto);
+          p = p.clone().addScaledVector(d, tt); pts.push(p); resto -= tt;
+          if (tt === tx) d.x = -d.x; else if (tt === ty) d.y = -d.y;
+        }
+        return camino(pts);
+      }
+      const N0 = new THREE.Vector3();
+
+      // ===================================================================================
+      // the magnetron (used in the oven, big in its own set and small in the diagram)
+      // ===================================================================================
+      const corteMag = new THREE.Plane(v3(0, 0, -1), 1e5);
+      function magnetron({ esc = 1, corte = false } = {}) {
+        const g = new THREE.Group(); g.scale.setScalar(esc);
+        const cl = (m) => { if (!corte) return m; const c = m.clone(); c.clippingPlanes = [corteMag]; c.side = THREE.DoubleSide; return c; };
+        const mCobre = cl(cobre), mAlu = cl(aluminio), mFer = cl(ferrita), mZinc = cl(cincado), mAcero = cl(aceroOsc), mCer = cl(ceramica);
+        // anode: copper tube with 10 vanes and two strap rings
+        const tubo = new THREE.Mesh(new THREE.LatheGeometry([v2(1.5, -1.2), v2(2.4, -1.2), v2(2.4, 1.2), v2(1.5, 1.2), v2(1.5, -1.2)], 96), mCobre); g.add(tubo);
+        const alaGeo = new RoundedBoxGeometry(1.05, 2.4, 0.2, 2, 0.04);
+        for (let i = 0; i < 10; i++) { const a = (i / 10) * 2 * PI; const m = new THREE.Mesh(alaGeo, mCobre); m.position.set(Math.cos(a) * 1.02, 0, Math.sin(a) * 1.02); m.rotation.y = -a; g.add(m); }
+        for (const [r, y] of [[0.78, 1.25], [1.18, 1.25], [0.78, -1.25], [1.18, -1.25]]) { const s = new THREE.Mesh(new THREE.TorusGeometry(r, 0.04, 8, 96), mCobre); s.rotation.x = PI / 2; s.position.y = y; g.add(s); }
+        // cathode: a glowing tungsten helix between two end hats, on its rod
+        class Helice extends THREE.Curve { getPoint(u, out = new THREE.Vector3()) { const a = u * 2 * PI * 9; return out.set(Math.cos(a) * 0.2, -1.25 + 2.5 * u, Math.sin(a) * 0.2); } }
+        const filMat = new THREE.MeshStandardMaterial({ color: 0xffc080, emissive: 0xff7a2a, emissiveIntensity: 1.3, roughness: 0.4 });
+        const fil = new THREE.Mesh(new THREE.TubeGeometry(new Helice(), 420, 0.032, 6, false), filMat); g.add(fil);
+        for (const y of [-1.33, 1.33]) { const s = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.42, 0.07, 40), mAcero); s.position.y = y; g.add(s); }
+        const vara = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 4.4, 12), mAcero); vara.position.y = -3.4; g.add(vara);
+        // pole pieces and ring magnets
+        const pol1 = new THREE.Mesh(new THREE.CylinderGeometry(1.5, 0.55, 0.9, 64, 1, true), mAcero); pol1.position.y = 1.7; g.add(pol1);
+        const pol2 = new THREE.Mesh(new THREE.CylinderGeometry(0.55, 1.5, 0.9, 64, 1, true), mAcero); pol2.position.y = -1.7; g.add(pol2);
+        const anillo = [v2(1.0, -0.5), v2(2.7, -0.5), v2(2.7, 0.5), v2(1.0, 0.5), v2(1.0, -0.5)];
+        const imanSup = new THREE.Mesh(new THREE.LatheGeometry(anillo, 96), mFer); imanSup.position.y = 2.7; g.add(imanSup);
+        const imanInf = new THREE.Mesh(new THREE.LatheGeometry(anillo, 96), mFer); imanInf.position.y = -2.7; g.add(imanInf);
+        // cooling fins around the anode
+        const sh = C.rrShape(7.6, 7.6, 0.5); const hole = new THREE.Path(); hole.absarc(0, 0, 2.42, 0, 2 * PI, true); sh.holes.push(hole);
+        const aletaGeo = C.slab(sh, 0.07);
+        const aletas = [];
+        for (let k = 0; k < 5; k++) { const a = new THREE.Mesh(aletaGeo, mAlu); a.position.y = -1.05 + k * 0.5; g.add(a); aletas.push(a); }
+        // steel frame (yoke)
+        const ysup = new THREE.Mesh(new RoundedBoxGeometry(8.4, 0.32, 8.4, 2, 0.1), mZinc); ysup.position.y = 3.36; g.add(ysup);
+        const yinf = new THREE.Mesh(new RoundedBoxGeometry(8.4, 0.32, 8.4, 2, 0.1), mZinc); yinf.position.y = -3.36; g.add(yinf);
+        for (const x of [-4.06, 4.06]) { const s = new THREE.Mesh(new RoundedBoxGeometry(0.3, 6.7, 8.4, 2, 0.1), mZinc); s.position.x = x; g.add(s); }
+        // output: ribbed ceramic insulator, RF gasket and the antenna cap
+        const ais = new THREE.Mesh(new THREE.LatheGeometry(Array.from({ length: 13 }, (_, i) => v2(i % 2 ? 0.66 : 0.74, 3.5 + i * 0.1)).concat([v2(0.001, 4.7)]), 64), mCer); g.add(ais);
+        const junta = new THREE.Mesh(new THREE.TorusGeometry(0.98, 0.12, 10, 64), mAlu); junta.rotation.x = PI / 2; junta.position.y = 3.6; g.add(junta);
+        const capu = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.56, 0.6, 48), mAlu); capu.position.y = 5.0; g.add(capu);
+        const cupula = new THREE.Mesh(new THREE.SphereGeometry(0.5, 48, 24, 0, 2 * PI, 0, PI / 2), mAlu); cupula.position.y = 5.3; g.add(cupula);
+        // filter box with feed-through terminals and two choke coils
+        const filtro = new THREE.Mesh(new RoundedBoxGeometry(4.6, 2.4, 3.6, 3, 0.2), mZinc); filtro.position.y = -4.75; g.add(filtro);
+        for (const x of [-0.9, 0.9]) {
+          const t = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.22, 1.0, 20), mCer); t.rotation.x = PI / 2; t.position.set(x, -4.9, 2.2); g.add(t);
+          const p = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.06, 0.8), mAlu); p.position.set(x, -4.9, 2.9); g.add(p);
+          class Bob extends THREE.Curve { getPoint(u, out = new THREE.Vector3()) { const a = u * 2 * PI * 7; return out.set(x + Math.cos(a) * 0.3, -4.2 + Math.sin(a) * 0.3, -1.0 + 2.0 * u); } }
+          const b = new THREE.Mesh(new THREE.TubeGeometry(new Bob(), 300, 0.05, 6, false), mCobre); b.position.y = 0; g.add(b);
+        }
+        return { grupo: g, tubo, fil, filMat, imanSup, imanInf, aletas, ysup, ais, capu, filtro };
+      }
+
+      // ===================================================================================
+      // a ceramic bowl (lathe), with soup; medio: only the back half, for the cutaway
+      // ===================================================================================
+      // bowl profile: smooth outer and inner walls (splines), flat foot
+      const curva = (pts, n) => new THREE.SplineCurve(pts.map(([x, y]) => v2(x, y))).getPoints(n).map((p) => [p.x, p.y]);
+      const OUT = curva([[4.1, 0.45], [5.8, 2.0], [7.3, 4.2], [7.9, 6.1], [8.0, 6.6]], 18);
+      const INN = curva([[7.6, 6.6], [7.4, 6.0], [6.9, 4.3], [5.4, 2.4], [3.5, 1.25], [0, 1.05]], 24);
+      const PERFIL = [[0, 0.5], [3.3, 0.5], [3.4, 0], [4.0, 0], ...OUT, [7.85, 6.75], ...INN];
+      const INTERIOR = [[7.22, 5.4], ...INN.filter(([x, y]) => y < 5.3)];
+      function cuenco({ medio = false, sopa = sopaMat, ceram = ceramica } = {}) {
+        const g = new THREE.Group();
+        const m = new THREE.Mesh(new THREE.LatheGeometry(PERFIL.map(([x, y]) => v2(x, y)), 128, medio ? PI / 2 : 0, medio ? PI : 2 * PI), ceram); g.add(m);
+        const linea = new THREE.Mesh(new THREE.TorusGeometry(7.93, 0.06, 8, 160, medio ? PI : 2 * PI), new THREE.MeshPhysicalMaterial({ color: 0x24476f, roughness: 0.3, clearcoat: 1 }));
+        linea.rotation.x = -PI / 2; linea.position.y = 6.45; g.add(linea);
+        const s = new THREE.Mesh(new THREE.CircleGeometry(7.22, 128, 0, medio ? PI : 2 * PI), sopa); s.rotation.x = -PI / 2; s.position.y = 5.4; g.add(s);
+        return { grupo: g, sopa: s };
+      }
+      // steam over a bowl: soft sprites rising and fading, deterministic in t
+      const vaporTex = X.lienzo(128, 128, (g, w, h) => { const img = g.createImageData(w, h), d = img.data; for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) { const dx = (x - 64) / 64, dy = (y - 64) / 64, r = Math.hypot(dx, dy); const n = 0.6 * X.ruido(x / 12, y / 12, 3) + 0.4 * X.ruido(x / 5, y / 5, 4); const a = clamp(1 - r) ** 1.7 * (0.4 + 0.8 * n); const i = (y * w + x) * 4; d[i] = d[i + 1] = d[i + 2] = 240; d[i + 3] = clamp(a) * 255; } g.putImageData(img, 0, 0); }).tex;
+      function vapor(n = 7) {
+        const g = new THREE.Group(), items = [];
+        for (let i = 0; i < n; i++) { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: vaporTex, transparent: true, depthWrite: false, opacity: 0 })); g.add(s); items.push(s); }
+        return { grupo: g, actualizar(t, k = 1) { items.forEach((s, i) => { const f = frac(t * 0.22 + hash(i * 3.3)); s.position.set((hash(i * 5.1) - 0.5) * 7 + Math.sin(t * 0.7 + i) * 0.8, f * 11, (hash(i * 7.3) - 0.5) * 5); s.scale.setScalar(3 + f * 6); s.material.opacity = 0.16 * Math.sin(PI * f) * k; s.material.rotation = i + t * 0.15; }); } };
+      }
+
+      // ===================================================================================
+      // SET 1 · the oven, like a product ad (and in x-ray)
+      // ===================================================================================
+      const A = SETS.horno.grupo;
+      const rigA = rig(A, { key: [-60, 90, 110], ki: 2.0, rim: [80, 50, -90], ri: 1.8, fill: [-40, 30, 90], fi: 3800, fd: 320 });
+      A.add(X.motas({ n: 600, caja: [360, 200, 160], centro: v3(0, 40, -120), tam: 0.7, opacidad: 0.5 }).grupo);
+      const sueloMat = new THREE.ShaderMaterial({ transparent: true, depthWrite: false,
+        vertexShader: "varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0); }",
+        fragmentShader: "varying vec2 vUv; void main(){ vec2 p = (vUv - 0.5) * 2.0; float r = length(p); float a = 1.0 - smoothstep(0.2, 1.0, r); float sh = smoothstep(0.32, 0.06, length(p * vec2(1.0, 1.25))); vec3 c = mix(vec3(0.020, 0.022, 0.028), vec3(0.006, 0.007, 0.009), sh * 0.9); gl_FragColor = vec4(c, a * 0.96); }" });
+      const suelo = new THREE.Mesh(new THREE.PlaneGeometry(240, 240), sueloMat); suelo.rotation.x = -PI / 2; suelo.position.y = -0.8; A.add(suelo);
+      const HO = new THREE.Group(); A.add(HO);
+      const W = 52, H = 31, D = 40, ZF = 20;
+      const CAV = { x0: -22.5, x1: 8.5, y0: 4.5, y1: 26.5, z0: -16, z1: 19.2 };
+      // the outside (fades away in x-ray): shell, front, door and control panel use their own materials
+      const exterior = new THREE.Group(); HO.add(exterior);
+      const aceroE = acero.clone(), aceroOscE = aceroOsc.clone(), grafitoE = grafito.clone(), negroE = negro.clone();
+      const losa = (w, h, d, mat, x, y, z, r = 0.42, padre = exterior) => { const m = new THREE.Mesh(new RoundedBoxGeometry(w, h, d, 3, r), mat); m.position.set(x, y, z); padre.add(m); return m; };
+      losa(W, 0.9, D, aceroE, 0, H - 0.45, 0);
+      losa(0.9, H, D, aceroE, -W / 2 + 0.45, H / 2, 0);
+      losa(0.9, H, D, aceroE, W / 2 - 0.45, H / 2, 0);
+      losa(W, H, 0.9, aceroOscE, 0, H / 2, -D / 2 + 0.45);
+      losa(W, 0.9, D, grafitoE, 0, 0.45, 0);
+      const frente = new THREE.Mesh(new THREE.ExtrudeGeometry(C.rrShape(W, H, 1.2, [[(CAV.x0 + CAV.x1) / 2, (CAV.y0 + CAV.y1) / 2 - H / 2, CAV.x1 - CAV.x0, CAV.y1 - CAV.y0, 0.8]]), { depth: 0.8, bevelEnabled: false, curveSegments: 8 }), grafitoE);
+      frente.position.set(0, H / 2, ZF - 0.8); exterior.add(frente);
+      // side vents (right side) and feet
+      const ventGeo = new THREE.PlaneGeometry(2.6, 0.32); const ventMat = new THREE.MeshBasicMaterial({ color: 0x050506 });
+      const vents = new THREE.InstancedMesh(ventGeo, ventMat, 48); { const dm = new THREE.Object3D(); let k = 0; for (let r = 0; r < 12; r++) for (let c = 0; c < 4; c++) { dm.position.set(W / 2 + 0.02, 17 + r * 0.95, -15 + c * 3.4); dm.rotation.set(0, PI / 2, 0); dm.updateMatrix(); vents.setMatrixAt(k++, dm.matrix); } }
+      exterior.add(vents);
+      for (const [x, z] of [[-22, -16], [22, -16], [-22, 16], [22, 16]]) { const p = new THREE.Mesh(new THREE.CylinderGeometry(1.5, 1.6, 0.8, 24), grafitoE); p.position.set(x, -0.4, z); exterior.add(p); }
+      // door on its hinge: black frame, perforated metal mesh and dark glass
+      const puertaG = new THREE.Group(); puertaG.position.set(-W / 2, 0, ZF); exterior.add(puertaG);
+      const PW = 37.6, PH = 30.4, VEN = { w: 27.5, h: 19.5, cx: -2.2 };
+      const marco = new THREE.Mesh(new THREE.ExtrudeGeometry(C.rrShape(PW, PH, 1.0, [[VEN.cx, 0.3, VEN.w, VEN.h, 0.9]]), { depth: 1.5, bevelEnabled: true, bevelThickness: 0.15, bevelSize: 0.15, bevelSegments: 2, curveSegments: 8 }), negroE);
+      marco.position.set(PW / 2 + 0.1, H / 2, 0.05); puertaG.add(marco);
+      const rejTex = X.tex.perforada({ cols: 12, filas: 12, radio: 0.34 }); X.rep(rejTex, (VEN.w + 0.6) / 0.26 / 12, (VEN.h + 0.6) / 0.26 / 12);
+      const rejMat = new THREE.MeshStandardMaterial({ color: 0x101215, metalness: 0.6, roughness: 0.45, alphaMap: rejTex, transparent: true, depthWrite: false, side: THREE.DoubleSide });
+      const rejH = new THREE.Mesh(new THREE.PlaneGeometry(VEN.w + 0.6, VEN.h + 0.6), rejMat); rejH.position.set(PW / 2 + 0.1 + VEN.cx, H / 2 + 0.3, 0.6); puertaG.add(rejH);
+      const vidrioMat = new THREE.MeshPhysicalMaterial({ color: 0x14171c, roughness: 0.04, transparent: true, opacity: 0.26, clearcoat: 1, clearcoatRoughness: 0.03, envMapIntensity: 1.8, depthWrite: false });
+      const vidrioH = new THREE.Mesh(new THREE.PlaneGeometry(VEN.w + 1.2, VEN.h + 1.2), vidrioMat); vidrioH.position.set(PW / 2 + 0.1 + VEN.cx, H / 2 + 0.3, 1.63); puertaG.add(vidrioH);
+      const asa = new THREE.Mesh(new RoundedBoxGeometry(1.3, 22, 1.6, 3, 0.55), aceroE); asa.position.set(PW - 2.0, H / 2, 3.2); puertaG.add(asa);
+      for (const y of [H / 2 - 9.5, H / 2 + 9.5]) { const s = new THREE.Mesh(new RoundedBoxGeometry(1.0, 1.4, 1.8, 2, 0.3), aceroE); s.position.set(PW - 2.0, y, 2.0); puertaG.add(s); }
+      C.pieza("rejH", rejH, v3(4, -2, 0));
+      // control panel: black glass, amber timer display, knurled knob and two keys
+      const PX = 18.9;
+      losa(13.9, H - 0.6, 1.4, negroE, PX, H / 2, ZF + 0.7, 0.5);
+      const relojL = X.lienzo(384, 160, () => {});
+      const reloj = new THREE.Mesh(new THREE.PlaneGeometry(9.4, 3.9), new THREE.MeshBasicMaterial({ map: relojL.tex, toneMapped: false, transparent: true })); reloj.position.set(PX, 25.0, ZF + 1.43); exterior.add(reloj);
+      let relojClave = null;
+      function pintaReloj(txt) {
+        if (txt === relojClave) return; relojClave = txt;
+        const g = relojL.g; g.clearRect(0, 0, 384, 160); g.fillStyle = "#040506"; g.beginPath(); g.roundRect(0, 0, 384, 160, 18); g.fill();
+        g.font = '700 100px "JetBrains Mono", monospace'; g.textAlign = "center"; g.textBaseline = "middle";
+        g.fillStyle = "rgba(255,160,60,0.08)"; g.fillText("8:88", 200, 86);
+        g.shadowColor = "rgba(255,150,50,0.9)"; g.shadowBlur = 14; g.fillStyle = "#ffb54a"; g.fillText(txt, 200, 86); g.shadowBlur = 0;
+        g.strokeStyle = "#ffb54a"; g.lineWidth = 5; g.beginPath(); for (let k = 0; k <= 30; k++) g.lineTo(22 + k * 1.2, 40 + Math.sin(k * 0.6) * 9); g.stroke();
+        relojL.tex.needsUpdate = true;
+      }
+      const pomo = new THREE.Group(); pomo.position.set(PX, 15.6, ZF + 1.4); exterior.add(pomo);
+      { const b = new THREE.Mesh(new THREE.CylinderGeometry(3.4, 3.4, 0.3, 64), aceroOscE); b.rotation.x = PI / 2; pomo.add(b);
+        const c = new THREE.Mesh(new THREE.CylinderGeometry(2.75, 2.9, 2.0, 64), aceroE); c.rotation.x = PI / 2; c.position.z = 1.15; pomo.add(c);
+        const est = new THREE.InstancedMesh(new THREE.BoxGeometry(0.13, 0.2, 1.7), aceroOscE, 72); const dm = new THREE.Object3D();
+        for (let i = 0; i < 72; i++) { const a = (i / 72) * 2 * PI; dm.position.set(Math.cos(a) * 2.85, Math.sin(a) * 2.85, 1.15); dm.rotation.set(0, 0, a); dm.updateMatrix(); est.setMatrixAt(i, dm.matrix); }
+        pomo.add(est);
+        const marca = new THREE.Mesh(new THREE.PlaneGeometry(0.3, 1.6), basica(0xffb54a, 1)); marca.position.set(0, 1.6, 2.17); pomo.add(marca); }
+      const teclaL = X.lienzo(256, 128, (g, w, h) => { g.fillStyle = "#16181c"; g.fillRect(0, 0, w, h); g.fillStyle = "#e9ecef"; g.beginPath(); g.moveTo(98, 34); g.lineTo(98, 94); g.lineTo(148, 64); g.closePath(); g.fill(); });
+      const teclaL2 = X.lienzo(256, 128, (g, w, h) => { g.fillStyle = "#16181c"; g.fillRect(0, 0, w, h); g.fillStyle = "#e9ecef"; g.fillRect(104, 40, 48, 48); });
+      [[teclaL, 7.6], [teclaL2, 4.6]].forEach(([lz, y]) => { const k = new THREE.Mesh(new RoundedBoxGeometry(9.0, 2.2, 0.6, 3, 0.25), grafitoE); k.position.set(PX, y, ZF + 1.6); exterior.add(k); const f = new THREE.Mesh(new THREE.PlaneGeometry(8.6, 2.0), new THREE.MeshBasicMaterial({ map: lz.tex, transparent: true, color: 0xb0b0b0 })); f.position.set(PX, y, ZF + 1.91); exterior.add(f); });
+      // the cavity (enamel), the mica cover, the lamp and the turntable
+      const esmalte = new THREE.MeshStandardMaterial({ color: 0x8c8579, roughness: 0.6, metalness: 0.05, emissive: 0x241f18, side: THREE.BackSide, transparent: true, opacity: 1 });
+      const cavidad = new THREE.Mesh(new THREE.BoxGeometry(CAV.x1 - CAV.x0, CAV.y1 - CAV.y0, CAV.z1 - CAV.z0), esmalte);
+      cavidad.position.set((CAV.x0 + CAV.x1) / 2, (CAV.y0 + CAV.y1) / 2, (CAV.z0 + CAV.z1) / 2); HO.add(cavidad);
+      const mica = new THREE.Mesh(new THREE.PlaneGeometry(6, 6), new THREE.MeshStandardMaterial({ color: 0xcbb07a, roughness: 0.6, transparent: true })); mica.rotation.y = -PI / 2; mica.position.set(CAV.x1 - 0.03, 21, -6); HO.add(mica);
+      const luzCav = new THREE.PointLight(0xffc88a, 0, 50, 2); luzCav.position.set(-7, 24.5, 6); HO.add(luzCav);
+      const PLX = -7, PLZ = 1.5, PLY = CAV.y0 + 0.9;
+      const platoG = new THREE.Group(); platoG.position.set(PLX, PLY, PLZ); HO.add(platoG);
+      const platoV = new THREE.Mesh(new THREE.CylinderGeometry(13, 12.6, 0.5, 96), vidrioPlatoMat); platoG.add(platoV);
+      const rodillo = new THREE.Mesh(new THREE.TorusGeometry(8, 0.32, 12, 64), grafito); rodillo.rotation.x = PI / 2; rodillo.position.set(PLX, PLY - 0.55, PLZ); HO.add(rodillo);
+      const bowlH = cuenco(); bowlH.grupo.scale.setScalar(0.82); bowlH.grupo.position.y = 0.25; platoG.add(bowlH.grupo);
+      const vaporH = vapor(); vaporH.grupo.position.set(0, 4.8, 0); platoG.add(vaporH.grupo);
+      // chocolate bar for the ending (in the oven: lies on the still plate)
+      function tableta() {
+        const g = new THREE.Group();
+        const base = new THREE.Mesh(new RoundedBoxGeometry(7.6, 0.45, 20.4, 3, 0.18), chocoMat); base.position.y = 0.22; g.add(base);
+        const seg = new THREE.InstancedMesh(new RoundedBoxGeometry(2.25, 0.7, 2.25, 3, 0.28), chocoMat, 24);
+        const pos = []; for (let i = 0; i < 8; i++) for (let j = 0; j < 3; j++) pos.push(v3(-2.45 + j * 2.45, 0.75, -8.6 + i * 2.457));
+        g.add(seg);
+        const charcos = [-LAMBDA / 2, 0, LAMBDA / 2].map((z, i) => { const m = new THREE.Mesh(charcoGeo, chocoFundido); m.rotation.y = i * 2.1; m.position.set(0, 0.45, z); g.add(m); return m; });
+        const dm = new THREE.Object3D();
+        function fundir(k) {
+          const r = 0.2 + 2.2 * k;
+          pos.forEach((p, i) => {
+            let f = 0; for (const c of charcos) { const d = Math.hypot(p.x - c.position.x, p.z - c.position.z); f = Math.max(f, clamp((r - d) / 1.6 + 0.5)); }
+            dm.position.set(p.x, 0.45 + 0.35 * (1 - 0.75 * f), p.z); dm.scale.set(1 + 0.12 * f, 1 - 0.75 * f, 1 + 0.12 * f); dm.updateMatrix(); seg.setMatrixAt(i, dm.matrix);
+          });
+          seg.instanceMatrix.needsUpdate = true;
+          charcos.forEach((c) => { c.visible = k > 0.01; c.scale.set(r * 0.95, 0.3 + 0.35 * k, r * 0.85); });
+        }
+        fundir(0);
+        return { grupo: g, fundir, charcos };
+      }
+      const tabH = tableta(); tabH.grupo.position.y = 0.25; tabH.grupo.rotation.y = 0.5; platoG.add(tabH.grupo);
+      // inside parts, visible in x-ray
+      const comp = new THREE.Group(); HO.add(comp);
+      const guiaH = new THREE.Mesh(new RoundedBoxGeometry(5.6, 9.2, 7.2, 2, 0.3), acero); guiaH.position.set(11.8, 21, -6); comp.add(guiaH);
+      C.pieza("guiaH", guiaH, v3(-1, 4.6, 0));
+      const magH = magnetron({ esc: 0.8 }); magH.grupo.rotation.z = PI / 2; magH.grupo.position.set(19.6, 21, -6); comp.add(magH.grupo);
+      C.pieza("magH", magH.grupo, v3(0, 0, 4.2));
+      const transf = new THREE.Group(); transf.position.set(17.8, 5.6, 6); comp.add(transf);
+      { const n = new THREE.Mesh(new THREE.BoxGeometry(9.6, 7.6, 6.4), laminas); transf.add(n);
+        const b = new THREE.Mesh(new RoundedBoxGeometry(4.4, 6.0, 9.4, 3, 0.9), bobinado); transf.add(b);
+        for (const x of [-4.9, 4.9]) { const s = new THREE.Mesh(new THREE.BoxGeometry(0.4, 8.0, 7.0), aceroOsc); s.position.x = x; transf.add(s); } }
+      C.pieza("transf", transf, v3(0, -2, 4.7));
+      const cond = new THREE.Mesh(new THREE.CylinderGeometry(1.9, 1.9, 6.6, 40), aluminio); cond.position.set(12.6, 4.4, 15.2); comp.add(cond);
+      const vent = new THREE.Group(); vent.position.set(19.0, 12.5, -15.6); comp.add(vent);
+      { const aro = new THREE.Mesh(new THREE.TorusGeometry(4.3, 0.35, 10, 64), plastico); vent.add(aro);
+        const cubo = new THREE.Mesh(new THREE.CylinderGeometry(1.2, 1.2, 1.4, 32), plastico); cubo.rotation.x = PI / 2; vent.add(cubo);
+        for (let i = 0; i < 7; i++) { const p = new THREE.Mesh(new RoundedBoxGeometry(1.8, 3.2, 0.14, 2, 0.06), plastico); const a = (i / 7) * 2 * PI; p.position.set(Math.cos(a) * 2.5, Math.sin(a) * 2.5, 0); p.rotation.set(0, 0.5, a - PI / 2); vent.add(p); } }
+      C.pieza("ventilador", vent, v3(0, 4.3, 0));
+      const pcb = new THREE.Mesh(new THREE.PlaneGeometry(11, 20), new THREE.MeshPhysicalMaterial({ color: 0x0f3b2a, roughness: 0.5, clearcoat: 0.6, map: X.lienzo(256, 512, (g, w, h) => { g.fillStyle = "#1a4a35"; g.fillRect(0, 0, w, h); g.strokeStyle = "rgba(210,170,90,0.6)"; g.lineWidth = 3; for (let i = 0; i < 40; i++) { g.beginPath(); let x = hash(i) * w, y = hash(i + 1) * h; g.moveTo(x, y); for (let k = 0; k < 4; k++) { if (k % 2) y += (hash(i * 3 + k) - 0.5) * 200; else x += (hash(i * 5 + k) - 0.5) * 160; g.lineTo(x, y); } g.stroke(); } for (let i = 0; i < 14; i++) { g.fillStyle = "#111"; g.fillRect(hash(i * 7) * (w - 60), hash(i * 9) * (h - 40), 30 + hash(i) * 40, 20 + hash(i * 2) * 30); } }).tex }));
+      pcb.position.set(PX, 16, ZF - 1.4); comp.add(pcb);
+      const cableMat = (c) => new THREE.MeshPhysicalMaterial({ color: c, roughness: 0.5, clearcoat: 0.6 });
+      for (const [pts, c] of [[[v3(14, 8.8, 4), v3(13, 12, 0), v3(15, 17, -4), v3(16.5, 18.5, -6)], 0xcc2a22], [[v3(13, 7.7, 15), v3(13.5, 11, 10), v3(16, 16, 2), v3(18, 17.6, -2.5)], 0x1a1a1a], [[v3(20, 9.4, 8), v3(21.5, 13, 12), v3(20.5, 18, 16), v3(19.5, 22, 17.5)], 0xe8e8e8]]) {
+        const tubo = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 48, 0.2, 8, false), cableMat(c)); comp.add(tubo);
+      }
+      const motor = new THREE.Mesh(new THREE.CylinderGeometry(2.2, 2.2, 2.2, 32), aceroOsc); motor.position.set(PLX, 2.4, PLZ); comp.add(motor);
+      // x-ray look: edges of the outside and of the cavity
+      const lineaRX = new THREE.LineBasicMaterial({ color: 0xcfe0ff, transparent: true, opacity: 0, depthWrite: false, toneMapped: false });
+      const rx = new THREE.Group(); HO.add(rx);
+      { const e1 = new THREE.LineSegments(new THREE.EdgesGeometry(new RoundedBoxGeometry(W, H, D, 2, 1.2), 30), lineaRX); e1.position.set(0, H / 2, 0); rx.add(e1);
+        const e2 = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(CAV.x1 - CAV.x0, CAV.y1 - CAV.y0, CAV.z1 - CAV.z0)), lineaRX); e2.position.copy(cavidad.position); rx.add(e2);
+        const e3 = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(PW, PH, 1.6)), lineaRX); e3.position.set(-W / 2 + PW / 2, H / 2, ZF + 0.8); rx.add(e3); }
+      const veloRX = new THREE.Mesh(new THREE.BoxGeometry(W, H, D), new THREE.MeshBasicMaterial({ color: 0x7fa8ff, transparent: true, opacity: 0, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide, toneMapped: false })); veloRX.position.set(0, H / 2, 0); rx.add(veloRX);
+      // waves bouncing inside the 3D cavity (x-ray shot)
+      const rayosH = X.cinta({ hebras: 6, puntos: 120, ancho: 0.22, minPx: 2.4, intensidad: 1.3, ondas: 1.4, vel: 0.9 }); HO.add(rayosH.malla);
+      const rayos3D = Array.from({ length: 6 }, (_, i) => {
+        const pts = [v3(CAV.x1 - 0.2, 21, -6)]; let p = pts[0].clone(); const d = v3(-1, -0.25 - 0.5 * hash(i * 2.1), (hash(i * 3.7) - 0.5) * 1.2).normalize();
+        const B = { x0: CAV.x0 + 0.3, x1: CAV.x1 - 0.3, y0: CAV.y0 + 0.3, y1: CAV.y1 - 0.3, z0: CAV.z0 + 0.3, z1: CAV.z1 - 0.3 };
+        let resto = 160;
+        for (let k = 0; k < 30 && resto > 0; k++) {
+          const ts = ["x", "y", "z"].map((a) => (d[a] > 0 ? (B[a + "1"] - p[a]) / d[a] : d[a] < 0 ? (B[a + "0"] - p[a]) / d[a] : Infinity));
+          const tt = Math.min(...ts, resto); p = p.clone().addScaledVector(d, tt); pts.push(p); resto -= tt;
+          const ax = ts.indexOf(tt); if (ax >= 0) d[["x", "y", "z"][ax]] *= -1;
+        }
+        return { c: camino(pts), t0: hash(i * 9.1) * 3 };
+      });
+
+      let estadoH = { rx: 0, puerta: 0, luz: 1, gira: 1, choco: false, rayos: 0, vapor: 1 };
+      function updHorno(t, e) {
+        const s = estadoH;
+        // x-ray: the outside fades, the edges and the inside parts appear
+        exterior.visible = s.rx < 0.99;
+        exterior.traverse((o) => { if (o.material && o.material !== rejMat && o.material !== vidrioMat) { o.material.transparent = s.rx > 0.001; o.material.opacity = 1 - s.rx; o.material.depthWrite = s.rx < 0.001; } });
+        rejMat.opacity = 1 - s.rx; vidrioMat.opacity = 0.26 * (1 - s.rx);
+        comp.visible = s.rx > 0.01;
+        lineaRX.opacity = 0.42 * s.rx; veloRX.material.opacity = 0.03 * s.rx;
+        esmalte.opacity = 1 - 0.85 * s.rx; esmalte.depthWrite = s.rx < 0.001; mica.material.opacity = 1 - 0.6 * s.rx;
+        puertaG.rotation.y = -s.puerta * 1.95;
+        // with the door open the camera looks inside: the studio key would flood the cavity (no shadows), so the warm lamp leads
+        rigA.k.intensity = s.puerta ? 0.55 : 2.0; rigA.f.intensity = s.puerta ? 900 : 3800;
+        luzCav.intensity = (s.puerta ? 150 : 110) * s.luz;
+        platoG.rotation.y = s.gira ? t * 0.55 : 0.3;
+        bowlH.grupo.visible = !s.choco; tabH.grupo.visible = s.choco;
+        if (s.choco) tabH.fundir(s.funde || 0);
+        vaporH.actualizar(t, s.vapor);
+        vent.rotation.z = -t * 9;
+        pintaReloj(`${Math.floor(Math.max(0, 90 - t) / 60)}:${String(Math.floor(Math.max(0, 90 - t)) % 60).padStart(2, "0")}`);
+        magH.filMat.emissiveIntensity = 1.3 * s.rx;
+        // bouncing rays in the cavity
+        rayosH.malla.visible = s.rayos > 0.01;
+        if (rayosH.malla.visible) rayos3D.forEach((r, i) => {
+          const sh = frac((t - r.t0) * 0.32) * (r.c.L + 30), s0 = Math.max(0, sh - 30);
+          rayosH.poner(i, (u, out) => { r.c.at(lerp(s0, Math.min(sh, r.c.L), u), out); out.y += Math.sin(((s0 + u * 30) / LAMBDA) * 2 * PI) * 0.6; return out; }, { peso: (u) => s.rayos * smooth(clamp(u * 2.2)) * (sh < r.c.L + 1 ? 1 : 0), fase: hash(i) });
+        });
+        rayosH.tiempo(t);
+      }
+
+      // ===================================================================================
+      // SET 2 · the magnetron, big, cut open
+      // ===================================================================================
+      const B = SETS.mag.grupo;
+      rig(B, { key: [-20, 30, 26], ki: 1.6, rim: [18, 14, -24], ri: 1.6, fill: [-6, 10, 18], fi: 70, fd: 60 });
+      B.add(X.motas({ n: 500, caja: [70, 40, 50], centro: v3(0, 4, -30), tam: 0.22, opacidad: 0.5 }).grupo);
+      const MG = magnetron({ esc: 1, corte: true }); B.add(MG.grupo);
+      const tapa = [MG.imanSup, MG.ysup, MG.ais, MG.capu];
+      C.pieza("anodo", MG.grupo, v3(2.2, -0.6, -0.4));
+      C.pieza("iman", MG.grupo, v3(2.0, 2.95, -0.6));
+      C.pieza("catodo", MG.grupo, v3(0.2, 0.9, 0.1));
+      C.pieza("cavidad", MG.grupo, v3(Math.cos(0.31) * 1.1, 1.25, Math.sin(0.31) * 1.1));
+      C.pieza("antena", MG.grupo, v3(0.4, 5.6, 0));
+      // electrons: five rotating spokes between the cathode and the vane tips
+      const eTex = brilloTex("255,255,255");
+      const NE = 900, ePos = new Float32Array(NE * 3);
+      const eGeo = new THREE.BufferGeometry(); eGeo.setAttribute("position", new THREE.BufferAttribute(ePos, 3));
+      const elec = new THREE.Points(eGeo, new THREE.PointsMaterial({ map: eTex, size: 0.075, color: 0x9fd0ff, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, opacity: 0.95 }));
+      elec.frustumCulled = false; B.add(elec);
+      const ePunto = new THREE.Object3D(); B.add(ePunto); C.pieza("electron", ePunto, v3(0, 0, 0));
+      function electrones(t) {
+        const W0 = 1.6;
+        for (let i = 0; i < NE; i++) {
+          const s = i % 5, u = frac(hash(i * 1.7) + t * 0.45), base = i < 160;
+          const r = base ? 0.23 + 0.06 * hash(i * 2.3) : 0.24 + u * 0.27;
+          const a = base ? hash(i * 3.1) * 2 * PI + t * W0 : (s / 5) * 2 * PI + t * W0 - 1.5 * u + (hash(i * 3.7) - 0.5) * 0.42 * (1 - 0.4 * u);
+          ePos[i * 3] = Math.cos(a) * r; ePos[i * 3 + 1] = (hash(i * 5.9) - 0.5) * 2.3; ePos[i * 3 + 2] = Math.sin(a) * r;
+        }
+        eGeo.attributes.position.needsUpdate = true;
+        const a = t * W0 - 0.7; ePunto.position.set(Math.cos(a) * 0.4, 1.0, Math.sin(a) * 0.4);
+      }
+      // RF field across the vane tips and inside every cavity (pi mode: neighbours opposite)
+      const campoMag = X.cinta({ hebras: 60, puntos: 24, ancho: 0.012, minPx: 1.4, intensidad: 1.0, ondas: 1.2, vel: 0.8 }); B.add(campoMag.malla);
+      // waves leaving the antenna
+      const anillosAnt = X.cinta({ hebras: 5, puntos: 72, ancho: 0.03, minPx: 1.6, intensidad: 1.0, ondas: 3, vel: 0.6 }); B.add(anillosAnt.malla);
+      let estadoM = { corte: "z", abre: 0, campo: 0, elec: 1, anillos: 0 };
+      function updMag(t, e) {
+        const s = estadoM;
+        if (s.corte === "z") corteMag.set(v3(0, 0, -1), 0);
+        else if (s.corte === "y") corteMag.set(v3(0, -1, 0), 1.3);
+        else corteMag.set(v3(0, 0, -1), 1e5);
+        tapa.forEach((o, i) => (o.position.y = [2.7, 3.36, 0, 5.0][i] + s.abre * 4.5 + (i === 2 ? 0 : 0)));
+        MG.ais.position.y = s.abre * 4.5; MG.capu.position.y = 5.0 + s.abre * 4.5;
+        MG.filMat.emissiveIntensity = (s.fil ?? 1.3) + 0.15 * Math.sin(t * 7);
+        elec.visible = s.elec > 0.01; elec.material.opacity = 0.95 * s.elec; if (elec.visible) electrones(t);
+        campoMag.malla.visible = s.campo > 0.01;
+        if (campoMag.malla.visible) {
+          let h = 0;
+          for (let i = 0; i < 10; i++) {
+            const a0 = (i / 10) * 2 * PI + 0.1, a1 = ((i + 1) / 10) * 2 * PI - 0.1, w = s.campo * (0.25 + 0.75 * (0.5 + 0.5 * Math.cos(t * 5 + i * PI)));
+            for (const y of [-0.8, 0.0, 0.8]) campoMag.poner(h++, (u, out) => { const a = lerp(a0, a1, u), r = 0.5 - 0.15 * Math.sin(PI * u); return out.set(Math.cos(a) * r, y + 0.4, Math.sin(a) * r); }, { peso: w, fase: hash(i) });
+            for (const r of [0.85, 1.15, 1.4]) campoMag.poner(h++, (u, out) => { const a = lerp((i / 10) * 2 * PI + 0.075, ((i + 1) / 10) * 2 * PI - 0.075, u); return out.set(Math.cos(a) * r, 1.22, Math.sin(a) * r); }, { peso: w * 0.8, fase: hash(i * 2) });
+          }
+        }
+        campoMag.tiempo(t);
+        anillosAnt.malla.visible = s.anillos > 0.01;
+        if (anillosAnt.malla.visible) for (let k = 0; k < 5; k++) {
+          const f = frac(t * 0.7 + k / 5), r = 0.7 + f * 4.5;
+          anillosAnt.poner(k, (u, out) => out.set(Math.cos(u * 2 * PI) * r, 5.35 + f * 0.6, Math.sin(u * 2 * PI) * r), { peso: s.anillos * Math.sin(PI * f), fase: 0 });
+        }
+        anillosAnt.tiempo(t);
+      }
+
+      // ===================================================================================
+      // SET 3 · the diagram: side section of the oven, waveguide, bouncing and standing waves
+      // ===================================================================================
+      const G = SETS.guia.grupo;
+      rig(G, { key: [-30, 60, 90], ki: 1.25, rim: [30, 20, -60], ri: 1.3, fill: [0, 20, 60], fi: 900, fd: 200 });
+      G.add(X.motas({ n: 500, caja: [160, 90, 60], centro: v3(0, 14, -50), tam: 0.4, opacidad: 0.45 }).grupo);
+      const BX = { x0: -16.5, x1: 16.5, y0: 0, y1: 22 }, ZD = 8;
+      const aceroD = new THREE.MeshPhysicalMaterial({ color: 0xbfc4ca, metalness: 1, roughness: 0.32, map: metalTex("#b3b8bf", 3, 1), clearcoat: 0.3 });
+      const muro = (x0, x1, y0, y1) => { const m = new THREE.Mesh(new RoundedBoxGeometry(x1 - x0, y1 - y0, 2 * ZD, 2, 0.12), aceroD); m.position.set((x0 + x1) / 2, (y0 + y1) / 2, 0); G.add(m); return m; };
+      muro(BX.x0 - 0.9, BX.x1 + 0.9, BX.y0 - 0.9, BX.y0);
+      muro(BX.x0 - 0.9, BX.x0, BX.y0, BX.y1 + 0.9);
+      muro(BX.x1, BX.x1 + 0.9, BX.y0, BX.y1 + 0.9);
+      const techo1 = muro(BX.x0, 9.2, BX.y1, BX.y1 + 0.9);
+      muro(12.8, BX.x1, BX.y1, BX.y1 + 0.9);
+      // the waveguide over the ceiling, open into the box between x = 9.2 and 12.8
+      const guiaD = muro(8.4, 30.5, 27.0, 27.8); muro(8.4, 9.2, BX.y1 + 0.9, 27.0); muro(12.8, 30.5, BX.y1 + 0.9, 23.5); muro(29.7, 30.5, 23.5, 27.0);
+      const fondoD = new THREE.Mesh(new THREE.PlaneGeometry(BX.x1 - BX.x0, BX.y1 - BX.y0), new THREE.MeshStandardMaterial({ color: 0x1a1e25, roughness: 0.8, map: X.rep(X.tex.rayado({ fondo: "#1b1f27", linea: "rgba(150,170,200,0.10)", paso: 6 }), 4, 3) }));
+      fondoD.position.set(0, (BX.y0 + BX.y1) / 2, -ZD + 0.05); G.add(fondoD);
+      const fondoGuia = new THREE.Mesh(new THREE.PlaneGeometry(21.3, 3.5), fondoD.material); fondoGuia.position.set(19.5, 25.25, -ZD + 0.05); G.add(fondoGuia);
+      const magD = magnetron({ esc: 0.8 }); magD.grupo.rotation.z = PI; magD.grupo.position.set(24.8, 32.3, 0); G.add(magD.grupo);
+      C.pieza("magD", magD.grupo, v3(-4.2, 0, 0)); C.pieza("guiaD", guiaD, v3(-4, -0.4, ZD)); C.pieza("cajaD", techo1, v3(-10, 0.45, ZD));
+      // a bowl cut in half on the glass plate, in the box
+      const uShape = new THREE.Shape(); { const RO = [[7.85, 6.75], ...OUT.slice().reverse(), [4.0, 0], [3.4, 0], [3.3, 0.5]]; const LO = RO.slice().reverse().map(([x, y]) => [-x, y]); const LI = INN.map(([x, y]) => [-x, y]); const RI = INN.slice().reverse().slice(1); RO.concat(LO, LI, RI).forEach(([x, y], i) => (i ? uShape.lineTo(x, y) : uShape.moveTo(x, y))); }
+      const sShape = new THREE.Shape(); INTERIOR.concat(INTERIOR.slice(0, -1).reverse().map(([x, y]) => [-x, y])).forEach(([x, y], i) => (i ? sShape.lineTo(x, y) : sShape.moveTo(x, y)));
+      const bowlD = new THREE.Group(); bowlD.position.set(0, 0.55, 0); bowlD.scale.setScalar(0.95); G.add(bowlD);
+      { const u = new THREE.Mesh(new THREE.ExtrudeGeometry(uShape, { depth: 9, bevelEnabled: false }), ceramicaMate); u.position.z = -4.5; bowlD.add(u);
+        const s = new THREE.Mesh(new THREE.ExtrudeGeometry(sShape, { depth: 8.6, bevelEnabled: false }), new THREE.MeshPhysicalMaterial({ color: 0xa8502a, roughness: 0.3, clearcoat: 0.8 })); s.position.z = -4.3; bowlD.add(s);
+        const pl = new THREE.Mesh(new THREE.BoxGeometry(26, 0.45, 12), vidrioPlatoMat); pl.position.y = -0.3; bowlD.add(pl); }
+      // waves: the one in the guide, the bouncing rays, and the two that make the standing wave
+      const ondasD = X.cinta({ hebras: 14, puntos: 180, ancho: 0.24, minPx: 2.6, intensidad: 1.25, ondas: 1.6, vel: 0.9 }); G.add(ondasD.malla);
+      const rutaGuia = camino([v3(26.2, 25.25, 1.5), v3(11, 25.25, 1.5), v3(11, 21.4, 1.5)]);
+      const rayosD = [-0.42, 0.3, -0.05, 0.62, -0.72].map((ang, i) => ({ c: reflejos(v3(11 + (i - 2.5) * 0.4, 21.6, 1.5), v3(Math.sin(ang - 0.25), -Math.cos(ang - 0.25), 0), 150, { x0: BX.x0 + 0.4, x1: BX.x1 - 0.4, y0: BX.y0 + 0.4, y1: BX.y1 - 0.4 }), t0: i * 0.55 }));
+      const destellos = rayosD.map(() => { const b = C.brillo("255,215,140"); b.scale.setScalar(2.6); G.add(b); return b; });
+      for (const [x, y, w, h] of [[0, BX.y0, BX.x1 - BX.x0, 0.06], [-3.65, BX.y1, 25.7, 0.06], [14.65, BX.y1, 3.7, 0.06], [BX.x0, 11, 0.06, 22], [BX.x1, 11, 0.06, 22]]) { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), basica(0xe6eef8, 0.55)); m.position.set(x, y, ZD + 0.02); G.add(m); }
+      const calD = []; for (let k = -2; k <= 2; k++) { const s = C.brillo("255,190,90"); s.position.set((k * LAMBDA) / 2, 11, 1.5); s.scale.setScalar(5.5); G.add(s); calD.push(s); }
+      const frioD = []; for (let k = -2; k <= 1; k++) { const m = new THREE.Mesh(new THREE.RingGeometry(0.5, 0.62, 48), basica(0x8fb4ff, 0)); m.position.set(((k + 0.5) * LAMBDA) / 2, 11, 1.6); G.add(m); frioD.push(m); }
+      C.pieza("calD", calD[2], v3(0, 0, 0)); C.pieza("frioD", frioD[2], v3(0, 0, 0));
+      const reglaL = regla(LAMBDA, { tic: 0.9, grosor: 0.09 }); reglaL.grupo.position.set(LAMBDA / 2, 15.6, 1.6); G.add(reglaL.grupo);
+      C.pieza("reglaL", reglaL.grupo, v3(0, 0.1, 0));
+      let estadoG = { guia: 0, rayos: 0, ida: 0, vuelta: 0, quieta: 0, puntos: 0, regla: 0, congela: false };
+      function updGuia(t, e) {
+        const s = estadoG, P0 = new THREE.Vector3(), Nn = new THREE.Vector3();
+        let h = 0;
+        // wave in the guide (travels from the antenna into the box)
+        if (s.guia > 0.01) ondasD.poner(h, (u, out) => { const d = u * rutaGuia.L; rutaGuia.at(d, out, Nn); return out.addScaledVector(Nn, Math.sin((d / LAMBDA) * 2 * PI - t * 5) * 1.3 * Math.min(1, (rutaGuia.L - d) / 2 + 0.2)); }, { peso: (u) => s.guia * clamp(u * 8) , fase: 0 }); else ondasD.apagar(h);
+        h++;
+        rayosD.forEach((r, i) => {
+          if (s.rayos < 0.01) { ondasD.apagar(h++); destellos[i].material.opacity = 0; return; }
+          const sh = frac((t - r.t0) * 0.3) * (r.c.L + 55), s0 = Math.max(0, sh - 55), s1 = Math.min(sh, r.c.L);
+          ondasD.poner(h++, (u, out) => { const d = lerp(s0, s1, u); r.c.at(d, out, Nn); return out.addScaledVector(Nn, Math.sin((d / LAMBDA) * 2 * PI) * 0.3); }, { peso: (u) => s.rayos * 0.85 * smooth(clamp(u * 2.5)) * (s1 > s0 ? 1 : 0), fase: hash(i) });
+          { const v = (t - r.t0) * 0.3 * (r.c.L + 55); let k = -1; r.c.seg.forEach((g, j) => { if (j > 0 && g.s0 <= sh) k = j; }); const b = destellos[i]; if (k > 0 && sh <= r.c.L) { b.position.copy(r.c.seg[k].a); b.material.opacity = s.rayos * 0.9 * Math.exp(-(sh - r.c.seg[k].s0) / 5); } else b.material.opacity = 0; }
+        });
+        // standing wave: one going right, one coming back, and their sum, which does not travel
+        const fz = s.congela ? 0 : t * 4.2, k = (2 * PI) / LAMBDA, Am = 2.0;
+        const tira = (fn, peso) => { if (peso < 0.01) { ondasD.apagar(h++); return; } ondasD.poner(h++, (u, out) => { const x = lerp(BX.x0 + 0.4, BX.x1 - 0.4, u); return out.set(x, 11 + fn(x), 1.5); }, { peso, fase: 0 }); };
+        tira((x) => Am * Math.cos(k * x - fz), s.ida * 0.9);
+        tira((x) => Am * Math.cos(k * x + fz), s.vuelta * 0.9);
+        tira((x) => 2 * Am * Math.cos(k * x) * Math.cos(fz) * 0.7, s.quieta * 1.2);
+        tira((x) => 2 * Am * Math.cos(k * x) * 0.7, s.quieta * 0.22);
+        tira((x) => -2 * Am * Math.cos(k * x) * 0.7, s.quieta * 0.22);
+        while (h < 14) ondasD.apagar(h++);
+        ondasD.tiempo(t);
+        calD.forEach((c, i) => (c.material.opacity = s.puntos * (0.75 + 0.25 * Math.sin(t * 6 + i))));
+        frioD.forEach((m) => (m.material.opacity = s.puntos * 0.85));
+        reglaL.poner(s.regla);
+      }
+
+      // ===================================================================================
+      // SET 4 · water molecules in macro, the field flipping and the heat
+      // ===================================================================================
+      const Mo = SETS.mol.grupo;
+      rig(Mo, { key: [-20, 30, 40], ki: 1.5, rim: [20, 10, -30], ri: 1.6, fill: [0, 4, 30], fi: 350, fd: 90 });
+      Mo.add(X.motas({ n: 500, caja: [60, 60, 40], centro: v3(0, 0, -30), tam: 0.16, opacidad: 0.45 }).grupo);
+      const oxMat = new THREE.MeshPhysicalMaterial({ color: 0xc23a32, roughness: 0.25, clearcoat: 0.8, clearcoatRoughness: 0.1, emissive: 0xff8a2a, emissiveIntensity: 0, envMapIntensity: 0.8 });
+      const hiMat = new THREE.MeshPhysicalMaterial({ color: 0xc9ccd1, roughness: 0.28, clearcoat: 0.7, clearcoatRoughness: 0.12, emissive: 0xffa040, emissiveIntensity: 0, envMapIntensity: 0.7 });
+      const NM = 110, oGeo = new THREE.SphereGeometry(0.62, 32, 20), hGeo = new THREE.SphereGeometry(0.38, 24, 16);
+      const oInst = new THREE.InstancedMesh(oGeo, oxMat, NM), hInst = new THREE.InstancedMesh(hGeo, hiMat, NM * 2); Mo.add(oInst, hInst);
+      const MOLS = Array.from({ length: NM }, (_, i) => ({ p: v3((hash(i * 1.3) - 0.5) * 30, (hash(i * 2.7) - 0.5) * 44, -14 + hash(i * 4.1) * 18), d: v3(hash(i * 5.3) - 0.5, hash(i * 6.1) - 0.5, hash(i * 7.9) - 0.5).normalize(), f: hash(i * 8.7) * 6.28, lag: hash(i * 9.3) }));
+      const HA = (52.25 * PI) / 180, HL = 0.78;
+      { const NL = 260, oL = new THREE.InstancedMesh(oGeo, oxMat, NL), hL = new THREE.InstancedMesh(hGeo, hiMat, NL * 2), d = new THREE.Object3D(), q = new THREE.Quaternion();
+        for (let i = 0; i < NL; i++) {
+          const p = v3((hash(i * 3.7) - 0.5) * 90, (hash(i * 5.9) - 0.5) * 120, -24 - hash(i * 8.1) * 40);
+          q.setFromUnitVectors(v3(0, 1, 0), v3(hash(i * 2.2) - 0.5, hash(i * 4.4) - 0.5, hash(i * 6.6) - 0.5).normalize());
+          d.position.copy(p); d.quaternion.copy(q); d.scale.setScalar(1); d.updateMatrix(); oL.setMatrixAt(i, d.matrix);
+          for (let k = 0; k < 2; k++) { d.position.copy(p).add(v3((k ? 1 : -1) * Math.sin(HA) * HL, Math.cos(HA) * HL, 0).applyQuaternion(q)); d.updateMatrix(); hL.setMatrixAt(i * 2 + k, d.matrix); }
+        }
+        Mo.add(oL, hL);
+        const halo = new THREE.Mesh(new THREE.PlaneGeometry(160, 200), new THREE.MeshBasicMaterial({ map: brilloTex("70,110,170"), transparent: true, opacity: 0.35, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false })); halo.position.z = -70; Mo.add(halo); }
+      const hero = new THREE.Group(); hero.position.set(0.6, 0.4, 8); Mo.add(hero);
+      { const o = new THREE.Mesh(oGeo, oxMat); hero.add(o); for (const sg of [-1, 1]) { const hh = new THREE.Mesh(hGeo, hiMat); hh.position.set(sg * Math.sin(HA) * HL, Math.cos(HA) * HL, 0); hero.add(hh); } }
+      const signo = (txt, col) => new THREE.Sprite(new THREE.SpriteMaterial({ map: X.lienzo(128, 128, (g) => { g.font = '700 74px "Inter", sans-serif'; g.textAlign = "center"; g.textBaseline = "middle"; g.fillStyle = col; g.fillText(txt, 64, 68); }).tex, transparent: true, depthWrite: false, depthTest: false }));
+      const sMas = signo("δ+", "#ffffff"); sMas.scale.setScalar(0.38); sMas.position.set(0, 1.45, 0); hero.add(sMas);
+      const sMenos = signo("δ−", "#ff8a7a"); sMenos.scale.setScalar(0.38); sMenos.position.set(0, -0.95, 0); hero.add(sMenos);
+      C.pieza("hPos", hero, v3(0, 0.75, 0)); C.pieza("oNeg", hero, v3(0, -0.45, 0));
+      // field arrows (instanced shafts and heads), behind and between the molecules
+      const NF = 7 * 11, fPos = [];
+      for (let i = 0; i < 7; i++) for (let j = 0; j < 11; j++) fPos.push(v3((i - 3) * 4.6 + (j % 2) * 2.3, (j - 5) * 4.4, -6 - 6 * hash(i * 3 + j)));
+      const flechaMat = basica(0xffb347, 0.85);
+      const fCuerpo = new THREE.InstancedMesh(new THREE.CylinderGeometry(0.07, 0.07, 1, 8), flechaMat, NF), fPunta = new THREE.InstancedMesh(new THREE.ConeGeometry(0.26, 0.6, 16), flechaMat, NF);
+      Mo.add(fCuerpo, fPunta);
+      const fRef = new THREE.Object3D(); Mo.add(fRef); C.pieza("flecha", fRef, v3(0, 0, 0));
+      let estadoO = { campo: 0, alinea: 0, calor: 0, t0: 0 };
+      const dm = new THREE.Object3D(), qa = new THREE.Quaternion(), qb = new THREE.Quaternion(), UPY = v3(0, 1, 0), tmpD = new THREE.Vector3(), tmpP = new THREE.Vector3();
+      function updMol(t, e) {
+        const s = estadoO, E = s.campo * Math.sin((t - s.t0) * 2 * PI * 0.55);
+        // arrows: length and direction follow the field
+        fPos.forEach((p, i) => {
+          const L = Math.max(0.001, Math.abs(E) * 2.4), sg = E >= 0 ? 1 : -1;
+          dm.position.set(p.x, p.y + sg * L * 0.5, p.z); dm.rotation.set(0, 0, sg > 0 ? 0 : PI); dm.scale.set(1, L, 1); dm.updateMatrix(); fCuerpo.setMatrixAt(i, dm.matrix);
+          dm.position.set(p.x, p.y + sg * (L + 0.3), p.z); dm.scale.set(Math.min(1, Math.abs(E) * 2), Math.min(1, Math.abs(E) * 2), Math.min(1, Math.abs(E) * 2)); dm.updateMatrix(); fPunta.setMatrixAt(i, dm.matrix);
+        });
+        fCuerpo.instanceMatrix.needsUpdate = fPunta.instanceMatrix.needsUpdate = true;
+        flechaMat.opacity = 0.85 * clamp(s.campo * 3);
+        fRef.position.set(fPos[38].x, fPos[38].y + Math.sign(E || 1) * 1.6, fPos[38].z);
+        // molecules: random tumbling, pulled toward the field (with a lag), shaken by the heat
+        const jit = 0.12 + 0.55 * s.calor;
+        MOLS.forEach((m, i) => {
+          const El = s.campo * Math.sin((t - s.t0 - 0.12 * m.lag) * 2 * PI * 0.55);
+          tmpD.set(m.d.x + 0.35 * Math.sin(t * 0.6 + m.f), m.d.y + 0.35 * Math.cos(t * 0.5 + m.f), m.d.z).normalize().multiplyScalar(1 - s.alinea * 0.92);
+          tmpD.y += s.alinea * 1.6 * El; tmpD.x += jit * 0.5 * Math.sin(t * (3 + 4 * s.calor) + m.f * 3); tmpD.z += jit * 0.5 * Math.cos(t * (2.5 + 4 * s.calor) + m.f * 2);
+          if (tmpD.lengthSq() < 1e-4) tmpD.set(0, 1, 0);
+          tmpD.normalize(); qa.setFromUnitVectors(UPY, tmpD); qb.setFromAxisAngle(tmpD, t * 0.8 + m.f); qa.premultiply(qb);
+          const a = 0.1 + 0.32 * s.calor, w = 1 + 3 * s.calor;
+          tmpP.set(m.p.x + a * Math.sin(t * 2.1 * w + m.f), m.p.y + a * Math.sin(t * 1.7 * w + m.f * 2), m.p.z + a * Math.sin(t * 2.5 * w + m.f * 3));
+          dm.position.copy(tmpP); dm.quaternion.copy(qa); dm.scale.setScalar(1); dm.updateMatrix(); oInst.setMatrixAt(i, dm.matrix);
+          for (let k = 0; k < 2; k++) {
+            const off = v3((k ? 1 : -1) * Math.sin(HA) * HL, Math.cos(HA) * HL, 0).applyQuaternion(qa);
+            dm.position.copy(tmpP).add(off); dm.updateMatrix(); hInst.setMatrixAt(i * 2 + k, dm.matrix);
+          }
+        });
+        oInst.instanceMatrix.needsUpdate = hInst.instanceMatrix.needsUpdate = true;
+        // the hero molecule turns with the field
+        const Eh = s.campo * Math.sin((t - s.t0 - 0.05) * 2 * PI * 0.55);
+        tmpD.set(0.5 * Math.sin(t * 0.5), 0.7 + 0.2 * Math.cos(t * 0.4), 0.45).normalize().multiplyScalar(1 - s.alinea * 0.95); tmpD.y += s.alinea * 1.8 * Eh; tmpD.x += jit * 0.3 * Math.sin(t * 5); tmpD.normalize();
+        hero.quaternion.setFromUnitVectors(UPY, tmpD);
+        hero.position.set(0.6 + 0.08 * s.calor * Math.sin(t * 7), 0.4 + 0.08 * s.calor * Math.sin(t * 6.3), 8);
+        oxMat.emissiveIntensity = 0.55 * s.calor; hiMat.emissiveIntensity = 0.35 * s.calor;
+      }
+
+      // ===================================================================================
+      // SET 5 · the bowl cut in half: the waves only go a few cm in, the heat map
+      // ===================================================================================
+      const K = SETS.cuenco.grupo;
+      rig(K, { key: [-30, 20, 30], ki: 0.75, rim: [20, 14, -30], ri: 1.2, fill: [-6, 10, 30], fi: 160, fd: 120 });
+      K.add(X.motas({ n: 400, caja: [80, 60, 40], centro: v3(0, 8, -30), tam: 0.2, opacidad: 0.45 }).grupo);
+      const bowlK = cuenco({ medio: true, sopa: sopaMate, ceram: ceramicaMate }); K.add(bowlK.grupo);
+      const corteU = new THREE.Mesh(new THREE.ShapeGeometry(uShape), cerCorte); corteU.position.z = 0.002; K.add(corteU);
+      const U_K = { uK: { value: 0 }, uCond: { value: 0 }, uOla: { value: 0 }, uT: { value: 0 }, uPts: { value: INTERIOR.map(([x, y]) => v2(x, y)) } };
+      const NI = INTERIOR.length;
+      const guisoMat = new THREE.ShaderMaterial({ uniforms: U_K,
+        vertexShader: "varying vec2 vP; void main(){ vP = position.xy; gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0); }",
+        fragmentShader: `varying vec2 vP; uniform float uK, uCond, uOla, uT; uniform vec2 uPts[${NI}];
+          ${GLSL_CALOR}
+          float sd(vec2 p, vec2 a, vec2 b){ vec2 pa = p - a, ba = b - a; float h = clamp(dot(pa, ba) / dot(ba, ba), 0.0, 1.0); return length(pa - ba * h); }
+          float hs(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+          float vn(vec2 p){ vec2 i = floor(p), f = fract(p); f = f*f*(3.0-2.0*f); return mix(mix(hs(i), hs(i+vec2(1,0)), f.x), mix(hs(i+vec2(0,1)), hs(i+vec2(1,1)), f.x), f.y); }
+          void main(){
+            vec2 p = vec2(abs(vP.x), vP.y);
+            float d = 5.4 - p.y;
+            for (int i = 0; i < ${NI - 1}; i++) d = min(d, sd(p, uPts[i], uPts[i+1]));
+            d = max(d, 0.0);
+            float del = 1.4 + 2.4 * uCond;
+            float q = exp(-d / del);
+            float Tm = uK * (q * (1.0 - 0.28 * uCond) + 0.34 * uCond * smoothstep(0.0, 1.0, uCond));
+            float n = vn(vP * 1.6) * 0.6 + vn(vP * 4.0) * 0.4;
+            vec2 x = vP * 1.15, ni = floor(x), fi = fract(x); float m1 = 8.0, m2 = 8.0; vec2 cid = vec2(0.0);
+            for (int j = -1; j <= 1; j++) for (int i = -1; i <= 1; i++) { vec2 g = vec2(float(i), float(j)); vec2 o = vec2(hs(ni + g), hs(ni + g + 17.3)); vec2 r = g + o - fi; float dd = dot(r, r); if (dd < m1) { m2 = m1; m1 = dd; cid = ni + g; } else if (dd < m2) m2 = dd; }
+            float borde = sqrt(m2) - sqrt(m1), tipo = hs(cid + 3.1), pieza = smoothstep(0.1, 0.16, borde) * step(tipo, 0.72);
+            vec3 caldo = mix(vec3(0.15, 0.045, 0.012), vec3(0.26, 0.09, 0.022), n);
+            vec3 pc = tipo < 0.22 ? vec3(0.62, 0.18, 0.02) : tipo < 0.42 ? vec3(0.55, 0.42, 0.18) : tipo < 0.55 ? vec3(0.13, 0.22, 0.03) : vec3(0.22, 0.07, 0.03);
+            vec3 base = mix(caldo, pc * (0.8 + 0.35 * vn(vP * 9.0)), pieza);
+            vec3 col = mix(base, calor(Tm), 0.18 + 0.66 * uK);
+            float banda = uOla * exp(-d / 1.4) * (0.6 + 0.4 * sin(d * 5.0 - uT * 6.0));
+            col += vec3(1.0, 0.55, 0.12) * banda * 0.35;
+            gl_FragColor = vec4(col, 1.0);
+          }` });
+      const guiso = new THREE.Mesh(new THREE.ShapeGeometry(sShape, 24), guisoMat); guiso.position.z = 0.004; K.add(guiso);
+      const bordeC = new THREE.Object3D(); bordeC.position.set(6.4, 4.4, 0.1); K.add(bordeC); C.pieza("bordeC", bordeC, v3(0, 0, 0));
+      const centroC = new THREE.Object3D(); centroC.position.set(0, 3.0, 0.1); K.add(centroC); C.pieza("centroC", centroC, v3(0, 0, 0));
+      const cifrasK = X.cifras([v3(6.0, 4.6, 0.25), v3(3.3, 3.25, 0.25), v3(0, 2.6, 0.25)], { tam: 0.62, ancho: 3.6 }); K.add(cifrasK.grupo);
+      const ondasK = X.cinta({ hebras: 10, puntos: 90, ancho: 0.05, minPx: 1.6, intensidad: 1.0, ondas: 1.5, vel: 1.0 }); K.add(ondasK.malla);
+      const reglaK = new THREE.Group(); K.add(reglaK); reglaK.position.set(-4.6, 0, 0.3);
+      { const m = basica(0xffffff, 0.9); const l = new THREE.Mesh(new THREE.PlaneGeometry(0.06, 3.8), m); l.position.y = 5.4 - 1.9; reglaK.add(l);
+        for (const [y, w] of [[5.4, 0.7], [4.0, 0.55], [1.6, 0.7], [4.4, 0.25], [3.4, 0.25], [2.4, 0.25]]) { const tk = new THREE.Mesh(new THREE.PlaneGeometry(w, 0.06), m); tk.position.y = y; reglaK.add(tk); } }
+      const conduK = X.cinta({ hebras: 8, puntos: 40, ancho: 0.05, minPx: 1.5, intensidad: 0.9, ondas: 2, vel: 1.2 }); K.add(conduK.malla);
+      let estadoK = { k: 0, cond: 0, ola: 0, cifras: 0, regla: 0, flechas: 0, borde: false };
+      function updCuenco(t, e) {
+        const s = estadoK;
+        U_K.uK.value = s.k; U_K.uCond.value = s.cond; U_K.uOla.value = s.ola; U_K.uT.value = t;
+        cifrasK.grupo.visible = s.cifras > 0.01;
+        const tB = Math.round(lerp(20, 72, s.k) - 2 * s.cond), tM = Math.round(lerp(20, lerp(41, 55, s.cond), s.k)), tC = Math.round(lerp(20, lerp(12, 38, s.cond), s.k));
+        cifrasK.poner(0, `${tB} °C`, true); cifrasK.poner(1, `${tM} °C`, false); cifrasK.poner(2, `${tC} °C`, true); cifrasK.dibujar();
+        cifrasK.items.forEach((it) => (it.mesh.material.opacity = s.cifras));
+        reglaK.visible = s.regla > 0.01; reglaK.scale.y = 1;
+        // waves coming down and in from the sides, fading inside the food
+        ondasK.malla.visible = s.ola > 0.01;
+        if (ondasK.malla.visible) {
+          for (let i = 0; i < 7; i++) { const x0 = -5.4 + i * 1.8; ondasK.poner(i, (u, out) => { const y = lerp(13.5, 0.8, u); return out.set(x0 + Math.sin((y / LAMBDA) * 2 * PI * 2.2 + t * 6) * 0.35 * (y > 5.4 ? 1 : Math.exp(-(5.4 - y) / 1.4)), y, 0.3); }, { peso: (u) => { const y = lerp(13.5, 0.8, u); return s.ola * (y > 5.4 ? 1 : Math.exp(-(5.4 - y) / 1.4)); }, fase: hash(i) }); }
+          for (let k = 0; k < 2; k++) { const sg = k ? 1 : -1; ondasK.poner(7 + k, (u, out) => { const x = sg * lerp(15, 1, u); return out.set(x, 3.4 + Math.sin(x * 2.2 + t * 6) * 0.3, 0.3); }, { peso: (u) => { const x = lerp(15, 1, u); const dIn = Math.max(0, 6.6 - x); return s.ola * (x > 6.6 ? 1 : Math.exp(-dIn / 1.4)); }, fase: k * 0.5 }); }
+          ondasK.apagar(9);
+        }
+        ondasK.tiempo(t);
+        conduK.malla.visible = s.flechas > 0.01;
+        if (conduK.malla.visible) for (let i = 0; i < 8; i++) { const a = PI * (0.12 + 0.76 * (i / 7)), r0 = 6.2, r1 = 2.0; conduK.poner(i, (u, out) => { const r = lerp(r0, r1, u); return out.set(Math.cos(a) * r * 1.0, 3.2 + Math.sin(a) * r * 0.35, 0.25); }, { peso: (u) => s.flechas * Math.sin(PI * u), fase: hash(i * 3) }); }
+        conduK.tiempo(t);
+      }
+
+      // ===================================================================================
+      // SET 6 · the oven floor seen from above: hot and cold spots, the turntable, the chocolate
+      // ===================================================================================
+      const Pt = SETS.plato.grupo;
+      rig(Pt, { key: [-20, 50, 20], ki: 1.3, rim: [20, 30, -30], ri: 1.2, fill: [-10, 25, 16], fi: 500, fd: 120 });
+      Pt.add(X.motas({ n: 300, caja: [90, 20, 90], centro: v3(0, -12, 0), tam: 0.3, opacidad: 0.4 }).grupo);
+      const U_P = { uMapa: { value: 0 } };
+      const sueloP = new THREE.Mesh(new THREE.PlaneGeometry(33, 33), new THREE.ShaderMaterial({ uniforms: U_P,
+        vertexShader: "varying vec2 vP; void main(){ vP = position.xy; gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0); }",
+        fragmentShader: `varying vec2 vP; uniform float uMapa; ${GLSL_CALOR}
+          void main(){
+            float I = pow(cos(3.14159265 * vP.x / 6.12), 2.0) * pow(cos(3.14159265 * vP.y / 6.12), 2.0);
+            vec2 g = abs(fract(vP + 0.5) - 0.5); float rej = 1.0 - smoothstep(0.0, 0.04, min(g.x, g.y));
+            vec3 base = vec3(0.018, 0.02, 0.026) + rej * 0.012;
+            vec3 col = mix(base, calor(0.12 + 0.88 * I), uMapa * 0.95) + rej * 0.01;
+            gl_FragColor = vec4(col, 1.0);
+          }` }));
+      sueloP.rotation.x = -PI / 2; Pt.add(sueloP);
+      for (const [x, z, w, d] of [[0, -17.2, 35.2, 1.4], [0, 17.2, 35.2, 1.4], [-17.2, 0, 1.4, 33], [17.2, 0, 1.4, 33]]) { const m = new THREE.Mesh(new RoundedBoxGeometry(w, 3, d, 2, 0.2), aceroD); m.position.set(x, 1.5, z); Pt.add(m); }
+      const platoP = new THREE.Group(); platoP.position.y = 1.0; Pt.add(platoP);
+      platoP.add(new THREE.Mesh(new THREE.CylinderGeometry(13, 12.6, 0.5, 96), vidrioOscuro));
+      const sopaCal = sopaMat.clone(); sopaCal.clearcoat = 0.15; sopaCal.roughness = 0.55; const U_S = { uK: { value: 0 } };
+      sopaCal.onBeforeCompile = (sh) => {
+        sh.uniforms.uKs = U_S.uK;
+        sh.vertexShader = sh.vertexShader.replace("#include <common>", "#include <common>\nvarying vec3 vWp;").replace("#include <begin_vertex>", "#include <begin_vertex>\nvWp = (modelMatrix * vec4(position, 1.0)).xyz;");
+        sh.fragmentShader = sh.fragmentShader.replace("#include <common>", "#include <common>\nvarying vec3 vWp; uniform float uKs;").replace("#include <emissivemap_fragment>", `#include <emissivemap_fragment>
+          { vec2 q = vWp.xz - vec2(${SETS.plato.centro.x.toFixed(1)}, ${SETS.plato.centro.z.toFixed(1)}); float I = pow(cos(3.14159265 * q.x / 6.12), 2.0) * pow(cos(3.14159265 * q.y / 6.12), 2.0); totalEmissiveRadiance += vec3(1.0, 0.5, 0.12) * pow(I, 4.0) * uKs * 0.75; }`);
+      };
+      const bowlP = cuenco({ sopa: sopaCal }); bowlP.grupo.scale.setScalar(0.8); bowlP.grupo.position.set(3.0, 0.25, 2.0); platoP.add(bowlP.grupo);
+      const tabP = tableta(); tabP.grupo.position.y = 0.25; platoP.add(tabP.grupo);
+      C.pieza("fundido", tabP.grupo, v3(1.2, 0.8, 0));
+      const cifrasP = X.cifras([], { tam: 0.95, ancho: 3.4 });
+      const PUNTOSP = []; const VALP = [[93, 7, 100, 4, 96], [5, 2, 6, 1, 4], [88, 5, 95, 3, 91]];
+      { const pts = []; for (let r = 0; r < 3; r++) for (let c = 0; c < 5; c++) { pts.push(v3((c - 2) * 3.06, 0.3, (r - 2) * 3.06)); PUNTOSP.push(VALP[r][c]); } const F = X.cifras(pts, { tam: 0.95, ancho: 3.4 }); F.items.forEach((it) => it.mesh.rotation.x = -PI / 2); Pt.add(F.grupo); cifrasP.F = F; }
+      const reglaP = regla(LAMBDA / 2, { tic: 0.8, grosor: 0.1 }); reglaP.grupo.rotation.set(-PI / 2, 0, PI / 2); reglaP.grupo.position.set(5.4, 3.2, LAMBDA / 4); Pt.add(reglaP.grupo);
+      C.pieza("reglaP", reglaP.grupo, v3(0, 0.2, 0)); C.pieza("reglaP2", reglaP.grupo, v3(0, 0.2, 0));
+      const reglaD = regla(LAMBDA, { tic: 0.8, grosor: 0.1, color: 0xffc062 }); reglaD.grupo.rotation.set(-PI / 2, 0, PI / 2); reglaD.grupo.position.set(7.0, 3.2, 0); Pt.add(reglaD.grupo);
+      C.pieza("reglaD", reglaD.grupo, v3(0, 0.2, 0));
+      let estadoP = { mapa: 0, plato: true, gira: 0, bowl: false, choco: false, funde: 0, cifras: 0, regla: 0, doble: 0, sopa: 0 };
+      function updPlato(t, e) {
+        const s = estadoP;
+        U_P.uMapa.value = s.mapa; U_S.uK.value = s.sopa;
+        platoP.visible = s.plato; platoP.rotation.y = s.gira ? t * 0.9 : 0;
+        bowlP.grupo.visible = s.bowl; tabP.grupo.visible = s.choco; tabP.fundir(s.funde);
+        const F = cifrasP.F; F.grupo.visible = s.cifras > 0.01;
+        PUNTOSP.forEach((v, i) => F.poner(i, v, v > 50)); F.dibujar(); F.items.forEach((it) => (it.mesh.material.opacity = s.cifras));
+        reglaP.poner(s.regla); reglaD.poner(s.doble || 0);
+      }
+
+      // ===================================================================================
+      // SET 7 · the door mesh: section (the wave bounces, light goes through) and macro
+      // ===================================================================================
+      const Q = SETS.puerta.grupo;
+      rig(Q, { key: [-20, 40, 50], ki: 1.8, rim: [30, 10, -30], ri: 1.4, fill: [0, 10, 40], fi: 1500, fd: 150 });
+      Q.add(X.motas({ n: 400, caja: [160, 90, 60], centro: v3(0, 0, -50), tam: 0.4, opacidad: 0.4 }).grupo);
+      const PASO = 2.2, HUECO = 1.0;
+      const segGeo = new RoundedBoxGeometry(0.8, PASO - HUECO, 30, 2, 0.08);
+      const segs = new THREE.InstancedMesh(segGeo, aceroD, 31); { const d = new THREE.Object3D(); for (let i = 0; i < 31; i++) { d.position.set(0, (i - 15) * PASO, 0); d.updateMatrix(); segs.setMatrixAt(i, d.matrix); } } Q.add(segs);
+      const cristalQ = new THREE.Mesh(new THREE.BoxGeometry(1.6, 70, 30), new THREE.MeshPhysicalMaterial({ color: 0x1a1f26, transparent: true, opacity: 0.22, roughness: 0.05, clearcoat: 1, depthWrite: false })); cristalQ.position.x = 3.4; Q.add(cristalQ);
+      const hueco = new THREE.Object3D(); hueco.position.set(0.5, PASO / 2, 15); Q.add(hueco); C.pieza("hueco", hueco, v3(0, 0, 0));
+      for (const [x, w, c] of [[-40, 80, "#2a1a10"], [32, 64, "#0e131c"]]) { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, 90), new THREE.MeshBasicMaterial({ map: X.lienzo(64, 256, (g, W2, H2) => { const gr = g.createLinearGradient(0, 0, 0, H2); gr.addColorStop(0, "#000"); gr.addColorStop(0.5, c); gr.addColorStop(1, "#000"); g.fillStyle = gr; g.fillRect(0, 0, W2, H2); }).tex, toneMapped: false })); m.position.set(x, 0, -16); Q.add(m); }
+      const dentroQ = new THREE.Object3D(); dentroQ.position.set(-11, 15, 0); Q.add(dentroQ); C.pieza("dentroQ", dentroQ, v3(0, 0, 0));
+      const fueraQ = new THREE.Object3D(); fueraQ.position.set(5.5, 15, 0); Q.add(fueraQ); C.pieza("fueraQ", fueraQ, v3(0, 0, 0));
+      const ondasQ = X.cinta({ hebras: 3, puntos: 200, ancho: 0.5, minPx: 3, intensidad: 1.3, ondas: 1.2, vel: 0.9 }); Q.add(ondasQ.malla);
+      const luzQ = X.cinta({ hebras: 13, puntos: 30, ancho: 0.1, minPx: 1.6, color: 0xfff1d6, intensidad: 1.4, ondas: 3, vel: 2.4 }); Q.add(luzQ.malla);
+      // macro of the real mesh: perforated plate, warm light behind it, rays through the holes
+      const MQ = new THREE.Group(); MQ.position.set(300, 0, 0); Q.add(MQ);
+      const perfTex = X.tex.perforada({ cols: 12, filas: 12, radio: 0.227 }); X.rep(perfTex, 90 / (12 * PASO), 90 / (12 * PASO));
+      const chapaMat = new THREE.MeshStandardMaterial({ color: 0x8a8f97, metalness: 0.85, roughness: 0.34, alphaMap: perfTex, alphaTest: 0.5, side: THREE.DoubleSide, map: metalTex("#6d7179", 4, 4) });
+      for (const z of [0, -0.8]) { const c = new THREE.Mesh(new THREE.PlaneGeometry(90, 90), chapaMat); c.position.z = z; MQ.add(c); }
+      const calidez = new THREE.Mesh(new THREE.PlaneGeometry(120, 120), new THREE.MeshBasicMaterial({ map: X.lienzo(256, 256, (g, w, h) => { const r = g.createRadialGradient(w * 0.45, h * 0.4, 0, w / 2, h / 2, w * 0.7); r.addColorStop(0, "#ffd9a0"); r.addColorStop(0.5, "#c9803e"); r.addColorStop(1, "#3a2210"); g.fillStyle = r; g.fillRect(0, 0, w, h); }).tex, toneMapped: false, color: 0x9a9a9a })); calidez.position.z = -22; MQ.add(calidez);
+      const rayosMQ = X.cinta({ hebras: 16, puntos: 20, ancho: 0.05, minPx: 1.3, color: 0xfff1d6, intensidad: 0.9, ondas: 2, vel: 2.0 }); MQ.add(rayosMQ.malla);
+      const rayoLuz = new THREE.Object3D(); rayoLuz.position.set(0, 0, 3); MQ.add(rayoLuz); C.pieza("rayoLuz", rayoLuz, v3(0, 0, 0));
+      let estadoQ = { ida: 0, vuelta: 0, luz: 0, macro: 0 };
+      function updPuerta(t, e) {
+        const s = estadoQ, k = (2 * PI) / 46, A0 = 10;
+        if (s.ida > 0.001) { const xh = lerp(-80, 0, clamp(s.ida)); ondasQ.poner(0, (u, out) => { const x = lerp(-80, xh, u); return out.set(x, A0 * Math.sin(k * x - t * 3), 2); }, { peso: (u) => clamp(u * 4), fase: 0 }); } else ondasQ.apagar(0);
+        if (s.vuelta > 0.001) { const xh = lerp(0, -80, clamp(s.vuelta)); ondasQ.poner(1, (u, out) => { const x = lerp(0, xh, u); return out.set(x, -A0 * Math.sin(-k * x - t * 3), 2.2); }, { peso: 0.85, fase: 0.5 }); } else ondasQ.apagar(1);
+        ondasQ.apagar(2); ondasQ.tiempo(t);
+        luzQ.malla.visible = s.luz > 0.01;
+        for (let i = 0; i < 13; i++) { const y = (i - 6) * PASO * 2 + PASO / 2; luzQ.poner(i, (u, out) => out.set(lerp(-60, 60, u), y, 3), { peso: (u) => s.luz * (0.5 + 0.5 * smooth(clamp(u * 3))), fase: hash(i) }); }
+        luzQ.tiempo(t);
+        for (let i = 0; i < 16; i++) { const cx = (Math.floor(hash(i * 3.3) * 8) - 4) * PASO + (Math.floor(hash(i * 5.1) * 8) % 2 ? PASO / 2 : 0), cy = (Math.floor(hash(i * 4.7) * 8) - 4) * PASO + PASO / 2; rayosMQ.poner(i, (u, out) => out.set(cx + u * cx * 0.08, cy + u * cy * 0.06, lerp(-6, 7, u)), { peso: 0, fase: hash(i * 2) }); }
+        rayosMQ.tiempo(t);
+      }
+
+      // ===================================================================================
+      // SET 8 · the closing: a phone with the share sheet (no hands)
+      // ===================================================================================
+      const Fi = SETS.final.grupo;
+      rig(Fi, { key: [-30, 45, 55], ki: 1.6, rim: [28, 18, -30], ri: 1.6, fill: [-40, -28, 30], fi: 40, fd: 220 });
+      Fi.add(X.motas({ n: 300, caja: [90, 90, 60], centro: v3(0, 0, -35), tam: 0.3, opacidad: 0.45 }).grupo);
+      const MF = X.movil(); Fi.add(MF.grupo); MF.grupo.rotation.set(0.05, -0.2, 0.04);
+      function updFinal(t, e) {
+        const P = MF.pantalla, t0 = T("MANDA");
+        const sube = ramp(t, t0 + 0.15, t0 + 0.55), elegido = t >= T("BORDE") - 0.5 ? 0 : -1, enviado = t >= T("FRIO2");
+        const tap = (ta) => ventana(t, ta - 0.05, ta + 0.35, 0.08);
+        const anillo = elegido >= 0 && !enviado ? [{ x: 0.15, y: 0.44 + 0.14 * (1 - sube) * 0, r: 0.09, a: tap(T("BORDE") - 0.5) }] : enviado ? [{ x: 0.5, y: 0.672, r: 0.1, a: tap(T("FRIO2")) }] : [];
+        P.dibujar((g, w, h) => { UI.videoApp(g, w, h, { seguir: true }); if (sube > 0.001) UI.compartir(g, w, h, { sube, elegido, enviado }); UI.anillos(g, anillo.map((a) => ({ x: a.x * w, y: a.y * h, r: a.r * w, a: a.a }))); }, `${sube.toFixed(3)}|${elegido}|${enviado}|${anillo.map((a) => a.a.toFixed(2)).join()}`);
+      }
+
+      // ===================================================================================
+      // SHOTS: a new framing every 1–2.5 s, anchored to the words of the voice
+      // ===================================================================================
+      const c3 = (p, q, fov = 30) => ({ p: v3(...p), q: v3(...q), fov });
+      const PL = [
+        // 1 · hook: the oven, on, like an ad; then through the door's mesh to the bowl
+        { id: "hero", desde: 0, set: "horno", de: c3([-60, 47, 172], [5, 21, 0], 28), a: c3([-54, 43, 158], [5, 20.5, 0], 28) },
+        { id: "malla", desde: "CALIENTA", mas: 0.25, set: "horno", de: c3([-16, 22, 50], [-8, 10.5, 2]), a: c3([-14, 21, 46], [-8, 10.5, 2]), apertura: 0.0009 },
+        // 2 · the promise: a chocolate bar on a still plate
+        { id: "choco-arriba", desde: "FINAL", set: "plato", de: c3([0, 40, 0.01], [0, 0, 0]), a: c3([0, 36, 0.01], [0, 0, 0]) },
+        { id: "choco-macro", desde: "CHOCO1", set: "plato", de: c3([6, 6.5, 9], [0, 1.6, 1.5]), a: c3([5.2, 6.0, 8.2], [0, 1.6, 1.5]), apertura: 0.0012 },
+        { id: "choco-lado", desde: "VEL1", set: "plato", de: c3([-13, 4.5, 13], [0, 1.8, 0], 26), a: c3([-12, 4.2, 12], [0, 1.8, 0], 26), apertura: 0.0008 },
+        // 3 · behind the panel: x-ray, the magnetron
+        { id: "rayosx", desde: "DETRAS", set: "horno", de: c3([92, 50, 130], [8, 13, -2], 28), a: c3([84, 46, 120], [8, 13, -2], 28) },
+        { id: "mag-situ", desde: "MAGNE", set: "horno", de: c3([52, 36, 34], [16, 19, -6]), a: c3([48, 34, 31], [16, 19, -6]) },
+        { id: "mag-corte", desde: "TUBO", set: "mag", de: c3([13, 10, 17], [0, 0.6, 0]), a: c3([12, 9.2, 15.5], [0, 0.6, 0]) },
+        { id: "mag-arriba", desde: "ELEC", set: "mag", de: c3([0.05, 12, 0.05], [0, 0, 0]), a: c3([0.05, 10.5, 0.05], [0, 0, 0]) },
+        { id: "mag-elec", desde: "VUELTAS", set: "mag", de: c3([1.0, 3.4, 1.5], [0, 0.6, 0]), a: c3([0.9, 3.2, 1.35], [0, 0.6, 0]), apertura: 0.0025 },
+        // 4 · the waves: the field in the cavities, the antenna, the frequency
+        { id: "mag-alas", desde: "FABRICA", set: "mag", de: c3([2.1, 3.0, 2.2], [0.6, 1.1, 0.3]), a: c3([1.9, 2.8, 2.0], [0.6, 1.1, 0.3]), apertura: 0.002 },
+        { id: "mag-antena", desde: "OSCILAN", set: "mag", de: c3([7, 9, 9], [0, 5.2, 0]), a: c3([6.4, 8.6, 8.2], [0, 5.2, 0]) },
+        { id: "mag-cifra", desde: "MILLONES", set: "mag", de: c3([0.05, 16, 0.05], [0, 0, 0]), a: c3([0.05, 14, 0.05], [0, 0, 0]) },
+        { id: "mag-lejos", desde: "SEGUNDO1", set: "mag", de: c3([15, 5, 20], [0, 1.2, 0]), a: c3([14, 4.6, 18.6], [0, 1.2, 0]) },
+        // 5 · the guide, the box, the bounces
+        { id: "guia", desde: "GUIA", set: "guia", de: c3([20, 31, 98], [19.5, 26.5, 0], 24), a: c3([19, 30.5, 93], [18.8, 26.3, 0], 24) },
+        { id: "caja", desde: "LLEVA", set: "guia", de: c3([8, 23, 82], [8, 18, 0], 24), a: c3([7, 22, 76], [7, 17.5, 0], 24) },
+        { id: "rebota", desde: "REBOTAN", set: "guia", de: c3([0, 26, 175], [0, 11.5, 0], 24), a: c3([0, 25, 166], [0, 11.5, 0], 24) },
+        { id: "rebota3d", desde: "PARED", mas: 0.35, set: "horno", de: c3([-34, 46, 118], [-6, 15, 0], 28), a: c3([-30, 44, 110], [-6, 15, 0], 28) },
+        // 6 · into the food: water molecules
+        { id: "sopa", desde: "COMIDA1", set: "horno", de: c3([-9, 30, 33], [-7, 9.5, 1.5]), a: c3([-8.5, 27, 30], [-7, 9.5, 1.5]), apertura: 0.001 },
+        { id: "mol-ancho", desde: "CADA", set: "mol", de: c3([0, 2, 46], [0, 0, 0]), a: c3([0, 1.5, 42], [0, 0, 0]), apertura: 0.0006 },
+        { id: "mol-pos", desde: "POSITIVO", set: "mol", de: c3([2.6, 1.4, 14.8], [0.6, 0.6, 8]), a: c3([2.3, 1.2, 14.2], [0.6, 0.6, 8]), apertura: 0.0016 },
+        { id: "mol-neg", desde: "NEG", set: "mol", de: c3([-2.4, -0.8, 14.4], [0.6, 0.2, 8]), a: c3([-2.1, -0.6, 13.8], [0.6, 0.2, 8]), apertura: 0.0016 },
+        // 7 · the field flips, they try to turn
+        { id: "mol-campo", desde: "CAMPO", set: "mol", de: c3([-5, 4, 40], [0, 0, -2]), a: c3([-4.4, 3.6, 37], [0, 0, -2]), apertura: 0.0005 },
+        { id: "mol-sentido", desde: "SENTIDO", set: "mol", de: c3([4, -3, 28], [0, 0, -4]), a: c3([3.5, -2.6, 26], [0, 0, -4]), apertura: 0.0008 },
+        { id: "mol-alinea", desde: "MOLECS", set: "mol", de: c3([0, 0, 52], [0, 0, 0]), a: c3([0, 0, 48], [0, 0, 0]), apertura: 0.0004 },
+        { id: "mol-gira", desde: "GIRAR", set: "mol", de: c3([2.2, 1.4, 17.5], [0.6, 0.6, 8]), a: c3([2.0, 1.3, 16.6], [0.6, 0.6, 8]), apertura: 0.0014 },
+        // 8 · they bump into each other: that is heat
+        { id: "mol-chocan", desde: "CHOCAN", set: "mol", de: c3([-3, -1, 30], [0, 0, 0]), a: c3([-2.6, -0.8, 27], [0, 0, 0]), apertura: 0.0008 },
+        { id: "mol-vecinas", desde: "VECINAS", set: "mol", de: c3([4.6, 3.2, 18.5], [1.0, 0.8, 4]), a: c3([4.2, 3.0, 17.4], [1.0, 0.8, 4]), apertura: 0.0012 },
+        { id: "mol-calor", desde: "CALOR", set: "mol", de: c3([3, 5, 38], [0, 0, 0]), a: c3([2.6, 4.4, 34], [0, 0, 0]), apertura: 0.0006 },
+        // 9-10 · the bowl cut in half
+        { id: "cuenco", desde: "PERO1", set: "cuenco", de: c3([0, 12, 58], [0, 5.6, 0]), a: c3([0, 11.5, 54], [0, 5.4, 0]) },
+        { id: "cuenco-borde", desde: "POCOS", set: "cuenco", de: c3([-3.2, 6.6, 17], [-4.6, 4.2, 0]), a: c3([-3.0, 6.4, 16], [-4.6, 4.2, 0]), apertura: 0.0012 },
+        { id: "cuenco-mapa", desde: "FUERA", set: "cuenco", de: c3([-2, 8.5, 50], [0, 4, 0]), a: c3([-1.6, 8.2, 47], [0, 4, 0]) },
+        { id: "cuenco-centro", desde: "CENTRO1", set: "cuenco", de: c3([1.2, 5.0, 27], [0.6, 3.1, 0]), a: c3([1.0, 4.9, 25.5], [0.6, 3.1, 0]), apertura: 0.0008 },
+        { id: "cuenco-sarten", desde: "SARTEN", set: "cuenco", de: c3([5, 10, 44], [0, 3.8, 0]), a: c3([4.4, 9.4, 41], [0, 3.8, 0]) },
+        // 11-12 · the standing wave and its spots
+        { id: "ondas-dos", desde: "MEJOR", set: "guia", de: c3([0, 15, 150], [0, 11, 0], 24), a: c3([0, 14.5, 140], [0, 11, 0], 24) },
+        { id: "ondas-quietas", desde: "QUIETAS", set: "guia", de: c3([-3, 13, 104], [-3, 11, 0], 24), a: c3([-3, 12.8, 98], [-3, 11, 0], 24) },
+        { id: "puntos", desde: "PUNTOS", set: "guia", de: c3([2.5, 12.5, 78], [2.5, 11, 0], 24), a: c3([2.5, 12.3, 73], [2.5, 11, 0], 24) },
+        { id: "mapa", desde: "ENTRE", set: "plato", de: c3([0, 50, 0.01], [0, 0, 0]), a: c3([0, 46, 0.01], [0, 0, 0]) },
+        { id: "frio-macro", desde: "FRIOS", set: "plato", de: c3([3.06, 30, 0.01], [3.06, 0, -3.06]), a: c3([3.06, 27.5, 0.01], [3.06, 0, -3.06]) },
+        { id: "mapa-regla", desde: "SEPARADOS", set: "plato", de: c3([3.5, 28, 0.01], [3.5, 0, 0]), a: c3([3.5, 25, 0.01], [3.5, 0, 0]) },
+        // 13 · the turntable
+        { id: "gira-arriba", desde: "GIRA", set: "plato", de: c3([0, 56, 0.01], [0, 0, 0]), a: c3([0, 52, 0.01], [0, 0, 0]) },
+        { id: "gira-horno", desde: "COMIDA2", set: "horno", de: c3([-30, 17, 50], [-7, 8, 1.5]), a: c3([-27, 16.5, 46], [-7, 8, 1.5]), apertura: 0.0006 },
+        // 14 · 12 cm waves, the door's mesh, light goes through
+        { id: "lambda", desde: "MIDEN", set: "guia", de: c3([4, 15, 92], [4, 13, 0], 24), a: c3([4, 14.8, 86], [4, 13, 0], 24) },
+        { id: "rejilla", desde: "REJILLA", mas: -0.3, set: "horno", de: c3([-2, 18, 40], [-6, 15.5, 20]), a: c3([-3, 17.6, 37], [-6, 15.5, 20]), apertura: 0.0008 },
+        { id: "puerta-corte", desde: "PUERTA", set: "puerta", de: c3([-4, 6, 118], [-3, 0, 0], 24), a: c3([-3.5, 5.6, 110], [-2.6, 0, 0], 24) },
+        { id: "puerta-macro", desde: "PERO2", set: "puerta", de: c3([307, 5, 40], [300, 0, 0]), a: c3([306, 4.5, 37], [300, 0, 0]), apertura: 0.0005 },
+        // 15-16 · the chocolate melts in the hot spots; the arithmetic
+        { id: "choco-horno", desde: "CHOCO2", set: "horno", de: c3([-25, 23, 41], [-7, 7, 1.5]), a: c3([-23, 22, 38], [-7, 7, 1.5]), apertura: 0.0006 },
+        { id: "derrite", desde: "DERRITE", set: "plato", de: c3([0, 38, 0.01], [0, 0, 0]), a: c3([0, 34, 0.01], [0, 0, 0]) },
+        { id: "fundido", desde: "CALIENTES", set: "plato", de: c3([4.4, 6.2, 5.2], [0, 1.6, 0]), a: c3([4.0, 5.8, 4.8], [0, 1.6, 0]), apertura: 0.0014 },
+        { id: "distancia", desde: "DIST", set: "plato", de: c3([2.8, 30, 0.01], [2.8, 0, 2.5]), a: c3([2.8, 27, 0.01], [2.8, 0, 2.5]) },
+        { id: "doble", desde: "POR2", set: "plato", de: c3([4.2, 33, 0.01], [4.2, 0, 0]), a: c3([4.2, 30.5, 0.01], [4.2, 0, 0]) },
+        { id: "cuenta", desde: "FREC", set: "plato", de: c3([0, 52, 0.01], [0, 0, -5]), a: c3([0, 49, 0.01], [0, 0, -5]) },
+        { id: "resultado", desde: "CASI", set: "plato", de: c3([-7, 8, 12], [0, 1.6, 0], 26), a: c3([-6.4, 7.4, 11], [0, 1.6, 0], 26), apertura: 0.0008 },
+        { id: "km", desde: "KM", set: "plato", de: c3([12, 17, 17], [0, 1, -1]), a: c3([11, 16, 15.5], [0, 1, -1]) },
+        { id: "luz-horno", desde: "VEL2", set: "horno", de: c3([34, 12, 132], [0, 22, 0], 28), a: c3([30, 12, 124], [0, 22, 0], 28) },
+        // 17 · send it
+        { id: "manda", desde: "MANDA", set: "final", de: c3([0, 0.6, 42], [0, -0.4, 0], 24), a: c3([0, 0.5, 39], [0, -0.4, 0], 24) },
+        { id: "borde", desde: "BORDE", set: "cuenco", de: c3([0, 9, 50], [0, 4.4, 0]), a: c3([0.6, 8.6, 47], [0, 4.4, 0]) },
+        { id: "enviado", desde: "FRIO2", set: "final", de: c3([1.2, -0.6, 32], [0.4, -1.6, 0], 24), a: c3([1.0, -0.6, 30], [0.4, -1.6, 0], 24) },
+      ];
+      const PLN = X.planos(PL, SETS);
+
+      // what each shot shows (state of its set)
+      function estado(t, e) {
+        const id = e.id, k = e.k;
+        if (e.set === "horno") {
+          const rxOn = id === "rayosx" ? ramp(t, T("DETRAS") + 0.1, T("DETRAS") + 0.9) : id === "mag-situ" || id === "rebota3d" ? 1 : 0;
+          estadoH = { rx: rxOn, puerta: ["sopa", "gira-horno", "choco-horno"].includes(id) ? 1 : 0, luz: 1, gira: id !== "choco-horno", choco: id === "choco-horno", funde: 0,
+            rayos: id === "rebota3d" ? ramp(t, T("PARED"), T("PARED") + 0.3) : 0, vapor: id === "rayosx" || id === "mag-situ" ? 0 : 1 };
+        } else if (e.set === "mag") {
+          estadoM = { corte: ["mag-arriba", "mag-elec", "mag-alas", "mag-cifra"].includes(id) ? "y" : ["mag-antena", "mag-lejos"].includes(id) ? "no" : "z",
+            abre: 0, campo: ["mag-alas", "mag-cifra"].includes(id) ? 1 : id === "mag-elec" ? 0.3 : 0,
+            fil: ["mag-elec", "mag-alas"].includes(id) ? 0.55 : 1.3, elec: ["mag-antena", "mag-lejos"].includes(id) ? 0 : 1, anillos: id === "mag-antena" ? ramp(t, T("OSCILAN"), T("OSCILAN") + 0.3) : id === "mag-lejos" ? 1 : 0 };
+        } else if (e.set === "guia") {
+          estadoG = { guia: ["guia", "caja"].includes(id) ? 1 : 0, rayos: id === "caja" ? ramp(t, T("LLEVA") + 0.25, T("LLEVA") + 0.7) * 0.8 : id === "rebota" ? 1 : 0,
+            ida: id === "ondas-dos" ? 1 : id === "ondas-quietas" ? 1 - ramp(t, T("QUIETAS"), T("QUIETAS") + 0.8) : id === "lambda" ? 1 : 0,
+            vuelta: id === "ondas-dos" ? ramp(t, T("CRUZARSE") - 0.4, T("CRUZARSE")) : id === "ondas-quietas" ? 1 - ramp(t, T("QUIETAS"), T("QUIETAS") + 0.8) : 0,
+            quieta: id === "ondas-quietas" ? ramp(t, T("QUIETAS") - 0.1, T("QUIETAS") + 0.6) : id === "puntos" ? 1 : 0,
+            puntos: id === "puntos" ? ramp(t, T("PUNTOS"), T("PUNTOS") + 0.5) : id === "ondas-quietas" ? ramp(t, T("QUIETAS") + 0.6, T("QUIETAS") + 1.2) * 0.5 : 0,
+            regla: id === "lambda" ? ramp(t, T("MIDEN") + 0.2, T("MIDEN") + 0.9) : 0, congela: id === "lambda" };
+        } else if (e.set === "mol") {
+          const tc = T("CAMPO"); sMas.visible = sMenos.visible = ["mol-pos", "mol-neg", "mol-gira"].includes(id);
+          estadoO = { campo: t >= tc ? ramp(t, tc, tc + 0.4) : 0, alinea: ramp(t, T("MOLECS") - 0.5, T("MOLECS") + 0.4), calor: ramp(t, T("CHOCAN") - 0.2, T("CALOR") + 0.6), t0: tc };
+        } else if (e.set === "cuenco") {
+          if (id === "borde") estadoK = { k: 1, cond: 0, ola: 0, cifras: 1, regla: 0, flechas: 0 };
+          else estadoK = { k: ramp(t, T("FUERA") - 0.6, T("FUERA") + 0.4), cond: ramp(t, T("SARTEN") - 0.4, T("SARTEN") + 1.6), ola: ["cuenco", "cuenco-borde"].includes(id) ? ramp(t, T("PERO1"), T("PERO1") + 0.5) : 0,
+            cifras: ["cuenco-mapa", "cuenco-centro", "cuenco-sarten"].includes(id) ? ramp(t, T("FUERA"), T("FUERA") + 0.3) : 0, regla: id === "cuenco-borde" ? 1 : 0, flechas: id === "cuenco-sarten" ? ramp(t, T("SARTEN"), T("SARTEN") + 0.4) : 0 };
+        } else if (e.set === "plato") {
+          const melt = ramp(t, T("DERRITE") - 0.2, T("CALIENTES") + 0.4);
+          const sinPlato = ["mapa", "mapa-regla", "frio-macro"].includes(id);
+          estadoP = { mapa: sinPlato || id === "gira-arriba" ? 1 : ["choco-arriba", "choco-macro", "choco-lado"].includes(id) ? 0.0 : 0.55,
+            plato: !sinPlato, gira: id === "gira-arriba", bowl: id === "gira-arriba", choco: id !== "gira-arriba" && !sinPlato,
+            funde: ["choco-arriba", "choco-macro", "choco-lado"].includes(id) ? 0.35 : id === "derrite" ? melt : ["fundido", "distancia", "doble", "cuenta", "resultado", "km"].includes(id) ? Math.max(melt, 0.9) : 0,
+            cifras: id === "mapa-regla" ? ramp(t, T("SEPARADOS") + 0.5, T("SEPARADOS") + 1.0) : ["mapa", "frio-macro"].includes(id) ? 1 : 0,
+            regla: ["mapa", "doble", "cuenta"].includes(id) ? 1 : id === "mapa-regla" ? ramp(t, T("SEPARADOS") + 0.1, T("SEPARADOS") + 0.8) : id === "distancia" ? ramp(t, T("DIST") + 0.1, T("DIST") + 0.8) : 0,
+            doble: id === "doble" ? ramp(t, T("POR2") + 0.1, T("POR2") + 0.7) : id === "cuenta" ? 1 : 0,
+            sopa: id === "gira-arriba" ? 1 : 0 };
+        } else if (e.set === "puerta") {
+          const tq = T("PUERTA");
+          estadoQ = { ida: id === "puerta-corte" ? ramp(t, tq - 0.05, tq + 0.45) : 0, vuelta: id === "puerta-corte" ? ramp(t, tq + 0.45, tq + 1.1) : 0, luz: id === "puerta-corte" ? ramp(t, tq + 0.2, tq + 0.6) : 0, macro: id === "puerta-macro" ? 1 : 0 };
+        }
+      }
+
+      const panelLuz0 = () => C.panel("luz0", "¿? km/s");
+      const cuentaEl = document.getElementById("cuenta"), cuentaL = [...cuentaEl.querySelectorAll(".l")];
+      const leyendaFilas = [...document.querySelectorAll(".leyenda .fila")];
+      function overlays(t) {
+        panelLuz0();
+        C.panel("freq", "2,45 GHz");
+        { const k = ramp(t, T("MILLONES") - 0.1, T("MILLONES") + 0.7), n = Math.round(lerp(0, 2450, k)); C.panel("osc", `${String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ".")}.000.000`); }
+        C.panel("cambios", "4.900.000.000");
+        C.panel("temp", `${Math.round(lerp(20, 64, ramp(t, T("CALOR"), T("CALOR") + 1.2)))} °C`);
+        C.panel("prof", "1,4–3,8 cm");
+        C.panel("lambda", "12,2 cm");
+        C.panel("sep", "6,1 cm");
+        C.panel("luz", "299.792 km/s");
+        // the arithmetic, line by line
+        const a = ventana(t, T("FREC") - 0.9, T("VEL2"), 0.25);
+        cuentaEl.style.opacity = a; cuentaEl.style.transform = `translateY(${(1 - a) * 12}px)`;
+        [T("FREC") - 0.9, T("FREC") - 0.1, T("KM") - 0.6, T("KM") + 0.6].forEach((t0, i) => { const k = ramp(t, t0, t0 + 0.25); cuentaL[i].style.opacity = k; cuentaL[i].style.transform = `translateX(${(1 - k) * -14}px)`; });
+        // legend rows: stack the visible ones
+        let y = 0; for (const f of leyendaFilas) { const o = parseFloat(f.style.opacity || "0"); f.style.top = y + "px"; if (o > 0.01) y += 36; }
+      }
+
+      function renderAt(t) {
+        const e = PLN.aplicar(t);
+        estado(t, e);
+        if (e.set === "horno") updHorno(t, e);
+        else if (e.set === "mag") updMag(t, e);
+        else if (e.set === "guia") updGuia(t, e);
+        else if (e.set === "mol") updMol(t, e);
+        else if (e.set === "cuenco") updCuenco(t, e);
+        else if (e.set === "plato") updPlato(t, e);
+        else if (e.set === "puerta") updPuerta(t, e);
+        else if (e.set === "final") updFinal(t, e);
+        C.renderer.toneMappingExposure = ["mag-elec", "mag-alas"].includes(e.id) ? 0.78 : ["mag-cifra", "mag-arriba"].includes(e.id) ? 0.9 : 1.05;
+        overlays(t);
+        C.pintar(t);
+        overlays(t);
+      }
+
+      // warm-up: draw every set once with all its parts visible, so no shader compiles in the middle of the video
+      const bloom = C.composer.passes.find((x) => x.threshold !== undefined); if (bloom) { bloom.threshold = 0.9; bloom.strength = 0.5; }
+      const bok = C.composer.passes.find((x) => x.uniforms && x.uniforms.aperture);
+      for (const k in SETS) {
+        for (const j in SETS) SETS[j].grupo.visible = j === k;
+        const ocultos = [];
+        SETS[k].grupo.traverse((o) => { if (!o.visible) { ocultos.push(o); o.visible = true; } });
+        C.camera.position.copy(SETS[k].centro).add(v3(0, 10, 80)); C.camera.lookAt(SETS[k].centro); C.camera.updateMatrixWorld();
+        C.renderer.compile(C.scene, C.camera);
+        if (bok) { bok.enabled = true; bok.uniforms.aperture.value = 0.0002; }
+        C.composer.render();
+        for (const o of ocultos) o.visible = false;
+      }
+      window.__micro = { C, X, PLN, SETS, renderAt };
+      C.arrancar(renderAt);
+    </script>
+  </body>
+</html>

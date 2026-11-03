@@ -1,0 +1,52 @@
+{
+  "titulo": "El microondas no calienta desde dentro",
+  "lines": [
+    "El microondas no calienta desde dentro.",
+    "Y al final verás cómo una tableta de chocolate mide la velocidad de la luz.",
+    "Detrás del panel hay un magnetrón: un tubo con imanes donde los electrones dan vueltas.",
+    "Así fabrica ondas que oscilan dos mil cuatrocientos cincuenta millones de veces por segundo.",
+    "Una guía de metal las lleva a la caja, y rebotan de pared en pared.",
+    "Cada molécula de agua de la comida tiene un lado positivo y otro negativo.",
+    "El campo cambia de sentido sin parar, y las moléculas intentan girar con él.",
+    "Al girar, chocan y se rozan con sus vecinas: eso es el calor.",
+    "Pero las ondas solo entran unos pocos centímetros.",
+    "Lo de fuera se calienta antes, y el centro después, como en una sartén.",
+    "Y ahora lo mejor: al cruzarse, las ondas se quedan quietas.",
+    "Hay puntos que queman, separados unos seis centímetros, y entre ellos, puntos fríos.",
+    "Por eso gira el plato: para que la comida pase por todos.",
+    "Las ondas miden unos doce centímetros: por la rejilla de la puerta no caben, pero la luz sí.",
+    "Y el chocolate: sin plato que gire, se derrite solo en esos puntos calientes.",
+    "La distancia entre manchas, por dos y por la frecuencia, da casi trescientos mil kilómetros por segundo: la velocidad de la luz.",
+    "Mándaselo a quien se quema con el borde y el centro sigue frío."
+  ],
+  "claves": [
+    "dentro",
+    "chocolate",
+    "magnetrón",
+    "oscilan",
+    "rebotan",
+    "molécula",
+    "girar",
+    "calor",
+    "pocos",
+    "fuera",
+    "quietas",
+    "queman",
+    "plato",
+    "rejilla",
+    "derrite",
+    "luz",
+    "frío"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "El microondas no calienta desde dentro: sus ondas solo entran unos centímetros y el centro se calienta después, por conducción. Y los puntos que derriten una tableta de chocolate sirven para calcular la velocidad de la luz. Ilustración simplificada.",
+    "hashtags": [
+      "#microondas",
+      "#fisica",
+      "#ciencia"
+    ],
+    "portada_en": "dentro"
+  },
+  "voz_dice": "La voz se generó con los números en palabras; Whisper los oye en cifras (2.450, 6, 12, 2 y 300.000) y vozdata.py los pone así en los subtítulos. Después de la voz se recortaron 0,20 s de silencio al principio y 0,24 s del silencio que sigue al gancho en exports/voces/07-microondas.wav, para que el gancho acabe antes de 2,5 s."
+}
