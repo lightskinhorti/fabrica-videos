@@ -79,4 +79,5 @@ En lugar de algo imposible, un hábito real que el contador va sumando durante d
 **El ahorro (1 € o 5 € al día)** encaja mejor en Dinero sin lío (@dinerosinlio).
 
 - [x] Vídeo 6: idea 23, 10.000 pasos al día (63,1 s). Hecho el 2 de noviembre y aprobado por Javier el 3.
+- [x] Vídeo 8: idea 23 en versión de salud (lo pidió Javier el 3 de noviembre): qué le pasa al cuerpo si caminas 10.000 pasos cada día, con el personaje que empieza con kilos de más y se pone en forma. Fuentes: Cochrane 2021, Sports Medicine 2022, Preventive Medicine 2015, JAMA Neurology 2022, JAMA Network Open 2024 y Lancet Public Health 2025. Sustituye al vídeo 6 el jueves 5; el 6 queda de reserva.
 - [x] Vídeo 7: idea 27, la comida que se tira en casa (64,0 s), con el informe de desperdicio del Ministerio de Agricultura de 2025. Hecho la noche del 3 de noviembre; falta que Javier lo apruebe.

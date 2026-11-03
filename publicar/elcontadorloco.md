@@ -19,7 +19,7 @@ el día 1, porque los primeros vídeos le dicen a TikTok a quién enseñarle la 
 | Lunes 2 de noviembre | 22:00 | `05-ropa.mp4` | [ ] |
 | Martes 3 de noviembre | 20:00 | `04-crecer.mp4` | [ ] |
 | Miércoles 4 de noviembre | 20:00 | `02-movil.mp4` | [ ] |
-| Jueves 5 de noviembre | 20:00 | `06-pasos.mp4` | [ ] |
+| Jueves 5 de noviembre | 20:00 | `08-pasos-salud.mp4` (falta que lo apruebes; si no, va `06-pasos.mp4`, que queda de reserva) | [ ] |
 | Viernes 6 de noviembre | 20:00 | `07-comida.mp4` (falta que lo apruebes) | [ ] |
 
 Si empiezas otro día, mueve todas las fechas igual. TikTok deja programar hasta 10 días antes.
@@ -99,6 +99,14 @@ Cada vídeo tiene también su `publicacion.md` en `videos/elcontadorloco/<vídeo
 La comida que se tira en casa, sumada: unos 64 gramos al día por persona, una maleta al año y casi 2 toneladas en toda una vida. Y todos los hogares de España juntos, en un solo año, más de un millón de toneladas. Datos del Ministerio de Agricultura, año 2025. Valores aproximados.
 
 #quepasariasi #curiosidades #datoscuriosos #parati #comida #desperdicioalimentario #cocina
+```
+
+### 08-pasos-salud.mp4 (65,0 s)
+
+```
+10.000 pasos al día, todos los días: qué dicen los estudios del azúcar tras comer, la tensión, la forma física, el cerebro, el ánimo y el riesgo de morir. Y con 7.000 ya se gana mucho. Fuentes: Cochrane 2021 (caminar y tensión), Sports Medicine 2022, Preventive Medicine 2015, JAMA Neurology 2022, JAMA Network Open 2024 y Lancet Public Health 2025. Los estudios de cohortes muestran asociaciones, no promesas. El dibujo es una ilustración: cada cuerpo cambia a su ritmo. No es un consejo médico.
+
+#quepasariasi #curiosidades #datoscuriosos #parati #salud #caminar #pasos
 ```
 
 ## Instagram (Reels)

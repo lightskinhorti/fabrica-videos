@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <script type="importmap">
+      { "imports": { "three": "./lib/three.module.js", "three/addons/": "./lib/addons/" } }
+    </script>
+    <link rel="stylesheet" href="comun/contador.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Nunito", sans-serif; }
+      #alt, #clock { font-family: "Archivo Black", sans-serif; }
+      /* millions: "25,6" with "millones / de pasos" stacked as the unit */
+      #alt small.dos { display: inline-block; font-size: 0.29em; line-height: 1.02; text-align: left; vertical-align: 0.42em; margin-left: 0.22em; }
+      /* health cards: one per landmark, on the right, with a leader line to the part of the body */
+      .card {
+        position: absolute; left: 556px; top: 646px; width: 384px; padding: 20px 22px 18px; border-radius: 30px;
+        background: rgba(13, 22, 48, 0.9); border: 5px solid #0b1a3a; color: #fff; opacity: 0; transform-origin: 0 30%;
+      }
+      .card .top { display: flex; align-items: center; gap: 14px; }
+      .card .ic { width: 78px; height: 78px; flex: none; border-radius: 50%; background: #ffcf2e; display: flex; align-items: center; justify-content: center; }
+      .card .ic svg { width: 54px; height: 54px; overflow: visible; }
+      .card .tt { font-weight: 900; font-size: 30px; line-height: 1.04; letter-spacing: 0.04em; color: #ffcf2e; }
+      .card .big { font-family: "Archivo Black", sans-serif; font-size: 72px; line-height: 1; margin-top: 16px; white-space: nowrap; }
+      .card .big small { font-size: 0.42em; margin-left: 0.14em; }
+      .card .big.txt { font-size: 50px; }
+      .card .sub { font-weight: 800; font-size: 27px; line-height: 1.16; margin-top: 10px; color: rgba(255, 255, 255, 0.94); }
+      .card .pie { margin-top: 12px; }
+      .card .src { display: block; margin-top: 6px; font-weight: 700; font-size: 20px; line-height: 1.15; color: rgba(255, 255, 255, 0.66); }
+      .card .chip {
+        display: inline-block; font-weight: 900; font-size: 17px; letter-spacing: 0.08em; padding: 3px 9px 2px; border-radius: 9px;
+        border: 2px solid rgba(255, 207, 46, 0.75); color: #ffcf2e;
+      }
+      .card svg.chart { display: block; width: 330px; height: 118px; margin-top: 12px; overflow: visible; }
+      .card .ley { display: flex; gap: 18px; font-weight: 800; font-size: 21px; margin-top: 4px; color: rgba(255, 255, 255, 0.8); }
+      .card .ley i { display: inline-block; width: 26px; height: 5px; border-radius: 3px; vertical-align: middle; margin-right: 7px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="65" data-width="1080" data-height="1920" data-fps="30">
+      <div id="sky" class="clip" data-start="0" data-duration="65" data-track-index="0"></div>
+      <canvas id="gl" class="clip" data-start="0" data-duration="65" data-track-index="1" width="1080" height="1920"></canvas>
+      <svg id="leaders" class="clip" data-start="0" data-duration="65" data-track-index="2" width="1080" height="1920" data-layout-allow-overlap></svg>
+      <div id="labels" class="clip" data-start="0" data-duration="65" data-track-index="3" data-layout-allow-overlap>
+        <div class="card" id="c-azucar">
+          <div class="top"><div class="ic"><svg viewBox="0 0 48 48"><path d="M24 5 C24 5 11 20 11 29.5 A13 13 0 0 0 37 29.5 C37 20 24 5 24 5 Z" fill="none" stroke="#1d1f3a" stroke-width="4" stroke-linejoin="round"/><path d="M18 30 A6 6 0 0 0 24 36" fill="none" stroke="#1d1f3a" stroke-width="3.5" stroke-linecap="round"/></svg></div><div class="tt">AZÚCAR TRAS COMER</div></div>
+          <svg class="chart" viewBox="0 0 330 118">
+            <line x1="0" y1="108" x2="330" y2="108" stroke="rgba(255,255,255,0.35)" stroke-width="3"/>
+            <path class="sentado" d="M4 100 C46 100 76 14 120 14 C166 14 214 66 326 78" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="6" stroke-dasharray="12 10" stroke-linecap="round"/>
+            <path class="andando" d="M4 100 C46 100 76 56 120 56 C166 56 214 84 326 90" fill="none" stroke="#ffcf2e" stroke-width="8" stroke-linecap="round"/>
+          </svg>
+          <div class="ley"><span><i style="background: rgba(255,255,255,0.6)"></i>sentado</span><span><i style="background: #ffcf2e"></i>caminando</span></div>
+          <div class="pie"><span class="chip">ENSAYOS</span><span class="src">Sports Medicine, 2022</span></div>
+        </div>
+        <div class="card" id="c-corazon">
+          <div class="top"><div class="ic"><svg viewBox="0 0 48 48"><path class="latido" d="M24 40 C14 32 6.5 25.5 6.5 17.5 C6.5 12.3 10.6 8.5 15.5 8.5 C19.2 8.5 22.2 10.8 24 14 C25.8 10.8 28.8 8.5 32.5 8.5 C37.4 8.5 41.5 12.3 41.5 17.5 C41.5 25.5 34 32 24 40 Z" fill="#1d1f3a" style="transform-origin: 24px 24px"/></svg></div><div class="tt">CORAZÓN</div></div>
+          <div class="big"><span class="n">−4</span><small>mmHg</small></div>
+          <div class="sub">de tensión máxima, y el pulso, 3 latidos menos por minuto</div>
+          <div class="pie"><span class="chip">ENSAYOS</span><span class="src">Cochrane, 2021 · 73 ensayos</span></div>
+        </div>
+        <div class="card" id="c-forma">
+          <div class="top"><div class="ic"><svg viewBox="0 0 48 48"><g class="pulmon" style="transform-origin: 24px 26px" fill="none" stroke="#1d1f3a" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6 V22 M24 20 C21 22 19.5 23 19.5 26 M24 20 C27 22 28.5 23 28.5 26"/><path d="M19.5 16 C12 16 7 26 7 34 C7 40 11.5 41.5 16 39.5 C19 38 19.5 35 19.5 30 Z" fill="#1d1f3a"/><path d="M28.5 16 C36 16 41 26 41 34 C41 40 36.5 41.5 32 39.5 C29 38 28.5 35 28.5 30 Z" fill="#1d1f3a"/></g></svg></div><div class="tt">FORMA FÍSICA</div></div>
+          <div class="big txt">MÁS FONDO</div>
+          <div class="sub">capacidad aeróbica: +3 ml/kg/min de media</div>
+          <div class="pie"><span class="chip">ENSAYOS</span><span class="src">Preventive Medicine, 2015 · 32 estudios</span></div>
+        </div>
+        <div class="card" id="c-peso">
+          <div class="top"><div class="ic"><svg viewBox="0 0 48 48"><rect x="7" y="9" width="34" height="32" rx="7" fill="none" stroke="#1d1f3a" stroke-width="4"/><path d="M15 24 A10 10 0 0 1 33 24" fill="none" stroke="#1d1f3a" stroke-width="3.5" stroke-linecap="round"/><line class="aguja" x1="24" y1="26" x2="24" y2="17" stroke="#1d1f3a" stroke-width="3.5" stroke-linecap="round" style="transform-origin: 24px 26px"/></svg></div><div class="tt">PESO</div></div>
+          <div class="big"><span class="n">−1,4</span><small>kg</small></div>
+          <div class="sub">de media en los ensayos: baja, pero poco</div>
+          <div class="pie"><span class="chip">ENSAYOS</span><span class="src">Preventive Medicine, 2015 · 32 estudios</span></div>
+        </div>
+        <div class="card" id="c-cerebro">
+          <div class="top"><div class="ic"><svg viewBox="0 0 48 48"><g class="rayos" stroke="#1d1f3a" stroke-width="3.2" stroke-linecap="round"><line x1="24" y1="1" x2="24" y2="-4"/><line x1="40" y1="7" x2="44" y2="3"/><line x1="8" y1="7" x2="4" y2="3"/></g><path class="seso" d="M22.5 10 C16.5 7.5 10 11.5 11 17.5 C5.8 19.5 5.8 28.5 11 30.5 C10 36.5 16.5 41 22.5 38 Z M25.5 10 C31.5 7.5 38 11.5 37 17.5 C42.2 19.5 42.2 28.5 37 30.5 C38 36.5 31.5 41 25.5 38 Z" fill="none" stroke="#1d1f3a" stroke-width="3.6" stroke-linejoin="round"/></svg></div><div class="tt">CEREBRO</div></div>
+          <div class="big"><span class="n">−51</span><small>%</small></div>
+          <div class="sub">de riesgo de demencia con unos 9.800 pasos al día</div>
+          <div class="pie"><span class="chip">ASOCIACIÓN</span><span class="src">JAMA Neurology, 2022 · 78.430 personas</span></div>
+        </div>
+        <div class="card" id="c-animo">
+          <div class="top"><div class="ic"><svg viewBox="0 0 48 48"><g class="sol" style="transform-origin: 24px 24px" stroke="#1d1f3a" stroke-width="3.4" stroke-linecap="round"><line x1="24" y1="2" x2="24" y2="7"/><line x1="24" y1="41" x2="24" y2="46"/><line x1="2" y1="24" x2="7" y2="24"/><line x1="41" y1="24" x2="46" y2="24"/><line x1="8.4" y1="8.4" x2="12" y2="12"/><line x1="36" y1="36" x2="39.6" y2="39.6"/><line x1="8.4" y1="39.6" x2="12" y2="36"/><line x1="36" y1="12" x2="39.6" y2="8.4"/></g><circle cx="24" cy="24" r="12" fill="none" stroke="#1d1f3a" stroke-width="3.6"/><path d="M18.5 26 C20 30 28 30 29.5 26" fill="none" stroke="#1d1f3a" stroke-width="3.2" stroke-linecap="round"/><circle cx="20" cy="21" r="1.8" fill="#1d1f3a"/><circle cx="28" cy="21" r="1.8" fill="#1d1f3a"/></svg></div><div class="tt">ÁNIMO</div></div>
+          <div class="big"><span class="n">−31</span><small>%</small></div>
+          <div class="sub">de riesgo de depresión con 7.000 pasos o más</div>
+          <div class="pie"><span class="chip">ASOCIACIÓN</span><span class="src">JAMA Network Open, 2024 · 33 estudios</span></div>
+        </div>
+        <div class="card" id="c-objetivo">
+          <div class="top"><div class="ic"><svg viewBox="0 0 48 48" fill="#1d1f3a"><g class="pie1"><ellipse cx="16" cy="30" rx="5.5" ry="8.5"/><circle cx="12.5" cy="18.5" r="1.9"/><circle cx="16.5" cy="17.2" r="1.9"/><circle cx="20.3" cy="18.6" r="1.7"/></g><g class="pie2"><ellipse cx="32" cy="22" rx="5.5" ry="8.5"/><circle cx="28.5" cy="10.5" r="1.9"/><circle cx="32.5" cy="9.2" r="1.9"/><circle cx="36.3" cy="10.6" r="1.7"/></g></svg></div><div class="tt">¿HACEN FALTA 10.000?</div></div>
+          <div class="big"><span class="n">7.000</span><small>pasos</small></div>
+          <div class="sub">ya se nota mucho; a partir de ahí, se gana más despacio</div>
+          <div class="pie"><span class="chip">ASOCIACIÓN</span><span class="src">Lancet Public Health, 2022 y 2025</span></div>
+        </div>
+        <div class="card" id="c-vida">
+          <div class="top"><div class="ic"><svg viewBox="0 0 48 48"><path class="ecg" d="M3 26 H13 L17.5 15 L24 37 L29.5 19 L32.5 26 H45" fill="none" stroke="#1d1f3a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="tt">RIESGO DE MORIR</div></div>
+          <div class="big"><span class="n">−47</span><small>%</small></div>
+          <div class="sub">con 7.000 pasos al día, frente a 2.000</div>
+          <div class="pie"><span class="chip">ASOCIACIÓN</span><span class="src">Lancet Public Health, 2025 · 14 estudios</span></div>
+        </div>
+      </div>
+      <div id="hud" class="clip" data-start="0" data-duration="65" data-track-index="4">
+        <div id="alt">0<small>pasos</small></div>
+        <div id="since"></div>
+        <div id="clock">0 s</div>
+        <div id="extra"></div>
+        <div id="note"></div>
+      </div>
+      <div id="title" class="clip" data-start="0" data-duration="65" data-track-index="6"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="65"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="65" data-track-index="7" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 63.72, "lines": [{"id": "l1", "s": 0.31, "e": 2.08, "words": [{"w": "10.000", "s": 0.31, "e": 1.18, "key": false}, {"w": "pasos", "s": 1.18, "e": 1.51, "key": true}, {"w": "cada", "s": 1.51, "e": 1.77, "key": false}, {"w": "día.", "s": 1.77, "e": 2.08, "key": false}]}, {"id": "l2", "s": 2.08, "e": 7.42, "words": [{"w": "¿Qué", "s": 2.08, "e": 2.39, "key": false}, {"w": "le", "s": 2.39, "e": 2.5, "key": false}, {"w": "pasa", "s": 2.5, "e": 2.73, "key": false}, {"w": "a", "s": 2.73, "e": 2.78, "key": false}, {"w": "tu", "s": 2.78, "e": 2.89, "key": false}, {"w": "cuerpo", "s": 2.89, "e": 3.24, "key": true}, {"w": "si", "s": 3.24, "e": 3.35, "key": false}, {"w": "no", "s": 3.35, "e": 3.45, "key": false}, {"w": "fallas", "s": 3.46, "e": 3.88, "key": false}, {"w": "ni", "s": 3.88, "e": 3.96, "key": false}, {"w": "un", "s": 3.96, "e": 4.16, "key": false}, {"w": "día?", "s": 4.16, "e": 4.76, "key": false}, {"w": "Y", "s": 4.76, "e": 4.96, "key": false}, {"w": "al", "s": 4.96, "e": 5.06, "key": false}, {"w": "final:", "s": 5.14, "e": 5.43, "key": false}, {"w": "¿hacen", "s": 5.85, "e": 6.08, "key": false}, {"w": "falta", "s": 6.08, "e": 6.53, "key": false}, {"w": "tantos?", "s": 6.67, "e": 7.42, "key": false}]}, {"id": "l3", "s": 7.64, "e": 11.56, "words": [{"w": "Nuestro", "s": 7.64, "e": 7.91, "key": false}, {"w": "amigo", "s": 7.91, "e": 8.13, "key": false}, {"w": "empieza", "s": 8.13, "e": 8.44, "key": false}, {"w": "con", "s": 8.44, "e": 8.57, "key": false}, {"w": "unos", "s": 8.57, "e": 8.68, "key": false}, {"w": "kilos", "s": 8.77, "e": 9.0, "key": false}, {"w": "de", "s": 9, "e": 9.25, "key": false}, {"w": "más,", "s": 9.25, "e": 9.64, "key": false}, {"w": "y", "s": 9.65, "e": 9.69, "key": false}, {"w": "las", "s": 9.69, "e": 9.95, "key": false}, {"w": "escaleras", "s": 9.95, "e": 10.49, "key": true}, {"w": "le", "s": 10.49, "e": 10.62, "key": false}, {"w": "dejan", "s": 10.62, "e": 10.95, "key": false}, {"w": "sin", "s": 10.95, "e": 11.15, "key": false}, {"w": "aire.", "s": 11.15, "e": 11.56, "key": false}]}, {"id": "l4", "s": 11.74, "e": 17.49, "words": [{"w": "Primer", "s": 11.74, "e": 12.0, "key": false}, {"w": "día.", "s": 12, "e": 12.4, "key": false}, {"w": "Si", "s": 12.4, "e": 12.53, "key": false}, {"w": "parte", "s": 12.53, "e": 12.78, "key": false}, {"w": "de", "s": 12.87, "e": 12.99, "key": false}, {"w": "esos", "s": 12.99, "e": 13.2, "key": false}, {"w": "pasos", "s": 13.27, "e": 13.58, "key": false}, {"w": "los", "s": 13.58, "e": 13.76, "key": false}, {"w": "das", "s": 13.78, "e": 13.93, "key": false}, {"w": "después", "s": 14.51, "e": 14.56, "key": false}, {"w": "de", "s": 14.57, "e": 14.71, "key": false}, {"w": "comer,", "s": 14.87, "e": 15.19, "key": false}, {"w": "el", "s": 15.28, "e": 15.42, "key": false}, {"w": "azúcar", "s": 15.42, "e": 15.89, "key": true}, {"w": "en", "s": 15.89, "e": 16.05, "key": false}, {"w": "sangre", "s": 16.05, "e": 16.44, "key": false}, {"w": "sube", "s": 16.68, "e": 16.83, "key": false}, {"w": "menos.", "s": 16.89, "e": 17.49, "key": false}]}, {"id": "l5", "s": 17.55, "e": 22.93, "words": [{"w": "En", "s": 17.55, "e": 17.64, "key": false}, {"w": "unas", "s": 17.64, "e": 17.87, "key": false}, {"w": "15", "s": 17.88, "e": 18.24, "key": false}, {"w": "semanas,", "s": 18.24, "e": 18.67, "key": false}, {"w": "lo", "s": 18.67, "e": 18.78, "key": false}, {"w": "nota", "s": 18.78, "e": 18.88, "key": false}, {"w": "el", "s": 18.93, "e": 19.15, "key": false}, {"w": "corazón:", "s": 19.43, "e": 19.79, "key": true}, {"w": "en", "s": 19.8, "e": 19.92, "key": false}, {"w": "los", "s": 19.92, "e": 20.23, "key": false}, {"w": "ensayos,", "s": 20.23, "e": 20.76, "key": false}, {"w": "la", "s": 20.76, "e": 20.9, "key": false}, {"w": "tensión", "s": 20.9, "e": 21.31, "key": false}, {"w": "baja", "s": 21.4, "e": 21.67, "key": false}, {"w": "y", "s": 21.67, "e": 21.74, "key": false}, {"w": "el", "s": 21.74, "e": 21.84, "key": false}, {"w": "pulso", "s": 22.09, "e": 22.23, "key": false}, {"w": "se", "s": 22.25, "e": 22.37, "key": false}, {"w": "calma.", "s": 22.37, "e": 22.93, "key": false}]}, {"id": "l6", "s": 22.93, "e": 26.97, "words": [{"w": "La", "s": 22.93, "e": 23.06, "key": false}, {"w": "forma", "s": 23.15, "e": 23.42, "key": true}, {"w": "física", "s": 23.42, "e": 23.84, "key": false}, {"w": "mejora,", "s": 23.84, "e": 24.24, "key": false}, {"w": "y", "s": 24.3, "e": 24.33, "key": false}, {"w": "las", "s": 24.33, "e": 24.54, "key": false}, {"w": "escaleras", "s": 24.79, "e": 25.28, "key": false}, {"w": "ya", "s": 25.29, "e": 25.43, "key": false}, {"w": "no", "s": 25.59, "e": 25.6, "key": false}, {"w": "le", "s": 25.6, "e": 25.76, "key": false}, {"w": "dejan", "s": 25.76, "e": 26.16, "key": false}, {"w": "sin", "s": 26.16, "e": 26.28, "key": false}, {"w": "aire.", "s": 26.41, "e": 26.97, "key": false}]}, {"id": "l7", "s": 26.97, "e": 32.99, "words": [{"w": "¿Y", "s": 26.97, "e": 27.033, "key": false}, {"w": "el", "s": 27.033, "e": 27.16, "key": false}, {"w": "peso?", "s": 27.19, "e": 27.78, "key": true}, {"w": "Algo", "s": 27.82, "e": 28.08, "key": false}, {"w": "baja,", "s": 28.15, "e": 28.59, "key": false}, {"w": "pero", "s": 28.59, "e": 28.92, "key": false}, {"w": "menos", "s": 28.92, "e": 29.33, "key": false}, {"w": "de", "s": 29.33, "e": 29.49, "key": false}, {"w": "lo", "s": 29.49, "e": 29.57, "key": false}, {"w": "que", "s": 29.64, "e": 29.99, "key": false}, {"w": "se", "s": 30.15, "e": 30.23, "key": false}, {"w": "cree.", "s": 30.23, "e": 31.0, "key": false}, {"w": "Lo", "s": 31, "e": 31.02, "key": false}, {"w": "grande", "s": 31.02, "e": 31.27, "key": false}, {"w": "pasa", "s": 31.33, "e": 31.57, "key": false}, {"w": "por", "s": 31.91, "e": 31.97, "key": false}, {"w": "dentro.", "s": 31.97, "e": 32.99, "key": false}]}, {"id": "l8", "s": 33.08, "e": 38.69, "words": [{"w": "Con", "s": 33.08, "e": 33.27, "key": false}, {"w": "los", "s": 33.27, "e": 33.45, "key": false}, {"w": "años,", "s": 33.45, "e": 33.54, "key": false}, {"w": "lo", "s": 33.54, "e": 33.93, "key": false}, {"w": "nota", "s": 33.93, "e": 34.1, "key": false}, {"w": "el", "s": 34.14, "e": 34.23, "key": false}, {"w": "cerebro:", "s": 34.23, "e": 34.88, "key": true}, {"w": "un", "s": 34.88, "e": 35.01, "key": false}, {"w": "estudio", "s": 35.01, "e": 35.52, "key": false}, {"w": "siguió", "s": 35.52, "e": 35.84, "key": false}, {"w": "a", "s": 35.84, "e": 35.89, "key": false}, {"w": "78.000", "s": 35.91, "e": 37.01, "key": false}, {"w": "personas", "s": 37.01, "e": 37.51, "key": false}, {"w": "casi", "s": 37.51, "e": 37.79, "key": false}, {"w": "7", "s": 37.8, "e": 38.11, "key": false}, {"w": "años.", "s": 38.5, "e": 38.69, "key": false}]}, {"id": "l9", "s": 38.69, "e": 43.68, "words": [{"w": "Caminar", "s": 38.69, "e": 39.14, "key": false}, {"w": "unos", "s": 39.14, "e": 39.4, "key": false}, {"w": "10.000", "s": 39.4, "e": 40.12, "key": false}, {"w": "pasos", "s": 40.57, "e": 40.89, "key": false}, {"w": "al", "s": 40.89, "e": 41.02, "key": false}, {"w": "día", "s": 41.02, "e": 41.17, "key": false}, {"w": "se", "s": 41.23, "e": 41.34, "key": false}, {"w": "asoció", "s": 41.34, "e": 41.72, "key": false}, {"w": "con", "s": 41.72, "e": 41.91, "key": false}, {"w": "la", "s": 41.91, "e": 42.04, "key": false}, {"w": "mitad", "s": 42.04, "e": 42.36, "key": false}, {"w": "de", "s": 42.37, "e": 42.5, "key": false}, {"w": "riesgo", "s": 42.5, "e": 42.89, "key": false}, {"w": "de", "s": 42.89, "e": 43.11, "key": false}, {"w": "demencia.", "s": 43.11, "e": 43.68, "key": true}]}, {"id": "l10", "s": 43.69, "e": 49.644, "words": [{"w": "Y", "s": 43.69, "e": 43.757, "key": false}, {"w": "el", "s": 43.757, "e": 43.89, "key": false}, {"w": "ánimo:", "s": 43.96, "e": 44.45, "key": true}, {"w": "7.000", "s": 44.45, "e": 45.49, "key": false}, {"w": "pasos", "s": 45.49, "e": 45.85, "key": false}, {"w": "o", "s": 45.85, "e": 46.01, "key": false}, {"w": "más", "s": 46.01, "e": 46.13, "key": false}, {"w": "se", "s": 46.13, "e": 46.27, "key": false}, {"w": "asocian", "s": 46.27, "e": 46.76, "key": false}, {"w": "con", "s": 46.76, "e": 46.97, "key": false}, {"w": "casi", "s": 46.97, "e": 47.24, "key": false}, {"w": "un", "s": 47.31, "e": 47.39, "key": false}, {"w": "tercio", "s": 47.39, "e": 47.8, "key": false}, {"w": "menos", "s": 47.81, "e": 47.97, "key": false}, {"w": "de", "s": 48.05, "e": 48.3, "key": false}, {"w": "riesgo", "s": 48.55, "e": 48.72, "key": false}, {"w": "de", "s": 48.72, "e": 48.86, "key": false}, {"w": "depresión.", "s": 48.86, "e": 49.644, "key": false}]}, {"id": "l11", "s": 49.644, "e": 54.31, "words": [{"w": "¿Hacen", "s": 49.644, "e": 50.08, "key": false}, {"w": "falta", "s": 50.08, "e": 50.36, "key": false}, {"w": "los", "s": 50.36, "e": 50.53, "key": false}, {"w": "10.000?", "s": 50.53, "e": 51.68, "key": false}, {"w": "No", "s": 51.68, "e": 52.09, "key": false}, {"w": "siempre:", "s": 52.09, "e": 52.39, "key": true}, {"w": "con", "s": 52.39, "e": 52.56, "key": false}, {"w": "7.000", "s": 52.63, "e": 53.42, "key": false}, {"w": "ya", "s": 53.42, "e": 53.53, "key": false}, {"w": "se", "s": 53.53, "e": 53.64, "key": false}, {"w": "gana", "s": 53.64, "e": 53.86, "key": false}, {"w": "mucho.", "s": 53.86, "e": 54.31, "key": false}]}, {"id": "l12", "s": 54.31, "e": 60.55, "words": [{"w": "Lo", "s": 54.31, "e": 54.42, "key": false}, {"w": "más", "s": 54.42, "e": 54.63, "key": false}, {"w": "fuerte:", "s": 54.63, "e": 55.19, "key": false}, {"w": "frente", "s": 55.27, "e": 55.59, "key": false}, {"w": "a", "s": 55.65, "e": 55.69, "key": false}, {"w": "2.000", "s": 55.88, "e": 56.6, "key": false}, {"w": "pasos", "s": 56.6, "e": 56.9, "key": false}, {"w": "al", "s": 56.9, "e": 57.01, "key": false}, {"w": "día,", "s": 57.02, "e": 57.32, "key": false}, {"w": "7.000", "s": 57.32, "e": 58.22, "key": false}, {"w": "se", "s": 58.22, "e": 58.34, "key": false}, {"w": "asocian", "s": 58.34, "e": 58.76, "key": false}, {"w": "con", "s": 58.76, "e": 58.94, "key": false}, {"w": "casi", "s": 58.94, "e": 59.18, "key": false}, {"w": "la", "s": 59.18, "e": 59.3, "key": false}, {"w": "mitad", "s": 59.3, "e": 59.6, "key": true}, {"w": "de", "s": 59.6, "e": 59.72, "key": false}, {"w": "riesgo", "s": 59.72, "e": 60.07, "key": false}, {"w": "de", "s": 60.07, "e": 60.2, "key": false}, {"w": "morir.", "s": 60.2, "e": 60.55, "key": false}]}, {"id": "l13", "s": 60.55, "e": 63.44, "words": [{"w": "¿Cuántos", "s": 60.55, "e": 61.04, "key": false}, {"w": "pasos", "s": 61.05, "e": 61.34, "key": false}, {"w": "das", "s": 61.35, "e": 61.52, "key": false}, {"w": "tú", "s": 61.52, "e": 61.64, "key": false}, {"w": "al", "s": 61.64, "e": 61.67, "key": false}, {"w": "día?", "s": 61.76, "e": 62.04, "key": false}, {"w": "Te", "s": 62.17, "e": 62.24, "key": false}, {"w": "leo", "s": 62.24, "e": 62.42, "key": false}, {"w": "en", "s": 62.42, "e": 62.54, "key": false}, {"w": "los", "s": 62.54, "e": 62.72, "key": false}, {"w": "comentarios.", "s": 62.72, "e": 63.44, "key": true}]}]}</script>
+    <script id="escena" type="application/json">
+      {
+        "titulo": "¿Y si caminaras 10.000 pasos cada día?",
+        "nota": "Ilustración: cada cuerpo cambia a su ritmo",
+        "formato": "altura",
+        "desde": "CAMINANDO DESDE HACE",
+        "inicio": 0,
+        "ritmo": 0.11574074074074074,
+        "hitos": [
+          { "clave": "pasos", "v": 0 },
+          { "clave": "escaleras", "v": 2000 },
+          { "clave": "azucar", "v": 10000 },
+          { "clave": "corazon", "v": 1050000 },
+          { "clave": "forma", "v": 1050000, "solo_etiqueta": true },
+          { "clave": "peso", "v": 1050000, "solo_etiqueta": true },
+          { "clave": "cerebro", "v": 25567500 },
+          { "clave": "animo", "v": 25567500, "solo_etiqueta": true },
+          { "clave": "siempre", "v": 25567500, "solo_etiqueta": true },
+          { "clave": "mitad", "v": 25567500, "solo_etiqueta": true }
+        ],
+        "sonido": { "viento": true }
+      }
+    </script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 65 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import * as THREE from "three";
+      import { crearContador } from "./comun/contador.js";
+
+      // The counter is the steps of a 10.000-a-day habit (hitos in steps; "formato" only feeds the engine's
+      // default text, which this page overwrites: steps under a million, then millions of steps).
+      // Each landmark is an effect on the body with its study (fuentes.md), shown as a card on the right with
+      // a leader line to that part of the body. Our character walks through a park with two footbridges: he starts with some
+      // extra kilos, tired and out of breath on the first stairs, and as the counter climbs he gets more upright,
+      // a little slimmer and full of energy, takes the second stairs easily and ends up jogging happily.
+      // Everything is in metres; the character is 1.8 m tall.
+      const C = crearContador(THREE);
+      const { VOZ, D, words, anchors, scene, camera, mat, box, at, v3, hash, clamp, lerp, ease, smooth, ramp, norm, miles, Y, V, W, H } = C;
+      const RAD = Math.PI / 180;
+      scene.fog = new THREE.Fog(0xcfefff, 120, 900);
+      const cyl = (rt, rb, h, m, seg = 10) => new THREE.Mesh(new THREE.CylinderGeometry(rt, rb, h, seg), m);
+      const cone = (r, h, m, seg = 6) => new THREE.Mesh(new THREE.ConeGeometry(r, h, seg), m);
+      const L = VOZ.lines;
+      const A = Object.fromEntries(anchors.map((a) => [a.hito.clave, a]));
+      const tA = (c, def) => (A[c] ? A[c].t : def);
+      const buscar = (c, desde) => words.find((w) => w.s >= desde && norm(w.w).startsWith(c));
+
+      // ---------- times from the voice ----------
+      const lin = (i, k, def) => (L[i] ? L[i][k] : def);
+      const tAz = tA("azucar", 13), tCor = tA("corazon", 18), tFor = tA("forma", 23), tPes = tA("peso", 27);
+      const tCer = tA("cerebro", 33), tAni = tA("animo", 42), tSie = tA("siempre", 48), tMit = tA("mitad", 55);
+      const tL12 = lin(11, "s", tMit - 3);
+      const tSube1 = 2.5, tArriba = Math.max(tSube1 + 4, lin(2, "e", 10) - 0.9), tSigue = Math.max(tArriba + 0.8, lin(3, "s", 11) + 0.45);
+      const esc2 = buscar("escaleras", tFor), tSube2 = (esc2 ? esc2.s : tFor + 2) - 0.75;
+
+      // ---------- the counter: steps, with time running between landmarks once the habit has started ----------
+      const RITMO = 10000 / 86400, DERIVA = 30000;
+      const CURVA = anchors.filter((a) => !a.hito.solo_etiqueta);
+      const iDia = CURVA.findIndex((a) => a.hito.clave === "azucar");
+      // the first steps tick from the very first frame, at an even pace that reaches the stairs landmark (2.000) on its word
+      const iEsc = CURVA.findIndex((a) => a.hito.clave === "escaleras");
+      const tEsc1 = iEsc >= 0 ? CURVA[iEsc].t : 10, R0 = (iEsc >= 0 ? CURVA[iEsc].v : 2000) / tEsc1;
+      function pasosAt(t) {
+        if (t <= tEsc1) return R0 * Math.max(0, t);
+        const vE = Math.max(0, V(C.yAt(t)));
+        let i = -1;
+        for (let k = 0; k < CURVA.length; k++) if (t >= CURVA[k].t) i = k;
+        if (i < 0) return vE;
+        // between landmarks time keeps running: at the first-day pace before day 1, then 3 days per second
+        const ritmo = iDia >= 0 && i >= iDia ? DERIVA : R0;
+        const a = CURVA[i], b = CURVA[i + 1];
+        let k = 0;
+        if (b) { const st = Math.max(a.t + 0.25, b.t - 3.2, Math.min(a.fin, b.t - 1.5)); k = smooth(clamp((t - st) / (b.t - st))); }
+        return vE + ritmo * (t - a.t) * (1 - k);
+      }
+      const coma = (n, d) => n.toFixed(d).replace(".", ",");
+      function hud(v) {
+        if (v < 999500) return `${miles(v)}<small>pasos</small>`;
+        const m = v / 1e6;
+        return `${m < 9.995 ? coma(m, 2) : coma(m, 1)}<small class="dos">millones<br>de pasos</small>`;
+      }
+      function reloj(s) {
+        s = Math.max(0, Math.round(s));
+        const d = s / 86400;
+        if (s < 86400 || d >= 365.25) return C.fmtTime(s);
+        if (d < 14) { const n = Math.floor(d); return `${n} ${n === 1 ? "día" : "días"}`; }
+        return `${Math.floor(d / 7)} semanas`;
+      }
+
+      // ---------- how fit he is: 0 on day 1, 1 after years; follows the counter, smoothed over 2.5 s ----------
+      const yF0 = Y(10000), yF1 = Y(25567500), DTF = 1 / 30;
+      const fCrudo = (t) => clamp((Y(pasosAt(t)) - yF0) / (yF1 - yF0));
+      const FT = [];
+      for (let t = 0; t <= D + 1; t += DTF) { let s = 0; for (let k = 0; k < 26; k++) s += fCrudo(Math.max(0, t - k * 0.1)); FT.push(s / 26); }
+      const tabla = (T, dt, t) => { const u = clamp(t / dt, 0, T.length - 1), i = Math.floor(u), k = u - i; return lerp(T[i], T[Math.min(i + 1, T.length - 1)], k); };
+      const fit = (t) => smooth(tabla(FT, DTF, t));
+      function marcha(f) {
+        const kb = smooth(clamp(f / 0.55)), kj = smooth(clamp((f - 0.8) / 0.18));
+        return {
+          kb, kj,
+          cad: lerp(lerp(1.45, 1.95, kb), 2.8, kj), // steps per second
+          vel: lerp(lerp(0.7, 1.35, kb), 2.5, kj), // metres per second
+          pierna: lerp(lerp(0.3, 0.46, kb), 0.95, kj),
+          brazo: lerp(lerp(0.16, 0.48, kb), 0.9, kj),
+          incl: lerp(lerp(0.1, 0.03, kb), 0.16, kj),
+          bote: lerp(0.018, 0.09, kj),
+        };
+      }
+
+      // ---------- the walk, worked out once: where he is, how high and the phase of his legs ----------
+      // two footbridges over streams: stairs up, a wooden deck, a ramp down. The first one is timed to the voice
+      // (he climbs it slowly during the question and the "sin aire"); the second one is placed where he is when
+      // the voice says "escaleras" the second time.
+      const RISE = 0.17, RUN = 0.3;
+      const PUENTES = [{ x0: 0, n: 10, deck: 5.0, ramp: 6.5 }, { x0: 1e9, n: 6, deck: 3.2, ramp: 4.5 }];
+      PUENTES.forEach((B) => (B.H = B.n * RISE));
+      const fin1 = (B) => B.x0 + B.n * RUN, fin2 = (B) => fin1(B) + B.deck, fin3 = (B) => fin2(B) + B.ramp;
+      function altura(x) {
+        for (const B of PUENTES) {
+          if (x <= B.x0 || x >= fin3(B)) continue;
+          if (x < fin1(B)) { const u = (x - B.x0) / RUN; return RISE * (Math.floor(u) + smooth(clamp(((u % 1) - 0.2) / 0.6))); }
+          if (x < fin2(B)) return B.H;
+          return B.H * (1 - (x - fin2(B)) / B.ramp);
+        }
+        return 0;
+      }
+      const DT = 1 / 120, NS = Math.ceil((D + 1.5) / DT) + 2;
+      const SX = new Float32Array(NS), SF = new Float32Array(NS), SH = new Float32Array(NS);
+      {
+        const B1 = PUENTES[0], B2 = PUENTES[1];
+        let x = -1.05, ph = 0, vel = 0, puesto = false;
+        for (let i = 0; i < NS; i++) {
+          const t = i * DT, g = marcha(fit(t));
+          let objetivo, cad;
+          if (t < tSube1) { objetivo = 1.05 / tSube1; cad = objetivo / 0.5; }
+          else if (t < tArriba) { cad = B1.n / (tArriba - tSube1); objetivo = cad * RUN; }
+          else if (t < tSigue) { objetivo = 0; cad = 0; }
+          else {
+            cad = g.cad; objetivo = g.vel;
+            if (!puesto && t >= tSube2) { puesto = true; B2.x0 = Math.max(x, fin3(B1) + 1.5); }
+            if (puesto && x > B2.x0 - 0.5 && x < fin1(B2)) { cad = Math.max(g.cad, 2.3); objetivo = cad * RUN; }
+          }
+          // speed changes ease in over a quarter of a second (not on the first stairs, which are timed to the voice)
+          vel = t < tArriba ? objetivo : vel + (objetivo - vel) * Math.min(1, DT / 0.25);
+          SX[i] = x; SF[i] = ph;
+          x += vel * DT;
+          ph += Math.PI * (t < tArriba ? cad : cad * clamp(vel / Math.max(0.1, objetivo || 0.1))) * DT;
+        }
+        for (let i = 0; i < NS; i++) SH[i] = altura(SX[i]);
+      }
+      // camera height: the ground under him, smoothed over a second
+      const SHs = new Float32Array(NS);
+      { const R = 60; for (let i = 0; i < NS; i++) { let s = 0, n = 0; for (let k = -R; k <= R; k += 4) { const j = clamp(i + k, 0, NS - 1); s += SH[j]; n++; } SHs[i] = s / n; } }
+      const enT = (T, t) => tabla(T, DT, t);
+
+      // ---------- the park: a path, the two footbridges over their streams ----------
+      const GRASS = mat(0x86c96e), STONE = mat(0xcfc3ad), STONE2 = mat(0xb8ab94), PATH = mat(0xe3d3ae), NAVY = mat(0x2b3a6b);
+      const WOOD = mat(0xc98a4b), WOOD2 = mat(0xa86f3a), WATER = mat(0x58b4e6, { roughness: 0.25 });
+      scene.add(at(box(3000, 0.2, 3000, GRASS), 0, -0.1, 0));
+      const RIOS = PUENTES.map((B) => [fin1(B) + 0.6, fin2(B) - 0.6]);
+      { let x0 = -80; for (const [a, b] of [...RIOS, [900, 900]]) { scene.add(at(box(a - x0, 0.02, 2.6, PATH), (a + x0) / 2, 0.01, 0)); x0 = b; } }
+      for (const [a, b] of RIOS) {
+        scene.add(at(box(b - a, 0.03, 160, WATER), (a + b) / 2, 0.012, -40));
+        for (const xb of [a - 0.15, b + 0.15]) scene.add(at(box(0.3, 0.08, 160, STONE2), xb, 0.04, -40));
+      }
+      const barra = (xa, ya, xb, yb, z) => {
+        const r = at(box(Math.hypot(xb - xa, yb - ya), 0.07, 0.07, NAVY), (xa + xb) / 2, (ya + yb) / 2, z);
+        r.rotation.z = Math.atan2(yb - ya, xb - xa); scene.add(r);
+      };
+      for (const B of PUENTES) {
+        for (let i = 0; i < B.n; i++) { const h = (i + 1) * RISE; scene.add(at(box(RUN, h, 2.6, i % 2 ? STONE : STONE2), B.x0 + (i + 0.5) * RUN, h / 2, 0)); }
+        scene.add(at(box(B.deck, 0.24, 2.6, WOOD), fin1(B) + B.deck / 2, B.H - 0.12, 0));
+        for (let k = 1; k < Math.round(B.deck / 0.45); k++) scene.add(at(box(0.04, 0.004, 2.6, WOOD2), fin1(B) + k * 0.45, B.H + 0.002, 0));
+        for (const xp of [fin1(B) + 0.3, fin2(B) - 0.3]) for (const zp of [-1.05, 1.05]) scene.add(at(box(0.32, B.H - 0.24, 0.32, STONE2), xp, (B.H - 0.24) / 2, zp));
+        const rg = new THREE.ExtrudeGeometry(new THREE.Shape([new THREE.Vector2(0, 0), new THREE.Vector2(B.ramp, 0), new THREE.Vector2(0, B.H)]), { depth: 2.6, bevelEnabled: false });
+        rg.translate(0, 0, -1.3);
+        const rampa = new THREE.Mesh(rg, STONE); rampa.position.set(fin2(B), 0, 0); scene.add(rampa);
+        // railing on the far side only, so it never hides him
+        const ZR = -1.22, HR = 0.95, pts = [[B.x0, 0], [fin1(B), B.H], [fin2(B), B.H], [fin3(B), 0]];
+        for (let k = 0; k < 3; k++) barra(pts[k][0], pts[k][1] + HR, pts[k + 1][0], pts[k + 1][1] + HR, ZR);
+        for (let xx = B.x0 + 0.15; xx < fin3(B) - 0.2; xx += 1.1) { const y0 = altura(xx + 0.15); scene.add(at(box(0.06, HR, 0.06, NAVY), xx, y0 + HR / 2, ZR)); }
+      }
+      const enPuente = (x, m = 1) => PUENTES.some((B) => x > B.x0 - m && x < fin3(B) + m);
+
+      // trees, lamps and benches along the walk; houses far behind
+      const arboles = [];
+      for (let i = 0; i < 150; i++) {
+        const x = -40 + i * 2.6 + (hash(i) - 0.5) * 2, z = -4.5 - hash(i + 300) * 34;
+        if (RIOS.some(([ra, rb]) => x > ra - 0.9 && x < rb + 0.9)) continue;
+        arboles.push({ x, z, h: 4.5 + hash(i + 600) * 4, c: [0x4f9e4a, 0x5fae58, 0x3f8e44, 0x6bb85a][i % 4] });
+      }
+      for (const a of arboles) {
+        const y0 = 0;
+        scene.add(at(cyl(0.18, 0.26, a.h * 0.4, mat(0x7a5233), 6), a.x, y0 + a.h * 0.2, a.z));
+        scene.add(at(cone(a.h * 0.27, a.h * 0.72, mat(a.c), 7), a.x, y0 + a.h * 0.62, a.z));
+      }
+      for (let x = -30; x < 400; x += 11) {
+        if (enPuente(x)) continue;
+        const y0 = 0;
+        scene.add(at(cyl(0.05, 0.07, 3.2, NAVY, 8), x, y0 + 1.6, -1.75));
+        scene.add(at(box(0.36, 0.2, 0.36, NAVY), x, y0 + 3.25, -1.75));
+        scene.add(at(box(0.26, 0.12, 0.26, C.glow(0xfff2c4)), x, y0 + 3.1, -1.75));
+      }
+      for (let x = -24; x < 400; x += 23) {
+        if (enPuente(x, 2)) continue;
+        const y0 = 0, b = new THREE.Group();
+        b.add(at(box(1.6, 0.08, 0.45, mat(0xc4552e)), 0, 0.45, 0));
+        b.add(at(box(1.6, 0.4, 0.08, mat(0xc4552e)), 0, 0.72, -0.2));
+        for (const sx of [-0.65, 0.65]) b.add(at(box(0.08, 0.45, 0.4, NAVY), sx, 0.22, 0));
+        b.position.set(x, y0, -2.1); scene.add(b);
+      }
+      // small flowers in the grass behind the path (in front they would be too close to the camera)
+      for (let i = 0; i < 160; i++) {
+        const x = -40 + hash(i + 40) * 300, z = -1.8 - hash(i + 50) * 3.5;
+        if (RIOS.some(([ra, rb]) => x > ra - 0.4 && x < rb + 0.4)) continue;
+        scene.add(at(new THREE.Mesh(new THREE.IcosahedronGeometry(0.07 + hash(i + 70) * 0.06, 0), mat([0xffffff, 0xffcf2e, 0xff8fb1, 0xb38cff][i % 4])), x, 0.08, z));
+      }
+      for (let i = 0; i < 26; i++) {
+        const w = 9 + hash(i + 40) * 6, h = 8 + hash(i + 50) * 12, hs = new THREE.Group();
+        hs.add(at(box(w, h, 8, mat([0xe8d7c0, 0xf0e2cf, 0xdcc9b0, 0xc9d6e3][i % 4])), 0, h / 2, 0));
+        hs.add(at(box(w + 0.6, 0.6, 8.6, mat(0xb5532e)), 0, h + 0.3, 0));
+        for (let f = 0; f < Math.floor(h / 3); f++) for (let k = 0; k < 3; k++) hs.add(at(box(1.2, 1.4, 0.1, C.glow(0xffe7a6, 0.9)), -w / 3 + (k * w) / 3, 2 + f * 3, 4.05));
+        hs.position.set(-60 + i * 18, 0, -80 - hash(i + 60) * 30); scene.add(hs);
+      }
+
+      // ---------- our character, with hips to walk and a body that changes shape ----------
+      const P = C.personaje(), { kid, head, body, arms } = P;
+      kid.scale.setScalar(0.246); kid.rotation.y = 1.13; scene.add(kid);
+      const caderas = [];
+      for (let s = 0; s < 2; s++) {
+        const [pant, zap] = [kid.children[s * 2], kid.children[s * 2 + 1]];
+        caderas.push({ pant, zap });
+      }
+      for (const c of caderas) {
+        const cad = new THREE.Group(); cad.position.set(c.pant.position.x, 1.62, 0); kid.add(cad);
+        c.pant.position.set(0, c.pant.position.y - 1.62, 0); c.zap.position.set(0, c.zap.position.y - 1.62, c.zap.position.z);
+        cad.add(c.pant, c.zap); c.g = cad;
+      }
+      const [torso, bolsillo, capucha, cordon1, cordon2] = body.children;
+      const HOODIE = torso.material;
+      // the belly: three stacked blocks that stick out of the hoodie less and less as he gets fit (a round profile from the side)
+      const panza = [[2.6, 1.5, 0.86, 0.6], [2.2, 1.2, 0.8, 0.86], [1.65, 0.85, 0.8, 1.04]].map(([w, h, y, p]) => {
+        const m = at(box(w, h, 0.8, HOODIE), 0, y, 0); body.add(m); return { m, p };
+      });
+      // a rounder face: a fuller jaw at the sides and rosy cheeks (both shrink as he gets fit)
+      const mandibula = at(box(2.8, 0.95, 2.12, head.children[0].material), 0, -0.7, 0); head.add(mandibula);
+      const mofletes = [-1, 1].map((sx) => { const m = at(box(0.5, 0.36, 0.08, mat(0xf3a184)), sx * 0.8, -0.38, 1.12); head.add(m); return m; });
+      const cara = head.children, boca = cara[15];
+      const lids = [cara[7], cara[12]], brows = [cara[8], cara[13]], pupils = [cara[6], cara[11]];
+      const [labios, dientes, esq1, esq2] = boca.children, esquinas = [esq1, esq2];
+      // drops of sweat while he climbs the first stairs
+      const SUDOR = mat(0x9ad8ff, { roughness: 0.2 });
+      const gotas = [0, 1].map(() => { const g = new THREE.Mesh(new THREE.OctahedronGeometry(0.16, 0), SUDOR); g.scale.set(1, 1.5, 1); head.add(g); return g; });
+
+      function forma(s) {
+        // s = 0: clearly heavier (wide torso, round belly, fuller face, thicker arms and legs); s = 1: fit
+        const k = 1 - s;
+        const sx = lerp(1.0, 1.6, k), sz = lerp(1.0, 1.6, k);
+        torso.scale.set(sx, 1, sz);
+        const frente = 0.775 * sz;
+        let delante = frente;
+        for (const P of panza) {
+          const sale = P.p * k - 0.05;
+          P.m.visible = sale > 0.005;
+          P.m.position.z = frente + sale - 0.4;
+          if (P.m.visible) delante = Math.max(delante, frente + sale);
+        }
+        mandibula.scale.x = lerp(0.845, 1, k);
+        mofletes.forEach((m) => m.scale.setScalar(lerp(0.6, 1, k)));
+        bolsillo.position.set(0, lerp(0.6, 0.8, k), delante + 0.015);
+        cordon1.position.z = cordon2.position.z = frente + 0.025;
+        capucha.position.z = -frente + 0.155;
+        arms.forEach((a, i) => { a.position.x = (i ? 1 : -1) * (1.15 * sx + 0.32); const g = lerp(1, 1.32, k); a.scale.set(g, 1, g); });
+        caderas.forEach((c, i) => { c.g.position.x = (i ? 1 : -1) * lerp(0.36, 0.66, k); const g = lerp(1, 1.48, k); c.g.scale.set(g, 1, g); });
+        delanteAhora = delante;
+        return frente;
+      }
+
+      // ---------- health cards ----------
+      // each card points at a spot of the body (object, local point): belly, chest, forehead, smile, foot
+      const card = (id) => document.getElementById(id);
+      const CARDS = [
+        { el: card("c-azucar"), t: tAz, hasta: tCor - 0.45, punto: () => [body, v3(0.45, 0.75, delanteAhora + 0.05)] },
+        { el: card("c-corazon"), t: tCor, hasta: tFor - 0.45, punto: () => [body, v3(0.6, 1.62, frenteAhora + 0.05)], n: [4, 0, "−"] },
+        { el: card("c-forma"), t: tFor, hasta: tPes - 0.45, punto: () => [body, v3(-0.55, 1.75, frenteAhora + 0.05)] },
+        { el: card("c-peso"), t: tPes, hasta: Math.min(tCer - 0.6, lin(6, "e", tPes + 4) + 0.6), punto: () => [body, v3(0, 0.55, delanteAhora + 0.05)], n: [1.4, 1, "−"] },
+        { el: card("c-cerebro"), t: tCer, hasta: tAni - 0.45, punto: () => [head, v3(0, 0.55, 1.2)], n: [51, 0, "−"] },
+        { el: card("c-animo"), t: tAni, hasta: tSie - 0.45, punto: () => [head, v3(0.42, -0.72, 1.2)], n: [31, 0, "−"] },
+        { el: card("c-objetivo"), t: tSie, hasta: tL12 - 0.35, punto: () => [caderas[1].g, v3(0, -1.46, 0.45)], baja: [10000, 7000] },
+        { el: card("c-vida"), t: tL12, hasta: Infinity, punto: () => [body, v3(0.6, 1.62, frenteAhora + 0.05)], n: [47, 0, "−"], nDesde: tL12 + 0.4, golpe: tMit },
+      ];
+      const svgNS = "http://www.w3.org/2000/svg", leaders = document.getElementById("leaders");
+      for (const c of CARDS) {
+        c.ln = document.createElementNS(svgNS, "line"); c.ln.setAttribute("stroke", "rgba(255,255,255,0.9)"); c.ln.setAttribute("stroke-width", "4"); leaders.appendChild(c.ln);
+        c.dot = document.createElementNS(svgNS, "circle"); c.dot.setAttribute("r", "9"); c.dot.setAttribute("fill", "#ffcf2e"); c.dot.setAttribute("stroke", "#0b1a3a"); c.dot.setAttribute("stroke-width", "4"); leaders.appendChild(c.dot);
+        c.num = c.el.querySelector(".n");
+      }
+      const toScreen = (p) => { const q = p.clone().project(camera); return { x: (q.x + 1) * 0.5 * W, y: (1 - q.y) * 0.5 * H }; };
+      let frenteAhora = 0.775, delanteAhora = 0.775;
+      function latidos(t, t0) {
+        // the heart beats fast when the card comes in and calms down over two seconds
+        let ph = 0; const n = 48, a = t0, b = Math.max(t0, t);
+        for (let k = 0; k < n; k++) { const tt = a + ((k + 0.5) * (b - a)) / n; ph += lerp(2.3, 1.05, smooth(clamp((tt - t0 - 0.6) / 2.4))) * ((b - a) / n); }
+        return ph;
+      }
+      function tarjetas(t) {
+        for (const c of CARDS) {
+          const kin = clamp((t - (c.t - 0.12)) / 0.35), kout = clamp((t - c.hasta) / 0.3), vis = ease(kin) * (1 - kout);
+          c.el.style.opacity = vis;
+          c.el.style.transform = `translateY(${(1 - ease(kin)) * 26}px) scale(${0.94 + 0.06 * ease(kin)})`;
+          const on = vis > 0.01;
+          [c.ln, c.dot].forEach((e) => e.setAttribute("opacity", on ? vis : 0));
+          if (!on) continue;
+          const [obj, local] = c.punto(), p = toScreen(obj.localToWorld(local));
+          // the line meets the card at the height of the spot (inside the card), so it never crosses his face
+          const cy = clamp(p.y, 646 + 50, 646 + c.el.offsetHeight - 50);
+          c.ln.setAttribute("x1", p.x); c.ln.setAttribute("y1", p.y); c.ln.setAttribute("x2", 556); c.ln.setAttribute("y2", cy);
+          c.dot.setAttribute("cx", p.x); c.dot.setAttribute("cy", p.y);
+          // numbers count up (or down) once the card is in
+          const kn = ease(clamp((t - (c.nDesde ?? c.t + 0.15)) / 0.9));
+          if (c.n && c.num) c.num.textContent = c.n[2] + coma(c.n[0] * lerp(0.5, 1, kn), c.n[1]);
+          if (c.baja && c.num) c.num.textContent = miles(lerp(c.baja[0], c.baja[1], kn));
+          if (c.golpe) { const d = t - c.golpe; c.num.parentNode.style.transformOrigin = "0 50%"; c.num.parentNode.style.transform = `scale(${1 + (d > 0 && d < 0.6 ? 0.12 * Math.sin((Math.PI * d) / 0.6) : 0)})`; }
+        }
+        // icon details
+        const tc = CARDS[1].t;
+        const lat = latidos(t, tc - 0.12), pul = Math.pow(Math.max(0, Math.sin(Math.PI * (lat % 1))), 6);
+        card("c-corazon").querySelector(".latido").style.transform = `scale(${1 + 0.16 * pul})`;
+        const kq = clamp((t - (tAz + 0.35)) / 1.2), andando = card("c-azucar").querySelector(".andando");
+        const lenA = andando.getTotalLength(); andando.style.strokeDasharray = lenA; andando.style.strokeDashoffset = lenA * (1 - ease(kq));
+        card("c-forma").querySelector(".pulmon").style.transform = `scale(${1 + 0.07 * Math.sin((t - tFor) * 2.6)})`;
+        card("c-peso").querySelector(".aguja").style.transform = `rotate(${lerp(38, 22, ease(clamp((t - tPes - 0.2) / 1)))}deg)`;
+        const kc = ease(clamp((t - tCer - 0.4) / 0.8));
+        card("c-cerebro").querySelector(".seso").setAttribute("fill", `rgba(29,31,58,${0.85 * kc})`);
+        card("c-cerebro").querySelector(".rayos").setAttribute("opacity", kc * (0.6 + 0.4 * Math.sin((t - tCer) * 5)));
+        card("c-animo").querySelector(".sol").style.transform = `rotate(${(t - tAni) * 24}deg) scale(${0.85 + 0.15 * ease(clamp((t - tAni) / 0.8))})`;
+        const kp = clamp((t - tSie) / 0.8);
+        card("c-objetivo").querySelector(".pie1").setAttribute("opacity", ease(clamp(kp * 2)));
+        card("c-objetivo").querySelector(".pie2").setAttribute("opacity", ease(clamp(kp * 2 - 1)));
+        const ecg = card("c-vida").querySelector(".ecg"), lenE = ecg.getTotalLength();
+        ecg.setAttribute("stroke-dasharray", lenE); ecg.setAttribute("stroke-dashoffset", lenE * (1 - ease(clamp((t - tL12) / 1.1))));
+      }
+      // the character's little celebration when each card comes in
+      const tCartas = CARDS.map((c) => c.t);
+      const orgullo = (t) => tCartas.reduce((s, tc) => { const d = t - tc; return d > -0.15 && d < 3.5 ? Math.max(s, d < 0.2 ? ease((d + 0.15) / 0.35) : Math.exp(-(d - 0.2) / 1.1)) : s; }, 0);
+
+      // ---------- the sky turns golden as the years go by ----------
+      const SKY = [[0, "#4fbfff", "#cfefff"], [62, "#4fbfff", "#cfefff"], [68, "#8fd3ff", "#e3f5ff"], [76, "#ffc27a", "#fff1d6"]];
+      const altEl = document.getElementById("alt"), sinceEl = document.getElementById("since"), clockEl = document.getElementById("clock");
+
+      function renderAt(t) {
+        const v = pasosAt(t), y = Y(v);
+        const f = fit(t), g = marcha(f);
+        const x = enT(SX, t), ph = enT(SF, t), h = enT(SH, t), hCam = enT(SHs, t);
+        // states: tired and out of breath until he sets off on day 1, then happier; a big grin while jogging
+        const cansado = 1 - ramp(t, tSigue + 0.3, tSigue + 3.5);
+        const jadeo = ramp(t, tSube1 + 1.6, tSube1 + 3.2) * (1 - ramp(t, tSigue + 0.2, tSigue + 2));
+        const manos = ramp(t, tArriba - 0.1, tArriba + 0.35) * (1 - ramp(t, tSigue - 0.45, tSigue + 0.1));
+        const sonrisa = Math.max(orgullo(t) * (1 - jadeo), 0.85 * g.kj);
+
+        // body shape and posture
+        frenteAhora = forma(f);
+        const sw = Math.sin(ph);
+        const incl = lerp(g.incl + 0.05 * jadeo, 0.62, manos);
+        body.rotation.x = incl;
+        body.position.y = 1.6 + 0.035 * jadeo * Math.sin(t * 9);
+        const hy = 3.5, hz = 0.1;
+        head.position.set(0, 1.6 + hy * Math.cos(incl) - hz * Math.sin(incl), hy * Math.sin(incl) + hz * Math.cos(incl));
+        head.rotation.x = lerp(0.18 * cansado - 0.04, 0.05, manos) + incl * 0.45;
+        head.rotation.y = -0.25 + 0.1 * Math.sin(t * 0.7) + 0.2 * sonrisa;
+        const piernas = g.pierna * (1 - manos), brazos = g.brazo * (1 - manos);
+        caderas[0].g.rotation.x = piernas * sw; caderas[1].g.rotation.x = -piernas * sw;
+        arms.forEach((a, i) => {
+          const sx = i ? 1 : -1;
+          a.rotation.x = lerp((i ? 1 : -1) * -brazos * sw - 0.45 * g.kj, -0.85, manos);
+          a.rotation.z = sx * (0.08 + 0.2 * (1 - f) + 0.25 * sonrisa * (1 - g.kj)) * (1 - manos) + sx * 0.1 * manos;
+        });
+        const bote = g.kj > 0.05 ? g.bote * Math.abs(Math.sin(ph)) : g.bote * Math.abs(Math.cos(ph));
+        kid.position.set(x, h + bote * (1 - manos), 0);
+
+        // face
+        const kb = (t + 0.7) % 3.4, blink = kb < 0.14 ? Math.sin((Math.PI * kb) / 0.14) : 0;
+        const base = lerp(0.12, 0.48, cansado) + 0.14 * sonrisa;
+        lids.forEach((l) => (l.scale.y = Math.max(0.001, base + (1 - base) * blink)));
+        brows.forEach((b, i) => { b.position.y = 0.5 - 0.06 * cansado + 0.1 * sonrisa; b.rotation.z = (i ? -1 : 1) * 0.1 * sonrisa; });
+        pupils.forEach((p) => p.scale.setScalar(1 + 0.1 * sonrisa));
+        const wJ = jadeo, wG = sonrisa * (1 - wJ), wS = Math.max(0, 1 - wJ - wG);
+        const abre = 0.32 + 0.3 * (0.5 + 0.5 * Math.sin(t * 9));
+        const lx = wS * 1 + wJ * 0.62 + wG * 1.25, ly = wS * 0.16 + wJ * abre + wG * 0.46;
+        labios.scale.set(lx, ly, 1); labios.position.y = -0.07 * wG - 0.08 * wJ;
+        dientes.visible = wG > 0.45; dientes.scale.set(1.25, 1, 1); dientes.position.y = labios.position.y + 0.25 * ly - 0.055;
+        esquinas.forEach((c, i) => { c.visible = wJ < 0.4; c.rotation.z = (i ? 1 : -1) * lerp(0.6, 0.2, cansado * (1 - wG)); c.position.x = (i ? 1 : -1) * 0.3 * Math.max(1, lx * 0.98); });
+        gotas.forEach((gt, i) => {
+          const k = (t * 1.1 + i * 0.5) % 1;
+          gt.visible = jadeo > 0.3 && k < 0.85;
+          gt.position.set((i ? 1 : -1) * 1.3, 0.75 - k * 1.1, 0.55 - i * 0.2);
+          gt.scale.set(1, 1.5, 1).multiplyScalar(0.6 + 0.6 * Math.min(1, k * 4));
+        });
+
+        // camera: three-quarter view from the front and the side, the character a little left of centre
+        // from the side and higher on the stairs, so the steps never hide him
+        const wEsc = Math.max(1 - ramp(t, tArriba + 0.3, tArriba + 1.8), ramp(t, tSube2 - 1.4, tSube2 - 0.2) * (1 - ramp(t, tSube2 + 2.6, tSube2 + 4)));
+        const az = lerp(38 + 6 * Math.sin(t * 0.16), 16, wEsc), el = lerp(9, 19, wEsc);
+        const dir = v3(Math.sin(az * RAD) * Math.cos(el * RAD), Math.sin(el * RAD), Math.cos(az * RAD) * Math.cos(el * RAD));
+        const right = v3(Math.cos(az * RAD), 0, -Math.sin(az * RAD));
+        const dist = 9.6 * (1 + 0.12 * ramp(t, D - 4.5, D - 1));
+        const target = v3(x, hCam + 0.74, 0).addScaledVector(right, 0.5 * dist / 9.6);
+        camera.position.copy(target).addScaledVector(dir, dist);
+        camera.lookAt(target);
+        camera.updateMatrixWorld(); C.escala(target, dist);
+        // he walks towards +x, so the sun comes from in front of him (the engine puts it behind, for scenes facing the camera)
+        C.key.position.set(target.x + 0.35 * dist, target.y + 0.8 * dist, target.z + 0.6 * dist);
+        scene.fog.near = Math.max(120, dist * 1.4); scene.fog.far = Math.max(900, dist * 6);
+        const [, bot] = C.fondo(SKY, y);
+        scene.fog.color.set(bot);
+        scene.updateMatrixWorld();
+        C.pintar(t, y);
+        // counter: steps, then millions of steps; the clock in days, weeks and years
+        altEl.innerHTML = hud(v);
+        sinceEl.textContent = C.ESC.desde;
+        clockEl.textContent = reloj(v / RITMO);
+        tarjetas(t);
+      }
+      await C.arrancar(renderAt);
+    </script>
+  </body>
+</html>

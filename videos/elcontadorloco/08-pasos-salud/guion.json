@@ -1,0 +1,43 @@
+{
+  "titulo": "¿Y si caminaras 10.000 pasos cada día?",
+  "lines": [
+    "Diez mil pasos cada día.",
+    "¿Qué le pasa a tu cuerpo si no fallas ni un día? Y al final: ¿hacen falta tantos?",
+    "Nuestro amigo empieza con unos kilos de más, y las escaleras le dejan sin aire.",
+    "Primer día. Si parte de esos pasos los das después de comer, el azúcar en sangre sube menos.",
+    "En unas quince semanas, lo nota el corazón: en los ensayos, la tensión baja y el pulso se calma.",
+    "La forma física mejora, y las escaleras ya no le dejan sin aire.",
+    "¿Y el peso? Algo baja, pero menos de lo que se cree. Lo grande pasa por dentro.",
+    "Con los años, lo nota el cerebro: un estudio siguió a setenta y ocho mil personas casi siete años.",
+    "Caminar unos diez mil pasos al día se asoció con la mitad de riesgo de demencia.",
+    "Y el ánimo: siete mil pasos o más se asocian con casi un tercio menos de riesgo de depresión.",
+    "¿Hacen falta los diez mil? No siempre: con siete mil ya se gana mucho.",
+    "Lo más fuerte: frente a dos mil pasos al día, siete mil se asocian con casi la mitad de riesgo de morir.",
+    "¿Cuántos pasos das tú al día? Te leo en los comentarios."
+  ],
+  "claves": [
+    "pasos",
+    "cuerpo",
+    "escaleras",
+    "azúcar",
+    "corazón",
+    "forma",
+    "peso",
+    "cerebro",
+    "demencia",
+    "ánimo",
+    "siempre",
+    "mitad",
+    "comentarios"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "10.000 pasos al día, todos los días: qué dicen los estudios del azúcar tras comer, la tensión, la forma física, el cerebro, el ánimo y el riesgo de morir. Y con 7.000 ya se gana mucho. Fuentes: Cochrane 2021 (caminar y tensión), Sports Medicine 2022, Preventive Medicine 2015, JAMA Neurology 2022, JAMA Network Open 2024 y Lancet Public Health 2025. Los estudios de cohortes muestran asociaciones, no promesas. El dibujo es una ilustración: cada cuerpo cambia a su ritmo. No es un consejo médico.",
+    "hashtags": [
+      "#salud",
+      "#caminar",
+      "#pasos"
+    ],
+    "portada_en": "pasos"
+  }
+}
