@@ -1,6 +1,6 @@
 ---
 name: video-por-dentro
-description: Hacer vídeos verticales cortos de "cómo funciona por dentro" con el estilo del trackpad del Mac (3D oscuro, objeto abierto, dedo, subtítulos con palabra seleccionada) usando HyperFrames, three.js y la voz de Gemini TTS.
+description: Hacer vídeos verticales cortos de "cómo funciona por dentro" para Las cosas por dentro, con el estilo de detalle de @speedy_devv aprobado por Javier el 3 de noviembre (encuadre nuevo cada 2 s, cortes laterales tipo diagrama, arcos dorados, cifras que cambian, objetos con materiales reales) usando HyperFrames, three.js, las piezas de herramientas/pordentro/detalle.js y la voz de Gemini TTS.
 ---
 
 # Vídeos "por dentro" (estilo trackpad del Mac)
@@ -15,6 +15,20 @@ El ejemplo completo que funciona es la carpeta `fabrica-prueba` de Javier:
 - `exports/`: todo lo que se genera.
 
 También hay una copia en el proyecto "Side hustle" de claude.ai, en `claude/estilo-por-dentro/`. Empieza siempre desde ahí. Si no tienes acceso a ninguno de los dos, reconstrúyelo con los fragmentos del final de esta skill.
+
+## 0. El estilo de la cuenta desde el 3 de noviembre (manda sobre todo lo demás)
+
+Javier aprobó como estilo de Las cosas por dentro el resultado del estudio que recrea el reel de la pantalla táctil de @speedy_devv ("me gusta mucho como ha quedado el resultado, guárdalo como estilo para los futuros vídeos de esa cuenta"). Si algo de las secciones de abajo choca con esto, gana esto.
+
+- **El ejemplo que se mira:** `exports/estudio/pantalla-speedy.mp4`, con su código en `estudio/pantalla-speedy/index.html` y la explicación en `estudio/pantalla-speedy/NOTAS.md`. Las hojas `exports/estudio/comparacion_01.jpg` a `_04.jpg` enseñan su nivel al lado del original. Ese estudio no se publica nunca: copia su vídeo plano a plano.
+- **Las piezas:** `herramientas/pordentro/detalle.js` (sistema de planos con cortes secos, deriva lenta, objetivo y desenfoque por plano; corte lateral de capas; arcos dorados con luz que corre y se doblan hacia un objeto; cifras en monoespaciada; dedo con huellas; boli; móvil; manos; iones; partículas; texturas de lana, metal cepillado, cristal con polvo, piel, oro y titanio) y `pantallas.js` (pantallas del móvil en español y sin marcas). Lee su comentario de cabecera antes de empezar.
+- **Las reglas:**
+  1. Un encuadre nuevo cada 1 o 2,5 segundos (corte seco, otro ángulo, un macro, la vista de arriba o una cifra que cambia). Nunca más de 2,5 s con el mismo plano, y dentro de cada plano siempre se mueve o aparece algo. Un vídeo de 70 s lleva de 25 a 40 planos.
+  2. Sobre todo planos de corte, diagramas y macros, que es donde llegamos al 65-75 % de su detalle.
+  3. Nada de planos de la vida real con manos o personas hechos a medias (se quedan en el 45 %). Donde él pone una mano, nosotros ponemos el objeto limpio, como en un anuncio. No se pagan imágenes generadas (decisión de Javier del 3 de noviembre).
+  4. Rótulos en mayúsculas con línea fina, cifras en monoespaciada que cambian, notas honestas abajo a la izquierda ("Ilustración ampliada", "Valores ilustrativos") y fondo azul casi negro con motas de luz.
+- **Lecciones del estudio:** si `renderAt` falla en un momento, HyperFrames repite el fotograma anterior sin avisar; recorre la línea de tiempo en la consola del navegador una vez. Usa las mismas luces en todos los grupos de planos y dibuja cada grupo una vez antes de empezar, para que no se recompilen los shaders a mitad del render.
+- **El primer vídeo publicable con este estilo** es `videos/lascosaspordentro/07-microondas`.
 
 ## 1. Cómo tiene que verse
 
