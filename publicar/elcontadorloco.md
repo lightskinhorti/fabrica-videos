@@ -141,5 +141,5 @@ Instagram no paga por visualizaciones en España: aquí los vídeos sirven para 
 ## Después de publicar
 
 - Las primeras 2 horas, contesta a algunos comentarios: a TikTok le cuenta y anima a que comente más gente.
-- A las 24 horas y a los 7 días, apunta las visualizaciones, el tiempo medio de visualización y los
-  seguidores ganados. Con eso se hará la hoja de métricas (R14 del PRD).
+- Las visualizaciones a las 24 horas y a los 7 días se apuntan solas en el panel (se leen de TikTok cada 2 horas).
+  Lo que solo da TikTok Studio (el porcentaje que ve el vídeo entero y los seguidores ganados) lo lee Claude con Chrome.

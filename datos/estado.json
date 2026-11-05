@@ -26,7 +26,8 @@
   "dinerosinlio/05-cafe": {
     "aprobado": true,
     "fecha": "2026-11-05",
-    "hora": "20:00"
+    "hora": "20:00",
+    "programado": true
   },
   "elcontadorloco/01-ascensor": {
     "aprobado": true,
@@ -72,7 +73,7 @@
     "aprobado": true,
     "fecha": "2026-11-05",
     "hora": "20:00",
-    "programado": false
+    "programado": true
   },
   "lascosaspordentro/01-tarjeta": {
     "aprobado": true,
@@ -109,10 +110,12 @@
     "programado": true
   },
   "lascosaspordentro/07-microondas": {
+    "aprobado": true,
     "fecha": "2026-11-05",
     "hora": "20:00"
   },
   "lascosaspordentro/08-nevera": {
+    "aprobado": true,
     "fecha": "2026-11-06",
     "hora": "20:00"
   }

@@ -6,8 +6,9 @@ Uso:
 
 Lee cada vídeo de videos/<cuenta>/<video>/ (guion.json y publicacion.md), mira si ya tiene voz
 (exports/voces) y vídeo (exports/render), y guarda lo que marcas en el panel (aprobado, programado,
-día, hora, Instagram y métricas) en datos/estado.json. Solo usa la biblioteca estándar de Python y
-solo escucha en este ordenador (127.0.0.1).
+día, hora, Instagram y métricas) en datos/estado.json. Enseña también las cifras que herramientas/metricas.py
+lee de TikTok (datos/metricas.json). Solo usa la biblioteca estándar de Python y solo escucha en este
+ordenador (127.0.0.1).
 """
 import json
 import os
@@ -24,12 +25,14 @@ WEB = os.path.join(RAIZ, "herramientas", "panel")
 RENDER = os.path.join(RAIZ, "exports", "render")
 VOCES = os.path.join(RAIZ, "exports", "voces")
 ESTADO = os.path.join(RAIZ, "datos", "estado.json")
+METRICAS = os.path.join(RAIZ, "datos", "metricas.json")
 PUERTO = int(os.environ.get("PANEL_PUERTO", "8790"))
 
+# "tiktok" is the TikTok user name; Dinero sin lío is @eldinerosinlio there (@dinerosinlio in Instagram)
 CUENTAS = [
-    {"id": "elcontadorloco", "nombre": "El contador loco", "arroba": "@elcontadorloco", "color": "#0d6fd8", "instagram": True},
-    {"id": "lascosaspordentro", "nombre": "Las cosas por dentro", "arroba": "@lascosaspordentro", "color": "#a85a22", "instagram": False},
-    {"id": "dinerosinlio", "nombre": "Dinero sin lío", "arroba": "@dinerosinlio", "color": "#1d2a44", "instagram": False},
+    {"id": "elcontadorloco", "nombre": "El contador loco", "arroba": "@elcontadorloco", "tiktok": "elcontadorloco", "color": "#0d6fd8", "instagram": True},
+    {"id": "lascosaspordentro", "nombre": "Las cosas por dentro", "arroba": "@lascosaspordentro", "tiktok": "lascosaspordentro", "color": "#a85a22", "instagram": False},
+    {"id": "dinerosinlio", "nombre": "Dinero sin lío", "arroba": "@eldinerosinlio", "tiktok": "eldinerosinlio", "color": "#1d2a44", "instagram": False},
 ]
 # what the page may save for each video, and its type
 CAMPOS = {
@@ -124,7 +127,12 @@ class Panel(BaseHTTPRequestHandler):
         if ruta == "/api/datos":
             with cerrojo:
                 estado = leer_estado()
-            return self.enviar(200, {"cuentas": CUENTAS, "videos": videos(), "estado": estado})
+            # what herramientas/metricas.py read from TikTok (it writes this file on its own every 2 hours)
+            try:
+                metricas = json.load(open(METRICAS, encoding="utf-8"))
+            except (OSError, ValueError):
+                metricas = {}
+            return self.enviar(200, {"cuentas": CUENTAS, "videos": videos(), "estado": estado, "metricas": metricas})
         if ruta.startswith("/media/"):
             return self.media(unquote(ruta[len("/media/"):]))
         self.enviar(404, {"error": "no existe"})

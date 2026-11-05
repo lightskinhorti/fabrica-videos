@@ -109,5 +109,5 @@ deja 5 hashtags, así que usa estos:
 ## Después de publicar
 
 - Las 2 primeras horas, contesta a algunos comentarios.
-- A las 24 horas y a los 7 días, apunta visualizaciones, tiempo medio de visualización y seguidores ganados (hoja de
-  métricas, R14 del PRD).
+- Las visualizaciones a las 24 horas y a los 7 días se apuntan solas en el panel (se leen de TikTok cada 2 horas).
+  Lo que solo da TikTok Studio (el porcentaje que ve el vídeo entero y los seguidores ganados) lo lee Claude con Chrome.

@@ -56,7 +56,7 @@ Este Mac es de Javier, pero también lo usa para trabajar en eduki:
 - **Personajes:** nunca a Clawd, caricaturas de personas reales ni escudos de clubes. Personajes propios.
 - **Otras cuentas:** se copia la receta y el estilo, nunca sus temas ni sus guiones.
 - **Nichos del torneo (2 de noviembre):** "¿Y si X aumentase cada día?", objetos por dentro y dinero cotidiano. El fútbol táctico queda en lista de espera porque paga poco por visualización. Detalle en el PRD, sección "Nichos y torneo".
-- **Nombres de las cuentas** (mismo @ en TikTok e Instagram): El contador loco `@elcontadorloco`, Las cosas por dentro `@lascosaspordentro` y Dinero sin lío `@dinerosinlio`. Para comprobar si un nombre está libre en Instagram sin iniciar sesión, una cuenta desactivada aparece como libre (pasó con `@mirapordentro`): solo el formulario de registro lo confirma. En El contador loco, cada vídeo lleva un contador que no para.
+- **Nombres de las cuentas** (mismo @ en TikTok e Instagram): El contador loco `@elcontadorloco`, Las cosas por dentro `@lascosaspordentro` y Dinero sin lío `@dinerosinlio` (en TikTok es `@eldinerosinlio`, con "el" delante). Para comprobar si un nombre está libre en Instagram sin iniciar sesión, una cuenta desactivada aparece como libre (pasó con `@mirapordentro`): solo el formulario de registro lo confirma. En El contador loco, cada vídeo lleva un contador que no para.
 - **Las cuentas las crea Javier**, con sus datos reales (TikTok los pide para cobrar). Claude no crea cuentas.
 
 ## Siguiente paso
@@ -96,6 +96,8 @@ Hechos el 2 de noviembre: el paso 0 (skill del estilo instalada), el paso 1 (ví
      - Se abre con `python3 herramientas/panel.py`, en http://localhost:8790, solo en este Mac.
      - Enseña la línea de montaje (guion, voz, vídeo, aprobado, programado, publicado) y una nave por cuenta con su cola, el texto para copiar y las métricas.
      - Lo que se marca se guarda en `datos/estado.json`, que hace de cola (R13) y de hoja de métricas (R14).
+     - **Métricas automáticas (5 de noviembre):** `herramientas/metricas.py` lee cada 2 horas la página pública de TikTok de las 3 cuentas (con `yt-dlp`, sin iniciar sesión) y deja en `datos/metricas.json` las visualizaciones a las 24 horas y a los 7 días y los seguidores. Lo programa `launchd` (`--instalar` y `--desinstalar`); el registro está en `datos/metricas.log`. Lo escrito a mano en el panel manda.
+     - El porcentaje que ve el vídeo entero y los seguidores ganados solo están en TikTok Studio. Javier quiere que los lea Claude con Claude in Chrome, en el perfil de Chrome de cada cuenta, sin iniciar sesión nunca. Nunca se toca un perfil de Chrome de eduki.
      - Cuando Claude haga un vídeo nuevo, aparece solo. Al aprobarlo o programarlo, se marca ahí.
      - El puerto 8765 lo usa otra herramienta de Javier: no se toca.
    - Vídeos del 2 de noviembre por la noche, aprobados por Javier el 3: `elcontadorloco/06-pasos`, `lascosaspordentro/06-gps` y `dinerosinlio/04-rebajas`. Los hicieron tres agentes en paralelo, uno por cuenta, y cada uno solo tocó la carpeta de su vídeo. Así se puede seguir haciendo una tanda.

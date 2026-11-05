@@ -70,6 +70,17 @@ Se mira la mediana porque, en un estudio de Buffer con millones de publicaciones
 
 - Instagram, El contador loco, `01-ascensor`: unas 1.000 visualizaciones y 43 me gusta (un 4,3 % de me gusta por visualización) con una cuenta recién creada. El vídeo pasó la primera prueba de Instagram con gente que no sigue la cuenta.
 - TikTok: El contador loco aún no despega en las primeras horas, y Las cosas por dentro todavía no ha salido (está programada).
+
+**Datos del 5 de noviembre (primera lectura automática, a las 17:08):**
+
+| Cuenta | Vídeos | Visualizaciones en total | Seguidores | Mejor vídeo |
+| --- | --- | --- | --- | --- |
+| El contador loco | 5 | 555 | 5 | 275 (crecer un centímetro cada día) |
+| Las cosas por dentro | 5 | 381 | 2 | 192 (GPS) |
+| Dinero sin lío | 4 | 8 | 1 | 6 (billete de 500) |
+
+- En las dos primeras cuentas, los vídeos del día 1 se quedaron entre 0 y 39 visualizaciones, y los del 3 y el 4 de noviembre llegaron a entre 180 y 275.
+- En Dinero sin lío, la nómina y las rebajas llevaban 0 visualizaciones a los 1 o 2 días. Es la cuenta que peor va de momento (Javier comprobó que está activa).
 - TikTok es el foco, porque es donde se cobra (hito 3). Instagram sirve para los packs.
 - No se juzga nada hasta las 2 semanas. Cada vídeo se apunta a las 24 horas y a los 7 días.
 - La reserva se acaba pronto: El contador loco tiene vídeos hasta el miércoles 4 de noviembre, y Las cosas por dentro hasta el reloj (su día 2). Hacen falta el vídeo 6 del contador y el GPS antes del jueves 5, porque cortar el ritmo la primera semana es lo que hay que evitar.
@@ -370,7 +381,7 @@ La fábrica convierte una idea aprobada en un vídeo listo para subir. Tú solo 
 | R11 | Aprobación | Ves el vídeo y lo apruebas o lo rechazas con un comentario, en 5 minutos como máximo | Tú |
 | R12 | Texto de publicación | Descripción, hashtags y recordatorio de activar la etiqueta de contenido con IA | Claude |
 | R13 | Cola | Ordena los vídeos aprobados en las 3 franjas de cada cuenta | Código |
-| R14 | Métricas | Una hoja para apuntar cada semana los datos de TikTok Studio, y un informe del torneo cada 2 semanas | Claude y tú |
+| R14 | Métricas | En el panel: las visualizaciones y los seguidores se leen solos de TikTok cada 2 horas (`herramientas/metricas.py`); el porcentaje que ve el vídeo entero y los seguidores ganados salen de TikTok Studio. Un informe del torneo cada 2 semanas | Claude y código |
 | R15 | Inglés (fase 4) | Versión en inglés de los vídeos ganadores: guion, voz y subtítulos | Claude y código |
 | R16 | Otras redes (fase 4) | Publicación en Instagram, YouTube Shorts y Facebook | Código |
 
@@ -534,6 +545,13 @@ Hay tres formas, de menos a más automática:
   - Cada vídeo tiene su portada, el botón para verlo, el botón para copiar la descripción con los hashtags, las casillas de aprobado y programado (y de Instagram en El contador loco), el día y la hora, y las métricas a las 24 horas y a los 7 días.
   - Un vídeo programado pasa solo a "publicado" cuando llega su hora.
   - Lo que se marca se guarda en `datos/estado.json` (en git). Así cubre la cola (R13) y la hoja de métricas (R14).
+  - **Métricas automáticas (5 de noviembre, a petición de Javier: apuntarlas a mano era un fastidio):**
+    - `herramientas/metricas.py` lee cada 2 horas la página pública de las 3 cuentas con `yt-dlp`, sin iniciar sesión ni usar cookies. Lo programa `launchd` en el Mac (`--instalar` y `--desinstalar`), así que solo lee mientras el Mac está encendido.
+    - Apunta las visualizaciones, me gusta y comentarios de cada vídeo y los seguidores de cada cuenta. Reconoce cada vídeo por el principio de su descripción o por su hora de publicación.
+    - Con el historial (`datos/lecturas.jsonl`, fuera de git) calcula las visualizaciones a las 24 horas y a los 7 días: interpola entre las dos lecturas de alrededor, y si el Mac estuvo apagado y no hay ninguna cerca, deja la casilla para apuntarla a mano. Lo deja en `datos/metricas.json`.
+    - En el panel, cada cuenta lleva su marcador del torneo (seguidores, mediana a las 24 horas, seguidores por cada 1.000 visualizaciones y mejor vídeo) y cada vídeo publicado dice lo que lleva en TikTok. Lo escrito a mano manda sobre lo automático.
+    - El porcentaje que ve el vídeo entero y los seguidores ganados por vídeo solo están en TikTok Studio, con la sesión iniciada. Javier prefiere que los lea Claude con Claude in Chrome, en el perfil de Chrome de cada cuenta, sin iniciar sesión nunca. Para eso, cada perfil necesita la extensión conectada.
+    - Riesgo: si TikTok cambia su web, `yt-dlp` puede fallar unos días; el panel lo avisa en rojo. Se arregla con `brew upgrade yt-dlp`.
   - Se probó en el navegador: filtros, aviso si falta el día o la hora, copiar el texto y ver el vídeo. Se pasó la revisión de diseño (skills `ui-ux-pro-max` y `unslop`).
 - **Instagram (2 de noviembre):** solo sigue El contador loco, que ya había empezado. Las otras dos cuentas esperan a que se automatice.
 
@@ -584,7 +602,7 @@ Ninguna fase empieza por fecha: empieza cuando se cumple el filtro de la anterio
 - **Siguiente tanda:** Las cosas por dentro necesita un vídeo para el jueves 5 y otro para el viernes 6 (con el estilo nuevo), y Dinero sin lío otro para el viernes 6.
 - **Para cerrar la fase 2 falta:**
   1. **El ritmo:** 1 vídeo al día por cuenta durante las 2 primeras semanas, sin cortes. La fábrica tiene que sacar 3 vídeos al día y conviene ir una semana por delante, con 7 vídeos de reserva por cuenta.
-  2. **La hoja de métricas (R14):** cada vídeo, a las 24 horas y a los 7 días.
+  2. **La hoja de métricas (R14):** cada vídeo, a las 24 horas y a los 7 días. Las visualizaciones y los seguidores se apuntan solos desde el 5 de noviembre; falta conectar Chrome en el perfil de cada cuenta para que Claude lea de TikTok Studio el porcentaje que ve el vídeo entero.
   3. **Tus minutos:** medir los minutos que dedicas a cada vídeo (objetivo: 5 o menos).
   4. **La primera revisión del torneo,** a las 2 semanas (16 y 17 de noviembre). Se mira la mediana de visualizaciones, el porcentaje que ve el vídeo entero y los seguidores por cada 1.000 visualizaciones.
   5. **Subir de ritmo:** si la revisión de cada vídeo sigue en 5 minutos o menos y el control no falla, pasar a 2 vídeos al día por cuenta en las semanas 3 y 4 (desde el 16 de noviembre).
@@ -648,7 +666,7 @@ Esta lista hay que tenerla hecha antes de publicar el primer vídeo. La parte de
 - [x] Poner nombre a cada cuenta, sin tu nombre real. Elegidos el 2 de noviembre, con el mismo @ en TikTok e Instagram (libres ese día en las dos):
   - «¿Y si X aumentase cada día?»: **El contador loco**, `@elcontadorloco`. Regla de la cuenta: cada vídeo lleva un contador que no para, también los de «¿Qué pasaría si…?».
   - Objetos por dentro: **Las cosas por dentro**, `@lascosaspordentro`. Primero se eligió «Mira por dentro», pero en Instagram `@mirapordentro` estaba cogido (una cuenta desactivada) y `@mirapordentro_` hace exactamente lo mismo, así que se cambió en las dos plataformas para no confundirse con ella.
-  - Dinero cotidiano: **Dinero sin lío**, `@dinerosinlio`.
+  - Dinero cotidiano: **Dinero sin lío**, `@dinerosinlio` en Instagram y `@eldinerosinlio` en TikTok.
 - [ ] Decidir qué incluye cada pack y a qué precio (fase 4).
 - [x] Confirmar si el contrato de eduki tiene pacto de plena dedicación: revisado por ti el 2 de noviembre, no hay nada que prohíba el proyecto.
 

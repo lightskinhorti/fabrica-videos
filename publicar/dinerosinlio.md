@@ -1,4 +1,4 @@
-# Cómo subir y programar los vídeos de Dinero sin lío (@dinerosinlio)
+# Cómo subir y programar los vídeos de Dinero sin lío (@eldinerosinlio en TikTok)
 
 De momento solo se sube a TikTok (decisión del 2 de noviembre). Instagram se automatizará más adelante.
 
@@ -23,7 +23,7 @@ A las 20:00 va el mejor gancho: la lotería, que además está de actualidad por
 
 ## Paso a paso en TikTok Studio (en el ordenador)
 
-1. Entra en tiktok.com/tiktokstudio/upload y mira arriba a la derecha que la sesión es la de **@dinerosinlio**.
+1. Entra en tiktok.com/tiktokstudio/upload y mira arriba a la derecha que la sesión es la de **@eldinerosinlio**.
 2. "Seleccionar vídeo" y elige el `.mp4` de esa franja.
 3. **Descripción:** borra lo que ponga TikTok y pega el bloque del vídeo (más abajo), con los hashtags.
 4. **Portada:** desde `05-cafe`, el primer fotograma ya lleva el gancho con su imagen, así que vale la portada que pone TikTok. En 01 a 04 el fotograma 0 solo tiene el texto: si TikTok Studio te deja editar la portada, elige el segundo 1 (o sube la imagen `-portada.png`).
@@ -85,5 +85,5 @@ Si pagas un café de 2 euros con tarjeta, el bar paga de media unas 7 décimas d
 ## Después de publicar
 
 - Las 2 primeras horas, contesta a algunos comentarios.
-- A las 24 horas y a los 7 días, apunta visualizaciones, tiempo medio de visualización y seguidores ganados (hoja de
-  métricas, R14 del PRD).
+- Las visualizaciones a las 24 horas y a los 7 días se apuntan solas en el panel (se leen de TikTok cada 2 horas).
+  Lo que solo da TikTok Studio (el porcentaje que ve el vídeo entero y los seguidores ganados) lo lee Claude con Chrome.

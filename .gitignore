@@ -1,5 +1,10 @@
 .DS_Store
 *.log
+
+# lecturas sueltas de TikTok y archivos de trabajo de herramientas/metricas.py (el resultado, datos/metricas.json, sí se sube)
+datos/lecturas.jsonl
+datos/.metricas.lock
+datos/*.tmp
 .env
 .claude/settings.local.json
 
