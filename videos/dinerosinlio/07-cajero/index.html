@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <link rel="stylesheet" href="comun/dinero.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+      .cifra, .fila b, .grande { font-family: "Archivo Black", sans-serif; }
+      /* this video's layout */
+      .ancho { left: 0; width: 1080px; text-align: center; }
+      .fila.marca { background: #f8dc7a; margin: 0 -16px; padding-left: 16px; padding-right: 16px; border-radius: 8px; }
+      .fila b { white-space: nowrap; }
+      .sello.s50 { font-size: 50px; }
+      .sello.s44 { font-size: 44px; }
+      #docDeb .doc { width: 840px; }
+      /* the ATM screen, close up */
+      .pantalla { width: 820px; background: #1d2a44; border: 10px solid #1d2a44; border-radius: 28px; box-shadow: 14px 14px 0 rgba(29, 42, 68, 0.35); padding: 40px 46px 44px; color: #fffaf0; text-align: center; }
+      .pantalla .aviso { font-size: 40px; font-weight: 800; letter-spacing: 0.14em; color: #f2b705; margin-bottom: 22px; }
+      .pantalla .linea { font-size: 44px; font-weight: 700; line-height: 1.25; margin-bottom: 12px; }
+      .pantalla .botones { display: flex; justify-content: space-between; gap: 30px; margin-top: 34px; }
+      .pantalla .boton { flex: 1; padding: 20px 0; border-radius: 16px; border: 6px solid #fffaf0; font-size: 40px; font-weight: 800; letter-spacing: 0.06em; }
+      .pantalla .boton.no { background: #e5383b; }
+      .pantalla .boton.si { background: #2f8f6b; }
+      /* columns of ATMs: the inner bar grows from the floor */
+      .col { display: flex; align-items: flex-end; }
+      .col .barcol { width: 100%; height: 0; border: 7px solid #1d2a44; border-bottom: none; border-radius: 18px 18px 0 0; box-shadow: 12px 0 0 #1d2a44; }
+      .suelo { height: 9px; background: #1d2a44; border-radius: 5px; }
+      /* twenty people, three in red */
+      .gente { display: flex; flex-wrap: wrap; width: 900px; gap: 6px 14px; justify-content: center; }
+      .seg.pago { background: #e5383b; color: #fff; }
+      .seg.cancelo { background: #2f8f6b; color: #fff; }
+      .seg.otro { background: #c9cfdb; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="71.8" data-width="1080" data-height="1920" data-fps="30">
+      <div id="fondo" class="clip" data-start="0" data-duration="71.8" data-track-index="0"></div>
+      <div id="escenario" class="clip" data-start="0" data-duration="71.8" data-track-index="1" data-layout-allow-overlap data-layout-allow-overflow>
+        <!-- A: the hook (an ATM of another bank and a crossed-out coin), then your bank and the open question -->
+        <div class="pieza" id="cajeroA" style="left:110px; top:820px" data-dibujo="cajero" data-args='[370, "OTRO BANCO"]'></div>
+        <div class="pieza" id="monedaA" style="left:650px; top:930px" data-icono="moneda" data-args='["€", 230]'></div>
+        <div class="pieza" id="tachadoA" style="left:615px; top:895px" data-icono="tachado" data-args="[300]"></div>
+        <div class="pieza" id="tuBancoA" style="left:600px; top:870px" data-icono="edificio" data-args='["TU BANCO", "#f2b705", 350]'></div>
+        <div class="pieza" id="selloSi" style="left:690px; top:1250px" data-icono="sello" data-args='["SÍ", "#2f8f6b"]'></div>
+        <div class="pieza ancho" id="chipCuanto" style="top:480px"><div class="chip blanco">¿CUÁNTO SE PAGA DE MEDIA?</div></div>
+
+        <!-- B: example, a withdrawal with your debit card at an ATM of another bank -->
+        <div class="pieza ancho" id="chipEjemplo" style="top:470px"><div class="chip">EJEMPLO</div></div>
+        <div class="pieza" id="cajeroB" style="left:400px; top:570px" data-dibujo="cajero" data-args='[370, "OTRO BANCO"]'></div>
+        <div class="pieza" id="tarjetaB" style="left:90px; top:1000px" data-dibujo="tarjeta" data-args="[300]"></div>
+
+        <!-- C: the screen warns you before anything else -->
+        <div class="pieza" id="pantalla" style="left:130px; top:500px">
+          <div class="pantalla">
+            <div class="aviso">AVISO</div>
+            <div class="linea">ESTE CAJERO COBRA UNA COMISIÓN A TU BANCO</div>
+            <div class="linea">Y TU BANCO PUEDE PASÁRTELA</div>
+            <div class="botones"><div class="boton no" id="btnNo">CANCELAR</div><div class="boton si">ACEPTAR</div></div>
+          </div>
+        </div>
+        <div class="pieza ancho" id="selloOblig" style="top:1110px"><div class="sello s50" style="color:#4a78c2; border-color:#4a78c2">OBLIGATORIO</div></div>
+
+        <!-- D: the ATM owner charges your bank, not you -->
+        <div class="pieza" id="duenoD" style="left:50px; top:560px" data-icono="edificio" data-args='["DUEÑO DEL CAJERO", "#fffaf0", 360]'></div>
+        <div class="pieza" id="tuBancoD" style="left:670px; top:560px" data-icono="edificio" data-args='["TU BANCO", "#f2b705", 360]'></div>
+        <div class="pieza" id="flechaD" style="left:445px; top:740px" data-dibujo="flecha" data-args="[170]"></div>
+        <div class="pieza" id="monedaD" style="left:465px; top:600px" data-icono="moneda" data-args='["€", 120]'></div>
+        <div class="pieza" id="personaD" style="left:150px; top:950px" data-icono="persona" data-args='["#4a78c2", 150]'></div>
+        <div class="pieza" id="chipATi" style="left:330px; top:1020px"><div class="chip rojo">A TI NO TE COBRA</div></div>
+
+        <!-- E: your contract decides how much of it reaches you -->
+        <div class="pieza" id="contrato" style="left:110px; top:540px" data-dibujo="contrato" data-args="[320]"></div>
+        <div class="pieza" id="chipEntera" style="left:540px; top:580px"><div class="chip rojo" style="font-size:48px">ENTERA</div></div>
+        <div class="pieza" id="chipParte" style="left:540px; top:740px"><div class="chip" style="font-size:48px">UNA PARTE</div></div>
+        <div class="pieza" id="chipNada" style="left:540px; top:900px"><div class="chip verde" style="font-size:48px">NADA</div></div>
+
+        <!-- F: with a debit card, a cap -->
+        <div class="pieza" id="tarjetaF" style="left:100px; top:520px" data-dibujo="tarjeta" data-args="[360]"></div>
+        <div class="pieza" id="selloTope" style="left:600px; top:580px" data-icono="sello" data-args='["TOPE", "#e5383b"]'></div>
+        <div class="pieza" id="docDeb" style="left:120px; top:880px" data-icono="doc"
+          data-args='["CON DÉBITO, TU BANCO TE PASA", [["COMO MUCHO", "LO QUE LE COBRARON", "fDeb1"], ["Y ADEMÁS", "0 € EXTRA", "fDeb2", "verde"]]]'></div>
+
+        <!-- G: with a credit card, an extra -->
+        <div class="pieza" id="tarjetaG" style="left:100px; top:600px" data-dibujo="tarjeta" data-args='[360, "CRÉDITO", "#e5383b"]'></div>
+        <div class="pieza" id="chipExtra" style="left:560px; top:700px"><div class="chip rojo" style="font-size:52px">+ UN EXTRA</div></div>
+
+        <!-- H: ATMs in Spain, 2008 and mid-2026 -->
+        <div class="pieza ancho" id="chipCajeros" style="top:470px"><div class="chip blanco">CAJEROS EN ESPAÑA</div></div>
+        <div class="pieza col" id="col2008" style="left:170px; top:700px; width:300px; height:500px"><div class="barcol" id="b2008" style="background:#fffaf0"></div></div>
+        <div class="pieza col" id="col2026" style="left:610px; top:700px; width:300px; height:500px"><div class="barcol" id="b2026" style="background:#f2b705"></div></div>
+        <div class="pieza suelo" id="sueloH" style="left:110px; top:1198px; width:860px"></div>
+        <div class="pieza cifra media" id="c2008" style="left:120px; top:585px; width:400px">0</div>
+        <div class="pieza cifra media" id="c2026" style="left:560px; top:735px; width:400px">0</div>
+        <div class="pieza rotulo" id="l2008" style="left:120px; top:1225px; width:400px">AÑO 2008</div>
+        <div class="pieza rotulo" id="l2026" style="left:560px; top:1225px; width:400px">JUNIO DE 2026</div>
+        <div class="pieza ancho" id="selloMenos" style="top:1310px"><div class="sello s44" style="color:#e5383b; border-color:#e5383b">CASI UN 30 % MENOS</div></div>
+
+        <!-- I: the survey: who is asked for a fee and what they do -->
+        <div class="pieza ancho" id="chipEncuesta" style="top:470px"><div class="chip blanco" style="font-size:34px">ENCUESTA DEL BANCO DE ESPAÑA, 2025</div></div>
+        <div class="pieza cifra roja ancho" id="c15" style="top:560px">0 %</div>
+        <div class="pieza rotulo rojo ancho" id="r15" style="top:700px; line-height:1.35">DE QUIENES SACAN EN CAJERO,<br />LES PIDIERON COMISIÓN</div>
+        <div class="pieza" id="gente" style="left:90px; top:810px"><div class="gente" id="genteIn"></div></div>
+        <div class="pieza" id="barraI" style="left:90px; top:840px; width:900px">
+          <div class="barra"><div class="seg pago" style="width:60.6%">PAGÓ: 60 %</div><div class="seg cancelo" style="width:33.3%">CANCELÓ: 33 %</div><div class="seg otro" style="width:6.1%"></div></div>
+        </div>
+
+        <!-- J: how much they paid, on average, and the closing question -->
+        <div class="pieza ancho" id="chipMedia" style="top:560px"><div class="chip blanco" style="font-size:48px">¿CUÁNTO, DE MEDIA?</div></div>
+        <div class="pieza cifra roja ancho" id="c300" style="top:480px">0,00 €</div>
+        <div class="pieza rotulo rojo ancho" id="r300" style="top:625px">DE COMISIÓN, DE MEDIA</div>
+        <div class="pieza" id="b100" style="left:60px; top:730px" data-icono="billete" data-args='["100", "#2f8f6b", 300]'></div>
+        <div class="pieza" id="b20" style="left:380px; top:730px" data-icono="billete" data-args='["20", "#4a78c2", 300]'></div>
+        <div class="pieza" id="b5" style="left:700px; top:730px" data-icono="billete" data-args='["5", "#8a94a6", 300]'></div>
+        <div class="pieza cifra media ancho" id="c125" style="top:930px">0,00 €</div>
+        <div class="pieza rotulo ancho" id="r125" style="top:1035px">SACADOS, DE MEDIA</div>
+        <div class="pieza ancho" id="sello24" style="top:1100px"><div class="sello" style="color:#e5383b; border-color:#e5383b; font-size:92px">2,4 %</div></div>
+        <div class="pieza ancho" id="chipFin" style="top:1300px"><div class="chip" style="font-size:38px">¿PAGAS O BUSCAS OTRO CAJERO?</div></div>
+      </div>
+      <div id="gancho" class="clip" data-start="0" data-duration="71.8" data-track-index="2"></div>
+      <div id="note" class="clip" data-start="0" data-duration="71.8" data-track-index="3"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="71.8"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="71.8" data-track-index="4" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 70.56, "lines": [{"id": "l1", "s": 0.01, "e": 2.22, "words": [{"w": "Ese", "s": 0.01, "e": 0.24, "key": false}, {"w": "cajero", "s": 0.29, "e": 0.63, "key": false}, {"w": "no", "s": 0.72, "e": 0.88, "key": false}, {"w": "te", "s": 0.88, "e": 0.92, "key": false}, {"w": "puede", "s": 1.04, "e": 1.45, "key": false}, {"w": "cobrar.", "s": 1.45, "e": 2.22, "key": true}]}, {"id": "l2", "s": 2.28, "e": 7.8, "words": [{"w": "Pero", "s": 2.28, "e": 2.51, "key": false}, {"w": "tu", "s": 2.51, "e": 2.65, "key": false}, {"w": "banco,", "s": 2.65, "e": 3.16, "key": true}, {"w": "sí.", "s": 3.16, "e": 3.547, "key": false}, {"w": "¿Y", "s": 3.547, "e": 3.74, "key": false}, {"w": "cuánto", "s": 3.96, "e": 4.28, "key": false}, {"w": "paga", "s": 4.28, "e": 4.64, "key": false}, {"w": "de", "s": 4.64, "e": 4.82, "key": false}, {"w": "media", "s": 4.82, "e": 5.28, "key": false}, {"w": "quien", "s": 5.28, "e": 5.48, "key": false}, {"w": "acepta?", "s": 5.48, "e": 6.48, "key": false}, {"w": "Te", "s": 6.49, "e": 6.62, "key": false}, {"w": "lo", "s": 6.62, "e": 6.77, "key": false}, {"w": "digo", "s": 6.77, "e": 7.04, "key": false}, {"w": "al", "s": 7.05, "e": 7.11, "key": false}, {"w": "final.", "s": 7.2, "e": 7.8, "key": false}]}, {"id": "l3", "s": 7.8, "e": 10.94, "words": [{"w": "Imagina", "s": 7.8, "e": 8.16, "key": false}, {"w": "que", "s": 8.16, "e": 8.31, "key": false}, {"w": "sacas", "s": 8.31, "e": 8.56, "key": false}, {"w": "dinero", "s": 8.76, "e": 8.87, "key": false}, {"w": "en", "s": 8.87, "e": 8.97, "key": false}, {"w": "un", "s": 8.97, "e": 9.07, "key": false}, {"w": "cajero", "s": 9.07, "e": 9.34, "key": true}, {"w": "que", "s": 9.53, "e": 9.6, "key": false}, {"w": "no", "s": 9.6, "e": 9.75, "key": false}, {"w": "es", "s": 9.76, "e": 9.77, "key": false}, {"w": "de", "s": 9.89, "e": 9.98, "key": false}, {"w": "tu", "s": 9.98, "e": 10.19, "key": false}, {"w": "banco.", "s": 10.44, "e": 10.94, "key": false}]}, {"id": "l4", "s": 11.07, "e": 16.0, "words": [{"w": "Antes", "s": 11.07, "e": 11.16, "key": false}, {"w": "de", "s": 11.16, "e": 11.24, "key": false}, {"w": "darte", "s": 11.25, "e": 11.55, "key": false}, {"w": "nada,", "s": 11.55, "e": 11.87, "key": false}, {"w": "la", "s": 11.96, "e": 12.03, "key": false}, {"w": "pantalla", "s": 12.04, "e": 12.55, "key": false}, {"w": "te", "s": 12.55, "e": 12.67, "key": false}, {"w": "avisa", "s": 12.67, "e": 12.98, "key": false}, {"w": "de", "s": 12.98, "e": 13.07, "key": false}, {"w": "la", "s": 13.09, "e": 13.12, "key": false}, {"w": "comisión.", "s": 13.41, "e": 13.92, "key": false}, {"w": "Es", "s": 13.92, "e": 14.04, "key": false}, {"w": "obligatorio,", "s": 14.04, "e": 14.53, "key": true}, {"w": "y", "s": 14.7, "e": 14.8, "key": false}, {"w": "puedes", "s": 14.8, "e": 15.2, "key": false}, {"w": "cancelar.", "s": 15.2, "e": 16.0, "key": false}]}, {"id": "l5", "s": 16, "e": 20.4, "words": [{"w": "Pero", "s": 16, "e": 16.09, "key": false}, {"w": "esa", "s": 16.09, "e": 16.16, "key": false}, {"w": "comisión", "s": 16.37, "e": 16.73, "key": false}, {"w": "no", "s": 16.73, "e": 16.79, "key": false}, {"w": "te", "s": 16.88, "e": 17.01, "key": false}, {"w": "la", "s": 17.01, "e": 17.08, "key": false}, {"w": "cobra", "s": 17.2, "e": 17.48, "key": false}, {"w": "el", "s": 17.56, "e": 17.64, "key": false}, {"w": "dueño", "s": 17.64, "e": 17.99, "key": true}, {"w": "del", "s": 18.01, "e": 18.07, "key": false}, {"w": "cajero:", "s": 18.35, "e": 18.84, "key": false}, {"w": "se", "s": 18.84, "e": 18.98, "key": false}, {"w": "la", "s": 18.98, "e": 19.03, "key": false}, {"w": "cobra", "s": 19.21, "e": 19.45, "key": false}, {"w": "a", "s": 19.45, "e": 19.61, "key": false}, {"w": "tu", "s": 19.61, "e": 19.69, "key": false}, {"w": "banco.", "s": 20.05, "e": 20.4, "key": false}]}, {"id": "l6", "s": 20.4, "e": 25.2, "words": [{"w": "Y", "s": 20.4, "e": 20.443, "key": false}, {"w": "tu", "s": 20.443, "e": 20.53, "key": false}, {"w": "banco,", "s": 20.59, "e": 20.96, "key": false}, {"w": "según", "s": 20.96, "e": 21.27, "key": false}, {"w": "tu", "s": 21.29, "e": 21.45, "key": false}, {"w": "contrato,", "s": 21.57, "e": 22.2, "key": true}, {"w": "te", "s": 22.32, "e": 22.49, "key": false}, {"w": "la", "s": 22.49, "e": 22.6, "key": false}, {"w": "pasa", "s": 22.68, "e": 23.01, "key": false}, {"w": "entera,", "s": 23.01, "e": 23.7, "key": false}, {"w": "una", "s": 23.7, "e": 23.96, "key": false}, {"w": "parte", "s": 23.96, "e": 24.39, "key": false}, {"w": "o", "s": 24.39, "e": 24.48, "key": false}, {"w": "nada.", "s": 24.48, "e": 25.2, "key": false}]}, {"id": "l7", "s": 25.24, "e": 30.32, "words": [{"w": "Con", "s": 25.24, "e": 25.34, "key": false}, {"w": "tarjeta", "s": 25.34, "e": 25.65, "key": false}, {"w": "de", "s": 25.71, "e": 25.74, "key": false}, {"w": "débito,", "s": 25.87, "e": 26.12, "key": false}, {"w": "la", "s": 26.12, "e": 26.21, "key": false}, {"w": "ley", "s": 26.21, "e": 26.35, "key": false}, {"w": "le", "s": 26.35, "e": 26.54, "key": false}, {"w": "pone", "s": 26.54, "e": 26.76, "key": false}, {"w": "un", "s": 26.77, "e": 26.89, "key": false}, {"w": "tope:", "s": 27.02, "e": 27.35, "key": true}, {"w": "nunca", "s": 27.35, "e": 27.68, "key": false}, {"w": "más", "s": 27.68, "e": 27.88, "key": false}, {"w": "de", "s": 27.88, "e": 27.98, "key": false}, {"w": "lo", "s": 28.02, "e": 28.08, "key": false}, {"w": "que", "s": 28.16, "e": 28.3, "key": false}, {"w": "le", "s": 28.34, "e": 28.47, "key": false}, {"w": "cobraron,", "s": 28.47, "e": 29.0, "key": false}, {"w": "y", "s": 29.04, "e": 29.06, "key": false}, {"w": "ni", "s": 29.06, "e": 29.19, "key": false}, {"w": "un", "s": 29.19, "e": 29.31, "key": false}, {"w": "céntimo", "s": 29.31, "e": 29.63, "key": false}, {"w": "extra.", "s": 29.81, "e": 30.32, "key": false}]}, {"id": "l8", "s": 30.32, "e": 34.733, "words": [{"w": "Con", "s": 30.32, "e": 30.52, "key": false}, {"w": "tarjeta", "s": 30.72, "e": 30.99, "key": false}, {"w": "de", "s": 30.99, "e": 31.12, "key": false}, {"w": "crédito,", "s": 31.12, "e": 31.87, "key": true}, {"w": "en", "s": 31.89, "e": 32.02, "key": false}, {"w": "cambio,", "s": 32.17, "e": 32.51, "key": false}, {"w": "tu", "s": 32.6, "e": 32.72, "key": false}, {"w": "banco", "s": 32.72, "e": 33.07, "key": false}, {"w": "sí", "s": 33.07, "e": 33.2, "key": false}, {"w": "puede", "s": 33.22, "e": 33.56, "key": false}, {"w": "añadir", "s": 33.56, "e": 33.98, "key": false}, {"w": "algo", "s": 34.16, "e": 34.26, "key": false}, {"w": "más.", "s": 34.26, "e": 34.733, "key": false}]}, {"id": "l9", "s": 34.733, "e": 40.22, "words": [{"w": "¿Y", "s": 34.733, "e": 34.89, "key": false}, {"w": "cuántos", "s": 34.93, "e": 35.5, "key": false}, {"w": "cajeros", "s": 35.5, "e": 35.99, "key": false}, {"w": "quedan?", "s": 36.11, "e": 36.96, "key": true}, {"w": "A", "s": 36.96, "e": 37.01, "key": false}, {"w": "mitad", "s": 37.02, "e": 37.36, "key": false}, {"w": "de", "s": 37.37, "e": 37.52, "key": false}, {"w": "2026,", "s": 37.65, "e": 38.68, "key": false}, {"w": "43.324.", "s": 38.68, "e": 40.22, "key": false}]}, {"id": "l10", "s": 40.45, "e": 46.158, "words": [{"w": "En", "s": 40.45, "e": 40.59, "key": false}, {"w": "2008", "s": 40.59, "e": 41.6, "key": false}, {"w": "había", "s": 41.6, "e": 42.02, "key": false}, {"w": "61.714.", "s": 42.02, "e": 43.77, "key": false}, {"w": "Hoy,", "s": 43.77, "e": 44.12, "key": false}, {"w": "casi", "s": 44.18, "e": 44.4, "key": false}, {"w": "un", "s": 44.58, "e": 44.59, "key": false}, {"w": "30%", "s": 45.12, "e": 45.25, "key": false}, {"w": "menos.", "s": 45.25, "e": 46.158, "key": true}]}, {"id": "l11", "s": 46.158, "e": 54.04, "words": [{"w": "¿Y", "s": 46.158, "e": 46.34, "key": false}, {"w": "a", "s": 46.34, "e": 46.43, "key": false}, {"w": "cuánta", "s": 46.47, "e": 47.28, "key": false}, {"w": "gente", "s": 47.28, "e": 47.6, "key": false}, {"w": "le", "s": 47.6, "e": 47.72, "key": false}, {"w": "piden", "s": 47.73, "e": 48.03, "key": false}, {"w": "comisión?", "s": 48.03, "e": 48.64, "key": false}, {"w": "En", "s": 48.76, "e": 48.84, "key": false}, {"w": "una", "s": 48.84, "e": 49.03, "key": false}, {"w": "encuesta", "s": 49.03, "e": 49.52, "key": true}, {"w": "del", "s": 49.52, "e": 49.6, "key": false}, {"w": "Banco", "s": 49.91, "e": 50.03, "key": false}, {"w": "de", "s": 50.03, "e": 50.15, "key": false}, {"w": "España", "s": 50.15, "e": 50.53, "key": false}, {"w": "de", "s": 50.53, "e": 50.58, "key": false}, {"w": "2025,", "s": 50.77, "e": 51.5, "key": false}, {"w": "a", "s": 51.5, "e": 51.68, "key": false}, {"w": "un", "s": 51.68, "e": 51.71, "key": false}, {"w": "15%", "s": 51.71, "e": 52.09, "key": false}, {"w": "de", "s": 52.15, "e": 52.18, "key": false}, {"w": "quienes", "s": 52.31, "e": 52.71, "key": false}, {"w": "sacan", "s": 52.71, "e": 53.12, "key": false}, {"w": "en", "s": 53.12, "e": 53.41, "key": false}, {"w": "cajero.", "s": 53.41, "e": 54.04, "key": false}]}, {"id": "l12", "s": 54.16, "e": 59.098, "words": [{"w": "Uno", "s": 54.16, "e": 54.41, "key": false}, {"w": "de", "s": 54.41, "e": 54.59, "key": false}, {"w": "cada", "s": 54.59, "e": 54.94, "key": false}, {"w": "tres", "s": 54.97, "e": 55.0, "key": false}, {"w": "canceló", "s": 55.4, "e": 55.98, "key": true}, {"w": "y", "s": 55.98, "e": 56.17, "key": false}, {"w": "buscó", "s": 56.17, "e": 56.53, "key": false}, {"w": "otro", "s": 56.53, "e": 56.89, "key": false}, {"w": "cajero.", "s": 57.08, "e": 57.45, "key": false}, {"w": "Y", "s": 57.45, "e": 57.49, "key": false}, {"w": "el", "s": 57.55, "e": 57.72, "key": false}, {"w": "60%", "s": 57.72, "e": 58.37, "key": false}, {"w": "pagó.", "s": 58.37, "e": 59.098, "key": false}]}, {"id": "l13", "s": 59.098, "e": 66.912, "words": [{"w": "¿Y", "s": 59.098, "e": 59.28, "key": false}, {"w": "cuánto", "s": 59.49, "e": 59.67, "key": false}, {"w": "pagaron", "s": 59.67, "e": 60.15, "key": false}, {"w": "de", "s": 60.15, "e": 60.45, "key": false}, {"w": "media?", "s": 60.45, "e": 61.08, "key": true}, {"w": "Tres", "s": 61.2, "e": 61.48, "key": false}, {"w": "euros,", "s": 61.48, "e": 62.04, "key": false}, {"w": "por", "s": 62.04, "e": 62.44, "key": false}, {"w": "sacar", "s": 62.44, "e": 62.86, "key": false}, {"w": "125.", "s": 62.9, "e": 64.05, "key": false}, {"w": "Un", "s": 64.12, "e": 64.24, "key": false}, {"w": "2,4%", "s": 64.24, "e": 65.08, "key": false}, {"w": "de", "s": 65.08, "e": 65.27, "key": false}, {"w": "su", "s": 65.27, "e": 65.45, "key": false}, {"w": "propio", "s": 65.45, "e": 65.99, "key": false}, {"w": "dinero.", "s": 66.02, "e": 66.912, "key": false}]}, {"id": "l14", "s": 66.912, "e": 70.24, "words": [{"w": "¿Tú", "s": 66.912, "e": 67.21, "key": false}, {"w": "pagas", "s": 67.27, "e": 67.71, "key": false}, {"w": "o", "s": 67.72, "e": 67.81, "key": false}, {"w": "buscas", "s": 67.99, "e": 68.36, "key": false}, {"w": "otro", "s": 68.65, "e": 68.72, "key": false}, {"w": "cajero?", "s": 68.72, "e": 69.56, "key": false}, {"w": "Te", "s": 69.56, "e": 69.57, "key": false}, {"w": "leo", "s": 69.62, "e": 69.68, "key": false}, {"w": "en", "s": 69.76, "e": 69.77, "key": false}, {"w": "los", "s": 69.77, "e": 69.86, "key": false}, {"w": "comentarios.", "s": 69.86, "e": 70.24, "key": true}]}]}</script>
+    <script id="escena" type="application/json">
+      {
+        "momentos": [
+          { "id": "PERO", "clave": "pero" },
+          { "id": "BANCO2", "clave": "banco" },
+          { "id": "CUANTO", "clave": "cuanto" },
+          { "id": "IMAGINA", "clave": "imagina" },
+          { "id": "SACAS", "clave": "sacas" },
+          { "id": "ANTES", "clave": "antes" },
+          { "id": "PANTALLA", "clave": "pantalla" },
+          { "id": "OBLIGATORIO", "clave": "obligatorio" },
+          { "id": "CANCELAR", "clave": "cancelar" },
+          { "id": "PERO5", "clave": "pero" },
+          { "id": "DUENO", "clave": "dueno" },
+          { "id": "BANCO5", "clave": "banco" },
+          { "id": "CONTRATO", "clave": "contrato" },
+          { "id": "ENTERA", "clave": "entera" },
+          { "id": "PARTE", "clave": "parte" },
+          { "id": "NADA", "clave": "nada" },
+          { "id": "DEBITO", "clave": "debito" },
+          { "id": "TOPE", "clave": "tope" },
+          { "id": "NUNCA", "clave": "nunca" },
+          { "id": "CENTIMO", "clave": "centimo" },
+          { "id": "CREDITO", "clave": "credito" },
+          { "id": "ANADIR", "clave": "anadir" },
+          { "id": "CUANTOS", "clave": "cuantos" },
+          { "id": "MITAD", "clave": "mitad" },
+          { "id": "HABIA", "clave": "habia" },
+          { "id": "MENOS10", "clave": "menos" },
+          { "id": "GENTE", "clave": "gente" },
+          { "id": "ENCUESTA", "clave": "encuesta" },
+          { "id": "ESPANA11", "clave": "espana" },
+          { "id": "QUIENES", "clave": "quienes" },
+          { "id": "CANCELO", "clave": "cancelo" },
+          { "id": "PAGO12", "clave": "pago" },
+          { "id": "PAGARON", "clave": "pagaron" },
+          { "id": "EUROS13", "clave": "euros" },
+          { "id": "SACAR13", "clave": "sacar" },
+          { "id": "PROPIO", "clave": "propio", "mas": -0.3 },
+          { "id": "PAGAS", "clave": "pagas" }
+        ],
+        "gancho": { "texto": "Ese cajero no te puede cobrar", "clave": "cobrar" },
+        "piezas": [
+          { "id": "cajeroA", "desde": 0.1, "hasta": "IMAGINA", "entra": "escala", "dura": 0.6 },
+          { "id": "monedaA", "desde": 0.3, "hasta": "PERO", "entra": "escala" },
+          { "id": "tachadoA", "desde": 0.6, "hasta": "PERO", "entra": "escala" },
+          { "id": "tuBancoA", "desde": "BANCO2", "hasta": "IMAGINA", "entra": "der" },
+          { "id": "selloSi", "desde": "BANCO2", "hasta": "IMAGINA", "entra": "sello" },
+          { "id": "chipCuanto", "desde": "CUANTO", "hasta": "IMAGINA", "entra": "baja" },
+
+          { "id": "chipEjemplo", "desde": "IMAGINA", "hasta": "ANTES", "entra": "baja" },
+          { "id": "cajeroB", "desde": "IMAGINA", "hasta": "ANTES", "entra": "der" },
+          { "id": "tarjetaB", "desde": "IMAGINA", "hasta": "ANTES", "entra": "izq" },
+
+          { "id": "pantalla", "desde": "ANTES", "hasta": "PERO5", "entra": "escala" },
+          { "id": "selloOblig", "desde": "OBLIGATORIO", "hasta": "PERO5", "entra": "sello" },
+
+          { "id": "duenoD", "desde": "PERO5", "hasta": "CONTRATO", "entra": "izq" },
+          { "id": "personaD", "desde": "PERO5", "hasta": "CONTRATO", "entra": "sube" },
+          { "id": "chipATi", "desde": "DUENO", "hasta": "CONTRATO", "entra": "sello" },
+          { "id": "tuBancoD", "desde": "BANCO5", "hasta": "CONTRATO", "entra": "der" },
+          { "id": "flechaD", "desde": "BANCO5", "hasta": "CONTRATO", "entra": "der" },
+          { "id": "monedaD", "desde": "BANCO5", "hasta": "CONTRATO", "entra": "escala" },
+
+          { "id": "contrato", "desde": "CONTRATO", "hasta": "DEBITO", "entra": "izq" },
+          { "id": "chipEntera", "desde": "ENTERA", "hasta": "DEBITO", "entra": "der" },
+          { "id": "chipParte", "desde": "PARTE", "hasta": "DEBITO", "entra": "der" },
+          { "id": "chipNada", "desde": "NADA", "hasta": "DEBITO", "entra": "der" },
+
+          { "id": "tarjetaF", "desde": "DEBITO", "hasta": "CREDITO", "entra": "izq" },
+          { "id": "selloTope", "desde": "TOPE", "hasta": "CREDITO", "entra": "sello" },
+          { "id": "docDeb", "desde": "NUNCA", "hasta": "CREDITO", "entra": "sube" },
+
+          { "id": "tarjetaG", "desde": "CREDITO", "hasta": "CUANTOS", "entra": "izq" },
+          { "id": "chipExtra", "desde": "ANADIR", "hasta": "CUANTOS", "entra": "escala" },
+
+          { "id": "chipCajeros", "desde": "CUANTOS", "hasta": "GENTE", "entra": "baja" },
+          { "id": "sueloH", "desde": "CUANTOS", "hasta": "GENTE", "entra": "fundido" },
+          { "id": "col2026", "desde": "MITAD", "hasta": "GENTE", "entra": "fundido", "dura": 0.2 },
+          { "id": "c2026", "desde": "MITAD", "hasta": "GENTE", "entra": "escala" },
+          { "id": "l2026", "desde": "MITAD", "hasta": "GENTE" },
+          { "id": "col2008", "desde": "HABIA", "hasta": "GENTE", "entra": "fundido", "dura": 0.2 },
+          { "id": "c2008", "desde": "HABIA", "hasta": "GENTE", "entra": "escala" },
+          { "id": "l2008", "desde": "HABIA", "hasta": "GENTE" },
+          { "id": "selloMenos", "desde": "MENOS10", "hasta": "GENTE", "entra": "sello" },
+
+          { "id": "chipEncuesta", "desde": "ENCUESTA", "hasta": "PAGARON", "entra": "baja" },
+          { "id": "c15", "desde": "QUIENES", "hasta": "PAGARON", "entra": "escala" },
+          { "id": "r15", "desde": "QUIENES", "hasta": "PAGARON" },
+          { "id": "gente", "desde": "ESPANA11", "hasta": "CANCELO", "entra": "sube" },
+          { "id": "barraI", "desde": "CANCELO", "hasta": "PAGARON", "entra": "izq" },
+
+          { "id": "chipMedia", "desde": "PAGARON", "hasta": "EUROS13", "entra": "escala" },
+          { "id": "c300", "desde": "EUROS13", "entra": "escala" },
+          { "id": "r300", "desde": "EUROS13" },
+          { "id": "b100", "desde": "SACAR13", "entra": "izq" },
+          { "id": "b20", "desde": "SACAR13", "entra": "izq", "dura": 0.55 },
+          { "id": "b5", "desde": "SACAR13", "entra": "izq", "dura": 0.65 },
+          { "id": "c125", "desde": "SACAR13", "entra": "escala" },
+          { "id": "r125", "desde": "SACAR13" },
+          { "id": "sello24", "desde": "PROPIO", "entra": "sello" },
+          { "id": "chipFin", "desde": "PAGAS", "entra": "sube", "dura": 0.6 }
+        ],
+        "cifras": [
+          { "id": "c2026", "desde": "MITAD", "a": 43324, "formato": "numero", "dura": 1.6 },
+          { "id": "c2008", "desde": "HABIA", "a": 61714, "formato": "numero", "dura": 1.6 },
+          { "id": "c15", "desde": "QUIENES", "a": 15, "formato": "pct", "dura": 0.8 },
+          { "id": "c300", "desde": "EUROS13", "a": 3, "dec": 2, "dura": 0.8 },
+          { "id": "c125", "desde": "SACAR13", "a": 125, "dec": 2, "dura": 1.0 }
+        ],
+        "notas": [
+          { "texto": "Real Decreto-ley 19/2018, disposición adicional 2.ª. Cajeros en España y tarjetas de bancos de España", "desde": "PERO" },
+          { "texto": "Ejemplo: sacar dinero con tarjeta de débito en un cajero de otra entidad", "desde": "IMAGINA" },
+          { "texto": "El aviso es para pedirte el consentimiento antes de sacar. Banco de España: te debe dar la opción de desistir", "desde": "ANTES" },
+          { "texto": "Disposición adicional 2.ª, apartado 2: el dueño del cajero no puede cobrar a los clientes de otras entidades", "desde": "PERO5" },
+          { "texto": "Apartado 6. Dentro de ese tope, lo que te pasa lo fija tu contrato", "desde": "CONTRATO" },
+          { "texto": "Con crédito, el extra no puede superar lo que tu banco cobra por sacar a crédito en sus propios cajeros", "desde": "CREDITO" },
+          { "texto": "Banco de España, parque de cajeros (Sistema de Tarjetas y Medios de Pago): 2008 a 31 de diciembre; 2026, segundo trimestre", "desde": "CUANTOS" },
+          { "texto": "Banco de España e Ipsos, Estudio sobre hábitos en el uso del efectivo 2025. Respuestas sobre el último año. El 6 % restante canceló y pagó con tarjeta", "desde": "GENTE" },
+          { "texto": "Medias de lo que dijeron quienes pagaron la comisión. Cálculo propio: 3 € / 125 € = 2,4 %", "desde": "PAGARON" }
+        ],
+        "fondo": "claro",
+        "sonidos": [
+          { "tipo": "toque", "en": 0.15 },
+          { "tipo": "pop", "en": 0.4 },
+          { "tipo": "error", "en": 0.7 },
+          { "tipo": "desliza", "en": "BANCO2" },
+          { "tipo": "toque", "en": "BANCO2", "mas": 0.4 },
+          { "tipo": "brillo", "en": "CUANTO" },
+          { "tipo": "desliza", "en": "IMAGINA" },
+          { "tipo": "pagado", "en": "SACAS", "mas": 0.5 },
+          { "tipo": "abre", "en": "ANTES" },
+          { "tipo": "chip", "en": "PANTALLA" },
+          { "tipo": "toque", "en": "OBLIGATORIO", "mas": 0.1 },
+          { "tipo": "error", "en": "CANCELAR" },
+          { "tipo": "desliza", "en": "PERO5" },
+          { "tipo": "toque", "en": "DUENO", "mas": 0.1 },
+          { "tipo": "metal", "en": "BANCO5" },
+          { "tipo": "desliza", "en": "CONTRATO" },
+          { "tipo": "pop", "en": "ENTERA" },
+          { "tipo": "pop", "en": "PARTE" },
+          { "tipo": "pop", "en": "NADA" },
+          { "tipo": "desliza", "en": "DEBITO" },
+          { "tipo": "toque", "en": "TOPE", "mas": 0.1 },
+          { "tipo": "sube", "en": "NUNCA" },
+          { "tipo": "chip", "en": "CENTIMO" },
+          { "tipo": "desliza", "en": "CREDITO" },
+          { "tipo": "pop", "en": "ANADIR" },
+          { "tipo": "brillo", "en": "CUANTOS" },
+          { "tipo": "sube", "en": "MITAD" },
+          { "tipo": "sube", "en": "HABIA" },
+          { "tipo": "toque", "en": "MENOS10", "mas": 0.1 },
+          { "tipo": "brillo", "en": "GENTE" },
+          { "tipo": "pop", "en": "ENCUESTA" },
+          { "tipo": "sube", "en": "QUIENES" },
+          { "tipo": "desliza", "en": "CANCELO" },
+          { "tipo": "chip", "en": "PAGO12" },
+          { "tipo": "metal", "en": "EUROS13" },
+          { "tipo": "desliza", "en": "SACAR13" },
+          { "tipo": "toque", "en": "PROPIO", "mas": 0.1 },
+          { "tipo": "pop", "en": "PAGAS" }
+        ]
+      }
+    </script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 71.8 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import { crearDinero, COLOR, ICONOS } from "./comun/dinero.js";
+      const $ = (id) => document.getElementById(id);
+      const K = COLOR;
+      const svg = (w, vw, vh, cuerpo) => `<svg width="${w}" height="${Math.round((w * vh) / vw)}" viewBox="0 0 ${vw} ${vh}">${cuerpo}</svg>`;
+
+      // ---------- drawings this video needs, in the account's flat style (navy outline, solid offset shadow) ----------
+      // they are built before the engine looks for the ids of pieces and figures
+      const DIBUJOS = {
+        // a cash machine with no brand: sign, screen, keypad, card slot and cash slot
+        cajero: (w = 370, letrero = "CAJERO") => {
+          const teclas = [];
+          for (let r = 0; r < 4; r++) for (let c = 0; c < 3; c++) teclas.push(`<rect x="${70 + c * 46}" y="${318 + r * 32}" width="36" height="24" rx="6" fill="${r === 3 ? [K.rojo, K.oro, K.verde][c] : K.papel}" stroke="${K.tinta}" stroke-width="4"/>`);
+          return svg(w, 380, 560, `<rect x="32" y="92" width="330" height="460" rx="22" fill="${K.tinta}"/>
+            <rect x="20" y="80" width="330" height="460" rx="22" fill="${K.blanco}" stroke="${K.tinta}" stroke-width="8"/>
+            <rect x="40" y="14" width="290" height="66" rx="12" fill="${K.tinta}"/>
+            <text x="185" y="48" text-anchor="middle" dominant-baseline="central" font-family="Archivo Black" font-size="${letrero.length > 8 ? 30 : 36}" letter-spacing="2" fill="${K.oro}">${letrero}</text>
+            <rect x="55" y="112" width="260" height="176" rx="14" fill="${K.tinta}"/>
+            <rect x="70" y="126" width="230" height="148" rx="8" fill="${K.azul}"/>
+            <rect x="92" y="150" width="120" height="16" rx="8" fill="#fff" opacity="0.9"/>
+            <rect x="92" y="182" width="180" height="12" rx="6" fill="#fff" opacity="0.55"/>
+            <rect x="92" y="206" width="150" height="12" rx="6" fill="#fff" opacity="0.55"/>
+            <rect x="92" y="236" width="70" height="24" rx="6" fill="${K.rojo}"/><rect x="208" y="236" width="70" height="24" rx="6" fill="${K.verde}"/>
+            ${teclas.join("")}
+            <rect x="232" y="322" width="94" height="18" rx="9" fill="${K.tinta}"/><circle cx="314" cy="360" r="8" fill="${K.verde}" stroke="${K.tinta}" stroke-width="4"/>
+            <rect x="70" y="470" width="230" height="30" rx="12" fill="${K.tinta}"/>
+            <rect x="100" y="462" width="170" height="20" rx="4" fill="${K.verde}" stroke="${K.tinta}" stroke-width="4"/>`);
+        },
+
+        // a payment card with no brand: chip, contactless waves and hidden digits
+        tarjeta: (w = 300, texto = "DÉBITO", color = K.azul) => {
+          const puntos = [0, 1].map((g) => [0, 1, 2, 3].map((i) => `<circle cx="${46 + g * 104 + i * 20}" cy="172" r="6.5" fill="#fff"/>`).join("")).join("");
+          return svg(w, 356, 232, `<rect x="16" y="16" width="336" height="212" rx="24" fill="${K.tinta}"/>
+            <rect x="4" y="4" width="336" height="212" rx="24" fill="${color}" stroke="${K.tinta}" stroke-width="8"/>
+            <rect x="40" y="72" width="64" height="50" rx="9" fill="${K.oro}" stroke="${K.tinta}" stroke-width="5"/>
+            <path d="M40 97 H104 M72 72 V122" stroke="${K.tinta}" stroke-width="4"/>
+            <g fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round"><path d="M136 82 q12 15 0 30"/><path d="M152 74 q19 23 0 46"/><path d="M168 66 q26 31 0 62"/></g>
+            ${puntos}
+            <text x="316" y="44" text-anchor="end" dominant-baseline="central" font-family="Inter" font-weight="800" font-size="26" letter-spacing="3" fill="#fff">${texto}</text>`);
+        },
+
+        // a thick navy arrow pointing right
+        flecha: (w = 160) => svg(w, 170, 85, `<path d="M14 42 H134" stroke="${K.tinta}" stroke-width="16" stroke-linecap="round"/>
+          <path d="M108 14 L152 42 L108 70" fill="none" stroke="${K.tinta}" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>`),
+
+        // a contract: a sheet with a folded corner, lines and a signature
+        contrato: (w = 320) => svg(w, 320, 420, `<path d="M32 26 H232 L298 92 V408 H32 Z" transform="translate(12 12)" fill="${K.tinta}"/>
+          <path d="M20 14 H220 L286 80 V396 H20 Z" fill="${K.blanco}" stroke="${K.tinta}" stroke-width="8" stroke-linejoin="round"/>
+          <path d="M220 14 V80 H286" fill="#e9e1cf" stroke="${K.tinta}" stroke-width="7" stroke-linejoin="round"/>
+          <text x="52" y="58" dominant-baseline="central" font-family="Archivo Black" font-size="24" fill="${K.tinta}">CONTRATO</text>
+          ${[120, 160, 200, 240, 280].map((y, i) => `<rect x="52" y="${y}" width="${[200, 214, 180, 214, 140][i]}" height="12" rx="6" fill="${K.tinta}" opacity="0.25"/>`).join("")}
+          <path d="M60 352 q20 -40 36 -6 q14 30 30 -10 q14 -30 30 4 q12 22 40 -6" fill="none" stroke="${K.azul}" stroke-width="7" stroke-linecap="round"/>
+          <path d="M52 372 H250" stroke="${K.tinta}" stroke-width="4" opacity="0.5"/>`),
+      };
+      for (const el of document.querySelectorAll("[data-dibujo]")) el.innerHTML = DIBUJOS[el.dataset.dibujo](...JSON.parse(el.dataset.args || "[]"));
+      // twenty people: 15 % of them, three, in red
+      $("genteIn").innerHTML = Array.from({ length: 20 }, (_, i) => `<div>${ICONOS.persona([4, 11, 17].includes(i) ? K.rojo : "#c9cfdb", 72)}</div>`).join("");
+
+      // ---------- the engine ----------
+      const C = crearDinero();
+      const { T, ramp, clamp } = C;
+      const filaClase = (id, clase, on) => { const b = $(id); if (b) b.parentElement.classList.toggle(clase, on); };
+
+      function renderAt(t) {
+        // A: the ATM, the coin and your bank float under the hook
+        C.mover("cajeroA", { y: 5 * Math.sin(t * 2) });
+        C.mover("monedaA", { y: 6 * Math.sin(t * 2.4 + 1) });
+        C.mover("tuBancoA", { y: 5 * Math.sin(t * 2 + 1) });
+
+        // B: the card goes up into the ATM's slot
+        const mete = ramp(t, T.SACAS, T.SACAS + 0.7);
+        C.mover("tarjetaB", { x: 400 * mete, y: -215 * mete, r: -10 + 10 * mete, s: 1 - 0.5 * mete, o: 1 - 0.6 * ramp(t, T.SACAS + 0.6, T.SACAS + 0.9) });
+        C.mover("cajeroB", { y: 4 * Math.sin(t * 2) });
+
+        // C: the cancel button pulses when the voice says it
+        const pulso = clamp((t - T.CANCELAR) / 0.25) * (1 - clamp((t - T.CANCELAR - 0.6) / 0.4));
+        $("btnNo").style.transform = `scale(${1 + 0.08 * pulso})`;
+
+        // D: the coin goes from your bank to the ATM owner
+        const paga = ramp(t, T.BANCO5 + 0.2, T.BANCO5 + 1.4);
+        C.mover("monedaD", { x: 40 - 80 * paga, y: 5 * Math.sin(t * 3) });
+        C.mover("flechaD", { r: 180 });
+        C.mover("personaD", { y: 4 * Math.sin(t * 2) });
+
+        // E: the contract floats
+        C.mover("contrato", { y: 5 * Math.sin(t * 2), r: -4 });
+
+        // F and G: the cards lean; the debit rows light up one after another
+        C.mover("tarjetaF", { y: 6 * Math.sin(t * 2.2), r: -6 });
+        C.mover("tarjetaG", { y: 6 * Math.sin(t * 2.2), r: -6 });
+        filaClase("fDeb1", "marca", t >= T.NUNCA + 0.3 && t < T.CENTIMO);
+        filaClase("fDeb2", "marca", t >= T.CENTIMO);
+
+        // H: each column grows from the floor (61.714 is the full height)
+        $("b2026").style.height = (500 * 43324 / 61714) * ramp(t, T.MITAD, T.MITAD + 1.0) + "px";
+        $("b2008").style.height = 500 * ramp(t, T.HABIA, T.HABIA + 1.0) + "px";
+
+        // J: the three notes fan out
+        C.mover("b100", { r: -6, y: 4 * Math.sin(t * 2) });
+        C.mover("b20", { r: 0, y: 4 * Math.sin(t * 2 + 1) });
+        C.mover("b5", { r: 6, y: 4 * Math.sin(t * 2 + 2) });
+
+        C.pintar(t);
+      }
+
+      C.arrancar(renderAt);
+    </script>
+  </body>
+</html>

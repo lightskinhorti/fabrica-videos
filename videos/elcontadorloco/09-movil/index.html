@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <script type="importmap">
+      { "imports": { "three": "./lib/three.module.js", "three/addons/": "./lib/addons/" } }
+    </script>
+    <link rel="stylesheet" href="comun/contador.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Nunito", sans-serif; }
+      #alt, #clock { font-family: "Archivo Black", sans-serif; }
+      #alt small + small, #alt .min { margin-left: 0.08em; }
+      #extra { font-size: 38px; color: #9fe4ff; }
+      .lab.grande { font-size: 40px; padding: 14px 24px; }
+      /* the character's age, pinned above his head */
+      #edad {
+        position: absolute; padding: 8px 18px 7px; border-radius: 16px; background: #ffcf2e; border: 5px solid #0b1a3a;
+        color: #1d1f3a; font-weight: 900; font-size: 30px; letter-spacing: 0.05em; white-space: nowrap; opacity: 0;
+        box-shadow: 0 6px 0 rgba(11, 26, 58, 0.45);
+      }
+      #edad::after {
+        content: ""; position: absolute; left: 50%; bottom: -17px; margin-left: -11px;
+        border: 11px solid transparent; border-top-color: #0b1a3a; border-bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="63.6" data-width="1080" data-height="1920" data-fps="30">
+      <div id="sky" class="clip" data-start="0" data-duration="63.6" data-track-index="0"></div>
+      <canvas id="gl" class="clip" data-start="0" data-duration="63.6" data-track-index="1" width="1080" height="1920"></canvas>
+      <svg id="leaders" class="clip" data-start="0" data-duration="63.6" data-track-index="2" width="1080" height="1920" data-layout-allow-overlap></svg>
+      <div id="labels" class="clip" data-start="0" data-duration="63.6" data-track-index="3" data-layout-allow-overlap>
+        <div id="edad">12 AÑOS</div>
+      </div>
+      <div id="hud" class="clip" data-start="0" data-duration="63.6" data-track-index="4">
+        <div id="alt">0<small>min</small></div>
+        <div id="since"></div>
+        <div id="clock">0 s</div>
+        <div id="extra"></div>
+        <div id="note"></div>
+      </div>
+      <div id="title" class="clip" data-start="0" data-duration="63.6" data-track-index="6"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="63.6"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="63.6" data-track-index="7" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 62.36, "lines": [{"id": "l1", "s": 0, "e": 1.795, "words": [{"w": "Cuatro", "s": 0, "e": 0.5, "key": false}, {"w": "horas", "s": 0.5, "e": 0.87, "key": false}, {"w": "de", "s": 0.87, "e": 1.01, "key": false}, {"w": "móvil", "s": 1.01, "e": 1.37, "key": true}, {"w": "al", "s": 1.37, "e": 1.51, "key": false}, {"w": "día.", "s": 1.51, "e": 1.795, "key": false}]}, {"id": "l2", "s": 1.795, "e": 5.0, "words": [{"w": "¿Cuántos", "s": 1.795, "e": 2.46, "key": false}, {"w": "años", "s": 2.48, "e": 2.69, "key": false}, {"w": "de", "s": 2.72, "e": 2.78, "key": false}, {"w": "tu", "s": 2.84, "e": 2.96, "key": false}, {"w": "vida", "s": 2.96, "e": 3.18, "key": true}, {"w": "suman", "s": 3.21, "e": 3.46, "key": false}, {"w": "en", "s": 3.49, "e": 3.56, "key": false}, {"w": "total?", "s": 3.61, "e": 4.16, "key": false}, {"w": "Te", "s": 4.26, "e": 4.27, "key": false}, {"w": "lo", "s": 4.27, "e": 4.38, "key": false}, {"w": "digo", "s": 4.38, "e": 4.6, "key": false}, {"w": "al", "s": 4.6, "e": 4.66, "key": false}, {"w": "final.", "s": 4.68, "e": 5.0, "key": false}]}, {"id": "l3", "s": 5.01, "e": 14.0, "words": [{"w": "Y", "s": 5.01, "e": 5.097, "key": false}, {"w": "no", "s": 5.097, "e": 5.27, "key": false}, {"w": "es", "s": 5.27, "e": 5.4, "key": false}, {"w": "exagerar:", "s": 5.48, "e": 6.49, "key": false}, {"w": "en", "s": 6.5, "e": 6.56, "key": false}, {"w": "España,", "s": 7.1, "e": 7.27, "key": false}, {"w": "los", "s": 7.27, "e": 7.5, "key": false}, {"w": "jóvenes", "s": 7.5, "e": 8.05, "key": true}, {"w": "de", "s": 8.05, "e": 8.18, "key": false}, {"w": "16", "s": 8.21, "e": 8.67, "key": false}, {"w": "a", "s": 8.67, "e": 8.74, "key": false}, {"w": "24", "s": 8.74, "e": 9.26, "key": false}, {"w": "años", "s": 9.26, "e": 9.6, "key": false}, {"w": "ya", "s": 9.6, "e": 9.8, "key": false}, {"w": "pasan", "s": 9.8, "e": 9.95, "key": false}, {"w": "más", "s": 10.03, "e": 10.16, "key": false}, {"w": "de", "s": 10.16, "e": 10.24, "key": false}, {"w": "cuatro", "s": 10.46, "e": 10.72, "key": false}, {"w": "horas", "s": 10.72, "e": 10.99, "key": false}, {"w": "al", "s": 10.99, "e": 11.04, "key": false}, {"w": "día", "s": 11.04, "e": 11.11, "key": false}, {"w": "conectados,", "s": 11.12, "e": 12.03, "key": false}, {"w": "según", "s": 12.12, "e": 12.37, "key": false}, {"w": "la", "s": 12.37, "e": 12.42, "key": false}, {"w": "medición", "s": 12.54, "e": 13.0, "key": false}, {"w": "de", "s": 13, "e": 13.06, "key": false}, {"w": "audiencias", "s": 13.12, "e": 13.61, "key": false}, {"w": "de", "s": 13.61, "e": 13.71, "key": false}, {"w": "julio.", "s": 13.71, "e": 14.0, "key": false}]}, {"id": "l4", "s": 14, "e": 18.93, "words": [{"w": "Nuestro", "s": 14, "e": 14.49, "key": false}, {"w": "amigo", "s": 14.49, "e": 14.78, "key": false}, {"w": "estrena", "s": 14.85, "e": 15.35, "key": false}, {"w": "móvil", "s": 15.35, "e": 15.56, "key": false}, {"w": "a", "s": 15.64, "e": 15.77, "key": false}, {"w": "los", "s": 15.77, "e": 15.97, "key": false}, {"w": "12", "s": 16.1, "e": 16.41, "key": false}, {"w": "años,", "s": 16.41, "e": 16.68, "key": false}, {"w": "y", "s": 16.69, "e": 16.76, "key": false}, {"w": "desde", "s": 16.76, "e": 17.12, "key": false}, {"w": "ese", "s": 17.12, "e": 17.33, "key": false}, {"w": "día", "s": 17.33, "e": 17.54, "key": false}, {"w": "el", "s": 17.54, "e": 17.68, "key": false}, {"w": "contador", "s": 17.68, "e": 18.24, "key": true}, {"w": "no", "s": 18.26, "e": 18.38, "key": false}, {"w": "para.", "s": 18.38, "e": 18.93, "key": false}]}, {"id": "l5", "s": 19.21, "e": 22.65, "words": [{"w": "Primer", "s": 19.21, "e": 19.5, "key": false}, {"w": "día:", "s": 19.52, "e": 19.9, "key": false}, {"w": "cuatro", "s": 19.91, "e": 20.37, "key": false}, {"w": "horas.", "s": 20.37, "e": 20.97, "key": false}, {"w": "Parece", "s": 21.1, "e": 21.43, "key": false}, {"w": "poco,", "s": 21.45, "e": 21.93, "key": true}, {"w": "¿verdad?", "s": 21.93, "e": 22.65, "key": false}]}, {"id": "l6", "s": 22.65, "e": 27.0, "words": [{"w": "En", "s": 22.65, "e": 22.74, "key": false}, {"w": "una", "s": 22.74, "e": 23.26, "key": false}, {"w": "semana,", "s": 23.26, "e": 23.64, "key": true}, {"w": "28", "s": 23.64, "e": 23.93, "key": false}, {"w": "horas:", "s": 24.46, "e": 24.63, "key": false}, {"w": "más", "s": 24.63, "e": 24.86, "key": false}, {"w": "de", "s": 24.86, "e": 25.01, "key": false}, {"w": "un", "s": 25.01, "e": 25.16, "key": false}, {"w": "día", "s": 25.16, "e": 25.39, "key": false}, {"w": "entero", "s": 25.39, "e": 25.85, "key": false}, {"w": "sin", "s": 25.85, "e": 26.04, "key": false}, {"w": "soltarlo.", "s": 26.12, "e": 27.0, "key": false}]}, {"id": "l7", "s": 27, "e": 32.0, "words": [{"w": "En", "s": 27, "e": 27.18, "key": false}, {"w": "un", "s": 27.18, "e": 27.34, "key": false}, {"w": "mes,", "s": 27.41, "e": 27.81, "key": true}, {"w": "120", "s": 27.81, "e": 28.56, "key": false}, {"w": "horas:", "s": 28.64, "e": 29.26, "key": false}, {"w": "cinco", "s": 29.39, "e": 29.74, "key": false}, {"w": "días", "s": 29.74, "e": 30.11, "key": false}, {"w": "enteros,", "s": 30.11, "e": 30.98, "key": false}, {"w": "de", "s": 30.98, "e": 31.14, "key": false}, {"w": "día", "s": 31.14, "e": 31.3, "key": false}, {"w": "y", "s": 31.3, "e": 31.36, "key": false}, {"w": "de", "s": 31.36, "e": 31.48, "key": false}, {"w": "noche.", "s": 31.48, "e": 32.0, "key": false}]}, {"id": "l8", "s": 32, "e": 37.99, "words": [{"w": "Al", "s": 32, "e": 32.21, "key": false}, {"w": "año,", "s": 32.21, "e": 32.64, "key": true}, {"w": "1.461", "s": 32.64, "e": 34.04, "key": false}, {"w": "horas:", "s": 34.1, "e": 34.68, "key": false}, {"w": "dos", "s": 34.68, "e": 34.96, "key": false}, {"w": "meses", "s": 34.96, "e": 35.42, "key": false}, {"w": "enteros", "s": 35.42, "e": 36.02, "key": false}, {"w": "mirando", "s": 36.26, "e": 36.66, "key": false}, {"w": "la", "s": 36.74, "e": 36.89, "key": false}, {"w": "pantalla.", "s": 36.89, "e": 37.99, "key": false}]}, {"id": "l9", "s": 37.99, "e": 42.0, "words": [{"w": "A", "s": 37.99, "e": 38.06, "key": false}, {"w": "los", "s": 38.06, "e": 38.24, "key": false}, {"w": "20", "s": 38.25, "e": 38.4, "key": false}, {"w": "años,", "s": 38.8, "e": 38.88, "key": false}, {"w": "ya", "s": 38.88, "e": 39.0, "key": false}, {"w": "lleva", "s": 39.01, "e": 39.31, "key": false}, {"w": "más", "s": 39.31, "e": 39.42, "key": false}, {"w": "de", "s": 39.54, "e": 39.62, "key": false}, {"w": "un", "s": 39.62, "e": 39.71, "key": false}, {"w": "año", "s": 39.8, "e": 39.92, "key": false}, {"w": "entero,", "s": 39.93, "e": 40.42, "key": true}, {"w": "contando", "s": 40.42, "e": 40.9, "key": false}, {"w": "el", "s": 40.95, "e": 40.98, "key": false}, {"w": "día", "s": 41.07, "e": 41.22, "key": false}, {"w": "y", "s": 41.24, "e": 41.29, "key": false}, {"w": "la", "s": 41.29, "e": 41.41, "key": false}, {"w": "noche.", "s": 41.41, "e": 42.0, "key": false}]}, {"id": "l10", "s": 42, "e": 44.16, "words": [{"w": "A", "s": 42, "e": 42.07, "key": false}, {"w": "los", "s": 42.21, "e": 42.29, "key": false}, {"w": "30,", "s": 42.29, "e": 42.89, "key": false}, {"w": "tres", "s": 42.89, "e": 43.19, "key": false}, {"w": "años", "s": 43.19, "e": 43.48, "key": false}, {"w": "justos.", "s": 43.48, "e": 44.16, "key": true}]}, {"id": "l11", "s": 44.16, "e": 46.25, "words": [{"w": "A", "s": 44.16, "e": 44.23, "key": false}, {"w": "los", "s": 44.23, "e": 44.41, "key": false}, {"w": "40,", "s": 44.45, "e": 45.05, "key": false}, {"w": "casi", "s": 45.05, "e": 45.35, "key": false}, {"w": "cinco", "s": 45.35, "e": 45.71, "key": true}, {"w": "años.", "s": 45.71, "e": 46.25, "key": false}]}, {"id": "l12", "s": 46.26, "e": 54.0, "words": [{"w": "Y", "s": 46.26, "e": 46.33, "key": false}, {"w": "en", "s": 46.33, "e": 46.47, "key": false}, {"w": "toda", "s": 46.47, "e": 46.77, "key": false}, {"w": "una", "s": 46.77, "e": 46.95, "key": false}, {"w": "vida,", "s": 47.03, "e": 47.44, "key": false}, {"w": "hasta", "s": 47.46, "e": 47.81, "key": false}, {"w": "los", "s": 47.81, "e": 48.03, "key": false}, {"w": "84", "s": 48.03, "e": 48.39, "key": false}, {"w": "años", "s": 48.39, "e": 48.8, "key": false}, {"w": "que", "s": 48.8, "e": 49.01, "key": false}, {"w": "se", "s": 49.01, "e": 49.16, "key": false}, {"w": "viven", "s": 49.16, "e": 49.42, "key": false}, {"w": "de", "s": 49.54, "e": 49.68, "key": false}, {"w": "media", "s": 49.68, "e": 50.06, "key": false}, {"w": "en", "s": 50.06, "e": 50.2, "key": false}, {"w": "España:", "s": 50.21, "e": 50.98, "key": false}, {"w": "12", "s": 51.07, "e": 51.49, "key": true}, {"w": "años", "s": 51.49, "e": 51.82, "key": false}, {"w": "enteros", "s": 51.82, "e": 52.26, "key": false}, {"w": "delante", "s": 52.39, "e": 52.94, "key": false}, {"w": "de", "s": 52.98, "e": 53.13, "key": false}, {"w": "la", "s": 53.13, "e": 53.29, "key": false}, {"w": "pantalla.", "s": 53.29, "e": 54.0, "key": false}]}, {"id": "l13", "s": 54, "e": 58.901, "words": [{"w": "Y", "s": 54, "e": 54.07, "key": false}, {"w": "si", "s": 54.07, "e": 54.21, "key": false}, {"w": "duermes", "s": 54.23, "e": 54.75, "key": false}, {"w": "ocho", "s": 54.75, "e": 55.04, "key": false}, {"w": "horas,", "s": 55.05, "e": 55.54, "key": false}, {"w": "es", "s": 55.57, "e": 55.58, "key": false}, {"w": "uno", "s": 55.63, "e": 55.94, "key": false}, {"w": "de", "s": 56.1, "e": 56.11, "key": false}, {"w": "cada", "s": 56.11, "e": 56.41, "key": false}, {"w": "cuatro", "s": 56.41, "e": 56.87, "key": false}, {"w": "minutos", "s": 56.87, "e": 57.4, "key": false}, {"w": "que", "s": 57.4, "e": 57.63, "key": false}, {"w": "pasas", "s": 57.63, "e": 57.91, "key": false}, {"w": "despierto.", "s": 58.26, "e": 58.901, "key": true}]}, {"id": "l14", "s": 58.901, "e": 62.0, "words": [{"w": "¿Cuántas", "s": 58.901, "e": 59.4, "key": false}, {"w": "horas", "s": 59.46, "e": 59.66, "key": false}, {"w": "te", "s": 59.66, "e": 59.76, "key": false}, {"w": "marca", "s": 59.76, "e": 60.01, "key": false}, {"w": "a", "s": 60.01, "e": 60.07, "key": false}, {"w": "ti", "s": 60.07, "e": 60.16, "key": false}, {"w": "el", "s": 60.17, "e": 60.27, "key": false}, {"w": "móvil?", "s": 60.27, "e": 60.65, "key": false}, {"w": "Te", "s": 60.65, "e": 60.8, "key": false}, {"w": "leo", "s": 60.8, "e": 60.92, "key": false}, {"w": "en", "s": 60.92, "e": 61.02, "key": false}, {"w": "los", "s": 61.02, "e": 61.17, "key": false}, {"w": "comentarios.", "s": 61.17, "e": 62.0, "key": true}]}]}</script>
+    <script id="escena" type="application/json">
+      {
+        "titulo": "¿Y si miraras el móvil 4 horas al día?",
+        "nota": "Cada cuadro: 24 horas de pantalla",
+        "formato": "altura",
+        "desde": "HORAS DE MÓVIL EN",
+        "inicio": 0,
+        "ritmo": 0.000046296296296296294,
+        "hitos": [
+          { "clave": "cuatro", "v": 0 },
+          { "clave": "primer", "v": 4 },
+          { "clave": "semana", "v": 28, "etiqueta": "1 SEMANA" },
+          { "clave": "mes", "v": 120, "etiqueta": "1 MES" },
+          { "clave": "ano", "v": 1461, "etiqueta": "1 AÑO" },
+          { "clave": "los", "v": 11688, "etiqueta": "A LOS 20" },
+          { "clave": "los", "v": 26298, "etiqueta": "A LOS 30" },
+          { "clave": "los", "v": 40908, "etiqueta": "A LOS 40" },
+          { "clave": "enteros", "v": 105192, "etiqueta": "A LOS 84" },
+          { "clave": "cada", "v": 105192, "etiqueta": "DESPIERTO", "solo_etiqueta": true }
+        ],
+        "sonido": { "viento": true }
+      }
+    </script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 63.6 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import * as THREE from "three";
+      import { crearContador } from "./comun/contador.js";
+
+      // The counter is the hours a person spends on the phone at 4 hours a day, from the day they get it (12 years
+      // old) to 84, the life expectancy in Spain (fuentes.md). The hitos are in hours; "formato" only feeds the
+      // engine's default text, which this page overwrites (minutes, then hours, and the elapsed time in days,
+      // weeks, months and years).
+      // Our character sits on a sofa on his terrace, his face lit by the phone, and grows older as the counter
+      // climbs (beard, grey hair, glasses). Behind him a wall of phones fills up: every phone is one whole day
+      // (24 hours) of screen time, and the day being spent fills from the bottom. The wall grows as a square from its
+      // bottom-left corner, so its tiles never move. At the end, a ghost wall of switched-off phones shows every day
+      // he spends awake (16 hours a day): the lit wall is exactly one quarter of it.
+      // Everything is in metres.
+      const C = crearContador(THREE);
+      const { VOZ, D, words, anchors, scene, camera, mat, glow, box, at, v3, hash, clamp, lerp, ease, smooth, ramp, norm, miles, Y, V, W, H } = C;
+      scene.fog = new THREE.Fog(0xcfefff, 120, 900);
+      const cyl = (rt, rb, h, m, seg = 10) => new THREE.Mesh(new THREE.CylinderGeometry(rt, rb, h, seg), m);
+      const cone = (r, h, m, seg = 6) => new THREE.Mesh(new THREE.ConeGeometry(r, h, seg), m);
+      const L = VOZ.lines;
+      const A = {};
+      anchors.forEach((a) => (A[a.hito.etiqueta || a.hito.clave] = a));
+      const buscar = (c, desde) => words.find((w) => w.s >= desde && norm(w.w).startsWith(c));
+      const tDe = (a, def) => (a ? a.t : def);
+
+      // ---------- the counter: hours, with its own keyframes so that day 1 reaches 4 h on "cuatro horas" ----------
+      const HD = 4, DIA = 365.25;
+      const tPrimer = tDe(A.primer, 19);
+      const wH = buscar("horas", tPrimer), tH = wH ? wH.s : tPrimer + 1;
+      const KF = [{ t: tH, v: HD, fin: L[4] ? L[4].e : tH + 2 }];
+      for (const a of anchors) if (a.v > HD && !a.hito.solo_etiqueta) KF.push({ t: a.t, v: a.v, fin: a.fin });
+      function horasAt(t) {
+        if (t <= tH) return HD * Math.max(0, t) / tH;
+        let i = 0;
+        while (i + 1 < KF.length && t >= KF[i + 1].t) i++;
+        const a = KF[i], b = KF[i + 1];
+        // time keeps running between landmarks: 1 h per second during day 1, then 4 h per second (a day of phone)
+        const ritmo = i === 0 ? 1 : 4;
+        if (!b) return a.v + ritmo * (t - a.t);
+        const st = Math.max(a.t + 0.25, b.t - 3.2, Math.min(a.fin, b.t - 1.5));
+        const k = smooth(clamp((t - st) / (b.t - st)));
+        const deriva = ritmo * (Math.min(t, st) - a.t);
+        return V(lerp(Y(a.v + deriva), Y(b.v), k));
+      }
+      const coma = (n, d) => n.toFixed(d).replace(".", ",");
+      function hud(v) {
+        const m = Math.floor(v * 60 + 1e-6), h = Math.floor(m / 60), mm = m % 60;
+        if (v < 1) return `${mm}<small>min</small>`;
+        if (v < 100) return `${h}<small>h</small> ${String(mm).padStart(2, "0")}<small>min</small>`;
+        return `${miles(v)}<small>h</small>`;
+      }
+      const plural = (n, a, b) => `${n} ${n === 1 ? a : b}`;
+      function reloj(v) {
+        const d = v / HD + 1e-6;
+        if (d < 1) return "su primer día";
+        if (d < 7) return plural(Math.floor(d), "día", "días");
+        if (d < 28) return plural(Math.floor(d / 7), "semana", "semanas");
+        if (d < DIA - 0.5) return plural(Math.max(1, Math.round(d / 30.4375)), "mes", "meses");
+        const y = d / DIA, a = Math.floor(y), m = Math.floor((y - a) * 12);
+        return plural(a, "año", "años") + (m ? " y " + plural(m, "mes", "meses") : "");
+      }
+      function enDias(v) {
+        const d = v / 24 + 1e-6;
+        if (d < 1) return "";
+        if (d < DIA) { const n = Math.floor(d); return `= ${n} ${n === 1 ? "día entero" : "días enteros"}`; }
+        const y = d / DIA, a = Math.floor(y), m = Math.floor((y - a) * 12);
+        return m ? `= ${plural(a, "año", "años")} y ${plural(m, "mes", "meses")}` : `= ${a} ${a === 1 ? "año entero" : "años enteros"}`;
+      }
+      const edadDe = (v) => 12 + v / HD / DIA;
+
+      // ---------- ground, terrace, a few trees and his house ----------
+      scene.add(at(box(30000, 0.2, 30000, mat(0x86c96e)), 0, -0.105, 0));
+      {
+        const pos = [];
+        for (let i = 0; i < 12; i++) for (let k = 0; k < 7; k++) pos.push([-3.0 + i * 0.5, -1.4 + k * 0.5, (i + k) % 2]);
+        const tiles = new THREE.InstancedMesh(new THREE.BoxGeometry(0.48, 0.03, 0.48), mat(0xffffff, { roughness: 0.6 }), pos.length);
+        const m4 = new THREE.Matrix4();
+        pos.forEach(([x, z, c], i) => { tiles.setMatrixAt(i, m4.makeTranslation(x, 0.0, z)); tiles.setColorAt(i, new THREE.Color(c ? 0xf3e9d8 : 0xdcc9a9)); });
+        scene.add(tiles);
+      }
+      // the house behind, on the left
+      const WALL = mat(0xf0e2cf);
+      scene.add(at(box(7, 4.6, 6, WALL), -4.6, 2.3, -5.2));
+      {
+        const sh = new THREE.Shape([new THREE.Vector2(-3.4, 0), new THREE.Vector2(3.4, 0), new THREE.Vector2(0, 1.9)]);
+        const rg = new THREE.ExtrudeGeometry(sh, { depth: 7.5, bevelEnabled: false }); rg.rotateY(Math.PI / 2); rg.translate(-3.75, 0, 0);
+        const roof = new THREE.Mesh(rg, mat(0xc4552e)); roof.position.set(-4.6, 4.6, -5.2); scene.add(roof);
+        for (const x of [-6.6, -2.6]) {
+          scene.add(at(box(1.2, 1.3, 0.06, glow(0xffe7a6, 0.92)), x, 2.9, -2.18));
+          scene.add(at(box(1.4, 0.12, 0.14, mat(0xffffff)), x, 2.2, -2.15));
+        }
+        scene.add(at(box(1.0, 2.1, 0.08, mat(0x8c5a33)), -4.6, 1.05, -2.17));
+      }
+      const trees = [[-8.5, -1.5, 5], [-10, 2.5, 6], [3.5, -9, 6.5], [-1.5, -10, 5.5], [-13, -6, 7]];
+      for (const [x, z, h] of trees) {
+        scene.add(at(cyl(0.18, 0.26, h * 0.4, mat(0x7a5233), 6), x, h * 0.2, z));
+        scene.add(at(cone(h * 0.27, h * 0.72, mat(0x5fae58), 7), x, h * 0.62, z));
+      }
+      // a reading lamp and a small table with a glass next to the sofa
+      scene.add(at(cyl(0.02, 0.02, 1.5, mat(0x2b3a6b), 8), -1.75, 0.75, -0.25));
+      scene.add(at(cyl(0.16, 0.22, 0.2, mat(0xfff2c4, { roughness: 0.5 }), 10), -1.75, 1.55, -0.25));
+      scene.add(at(cyl(0.18, 0.18, 0.03, mat(0x2b3a6b), 10), -1.75, 0.015, -0.25));
+
+      // ---------- the sofa (seat top at 0.42 m, seat front edge at z = 0.27) ----------
+      const SOFA = mat(0x2fa89a, { roughness: 0.75 }), SOFA2 = mat(0x3dbdad, { roughness: 0.8 }), NAVY = mat(0x2b3a6b);
+      const SX = -0.3;
+      scene.add(at(box(2.2, 0.28, 0.75, SOFA), SX, 0.16, -0.1));
+      for (const x of [-0.52, 0.52]) scene.add(at(box(1.0, 0.14, 0.56, SOFA2), SX + x, 0.36, 0.0));
+      scene.add(at(box(2.2, 0.66, 0.24, SOFA), SX, 0.62, -0.36));
+      for (const x of [-0.52, 0.52]) scene.add(at(box(0.96, 0.4, 0.12, SOFA2), SX + x, 0.66, -0.2));
+      for (const x of [-1.0, 1.0]) scene.add(at(box(0.22, 0.56, 0.78, SOFA), SX + x, 0.42, -0.1));
+      for (const [x, z] of [[-0.95, 0.2], [0.95, 0.2], [-0.95, -0.42], [0.95, -0.42]]) scene.add(at(cyl(0.04, 0.03, 0.06, NAVY, 8), SX + x, 0.03, z));
+      const cojin = at(box(0.42, 0.38, 0.14, mat(0xffcf2e)), SX + 0.62, 0.62, -0.1); cojin.rotation.set(-0.25, -0.3, 0.15); scene.add(cojin);
+
+      // ---------- our character, sitting, with knees and the phone in both hands ----------
+      const P = C.personaje(), { kid, head, body, arms } = P;
+      scene.add(kid);
+      kid.rotation.y = 0.08;
+      // replace the straight legs with thighs and shins that bend at the knee
+      const PANTS = kid.children[0].material, SHOE = kid.children[1].material;
+      for (const k of [0, 1, 2, 3]) kid.children[k].visible = false;
+      const piernas = [-1, 1].map((sx) => {
+        const cad = new THREE.Group(); cad.position.set(sx * 0.36, 1.62, 0); kid.add(cad);
+        cad.add(at(box(0.62, 1.3, 0.8, PANTS), 0, -0.65, 0));
+        const rod = new THREE.Group(); rod.position.set(0, -1.3, 0); cad.add(rod);
+        rod.add(at(box(0.6, 1.25, 0.78, PANTS), 0, -0.6, 0));
+        rod.add(at(box(0.72, 0.32, 1.05, SHOE), 0, -1.26, 0.12));
+        cad.rotation.x = -Math.PI / 2 + 0.05; rod.rotation.x = Math.PI / 2 - 0.12;
+        return { cad, rod };
+      });
+      // the phone, held in front of the chest; its screen faces him and lights his face
+      const movil = new THREE.Group(); movil.position.set(0, 1.78, 1.5); movil.rotation.x = -0.55; body.add(movil);
+      movil.add(box(0.62, 1.12, 0.1, mat(0x1d1f3a, { roughness: 0.4 })));
+      movil.add(at(box(0.5, 0.66, 0.012, mat(0xff6a2b, { roughness: 0.5 })), 0, 0.08, 0.056));
+      movil.add(at(box(0.16, 0.16, 0.03, mat(0x0b1a3a)), -0.15, 0.4, 0.06));
+      const pantalla = new THREE.Mesh(new THREE.BoxGeometry(0.54, 1.02, 0.01), glow(0x8fd8ff));
+      pantalla.position.z = -0.056; movil.add(pantalla);
+      const luzMovil = new THREE.PointLight(0x9fdcff, 0.5, 1.2, 1.2); luzMovil.position.set(0, 0.25, -0.9); movil.add(luzMovil);
+      // beard and sideburns (they grow in his twenties and go grey with the years), then glasses
+      const BARBA = mat(0x5a3a22);
+      const barba = new THREE.Group(); head.add(barba);
+      barba.add(at(box(1.8, 0.36, 0.24, BARBA), 0, -1.08, 1.06));
+      barba.add(at(box(0.8, 0.15, 0.1, BARBA), 0, -0.45, 1.16));
+      for (const sx of [-1, 1]) { barba.add(at(box(0.16, 0.8, 0.55, BARBA), sx * 1.2, -0.62, 0.72)); barba.add(at(box(0.4, 0.4, 0.2, BARBA), sx * 0.8, -0.98, 1.06)); }
+      const GAFAS = mat(0x1d1f3a, { roughness: 0.4 });
+      const gafas = new THREE.Group(); head.add(gafas);
+      for (const sx of [-1, 1]) {
+        const ex = sx * 0.52;
+        gafas.add(at(box(0.84, 0.09, 0.06, GAFAS), ex, 0.47, 1.27));
+        gafas.add(at(box(0.84, 0.09, 0.06, GAFAS), ex, -0.31, 1.27));
+        for (const dx of [-0.4, 0.4]) gafas.add(at(box(0.09, 0.86, 0.06, GAFAS), ex + dx, 0.08, 1.27));
+        gafas.add(at(box(0.06, 0.07, 1.1, GAFAS), sx * 1.24, 0.3, 0.72));
+      }
+      gafas.add(at(box(0.26, 0.08, 0.06, GAFAS), 0, 0.22, 1.27));
+      const PELO = mat(0x5a3a22);
+      for (const sx of [-1, 1]) head.add(at(box(0.18, 0.42, 1.2, PELO), sx * 1.22, 0.55, -0.2));
+      head.add(at(box(2.3, 0.42, 0.16, PELO), 0, 0.6, -1.14));
+
+      // ---------- the wall of phones: one phone per whole day of screen time ----------
+      const PASO = 0.5, X0 = 1.45, YB = 0.14, Z0 = -0.95;
+      const DIAS_VIDA = Math.round(72 * DIA * HD / 24); // 4383 days of screen time in 72 years
+      const DIAS_DESPIERTO = Math.round(72 * DIA * 16 / 24); // 17532 days awake in 72 years
+      function celda(i) {
+        const s = Math.floor(Math.sqrt(i)), r = i - s * s;
+        return r <= s ? [r, s] : [s, 2 * s - r];
+      }
+      const centro = (i) => { const [c, f] = celda(i); return v3(X0 + (c + 0.5) * PASO, YB + (f + 0.5) * PASO, Z0); };
+      const NMAX = DIAS_VIDA + 40;
+      const geoMarco = new THREE.BoxGeometry(0.36, 0.46, 0.05), geoPant = new THREE.BoxGeometry(0.3, 0.38, 0.012);
+      const marcos = new THREE.InstancedMesh(geoMarco, mat(0x1d1f3a, { roughness: 0.4 }), NMAX);
+      const pants = new THREE.InstancedMesh(geoPant, glow(0xffffff), NMAX);
+      const COLS = [0x7fd6ff, 0x9fe4ff, 0x6fc3ff, 0xffd35c, 0xff9ac1, 0x9df07a, 0xb9a3ff, 0x8fe8e0];
+      const m4 = new THREE.Matrix4(), q0 = new THREE.Quaternion(), uno = v3(1, 1, 1);
+      for (let i = 0; i < NMAX; i++) {
+        const p = centro(i);
+        marcos.setMatrixAt(i, m4.compose(p, q0, uno));
+        pants.setMatrixAt(i, m4.compose(v3(p.x, p.y + 0.01, p.z + 0.03), q0, uno));
+        pants.setColorAt(i, new THREE.Color(COLS[Math.floor(hash(i * 3 + 1) * COLS.length)]));
+      }
+      [marcos, pants].forEach((m) => { m.frustumCulled = false; m.count = 0; scene.add(m); });
+      // the day being spent: its screen fills from the bottom (its frame is the last instance of marcos)
+      const pantHoy = new THREE.Mesh(geoPant, glow(0x7fd6ff)); scene.add(pantHoy);
+      // the ghost wall: every other day he is awake, phones switched off
+      const G0 = DIAS_VIDA - 20, NG = DIAS_DESPIERTO - G0;
+      // far away, phones of a few pixels make moire that shimmers as the camera moves: there the wall is drawn
+      // instead as a picture of the same phones on a plane, with mipmaps (the lit wall and the ghost wall, each its own)
+      const CPX = 16, NLC = 68, NGC = 134;
+      const lienzo = (n) => { const c = document.createElement("canvas"); c.width = c.height = n * CPX; return c; };
+      const cvL = lienzo(NLC), cvG = lienzo(NGC), ctxL = cvL.getContext("2d"), ctxG = cvG.getContext("2d");
+      const plano = (cv, n, z) => {
+        const tx = new THREE.CanvasTexture(cv); tx.colorSpace = THREE.SRGBColorSpace; tx.anisotropy = C.renderer.capabilities.getMaxAnisotropy();
+        const m = new THREE.Mesh(new THREE.PlaneGeometry(n * PASO, n * PASO), new THREE.MeshBasicMaterial({ map: tx, toneMapped: false, alphaTest: 0.5 }));
+        m.position.set(X0 + (n * PASO) / 2, YB + (n * PASO) / 2, z); m.visible = false; scene.add(m); return m;
+      };
+      const planoL = plano(cvL, NLC, Z0 + 0.031), planoG = plano(cvG, NGC, Z0 + 0.03);
+      const hex = (c) => "#" + new THREE.Color(c).getHexString();
+      const COLS_TXT = COLS.map(hex);
+      const BW = (0.36 / PASO) * CPX, BH = (0.46 / PASO) * CPX, SW = (0.3 / PASO) * CPX, SH = (0.38 / PASO) * CPX;
+      // every cell is filled whole (the board colour as it looks at dusk), so the mipmaps never open holes
+      function pinta(ctx, n, i, colorMarco, colorPant, frac = 1) {
+        const [c, f] = celda(i), x = c * CPX + CPX / 2, y = (n - 1 - f) * CPX + CPX / 2;
+        ctx.fillStyle = "#2b3352"; ctx.fillRect(x - CPX / 2, y - CPX / 2, CPX, CPX);
+        ctx.fillStyle = colorMarco; ctx.fillRect(x - BW / 2, y - BH / 2, BW, BH);
+        if (colorPant && frac > 0) { ctx.fillStyle = colorPant; ctx.fillRect(x - SW / 2, y - 0.3 + SH / 2 - SH * frac, SW, SH * frac); }
+      }
+      let claveL = "", claveG = "";
+      function lienzoLuz(n, frac) {
+        const k = n + ":" + Math.round(frac * 40);
+        if (k === claveL) return; claveL = k;
+        ctxL.clearRect(0, 0, cvL.width, cvL.height);
+        for (let i = 0; i <= n && i < NMAX; i++) pinta(ctxL, NLC, i, "#191d38", COLS_TXT[Math.floor(hash(i * 3 + 1) * COLS.length)], i < n ? 1 : frac);
+        planoL.material.map.needsUpdate = true;
+      }
+      function lienzoFantasma(nLuz, hasta) {
+        const k = nLuz + ":" + hasta;
+        if (k === claveG) return; claveG = k;
+        ctxG.clearRect(0, 0, cvG.width, cvG.height);
+        for (let i = Math.max(G0, nLuz + 1); i < hasta; i++) pinta(ctxG, NGC, i, "#4a5684", "#323c66");
+        planoG.material.map.needsUpdate = true;
+      }
+      const CERO = new THREE.Matrix4().makeScale(0, 0, 0);
+      // the board behind the phones and its base
+      const tabla = at(box(1, 1, 0.08, mat(0x46527c, { roughness: 0.9 })), 0, 0, Z0 - 0.07); scene.add(tabla);
+      const base = at(box(1, YB, 0.5, mat(0xb8ab94)), 0, YB / 2, Z0 - 0.05); scene.add(base);
+      const esquina = new THREE.Object3D(); scene.add(esquina);
+
+      // ---------- the town around, for scale when the wall gets huge ----------
+      const CASA = new THREE.BoxGeometry(1, 1, 1).translate(0, 0.5, 0);
+      const TEJADO = (() => { const g = new THREE.ExtrudeGeometry(new THREE.Shape([new THREE.Vector2(-0.5, 0), new THREE.Vector2(0.5, 0), new THREE.Vector2(0, 1)]), { depth: 1, bevelEnabled: false }); g.translate(0, 0, -0.5); g.rotateY(Math.PI / 2); return g; })();
+      const casas = [], arboles = [];
+      for (let gx = -34; gx <= 34; gx++) for (let gz = -36; gz <= 14; gz++) {
+        const k = (gx + 40) * 131 + (gz + 50) * 7;
+        const x = gx * 24 + (hash(k) - 0.5) * 8, z = gz * 24 + (hash(k + 1) - 0.5) * 8, r = Math.hypot(x, z);
+        if (r > 860) continue;
+        if (x > -40 && x < 110 && z > -40) continue;
+        if (z > -20 && x > -120 && x < 360) continue;
+        const p = hash(k + 2);
+        if (p < 0.28) { for (let j = 0; j < 3; j++) arboles.push({ x: x + (hash(k + 10 + j) - 0.5) * 16, z: z + (hash(k + 20 + j) - 0.5) * 16, h: 6 + hash(k + 30 + j) * 5 }); continue; }
+        if (p < 0.36) continue;
+        const piso = r > 200 && hash(k + 3) < 0.22;
+        const w = piso ? 14 + hash(k + 4) * 6 : 8 + hash(k + 4) * 5, d = piso ? 12 + hash(k + 5) * 4 : 7 + hash(k + 5) * 4;
+        const h = piso ? 16 + hash(k + 6) * 26 : 5 + hash(k + 6) * 4;
+        casas.push({ x, z, w, d, h, piso, ry: (hash(k + 7) - 0.5) * 0.3, c: [0xe8d7c0, 0xf0e2cf, 0xdcc9b0, 0xc9d6e3, 0xf4efe2, 0xe9c8a8][Math.floor(hash(k + 8) * 6)] });
+      }
+      const cuerpos = new THREE.InstancedMesh(CASA, mat(0xffffff), casas.length);
+      const tejados = new THREE.InstancedMesh(TEJADO, mat(0xffffff), casas.length);
+      const ventanas = new THREE.InstancedMesh(new THREE.BoxGeometry(1, 1, 1), glow(0xffe7a6, 0.9), casas.length);
+      const troncos = new THREE.InstancedMesh(new THREE.CylinderGeometry(0.25, 0.35, 1, 6).translate(0, 0.5, 0), mat(0x7a5233), arboles.length);
+      const copas = new THREE.InstancedMesh(new THREE.ConeGeometry(1, 1, 7).translate(0, 0.5, 0), mat(0xffffff), arboles.length);
+      const Mq = (x, y, z, sx, sy, sz, ry = 0) => new THREE.Matrix4().compose(v3(x, y, z), new THREE.Quaternion().setFromAxisAngle(v3(0, 1, 0), ry), v3(sx, sy, sz));
+      casas.forEach((c, i) => {
+        cuerpos.setMatrixAt(i, Mq(c.x, 0, c.z, c.w, c.h, c.d, c.ry)); cuerpos.setColorAt(i, new THREE.Color(c.c));
+        tejados.setMatrixAt(i, Mq(c.x, c.h, c.z, c.w + 0.6, c.piso ? 1.2 : 2.6, c.d + 0.6, c.ry));
+        tejados.setColorAt(i, new THREE.Color(c.piso ? 0x8a8f99 : [0xc4552e, 0xb5532e, 0xd06a3a][i % 3]));
+        // a lit window band on the front, for the evening
+        ventanas.setMatrixAt(i, Mq(c.x + Math.sin(c.ry) * (c.d / 2 + 0.05), c.h * 0.55, c.z + Math.cos(c.ry) * (c.d / 2 + 0.05), c.w * 0.7, c.h * 0.32, 0.1, c.ry));
+      });
+      arboles.forEach((a, i) => {
+        troncos.setMatrixAt(i, Mq(a.x, 0, a.z, 1, a.h * 0.35, 1)); copas.setMatrixAt(i, Mq(a.x, a.h * 0.28, a.z, a.h * 0.3, a.h * 0.75, a.h * 0.3));
+        copas.setColorAt(i, new THREE.Color([0x4f9e4a, 0x5fae58, 0x3f8e44][i % 3]));
+      });
+      [cuerpos, tejados, ventanas, troncos, copas].forEach((im) => { im.frustumCulled = false; scene.add(im); });
+
+      // ---------- labels: the engine places them; their text is ours (hours, not metres) ----------
+      const TEXTOS = {
+        "1 SEMANA": "1 SEMANA · <b>28 h</b>",
+        "1 MES": "1 MES · <b>120 h = 5 días</b>",
+        "1 AÑO": "1 AÑO · <b>1.461 h = 2 meses</b>",
+        "A LOS 20": "A LOS 20 · <b>más de 1 año</b>",
+        "A LOS 30": "A LOS 30 · <b>3 años</b>",
+        "A LOS 40": "A LOS 40 · <b>casi 5 años</b>",
+        "A LOS 84": "A LOS 84 · <b>12 años</b>",
+        "DESPIERTO": "<b>1 de cada 4</b> minutos despierto",
+      };
+      const labPos = {};
+      for (const k of Object.keys(TEXTOS)) labPos[k] = [esquina, v3(0, 0, 0)];
+      C.etiquetas(labPos, [esquina, v3(0, 0, 0)]);
+      const labEls = [...document.querySelectorAll("#labels .lab")];
+      anchors.filter((a) => a.hito.etiqueta).forEach((a, i) => { if (labEls[i]) labEls[i].innerHTML = TEXTOS[a.hito.etiqueta]; });
+      const altEl = document.getElementById("alt"), sinceEl = document.getElementById("since"), clockEl = document.getElementById("clock");
+      const extraEl = document.getElementById("extra"), edadEl = document.getElementById("edad");
+      const hudEl = document.getElementById("hud"), lineas = [...document.querySelectorAll("#leaders line")];
+      labEls[labEls.length - 1]?.classList.add("grande");
+
+      // ---------- times from the voice ----------
+      const tEstrena = (buscar("estrena", 10) || { s: 15 }).s;
+      const wDuermes = buscar("duermes", tDe(A["A LOS 84"], 50)), tG = wDuermes ? wDuermes.s : D - 8;
+      const tZ0 = L[1] ? L[1].e - 0.3 : 4.5, tZ1 = Math.max(tZ0 + 3, tEstrena - 0.4);
+      // day, afternoon, sunset, night: the wall of screens glows in the dark at the end
+      const SKY = [[0, "#4fbfff", "#cfefff"], [32, "#4fbfff", "#cfefff"], [42, "#ffb36b", "#ffe2b8"], [46.5, "#7a5fb0", "#ff9d7a"], [50.5, "#141d45", "#3b3f7a"]];
+      const yNoche0 = 42, yNoche1 = 50.5;
+      const reacciones = anchors.slice(1).map((a) => a.t);
+      const sorpresa = (t) => reacciones.reduce((s, ta) => { const d = t - ta; return d > -0.2 && d < 3 ? Math.max(s, d < 0.05 ? ease((d + 0.2) / 0.25) : Math.exp(-(d - 0.05) / 0.6)) : s; }, 0);
+      const RAD = Math.PI / 180;
+      const toScreen = (p) => { const q = p.clone().project(camera); return { x: (q.x + 1) * 0.5 * W, y: (1 - q.y) * 0.5 * H, z: q.z }; };
+      const cBarba = new THREE.Color(), BR = new THREE.Color(0x5a3a22), GR = new THREE.Color(0x9b9b9b), BL = new THREE.Color(0xf2f2ee);
+      const tmp = new THREE.Vector3();
+
+      function renderAt(t) {
+        const v = horasAt(t), y = Y(v), edad = edadDe(v);
+        const dias = v / 24, n = Math.floor(dias), frac = dias - n;
+
+        // ---- the wall ----
+        const nVis = Math.min(n, NMAX - 1);
+        marcos.count = nVis + 1; pants.count = nVis;
+        const ph = centro(nVis);
+        pantHoy.position.set(ph.x, ph.y + 0.01 - 0.19 * (1 - frac), ph.z + 0.03); pantHoy.scale.set(1, Math.max(0.001, frac), 1);
+        pantHoy.visible = frac > 0.002 && nVis < NMAX - 1;
+        pantHoy.material.color.setHex(COLS[Math.floor(hash(nVis * 3 + 1) * COLS.length)]);
+        // the ghost wall grows out of the lit one, a square twice as wide
+        const kG = ease(clamp((t - tG) / 1.8));
+        const nG = Math.round(kG * NG);
+        // the board covers exactly the cells in use (it steps out one cell at a time)
+        const ultimo = Math.max(nVis, nG > 0 ? G0 + nG - 1 : 0);
+        const sU = Math.floor(Math.sqrt(ultimo)), rU = ultimo - sU * sU;
+        const anchoB = (rU <= sU ? Math.max(rU, sU - 1) + 1 : sU + 1) * PASO, altoB = (sU + 1) * PASO;
+        tabla.scale.set(anchoB + 0.1, altoB + 0.08, 1); tabla.position.set(X0 + anchoB / 2, YB + altoB / 2, Z0 - 0.07);
+        base.scale.set(anchoB + 0.3, 1, 1); base.position.x = X0 + anchoB / 2;
+        // the camera and the labels follow a smooth size instead: the square root of the days lit (or of the ghost wall)
+        const lado = Math.sqrt(Math.max(dias + 1, kG * DIAS_DESPIERTO)) * PASO;
+        esquina.position.set(X0 + lado, YB + lado, Z0);
+
+        // ---- the character: older with the counter ----
+        const kAdulto = smooth(clamp((edad - 12) / 7)), kViejo = smooth(clamp((edad - 58) / 24));
+        const s = 0.246 * lerp(0.86, 1, kAdulto);
+        kid.scale.setScalar(s);
+        kid.position.set(-0.75, 0.42 - 1.62 * s, -0.04);
+        P.animar(t);
+        const sp = sorpresa(t);
+        const incl = 0.14 + 0.12 * kViejo - 0.12 * sp;
+        body.rotation.x = incl;
+        const hy = 3.5, hz = 0.1;
+        head.position.set(0, 1.6 + hy * Math.cos(incl) - hz * Math.sin(incl), hy * Math.sin(incl) + hz * Math.cos(incl));
+        // looks down at the phone; at every landmark he looks up, surprised, then back down
+        head.rotation.x = lerp(0.42, -0.08, sp) - incl * 0.3;
+        head.rotation.y = 0.04 * Math.sin(t * 0.6) + 0.18 * sp;
+        // both hands on the phone, the right thumb scrolling
+        arms.forEach((a, i) => {
+          const sx = i ? 1 : -1;
+          a.rotation.x = -1.2 + (i ? 0.05 * Math.max(0, Math.sin(t * 7)) : 0);
+          a.rotation.z = -sx * 0.55;
+        });
+        // the phone lifts a little when he looks up
+        movil.position.y = 1.78 + 0.1 * sp; movil.rotation.x = -0.55 + 0.15 * sp;
+        // what is on the screen changes every so often (a feed scrolling)
+        const feed = Math.floor(t / 0.7);
+        pantalla.material.color.setHex([0x8fd8ff, 0xffe08a, 0xffb0cf, 0xa6f08e, 0xc7b5ff][Math.floor(hash(feed + 5) * 5)]);
+        luzMovil.color.copy(pantalla.material.color).lerp(new THREE.Color(0xffffff), 0.3);
+        // beard from 19, grey from 50, white at 80; glasses from 42
+        const kB = smooth(clamp((edad - 18) / 6));
+        barba.visible = kB > 0.02; barba.scale.set(1, Math.max(0.02, kB), Math.max(0.3, kB));
+        cBarba.copy(BR).lerp(GR, smooth(clamp((edad - 48) / 18))).lerp(BL, smooth(clamp((edad - 66) / 16)));
+        BARBA.color.copy(cBarba); PELO.color.copy(cBarba);
+        const kGaf = clamp((edad - 41.5) / 0.6);
+        gafas.visible = kGaf > 0; gafas.scale.setScalar(kGaf < 1 ? 1 + 0.25 * Math.sin(Math.PI * kGaf) : 1);
+        for (const p of piernas) { p.cad.rotation.x = -Math.PI / 2 + 0.05 + 0.03 * Math.sin(t * 0.8); p.rod.rotation.x = Math.PI / 2 - 0.12 + 0.12 * Math.sin(t * 1.7 + p.cad.position.x * 3) * (1 - kViejo); }
+
+        // ---- camera: the character close up for the hook, then him and the whole wall (lit, then ghost) ----
+        const xL = -1.95, xR = Math.max(1.3, X0 + lado + 0.15), yT = Math.max(1.4, YB + lado + 0.1);
+        const ancho = xR - xL, cx = (xL + xR) / 2;
+        let Hv = Math.max((ancho / 0.5625) * 1.1, yT / 0.31);
+        let tx = cx, ty = yT * 0.5;
+        // the hook: his face and the phone; it opens up during the question and the data line
+        const estab = 1 - smooth(clamp((t - tZ0) / (tZ1 - tZ0)));
+        Hv = lerp(Hv, 3.3, estab); tx = lerp(tx, -0.6, estab); ty = lerp(ty, 0.78, estab);
+        Hv *= 1 + 0.08 * ramp(t, D - 4.5, D - 0.8);
+        const dist = Hv / 0.6886;
+        const az = lerp(-11 + 3 * Math.sin(t * 0.15), -20, estab) * RAD, el = lerp(9, 6, estab) * RAD;
+        const target = v3(tx, ty, -0.5);
+        camera.position.set(target.x + Math.sin(az) * Math.cos(el) * dist, target.y + Math.sin(el) * dist, target.z + Math.cos(az) * Math.cos(el) * dist);
+        camera.lookAt(target);
+        camera.updateMatrixWorld(); C.escala(target, dist);
+        const pxCelda = (PASO / Hv) * H;
+        const lejos = pxCelda < 15;
+        marcos.visible = pants.visible = !lejos; pantHoy.visible = pantHoy.visible && !lejos;
+        planoL.visible = lejos; planoG.visible = nG > 0;
+        if (lejos) lienzoLuz(nVis, frac);
+        if (nG > 0) lienzoFantasma(nVis, G0 + nG);
+        // sun from the front-left, so the wall and his face are lit
+        C.key.position.set(target.x - 0.35 * dist, target.y + 0.8 * dist, target.z + 0.6 * dist);
+        // evening and night: lights go down, the screens and windows glow
+        const noche = smooth(clamp((y - yNoche0) / (yNoche1 - yNoche0)));
+        C.hemi.intensity = 1.3 * lerp(1, 0.32, noche); C.key.intensity = 2.4 * lerp(1, 0.22, noche); C.rim.intensity = 1.2 * lerp(1, 0.5, noche);
+        ventanas.visible = noche > 0.15;
+        scene.fog.near = Math.max(120, dist * 1.4); scene.fog.far = Math.max(900, dist * 6);
+        const [, bot] = C.fondo(SKY, y);
+        scene.fog.color.set(bot);
+        scene.updateMatrixWorld();
+        const txt = enDias(v);
+        extraEl.textContent = txt; extraEl.style.opacity = txt ? 1 : 0; extraEl.style.transform = "none";
+        C.pintar(t, y);
+        // the HUD here is taller than usual (extra line and note): labels never go under it
+        const topMin = hudEl.offsetTop + hudEl.offsetHeight + 18;
+        labEls.forEach((el, k) => {
+          if (!(parseFloat(el.style.opacity) > 0)) return;
+          const top = parseFloat(el.style.top);
+          if (top < topMin) { el.style.top = topMin + "px"; if (lineas[k]) lineas[k].setAttribute("y2", topMin + el.offsetHeight / 2); }
+        });
+
+        // ---- HUD: minutes, then hours; the time it took; and how many whole days that is ----
+        altEl.innerHTML = hud(v);
+        sinceEl.textContent = C.ESC.desde;
+        clockEl.textContent = reloj(v);
+
+        // ---- his age, above his head, once he gets the phone ----
+        head.getWorldPosition(tmp); tmp.y += 0.42;
+        const pe = toScreen(tmp), kE = ramp(t, tEstrena, tEstrena + 0.4);
+        edadEl.textContent = `${Math.floor(edad + 1e-6)} AÑOS`;
+        edadEl.style.opacity = kE;
+        edadEl.style.left = clamp(pe.x - edadEl.offsetWidth / 2, 30, W - 30 - edadEl.offsetWidth) + "px";
+        edadEl.style.top = clamp(pe.y - edadEl.offsetHeight - 26, 640, 1150) + "px";
+      }
+      await C.arrancar(renderAt);
+    </script>
+  </body>
+</html>

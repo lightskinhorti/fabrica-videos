@@ -51,6 +51,10 @@ Los de mejor gancho y datos, y que comparten piezas para hacerlos más rápido:
 
 ## Estado
 
+- [x] Vídeo 9: el mando a distancia (idea 10). `exports/render/09-mando.mp4` (73,7 s), control sin errores, 0 cortes secos (mediana de 2,64 s por plano). Hecho la noche del 6 de noviembre en unos 29 minutos; falta que Javier lo apruebe.
+- [x] Vídeo 10: el ratón óptico (idea 7). `exports/render/10-raton.mp4` (68,7 s), control sin errores, 0 cortes secos (mediana de 2,27 s). Hecho la noche del 6 de noviembre en unos 17 minutos; falta que Javier lo apruebe.
+- Objetos nuevos de la biblioteca: `objetos/mando.js` (mando, tele, receptor, móvil con cámara), `objetos/senales.js` (señal infrarroja y espectro) y `objetos/raton.js` (ratón, mesa, superficie, fotos del sensor y monitor).
+
 - [x] Vídeo 8: la nevera no fabrica frío (idea 11), el primero hecho con las plantillas de plano. `exports/render/08-nevera.mp4` (69,2 s, 47 planos), control sin errores. Hecho el 3 de noviembre en 28,5 minutos; falta que Javier lo apruebe. @speedy_devv no tiene la nevera.
 
 - [x] Vídeo 7: microondas, el primero con el estilo nuevo (58 planos, un corte cada 1,35 s de media). `exports/render/07-microondas.mp4` (78,3 s), control sin errores. Hecho el 3 de noviembre en 52 minutos de trabajo de Claude; falta que Javier lo apruebe. @speedy_devv no tiene el microondas entre sus 25 reels.

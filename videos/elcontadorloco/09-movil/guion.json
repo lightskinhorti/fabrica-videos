@@ -1,0 +1,45 @@
+{
+  "titulo": "¿Y si miraras el móvil 4 horas al día?",
+  "lines": [
+    "Cuatro horas de móvil al día.",
+    "¿Cuántos años de tu vida suman en total? Te lo digo al final.",
+    "Y no es exagerar: en España, los jóvenes de dieciséis a veinticuatro años ya pasan más de cuatro horas al día conectados, según la medición de audiencias de julio.",
+    "Nuestro amigo estrena móvil a los doce años, y desde ese día el contador no para.",
+    "Primer día: cuatro horas. Parece poco, ¿verdad?",
+    "En una semana, veintiocho horas: más de un día entero sin soltarlo.",
+    "En un mes, ciento veinte horas: cinco días enteros, de día y de noche.",
+    "Al año, mil cuatrocientas sesenta y una horas: dos meses enteros mirando la pantalla.",
+    "A los veinte años, ya lleva más de un año entero, contando el día y la noche.",
+    "A los treinta, tres años justos.",
+    "A los cuarenta, casi cinco años.",
+    "Y en toda una vida, hasta los ochenta y cuatro años que se viven de media en España: doce años enteros delante de la pantalla.",
+    "Y si duermes ocho horas, es uno de cada cuatro minutos que pasas despierto.",
+    "¿Cuántas horas te marca a ti el móvil? Te leo en los comentarios."
+  ],
+  "claves": [
+    "móvil",
+    "vida",
+    "jóvenes",
+    "contador",
+    "poco",
+    "semana",
+    "mes",
+    "año",
+    "entero",
+    "justos",
+    "cinco",
+    "doce",
+    "despierto",
+    "comentarios"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "4 horas de móvil al día, sumadas: 28 horas a la semana, 2 meses enteros al año y 12 años enteros en toda una vida (desde los 12 años hasta los 84 de esperanza de vida en España). Y no es exagerar: los jóvenes de 16 a 24 años ya pasan más de 4 horas al día conectados (medición de audiencias digitales de GfK, julio de 2026). Esperanza de vida: INE. Cálculo propio, valores aproximados.",
+    "hashtags": [
+      "#movil",
+      "#tiempodepantalla",
+      "#tecnologia"
+    ],
+    "portada_en": "móvil"
+  }
+}

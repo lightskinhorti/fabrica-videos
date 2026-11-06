@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <link rel="stylesheet" href="comun/dinero.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+      .cifra, .fila b, .grande { font-family: "Archivo Black", sans-serif; }
+      /* this video's layout */
+      .ancho { left: 0; width: 1080px; text-align: center; }
+      .fila.marca { background: #f8dc7a; margin: 0 -16px; padding-left: 16px; padding-right: 16px; border-radius: 8px; }
+      .fila b { white-space: nowrap; }
+      .sello.s50 { font-size: 50px; }
+      .sello.s44 { font-size: 44px; }
+      #docUE .doc { width: 760px; }
+      .seg { font-size: 30px; }
+      .seg.gas { background: #fffaf0; color: #1d2a44; }
+      .seg.hid { background: #e5383b; color: #fff; }
+      .seg.iva { background: #f2b705; color: #1d2a44; }
+      .seg.gris { background: #c9cfdb; color: #1d2a44; }
+      /* the bracket that shows what the VAT is calculated on */
+      .llave { height: 46px; border: 8px solid #1d2a44; border-bottom: none; border-radius: 16px 16px 0 0; }
+      .rotulo.dos { line-height: 1.35; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="80.2" data-width="1080" data-height="1920" data-fps="30">
+      <div id="fondo" class="clip" data-start="0" data-duration="80.2" data-track-index="0"></div>
+      <div id="escenario" class="clip" data-start="0" data-duration="80.2" data-track-index="1" data-layout-allow-overlap data-layout-allow-overflow>
+        <!-- A: the hook (a petrol pump and its two taxes, one on top of the other), then the open question -->
+        <div class="pieza" id="surtidorA" style="left:100px; top:820px" data-dibujo="surtidor" data-args="[330]"></div>
+        <div class="pieza" id="chipHidA" style="left:520px; top:1060px"><div class="chip rojo" style="font-size:44px">HIDROCARBUROS</div></div>
+        <div class="pieza" id="chipIvaA" style="left:640px; top:900px"><div class="chip" style="font-size:52px">IVA</div></div>
+        <div class="pieza ancho" id="chipCuanto" style="top:480px"><div class="chip blanco">¿CUÁNTO EN UN DEPÓSITO?</div></div>
+
+        <!-- B: the price of a litre, with and without taxes -->
+        <div class="pieza ancho" id="chipFecha" style="top:470px"><div class="chip blanco">2 DE NOVIEMBRE DE 2026</div></div>
+        <div class="pieza cifra ancho" id="c173" style="top:570px">0,00 €</div>
+        <div class="pieza rotulo ancho" id="r173" style="top:715px">EL LITRO DE GASOLINA 95, MEDIA DE ESPAÑA</div>
+        <div class="pieza cifra media verde ancho" id="c116" style="top:820px">0,00 €</div>
+        <div class="pieza rotulo verde ancho" id="r116" style="top:930px">SIN IMPUESTOS</div>
+        <div class="pieza" id="barraB" style="left:90px; top:1020px; width:900px">
+          <div class="barra"><div class="seg gas" style="width:66.9%">1,16 €</div><div class="seg gris" style="width:33.1%">IMPUESTOS</div></div>
+        </div>
+
+        <!-- C: tax 1, the hydrocarbon tax: a fixed amount per litre, cut by 20 cents in November -->
+        <div class="pieza ancho" id="chipImp1" style="top:470px"><div class="chip rojo">IMPUESTO 1: HIDROCARBUROS</div></div>
+        <div class="pieza" id="gotaC" style="left:110px; top:590px" data-dibujo="gota" data-args="[230]"></div>
+        <div class="pieza cifra roja" id="cHid" style="left:380px; top:620px; width:600px">0,00 €</div>
+        <div class="pieza rotulo rojo" id="rHid" style="left:380px; top:770px; width:600px">POR LITRO, FIJO</div>
+        <div class="pieza ancho" id="selloFijo" style="top:910px"><div class="sello s44" style="color:#1d2a44; border-color:#1d2a44">CUESTE LO QUE CUESTE</div></div>
+        <div class="pieza ancho" id="selloRebaja" style="top:1080px"><div class="sello s44" style="color:#2f8f6b; border-color:#2f8f6b">NOVIEMBRE: −0,20 €</div></div>
+
+        <!-- D: tax 2, VAT -->
+        <div class="pieza ancho" id="chipImp2" style="top:470px"><div class="chip">IMPUESTO 2: IVA</div></div>
+        <div class="pieza cifra ancho" id="c21" style="top:640px; font-size:200px">0 %</div>
+
+        <!-- E: the trick: VAT is calculated on the petrol plus the other tax -->
+        <div class="pieza ancho" id="chipTruco" style="top:470px"><div class="chip blanco">EL TRUCO</div></div>
+        <div class="pieza rotulo" id="rIvaE" style="left:90px; top:580px; width:900px; font-size:36px">EL IVA DEL 21 % SE CALCULA SOBRE…</div>
+        <div class="pieza" id="llaveGas" style="left:90px; top:640px; width:728px"><div class="llave"></div></div>
+        <div class="pieza" id="llaveTodo" style="left:90px; top:640px; width:900px"><div class="llave" style="border-color:#e5383b"></div></div>
+        <div class="pieza" id="barraE" style="left:90px; top:700px; width:900px">
+          <div class="barra"><div class="seg gas" style="width:80.9%">GASOLINA: 1,16 €</div><div class="seg hid" id="segHidE" style="width:19.1%">0,27 €</div></div>
+        </div>
+        <div class="pieza cifra roja" id="c573" style="left:90px; top:900px">0,00</div>
+        <div class="pieza rotulo rojo dos" id="r573" style="left:470px; top:915px; text-align:left">CÉNTIMOS POR LITRO:<br />IVA DEL OTRO IMPUESTO</div>
+
+        <!-- F: both taxes together: a third of the price -->
+        <div class="pieza ancho" id="chipLitro" style="top:470px"><div class="chip blanco">UN LITRO, 1,73 €</div></div>
+        <div class="pieza" id="barraF" style="left:90px; top:580px; width:900px">
+          <div class="barra"><div class="seg gas" style="width:66.9%">1,16 €</div><div class="seg hid" style="width:15.8%">0,27</div><div class="seg iva" style="width:17.3%">0,30</div></div>
+        </div>
+        <div class="pieza rotulo" id="rGasF" style="left:90px; top:720px; width:602px">SIN IMPUESTOS</div>
+        <div class="pieza rotulo rojo" id="rHidF" style="left:640px; top:720px; width:200px; font-size:24px">HIDROC.</div>
+        <div class="pieza rotulo" id="rIvaF" style="left:832px; top:720px; width:158px; font-size:24px; color:#c98f00">IVA</div>
+        <div class="pieza cifra roja ancho" id="c057" style="top:820px">0,00 €</div>
+        <div class="pieza rotulo rojo ancho" id="r057" style="top:965px">DE IMPUESTOS EN CADA LITRO</div>
+        <div class="pieza ancho" id="selloTercio" style="top:1060px"><div class="sello s50" style="color:#e5383b; border-color:#e5383b">UN TERCIO: 33,1 %</div></div>
+
+        <!-- G: Spain against the rest of the EU -->
+        <div class="pieza ancho" id="chipUE" style="top:470px"><div class="chip blanco" style="font-size:36px">IMPUESTOS EN EL PRECIO, 2 DE NOVIEMBRE</div></div>
+        <div class="pieza" id="docUE" style="left:160px; top:580px" data-icono="doc"
+          data-args='["GASOLINA 95 EN LA UE", [["1.º POLONIA", "31,2 %"], ["2.º ESPAÑA", "33,1 %", "fEsp"], ["MEDIA DE LA UE", "45,9 %", "fUE", "roja"]]]'></div>
+        <div class="pieza ancho" id="selloRebajaG" style="top:1000px"><div class="sello s44" style="color:#2f8f6b; border-color:#2f8f6b">CON LA REBAJA</div></div>
+
+        <!-- H: a full tank of 50 litres -->
+        <div class="pieza" id="surtidorH" style="left:80px; top:560px" data-dibujo="surtidor" data-args="[300]"></div>
+        <div class="pieza" id="chip50" style="left:470px; top:580px"><div class="chip blanco" style="font-size:44px">50 LITROS</div></div>
+        <div class="pieza cifra media" id="c8649" style="left:420px; top:690px; width:620px">0,00 €</div>
+        <div class="pieza rotulo" id="r8649" style="left:420px; top:800px; width:620px">PAGAS</div>
+        <div class="pieza cifra roja" id="c2865" style="left:420px; top:880px; width:620px">0,00 €</div>
+        <div class="pieza rotulo rojo" id="r2865" style="left:420px; top:1025px; width:620px">SON IMPUESTOS</div>
+        <div class="pieza ancho" id="chipSin" style="top:1150px"><div class="chip blanco" style="font-size:36px">SIN LA REBAJA: +10 € DE IMPUESTO, Y SU IVA</div></div>
+        <div class="pieza ancho" id="chipFin" style="top:1300px"><div class="chip" style="font-size:36px">¿MÁS O MENOS DE LO QUE PENSABAS?</div></div>
+      </div>
+      <div id="gancho" class="clip" data-start="0" data-duration="80.2" data-track-index="2"></div>
+      <div id="note" class="clip" data-start="0" data-duration="80.2" data-track-index="3"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="80.2"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="80.2" data-track-index="4" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 78.92, "lines": [{"id": "l1", "s": 0.17, "e": 2.12, "words": [{"w": "Tu", "s": 0.17, "e": 0.24, "key": false}, {"w": "gasolina", "s": 0.24, "e": 0.86, "key": false}, {"w": "lleva", "s": 0.87, "e": 1.3, "key": false}, {"w": "dos", "s": 1.31, "e": 1.57, "key": false}, {"w": "impuestos.", "s": 1.57, "e": 2.12, "key": true}]}, {"id": "l2", "s": 2.12, "e": 8.6, "words": [{"w": "Y", "s": 2.12, "e": 2.57, "key": false}, {"w": "uno", "s": 2.57, "e": 2.73, "key": false}, {"w": "se", "s": 2.73, "e": 2.89, "key": false}, {"w": "cobra", "s": 2.89, "e": 3.3, "key": false}, {"w": "encima", "s": 3.3, "e": 3.79, "key": true}, {"w": "del", "s": 3.79, "e": 4.02, "key": false}, {"w": "otro.", "s": 4.04, "e": 4.22, "key": false}, {"w": "¿Y", "s": 4.69, "e": 4.8, "key": false}, {"w": "cuánto", "s": 4.8, "e": 5.16, "key": false}, {"w": "pagas", "s": 5.16, "e": 5.44, "key": false}, {"w": "de", "s": 5.44, "e": 5.56, "key": false}, {"w": "impuestos", "s": 5.56, "e": 5.93, "key": false}, {"w": "al", "s": 5.97, "e": 6.07, "key": false}, {"w": "llenar", "s": 6.2, "e": 6.44, "key": false}, {"w": "el", "s": 6.44, "e": 6.56, "key": false}, {"w": "depósito?", "s": 6.56, "e": 7.27, "key": false}, {"w": "Te", "s": 7.28, "e": 7.41, "key": false}, {"w": "lo", "s": 7.41, "e": 7.56, "key": false}, {"w": "digo", "s": 7.56, "e": 7.82, "key": false}, {"w": "al", "s": 7.89, "e": 7.99, "key": false}, {"w": "final.", "s": 7.99, "e": 8.6, "key": false}]}, {"id": "l3", "s": 8.6, "e": 14.4, "words": [{"w": "El", "s": 8.6, "e": 8.73, "key": false}, {"w": "2", "s": 8.73, "e": 8.93, "key": false}, {"w": "de", "s": 8.93, "e": 9.06, "key": false}, {"w": "noviembre,", "s": 9.06, "e": 9.79, "key": false}, {"w": "el", "s": 9.79, "e": 9.84, "key": false}, {"w": "litro", "s": 9.84, "e": 10.18, "key": true}, {"w": "de", "s": 10.18, "e": 10.33, "key": false}, {"w": "gasolina", "s": 10.33, "e": 10.89, "key": false}, {"w": "95", "s": 10.89, "e": 11.32, "key": false}, {"w": "costaba", "s": 11.56, "e": 11.83, "key": false}, {"w": "en", "s": 11.89, "e": 12.0, "key": false}, {"w": "España,", "s": 12, "e": 12.42, "key": false}, {"w": "de", "s": 12.47, "e": 12.61, "key": false}, {"w": "media,", "s": 12.61, "e": 12.96, "key": false}, {"w": "1,73", "s": 13.02, "e": 13.537, "key": false}, {"w": "euros.", "s": 13.537, "e": 14.4, "key": false}]}, {"id": "l4", "s": 14.4, "e": 20.91, "words": [{"w": "Lo", "s": 14.4, "e": 14.51, "key": false}, {"w": "dice", "s": 14.51, "e": 14.72, "key": false}, {"w": "el", "s": 14.73, "e": 14.77, "key": false}, {"w": "boletín", "s": 14.88, "e": 15.22, "key": false}, {"w": "petrolero", "s": 15.22, "e": 15.7, "key": false}, {"w": "de", "s": 15.7, "e": 15.81, "key": false}, {"w": "la", "s": 15.81, "e": 15.89, "key": false}, {"w": "Comisión", "s": 16.01, "e": 16.39, "key": false}, {"w": "Europea.", "s": 16.64, "e": 17.4, "key": false}, {"w": "Sin", "s": 17.4, "e": 17.7, "key": true}, {"w": "impuestos,", "s": 17.7, "e": 18.49, "key": false}, {"w": "sería", "s": 18.97, "e": 19.1, "key": false}, {"w": "1,16", "s": 19.1, "e": 19.779, "key": false}, {"w": "euros.", "s": 19.779, "e": 20.91, "key": false}]}, {"id": "l5", "s": 20.91, "e": 26.19, "words": [{"w": "El", "s": 20.91, "e": 21.11, "key": false}, {"w": "primer", "s": 21.11, "e": 21.35, "key": false}, {"w": "impuesto", "s": 21.35, "e": 21.78, "key": false}, {"w": "es", "s": 21.78, "e": 21.84, "key": false}, {"w": "el", "s": 21.89, "e": 22.0, "key": false}, {"w": "de", "s": 22, "e": 22.11, "key": false}, {"w": "hidrocarburos:", "s": 22.11, "e": 23.0, "key": false}, {"w": "una", "s": 23, "e": 23.25, "key": false}, {"w": "cantidad", "s": 23.25, "e": 23.6, "key": false}, {"w": "fija", "s": 23.6, "e": 23.81, "key": true}, {"w": "por", "s": 23.81, "e": 23.97, "key": false}, {"w": "cada", "s": 23.97, "e": 24.19, "key": false}, {"w": "litro,", "s": 24.19, "e": 24.45, "key": false}, {"w": "cueste", "s": 24.46, "e": 24.79, "key": false}, {"w": "lo", "s": 24.79, "e": 24.87, "key": false}, {"w": "que", "s": 24.93, "e": 25.06, "key": false}, {"w": "cueste", "s": 25.06, "e": 25.39, "key": false}, {"w": "la", "s": 25.39, "e": 25.57, "key": false}, {"w": "gasolina.", "s": 25.57, "e": 26.19, "key": false}]}, {"id": "l6", "s": 26.21, "e": 33.08, "words": [{"w": "Normalmente", "s": 26.21, "e": 26.81, "key": false}, {"w": "son", "s": 26.81, "e": 26.95, "key": false}, {"w": "47", "s": 26.99, "e": 27.8, "key": false}, {"w": "céntimos.", "s": 27.94, "e": 28.51, "key": false}, {"w": "Pero", "s": 28.51, "e": 28.8, "key": false}, {"w": "en", "s": 28.8, "e": 28.9, "key": false}, {"w": "noviembre", "s": 28.95, "e": 29.57, "key": false}, {"w": "hay", "s": 29.57, "e": 29.79, "key": false}, {"w": "una", "s": 29.79, "e": 29.94, "key": false}, {"w": "rebaja", "s": 30.06, "e": 30.44, "key": true}, {"w": "temporal", "s": 30.44, "e": 31.02, "key": false}, {"w": "de", "s": 31.02, "e": 31.15, "key": false}, {"w": "20,", "s": 31.15, "e": 31.59, "key": false}, {"w": "y", "s": 31.59, "e": 31.66, "key": false}, {"w": "se", "s": 31.66, "e": 31.79, "key": false}, {"w": "queda", "s": 31.79, "e": 31.99, "key": false}, {"w": "en", "s": 31.99, "e": 32.3, "key": false}, {"w": "27.", "s": 32.51, "e": 33.08, "key": false}]}, {"id": "l7", "s": 33.08, "e": 35.16, "words": [{"w": "El", "s": 33.08, "e": 33.17, "key": false}, {"w": "segundo", "s": 33.17, "e": 33.52, "key": false}, {"w": "es", "s": 33.52, "e": 33.76, "key": false}, {"w": "el", "s": 33.76, "e": 33.84, "key": false}, {"w": "IVA:", "s": 33.84, "e": 34.24, "key": true}, {"w": "un", "s": 34.24, "e": 34.39, "key": false}, {"w": "21%.", "s": 34.42, "e": 35.16, "key": false}]}, {"id": "l8", "s": 35.22, "e": 42.38, "words": [{"w": "Y", "s": 35.22, "e": 35.296, "key": false}, {"w": "aquí", "s": 35.296, "e": 35.6, "key": false}, {"w": "está", "s": 35.6, "e": 35.66, "key": false}, {"w": "el", "s": 35.66, "e": 36.09, "key": false}, {"w": "truco:", "s": 36.09, "e": 36.71, "key": true}, {"w": "el", "s": 36.73, "e": 36.87, "key": false}, {"w": "IVA", "s": 36.87, "e": 37.12, "key": false}, {"w": "no", "s": 37.12, "e": 37.27, "key": false}, {"w": "se", "s": 37.28, "e": 37.44, "key": false}, {"w": "calcula", "s": 37.44, "e": 38.0, "key": false}, {"w": "sobre", "s": 38.23, "e": 38.34, "key": false}, {"w": "la", "s": 38.41, "e": 38.56, "key": false}, {"w": "gasolina", "s": 38.56, "e": 39.15, "key": false}, {"w": "sola,", "s": 39.22, "e": 39.76, "key": false}, {"w": "sino", "s": 40, "e": 40.03, "key": false}, {"w": "sobre", "s": 40.03, "e": 40.37, "key": false}, {"w": "la", "s": 40.37, "e": 40.5, "key": false}, {"w": "gasolina", "s": 40.5, "e": 41.04, "key": false}, {"w": "más", "s": 41.04, "e": 41.23, "key": false}, {"w": "el", "s": 41.23, "e": 41.37, "key": false}, {"w": "otro", "s": 41.37, "e": 41.62, "key": false}, {"w": "impuesto.", "s": 41.69, "e": 42.38, "key": false}]}, {"id": "l9", "s": 42.38, "e": 47.74, "words": [{"w": "O", "s": 42.38, "e": 42.44, "key": false}, {"w": "sea,", "s": 42.44, "e": 42.77, "key": false}, {"w": "pagas", "s": 42.77, "e": 43.1, "key": false}, {"w": "IVA", "s": 43.1, "e": 43.29, "key": false}, {"w": "hasta", "s": 43.32, "e": 43.63, "key": true}, {"w": "del", "s": 43.63, "e": 43.82, "key": false}, {"w": "impuesto", "s": 43.82, "e": 44.33, "key": false}, {"w": "de", "s": 44.45, "e": 44.5, "key": false}, {"w": "hidrocarburos:", "s": 44.5, "e": 45.57, "key": false}, {"w": "casi", "s": 45.84, "e": 45.95, "key": false}, {"w": "6", "s": 45.95, "e": 46.21, "key": false}, {"w": "céntimos", "s": 46.21, "e": 46.9, "key": false}, {"w": "por", "s": 46.9, "e": 47.16, "key": false}, {"w": "litro.", "s": 47.16, "e": 47.74, "key": false}]}, {"id": "l10", "s": 48.08, "e": 53.34, "words": [{"w": "Sumados,", "s": 48.08, "e": 48.48, "key": false}, {"w": "los", "s": 48.48, "e": 48.68, "key": false}, {"w": "dos", "s": 48.68, "e": 48.88, "key": false}, {"w": "impuestos", "s": 48.88, "e": 49.49, "key": false}, {"w": "son", "s": 49.49, "e": 49.69, "key": false}, {"w": "57", "s": 49.69, "e": 50.07, "key": false}, {"w": "céntimos", "s": 50.23, "e": 50.72, "key": false}, {"w": "de", "s": 50.72, "e": 50.78, "key": false}, {"w": "cada", "s": 50.83, "e": 51.04, "key": false}, {"w": "litro:", "s": 51.04, "e": 52.0, "key": false}, {"w": "un", "s": 52, "e": 52.24, "key": false}, {"w": "tercio", "s": 52.24, "e": 52.48, "key": true}, {"w": "del", "s": 52.57, "e": 52.73, "key": false}, {"w": "precio.", "s": 52.73, "e": 53.34, "key": false}]}, {"id": "l11", "s": 53.34, "e": 60.86, "words": [{"w": "Con", "s": 53.34, "e": 53.54, "key": false}, {"w": "la", "s": 53.54, "e": 53.64, "key": false}, {"w": "rebaja,", "s": 53.7, "e": 54.13, "key": false}, {"w": "España", "s": 54.56, "e": 54.6, "key": false}, {"w": "es", "s": 54.6, "e": 54.73, "key": false}, {"w": "el", "s": 54.73, "e": 54.86, "key": false}, {"w": "segundo", "s": 54.86, "e": 55.34, "key": true}, {"w": "país", "s": 55.34, "e": 55.72, "key": false}, {"w": "de", "s": 55.72, "e": 55.81, "key": false}, {"w": "la", "s": 55.82, "e": 55.92, "key": false}, {"w": "Unión", "s": 55.92, "e": 56.1, "key": false}, {"w": "Europea", "s": 56.17, "e": 56.52, "key": false}, {"w": "donde", "s": 56.69, "e": 56.82, "key": false}, {"w": "menos", "s": 57.08, "e": 57.33, "key": false}, {"w": "pesan.", "s": 57.33, "e": 58.1, "key": false}, {"w": "La", "s": 58.1, "e": 58.28, "key": false}, {"w": "media", "s": 58.28, "e": 58.7, "key": false}, {"w": "europea", "s": 58.78, "e": 59.46, "key": false}, {"w": "es", "s": 59.46, "e": 59.65, "key": false}, {"w": "un", "s": 59.65, "e": 59.84, "key": false}, {"w": "46%.", "s": 59.84, "e": 60.86, "key": false}]}, {"id": "l12", "s": 60.88, "e": 66.08, "words": [{"w": "¿Y", "s": 60.88, "e": 60.97, "key": false}, {"w": "al", "s": 60.97, "e": 61.15, "key": false}, {"w": "llenar", "s": 61.15, "e": 61.65, "key": false}, {"w": "el", "s": 61.73, "e": 61.91, "key": false}, {"w": "depósito?", "s": 61.95, "e": 63.04, "key": true}, {"w": "Con", "s": 63.04, "e": 63.25, "key": false}, {"w": "50", "s": 63.25, "e": 63.66, "key": false}, {"w": "litros,", "s": 63.66, "e": 64.07, "key": false}, {"w": "pagas", "s": 64.13, "e": 64.44, "key": false}, {"w": "86,49", "s": 64.68, "e": 65.51, "key": false}, {"w": "euros.", "s": 65.51, "e": 66.08, "key": false}]}, {"id": "l13", "s": 66.14, "e": 69.34, "words": [{"w": "Y", "s": 66.14, "e": 66.197, "key": false}, {"w": "de", "s": 66.197, "e": 66.31, "key": false}, {"w": "eso,", "s": 66.37, "e": 66.58, "key": false}, {"w": "28,65", "s": 67.01, "e": 67.79, "key": false}, {"w": "euros", "s": 67.79, "e": 68.19, "key": false}, {"w": "son", "s": 68.19, "e": 68.39, "key": false}, {"w": "impuestos.", "s": 68.43, "e": 69.34, "key": true}]}, {"id": "l14", "s": 69.34, "e": 75.85, "words": [{"w": "Sin", "s": 69.34, "e": 69.57, "key": false}, {"w": "la", "s": 69.57, "e": 69.72, "key": false}, {"w": "rebaja,", "s": 69.72, "e": 70.32, "key": true}, {"w": "el", "s": 70.32, "e": 70.47, "key": false}, {"w": "impuesto", "s": 70.47, "e": 71.04, "key": false}, {"w": "de", "s": 71.06, "e": 71.19, "key": false}, {"w": "hidrocarburos", "s": 71.24, "e": 72.32, "key": false}, {"w": "sumaría", "s": 72.62, "e": 72.91, "key": false}, {"w": "otros", "s": 72.93, "e": 73.27, "key": false}, {"w": "10", "s": 73.3, "e": 73.74, "key": false}, {"w": "euros", "s": 73.74, "e": 74.04, "key": false}, {"w": "por", "s": 74.1, "e": 74.27, "key": false}, {"w": "depósito,", "s": 74.33, "e": 75.07, "key": false}, {"w": "más", "s": 75.07, "e": 75.29, "key": false}, {"w": "su", "s": 75.29, "e": 75.41, "key": false}, {"w": "IVA.", "s": 75.47, "e": 75.85, "key": false}]}, {"id": "l15", "s": 75.96, "e": 78.76, "words": [{"w": "¿Pensabas", "s": 75.96, "e": 76.45, "key": false}, {"w": "que", "s": 76.45, "e": 76.62, "key": false}, {"w": "era", "s": 76.62, "e": 76.81, "key": false}, {"w": "más", "s": 76.81, "e": 76.98, "key": false}, {"w": "o", "s": 76.98, "e": 77.11, "key": false}, {"w": "menos?", "s": 77.11, "e": 77.58, "key": false}, {"w": "Te", "s": 77.63, "e": 77.84, "key": false}, {"w": "leo", "s": 77.85, "e": 77.97, "key": false}, {"w": "en", "s": 77.97, "e": 78.09, "key": false}, {"w": "los", "s": 78.09, "e": 78.2, "key": false}, {"w": "comentarios.", "s": 78.2, "e": 78.76, "key": true}]}]}</script>
+    <script id="escena" type="application/json">
+      {
+        "momentos": [
+          { "id": "ENCIMA", "clave": "encima" },
+          { "id": "CUANTO", "clave": "cuanto" },
+          { "id": "NOVIEMBRE3", "clave": "noviembre" },
+          { "id": "LITRO3", "clave": "litro" },
+          { "id": "COSTABA", "clave": "costaba" },
+          { "id": "BOLETIN", "clave": "boletin" },
+          { "id": "SIN4", "clave": "sin" },
+          { "id": "PRIMER", "clave": "primer" },
+          { "id": "FIJA", "clave": "fija" },
+          { "id": "CUESTE", "clave": "cueste" },
+          { "id": "NORMALMENTE", "clave": "normalmente" },
+          { "id": "REBAJA6", "clave": "rebaja" },
+          { "id": "QUEDA", "clave": "queda" },
+          { "id": "SEGUNDO", "clave": "segundo" },
+          { "id": "IVA7", "clave": "iva" },
+          { "id": "TRUCO", "clave": "truco" },
+          { "id": "SOLA", "clave": "sola" },
+          { "id": "MAS8", "clave": "mas" },
+          { "id": "HASTA", "clave": "hasta" },
+          { "id": "CASI9", "clave": "casi" },
+          { "id": "SUMADOS", "clave": "sumados" },
+          { "id": "TERCIO", "clave": "tercio" },
+          { "id": "REBAJA11", "clave": "rebaja" },
+          { "id": "SEGUNDO11", "clave": "segundo" },
+          { "id": "MEDIA11", "clave": "media" },
+          { "id": "DEPOSITO", "clave": "deposito" },
+          { "id": "LITROS12", "clave": "litros" },
+          { "id": "PAGAS12", "clave": "pagas" },
+          { "id": "ESO13", "clave": "eso" },
+          { "id": "SON13", "clave": "son" },
+          { "id": "SIN14", "clave": "sin" },
+          { "id": "EUROS14", "clave": "euros" },
+          { "id": "PENSABAS", "clave": "pensabas" }
+        ],
+        "gancho": { "texto": "Tu gasolina lleva dos impuestos", "clave": "impuestos" },
+        "piezas": [
+          { "id": "surtidorA", "desde": 0.1, "hasta": "NOVIEMBRE3", "entra": "escala", "dura": 0.6 },
+          { "id": "chipHidA", "desde": 0.4, "hasta": "NOVIEMBRE3", "entra": "sello" },
+          { "id": "chipIvaA", "desde": 0.7, "hasta": "NOVIEMBRE3", "entra": "sello" },
+          { "id": "chipCuanto", "desde": "CUANTO", "hasta": "NOVIEMBRE3", "entra": "baja" },
+
+          { "id": "chipFecha", "desde": "NOVIEMBRE3", "hasta": "PRIMER", "entra": "baja" },
+          { "id": "c173", "desde": "COSTABA", "hasta": "PRIMER", "entra": "escala" },
+          { "id": "r173", "desde": "LITRO3", "hasta": "PRIMER" },
+          { "id": "c116", "desde": "SIN4", "hasta": "PRIMER", "entra": "escala" },
+          { "id": "r116", "desde": "SIN4", "hasta": "PRIMER" },
+          { "id": "barraB", "desde": "SIN4", "hasta": "PRIMER", "entra": "izq" },
+
+          { "id": "chipImp1", "desde": "PRIMER", "hasta": "SEGUNDO", "entra": "baja" },
+          { "id": "gotaC", "desde": "PRIMER", "hasta": "SEGUNDO", "entra": "escala" },
+          { "id": "rHid", "desde": "NORMALMENTE", "hasta": "SEGUNDO" },
+          { "id": "selloFijo", "desde": "CUESTE", "hasta": "SEGUNDO", "entra": "sello" },
+          { "id": "cHid", "desde": "NORMALMENTE", "hasta": "SEGUNDO", "entra": "escala" },
+          { "id": "selloRebaja", "desde": "REBAJA6", "hasta": "SEGUNDO", "entra": "sello" },
+
+          { "id": "chipImp2", "desde": "SEGUNDO", "hasta": "TRUCO", "entra": "baja" },
+          { "id": "c21", "desde": "IVA7", "hasta": "TRUCO", "entra": "escala" },
+
+          { "id": "chipTruco", "desde": "TRUCO", "hasta": "SUMADOS", "entra": "baja" },
+          { "id": "rIvaE", "desde": "TRUCO", "hasta": "SUMADOS" },
+          { "id": "barraE", "desde": "TRUCO", "hasta": "SUMADOS", "entra": "izq" },
+          { "id": "llaveGas", "desde": "SOLA", "hasta": "MAS8", "entra": "fundido" },
+          { "id": "llaveTodo", "desde": "MAS8", "hasta": "SUMADOS", "entra": "fundido" },
+          { "id": "c573", "desde": "CASI9", "hasta": "SUMADOS", "entra": "escala" },
+          { "id": "r573", "desde": "CASI9", "hasta": "SUMADOS" },
+
+          { "id": "chipLitro", "desde": "SUMADOS", "hasta": "REBAJA11", "entra": "baja" },
+          { "id": "barraF", "desde": "SUMADOS", "hasta": "REBAJA11", "entra": "izq" },
+          { "id": "rGasF", "desde": "SUMADOS", "hasta": "REBAJA11" },
+          { "id": "rHidF", "desde": "SUMADOS", "hasta": "REBAJA11" },
+          { "id": "rIvaF", "desde": "SUMADOS", "hasta": "REBAJA11" },
+          { "id": "c057", "desde": "SUMADOS", "hasta": "REBAJA11", "entra": "escala" },
+          { "id": "r057", "desde": "SUMADOS", "hasta": "REBAJA11" },
+          { "id": "selloTercio", "desde": "TERCIO", "hasta": "REBAJA11", "entra": "sello" },
+
+          { "id": "chipUE", "desde": "REBAJA11", "hasta": "DEPOSITO", "entra": "baja" },
+          { "id": "selloRebajaG", "desde": "REBAJA11", "hasta": "DEPOSITO", "entra": "sello" },
+          { "id": "docUE", "desde": "SEGUNDO11", "hasta": "DEPOSITO", "entra": "sube" },
+
+          { "id": "surtidorH", "desde": "DEPOSITO", "entra": "izq" },
+          { "id": "chip50", "desde": "LITROS12", "entra": "escala" },
+          { "id": "c8649", "desde": "PAGAS12", "entra": "escala" },
+          { "id": "r8649", "desde": "PAGAS12" },
+          { "id": "c2865", "desde": "ESO13", "entra": "escala" },
+          { "id": "r2865", "desde": "SON13" },
+          { "id": "chipSin", "desde": "EUROS14", "entra": "sube" },
+          { "id": "chipFin", "desde": "PENSABAS", "entra": "sube", "dura": 0.6 }
+        ],
+        "cifras": [
+          { "id": "c173", "desde": "COSTABA", "a": 1.73, "dec": 2, "dura": 1.0 },
+          { "id": "c116", "desde": "SIN4", "a": 1.16, "dec": 2, "dura": 1.0 },
+          { "id": "cHid", "desde": "NORMALMENTE", "a": 0.47, "dec": 2, "dura": 0.8 },
+          { "id": "cHid", "desde": "QUEDA", "de": 0.47, "a": 0.27, "dec": 2, "dura": 0.8 },
+          { "id": "c21", "desde": "IVA7", "a": 21, "formato": "pct", "dura": 0.8 },
+          { "id": "c573", "desde": "CASI9", "a": 5.73, "formato": "numero", "dec": 2, "dura": 1.0 },
+          { "id": "c057", "desde": "SUMADOS", "a": 0.57, "dec": 2, "dura": 1.2 },
+          { "id": "c8649", "desde": "PAGAS12", "a": 86.49, "dec": 2, "dura": 1.4 },
+          { "id": "c2865", "desde": "ESO13", "a": 28.65, "dec": 2, "dura": 1.6 }
+        ],
+        "notas": [
+          { "texto": "Ley 38/1992 (impuesto de hidrocarburos) y Ley 37/1992 (IVA). Península y Baleares", "desde": "ENCIMA" },
+          { "texto": "Boletín Petrolero de la Comisión Europea, precios medios del lunes 2 de noviembre de 2026 (publicado el 5 de noviembre). Cada gasolinera pone su precio", "desde": "NOVIEMBRE3" },
+          { "texto": "Ley 38/1992, artículo 50, epígrafe 1.2.2: 472,69 € por 1.000 litros. En noviembre de 2026, 272,69 € (Real Decreto-ley 25/2026, artículo 14)", "desde": "PRIMER" },
+          { "texto": "Ley 37/1992 del IVA, artículo 90: tipo general del 21 %. En carburantes fue del 10 % solo del 22 de marzo al 30 de junio de 2026", "desde": "SEGUNDO" },
+          { "texto": "Ley 37/1992, artículo 78.Dos.4.º: la base del IVA incluye los impuestos especiales. Cálculo propio: 0,27269 € × 21 % = 5,73 céntimos", "desde": "TRUCO" },
+          { "texto": "Cálculo propio con el boletín: IVA = 1,72989 × 21/121 = 0,30 €; con los 0,27 € del otro impuesto, 0,57 € de 1,73 €", "desde": "SUMADOS" },
+          { "texto": "Cálculo propio con el Boletín Petrolero del 2 de noviembre de 2026: 1 − precio sin impuestos / precio con impuestos", "desde": "REBAJA11" },
+          { "texto": "Cálculo propio: 50 × 1,72989 = 86,49 €; 50 × 0,57292 = 28,65 €. Sin la rebaja: 50 × 0,20 € = 10 € más de impuesto", "desde": "DEPOSITO" }
+        ],
+        "fondo": "claro",
+        "sonidos": [
+          { "tipo": "toque", "en": 0.15 },
+          { "tipo": "pop", "en": 0.4 },
+          { "tipo": "pop", "en": 0.7 },
+          { "tipo": "sube", "en": "ENCIMA" },
+          { "tipo": "brillo", "en": "CUANTO" },
+          { "tipo": "desliza", "en": "NOVIEMBRE3" },
+          { "tipo": "sube", "en": "COSTABA" },
+          { "tipo": "chip", "en": "BOLETIN" },
+          { "tipo": "sube", "en": "SIN4" },
+          { "tipo": "desliza", "en": "PRIMER" },
+          { "tipo": "toque", "en": "FIJA" },
+          { "tipo": "toque", "en": "CUESTE", "mas": 0.1 },
+          { "tipo": "metal", "en": "NORMALMENTE" },
+          { "tipo": "toque", "en": "REBAJA6", "mas": 0.1 },
+          { "tipo": "chip", "en": "QUEDA" },
+          { "tipo": "desliza", "en": "SEGUNDO" },
+          { "tipo": "sube", "en": "IVA7" },
+          { "tipo": "brillo", "en": "TRUCO" },
+          { "tipo": "pop", "en": "SOLA" },
+          { "tipo": "pop", "en": "MAS8" },
+          { "tipo": "error", "en": "HASTA" },
+          { "tipo": "metal", "en": "CASI9" },
+          { "tipo": "desliza", "en": "SUMADOS" },
+          { "tipo": "toque", "en": "TERCIO", "mas": 0.1 },
+          { "tipo": "desliza", "en": "REBAJA11" },
+          { "tipo": "chip", "en": "SEGUNDO11" },
+          { "tipo": "chip", "en": "MEDIA11" },
+          { "tipo": "desliza", "en": "DEPOSITO" },
+          { "tipo": "pop", "en": "LITROS12" },
+          { "tipo": "pagado", "en": "PAGAS12", "mas": 0.4 },
+          { "tipo": "metal", "en": "ESO13" },
+          { "tipo": "toque", "en": "SON13", "mas": 0.1 },
+          { "tipo": "pop", "en": "EUROS14" },
+          { "tipo": "pop", "en": "PENSABAS" }
+        ]
+      }
+    </script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 80.2 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import { crearDinero, COLOR } from "./comun/dinero.js";
+      const $ = (id) => document.getElementById(id);
+      const K = COLOR;
+      const svg = (w, vw, vh, cuerpo) => `<svg width="${w}" height="${Math.round((w * vh) / vw)}" viewBox="0 0 ${vw} ${vh}">${cuerpo}</svg>`;
+
+      // ---------- drawings this video needs, in the account's flat style (navy outline, solid offset shadow) ----------
+      // they are built before the engine looks for the ids of pieces and figures
+      const DIBUJOS = {
+        // a petrol pump with no brand: display, band, hose and nozzle
+        surtidor: (w = 330) => svg(w, 320, 500, `<rect x="42" y="52" width="190" height="420" rx="20" fill="${K.tinta}"/>
+          <rect x="30" y="40" width="190" height="420" rx="20" fill="${K.rojo}" stroke="${K.tinta}" stroke-width="8"/>
+          <rect x="52" y="70" width="146" height="110" rx="12" fill="${K.tinta}"/>
+          <text x="125" y="125" text-anchor="middle" dominant-baseline="central" font-family="Archivo Black" font-size="54" fill="${K.oro}">95</text>
+          <rect x="30" y="210" width="190" height="64" fill="${K.blanco}" stroke="${K.tinta}" stroke-width="7"/>
+          <text x="125" y="243" text-anchor="middle" dominant-baseline="central" font-family="Archivo Black" font-size="28" fill="${K.tinta}">GASOLINA</text>
+          <rect x="62" y="310" width="126" height="16" rx="8" fill="#fff" opacity="0.35"/>
+          <rect x="10" y="452" width="230" height="34" rx="8" fill="${K.tinta}"/>
+          <path d="M220 300 C290 300 292 410 262 430 C246 442 236 420 252 400" fill="none" stroke="${K.tinta}" stroke-width="14" stroke-linecap="round"/>
+          <path d="M220 150 H268 a10 10 0 0 1 10 10 V236 a10 10 0 0 1 -10 10 H252" fill="none" stroke="${K.tinta}" stroke-width="10" stroke-linejoin="round"/>
+          <path d="M236 186 h44 l16 30 h-26 l-8 46 h-26 z" fill="${K.blanco}" stroke="${K.tinta}" stroke-width="7" stroke-linejoin="round"/>`),
+
+        // a drop of petrol with "1 L"
+        gota: (w = 230) => svg(w, 240, 300, `<path d="M124 22 C160 90 216 140 216 196 a92 92 0 0 1 -184 0 C32 140 88 90 124 22 Z" transform="translate(12 12)" fill="${K.tinta}"/>
+          <path d="M120 16 C156 84 212 134 212 190 a92 92 0 0 1 -184 0 C28 134 84 84 120 16 Z" fill="${K.oro}" stroke="${K.tinta}" stroke-width="8" stroke-linejoin="round"/>
+          <path d="M66 176 q0 -30 22 -56" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" opacity="0.5"/>
+          <text x="120" y="204" text-anchor="middle" dominant-baseline="central" font-family="Archivo Black" font-size="56" fill="${K.tinta}">1 L</text>`),
+      };
+      for (const el of document.querySelectorAll("[data-dibujo]")) el.innerHTML = DIBUJOS[el.dataset.dibujo](...JSON.parse(el.dataset.args || "[]"));
+
+      // ---------- the engine ----------
+      const C = crearDinero();
+      const { T, ramp, clamp } = C;
+      const filaClase = (id, clase, on) => { const b = $(id); if (b) b.parentElement.classList.toggle(clase, on); };
+
+      function renderAt(t) {
+        // A: the pump floats; on "encima" the VAT chip lands on top of the hydrocarbon chip
+        C.mover("surtidorA", { y: 5 * Math.sin(t * 2) });
+        const sube = ramp(t, T.ENCIMA, T.ENCIMA + 0.6);
+        C.mover("chipHidA", { y: 4 * Math.sin(t * 2.4), r: -4 });
+        C.mover("chipIvaA", { x: -20 * sube, y: 72 * sube + 4 * Math.sin(t * 2.4 + 1), r: 6 - 10 * sube });
+
+        // C: the drop floats
+        C.mover("gotaC", { y: 6 * Math.sin(t * 2.2) });
+
+        // E: the hydrocarbon slice blinks when the voice says the VAT is also paid on it
+        const destaca = t >= T.HASTA && t < T.SUMADOS;
+        $("segHidE").style.boxShadow = destaca ? "inset 0 0 0 8px #f2b705" : "none";
+
+        // G: Spain's row lights up, then the EU average
+        filaClase("fEsp", "marca", t >= T.SEGUNDO11 + 0.4);
+
+        // H: the pump floats
+        C.mover("surtidorH", { y: 5 * Math.sin(t * 2) });
+
+        C.pintar(t);
+      }
+
+      C.arrancar(renderAt);
+    </script>
+  </body>
+</html>

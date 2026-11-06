@@ -1,0 +1,1627 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <script type="importmap">
+      { "imports": { "three": "./lib/three.module.js", "three/addons/": "./lib/addons/" } }
+    </script>
+    <link rel="stylesheet" href="comun/pordentro.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+      .mono { font-family: "JetBrains Mono", monospace; position: absolute; left: -2000px; top: 0; }
+      .lectura-p .v, .panel .cifra { font-family: "JetBrains Mono", monospace; font-weight: 700; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="73.7" data-width="1080" data-height="1920" data-fps="30">
+      <canvas id="gl" class="clip" data-start="0" data-duration="73.7" data-track-index="0" width="1080" height="1920"></canvas>
+      <div id="shade" class="clip" data-start="0" data-duration="73.7" data-track-index="1"></div>
+      <svg id="leaders" class="clip" data-start="0" data-duration="73.7" data-track-index="2" width="1080" height="1920" data-layout-allow-overlap></svg>
+      <div id="labels" class="clip" data-start="0" data-duration="73.7" data-track-index="3" data-layout-allow-overlap><span class="mono">0123456789</span></div>
+      <div id="note" class="clip" data-start="0" data-duration="73.7" data-track-index="4"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="73.7"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="73.7" data-track-index="5" data-track-kind="captions"></div>
+    </div>
+
+        <script id="vozdata" type="application/json">{"duration": 72.48, "lines": [{"id": "l1", "s": 0.01, "e": 2.17, "words": [{"w": "Tu", "s": 0.01, "e": 0.12, "key": false}, {"w": "mando", "s": 0.32, "e": 0.46, "key": false}, {"w": "dispara", "s": 0.46, "e": 0.89, "key": false}, {"w": "una", "s": 0.99, "e": 1.13, "key": false}, {"w": "luz", "s": 1.13, "e": 1.33, "key": false}, {"w": "invisible.", "s": 1.33, "e": 2.17, "key": true}]}, {"id": "l2", "s": 2.63, "e": 5.067, "words": [{"w": "Tus", "s": 2.63, "e": 2.65, "key": false}, {"w": "ojos", "s": 2.65, "e": 2.98, "key": false}, {"w": "no", "s": 2.98, "e": 3.15, "key": false}, {"w": "la", "s": 3.15, "e": 3.32, "key": false}, {"w": "ven,", "s": 3.32, "e": 3.68, "key": false}, {"w": "pero", "s": 3.82, "e": 3.94, "key": false}, {"w": "la", "s": 4.03, "e": 4.1, "key": false}, {"w": "cámara", "s": 4.16, "e": 4.4, "key": true}, {"w": "de", "s": 4.4, "e": 4.51, "key": false}, {"w": "tu", "s": 4.58, "e": 4.64, "key": false}, {"w": "móvil", "s": 4.64, "e": 4.88, "key": false}, {"w": "sí.", "s": 4.88, "e": 5.067, "key": false}]}, {"id": "l3", "s": 5.067, "e": 10.77, "words": [{"w": "¿Y", "s": 5.067, "e": 5.16, "key": false}, {"w": "por", "s": 5.33, "e": 5.41, "key": false}, {"w": "qué", "s": 5.41, "e": 5.66, "key": false}, {"w": "el", "s": 5.66, "e": 5.83, "key": false}, {"w": "sol,", "s": 5.83, "e": 6.25, "key": true}, {"w": "que", "s": 6.25, "e": 6.5, "key": false}, {"w": "también", "s": 6.5, "e": 7.07, "key": false}, {"w": "da", "s": 7.07, "e": 7.17, "key": false}, {"w": "esa", "s": 7.17, "e": 7.64, "key": false}, {"w": "luz,", "s": 7.64, "e": 8.0, "key": false}, {"w": "no", "s": 8, "e": 8.08, "key": false}, {"w": "te", "s": 8.14, "e": 8.19, "key": false}, {"w": "cambia", "s": 8.2, "e": 8.49, "key": false}, {"w": "de", "s": 8.49, "e": 8.58, "key": false}, {"w": "canal?", "s": 8.58, "e": 9.0, "key": false}, {"w": "Al", "s": 9, "e": 9.23, "key": false}, {"w": "final", "s": 9.23, "e": 9.81, "key": false}, {"w": "lo", "s": 9.81, "e": 10.01, "key": false}, {"w": "verás.", "s": 10.01, "e": 10.77, "key": false}]}, {"id": "l4", "s": 11.01, "e": 15.0, "words": [{"w": "Por", "s": 11.01, "e": 11.19, "key": false}, {"w": "dentro", "s": 11.33, "e": 11.63, "key": false}, {"w": "hay", "s": 11.63, "e": 11.84, "key": false}, {"w": "una", "s": 11.84, "e": 12.05, "key": false}, {"w": "placa,", "s": 12.05, "e": 12.54, "key": false}, {"w": "unas", "s": 12.54, "e": 12.82, "key": false}, {"w": "gomas", "s": 12.82, "e": 13.16, "key": false}, {"w": "y,", "s": 13.16, "e": 13.17, "key": false}, {"w": "delante,", "s": 13.45, "e": 13.73, "key": false}, {"w": "un", "s": 13.73, "e": 13.86, "key": false}, {"w": "LED", "s": 13.87, "e": 14.06, "key": true}, {"w": "infrarrojo.", "s": 14.14, "e": 15.0, "key": false}]}, {"id": "l5", "s": 15.01, "e": 20.0, "words": [{"w": "Al", "s": 15.01, "e": 15.15, "key": false}, {"w": "pulsar,", "s": 15.33, "e": 15.74, "key": false}, {"w": "la", "s": 15.74, "e": 15.88, "key": false}, {"w": "goma", "s": 15.97, "e": 16.19, "key": false}, {"w": "baja", "s": 16.19, "e": 16.49, "key": false}, {"w": "una", "s": 16.49, "e": 16.71, "key": false}, {"w": "pastilla", "s": 16.71, "e": 17.17, "key": false}, {"w": "de", "s": 17.31, "e": 17.45, "key": false}, {"w": "carbón", "s": 17.64, "e": 17.88, "key": true}, {"w": "que", "s": 17.94, "e": 18.06, "key": false}, {"w": "une", "s": 18.14, "e": 18.35, "key": false}, {"w": "dos", "s": 18.35, "e": 18.57, "key": false}, {"w": "pistas", "s": 18.57, "e": 19.02, "key": false}, {"w": "de", "s": 19.02, "e": 19.17, "key": false}, {"w": "la", "s": 19.17, "e": 19.32, "key": false}, {"w": "placa.", "s": 19.32, "e": 20.0, "key": false}]}, {"id": "l6", "s": 20.01, "e": 23.0, "words": [{"w": "El", "s": 20.01, "e": 20.12, "key": false}, {"w": "circuito", "s": 20.33, "e": 20.58, "key": false}, {"w": "se", "s": 20.58, "e": 20.7, "key": false}, {"w": "cierra,", "s": 20.7, "e": 21.05, "key": false}, {"w": "y", "s": 21.05, "e": 21.11, "key": false}, {"w": "un", "s": 21.11, "e": 21.23, "key": false}, {"w": "chip", "s": 21.23, "e": 21.47, "key": true}, {"w": "sabe", "s": 21.47, "e": 21.71, "key": false}, {"w": "qué", "s": 21.71, "e": 21.89, "key": false}, {"w": "botón", "s": 21.89, "e": 22.17, "key": false}, {"w": "has", "s": 22.17, "e": 22.18, "key": false}, {"w": "pulsado.", "s": 22.6, "e": 23.0, "key": false}]}, {"id": "l7", "s": 23.01, "e": 28.0, "words": [{"w": "Lo", "s": 23.01, "e": 23.16, "key": false}, {"w": "convierte", "s": 23.33, "e": 23.87, "key": false}, {"w": "en", "s": 23.99, "e": 24.06, "key": false}, {"w": "un", "s": 24.06, "e": 24.22, "key": false}, {"w": "código:", "s": 24.22, "e": 24.98, "key": true}, {"w": "en", "s": 24.99, "e": 25.16, "key": false}, {"w": "muchos", "s": 25.16, "e": 25.68, "key": false}, {"w": "mandos,", "s": 25.68, "e": 26.35, "key": false}, {"w": "32", "s": 26.35, "e": 26.87, "key": false}, {"w": "unos", "s": 26.87, "e": 27.21, "key": false}, {"w": "y", "s": 27.21, "e": 27.29, "key": false}, {"w": "ceros.", "s": 27.29, "e": 28.0, "key": false}]}, {"id": "l8", "s": 28.01, "e": 32.0, "words": [{"w": "Los", "s": 28.01, "e": 28.19, "key": false}, {"w": "primeros", "s": 28.33, "e": 28.76, "key": false}, {"w": "dicen", "s": 28.77, "e": 29.12, "key": false}, {"w": "para", "s": 29.12, "e": 29.39, "key": false}, {"w": "qué", "s": 29.39, "e": 29.54, "key": false}, {"w": "aparato", "s": 29.62, "e": 30.09, "key": true}, {"w": "es,", "s": 30.09, "e": 30.17, "key": false}, {"w": "y", "s": 30.17, "e": 30.32, "key": false}, {"w": "los", "s": 30.32, "e": 30.48, "key": false}, {"w": "de", "s": 30.63, "e": 30.66, "key": false}, {"w": "después,", "s": 30.66, "e": 31.15, "key": false}, {"w": "qué", "s": 31.15, "e": 31.36, "key": false}, {"w": "botón.", "s": 31.36, "e": 32.0, "key": false}]}, {"id": "l9", "s": 32.01, "e": 37.77, "words": [{"w": "El", "s": 32.01, "e": 32.14, "key": false}, {"w": "LED", "s": 32.32, "e": 32.35, "key": false}, {"w": "lo", "s": 32.35, "e": 32.49, "key": false}, {"w": "dispara", "s": 32.49, "e": 32.98, "key": false}, {"w": "en", "s": 32.99, "e": 33.12, "key": false}, {"w": "destellos:", "s": 33.12, "e": 33.98, "key": true}, {"w": "una", "s": 33.99, "e": 34.16, "key": false}, {"w": "pausa", "s": 34.31, "e": 34.49, "key": false}, {"w": "corta", "s": 34.64, "e": 34.81, "key": false}, {"w": "entre", "s": 34.81, "e": 35.06, "key": false}, {"w": "dos", "s": 35.14, "e": 35.32, "key": false}, {"w": "es", "s": 35.32, "e": 35.44, "key": false}, {"w": "un", "s": 35.44, "e": 35.56, "key": false}, {"w": "cero;", "s": 35.56, "e": 36.0, "key": false}, {"w": "una", "s": 36, "e": 36.33, "key": false}, {"w": "larga,", "s": 36.33, "e": 37.1, "key": false}, {"w": "un", "s": 37.1, "e": 37.19, "key": false}, {"w": "uno.", "s": 37.45, "e": 37.77, "key": false}]}, {"id": "l10", "s": 38.01, "e": 43.0, "words": [{"w": "Es", "s": 38.01, "e": 38.14, "key": false}, {"w": "luz", "s": 38.32, "e": 38.36, "key": false}, {"w": "de", "s": 38.36, "e": 38.5, "key": false}, {"w": "940", "s": 38.5, "e": 39.16, "key": false}, {"w": "nanómetros:", "s": 39.16, "e": 40.03, "key": false}, {"w": "más", "s": 40.03, "e": 40.17, "key": false}, {"w": "allá", "s": 40.17, "e": 40.64, "key": false}, {"w": "del", "s": 40.64, "e": 40.76, "key": false}, {"w": "rojo,", "s": 40.78, "e": 41.17, "key": true}, {"w": "donde", "s": 41.18, "e": 41.55, "key": false}, {"w": "tus", "s": 41.55, "e": 41.67, "key": false}, {"w": "ojos", "s": 41.82, "e": 42.06, "key": false}, {"w": "no", "s": 42.06, "e": 42.2, "key": false}, {"w": "llegan.", "s": 42.2, "e": 43.0, "key": false}]}, {"id": "l11", "s": 43.01, "e": 47.0, "words": [{"w": "Pero", "s": 43.01, "e": 43.17, "key": false}, {"w": "aquí", "s": 43.32, "e": 43.34, "key": false}, {"w": "viene", "s": 43.34, "e": 43.55, "key": false}, {"w": "lo", "s": 43.55, "e": 43.63, "key": false}, {"w": "bueno:", "s": 43.63, "e": 44.0, "key": false}, {"w": "la", "s": 44, "e": 44.15, "key": false}, {"w": "cámara", "s": 44.15, "e": 44.54, "key": false}, {"w": "de", "s": 44.62, "e": 44.74, "key": false}, {"w": "tu", "s": 44.74, "e": 44.89, "key": false}, {"w": "móvil", "s": 44.89, "e": 45.17, "key": false}, {"w": "sí", "s": 45.17, "e": 45.405, "key": false}, {"w": "la", "s": 45.405, "e": 45.64, "key": false}, {"w": "capta,", "s": 45.64, "e": 45.88, "key": false}, {"w": "y", "s": 45.94, "e": 45.99, "key": false}, {"w": "la", "s": 45.99, "e": 46.13, "key": false}, {"w": "ve", "s": 46.14, "e": 46.29, "key": false}, {"w": "morada.", "s": 46.29, "e": 47.0, "key": true}]}, {"id": "l12", "s": 47.01, "e": 51.0, "words": [{"w": "En", "s": 47.01, "e": 47.12, "key": false}, {"w": "la", "s": 47.12, "e": 47.33, "key": false}, {"w": "tele,", "s": 47.33, "e": 47.66, "key": false}, {"w": "detrás", "s": 47.66, "e": 48.06, "key": false}, {"w": "de", "s": 48.06, "e": 48.19, "key": false}, {"w": "una", "s": 48.19, "e": 48.39, "key": false}, {"w": "ventanita", "s": 48.39, "e": 48.98, "key": false}, {"w": "oscura,", "s": 48.99, "e": 49.5, "key": false}, {"w": "la", "s": 49.63, "e": 49.64, "key": false}, {"w": "espera", "s": 49.64, "e": 50.04, "key": false}, {"w": "un", "s": 50.04, "e": 50.17, "key": false}, {"w": "receptor.", "s": 50.17, "e": 51.0, "key": true}]}, {"id": "l13", "s": 51.01, "e": 55.0, "words": [{"w": "Es", "s": 51.01, "e": 51.14, "key": false}, {"w": "un", "s": 51.14, "e": 51.33, "key": false}, {"w": "sensor", "s": 51.33, "e": 51.7, "key": false}, {"w": "de", "s": 51.7, "e": 51.84, "key": false}, {"w": "luz", "s": 51.84, "e": 52.05, "key": false}, {"w": "con", "s": 52.05, "e": 52.26, "key": false}, {"w": "un", "s": 52.26, "e": 52.39, "key": false}, {"w": "filtro", "s": 52.39, "e": 52.82, "key": true}, {"w": "que", "s": 52.82, "e": 53.03, "key": false}, {"w": "solo", "s": 53.03, "e": 53.17, "key": false}, {"w": "deja", "s": 53.17, "e": 53.64, "key": false}, {"w": "pasar", "s": 53.64, "e": 53.89, "key": false}, {"w": "el", "s": 53.94, "e": 54.06, "key": false}, {"w": "infrarrojo.", "s": 54.14, "e": 55.0, "key": false}]}, {"id": "l14", "s": 55.3, "e": 59.0, "words": [{"w": "Traduce", "s": 55.3, "e": 55.52, "key": false}, {"w": "los", "s": 55.52, "e": 55.74, "key": false}, {"w": "destellos", "s": 55.74, "e": 56.4, "key": false}, {"w": "a", "s": 56.4, "e": 56.48, "key": false}, {"w": "unos", "s": 56.48, "e": 56.78, "key": false}, {"w": "y", "s": 56.78, "e": 56.85, "key": false}, {"w": "ceros,", "s": 56.85, "e": 57.17, "key": false}, {"w": "y", "s": 57.17, "e": 57.3, "key": false}, {"w": "la", "s": 57.3, "e": 57.4, "key": false}, {"w": "tele", "s": 57.64, "e": 57.74, "key": false}, {"w": "cambia", "s": 57.74, "e": 58.18, "key": false}, {"w": "de", "s": 58.19, "e": 58.34, "key": false}, {"w": "canal.", "s": 58.34, "e": 59.0, "key": true}]}, {"id": "l15", "s": 59.01, "e": 63.0, "words": [{"w": "Lo", "s": 59.01, "e": 59.14, "key": false}, {"w": "prometido:", "s": 59.33, "e": 60.0, "key": false}, {"w": "el", "s": 60, "e": 60.12, "key": false}, {"w": "sol", "s": 60.12, "e": 60.3, "key": false}, {"w": "también", "s": 60.3, "e": 60.73, "key": false}, {"w": "da", "s": 60.73, "e": 60.85, "key": false}, {"w": "infrarrojo,", "s": 60.85, "e": 61.57, "key": false}, {"w": "pero", "s": 61.64, "e": 61.82, "key": false}, {"w": "su", "s": 61.82, "e": 61.88, "key": false}, {"w": "luz", "s": 61.94, "e": 62.06, "key": false}, {"w": "no", "s": 62.14, "e": 62.24, "key": false}, {"w": "parpadea.", "s": 62.24, "e": 63.0, "key": true}]}, {"id": "l16", "s": 63, "e": 69.0, "words": [{"w": "Cada", "s": 63, "e": 63.33, "key": false}, {"w": "destello", "s": 63.33, "e": 63.72, "key": false}, {"w": "del", "s": 63.72, "e": 63.88, "key": false}, {"w": "mando", "s": 63.99, "e": 64.2, "key": false}, {"w": "parpadea", "s": 64.2, "e": 64.68, "key": false}, {"w": "unas", "s": 64.68, "e": 64.91, "key": false}, {"w": "38.000", "s": 64.91, "e": 66.01, "key": false}, {"w": "veces", "s": 66.01, "e": 66.31, "key": false}, {"w": "por", "s": 66.31, "e": 66.49, "key": false}, {"w": "segundo,", "s": 66.49, "e": 67.0, "key": false}, {"w": "y", "s": 67, "e": 67.09, "key": false}, {"w": "el", "s": 67.09, "e": 67.27, "key": false}, {"w": "receptor", "s": 67.27, "e": 68.0, "key": false}, {"w": "solo", "s": 68, "e": 68.16, "key": false}, {"w": "escucha", "s": 68.17, "e": 68.49, "key": false}, {"w": "ese", "s": 68.49, "e": 68.62, "key": false}, {"w": "ritmo.", "s": 68.62, "e": 69.0, "key": true}]}, {"id": "l17", "s": 69.01, "e": 72.0, "words": [{"w": "Mándaselo", "s": 69.01, "e": 69.54, "key": false}, {"w": "a", "s": 69.54, "e": 69.6, "key": false}, {"w": "quien", "s": 69.6, "e": 69.88, "key": false}, {"w": "aprieta", "s": 69.99, "e": 70.33, "key": false}, {"w": "el", "s": 70.33, "e": 70.45, "key": false}, {"w": "mando", "s": 70.45, "e": 70.76, "key": false}, {"w": "cada", "s": 70.76, "e": 70.98, "key": false}, {"w": "vez", "s": 71, "e": 71.16, "key": false}, {"w": "más", "s": 71.16, "e": 71.63, "key": false}, {"w": "fuerte.", "s": 71.63, "e": 72.0, "key": true}]}]}</script>
+    <script id="escena" type="application/json">
+{
+ "momentos": [
+  {
+   "id": "INVISIBLE",
+   "clave": "invisible"
+  },
+  {
+   "id": "OJOS",
+   "clave": "ojos"
+  },
+  {
+   "id": "PERO1",
+   "clave": "pero"
+  },
+  {
+   "id": "CAMARA1",
+   "clave": "camara"
+  },
+  {
+   "id": "SOL1",
+   "clave": "sol"
+  },
+  {
+   "id": "TAMBIEN",
+   "clave": "tambien"
+  },
+  {
+   "id": "CAMBIA",
+   "clave": "cambia"
+  },
+  {
+   "id": "FINAL1",
+   "clave": "final"
+  },
+  {
+   "id": "DENTRO",
+   "clave": "dentro"
+  },
+  {
+   "id": "PLACA1",
+   "clave": "placa"
+  },
+  {
+   "id": "GOMAS",
+   "clave": "gomas"
+  },
+  {
+   "id": "DELANTE",
+   "clave": "delante"
+  },
+  {
+   "id": "LED1",
+   "clave": "led"
+  },
+  {
+   "id": "PULSAR",
+   "clave": "pulsar"
+  },
+  {
+   "id": "GOMA2",
+   "clave": "goma"
+  },
+  {
+   "id": "PASTILLA",
+   "clave": "pastilla"
+  },
+  {
+   "id": "CARBON",
+   "clave": "carbon"
+  },
+  {
+   "id": "PISTAS",
+   "clave": "pistas"
+  },
+  {
+   "id": "CIRCUITO",
+   "clave": "circuito"
+  },
+  {
+   "id": "CHIP",
+   "clave": "chip"
+  },
+  {
+   "id": "BOTON1",
+   "clave": "boton"
+  },
+  {
+   "id": "CONVIERTE",
+   "clave": "convierte"
+  },
+  {
+   "id": "CODIGO",
+   "clave": "codigo"
+  },
+  {
+   "id": "MUCHOS",
+   "clave": "muchos"
+  },
+  {
+   "id": "N32",
+   "clave": "32"
+  },
+  {
+   "id": "PRIMEROS",
+   "clave": "primeros"
+  },
+  {
+   "id": "APARATO",
+   "clave": "aparato"
+  },
+  {
+   "id": "DESPUES",
+   "clave": "despues"
+  },
+  {
+   "id": "BOTON2",
+   "clave": "boton"
+  },
+  {
+   "id": "LED2",
+   "clave": "led"
+  },
+  {
+   "id": "DESTELLOS1",
+   "clave": "destellos"
+  },
+  {
+   "id": "PAUSA",
+   "clave": "pausa"
+  },
+  {
+   "id": "CERO",
+   "clave": "cero"
+  },
+  {
+   "id": "LARGA",
+   "clave": "larga"
+  },
+  {
+   "id": "UNO",
+   "clave": "uno"
+  },
+  {
+   "id": "N940",
+   "clave": "940"
+  },
+  {
+   "id": "ROJO",
+   "clave": "rojo"
+  },
+  {
+   "id": "OJOS2",
+   "clave": "ojos"
+  },
+  {
+   "id": "BUENO",
+   "clave": "bueno"
+  },
+  {
+   "id": "CAMARA2",
+   "clave": "camara"
+  },
+  {
+   "id": "CAPTA",
+   "clave": "capta"
+  },
+  {
+   "id": "MORADA",
+   "clave": "morada"
+  },
+  {
+   "id": "TELE1",
+   "clave": "tele"
+  },
+  {
+   "id": "VENTANITA",
+   "clave": "ventanita"
+  },
+  {
+   "id": "RECEPTOR1",
+   "clave": "receptor"
+  },
+  {
+   "id": "SENSOR",
+   "clave": "sensor"
+  },
+  {
+   "id": "FILTRO",
+   "clave": "filtro"
+  },
+  {
+   "id": "PASAR",
+   "clave": "pasar"
+  },
+  {
+   "id": "TRADUCE",
+   "clave": "traduce"
+  },
+  {
+   "id": "CEROS2",
+   "clave": "ceros"
+  },
+  {
+   "id": "TELE2",
+   "clave": "tele"
+  },
+  {
+   "id": "CANAL2",
+   "clave": "canal"
+  },
+  {
+   "id": "PROMETIDO",
+   "clave": "prometido"
+  },
+  {
+   "id": "SOL2",
+   "clave": "sol"
+  },
+  {
+   "id": "SULUZ",
+   "clave": "luz"
+  },
+  {
+   "id": "PARPADEA1",
+   "clave": "parpadea"
+  },
+  {
+   "id": "CADA",
+   "clave": "cada"
+  },
+  {
+   "id": "PARPADEA2",
+   "clave": "parpadea"
+  },
+  {
+   "id": "N38",
+   "clave": "38"
+  },
+  {
+   "id": "SEGUNDO",
+   "clave": "segundo"
+  },
+  {
+   "id": "RECEPTOR2",
+   "clave": "receptor"
+  },
+  {
+   "id": "RITMO",
+   "clave": "ritmo"
+  },
+  {
+   "id": "MANDA",
+   "clave": "mandaselo"
+  },
+  {
+   "id": "APRIETA",
+   "clave": "aprieta"
+  },
+  {
+   "id": "FUERTE",
+   "clave": "fuerte"
+  }
+ ],
+ "gancho": {
+  "texto": "Tu mando dispara una luz invisible",
+  "clave": "invisible"
+ },
+ "estilo": "rejilla",
+ "desenfoque": {
+  "apertura": 0,
+  "max": 0.012
+ },
+ "iconos": {
+  "circuito": "rayo",
+  "destellos": "onda"
+ },
+ "etiquetas": [
+  {
+   "texto": "LED INFRARROJO",
+   "pieza": "mando.led",
+   "desde": "INVISIBLE",
+   "hasta": "OJOS",
+   "dx": 60,
+   "dy": -260
+  },
+  {
+   "texto": "PLACA",
+   "pieza": "mando.placa",
+   "desde": "PLACA1",
+   "hasta": "GOMAS",
+   "dx": 60,
+   "dy": 220
+  },
+  {
+   "texto": "GOMAS",
+   "pieza": "mando.goma",
+   "desde": "GOMAS",
+   "hasta": "LED1",
+   "dx": 60,
+   "dy": -240
+  },
+  {
+   "texto": "LED INFRARROJO",
+   "pieza": "mando.led",
+   "desde": "LED1",
+   "hasta": "PULSAR",
+   "dx": 60,
+   "dy": -260
+  },
+  {
+   "texto": "PASTILLA DE CARBÓN",
+   "pieza": "mando.pastilla",
+   "desde": "CARBON",
+   "hasta": "PISTAS",
+   "dx": 60,
+   "dy": -260
+  },
+  {
+   "texto": "PISTAS",
+   "pieza": "mando.pistas",
+   "desde": "PISTAS",
+   "hasta": "CIRCUITO",
+   "dx": 60,
+   "dy": -260
+  },
+  {
+   "texto": "CHIP",
+   "pieza": "mando.chip",
+   "desde": "CHIP",
+   "hasta": "CONVIERTE",
+   "dx": 60,
+   "dy": -240
+  },
+  {
+   "texto": "APARATO",
+   "pieza": "senal.aparato",
+   "desde": "APARATO",
+   "hasta": "DESPUES",
+   "dx": 40,
+   "dy": 200
+  },
+  {
+   "texto": "BOTÓN",
+   "pieza": "senal.boton",
+   "desde": "DESPUES",
+   "hasta": "LED2",
+   "dx": 40,
+   "dy": 200
+  },
+  {
+   "texto": "PAUSA CORTA = 0",
+   "pieza": "senal.ceroArriba",
+   "desde": "PAUSA",
+   "hasta": "LARGA",
+   "dx": 40,
+   "dy": -230
+  },
+  {
+   "texto": "PAUSA LARGA = 1",
+   "pieza": "senal.unoArriba",
+   "desde": "LARGA",
+   "hasta": "N940",
+   "dx": 40,
+   "dy": -230
+  },
+  {
+   "texto": "INFRARROJO",
+   "pieza": "esp.ir",
+   "desde": "ROJO",
+   "hasta": "OJOS2",
+   "dx": 40,
+   "dy": -240
+  },
+  {
+   "texto": "LO QUE VES",
+   "pieza": "esp.ojo",
+   "desde": "OJOS2",
+   "hasta": "BUENO",
+   "dx": 40,
+   "dy": -220
+  },
+  {
+   "texto": "LUZ INFRARROJA",
+   "pieza": "movil.visor",
+   "desde": "MORADA",
+   "hasta": "TELE1",
+   "dx": 60,
+   "dy": -240
+  },
+  {
+   "texto": "RECEPTOR",
+   "pieza": "tele.receptor",
+   "desde": "RECEPTOR1",
+   "hasta": "FILTRO",
+   "dx": 60,
+   "dy": -260
+  },
+  {
+   "texto": "FILTRO",
+   "pieza": "rec.lente",
+   "desde": "FILTRO",
+   "hasta": "PASAR",
+   "dx": 60,
+   "dy": -240
+  },
+  {
+   "texto": "FOTODIODO",
+   "pieza": "rec.diodo",
+   "desde": "PASAR",
+   "hasta": "TRADUCE",
+   "dx": 60,
+   "dy": -260
+  },
+  {
+   "texto": "SOL: LUZ FIJA",
+   "pieza": "senal.sol",
+   "desde": "SULUZ",
+   "hasta": "PARPADEA2",
+   "dx": 40,
+   "dy": -230
+  },
+  {
+   "texto": "UN DESTELLO, AMPLIADO",
+   "pieza": "senal.lupa",
+   "desde": "PARPADEA2",
+   "hasta": "N38",
+   "dx": 40,
+   "dy": -330
+  },
+  {
+   "texto": "SOLO ESE RITMO",
+   "pieza": "rec.diodo",
+   "desde": "RECEPTOR2",
+   "hasta": "MANDA",
+   "dx": 60,
+   "dy": -260
+  }
+ ],
+ "notas": [
+  {
+   "texto": "",
+   "desde": 0
+  },
+  {
+   "texto": "Luz infrarroja dibujada en rojo: es invisible",
+   "desde": "INVISIBLE"
+  },
+  {
+   "texto": "Así la ve la cámara de un móvil",
+   "desde": "CAMARA1"
+  },
+  {
+   "texto": "Ilustración simplificada, sin marca",
+   "desde": "SOL1"
+  },
+  {
+   "texto": "Ilustración simplificada, sin marca",
+   "desde": "DENTRO"
+  },
+  {
+   "texto": "Corte lateral, ampliado",
+   "desde": "PASTILLA"
+  },
+  {
+   "texto": "Corriente dibujada en ámbar",
+   "desde": "CIRCUITO"
+  },
+  {
+   "texto": "Código ilustrativo, al estilo del protocolo NEC",
+   "desde": "CONVIERTE"
+  },
+  {
+   "texto": "Destellos ralentizados",
+   "desde": "LED2"
+  },
+  {
+   "texto": "Código ilustrativo, al estilo del protocolo NEC",
+   "desde": "PAUSA"
+  },
+  {
+   "texto": "Longitud de onda típica de un mando",
+   "desde": "N940"
+  },
+  {
+   "texto": "Así la ve la cámara de un móvil",
+   "desde": "BUENO"
+  },
+  {
+   "texto": "Ilustración simplificada, sin marca",
+   "desde": "TELE1"
+  },
+  {
+   "texto": "Receptor ampliado",
+   "desde": "FILTRO"
+  },
+  {
+   "texto": "Luz infrarroja dibujada en rojo: es invisible",
+   "desde": "TELE2"
+  },
+  {
+   "texto": "Valores ilustrativos",
+   "desde": "SULUZ"
+  },
+  {
+   "texto": "La frecuencia más común; hay mandos que usan otras",
+   "desde": "PARPADEA2"
+  },
+  {
+   "texto": "",
+   "desde": "MANDA"
+  }
+ ],
+ "leyenda": [
+  {
+   "color": "#ff4d6d",
+   "forma": "onda",
+   "texto": "luz infrarroja, invisible",
+   "desde": "INVISIBLE",
+   "hasta": "CAMARA1"
+  },
+  {
+   "color": "#ffd38a",
+   "forma": "onda",
+   "texto": "luz del sol",
+   "desde": "SOL1",
+   "hasta": "DENTRO"
+  },
+  {
+   "color": "#ffb347",
+   "forma": "flecha",
+   "texto": "corriente",
+   "desde": "CIRCUITO",
+   "hasta": "CONVIERTE"
+  },
+  {
+   "color": "#ff4d6d",
+   "forma": "punto",
+   "texto": "destello de luz infrarroja",
+   "desde": "CONVIERTE",
+   "hasta": "N940"
+  },
+  {
+   "color": "#e8ecf2",
+   "forma": "flecha",
+   "texto": "luz que ves: se queda fuera",
+   "desde": "FILTRO",
+   "hasta": "TRADUCE"
+  },
+  {
+   "color": "#ff4d6d",
+   "forma": "flecha",
+   "texto": "infrarrojo: pasa",
+   "desde": "FILTRO",
+   "hasta": "TRADUCE"
+  },
+  {
+   "color": "#ff4d6d",
+   "forma": "onda",
+   "texto": "luz infrarroja, invisible",
+   "desde": "TELE2",
+   "hasta": "PROMETIDO"
+  },
+  {
+   "color": "#ffd38a",
+   "forma": "onda",
+   "texto": "luz del sol",
+   "desde": "PROMETIDO",
+   "hasta": "PARPADEA2"
+  }
+ ],
+ "sonidos": [
+  {
+   "tipo": "brillo",
+   "en": "INVISIBLE"
+  },
+  {
+   "tipo": "teclas",
+   "en": "INVISIBLE",
+   "mas": 0.4,
+   "n": 4,
+   "cada": 0.12,
+   "volumen": 0.35
+  },
+  {
+   "tipo": "desliza",
+   "en": "CAMARA1"
+  },
+  {
+   "tipo": "desliza",
+   "en": "SOL1"
+  },
+  {
+   "tipo": "abre",
+   "en": "DENTRO"
+  },
+  {
+   "tipo": "toque",
+   "en": "PULSAR",
+   "mas": 0.2
+  },
+  {
+   "tipo": "toque",
+   "en": "CARBON",
+   "volumen": 0.6
+  },
+  {
+   "tipo": "chip",
+   "en": "CHIP"
+  },
+  {
+   "tipo": "teclas",
+   "en": "CODIGO",
+   "n": 8,
+   "cada": 0.14,
+   "volumen": 0.45
+  },
+  {
+   "tipo": "pop",
+   "en": "APARATO"
+  },
+  {
+   "tipo": "pop",
+   "en": "DESPUES",
+   "mas": 0.4
+  },
+  {
+   "tipo": "teclas",
+   "en": "DESTELLOS1",
+   "n": 6,
+   "cada": 0.16,
+   "volumen": 0.4
+  },
+  {
+   "tipo": "sube",
+   "en": "N940"
+  },
+  {
+   "tipo": "brillo",
+   "en": "MORADA"
+  },
+  {
+   "tipo": "desliza",
+   "en": "TELE1"
+  },
+  {
+   "tipo": "pop",
+   "en": "RECEPTOR1"
+  },
+  {
+   "tipo": "desliza",
+   "en": "FILTRO"
+  },
+  {
+   "tipo": "pop",
+   "en": "CANAL2"
+  },
+  {
+   "tipo": "desliza",
+   "en": "PROMETIDO"
+  },
+  {
+   "tipo": "zumbido",
+   "desde": "PARPADEA2",
+   "hasta": "RITMO",
+   "volumen": 0.5
+  },
+  {
+   "tipo": "sube",
+   "en": "N38"
+  },
+  {
+   "tipo": "desliza",
+   "en": "MANDA"
+  },
+  {
+   "tipo": "toque",
+   "en": "FUERTE"
+  }
+ ],
+ "sets": {
+  "mando": {
+   "objetos": [
+    {
+     "tipo": "mando",
+     "id": "mando"
+    }
+   ],
+   "luz": "anuncio"
+  },
+  "camara": {
+   "objetos": [
+    {
+     "tipo": "movilCamara",
+     "id": "movil"
+    },
+    {
+     "tipo": "mando",
+     "id": "mando2",
+     "pos": [
+      2.5,
+      -9,
+      -34
+     ],
+     "rot": [
+      6,
+      -4,
+      0
+     ]
+    }
+   ],
+   "luz": "estudio"
+  },
+  "salon": {
+   "objetos": [
+    {
+     "tipo": "tele",
+     "id": "tele"
+    }
+   ],
+   "luz": "anuncio"
+  },
+  "receptor": {
+   "objetos": [
+    {
+     "tipo": "receptor",
+     "id": "rec"
+    }
+   ],
+   "luz": "estudio"
+  },
+  "senal": {
+   "objetos": [
+    {
+     "tipo": "senalIR",
+     "id": "senal"
+    }
+   ],
+   "luz": "suave"
+  },
+  "espectro": {
+   "objetos": [
+    {
+     "tipo": "espectro",
+     "id": "esp"
+    }
+   ],
+   "luz": "suave"
+  }
+ },
+ "flujos": {
+  "pista": {
+   "ruta": [
+    {
+     "curva": "mando.pista"
+    }
+   ],
+   "color": "#ffb347",
+   "hebras": 1,
+   "ancho": 0.09,
+   "puntos": 220,
+   "intensidad": 1.2,
+   "ondas": 3,
+   "vel": 1.0
+  },
+  "aLed": {
+   "ruta": [
+    {
+     "curva": "mando.aLed"
+    }
+   ],
+   "color": "#ffb347",
+   "hebras": 1,
+   "ancho": 0.05,
+   "puntos": 260,
+   "intensidad": 1.2,
+   "ondas": 3,
+   "vel": 1.0
+  },
+  "haz": {
+   "set": "mando",
+   "ruta": [
+    [
+     0,
+     1.55,
+     8.7
+    ],
+    [
+     0,
+     1.6,
+     30
+    ]
+   ],
+   "color": "#ff4d6d",
+   "hebras": 1,
+   "separa": 0.001,
+   "ancho": 0.06,
+   "puntos": 120,
+   "ondas": 6,
+   "vel": 1.5,
+   "intensidad": 1.0
+  },
+  "haz2": {
+   "set": "mando",
+   "ruta": [
+    [
+     0.1,
+     1.55,
+     8.7
+    ],
+    [
+     4.5,
+     0.4,
+     28
+    ]
+   ],
+   "color": "#ff4d6d",
+   "hebras": 1,
+   "separa": 0.001,
+   "ancho": 0.06,
+   "puntos": 120,
+   "ondas": 6,
+   "vel": 1.5,
+   "intensidad": 0.8
+  },
+  "haz3": {
+   "set": "mando",
+   "ruta": [
+    [
+     -0.1,
+     1.55,
+     8.7
+    ],
+    [
+     -4.5,
+     2.8,
+     28
+    ]
+   ],
+   "color": "#ff4d6d",
+   "hebras": 1,
+   "separa": 0.001,
+   "ancho": 0.06,
+   "puntos": 120,
+   "ondas": 6,
+   "vel": 1.5,
+   "intensidad": 0.8
+  },
+  "haz4": {
+   "set": "mando",
+   "ruta": [
+    [
+     0.05,
+     1.6,
+     8.7
+    ],
+    [
+     2.2,
+     4.2,
+     28
+    ]
+   ],
+   "color": "#ff4d6d",
+   "hebras": 1,
+   "separa": 0.001,
+   "ancho": 0.06,
+   "puntos": 120,
+   "ondas": 6,
+   "vel": 1.5,
+   "intensidad": 0.7
+  },
+  "haz5": {
+   "set": "mando",
+   "ruta": [
+    [
+     -0.05,
+     1.5,
+     8.7
+    ],
+    [
+     -2.2,
+     -1.0,
+     28
+    ]
+   ],
+   "color": "#ff4d6d",
+   "hebras": 1,
+   "separa": 0.001,
+   "ancho": 0.06,
+   "puntos": 120,
+   "ondas": 6,
+   "vel": 1.5,
+   "intensidad": 0.7
+  },
+  "rayoTele": {
+   "set": "salon",
+   "ruta": [
+    [
+     150,
+     30,
+     170
+    ],
+    "tele.receptor"
+   ],
+   "color": "#ff4d6d",
+   "hebras": 3,
+   "separa": 0.8,
+   "ancho": 0.3,
+   "puntos": 200,
+   "ondas": 9,
+   "vel": 1.6,
+   "intensidad": 1.0
+  },
+  "solRayos": {
+   "set": "salon",
+   "ruta": [
+    [
+     230,
+     70,
+     150
+    ],
+    [
+     30,
+     9.95,
+     1
+    ]
+   ],
+   "color": "#ffd38a",
+   "hebras": 4,
+   "separa": 1.6,
+   "ancho": 0.45,
+   "puntos": 160,
+   "ondas": 0.5,
+   "vel": 0.25,
+   "intensidad": 0.8
+  },
+  "irEntra": {
+   "set": "receptor",
+   "ruta": [
+    [
+     0,
+     4.5,
+     30
+    ],
+    [
+     0,
+     4.5,
+     3.6
+    ],
+    [
+     0,
+     4.5,
+     -0.05
+    ]
+   ],
+   "color": "#ff4d6d",
+   "hebras": 3,
+   "separa": 0.7,
+   "eje": "x",
+   "ancho": 0.12,
+   "puntos": 160,
+   "ondas": 5,
+   "vel": 1.2
+  },
+  "visible1": {
+   "set": "receptor",
+   "ruta": [
+    [
+     0,
+     8.6,
+     30
+    ],
+    [
+     0,
+     6.0,
+     2.9
+    ]
+   ],
+   "color": "#e8ecf2",
+   "hebras": 2,
+   "separa": 0.6,
+   "eje": "x",
+   "ancho": 0.1,
+   "puntos": 120,
+   "ondas": 1.2,
+   "vel": 0.6
+  },
+  "visible2": {
+   "set": "receptor",
+   "ruta": [
+    [
+     0,
+     0.4,
+     30
+    ],
+    [
+     0,
+     3.0,
+     2.9
+    ]
+   ],
+   "color": "#e8ecf2",
+   "hebras": 2,
+   "separa": 0.6,
+   "eje": "x",
+   "ancho": 0.1,
+   "puntos": 120,
+   "ondas": 1.2,
+   "vel": 0.6
+  }
+ },
+ "planos": [
+  {
+   "tipo": "anuncio",
+   "pieza": "mando",
+   "desde": 0,
+   "angulo": 64,
+   "altura": 28,
+   "orbita": 12,
+   "empuje": 0.14,
+   "radio": 9.5,
+   "desplaza": [
+    0,
+    4,
+    6
+   ],
+   "estado": {
+    "ir": 1,
+    "parpadeo": 1
+   },
+   "flujos": [
+    "haz",
+    "haz2",
+    "haz3",
+    "haz4",
+    "haz5"
+   ]
+  },
+  {
+   "tipo": "macro",
+   "pieza": "mando.punta",
+   "desde": "OJOS",
+   "angulo": 12,
+   "altura": 10,
+   "radio": 2.2,
+   "estado": {
+    "ir": 0
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "set": "camara",
+   "pieza": "movil.pantalla",
+   "desde": "CAMARA1",
+   "angulo": -6,
+   "altura": 3,
+   "radio": 6.2,
+   "estado": {
+    "luz": 1,
+    "parpadeo": 1
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "pieza": "tele",
+   "desde": "SOL1",
+   "angulo": 22,
+   "altura": 6,
+   "flujos": [
+    "solRayos"
+   ],
+   "crece": true,
+   "estado": {
+    "canal": 1,
+    "osd": 1
+   }
+  },
+  {
+   "tipo": "macro",
+   "pieza": "tele.canal",
+   "desde": "CAMBIA",
+   "angulo": -10,
+   "altura": 4,
+   "radio": 12,
+   "flujos": [
+    "solRayos"
+   ],
+   "estado": {
+    "canal": 1,
+    "osd": 1
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "pieza": "mando",
+   "desde": "DENTRO",
+   "angulo": 38,
+   "altura": 26,
+   "dist": 0.72,
+   "estado": {
+    "abre": {
+     "de": 0,
+     "a": 1,
+     "dur": 1.0
+    },
+    "rayosX": {
+     "de": 0,
+     "a": 0.85,
+     "dur": 1.0
+    }
+   }
+  },
+  {
+   "tipo": "macro",
+   "pieza": "mando.punta",
+   "desde": "GOMAS",
+   "radio": 4.2,
+   "angulo": 32,
+   "altura": 22,
+   "estado": {
+    "abre": 1,
+    "rayosX": 0.85,
+    "ir": {
+     "de": 0,
+     "a": 1,
+     "en": "LED1",
+     "dur": 0.3
+    }
+   },
+   "resaltar": [
+    "mando.led"
+   ],
+   "colorResalte": "255,77,109"
+  },
+  {
+   "tipo": "macro",
+   "pieza": "mando.boton",
+   "desde": "PULSAR",
+   "radio": 2.6,
+   "angulo": 18,
+   "altura": 38,
+   "estado": {
+    "pulsa": {
+     "de": 0,
+     "a": 1,
+     "en": 0.25,
+     "dur": 0.2
+    }
+   }
+  },
+  {
+   "tipo": "corte",
+   "pieza": "mando.boton",
+   "eje": "x",
+   "en": 0,
+   "radio": 1.9,
+   "desplaza": [
+    0,
+    -0.25,
+    -0.5
+   ],
+   "desde": "PASTILLA",
+   "estado": {
+    "seccion": 1,
+    "pulsa": {
+     "de": 0,
+     "a": 1,
+     "en": "CARBON",
+     "dur": 0.35
+    },
+    "contacto": {
+     "de": 0,
+     "a": 1,
+     "en": "PISTAS",
+     "dur": 0.2
+    }
+   }
+  },
+  {
+   "tipo": "macro",
+   "pieza": "mando.pistas",
+   "desde": "PISTAS",
+   "radio": 0.9,
+   "angulo": 20,
+   "altura": 50,
+   "estado": {
+    "placa": 1,
+    "contacto": 1
+   },
+   "resaltar": [
+    "mando.pistas"
+   ]
+  },
+  {
+   "tipo": "cenital",
+   "pieza": "mando.placa",
+   "desde": "CIRCUITO",
+   "radio": 8.2,
+   "angulo": 0,
+   "gira": 5,
+   "exposicion": 0.8,
+   "estado": {
+    "placa": 1,
+    "contacto": 1
+   },
+   "flujos": [
+    "pista"
+   ],
+   "crece": true,
+   "resaltar": [
+    "mando.chip"
+   ]
+  },
+  {
+   "tipo": "anuncio",
+   "pieza": "senal.centro",
+   "desde": "CONVIERTE",
+   "angulo": 52,
+   "altura": 10,
+   "radio": 26,
+   "estado": {
+    "crece": {
+     "de": 0,
+     "a": 1,
+     "dur": 1.7
+    },
+    "barrido": 0
+   }
+  },
+  {
+   "tipo": "cifra",
+   "pieza": "senal.centro",
+   "desde": "MUCHOS",
+   "angulo": -12,
+   "lectura": {
+    "de": 0,
+    "a": 32,
+    "en": "N32",
+    "dur": 0.6,
+    "titulo": "UNOS Y CEROS POR BOTÓN"
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "pieza": "senal.aparato",
+   "desde": "PRIMEROS",
+   "angulo": -14,
+   "altura": 5,
+   "radio": 16,
+   "estado": {
+    "grupos": {
+     "de": 0,
+     "a": 1,
+     "dur": 0.5
+    }
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "pieza": "senal.boton",
+   "desde": "DESPUES",
+   "angulo": 14,
+   "altura": 5,
+   "radio": 16,
+   "estado": {
+    "grupos": 1
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "pieza": "mando.punta",
+   "desde": "LED2",
+   "radio": 3.4,
+   "angulo": 14,
+   "altura": 14,
+   "estado": {
+    "ir": 1,
+    "parpadeo": 1
+   },
+   "flujos": [
+    "haz",
+    "haz2",
+    "haz3",
+    "haz4",
+    "haz5"
+   ]
+  },
+  {
+   "tipo": "macro",
+   "pieza": "senal.cero",
+   "desde": "PAUSA",
+   "radio": 6.2,
+   "angulo": -10,
+   "altura": 6,
+   "estado": {
+    "par": {
+     "de": 0,
+     "a": 1,
+     "dur": 0.4
+    }
+   }
+  },
+  {
+   "tipo": "macro",
+   "pieza": "senal.uno",
+   "desde": "LARGA",
+   "radio": 6.2,
+   "angulo": 10,
+   "altura": 6,
+   "estado": {
+    "par": 1
+   }
+  },
+  {
+   "tipo": "cifra",
+   "pieza": "esp.rojo",
+   "radio": 20,
+   "desde": "N940",
+   "angulo": -8,
+   "estado": {
+    "verMarca": 1,
+    "marca": {
+     "de": 700,
+     "a": 940,
+     "dur": 0.9
+    }
+   },
+   "lectura": {
+    "de": 700,
+    "a": 940,
+    "unidad": "nm",
+    "dur": 0.9,
+    "titulo": "LUZ DEL MANDO"
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "pieza": "esp.rojo",
+   "desde": "ROJO",
+   "radio": 15,
+   "desplaza": [
+    2,
+    0,
+    0
+   ],
+   "angulo": -28,
+   "altura": 6,
+   "estado": {
+    "verMarca": 1,
+    "marca": 940,
+    "zonaIR": {
+     "de": 0,
+     "a": 1,
+     "dur": 0.5
+    },
+    "ojo": {
+     "de": 0,
+     "a": 1,
+     "en": "OJOS2",
+     "dur": 0.4
+    }
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "set": "camara",
+   "pieza": "movil",
+   "desde": "BUENO",
+   "angulo": -24,
+   "altura": 8,
+   "estado": {
+    "luz": {
+     "de": 0,
+     "a": 1,
+     "en": "CAPTA",
+     "dur": 0.3
+    },
+    "parpadeo": 1
+   }
+  },
+  {
+   "tipo": "macro",
+   "pieza": "movil.visor",
+   "desde": "CAPTA",
+   "radio": 3.2,
+   "angulo": 6,
+   "altura": 4,
+   "estado": {
+    "luz": 1,
+    "parpadeo": 1
+   }
+  },
+  {
+   "tipo": "macro",
+   "pieza": "tele.ventana",
+   "desde": "TELE1",
+   "radio": 4,
+   "dist": 1.8,
+   "empuje": 0.5,
+   "orbita": 6,
+   "angulo": 10,
+   "altura": 6,
+   "variar": false,
+   "curva": "suave",
+   "estado": {
+    "canal": 1
+   }
+  },
+  {
+   "tipo": "rayosX",
+   "objeto": "tele",
+   "pieza": "tele.receptor",
+   "desde": "RECEPTOR1",
+   "radio": 1.6,
+   "angulo": 25,
+   "altura": 10,
+   "estado": {
+    "receptor": 0.5
+   }
+  },
+  {
+   "tipo": "corte",
+   "pieza": "rec",
+   "eje": "x",
+   "en": 0,
+   "radio": 6.5,
+   "desplaza": [
+    0,
+    1,
+    1.5
+   ],
+   "desde": "FILTRO",
+   "flujos": [
+    "irEntra",
+    "visible1",
+    "visible2"
+   ],
+   "crece": true,
+   "estado": {
+    "diodo": {
+     "de": 0,
+     "a": 1,
+     "en": "PASAR",
+     "dur": 0.4
+    }
+   }
+  },
+  {
+   "tipo": "rayosX",
+   "objeto": "rec",
+   "pieza": "rec",
+   "desde": "TRADUCE",
+   "angulo": 32,
+   "altura": 10,
+   "dist": 0.78,
+   "de": 0,
+   "a": 0.85,
+   "estado": {
+    "diodo": 1,
+    "salida": 1
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "pieza": "tele",
+   "desde": "TELE2",
+   "angulo": 26,
+   "altura": 10,
+   "flujos": [
+    "rayoTele"
+   ],
+   "crece": true,
+   "estado": {
+    "canal": {
+     "de": 1,
+     "a": 2,
+     "en": "CANAL2",
+     "dur": 0.1
+    },
+    "osd": 1,
+    "receptor": 1
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "pieza": "tele",
+   "desde": "PROMETIDO",
+   "angulo": -24,
+   "altura": 12,
+   "flujos": [
+    "solRayos"
+   ],
+   "crece": true,
+   "estado": {
+    "canal": 2,
+    "osd": 0
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "pieza": "senal.centro",
+   "desde": "SULUZ",
+   "angulo": -50,
+   "altura": 10,
+   "radio": 26,
+   "estado": {
+    "sol": {
+     "de": 0,
+     "a": 1,
+     "dur": 0.5
+    },
+    "barrido": 1
+   }
+  },
+  {
+   "tipo": "macro",
+   "pieza": "senal.lupa",
+   "desde": "PARPADEA2",
+   "radio": 17,
+   "desplaza": [
+    0,
+    -8,
+    0
+   ],
+   "angulo": 8,
+   "altura": 6,
+   "estado": {
+    "lupa": {
+     "de": 0,
+     "a": 1,
+     "dur": 0.6
+    }
+   },
+   "lectura": {
+    "de": 0,
+    "a": 38000,
+    "en": "N38",
+    "dur": 1.0,
+    "titulo": "PARPADEOS POR SEGUNDO",
+    "y": 1060
+   }
+  },
+  {
+   "tipo": "macro",
+   "pieza": "rec.lente",
+   "desde": "SEGUNDO",
+   "radio": 4,
+   "angulo": 30,
+   "altura": 12,
+   "flujos": [
+    "irEntra"
+   ],
+   "estado": {
+    "diodo": 1
+   },
+   "cortar": true,
+   "eje": "x"
+  },
+  {
+   "tipo": "compartir",
+   "desde": "MANDA",
+   "elegir": "APRIETA",
+   "enviar": "FUERTE"
+  }
+ ]
+}
+</script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 73.7 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      // 09-mando: the scene is the JSON above (sets, flows and shots), built by the shot templates. The remote, the TV,
+      // the IR receiver, the phone camera, the signal and the spectrum are new library objects (objetos/mando.js and
+      // objetos/senales.js), passed in with opciones.objetos because objetos/index.js does not list them yet.
+      import * as THREE from "three";
+      import { crearPorDentro } from "./comun/pordentro.js";
+      import { crearDetalle } from "./comun/detalle.js";
+      import { crearPlantillas } from "./comun/plantillas.js";
+      import { mando, tele, receptor, movilCamara } from "./comun/objetos/mando.js";
+      import { senalIR, espectro } from "./comun/objetos/senales.js";
+      await Promise.all(['700 50px "Inter"', '400 50px "Inter"', '700 50px "JetBrains Mono"', '400 50px "JetBrains Mono"'].map((f) => document.fonts.load(f)));
+      const C = crearPorDentro(THREE);
+      const X = crearDetalle(THREE, C);
+      // near plane at 0.2 (the remote's pads are 0.7 cm wide and the macros get very close)
+      const P = crearPlantillas(THREE, C, X, { cerca: 0.2, objetos: { mando, tele, receptor, movilCamara, senalIR, espectro } });
+      C.camera.far = 3000; C.camera.updateProjectionMatrix();
+      P.arrancar();
+    </script>
+  </body>
+</html>

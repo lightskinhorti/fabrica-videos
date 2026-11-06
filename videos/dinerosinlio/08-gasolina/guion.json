@@ -1,0 +1,48 @@
+{
+  "titulo": "Tu gasolina lleva dos impuestos",
+  "lines": [
+    "Tu gasolina lleva dos impuestos.",
+    "Y uno se cobra encima del otro. ¿Y cuánto pagas de impuestos al llenar el depósito? Te lo digo al final.",
+    "El dos de noviembre, el litro de gasolina noventa y cinco costaba en España, de media, 1,73 euros.",
+    "Lo dice el boletín petrolero de la Comisión Europea. Sin impuestos, sería 1,16 euros.",
+    "El primer impuesto es el de hidrocarburos: una cantidad fija por cada litro, cueste lo que cueste la gasolina.",
+    "Normalmente son cuarenta y siete céntimos. Pero en noviembre hay una rebaja temporal de veinte, y se queda en veintisiete.",
+    "El segundo es el IVA: un 21%.",
+    "Y aquí está el truco: el IVA no se calcula sobre la gasolina sola, sino sobre la gasolina más el otro impuesto.",
+    "O sea, pagas IVA hasta del impuesto de hidrocarburos: casi seis céntimos por litro.",
+    "Sumados, los dos impuestos son cincuenta y siete céntimos de cada litro: un tercio del precio.",
+    "Con la rebaja, España es el segundo país de la Unión Europea donde menos pesan. La media europea es un 46%.",
+    "¿Y al llenar el depósito? Con cincuenta litros, pagas 86,49 euros.",
+    "Y de eso, 28,65 euros son impuestos.",
+    "Sin la rebaja, el impuesto de hidrocarburos sumaría otros diez euros por depósito, más su IVA.",
+    "¿Pensabas que era más o menos? Te leo en los comentarios."
+  ],
+  "claves": [
+    "impuestos",
+    "encima",
+    "litro",
+    "sin",
+    "fija",
+    "rebaja",
+    "iva",
+    "truco",
+    "hasta",
+    "tercio",
+    "segundo",
+    "depósito",
+    "impuestos",
+    "rebaja",
+    "comentarios"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "El 2 de noviembre de 2026 el litro de gasolina 95 costaba de media en España 1,73 €, y 57 céntimos eran impuestos: el de hidrocarburos (27 céntimos en noviembre, con la rebaja temporal del Real Decreto-ley 25/2026) y el IVA del 21 %, que se calcula también sobre el impuesto de hidrocarburos (Ley 37/1992, artículo 78). Precios del Boletín Petrolero de la Comisión Europea del 2 de noviembre de 2026. Península y Baleares.",
+    "hashtags": [
+      "#gasolina",
+      "#impuestos",
+      "#iva"
+    ],
+    "portada_en": "gasolina"
+  },
+  "voz_dice": "La voz se generó con los números en palabras (un euro con setenta y tres, un euro con dieciséis, veintiuno y cuarenta y seis por ciento, ochenta y seis euros con cuarenta y nueve y veintiocho euros con sesenta y cinco); aquí van en cifras para que los subtítulos coincidan con lo que oye Whisper y se lean bien."
+}

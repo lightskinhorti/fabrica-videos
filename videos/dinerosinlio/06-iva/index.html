@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <link rel="stylesheet" href="comun/dinero.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+      .cifra, .fila b, .grande { font-family: "Archivo Black", sans-serif; }
+      /* this video's layout */
+      .ancho { left: 0; width: 1080px; text-align: center; }
+      .fila.marca { background: #f8dc7a; margin: 0 -16px; padding-left: 16px; padding-right: 16px; border-radius: 8px; }
+      .fila b { white-space: nowrap; }
+      .sello.s50 { font-size: 50px; }
+      .sello.s44 { font-size: 44px; }
+      .cifra.oro { color: #c98f00; }
+      #ticket .doc { width: 640px; }
+      #docLey .doc { width: 440px; }
+      /* a drawing with its name underneath */
+      .item { width: 250px; text-align: center; }
+      .item.ancha { width: 380px; }
+      .item .dib { height: 220px; display: flex; align-items: flex-end; justify-content: center; }
+      .item .lbl { margin-top: 16px; font-size: 28px; font-weight: 800; letter-spacing: 0.1em; white-space: nowrap; }
+      /* columns of the three rates: the inner bar grows from the floor */
+      .col { display: flex; align-items: flex-end; }
+      .col .barcol { width: 100%; height: 0; border: 7px solid #1d2a44; border-bottom: none; border-radius: 18px 18px 0 0; box-shadow: 12px 0 0 #1d2a44; }
+      .suelo { height: 9px; background: #1d2a44; border-radius: 5px; }
+      .seg.prod { background: #fffaf0; color: #1d2a44; }
+      .seg.iva { background: #e5383b; color: #fff; }
+      /* the hook in two lines: "Tu refresco paga / más IVA que tu pan" */
+      #gancho { font-size: 90px; left: 60px; right: 60px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="67.6" data-width="1080" data-height="1920" data-fps="30">
+      <div id="fondo" class="clip" data-start="0" data-duration="67.6" data-track-index="0"></div>
+      <div id="escenario" class="clip" data-start="0" data-duration="67.6" data-track-index="1" data-layout-allow-overlap data-layout-allow-overflow>
+        <!-- A: the hook (bread and a soft drink with their VAT tags), then the shop, the law and the open question -->
+        <div class="pieza" id="panA" style="left:60px; top:960px" data-dibujo="pan" data-args="[560]"></div>
+        <div class="pieza" id="lataA" style="left:700px; top:830px" data-dibujo="lata" data-args='[230, "REFRESCO"]'></div>
+        <div class="pieza" id="tag4A" style="left:140px; top:1190px" data-dibujo="etiqueta" data-args='["4 %", "#2f8f6b", 230]'></div>
+        <div class="pieza" id="tag21A" style="left:705px; top:1230px" data-dibujo="etiqueta" data-args='["21 %", "#e5383b", 250]'></div>
+
+        <div class="pieza" id="tienda" style="left:90px; top:520px" data-dibujo="tienda" data-args='[400, "SÚPER"]'></div>
+        <div class="pieza" id="tachadoA" style="left:100px; top:500px" data-icono="tachado" data-args="[400]"></div>
+        <div class="pieza" id="docLey" style="left:560px; top:580px" data-icono="doc"
+          data-args='["LEY DEL IVA", [["LEY", "37/1992"], ["ARTÍCULOS", "90 Y 91"]]]'></div>
+        <div class="pieza ancho" id="chipCuanto" style="top:1030px"><div class="chip blanco" style="font-size:38px">¿CUÁNTO IVA PAGAMOS EN UN AÑO?</div></div>
+
+        <!-- B: VAT goes inside the price, and it is not always the same -->
+        <div class="pieza" id="ticket" style="left:220px; top:480px" data-icono="doc"
+          data-args='["TICKET DEL SÚPER", [["BARRA DE PAN", "4 %", "tPan"], ["LECHE", "4 %"], ["PASTA", "10 %", "tPasta"], ["AGUA", "10 %"], ["REFRESCO", "21 %", "tRef", "roja"]]]'></div>
+        <div class="pieza ancho" id="selloIncl" style="top:1010px"><div class="sello s50" style="color:#4a78c2; border-color:#4a78c2">IVA INCLUIDO</div></div>
+
+        <!-- C: the general rate and the two lower ones -->
+        <div class="pieza col" id="col21" style="left:110px; top:650px; width:240px; height:600px"><div class="barcol" id="b21" style="background:#e5383b"></div></div>
+        <div class="pieza col" id="col10" style="left:420px; top:650px; width:240px; height:600px"><div class="barcol" id="b10" style="background:#f2b705"></div></div>
+        <div class="pieza col" id="col4" style="left:730px; top:650px; width:240px; height:600px"><div class="barcol" id="b4" style="background:#2f8f6b"></div></div>
+        <div class="pieza suelo" id="suelo" style="left:80px; top:1248px; width:940px"></div>
+        <div class="pieza cifra media roja" id="c21" style="left:80px; top:530px; width:300px">0 %</div>
+        <div class="pieza cifra media oro" id="c10" style="left:390px; top:845px; width:300px">0 %</div>
+        <div class="pieza cifra media verde" id="c4" style="left:700px; top:1015px; width:300px">0 %</div>
+        <div class="pieza rotulo" id="l21" style="left:80px; top:1280px; width:300px">GENERAL</div>
+        <div class="pieza rotulo" id="l10" style="left:390px; top:1280px; width:300px">REDUCIDO</div>
+        <div class="pieza rotulo" id="l4" style="left:700px; top:1280px; width:300px">SUPERREDUCIDO</div>
+
+        <!-- D: what goes at 4 % -->
+        <div class="pieza cifra verde ancho" id="h4" style="top:460px">4 %</div>
+        <div class="pieza rotulo verde ancho" id="r4" style="top:600px">SUPERREDUCIDO</div>
+        <div class="pieza item" id="iPan" style="left:40px; top:660px"><div class="dib" data-dibujo="pan" data-args="[240]"></div><div class="lbl">PAN COMÚN</div></div>
+        <div class="pieza item" id="iLeche" style="left:290px; top:660px"><div class="dib" data-dibujo="brick" data-args='[130, "LECHE", "#4a78c2"]'></div><div class="lbl">LECHE</div></div>
+        <div class="pieza item" id="iHuevos" style="left:540px; top:660px"><div class="dib" data-dibujo="huevos" data-args="[230]"></div><div class="lbl">HUEVOS</div></div>
+        <div class="pieza item" id="iQueso" style="left:790px; top:660px"><div class="dib" data-dibujo="queso" data-args="[230]"></div><div class="lbl">QUESO</div></div>
+        <div class="pieza item" id="iFruta" style="left:165px; top:980px"><div class="dib" data-dibujo="manzana" data-args="[180]"></div><div class="lbl">FRUTA</div></div>
+        <div class="pieza item" id="iVerdura" style="left:415px; top:980px"><div class="dib" data-dibujo="zanahoria" data-args="[150]"></div><div class="lbl">VERDURA</div></div>
+        <div class="pieza item" id="iLegumbres" style="left:665px; top:980px"><div class="dib" data-dibujo="tarro" data-args="[160]"></div><div class="lbl">LEGUMBRES</div></div>
+
+        <!-- E: olive oil at 4 % since 2025, sunflower oil at 10 % -->
+        <div class="pieza ancho" id="chipDesde" style="top:470px"><div class="chip">DESDE 2025</div></div>
+        <div class="pieza" id="bOliva" style="left:190px; top:570px" data-dibujo="botella" data-args='[200, "#9aae2f", "OLIVA"]'></div>
+        <div class="pieza" id="bGirasol" style="left:690px; top:570px" data-dibujo="botella" data-args='[200, "#f6c744", "GIRASOL"]'></div>
+        <div class="pieza" id="tOliva" style="left:175px; top:1070px" data-dibujo="etiqueta" data-args='["4 %", "#2f8f6b", 230]'></div>
+        <div class="pieza" id="tGirasol" style="left:665px; top:1070px" data-dibujo="etiqueta" data-args='["10 %", "#f2b705", 250, "#1d2a44"]'></div>
+
+        <!-- F: almost every other food, and water, at 10 % -->
+        <div class="pieza cifra oro ancho" id="h10" style="top:460px">10 %</div>
+        <div class="pieza rotulo ancho" id="r10" style="top:600px; color:#c98f00">REDUCIDO</div>
+        <div class="pieza item" id="iCarne" style="left:170px; top:660px"><div class="dib" data-dibujo="filete" data-args="[240]"></div><div class="lbl">CARNE</div></div>
+        <div class="pieza item" id="iPescado" style="left:660px; top:660px"><div class="dib" data-dibujo="pescado" data-args="[250]"></div><div class="lbl">PESCADO</div></div>
+        <div class="pieza item" id="iPasta" style="left:170px; top:980px"><div class="dib" data-dibujo="pasta" data-args="[170]"></div><div class="lbl">PASTA</div></div>
+        <div class="pieza item" id="iAgua" style="left:660px; top:980px"><div class="dib" data-dibujo="botella" data-args='[100, "#9fd3f0", "AGUA"]'></div><div class="lbl">AGUA</div></div>
+
+        <!-- G: soft drinks with added sugar or sweetener, at 21 % -->
+        <div class="pieza" id="lataG" style="left:110px; top:560px" data-dibujo="lata" data-args='[280, "REFRESCO"]'></div>
+        <div class="pieza" id="chipAz" style="left:470px; top:610px"><div class="chip blanco" style="font-size:36px">AZÚCAR AÑADIDO</div></div>
+        <div class="pieza" id="chipEd" style="left:470px; top:740px"><div class="chip blanco" style="font-size:36px">O EDULCORANTE</div></div>
+        <div class="pieza" id="sello21" style="left:560px; top:900px"><div class="sello" style="color:#e5383b; border-color:#e5383b; font-size:96px">21 %</div></div>
+
+        <!-- H: a zero soft drink pays the same as a normal one -->
+        <div class="pieza item" id="iNormal" style="left:150px; top:540px"><div class="dib" style="height:420px" data-dibujo="lata" data-args='[240, "REFRESCO"]'></div><div class="lbl">NORMAL</div></div>
+        <div class="pieza item" id="iZero" style="left:640px; top:540px"><div class="dib" style="height:420px" data-dibujo="lata" data-args='[240, "ZERO", "#1d2a44"]'></div><div class="lbl">ZERO</div></div>
+        <div class="pieza" id="tNormal" style="left:150px; top:1060px" data-dibujo="etiqueta" data-args='["21 %", "#e5383b", 250]'></div>
+        <div class="pieza" id="tZero" style="left:640px; top:1060px" data-dibujo="etiqueta" data-args='["21 %", "#e5383b", 250]'></div>
+        <div class="pieza ancho" id="selloIgual" style="top:1230px"><div class="sello s50" style="color:#1d2a44; border-color:#1d2a44">EL MISMO IVA</div></div>
+
+        <!-- I: juice with added sugar pays more than double -->
+        <div class="pieza item ancha" id="iZCon" style="left:85px; top:540px"><div class="dib" style="height:380px" data-dibujo="brick" data-args='[200, "ZUMO", "#f08a24", true]'></div><div class="lbl" style="font-size:26px">CON AZÚCAR AÑADIDO</div></div>
+        <div class="pieza item ancha" id="iZSin" style="left:615px; top:540px"><div class="dib" style="height:380px" data-dibujo="brick" data-args='[200, "ZUMO", "#f08a24", true]'></div><div class="lbl" style="font-size:26px">SIN AZÚCAR AÑADIDO</div></div>
+        <div class="pieza" id="tZCon" style="left:150px; top:1020px" data-dibujo="etiqueta" data-args='["21 %", "#e5383b", 250]'></div>
+        <div class="pieza" id="tZSin" style="left:680px; top:1020px" data-dibujo="etiqueta" data-args='["10 %", "#f2b705", 250, "#1d2a44"]'></div>
+        <div class="pieza ancho" id="selloDoble" style="top:1200px"><div class="sello s50" style="color:#e5383b; border-color:#e5383b">MÁS DEL DOBLE</div></div>
+
+        <!-- J: how much of one euro is VAT -->
+        <div class="pieza" id="chipPan" style="left:90px; top:470px"><div class="chip blanco">1 € DE PAN</div></div>
+        <div class="pieza" id="barPan" style="left:90px; top:570px; width:900px">
+          <div class="barra"><div class="seg prod" id="sPanP" style="width:100%">EL PAN</div><div class="seg iva" id="sPanI" style="width:0%"></div></div>
+        </div>
+        <div class="pieza cifra media roja" id="cPan" style="left:90px; top:735px">0,00</div>
+        <div class="pieza rotulo rojo" id="rPan" style="left:420px; top:768px">CÉNTIMOS DE IVA</div>
+        <div class="pieza" id="chipRef" style="left:90px; top:900px"><div class="chip blanco">1 € DE REFRESCO</div></div>
+        <div class="pieza" id="barRef" style="left:90px; top:1000px; width:900px">
+          <div class="barra"><div class="seg prod" id="sRefP" style="width:100%">EL REFRESCO</div><div class="seg iva" id="sRefI" style="width:0%">IVA</div></div>
+        </div>
+        <div class="pieza cifra media roja" id="cRef" style="left:90px; top:1165px">0,00</div>
+        <div class="pieza rotulo rojo" id="rRef" style="left:470px; top:1198px">CÉNTIMOS DE IVA</div>
+
+        <!-- K: all of us together, in one year, and the closing question -->
+        <div class="pieza ancho" id="chipEntre" style="top:1300px"><div class="chip blanco">¿Y ENTRE TODOS?</div></div>
+        <div class="pieza ancho" id="chipAno" style="top:470px"><div class="chip">EN 2025</div></div>
+        <div class="pieza" id="hacienda" style="left:330px; top:560px" data-icono="edificio" data-args='["HACIENDA", "#fffaf0", 400]'></div>
+        <div class="pieza cifra roja ancho" id="cRec" style="top:960px">0</div>
+        <div class="pieza rotulo rojo ancho" id="rRec" style="top:1105px">MILLONES DE EUROS DE IVA</div>
+        <div class="pieza ancho" id="selloCasi" style="top:1205px"><div class="sello s44" style="color:#1d2a44; border-color:#1d2a44">CASI 100.000 MILLONES</div></div>
+        <div class="pieza ancho" id="chipFin" style="top:1350px"><div class="chip" style="font-size:36px">¿MÁS O MENOS DE LO QUE PENSABAS?</div></div>
+      </div>
+      <div id="gancho" class="clip" data-start="0" data-duration="67.6" data-track-index="2"></div>
+      <div id="note" class="clip" data-start="0" data-duration="67.6" data-track-index="3"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="67.6"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="67.6" data-track-index="4" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 66.32, "lines": [{"id": "l1", "s": 0.14, "e": 2.01, "words": [{"w": "Tu", "s": 0.14, "e": 0.23, "key": false}, {"w": "refresco", "s": 0.23, "e": 0.66, "key": false}, {"w": "paga", "s": 0.73, "e": 0.98, "key": false}, {"w": "más", "s": 0.98, "e": 1.19, "key": false}, {"w": "IVA", "s": 1.19, "e": 1.39, "key": true}, {"w": "que", "s": 1.39, "e": 1.61, "key": false}, {"w": "tu", "s": 1.61, "e": 1.73, "key": false}, {"w": "pan.", "s": 1.78, "e": 2.01, "key": false}]}, {"id": "l2", "s": 2.01, "e": 8.34, "words": [{"w": "No", "s": 2.01, "e": 2.38, "key": false}, {"w": "lo", "s": 2.38, "e": 2.5, "key": false}, {"w": "decide", "s": 2.5, "e": 2.89, "key": false}, {"w": "la", "s": 2.9, "e": 3.03, "key": false}, {"w": "tienda,", "s": 3.03, "e": 3.55, "key": false}, {"w": "sino", "s": 3.55, "e": 3.82, "key": false}, {"w": "la", "s": 3.82, "e": 3.94, "key": false}, {"w": "ley.", "s": 4.2, "e": 4.433, "key": true}, {"w": "¿Y", "s": 4.433, "e": 4.51, "key": false}, {"w": "cuánto", "s": 4.63, "e": 4.85, "key": false}, {"w": "IVA", "s": 4.91, "e": 5.06, "key": false}, {"w": "pagamos", "s": 5.13, "e": 5.54, "key": false}, {"w": "entre", "s": 5.54, "e": 5.86, "key": false}, {"w": "todos", "s": 5.86, "e": 6.13, "key": false}, {"w": "en", "s": 6.18, "e": 6.3, "key": false}, {"w": "un", "s": 6.31, "e": 6.38, "key": false}, {"w": "año?", "s": 6.63, "e": 6.88, "key": false}, {"w": "Te", "s": 6.88, "e": 7.04, "key": false}, {"w": "lo", "s": 7.04, "e": 7.12, "key": false}, {"w": "digo", "s": 7.21, "e": 7.49, "key": false}, {"w": "al", "s": 7.55, "e": 7.69, "key": false}, {"w": "final.", "s": 7.69, "e": 8.34, "key": false}]}, {"id": "l3", "s": 8.41, "e": 12.0, "words": [{"w": "El", "s": 8.41, "e": 8.51, "key": false}, {"w": "IVA", "s": 8.62, "e": 8.67, "key": false}, {"w": "va", "s": 8.67, "e": 8.77, "key": false}, {"w": "dentro", "s": 8.78, "e": 9.17, "key": true}, {"w": "del", "s": 9.17, "e": 9.34, "key": false}, {"w": "precio", "s": 9.34, "e": 9.68, "key": false}, {"w": "de", "s": 9.68, "e": 9.79, "key": false}, {"w": "casi", "s": 9.79, "e": 10.01, "key": false}, {"w": "todo,", "s": 10.01, "e": 10.38, "key": false}, {"w": "pero", "s": 10.4, "e": 10.41, "key": false}, {"w": "no", "s": 10.41, "e": 10.78, "key": false}, {"w": "siempre", "s": 10.78, "e": 11.12, "key": false}, {"w": "es", "s": 11.21, "e": 11.33, "key": false}, {"w": "el", "s": 11.33, "e": 11.45, "key": false}, {"w": "mismo.", "s": 11.45, "e": 12.0, "key": false}]}, {"id": "l4", "s": 12, "e": 17.85, "words": [{"w": "El", "s": 12, "e": 12.23, "key": false}, {"w": "general", "s": 12.23, "e": 12.89, "key": true}, {"w": "es", "s": 12.89, "e": 13.09, "key": false}, {"w": "un", "s": 13.09, "e": 13.29, "key": false}, {"w": "21%.", "s": 13.29, "e": 13.98, "key": false}, {"w": "En", "s": 14.38, "e": 14.43, "key": false}, {"w": "el", "s": 14.43, "e": 14.56, "key": false}, {"w": "súper", "s": 14.56, "e": 14.88, "key": false}, {"w": "hay", "s": 14.89, "e": 15.09, "key": false}, {"w": "dos", "s": 15.09, "e": 15.29, "key": false}, {"w": "más", "s": 15.29, "e": 15.47, "key": false}, {"w": "bajos:", "s": 15.51, "e": 15.94, "key": false}, {"w": "el", "s": 16.15, "e": 16.2, "key": false}, {"w": "10", "s": 16.61, "e": 16.88, "key": false}, {"w": "y", "s": 16.88, "e": 16.99, "key": false}, {"w": "el", "s": 16.99, "e": 17.21, "key": false}, {"w": "4.", "s": 17.21, "e": 17.85, "key": false}]}, {"id": "l5", "s": 17.85, "e": 24.4, "words": [{"w": "Al", "s": 17.85, "e": 18.13, "key": false}, {"w": "4%", "s": 18.13, "e": 18.46, "key": false}, {"w": "van", "s": 18.46, "e": 18.7, "key": false}, {"w": "el", "s": 18.77, "e": 18.93, "key": false}, {"w": "pan", "s": 18.93, "e": 19.21, "key": true}, {"w": "común,", "s": 19.21, "e": 19.88, "key": false}, {"w": "la", "s": 19.88, "e": 20.28, "key": false}, {"w": "leche,", "s": 20.28, "e": 20.6, "key": false}, {"w": "los", "s": 20.6, "e": 20.8, "key": false}, {"w": "huevos,", "s": 20.81, "e": 21.38, "key": false}, {"w": "el", "s": 21.41, "e": 21.55, "key": false}, {"w": "queso,", "s": 21.55, "e": 22.1, "key": false}, {"w": "la", "s": 22.1, "e": 22.23, "key": false}, {"w": "fruta,", "s": 22.23, "e": 22.7, "key": false}, {"w": "la", "s": 22.7, "e": 22.85, "key": false}, {"w": "verdura", "s": 22.85, "e": 23.4, "key": false}, {"w": "y", "s": 23.4, "e": 23.44, "key": false}, {"w": "las", "s": 23.44, "e": 23.62, "key": false}, {"w": "legumbres.", "s": 23.62, "e": 24.4, "key": false}]}, {"id": "l6", "s": 24.41, "e": 29.29, "words": [{"w": "Y,", "s": 24.41, "e": 24.483, "key": false}, {"w": "desde", "s": 24.483, "e": 24.85, "key": false}, {"w": "2025,", "s": 24.85, "e": 25.9, "key": false}, {"w": "el", "s": 25.96, "e": 26.02, "key": false}, {"w": "aceite", "s": 26.07, "e": 26.38, "key": false}, {"w": "de", "s": 26.51, "e": 26.58, "key": false}, {"w": "oliva.", "s": 26.78, "e": 27.29, "key": true}, {"w": "El", "s": 27.3, "e": 27.45, "key": false}, {"w": "de", "s": 27.45, "e": 27.6, "key": false}, {"w": "girasol", "s": 27.6, "e": 28.13, "key": false}, {"w": "paga", "s": 28.13, "e": 28.34, "key": false}, {"w": "el", "s": 28.52, "e": 28.58, "key": false}, {"w": "10.", "s": 28.68, "e": 29.29, "key": false}]}, {"id": "l7", "s": 29.29, "e": 35.4, "words": [{"w": "Al", "s": 29.29, "e": 29.53, "key": false}, {"w": "10", "s": 29.53, "e": 29.83, "key": false}, {"w": "va", "s": 29.83, "e": 29.96, "key": false}, {"w": "casi", "s": 29.96, "e": 30.23, "key": false}, {"w": "todo", "s": 30.23, "e": 30.5, "key": false}, {"w": "lo", "s": 30.5, "e": 30.62, "key": false}, {"w": "demás", "s": 30.63, "e": 30.91, "key": false}, {"w": "que", "s": 30.97, "e": 31.16, "key": false}, {"w": "se", "s": 31.16, "e": 31.28, "key": false}, {"w": "come:", "s": 31.28, "e": 31.8, "key": false}, {"w": "carne,", "s": 32.03, "e": 32.44, "key": false}, {"w": "pescado,", "s": 32.44, "e": 33.27, "key": false}, {"w": "pasta…", "s": 33.27, "e": 33.73, "key": false}, {"w": "y", "s": 33.74, "e": 33.78, "key": false}, {"w": "también", "s": 34.18, "e": 34.49, "key": false}, {"w": "el", "s": 34.49, "e": 34.67, "key": false}, {"w": "agua.", "s": 34.68, "e": 35.4, "key": true}]}, {"id": "l8", "s": 35.41, "e": 40.6, "words": [{"w": "¿Y", "s": 35.41, "e": 35.49, "key": false}, {"w": "el", "s": 35.49, "e": 35.65, "key": false}, {"w": "refresco?", "s": 35.65, "e": 36.6, "key": false}, {"w": "Si", "s": 36.6, "e": 36.72, "key": false}, {"w": "lleva", "s": 36.73, "e": 37.09, "key": false}, {"w": "azúcar", "s": 37.09, "e": 37.38, "key": false}, {"w": "o", "s": 37.51, "e": 37.52, "key": false}, {"w": "edulcorante", "s": 37.72, "e": 38.35, "key": true}, {"w": "añadido,", "s": 38.35, "e": 39.06, "key": false}, {"w": "la", "s": 39.06, "e": 39.22, "key": false}, {"w": "ley", "s": 39.22, "e": 39.34, "key": false}, {"w": "le", "s": 39.49, "e": 39.62, "key": false}, {"w": "pone", "s": 39.64, "e": 39.71, "key": false}, {"w": "el", "s": 40.01, "e": 40.07, "key": false}, {"w": "21.", "s": 40.14, "e": 40.6, "key": false}]}, {"id": "l9", "s": 40.6, "e": 43.6, "words": [{"w": "Por", "s": 40.6, "e": 40.83, "key": false}, {"w": "eso", "s": 40.83, "e": 41.0, "key": false}, {"w": "un", "s": 41, "e": 41.13, "key": false}, {"w": "refresco", "s": 41.13, "e": 41.66, "key": false}, {"w": "zero", "s": 41.67, "e": 41.92, "key": true}, {"w": "paga", "s": 41.94, "e": 42.21, "key": false}, {"w": "lo", "s": 42.21, "e": 42.33, "key": false}, {"w": "mismo", "s": 42.34, "e": 42.58, "key": false}, {"w": "que", "s": 42.58, "e": 42.98, "key": false}, {"w": "uno", "s": 42.98, "e": 43.08, "key": false}, {"w": "normal.", "s": 43.08, "e": 43.6, "key": false}]}, {"id": "l10", "s": 43.61, "e": 47.4, "words": [{"w": "Y", "s": 43.61, "e": 43.677, "key": false}, {"w": "un", "s": 43.677, "e": 43.81, "key": false}, {"w": "zumo", "s": 43.83, "e": 44.05, "key": false}, {"w": "con", "s": 44.11, "e": 44.26, "key": false}, {"w": "azúcar", "s": 44.33, "e": 44.73, "key": false}, {"w": "añadido", "s": 44.73, "e": 45.21, "key": false}, {"w": "paga", "s": 45.27, "e": 45.5, "key": false}, {"w": "más", "s": 45.5, "e": 45.58, "key": false}, {"w": "del", "s": 45.58, "e": 45.98, "key": false}, {"w": "doble", "s": 45.98, "e": 46.28, "key": true}, {"w": "que", "s": 46.28, "e": 46.48, "key": false}, {"w": "uno", "s": 46.49, "e": 46.69, "key": false}, {"w": "sin", "s": 46.75, "e": 46.91, "key": false}, {"w": "él.", "s": 46.91, "e": 47.4, "key": false}]}, {"id": "l11", "s": 47.4, "e": 53.6, "words": [{"w": "En", "s": 47.4, "e": 47.63, "key": false}, {"w": "un", "s": 47.63, "e": 47.71, "key": false}, {"w": "euro", "s": 47.72, "e": 48.04, "key": false}, {"w": "de", "s": 48.04, "e": 48.2, "key": false}, {"w": "pan,", "s": 48.2, "e": 48.6, "key": false}, {"w": "casi", "s": 48.6, "e": 48.9, "key": false}, {"w": "4", "s": 48.96, "e": 49.13, "key": false}, {"w": "céntimos", "s": 49.18, "e": 49.8, "key": true}, {"w": "son", "s": 49.8, "e": 50.04, "key": false}, {"w": "IVA.", "s": 50.04, "e": 50.6, "key": false}, {"w": "En", "s": 50.6, "e": 50.78, "key": false}, {"w": "un", "s": 50.78, "e": 50.96, "key": false}, {"w": "euro", "s": 50.96, "e": 51.32, "key": false}, {"w": "de", "s": 51.33, "e": 51.34, "key": false}, {"w": "refresco,", "s": 52.01, "e": 52.25, "key": false}, {"w": "más", "s": 52.25, "e": 52.52, "key": false}, {"w": "de", "s": 52.53, "e": 52.71, "key": false}, {"w": "17.", "s": 52.71, "e": 53.6, "key": false}]}, {"id": "l12", "s": 53.61, "e": 60.5, "words": [{"w": "¿Y", "s": 53.61, "e": 53.685, "key": false}, {"w": "entre", "s": 53.685, "e": 54.06, "key": false}, {"w": "todos?", "s": 54.11, "e": 54.64, "key": false}, {"w": "En", "s": 54.64, "e": 54.8, "key": false}, {"w": "2025,", "s": 54.8, "e": 55.58, "key": false}, {"w": "Hacienda", "s": 55.77, "e": 56.42, "key": true}, {"w": "ingresó", "s": 56.42, "e": 56.98, "key": false}, {"w": "por", "s": 56.98, "e": 57.22, "key": false}, {"w": "el", "s": 57.22, "e": 57.38, "key": false}, {"w": "IVA", "s": 57.38, "e": 57.54, "key": false}, {"w": "99.532", "s": 57.75, "e": 59.08, "key": false}, {"w": "millones", "s": 59.08, "e": 59.73, "key": false}, {"w": "de", "s": 59.73, "e": 59.89, "key": false}, {"w": "euros.", "s": 59.89, "e": 60.5, "key": false}]}, {"id": "l13", "s": 60.51, "e": 63.0, "words": [{"w": "Casi", "s": 60.51, "e": 60.72, "key": false}, {"w": "100.000", "s": 60.73, "e": 61.93, "key": false}, {"w": "millones", "s": 61.93, "e": 62.39, "key": false}, {"w": "en", "s": 62.39, "e": 62.48, "key": false}, {"w": "un", "s": 62.48, "e": 62.78, "key": false}, {"w": "año.", "s": 62.78, "e": 63.0, "key": true}]}, {"id": "l14", "s": 63, "e": 66.2, "words": [{"w": "¿Pensabas", "s": 63, "e": 63.52, "key": false}, {"w": "que", "s": 63.52, "e": 63.71, "key": false}, {"w": "era", "s": 63.71, "e": 63.89, "key": false}, {"w": "más", "s": 63.9, "e": 64.09, "key": false}, {"w": "o", "s": 64.09, "e": 64.15, "key": false}, {"w": "menos?", "s": 64.15, "e": 64.7, "key": false}, {"w": "Te", "s": 64.71, "e": 64.81, "key": false}, {"w": "leo", "s": 64.93, "e": 65.0, "key": false}, {"w": "en", "s": 65, "e": 65.12, "key": false}, {"w": "los", "s": 65.12, "e": 65.3, "key": false}, {"w": "comentarios.", "s": 65.3, "e": 66.2, "key": true}]}]}</script>
+    <script id="escena" type="application/json">
+      {
+        "momentos": [
+          { "id": "DECIDE", "clave": "decide" },
+          { "id": "TIENDA", "clave": "tienda" },
+          { "id": "SINO", "clave": "sino" },
+          { "id": "LEY2", "clave": "ley" },
+          { "id": "CUANTO", "clave": "cuanto" },
+          { "id": "DENTRO", "clave": "dentro" },
+          { "id": "PRECIO", "clave": "precio" },
+          { "id": "MISMO3", "clave": "mismo" },
+          { "id": "GENERAL", "clave": "general" },
+          { "id": "SUPER", "clave": "super" },
+          { "id": "BAJOS", "clave": "bajos" },
+          { "id": "Y4", "clave": "y", "mas": 0.2 },
+          { "id": "VAN", "clave": "van" },
+          { "id": "PAN5", "clave": "pan" },
+          { "id": "LECHE", "clave": "leche" },
+          { "id": "HUEVOS", "clave": "huevos" },
+          { "id": "QUESO", "clave": "queso" },
+          { "id": "FRUTA", "clave": "fruta" },
+          { "id": "VERDURA", "clave": "verdura" },
+          { "id": "LEGUMBRES", "clave": "legumbres" },
+          { "id": "DESDE", "clave": "desde" },
+          { "id": "ACEITE", "clave": "aceite" },
+          { "id": "OLIVA", "clave": "oliva" },
+          { "id": "GIRASOL", "clave": "girasol" },
+          { "id": "PAGA6", "clave": "paga" },
+          { "id": "VA7", "clave": "va" },
+          { "id": "DEMAS", "clave": "demas" },
+          { "id": "CARNE", "clave": "carne" },
+          { "id": "PESCADO", "clave": "pescado" },
+          { "id": "PASTA", "clave": "pasta" },
+          { "id": "AGUA", "clave": "agua" },
+          { "id": "REFRESCO8", "clave": "refresco" },
+          { "id": "AZUCAR8", "clave": "azucar" },
+          { "id": "EDULCORANTE", "clave": "edulcorante" },
+          { "id": "LEY8", "clave": "ley" },
+          { "id": "ZERO", "clave": "zero" },
+          { "id": "MISMO9", "clave": "mismo" },
+          { "id": "NORMAL", "clave": "normal" },
+          { "id": "ZUMO", "clave": "zumo" },
+          { "id": "PAGA10", "clave": "paga" },
+          { "id": "DOBLE", "clave": "doble" },
+          { "id": "EURO11", "clave": "euro" },
+          { "id": "CASI11", "clave": "casi" },
+          { "id": "EURO11B", "clave": "euro" },
+          { "id": "MAS11", "clave": "mas" },
+          { "id": "ENTRE", "clave": "entre" },
+          { "id": "HACIENDA", "clave": "hacienda" },
+          { "id": "INGRESO", "clave": "ingreso" },
+          { "id": "CASI13", "clave": "casi" },
+          { "id": "PENSABAS", "clave": "pensabas" }
+        ],
+        "gancho": { "texto": "Tu refresco paga más IVA que tu pan", "clave": "IVA" },
+        "piezas": [
+          { "id": "panA", "desde": 0.1, "hasta": "DECIDE", "entra": "escala", "dura": 0.6 },
+          { "id": "lataA", "desde": 0.3, "hasta": "DECIDE", "entra": "der" },
+          { "id": "tag4A", "desde": 0.5, "hasta": "DECIDE", "entra": "sello" },
+          { "id": "tag21A", "desde": 0.7, "hasta": "DECIDE", "entra": "sello" },
+
+          { "id": "tienda", "desde": "DECIDE", "hasta": "DENTRO", "entra": "escala" },
+          { "id": "tachadoA", "desde": "SINO", "hasta": "DENTRO", "entra": "escala" },
+          { "id": "docLey", "desde": "LEY2", "hasta": "DENTRO", "entra": "der" },
+          { "id": "chipCuanto", "desde": "CUANTO", "hasta": "DENTRO", "entra": "baja" },
+
+          { "id": "ticket", "desde": "DENTRO", "hasta": "GENERAL", "entra": "sube" },
+          { "id": "selloIncl", "desde": "PRECIO", "hasta": "GENERAL", "entra": "sello" },
+
+          { "id": "suelo", "desde": "GENERAL", "hasta": "VAN", "entra": "fundido" },
+          { "id": "col21", "desde": "GENERAL", "hasta": "VAN", "entra": "fundido", "dura": 0.2 },
+          { "id": "c21", "desde": "GENERAL", "hasta": "VAN", "entra": "escala" },
+          { "id": "l21", "desde": "GENERAL", "hasta": "VAN" },
+          { "id": "col10", "desde": "BAJOS", "hasta": "VAN", "entra": "fundido", "dura": 0.2 },
+          { "id": "c10", "desde": "BAJOS", "hasta": "VAN", "entra": "escala" },
+          { "id": "l10", "desde": "BAJOS", "hasta": "VAN" },
+          { "id": "col4", "desde": "Y4", "hasta": "VAN", "entra": "fundido", "dura": 0.2 },
+          { "id": "c4", "desde": "Y4", "hasta": "VAN", "entra": "escala" },
+          { "id": "l4", "desde": "Y4", "hasta": "VAN" },
+
+          { "id": "h4", "desde": "VAN", "hasta": "DESDE", "entra": "escala" },
+          { "id": "r4", "desde": "VAN", "hasta": "DESDE" },
+          { "id": "iPan", "desde": "PAN5", "hasta": "DESDE", "entra": "escala" },
+          { "id": "iLeche", "desde": "LECHE", "hasta": "DESDE", "entra": "escala" },
+          { "id": "iHuevos", "desde": "HUEVOS", "hasta": "DESDE", "entra": "escala" },
+          { "id": "iQueso", "desde": "QUESO", "hasta": "DESDE", "entra": "escala" },
+          { "id": "iFruta", "desde": "FRUTA", "hasta": "DESDE", "entra": "escala" },
+          { "id": "iVerdura", "desde": "VERDURA", "hasta": "DESDE", "entra": "escala" },
+          { "id": "iLegumbres", "desde": "LEGUMBRES", "hasta": "DESDE", "entra": "escala" },
+
+          { "id": "chipDesde", "desde": "DESDE", "hasta": "VA7", "entra": "baja" },
+          { "id": "bOliva", "desde": "ACEITE", "hasta": "VA7", "entra": "izq" },
+          { "id": "tOliva", "desde": "OLIVA", "hasta": "VA7", "entra": "sello" },
+          { "id": "bGirasol", "desde": "GIRASOL", "hasta": "VA7", "entra": "der" },
+          { "id": "tGirasol", "desde": "PAGA6", "hasta": "VA7", "entra": "sello" },
+
+          { "id": "h10", "desde": "VA7", "hasta": "REFRESCO8", "entra": "escala" },
+          { "id": "r10", "desde": "VA7", "hasta": "REFRESCO8" },
+          { "id": "iCarne", "desde": "CARNE", "hasta": "REFRESCO8", "entra": "escala" },
+          { "id": "iPescado", "desde": "PESCADO", "hasta": "REFRESCO8", "entra": "escala" },
+          { "id": "iPasta", "desde": "PASTA", "hasta": "REFRESCO8", "entra": "escala" },
+          { "id": "iAgua", "desde": "AGUA", "hasta": "REFRESCO8", "entra": "escala" },
+
+          { "id": "lataG", "desde": "REFRESCO8", "hasta": "ZERO", "entra": "izq" },
+          { "id": "chipAz", "desde": "AZUCAR8", "hasta": "ZERO", "entra": "der" },
+          { "id": "chipEd", "desde": "EDULCORANTE", "hasta": "ZERO", "entra": "der" },
+          { "id": "sello21", "desde": "LEY8", "hasta": "ZERO", "entra": "sello" },
+
+          { "id": "iNormal", "desde": "ZERO", "hasta": "ZUMO", "entra": "izq" },
+          { "id": "iZero", "desde": "ZERO", "hasta": "ZUMO", "entra": "der" },
+          { "id": "tNormal", "desde": "MISMO9", "hasta": "ZUMO", "entra": "sello" },
+          { "id": "tZero", "desde": "MISMO9", "hasta": "ZUMO", "entra": "sello" },
+          { "id": "selloIgual", "desde": "NORMAL", "hasta": "ZUMO", "entra": "sello" },
+
+          { "id": "iZCon", "desde": "ZUMO", "hasta": "EURO11", "entra": "izq" },
+          { "id": "tZCon", "desde": "ZUMO", "hasta": "EURO11", "entra": "sello" },
+          { "id": "iZSin", "desde": "PAGA10", "hasta": "EURO11", "entra": "der" },
+          { "id": "tZSin", "desde": "PAGA10", "hasta": "EURO11", "entra": "sello" },
+          { "id": "selloDoble", "desde": "DOBLE", "hasta": "EURO11", "entra": "sello" },
+
+          { "id": "chipPan", "desde": "EURO11", "hasta": "HACIENDA", "entra": "izq" },
+          { "id": "barPan", "desde": "EURO11", "hasta": "HACIENDA", "entra": "izq" },
+          { "id": "cPan", "desde": "CASI11", "hasta": "HACIENDA", "entra": "escala" },
+          { "id": "rPan", "desde": "CASI11", "hasta": "HACIENDA" },
+          { "id": "chipRef", "desde": "EURO11B", "hasta": "HACIENDA", "entra": "izq" },
+          { "id": "barRef", "desde": "EURO11B", "hasta": "HACIENDA", "entra": "izq" },
+          { "id": "cRef", "desde": "MAS11", "hasta": "HACIENDA", "entra": "escala" },
+          { "id": "rRef", "desde": "MAS11", "hasta": "HACIENDA" },
+
+          { "id": "chipEntre", "desde": "ENTRE", "hasta": "HACIENDA", "entra": "baja" },
+          { "id": "chipAno", "desde": "HACIENDA", "entra": "escala" },
+          { "id": "hacienda", "desde": "HACIENDA", "entra": "escala" },
+          { "id": "cRec", "desde": "INGRESO", "entra": "escala" },
+          { "id": "rRec", "desde": "INGRESO" },
+          { "id": "selloCasi", "desde": "CASI13", "entra": "sello" },
+          { "id": "chipFin", "desde": "PENSABAS", "entra": "sube", "dura": 0.6 }
+        ],
+        "cifras": [
+          { "id": "c21", "desde": "GENERAL", "a": 21, "formato": "pct", "dura": 0.8 },
+          { "id": "c10", "desde": "BAJOS", "a": 10, "formato": "pct", "dura": 0.6 },
+          { "id": "c4", "desde": "Y4", "a": 4, "formato": "pct", "dura": 0.5 },
+          { "id": "cPan", "desde": "CASI11", "a": 3.85, "formato": "numero", "dec": 2, "dura": 1.0 },
+          { "id": "cRef", "desde": "MAS11", "a": 17.36, "formato": "numero", "dec": 2, "dura": 1.0 },
+          { "id": "cRec", "desde": "INGRESO", "a": 99532, "formato": "numero", "dura": 2.6 }
+        ],
+        "notas": [
+          { "texto": "Ley 37/1992 del IVA, artículos 90 y 91, en el texto del BOE actualizado el 7 de octubre de 2026", "desde": "LEY2" },
+          { "texto": "", "desde": "DENTRO" },
+          { "texto": "Agencia Tributaria, tipos del IVA en 2026: general 21 %, reducido 10 % y superreducido 4 %", "desde": "GENERAL" },
+          { "texto": "Artículo 91.Dos: pan común, leche, huevos, quesos, y fruta, verdura y legumbres que sean producto natural", "desde": "VAN" },
+          { "texto": "El aceite de oliva paga el 4 % desde el 1 de enero de 2025 (Real Decreto-ley 4/2024). Los demás aceites, el 10 %", "desde": "DESDE" },
+          { "texto": "Artículo 91.Uno: los alimentos que no van al 4 %, y el agua, pagan el 10 %", "desde": "VA7" },
+          { "texto": "Artículo 91.Uno.1.1.º b): bebidas refrescantes, zumos y gaseosas con azúcares o edulcorantes añadidos, al 21 %", "desde": "REFRESCO8" },
+          { "texto": "Cálculo propio: el IVA va dentro del precio. 1 € × 4/104 = 3,85 céntimos; 1 € × 21/121 = 17,36 céntimos", "desde": "EURO11" },
+          { "texto": "Agencia Tributaria, Informe anual de recaudación tributaria 2025 (publicado el 23 de abril de 2026)", "desde": "ENTRE" }
+        ],
+        "fondo": "claro",
+        "sonidos": [
+          { "tipo": "toque", "en": 0.15 },
+          { "tipo": "pop", "en": 0.5 },
+          { "tipo": "pop", "en": 0.7 },
+          { "tipo": "desliza", "en": "DECIDE" },
+          { "tipo": "error", "en": "SINO" },
+          { "tipo": "toque", "en": "LEY2", "mas": 0.1 },
+          { "tipo": "brillo", "en": "CUANTO" },
+          { "tipo": "desliza", "en": "DENTRO" },
+          { "tipo": "toque", "en": "PRECIO", "mas": 0.1 },
+          { "tipo": "chip", "en": "MISMO3" },
+          { "tipo": "sube", "en": "GENERAL" },
+          { "tipo": "sube", "en": "BAJOS" },
+          { "tipo": "sube", "en": "Y4" },
+          { "tipo": "desliza", "en": "VAN" },
+          { "tipo": "pop", "en": "PAN5" },
+          { "tipo": "pop", "en": "LECHE" },
+          { "tipo": "pop", "en": "HUEVOS" },
+          { "tipo": "pop", "en": "QUESO" },
+          { "tipo": "pop", "en": "FRUTA" },
+          { "tipo": "pop", "en": "VERDURA" },
+          { "tipo": "pop", "en": "LEGUMBRES" },
+          { "tipo": "brillo", "en": "DESDE" },
+          { "tipo": "desliza", "en": "ACEITE" },
+          { "tipo": "toque", "en": "OLIVA", "mas": 0.1 },
+          { "tipo": "desliza", "en": "GIRASOL" },
+          { "tipo": "toque", "en": "PAGA6", "mas": 0.1 },
+          { "tipo": "desliza", "en": "VA7" },
+          { "tipo": "pop", "en": "CARNE" },
+          { "tipo": "pop", "en": "PESCADO" },
+          { "tipo": "pop", "en": "PASTA" },
+          { "tipo": "pop", "en": "AGUA" },
+          { "tipo": "desliza", "en": "REFRESCO8" },
+          { "tipo": "chip", "en": "AZUCAR8" },
+          { "tipo": "chip", "en": "EDULCORANTE" },
+          { "tipo": "error", "en": "LEY8" },
+          { "tipo": "desliza", "en": "ZERO" },
+          { "tipo": "toque", "en": "MISMO9", "mas": 0.1 },
+          { "tipo": "toque", "en": "NORMAL", "mas": 0.1 },
+          { "tipo": "desliza", "en": "ZUMO" },
+          { "tipo": "desliza", "en": "PAGA10" },
+          { "tipo": "toque", "en": "DOBLE", "mas": 0.1 },
+          { "tipo": "metal", "en": "EURO11" },
+          { "tipo": "sube", "en": "CASI11" },
+          { "tipo": "metal", "en": "EURO11B" },
+          { "tipo": "sube", "en": "MAS11" },
+          { "tipo": "brillo", "en": "ENTRE" },
+          { "tipo": "pop", "en": "HACIENDA" },
+          { "tipo": "sube", "en": "INGRESO" },
+          { "tipo": "toque", "en": "CASI13", "mas": 0.1 },
+          { "tipo": "pop", "en": "PENSABAS" }
+        ]
+      }
+    </script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 67.6 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import { crearDinero, COLOR } from "./comun/dinero.js";
+      const $ = (id) => document.getElementById(id);
+      const K = COLOR;
+      // flat style of the account: navy outline and a solid navy copy of the shape 12 px down and right
+      const sombra = (forma) => `<g transform="translate(12 12)" fill="${K.tinta}" stroke="${K.tinta}">${forma(true)}</g>${forma(false)}`;
+      const svg = (w, vw, vh, cuerpo) => `<svg width="${w}" height="${Math.round((w * vh) / vw)}" viewBox="0 0 ${vw} ${vh}">${cuerpo}</svg>`;
+      const borde = (s, fill, ancho = 8) => (s ? "" : `fill="${fill}" stroke="${K.tinta}" stroke-width="${ancho}" stroke-linejoin="round"`);
+
+      // ---------- drawings this video needs, in the account's flat style ----------
+      // they are built before the engine looks for the ids of pieces and figures
+      const DIBUJOS = {
+        // a baguette with its cuts
+        pan: (w = 560) => svg(w, 580, 230, `${sombra((s) => `<rect x="14" y="40" width="530" height="150" rx="75" ${borde(s, "#e0a24a")}/>`)}
+          <rect x="40" y="58" width="470" height="40" rx="20" fill="#f0c27a" opacity="0.7"/>
+          ${[120, 210, 300, 390].map((x) => `<path d="M${x} 150 Q${x + 30} 110 ${x + 70} 80" fill="none" stroke="${K.tinta}" stroke-width="16" stroke-linecap="round"/><path d="M${x} 150 Q${x + 30} 110 ${x + 70} 80" fill="none" stroke="#f6d79a" stroke-width="7" stroke-linecap="round"/>`).join("")}`),
+
+        // a soft-drink can with no brand
+        lata: (w = 230, texto = "REFRESCO", color = K.rojo) => {
+          const tam = texto.length > 6 ? 25 : 44;
+          return svg(w, 240, 410, `${sombra((s) => `<rect x="20" y="40" width="190" height="340" rx="30" ${borde(s, color)}/>`)}
+            <ellipse cx="115" cy="46" rx="88" ry="20" fill="#cfd6e0" stroke="${K.tinta}" stroke-width="7"/>
+            <rect x="96" y="30" width="38" height="18" rx="9" fill="#9aa6b8" stroke="${K.tinta}" stroke-width="5"/>
+            <rect x="24" y="150" width="182" height="110" fill="${K.blanco}" stroke="${K.tinta}" stroke-width="6"/>
+            <text x="115" y="206" text-anchor="middle" dominant-baseline="central" font-family="Archivo Black" font-size="${tam}" fill="${K.tinta}">${texto}</text>
+            <rect x="40" y="70" width="16" height="70" rx="8" fill="#fff" opacity="0.35"/>
+            <rect x="40" y="280" width="16" height="70" rx="8" fill="#fff" opacity="0.35"/>`);
+        },
+
+        // a price tag with a hole and a big VAT rate
+        etiqueta: (texto = "21 %", color = K.rojo, w = 240, letra = "#fff") => svg(w, 270, 156, `${sombra((s) => `<path d="M62 8 H246 a12 12 0 0 1 12 12 V124 a12 12 0 0 1 -12 12 H62 L10 72 Z" ${borde(s, color)}/>`)}
+          <circle cx="56" cy="72" r="11" fill="${K.papel}" stroke="${K.tinta}" stroke-width="6"/>
+          <text x="${texto.length > 4 ? 168 : 162}" y="76" text-anchor="middle" dominant-baseline="central" font-family="Archivo Black" font-size="${texto.length > 4 ? 52 : 64}" fill="${letra}">${texto}</text>`),
+
+        // a shop front: sign, striped awning, window and door
+        tienda: (w = 400, letrero = "SÚPER") => {
+          const franjas = Array.from({ length: 8 }, (_, i) => {
+            const x = 8 + i * 50.5, c = i % 2 ? K.blanco : K.verde;
+            return `<rect x="${x}" y="110" width="50.5" height="56" fill="${c}"/><path d="M${x} 166 a25.25 25.25 0 0 0 50.5 0 Z" fill="${c}" stroke="${K.tinta}" stroke-width="6" stroke-linejoin="round"/>`;
+          }).join("");
+          return svg(w, 424, 404, `<g transform="translate(12 12)" fill="${K.tinta}"><rect x="20" y="96" width="380" height="290"/><rect x="100" y="26" width="220" height="70" rx="12"/><rect x="8" y="110" width="404" height="56"/></g>
+            <rect x="20" y="96" width="380" height="290" fill="${K.blanco}" stroke="${K.tinta}" stroke-width="8"/>
+            <rect x="100" y="26" width="220" height="70" rx="12" fill="${K.tinta}" stroke="${K.tinta}" stroke-width="8"/>
+            <text x="210" y="63" text-anchor="middle" dominant-baseline="central" font-family="Archivo Black" font-size="40" letter-spacing="2" fill="${K.oro}">${letrero}</text>
+            <rect x="48" y="214" width="190" height="130" rx="8" fill="${K.azul}" stroke="${K.tinta}" stroke-width="6"/>
+            <path d="M74 326 L128 234" stroke="#fff" stroke-width="12" opacity="0.35" stroke-linecap="round"/>
+            <rect x="268" y="214" width="104" height="172" fill="${K.oro}" stroke="${K.tinta}" stroke-width="6"/>
+            <circle cx="352" cy="304" r="8" fill="${K.tinta}"/>
+            ${franjas}
+            <rect x="8" y="110" width="404" height="56" fill="none" stroke="${K.tinta}" stroke-width="7"/>`);
+        },
+
+        // a carton (milk or juice) with a coloured band
+        brick: (w = 130, texto = "LECHE", color = K.azul, fruta = false) => svg(w, 220, 360, `${sombra((s) => `<path d="M30 92 L66 34 H160 L196 92 V340 H30 Z" ${borde(s, K.blanco)}/>`)}
+          <rect x="66" y="12" width="94" height="24" rx="4" fill="${K.blanco}" stroke="${K.tinta}" stroke-width="7"/>
+          <path d="M30 92 H196" stroke="${K.tinta}" stroke-width="6"/>
+          <rect x="30" y="170" width="166" height="96" fill="${color}" stroke="${K.tinta}" stroke-width="6"/>
+          <text x="113" y="220" text-anchor="middle" dominant-baseline="central" font-family="Archivo Black" font-size="${texto.length > 4 ? 34 : 40}" fill="#fff">${texto}</text>
+          ${fruta ? `<circle cx="113" cy="130" r="28" fill="#f08a24" stroke="${K.tinta}" stroke-width="6"/><path d="M113 104 q12 -16 26 -12" fill="none" stroke="${K.verde}" stroke-width="7" stroke-linecap="round"/><circle cx="113" cy="300" r="0" fill="none"/>` : ""}`),
+
+        // three eggs in half a carton
+        huevos: (w = 230) => svg(w, 300, 220, `${sombra((s) => `<path d="M16 120 H284 L262 200 H38 Z" ${borde(s, "#c7b08a")}/>`)}
+          ${[78, 150, 222].map((x) => `<ellipse cx="${x}" cy="96" rx="40" ry="54" fill="${K.blanco}" stroke="${K.tinta}" stroke-width="7"/><ellipse cx="${x - 12}" cy="76" rx="9" ry="16" fill="#fff"/>`).join("")}
+          <path d="M16 120 H284 L262 200 H38 Z" fill="#c7b08a" stroke="${K.tinta}" stroke-width="8" stroke-linejoin="round"/>
+          ${[100, 200].map((x) => `<path d="M${x} 126 V196" stroke="${K.tinta}" stroke-width="5" opacity="0.5"/>`).join("")}`),
+
+        // a wedge of cheese with holes
+        queso: (w = 230) => svg(w, 300, 220, `${sombra((s) => `<path d="M16 110 L200 30 L284 70 V196 H16 Z" ${borde(s, "#f6c744")}/>`)}
+          <path d="M16 110 L200 30 L284 70 L100 150 Z" fill="#fbe08a" stroke="${K.tinta}" stroke-width="7" stroke-linejoin="round"/>
+          <path d="M100 150 V196" stroke="${K.tinta}" stroke-width="6"/>
+          <circle cx="58" cy="166" r="14" fill="#d9a81e" stroke="${K.tinta}" stroke-width="5"/>
+          <circle cx="190" cy="150" r="18" fill="#d9a81e" stroke="${K.tinta}" stroke-width="5"/>
+          <circle cx="248" cy="118" r="11" fill="#d9a81e" stroke="${K.tinta}" stroke-width="5"/>
+          <circle cx="150" cy="86" r="10" fill="#e9c24a" stroke="${K.tinta}" stroke-width="4"/>`),
+
+        // an apple
+        manzana: (w = 180) => svg(w, 230, 250, `${sombra((s) => `<path d="M112 76 C150 46 214 62 208 138 C202 206 150 238 112 218 C74 238 22 206 16 138 C10 62 74 46 112 76 Z" ${borde(s, K.rojo)}/>`)}
+          <path d="M112 76 Q116 46 128 28" fill="none" stroke="${K.tinta}" stroke-width="10" stroke-linecap="round"/>
+          <path d="M124 48 q44 -32 76 -6 q-38 28 -76 6 Z" fill="${K.verde}" stroke="${K.tinta}" stroke-width="6" stroke-linejoin="round"/>
+          <ellipse cx="62" cy="122" rx="12" ry="26" fill="#fff" opacity="0.4"/>`),
+
+        // a carrot with its leaves
+        zanahoria: (w = 150) => svg(w, 200, 320, `${[[-40, -70], [0, -86], [40, -70]].map(([dx, dy]) => `<path d="M100 104 q${dx - 18} ${dy / 2} ${dx} ${dy} q${18} ${-dy / 2} ${-dx} ${-dy}" fill="${K.verde}" stroke="${K.tinta}" stroke-width="6" stroke-linejoin="round"/>`).join("")}
+          ${sombra((s) => `<path d="M52 100 Q100 82 148 100 L106 300 Q100 310 94 300 Z" ${borde(s, "#f08a24")}/>`)}
+          ${[[70, 140], [118, 170], [78, 205], [112, 240]].map(([x, y]) => `<path d="M${x} ${y} h18" stroke="${K.tinta}" stroke-width="6" stroke-linecap="round"/>`).join("")}`),
+
+        // a jar of lentils
+        tarro: (w = 160) => svg(w, 220, 290, `${sombra((s) => `<rect x="22" y="60" width="176" height="214" rx="30" ${borde(s, "#efe3c8")}/>`)}
+          ${Array.from({ length: 26 }, (_, i) => `<circle cx="${46 + (i % 7) * 22 + (Math.floor(i / 7) % 2) * 11}" cy="${206 + Math.floor(i / 7) * 16}" r="8" fill="#a0612c" stroke="${K.tinta}" stroke-width="2"/>`).join("")}
+          <rect x="38" y="20" width="144" height="44" rx="8" fill="${K.rojo}" stroke="${K.tinta}" stroke-width="7"/>
+          <rect x="22" y="110" width="176" height="64" fill="${K.blanco}" stroke="${K.tinta}" stroke-width="6"/>
+          <text x="110" y="143" text-anchor="middle" dominant-baseline="central" font-family="Archivo Black" font-size="26" fill="${K.tinta}">LENTEJAS</text>`),
+
+        // a bottle (oil or water) with a label
+        botella: (w = 200, color = "#9aae2f", texto = "OLIVA") => svg(w, 220, 480, `${sombra((s) => `<path d="M84 60 H136 V120 Q190 150 190 214 V448 Q190 468 170 468 H50 Q30 468 30 448 V214 Q30 150 84 120 Z" ${borde(s, color)}/>`)}
+          <rect x="78" y="14" width="64" height="50" rx="8" fill="${K.tinta}"/>
+          <rect x="30" y="260" width="160" height="120" fill="${K.blanco}" stroke="${K.tinta}" stroke-width="6"/>
+          <text x="110" y="320" text-anchor="middle" dominant-baseline="central" font-family="Archivo Black" font-size="${texto.length > 5 ? 28 : 36}" fill="${K.tinta}">${texto}</text>
+          <rect x="48" y="200" width="16" height="50" rx="8" fill="#fff" opacity="0.4"/>
+          <rect x="48" y="396" width="16" height="50" rx="8" fill="#fff" opacity="0.4"/>`),
+
+        // a steak with its fat and bone
+        filete: (w = 240) => svg(w, 300, 220, `${sombra((s) => `<path d="M40 110 C30 50 110 20 180 30 C260 40 290 100 260 160 C230 210 120 210 70 180 C50 168 42 140 40 110 Z" ${borde(s, "#fbe3d3")}/>`)}
+          <path d="M66 110 C60 68 120 48 178 56 C236 64 260 106 238 148 C216 184 130 186 90 164 C74 154 68 132 66 110 Z" fill="#cf4a46"/>
+          <path d="M100 96 q30 -18 60 0 M150 140 q30 10 56 -6" fill="none" stroke="#fbe3d3" stroke-width="8" stroke-linecap="round" opacity="0.8"/>
+          <circle cx="206" cy="96" r="18" fill="${K.blanco}" stroke="${K.tinta}" stroke-width="6"/>`),
+
+        // a fish
+        pescado: (w = 250) => svg(w, 330, 190, `${sombra((s) => `<path d="M30 96 C80 24 210 24 252 96 C210 168 80 168 30 96 Z M246 96 L306 40 V152 Z" ${borde(s, K.azul)}/>`)}
+          <path d="M60 110 C110 150 200 146 240 104" fill="none" stroke="#fff" stroke-width="8" opacity="0.35" stroke-linecap="round"/>
+          <path d="M120 60 q-16 36 0 72" fill="none" stroke="${K.tinta}" stroke-width="6" stroke-linecap="round"/>
+          <circle cx="82" cy="84" r="13" fill="#fff" stroke="${K.tinta}" stroke-width="5"/><circle cx="85" cy="84" r="6" fill="${K.tinta}"/>`),
+
+        // a packet of pasta with a window
+        pasta: (w = 170) => svg(w, 240, 310, `${sombra((s) => `<rect x="24" y="20" width="196" height="276" rx="14" ${borde(s, K.oro)}/>`)}
+          <rect x="54" y="62" width="136" height="120" rx="12" fill="#fbecc0" stroke="${K.tinta}" stroke-width="6"/>
+          ${[[80, 92], [130, 86], [104, 128], [156, 132], [78, 154]].map(([x, y]) => `<path d="M${x} ${y} a14 14 0 1 1 22 12" fill="none" stroke="${K.tinta}" stroke-width="12" stroke-linecap="round"/><path d="M${x} ${y} a14 14 0 1 1 22 12" fill="none" stroke="#e6b450" stroke-width="6" stroke-linecap="round"/>`).join("")}
+          <text x="122" y="240" text-anchor="middle" dominant-baseline="central" font-family="Archivo Black" font-size="40" fill="${K.tinta}">PASTA</text>`),
+      };
+      for (const el of document.querySelectorAll("[data-dibujo]")) el.innerHTML = DIBUJOS[el.dataset.dibujo](...JSON.parse(el.dataset.args || "[]"));
+
+      // ---------- the engine ----------
+      const C = crearDinero();
+      const { T, ramp, clamp } = C;
+      const filaClase = (id, clase, on) => { const b = $(id); if (b) b.parentElement.classList.toggle(clase, on); };
+
+      function renderAt(t) {
+        // A: the bread and the can float under the hook
+        C.mover("panA", { y: 5 * Math.sin(t * 2.1), r: -7 });
+        C.mover("lataA", { y: 6 * Math.sin(t * 2.2 + 1), r: 8 });
+        C.mover("tienda", { y: 4 * Math.sin(t * 2) });
+
+        // B: on "mismo", three rows with three different rates light up one after another
+        filaClase("tPan", "marca", t >= T.MISMO3);
+        filaClase("tPasta", "marca", t >= T.MISMO3 + 0.3);
+        filaClase("tRef", "marca", t >= T.MISMO3 + 0.6);
+
+        // C: each column grows from the floor
+        $("b21").style.height = 100 * ramp(t, T.GENERAL, T.GENERAL + 0.8) + "%";
+        $("b10").style.height = (600 * 10 / 21) * ramp(t, T.BAJOS, T.BAJOS + 0.6) + "px";
+        $("b4").style.height = (600 * 4 / 21) * ramp(t, T.Y4, T.Y4 + 0.5) + "px";
+
+        // D, F: the food bobs a little
+        ["iPan", "iLeche", "iHuevos", "iQueso", "iFruta", "iVerdura", "iLegumbres", "iCarne", "iPescado", "iPasta", "iAgua"].forEach((id, i) => C.mover(id, { y: 4 * Math.sin(t * 2 + i) }));
+        // E: the bottles lean towards their tags
+        C.mover("bOliva", { y: 5 * Math.sin(t * 2), r: -4 });
+        C.mover("bGirasol", { y: 5 * Math.sin(t * 2 + 1), r: 4 });
+        // G: the can shakes when the law puts it at 21 %
+        const tiembla = clamp((t - T.LEY8) / 0.4) * (1 - clamp((t - T.LEY8 - 0.4) / 0.3));
+        C.mover("lataG", { x: 8 * Math.sin(t * 60) * tiembla, y: 5 * Math.sin(t * 2.2), r: -6 });
+        C.mover("iNormal", { y: 5 * Math.sin(t * 2.2) });
+        C.mover("iZero", { y: 5 * Math.sin(t * 2.2 + 1.5) });
+        C.mover("iZCon", { y: 5 * Math.sin(t * 2.1) });
+        C.mover("iZSin", { y: 5 * Math.sin(t * 2.1 + 1.5) });
+
+        // J: the VAT slice of one euro grows to its real size
+        const pan = 3.85 * ramp(t, T.CASI11, T.CASI11 + 1.0), ref = 17.36 * ramp(t, T.MAS11, T.MAS11 + 1.0);
+        $("sPanI").style.width = pan + "%"; $("sPanP").style.width = 100 - pan + "%";
+        $("sRefI").style.width = ref + "%"; $("sRefP").style.width = 100 - ref + "%";
+        C.mover("hacienda", { y: 4 * Math.sin(t * 2) });
+
+        C.pintar(t);
+      }
+
+      C.arrancar(renderAt);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+{
+  "titulo": "Ese cajero no te puede cobrar",
+  "lines": [
+    "Ese cajero no te puede cobrar.",
+    "Pero tu banco, sí. ¿Y cuánto paga de media quien acepta? Te lo digo al final.",
+    "Imagina que sacas dinero en un cajero que no es de tu banco.",
+    "Antes de darte nada, la pantalla te avisa de la comisión. Es obligatorio, y puedes cancelar.",
+    "Pero esa comisión no te la cobra el dueño del cajero: se la cobra a tu banco.",
+    "Y tu banco, según tu contrato, te la pasa entera, una parte o nada.",
+    "Con tarjeta de débito, la ley le pone un tope: nunca más de lo que le cobraron, y ni un céntimo extra.",
+    "Con tarjeta de crédito, en cambio, tu banco sí puede añadir algo más.",
+    "¿Y cuántos cajeros quedan? A mitad de 2026, 43.324.",
+    "En dos mil ocho había sesenta y un mil setecientos catorce. Hoy, casi un 30% menos.",
+    "¿Y a cuánta gente le piden comisión? En una encuesta del Banco de España de dos mil veinticinco, a un 15% de quienes sacan en cajero.",
+    "Uno de cada tres canceló y buscó otro cajero. Y el 60% pagó.",
+    "¿Y cuánto pagaron de media? Tres euros, por sacar ciento veinticinco. Un 2,4% de su propio dinero.",
+    "¿Tú pagas o buscas otro cajero? Te leo en los comentarios."
+  ],
+  "claves": [
+    "cobrar",
+    "banco",
+    "cajero",
+    "obligatorio",
+    "dueño",
+    "contrato",
+    "tope",
+    "crédito",
+    "quedan",
+    "menos",
+    "encuesta",
+    "canceló",
+    "media",
+    "comentarios"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "En España, si sacas dinero en un cajero de otro banco, el dueño del cajero no puede cobrarte a ti: cobra a tu banco, que puede pasarte esa comisión según tu contrato (con débito, nunca más de lo que le cobraron). Antes de sacar, el cajero tiene que avisarte. Real Decreto-ley 19/2018, disposición adicional segunda. Datos del Banco de España: cajeros a junio de 2026 y Estudio sobre hábitos en el uso del efectivo 2025 (encuesta).",
+    "hashtags": [
+      "#cajero",
+      "#bancos",
+      "#comisiones"
+    ],
+    "portada_en": "cajero"
+  },
+  "voz_dice": "La voz se generó con los números en palabras (dos mil veintiséis, cuarenta y tres mil trescientos veinticuatro, y los porcentajes treinta, quince, sesenta y dos coma cuatro por ciento); aquí van en cifras para que los subtítulos coincidan con lo que oye Whisper y se lean bien."
+}

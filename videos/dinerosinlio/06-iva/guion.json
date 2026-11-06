@@ -1,0 +1,46 @@
+{
+  "titulo": "Tu refresco paga más IVA que tu pan",
+  "lines": [
+    "Tu refresco paga más IVA que tu pan.",
+    "No lo decide la tienda, sino la ley. ¿Y cuánto IVA pagamos entre todos en un año? Te lo digo al final.",
+    "El IVA va dentro del precio de casi todo, pero no siempre es el mismo.",
+    "El general es un 21%. En el súper hay dos más bajos: el diez y el cuatro.",
+    "Al 4% van el pan común, la leche, los huevos, el queso, la fruta, la verdura y las legumbres.",
+    "Y, desde dos mil veinticinco, el aceite de oliva. El de girasol paga el diez.",
+    "Al diez va casi todo lo demás que se come: carne, pescado, pasta… y también el agua.",
+    "¿Y el refresco? Si lleva azúcar o edulcorante añadido, la ley le pone el veintiuno.",
+    "Por eso un refresco zero paga lo mismo que uno normal.",
+    "Y un zumo con azúcar añadido paga más del doble que uno sin él.",
+    "En un euro de pan, casi cuatro céntimos son IVA. En un euro de refresco, más de diecisiete.",
+    "¿Y entre todos? En dos mil veinticinco, Hacienda ingresó por el IVA noventa y nueve mil quinientos treinta y dos millones de euros.",
+    "Casi cien mil millones en un año.",
+    "¿Pensabas que era más o menos? Te leo en los comentarios."
+  ],
+  "claves": [
+    "iva",
+    "ley",
+    "dentro",
+    "general",
+    "pan",
+    "oliva",
+    "agua",
+    "edulcorante",
+    "zero",
+    "doble",
+    "centimos",
+    "hacienda",
+    "ano",
+    "comentarios"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "En España el pan común, la leche, los huevos, el queso, la fruta, la verdura, las legumbres y el aceite de oliva llevan un 4 % de IVA; casi todos los demás alimentos y el agua, un 10 %; y los refrescos y zumos con azúcar o edulcorante añadido, un 21 % (Ley 37/1992, artículos 90 y 91, vigentes en noviembre de 2026). En 2025, la Agencia Tributaria ingresó 99.532 millones de euros por el IVA.",
+    "hashtags": [
+      "#iva",
+      "#supermercado",
+      "#impuestos"
+    ],
+    "portada_en": "refresco"
+  },
+  "voz_dice": "La voz se generó con los porcentajes en palabras (veintiuno por ciento y cuatro por ciento); aquí van en cifras para que los subtítulos coincidan con lo que oye Whisper."
+}

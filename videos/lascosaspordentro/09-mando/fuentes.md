@@ -1,0 +1,31 @@
+# Fuentes: Tu mando dispara una luz invisible
+
+| Dato del guion o de la pantalla | Cifra usada | Fuente |
+|---|---|---|
+| El mando emite luz infrarroja con un LED (diodo), invisible para el ojo | | [Wikipedia, Remote control](https://en.wikipedia.org/wiki/Remote_control) ("Most remote controls for electronic appliances use a near infrared diode to emit a beam of light"); [SB-Projects, IR Remote Control Theory](https://www.sbprojects.net/knowledge/ir/index.php) |
+| La cámara de un móvil sí ve esa luz, y la ve morada | | [Wikipedia, Remote control](https://en.wikipedia.org/wiki/Remote_control) ("invisible to the human eye but can be seen through a digital camera, video camera or phone camera"; "Video cameras see the diode as if it produces visible purple light") |
+| Longitud de onda del LED de un mando: 940 nanómetros | 940 nm (típica; SB-Projects habla de unos 950 nm) | [Wikipedia, Remote control](https://en.wikipedia.org/wiki/Remote_control) ("A 940 nm wavelength LED is typical"); [SB-Projects, IR Remote Control Theory](https://www.sbprojects.net/knowledge/ir/index.php) ("its wave length of about 950nm is below the visible spectrum") |
+| El ojo ve de unos 380 a unos 750 nm: 940 nm está más allá del rojo | 380 a 750 nm | [Wikipedia, Visible spectrum](https://en.wikipedia.org/wiki/Visible_spectrum) ("A typical human eye will respond to wavelengths from about 380 to about 750 nanometers") |
+| Cada botón lleva debajo una pastilla de carbón que, al pulsar, toca las pistas de la placa y cierra el circuito | | [Wikipedia, Silicone rubber keypad](https://en.wikipedia.org/wiki/Silicone_rubber_keypad) ("a carbon or gold pill is placed on the base of the switch center which contacts onto a printed circuit board when the web has been deformed"; se usan en "remote controls for TV, video and HIFI units") |
+| En muchos mandos, cada botón es un código de 32 unos y ceros: primero el aparato y después el botón | 32 bits: 8 de dirección, 8 de dirección invertida, 8 de orden y 8 de orden invertida (protocolo NEC, uno de los más usados) | [SB-Projects, NEC Protocol](https://www.sbprojects.net/knowledge/ir/nec.php) ("8 bit address and 8 bit command length"; dirección y orden se mandan dos veces, la segunda invertida). Otros protocolos usan otras cuentas (RC-5: 14 bits, [Wikipedia, Remote control](https://en.wikipedia.org/wiki/Remote_control)); por eso el guion dice "en muchos mandos" |
+| Una pausa corta entre dos destellos es un 0 y una larga, un 1 | Cada destello dura 560 µs; un 0 ocupa 1,125 ms y un 1, 2,25 ms (la pausa del 1 es tres veces la del 0) | [SB-Projects, NEC Protocol](https://www.sbprojects.net/knowledge/ir/nec.php) ("A logical "1" takes 2.25ms to transmit, while a logical "0" is only half of that, being 1.125ms") |
+| El dibujo del código: destello inicial de 9 ms, pausa de 4,5 ms y los 32 bits | 9 ms y 4,5 ms | [SB-Projects, NEC Protocol](https://www.sbprojects.net/knowledge/ir/nec.php) ("A message is started by a 9ms AGC burst") |
+| En la tele, el receptor es un sensor de luz (fotodiodo PIN) con un filtro de infrarrojo en su cápsula, que amplifica y filtra la señal | | [Vishay, TSOP382/TSOP384, hoja de datos](https://www.vishay.com/docs/82491/tsop382.pdf) ("The devices contain a PIN diode and a preamplifier"; "The epoxy package contains an IR filter"; bloques: entrada, control de ganancia, filtro de paso de banda y demodulador) |
+| El sol también da infrarrojo, pero su luz no parpadea; por eso el mando modula su luz y el receptor solo escucha ese ritmo | | [SB-Projects, IR Remote Control Theory](https://www.sbprojects.net/knowledge/ir/index.php) ("The sun is the brightest source of all"; "Modulation of the signal on a carrier frequency is the answer to make our signal stand out above the noise"; "The IR receiver will be tuned to that frequency, so it can ignore everything else"); [Vishay, TSOP382](https://www.vishay.com/docs/82491/tsop382.pdf) (inmunidad frente a lámparas y otras fuentes de ruido) |
+| Cada destello parpadea unas 38.000 veces por segundo | 38 kHz = 38.000 veces por segundo, la frecuencia más común (se usan de 30 a 60 kHz) | [SB-Projects, IR Remote Control Theory](https://www.sbprojects.net/knowledge/ir/index.php) ("Carrier frequencies between 30kHz and 60kHz are commonly used"; "The most common one is 38kHz though"); [SB-Projects, NEC Protocol](https://www.sbprojects.net/knowledge/ir/nec.php) ("Carrier frequency of 38kHz") |
+
+Cifras solo de la ilustración (no son medidas):
+- El código dibujado (los 32 unos y ceros concretos) es inventado, con la forma del protocolo NEC: dirección, dirección invertida, orden y orden invertida. En pantalla, "Código ilustrativo, al estilo del protocolo NEC".
+- Los destellos del LED, del móvil y del receptor van ralentizados para que se vean (un código entero dura unos 68 ms, cuenta hecha con los tiempos de SB-Projects). Nota en pantalla: "Destellos ralentizados".
+- La lupa dibuja 21 parpadeos dentro de un destello: 0,5625 ms × 38.000 por segundo = 21,4. Es un cálculo con las cifras de arriba.
+- La escala del espectro (400, 500, 600, 700, 800, 900 y 1.000 nm) son solo las marcas de la regla.
+- La tele pasa del canal 1 al 2: es el botón que se pulsa en el vídeo (el 2).
+- El contador de la lectura sube de 0 a 32 y de 0 a 38.000, y el del espectro de 700 a 940: solo cuentan hasta el dato de arriba.
+
+Matices:
+- No todos los mandos usan 32 bits ni 38 kHz: hay protocolos con 12, 14 o 20 bits y portadoras de 36 o 40 kHz. El guion dice "en muchos mandos" y "unas 38.000"; en pantalla, "La frecuencia más común; hay mandos que usan otras".
+- La cámara de atrás de muchos móviles lleva un filtro que frena parte del infrarrojo; la de delante suele verlo mejor. El vídeo no dice cuál.
+- El sol muy fuerte, apuntando al receptor, puede tapar la señal del mando; lo que no puede es cambiarte de canal, porque su luz no lleva el código ni el parpadeo.
+- Sin marcas en el mando, la tele ni el móvil.
+
+Notas en pantalla: "Luz infrarroja dibujada en rojo: es invisible", "Así la ve la cámara de un móvil", "Ilustración simplificada, sin marca", "Corte lateral, ampliado", "Corriente dibujada en ámbar", "Código ilustrativo, al estilo del protocolo NEC", "Destellos ralentizados", "Longitud de onda típica de un mando", "Receptor ampliado", "Valores ilustrativos" y "La frecuencia más común; hay mandos que usan otras".

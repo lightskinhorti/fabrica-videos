@@ -1,0 +1,1304 @@
+[
+  {
+    "text": "Tu",
+    "start": 0.17,
+    "end": 0.24,
+    "id": "w0"
+  },
+  {
+    "text": "gasolina",
+    "start": 0.24,
+    "end": 0.86,
+    "id": "w1"
+  },
+  {
+    "text": "lleva",
+    "start": 0.87,
+    "end": 1.3,
+    "id": "w2"
+  },
+  {
+    "text": "dos",
+    "start": 1.31,
+    "end": 1.57,
+    "id": "w3"
+  },
+  {
+    "text": "impuestos",
+    "start": 1.57,
+    "end": 2.12,
+    "id": "w4"
+  },
+  {
+    "text": "y",
+    "start": 2.12,
+    "end": 2.57,
+    "id": "w5"
+  },
+  {
+    "text": "uno",
+    "start": 2.57,
+    "end": 2.73,
+    "id": "w6"
+  },
+  {
+    "text": "se",
+    "start": 2.73,
+    "end": 2.89,
+    "id": "w7"
+  },
+  {
+    "text": "cobra",
+    "start": 2.89,
+    "end": 3.3,
+    "id": "w8"
+  },
+  {
+    "text": "encima",
+    "start": 3.3,
+    "end": 3.79,
+    "id": "w9"
+  },
+  {
+    "text": "del",
+    "start": 3.79,
+    "end": 4.02,
+    "id": "w10"
+  },
+  {
+    "text": "otro",
+    "start": 4.04,
+    "end": 4.22,
+    "id": "w11"
+  },
+  {
+    "text": "y",
+    "start": 4.69,
+    "end": 4.8,
+    "id": "w12"
+  },
+  {
+    "text": "cuánto",
+    "start": 4.8,
+    "end": 5.16,
+    "id": "w13"
+  },
+  {
+    "text": "pagas",
+    "start": 5.16,
+    "end": 5.44,
+    "id": "w14"
+  },
+  {
+    "text": "de",
+    "start": 5.44,
+    "end": 5.56,
+    "id": "w15"
+  },
+  {
+    "text": "impuestos",
+    "start": 5.56,
+    "end": 5.93,
+    "id": "w16"
+  },
+  {
+    "text": "al",
+    "start": 5.97,
+    "end": 6.07,
+    "id": "w17"
+  },
+  {
+    "text": "llenar",
+    "start": 6.2,
+    "end": 6.44,
+    "id": "w18"
+  },
+  {
+    "text": "el",
+    "start": 6.44,
+    "end": 6.56,
+    "id": "w19"
+  },
+  {
+    "text": "depósito.",
+    "start": 6.56,
+    "end": 7.27,
+    "id": "w20"
+  },
+  {
+    "text": "Te",
+    "start": 7.28,
+    "end": 7.41,
+    "id": "w21"
+  },
+  {
+    "text": "lo",
+    "start": 7.41,
+    "end": 7.56,
+    "id": "w22"
+  },
+  {
+    "text": "digo",
+    "start": 7.56,
+    "end": 7.82,
+    "id": "w23"
+  },
+  {
+    "text": "al",
+    "start": 7.89,
+    "end": 7.99,
+    "id": "w24"
+  },
+  {
+    "text": "final.",
+    "start": 7.99,
+    "end": 8.6,
+    "id": "w25"
+  },
+  {
+    "text": "El",
+    "start": 8.6,
+    "end": 8.73,
+    "id": "w26"
+  },
+  {
+    "text": "2",
+    "start": 8.73,
+    "end": 8.93,
+    "id": "w27"
+  },
+  {
+    "text": "de",
+    "start": 8.93,
+    "end": 9.06,
+    "id": "w28"
+  },
+  {
+    "text": "noviembre,",
+    "start": 9.06,
+    "end": 9.79,
+    "id": "w29"
+  },
+  {
+    "text": "el",
+    "start": 9.79,
+    "end": 9.84,
+    "id": "w30"
+  },
+  {
+    "text": "litro",
+    "start": 9.84,
+    "end": 10.18,
+    "id": "w31"
+  },
+  {
+    "text": "de",
+    "start": 10.18,
+    "end": 10.33,
+    "id": "w32"
+  },
+  {
+    "text": "gasolina",
+    "start": 10.33,
+    "end": 10.89,
+    "id": "w33"
+  },
+  {
+    "text": "95",
+    "start": 10.89,
+    "end": 11.32,
+    "id": "w34"
+  },
+  {
+    "text": "costaba",
+    "start": 11.56,
+    "end": 11.83,
+    "id": "w35"
+  },
+  {
+    "text": "en",
+    "start": 11.89,
+    "end": 12,
+    "id": "w36"
+  },
+  {
+    "text": "España",
+    "start": 12,
+    "end": 12.42,
+    "id": "w37"
+  },
+  {
+    "text": "de",
+    "start": 12.47,
+    "end": 12.61,
+    "id": "w38"
+  },
+  {
+    "text": "media",
+    "start": 12.61,
+    "end": 12.96,
+    "id": "w39"
+  },
+  {
+    "text": "un",
+    "start": 13.02,
+    "end": 13.13,
+    "id": "w40"
+  },
+  {
+    "text": "euro",
+    "start": 13.13,
+    "end": 13.44,
+    "id": "w41"
+  },
+  {
+    "text": "con",
+    "start": 13.44,
+    "end": 13.47,
+    "id": "w42"
+  },
+  {
+    "text": "73.",
+    "start": 13.89,
+    "end": 14.4,
+    "id": "w43"
+  },
+  {
+    "text": "Lo",
+    "start": 14.4,
+    "end": 14.51,
+    "id": "w44"
+  },
+  {
+    "text": "dice",
+    "start": 14.51,
+    "end": 14.72,
+    "id": "w45"
+  },
+  {
+    "text": "el",
+    "start": 14.73,
+    "end": 14.77,
+    "id": "w46"
+  },
+  {
+    "text": "boletín",
+    "start": 14.88,
+    "end": 15.22,
+    "id": "w47"
+  },
+  {
+    "text": "petrolero",
+    "start": 15.22,
+    "end": 15.7,
+    "id": "w48"
+  },
+  {
+    "text": "de",
+    "start": 15.7,
+    "end": 15.81,
+    "id": "w49"
+  },
+  {
+    "text": "la",
+    "start": 15.81,
+    "end": 15.89,
+    "id": "w50"
+  },
+  {
+    "text": "Comisión",
+    "start": 16.01,
+    "end": 16.39,
+    "id": "w51"
+  },
+  {
+    "text": "Europea.",
+    "start": 16.64,
+    "end": 17.4,
+    "id": "w52"
+  },
+  {
+    "text": "Sin",
+    "start": 17.4,
+    "end": 17.7,
+    "id": "w53"
+  },
+  {
+    "text": "impuestos",
+    "start": 17.7,
+    "end": 18.49,
+    "id": "w54"
+  },
+  {
+    "text": "sería",
+    "start": 18.97,
+    "end": 19.1,
+    "id": "w55"
+  },
+  {
+    "text": "un",
+    "start": 19.1,
+    "end": 19.3,
+    "id": "w56"
+  },
+  {
+    "text": "euro",
+    "start": 19.3,
+    "end": 19.7,
+    "id": "w57"
+  },
+  {
+    "text": "con",
+    "start": 19.7,
+    "end": 20,
+    "id": "w58"
+  },
+  {
+    "text": "16.",
+    "start": 20,
+    "end": 20.91,
+    "id": "w59"
+  },
+  {
+    "text": "El",
+    "start": 20.91,
+    "end": 21.11,
+    "id": "w60"
+  },
+  {
+    "text": "primer",
+    "start": 21.11,
+    "end": 21.35,
+    "id": "w61"
+  },
+  {
+    "text": "impuesto",
+    "start": 21.35,
+    "end": 21.78,
+    "id": "w62"
+  },
+  {
+    "text": "es",
+    "start": 21.78,
+    "end": 21.84,
+    "id": "w63"
+  },
+  {
+    "text": "el",
+    "start": 21.89,
+    "end": 22,
+    "id": "w64"
+  },
+  {
+    "text": "de",
+    "start": 22,
+    "end": 22.11,
+    "id": "w65"
+  },
+  {
+    "text": "hidrocarburos.",
+    "start": 22.11,
+    "end": 23,
+    "id": "w66"
+  },
+  {
+    "text": "Una",
+    "start": 23,
+    "end": 23.25,
+    "id": "w67"
+  },
+  {
+    "text": "cantidad",
+    "start": 23.25,
+    "end": 23.6,
+    "id": "w68"
+  },
+  {
+    "text": "fija",
+    "start": 23.6,
+    "end": 23.81,
+    "id": "w69"
+  },
+  {
+    "text": "por",
+    "start": 23.81,
+    "end": 23.97,
+    "id": "w70"
+  },
+  {
+    "text": "cada",
+    "start": 23.97,
+    "end": 24.19,
+    "id": "w71"
+  },
+  {
+    "text": "litro",
+    "start": 24.19,
+    "end": 24.45,
+    "id": "w72"
+  },
+  {
+    "text": "cueste",
+    "start": 24.46,
+    "end": 24.79,
+    "id": "w73"
+  },
+  {
+    "text": "lo",
+    "start": 24.79,
+    "end": 24.87,
+    "id": "w74"
+  },
+  {
+    "text": "que",
+    "start": 24.93,
+    "end": 25.06,
+    "id": "w75"
+  },
+  {
+    "text": "cueste",
+    "start": 25.06,
+    "end": 25.39,
+    "id": "w76"
+  },
+  {
+    "text": "la",
+    "start": 25.39,
+    "end": 25.57,
+    "id": "w77"
+  },
+  {
+    "text": "gasolina.",
+    "start": 25.57,
+    "end": 26.19,
+    "id": "w78"
+  },
+  {
+    "text": "Normalmente",
+    "start": 26.21,
+    "end": 26.81,
+    "id": "w79"
+  },
+  {
+    "text": "son",
+    "start": 26.81,
+    "end": 26.95,
+    "id": "w80"
+  },
+  {
+    "text": "47",
+    "start": 26.99,
+    "end": 27.8,
+    "id": "w81"
+  },
+  {
+    "text": "céntimos,",
+    "start": 27.94,
+    "end": 28.51,
+    "id": "w82"
+  },
+  {
+    "text": "pero",
+    "start": 28.51,
+    "end": 28.8,
+    "id": "w83"
+  },
+  {
+    "text": "en",
+    "start": 28.8,
+    "end": 28.9,
+    "id": "w84"
+  },
+  {
+    "text": "noviembre",
+    "start": 28.95,
+    "end": 29.57,
+    "id": "w85"
+  },
+  {
+    "text": "hay",
+    "start": 29.57,
+    "end": 29.79,
+    "id": "w86"
+  },
+  {
+    "text": "una",
+    "start": 29.79,
+    "end": 29.94,
+    "id": "w87"
+  },
+  {
+    "text": "rebaja",
+    "start": 30.06,
+    "end": 30.44,
+    "id": "w88"
+  },
+  {
+    "text": "temporal",
+    "start": 30.44,
+    "end": 31.02,
+    "id": "w89"
+  },
+  {
+    "text": "de",
+    "start": 31.02,
+    "end": 31.15,
+    "id": "w90"
+  },
+  {
+    "text": "20",
+    "start": 31.15,
+    "end": 31.59,
+    "id": "w91"
+  },
+  {
+    "text": "y",
+    "start": 31.59,
+    "end": 31.66,
+    "id": "w92"
+  },
+  {
+    "text": "se",
+    "start": 31.66,
+    "end": 31.79,
+    "id": "w93"
+  },
+  {
+    "text": "queda",
+    "start": 31.79,
+    "end": 31.99,
+    "id": "w94"
+  },
+  {
+    "text": "en",
+    "start": 31.99,
+    "end": 32.3,
+    "id": "w95"
+  },
+  {
+    "text": "27.",
+    "start": 32.51,
+    "end": 33.08,
+    "id": "w96"
+  },
+  {
+    "text": "El",
+    "start": 33.08,
+    "end": 33.17,
+    "id": "w97"
+  },
+  {
+    "text": "segundo",
+    "start": 33.17,
+    "end": 33.52,
+    "id": "w98"
+  },
+  {
+    "text": "es",
+    "start": 33.52,
+    "end": 33.76,
+    "id": "w99"
+  },
+  {
+    "text": "el",
+    "start": 33.76,
+    "end": 33.84,
+    "id": "w100"
+  },
+  {
+    "text": "IVA,",
+    "start": 33.84,
+    "end": 34.24,
+    "id": "w101"
+  },
+  {
+    "text": "un",
+    "start": 34.24,
+    "end": 34.39,
+    "id": "w102"
+  },
+  {
+    "text": "21%.",
+    "start": 34.42,
+    "end": 35.16,
+    "id": "w103"
+  },
+  {
+    "text": "Yaquí",
+    "start": 35.22,
+    "end": 35.6,
+    "id": "w104"
+  },
+  {
+    "text": "está",
+    "start": 35.6,
+    "end": 35.66,
+    "id": "w105"
+  },
+  {
+    "text": "el",
+    "start": 35.66,
+    "end": 36.09,
+    "id": "w106"
+  },
+  {
+    "text": "truco.",
+    "start": 36.09,
+    "end": 36.71,
+    "id": "w107"
+  },
+  {
+    "text": "El",
+    "start": 36.73,
+    "end": 36.87,
+    "id": "w108"
+  },
+  {
+    "text": "IVA",
+    "start": 36.87,
+    "end": 37.12,
+    "id": "w109"
+  },
+  {
+    "text": "no",
+    "start": 37.12,
+    "end": 37.27,
+    "id": "w110"
+  },
+  {
+    "text": "se",
+    "start": 37.28,
+    "end": 37.44,
+    "id": "w111"
+  },
+  {
+    "text": "calcula",
+    "start": 37.44,
+    "end": 38,
+    "id": "w112"
+  },
+  {
+    "text": "sobre",
+    "start": 38.23,
+    "end": 38.34,
+    "id": "w113"
+  },
+  {
+    "text": "la",
+    "start": 38.41,
+    "end": 38.56,
+    "id": "w114"
+  },
+  {
+    "text": "gasolina",
+    "start": 38.56,
+    "end": 39.15,
+    "id": "w115"
+  },
+  {
+    "text": "sola,",
+    "start": 39.22,
+    "end": 39.76,
+    "id": "w116"
+  },
+  {
+    "text": "sino",
+    "start": 40,
+    "end": 40.03,
+    "id": "w117"
+  },
+  {
+    "text": "sobre",
+    "start": 40.03,
+    "end": 40.37,
+    "id": "w118"
+  },
+  {
+    "text": "la",
+    "start": 40.37,
+    "end": 40.5,
+    "id": "w119"
+  },
+  {
+    "text": "gasolina",
+    "start": 40.5,
+    "end": 41.04,
+    "id": "w120"
+  },
+  {
+    "text": "más",
+    "start": 41.04,
+    "end": 41.23,
+    "id": "w121"
+  },
+  {
+    "text": "el",
+    "start": 41.23,
+    "end": 41.37,
+    "id": "w122"
+  },
+  {
+    "text": "otro",
+    "start": 41.37,
+    "end": 41.62,
+    "id": "w123"
+  },
+  {
+    "text": "impuesto.",
+    "start": 41.69,
+    "end": 42.38,
+    "id": "w124"
+  },
+  {
+    "text": "O",
+    "start": 42.38,
+    "end": 42.44,
+    "id": "w125"
+  },
+  {
+    "text": "sea,",
+    "start": 42.44,
+    "end": 42.77,
+    "id": "w126"
+  },
+  {
+    "text": "pagas",
+    "start": 42.77,
+    "end": 43.1,
+    "id": "w127"
+  },
+  {
+    "text": "IVA",
+    "start": 43.1,
+    "end": 43.29,
+    "id": "w128"
+  },
+  {
+    "text": "hasta",
+    "start": 43.32,
+    "end": 43.63,
+    "id": "w129"
+  },
+  {
+    "text": "del",
+    "start": 43.63,
+    "end": 43.82,
+    "id": "w130"
+  },
+  {
+    "text": "impuesto",
+    "start": 43.82,
+    "end": 44.33,
+    "id": "w131"
+  },
+  {
+    "text": "de",
+    "start": 44.45,
+    "end": 44.5,
+    "id": "w132"
+  },
+  {
+    "text": "hidrocarburos,",
+    "start": 44.5,
+    "end": 45.57,
+    "id": "w133"
+  },
+  {
+    "text": "casi",
+    "start": 45.84,
+    "end": 45.95,
+    "id": "w134"
+  },
+  {
+    "text": "6",
+    "start": 45.95,
+    "end": 46.21,
+    "id": "w135"
+  },
+  {
+    "text": "céntimos",
+    "start": 46.21,
+    "end": 46.9,
+    "id": "w136"
+  },
+  {
+    "text": "por",
+    "start": 46.9,
+    "end": 47.16,
+    "id": "w137"
+  },
+  {
+    "text": "litro.",
+    "start": 47.16,
+    "end": 47.74,
+    "id": "w138"
+  },
+  {
+    "text": "Sumados,",
+    "start": 48.08,
+    "end": 48.48,
+    "id": "w139"
+  },
+  {
+    "text": "los",
+    "start": 48.48,
+    "end": 48.68,
+    "id": "w140"
+  },
+  {
+    "text": "dos",
+    "start": 48.68,
+    "end": 48.88,
+    "id": "w141"
+  },
+  {
+    "text": "impuestos",
+    "start": 48.88,
+    "end": 49.49,
+    "id": "w142"
+  },
+  {
+    "text": "son",
+    "start": 49.49,
+    "end": 49.69,
+    "id": "w143"
+  },
+  {
+    "text": "57",
+    "start": 49.69,
+    "end": 50.07,
+    "id": "w144"
+  },
+  {
+    "text": "céntimos",
+    "start": 50.23,
+    "end": 50.72,
+    "id": "w145"
+  },
+  {
+    "text": "de",
+    "start": 50.72,
+    "end": 50.78,
+    "id": "w146"
+  },
+  {
+    "text": "cada",
+    "start": 50.83,
+    "end": 51.04,
+    "id": "w147"
+  },
+  {
+    "text": "litro.",
+    "start": 51.04,
+    "end": 52,
+    "id": "w148"
+  },
+  {
+    "text": "Un",
+    "start": 52,
+    "end": 52.24,
+    "id": "w149"
+  },
+  {
+    "text": "tercio",
+    "start": 52.24,
+    "end": 52.48,
+    "id": "w150"
+  },
+  {
+    "text": "del",
+    "start": 52.57,
+    "end": 52.73,
+    "id": "w151"
+  },
+  {
+    "text": "precio.",
+    "start": 52.73,
+    "end": 53.34,
+    "id": "w152"
+  },
+  {
+    "text": "Con",
+    "start": 53.34,
+    "end": 53.54,
+    "id": "w153"
+  },
+  {
+    "text": "la",
+    "start": 53.54,
+    "end": 53.64,
+    "id": "w154"
+  },
+  {
+    "text": "rebaja,",
+    "start": 53.7,
+    "end": 54.13,
+    "id": "w155"
+  },
+  {
+    "text": "España",
+    "start": 54.56,
+    "end": 54.6,
+    "id": "w156"
+  },
+  {
+    "text": "es",
+    "start": 54.6,
+    "end": 54.73,
+    "id": "w157"
+  },
+  {
+    "text": "el",
+    "start": 54.73,
+    "end": 54.86,
+    "id": "w158"
+  },
+  {
+    "text": "segundo",
+    "start": 54.86,
+    "end": 55.34,
+    "id": "w159"
+  },
+  {
+    "text": "país",
+    "start": 55.34,
+    "end": 55.72,
+    "id": "w160"
+  },
+  {
+    "text": "de",
+    "start": 55.72,
+    "end": 55.81,
+    "id": "w161"
+  },
+  {
+    "text": "la",
+    "start": 55.82,
+    "end": 55.92,
+    "id": "w162"
+  },
+  {
+    "text": "Unión",
+    "start": 55.92,
+    "end": 56.1,
+    "id": "w163"
+  },
+  {
+    "text": "Europea",
+    "start": 56.17,
+    "end": 56.52,
+    "id": "w164"
+  },
+  {
+    "text": "donde",
+    "start": 56.69,
+    "end": 56.82,
+    "id": "w165"
+  },
+  {
+    "text": "menos",
+    "start": 57.08,
+    "end": 57.33,
+    "id": "w166"
+  },
+  {
+    "text": "pesan.",
+    "start": 57.33,
+    "end": 58.1,
+    "id": "w167"
+  },
+  {
+    "text": "La",
+    "start": 58.1,
+    "end": 58.28,
+    "id": "w168"
+  },
+  {
+    "text": "media",
+    "start": 58.28,
+    "end": 58.7,
+    "id": "w169"
+  },
+  {
+    "text": "europea",
+    "start": 58.78,
+    "end": 59.46,
+    "id": "w170"
+  },
+  {
+    "text": "es",
+    "start": 59.46,
+    "end": 59.65,
+    "id": "w171"
+  },
+  {
+    "text": "un",
+    "start": 59.65,
+    "end": 59.84,
+    "id": "w172"
+  },
+  {
+    "text": "46%.",
+    "start": 59.84,
+    "end": 60.86,
+    "id": "w173"
+  },
+  {
+    "text": "Yal",
+    "start": 60.88,
+    "end": 61.15,
+    "id": "w174"
+  },
+  {
+    "text": "llenar",
+    "start": 61.15,
+    "end": 61.65,
+    "id": "w175"
+  },
+  {
+    "text": "el",
+    "start": 61.73,
+    "end": 61.91,
+    "id": "w176"
+  },
+  {
+    "text": "depósito.",
+    "start": 61.95,
+    "end": 63.04,
+    "id": "w177"
+  },
+  {
+    "text": "Con",
+    "start": 63.04,
+    "end": 63.25,
+    "id": "w178"
+  },
+  {
+    "text": "50",
+    "start": 63.25,
+    "end": 63.66,
+    "id": "w179"
+  },
+  {
+    "text": "litros",
+    "start": 63.66,
+    "end": 64.07,
+    "id": "w180"
+  },
+  {
+    "text": "pagas",
+    "start": 64.13,
+    "end": 64.44,
+    "id": "w181"
+  },
+  {
+    "text": "86,49",
+    "start": 64.68,
+    "end": 65.51,
+    "id": "w182"
+  },
+  {
+    "text": "euros.",
+    "start": 65.51,
+    "end": 66.08,
+    "id": "w183"
+  },
+  {
+    "text": "Yde",
+    "start": 66.14,
+    "end": 66.31,
+    "id": "w184"
+  },
+  {
+    "text": "eso,",
+    "start": 66.37,
+    "end": 66.58,
+    "id": "w185"
+  },
+  {
+    "text": "28,65",
+    "start": 67.01,
+    "end": 67.79,
+    "id": "w186"
+  },
+  {
+    "text": "euros",
+    "start": 67.79,
+    "end": 68.19,
+    "id": "w187"
+  },
+  {
+    "text": "son",
+    "start": 68.19,
+    "end": 68.39,
+    "id": "w188"
+  },
+  {
+    "text": "impuestos.",
+    "start": 68.43,
+    "end": 69.34,
+    "id": "w189"
+  },
+  {
+    "text": "Sin",
+    "start": 69.34,
+    "end": 69.57,
+    "id": "w190"
+  },
+  {
+    "text": "la",
+    "start": 69.57,
+    "end": 69.72,
+    "id": "w191"
+  },
+  {
+    "text": "rebaja,",
+    "start": 69.72,
+    "end": 70.32,
+    "id": "w192"
+  },
+  {
+    "text": "el",
+    "start": 70.32,
+    "end": 70.47,
+    "id": "w193"
+  },
+  {
+    "text": "impuesto",
+    "start": 70.47,
+    "end": 71.04,
+    "id": "w194"
+  },
+  {
+    "text": "de",
+    "start": 71.06,
+    "end": 71.19,
+    "id": "w195"
+  },
+  {
+    "text": "hidrocarburos",
+    "start": 71.24,
+    "end": 72.32,
+    "id": "w196"
+  },
+  {
+    "text": "sumaría",
+    "start": 72.62,
+    "end": 72.91,
+    "id": "w197"
+  },
+  {
+    "text": "otros",
+    "start": 72.93,
+    "end": 73.27,
+    "id": "w198"
+  },
+  {
+    "text": "10",
+    "start": 73.3,
+    "end": 73.74,
+    "id": "w199"
+  },
+  {
+    "text": "euros",
+    "start": 73.74,
+    "end": 74.04,
+    "id": "w200"
+  },
+  {
+    "text": "por",
+    "start": 74.1,
+    "end": 74.27,
+    "id": "w201"
+  },
+  {
+    "text": "depósito,",
+    "start": 74.33,
+    "end": 75.07,
+    "id": "w202"
+  },
+  {
+    "text": "más",
+    "start": 75.07,
+    "end": 75.29,
+    "id": "w203"
+  },
+  {
+    "text": "su",
+    "start": 75.29,
+    "end": 75.41,
+    "id": "w204"
+  },
+  {
+    "text": "IVA.",
+    "start": 75.47,
+    "end": 75.85,
+    "id": "w205"
+  },
+  {
+    "text": "Pensabas",
+    "start": 75.96,
+    "end": 76.45,
+    "id": "w206"
+  },
+  {
+    "text": "que",
+    "start": 76.45,
+    "end": 76.62,
+    "id": "w207"
+  },
+  {
+    "text": "era",
+    "start": 76.62,
+    "end": 76.81,
+    "id": "w208"
+  },
+  {
+    "text": "más",
+    "start": 76.81,
+    "end": 76.98,
+    "id": "w209"
+  },
+  {
+    "text": "o",
+    "start": 76.98,
+    "end": 77.11,
+    "id": "w210"
+  },
+  {
+    "text": "menos.",
+    "start": 77.11,
+    "end": 77.58,
+    "id": "w211"
+  },
+  {
+    "text": "Te",
+    "start": 77.63,
+    "end": 77.84,
+    "id": "w212"
+  },
+  {
+    "text": "leo",
+    "start": 77.85,
+    "end": 77.97,
+    "id": "w213"
+  },
+  {
+    "text": "en",
+    "start": 77.97,
+    "end": 78.09,
+    "id": "w214"
+  },
+  {
+    "text": "los",
+    "start": 78.09,
+    "end": 78.2,
+    "id": "w215"
+  },
+  {
+    "text": "comentarios.",
+    "start": 78.2,
+    "end": 78.76,
+    "id": "w216"
+  }
+]

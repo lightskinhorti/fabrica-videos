@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <script type="importmap">
+      { "imports": { "three": "./lib/three.module.js", "three/addons/": "./lib/addons/" } }
+    </script>
+    <link rel="stylesheet" href="comun/contador.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Nunito", sans-serif; }
+      #alt, #clock { font-family: "Archivo Black", sans-serif; }
+      #extra { font-size: 38px; color: #ffe08a; }
+      .pin {
+        position: absolute; padding: 8px 18px 7px; border-radius: 16px; background: #ffcf2e; border: 5px solid #0b1a3a;
+        color: #1d1f3a; font-weight: 900; font-size: 30px; letter-spacing: 0.05em; white-space: nowrap; opacity: 0;
+        box-shadow: 0 6px 0 rgba(11, 26, 58, 0.45);
+      }
+      .pin::after {
+        content: ""; position: absolute; left: 50%; bottom: -17px; margin-left: -11px;
+        border: 11px solid transparent; border-top-color: #0b1a3a; border-bottom: 0;
+      }
+      #rasca { background: rgba(13, 22, 48, 0.88); color: #fff; border-color: #0b1a3a; font-size: 32px; }
+      #rasca b { color: #ffcf2e; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="62.5" data-width="1080" data-height="1920" data-fps="30">
+      <div id="sky" class="clip" data-start="0" data-duration="62.5" data-track-index="0"></div>
+      <canvas id="gl" class="clip" data-start="0" data-duration="62.5" data-track-index="1" width="1080" height="1920"></canvas>
+      <svg id="leaders" class="clip" data-start="0" data-duration="62.5" data-track-index="2" width="1080" height="1920" data-layout-allow-overlap></svg>
+      <div id="labels" class="clip" data-start="0" data-duration="62.5" data-track-index="3" data-layout-allow-overlap>
+        <div id="edad" class="pin">18 AÑOS</div>
+        <div id="rasca" class="pin">EDIFICIO MÁS ALTO DEL MUNDO · <b>828 m</b></div>
+      </div>
+      <div id="hud" class="clip" data-start="0" data-duration="62.5" data-track-index="4">
+        <div id="alt">0<small>g</small></div>
+        <div id="since"></div>
+        <div id="clock">0 s</div>
+        <div id="extra"></div>
+        <div id="note"></div>
+      </div>
+      <div id="title" class="clip" data-start="0" data-duration="62.5" data-track-index="6"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="62.5"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="62.5" data-track-index="7" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 61.22, "lines": [{"id": "l1", "s": 0.16, "e": 2.057, "words": [{"w": "Un", "s": 0.16, "e": 0.17, "key": false}, {"w": "refresco", "s": 0.17, "e": 0.83, "key": true}, {"w": "de", "s": 0.91, "e": 1.04, "key": false}, {"w": "cola", "s": 1.04, "e": 1.39, "key": false}, {"w": "al", "s": 1.39, "e": 1.5, "key": false}, {"w": "día.", "s": 1.88, "e": 2.057, "key": false}]}, {"id": "l2", "s": 2.057, "e": 8.02, "words": [{"w": "¿Cuánto", "s": 2.057, "e": 2.41, "key": false}, {"w": "azúcar", "s": 2.47, "e": 2.79, "key": false}, {"w": "suma", "s": 2.79, "e": 3.0, "key": false}, {"w": "eso", "s": 3.02, "e": 3.2, "key": false}, {"w": "en", "s": 3.2, "e": 3.32, "key": false}, {"w": "toda", "s": 3.32, "e": 3.56, "key": false}, {"w": "una", "s": 3.56, "e": 3.72, "key": false}, {"w": "vida?", "s": 3.72, "e": 4.22, "key": true}, {"w": "Al", "s": 4.38, "e": 4.4, "key": false}, {"w": "final", "s": 4.4, "e": 4.83, "key": false}, {"w": "te", "s": 4.89, "e": 5.03, "key": false}, {"w": "lo", "s": 5.03, "e": 5.21, "key": false}, {"w": "digo,", "s": 5.21, "e": 5.57, "key": false}, {"w": "y", "s": 5.57, "e": 5.66, "key": false}, {"w": "te", "s": 5.66, "e": 5.73, "key": false}, {"w": "enseño", "s": 6.2, "e": 6.38, "key": false}, {"w": "algo", "s": 6.38, "e": 6.74, "key": false}, {"w": "todavía", "s": 6.74, "e": 7.35, "key": false}, {"w": "más", "s": 7.41, "e": 7.64, "key": false}, {"w": "loco.", "s": 7.64, "e": 8.02, "key": false}]}, {"id": "l3", "s": 8.18, "e": 13.52, "words": [{"w": "Una", "s": 8.18, "e": 8.24, "key": false}, {"w": "lata", "s": 8.24, "e": 8.52, "key": false}, {"w": "normal", "s": 8.53, "e": 8.97, "key": false}, {"w": "de", "s": 8.97, "e": 9.11, "key": false}, {"w": "cola,", "s": 9.11, "e": 9.52, "key": false}, {"w": "de", "s": 9.53, "e": 9.56, "key": false}, {"w": "330", "s": 10.07, "e": 10.33, "key": false}, {"w": "mililitros,", "s": 10.39, "e": 11.15, "key": false}, {"w": "lleva", "s": 11.21, "e": 11.5, "key": false}, {"w": "unos", "s": 11.5, "e": 11.71, "key": false}, {"w": "35", "s": 11.71, "e": 11.79, "key": false}, {"w": "gramos", "s": 12.35, "e": 12.66, "key": true}, {"w": "de", "s": 12.66, "e": 12.76, "key": false}, {"w": "azúcar.", "s": 12.76, "e": 13.52, "key": false}]}, {"id": "l4", "s": 13.67, "e": 19.92, "words": [{"w": "Solo", "s": 13.67, "e": 13.82, "key": false}, {"w": "esa", "s": 13.82, "e": 14.04, "key": false}, {"w": "lata", "s": 14.04, "e": 14.34, "key": false}, {"w": "ya", "s": 14.34, "e": 14.49, "key": false}, {"w": "pasa", "s": 14.49, "e": 14.75, "key": false}, {"w": "de", "s": 14.8, "e": 14.94, "key": false}, {"w": "los", "s": 14.94, "e": 15.03, "key": false}, {"w": "25", "s": 15.57, "e": 15.61, "key": false}, {"w": "gramos", "s": 15.61, "e": 16.06, "key": false}, {"w": "que", "s": 16.06, "e": 16.28, "key": false}, {"w": "la", "s": 16.28, "e": 16.43, "key": false}, {"w": "OMS", "s": 16.43, "e": 16.64, "key": true}, {"w": "pone", "s": 16.71, "e": 16.95, "key": false}, {"w": "como", "s": 16.95, "e": 17.21, "key": false}, {"w": "objetivo", "s": 17.21, "e": 17.9, "key": false}, {"w": "ideal", "s": 17.9, "e": 18.01, "key": false}, {"w": "para", "s": 18.08, "e": 18.26, "key": false}, {"w": "todo", "s": 18.26, "e": 18.61, "key": false}, {"w": "un", "s": 18.61, "e": 19.13, "key": false}, {"w": "día.", "s": 19.15, "e": 19.92, "key": false}]}, {"id": "l5", "s": 19.98, "e": 23.61, "words": [{"w": "Nuestro", "s": 19.98, "e": 20.32, "key": false}, {"w": "amigo", "s": 20.39, "e": 20.72, "key": true}, {"w": "empieza", "s": 20.72, "e": 21.15, "key": false}, {"w": "a", "s": 21.2, "e": 21.26, "key": false}, {"w": "los", "s": 21.26, "e": 21.42, "key": false}, {"w": "18", "s": 21.42, "e": 21.82, "key": false}, {"w": "años,", "s": 21.97, "e": 22.11, "key": false}, {"w": "y", "s": 22.16, "e": 22.2, "key": false}, {"w": "no", "s": 22.2, "e": 22.33, "key": false}, {"w": "falla", "s": 22.33, "e": 22.66, "key": false}, {"w": "ni", "s": 22.66, "e": 22.79, "key": false}, {"w": "un", "s": 22.79, "e": 22.92, "key": false}, {"w": "solo", "s": 22.92, "e": 23.19, "key": false}, {"w": "día.", "s": 23.19, "e": 23.61, "key": false}]}, {"id": "l6", "s": 23.61, "e": 27.22, "words": [{"w": "En", "s": 23.61, "e": 23.88, "key": false}, {"w": "menos", "s": 23.88, "e": 24.12, "key": false}, {"w": "de", "s": 24.19, "e": 24.28, "key": false}, {"w": "un", "s": 24.28, "e": 24.39, "key": false}, {"w": "mes,", "s": 24.41, "e": 24.55, "key": false}, {"w": "ya", "s": 24.63, "e": 24.71, "key": false}, {"w": "se", "s": 24.71, "e": 24.83, "key": false}, {"w": "ha", "s": 24.83, "e": 24.94, "key": false}, {"w": "bebido", "s": 24.94, "e": 25.23, "key": false}, {"w": "un", "s": 25.23, "e": 25.45, "key": false}, {"w": "paquete", "s": 25.45, "e": 25.88, "key": true}, {"w": "de", "s": 25.88, "e": 26.0, "key": false}, {"w": "azúcar", "s": 26, "e": 26.37, "key": false}, {"w": "de", "s": 26.37, "e": 26.49, "key": false}, {"w": "un", "s": 26.49, "e": 26.61, "key": false}, {"w": "kilo.", "s": 26.61, "e": 27.22, "key": false}]}, {"id": "l7", "s": 27.22, "e": 29.53, "words": [{"w": "Al", "s": 27.22, "e": 27.38, "key": false}, {"w": "año,", "s": 27.38, "e": 27.71, "key": true}, {"w": "casi", "s": 27.71, "e": 27.98, "key": false}, {"w": "13", "s": 28, "e": 28.41, "key": false}, {"w": "kilos", "s": 28.41, "e": 28.66, "key": false}, {"w": "de", "s": 28.66, "e": 28.89, "key": false}, {"w": "azúcar.", "s": 28.89, "e": 29.53, "key": false}]}, {"id": "l8", "s": 29.53, "e": 32.71, "words": [{"w": "En", "s": 29.53, "e": 29.74, "key": false}, {"w": "menos", "s": 29.74, "e": 29.98, "key": false}, {"w": "de", "s": 30.05, "e": 30.18, "key": false}, {"w": "dos", "s": 30.18, "e": 30.38, "key": false}, {"w": "años,", "s": 30.38, "e": 30.65, "key": false}, {"w": "lo", "s": 30.65, "e": 30.78, "key": false}, {"w": "que", "s": 30.78, "e": 30.98, "key": false}, {"w": "pesa", "s": 30.98, "e": 31.24, "key": false}, {"w": "una", "s": 31.24, "e": 31.4, "key": false}, {"w": "maleta", "s": 31.63, "e": 31.84, "key": true}, {"w": "facturada.", "s": 31.84, "e": 32.71, "key": false}]}, {"id": "l9", "s": 32.71, "e": 36.03, "words": [{"w": "En", "s": 32.71, "e": 32.92, "key": false}, {"w": "cinco", "s": 32.92, "e": 33.26, "key": false}, {"w": "años", "s": 33.26, "e": 33.55, "key": false}, {"w": "y", "s": 33.55, "e": 33.59, "key": false}, {"w": "medio,", "s": 33.67, "e": 33.98, "key": false}, {"w": "lo", "s": 33.98, "e": 34.12, "key": false}, {"w": "que", "s": 34.12, "e": 34.26, "key": false}, {"w": "pesa", "s": 34.54, "e": 34.59, "key": false}, {"w": "una", "s": 34.81, "e": 34.82, "key": false}, {"w": "persona", "s": 34.82, "e": 35.31, "key": true}, {"w": "adulta.", "s": 35.33, "e": 36.03, "key": false}]}, {"id": "l10", "s": 36.03, "e": 39.72, "words": [{"w": "A", "s": 36.03, "e": 36.2, "key": false}, {"w": "los", "s": 36.2, "e": 36.39, "key": false}, {"w": "65", "s": 36.39, "e": 36.87, "key": false}, {"w": "años,", "s": 36.95, "e": 37.26, "key": false}, {"w": "el", "s": 37.26, "e": 37.44, "key": false}, {"w": "montón", "s": 37.44, "e": 37.55, "key": false}, {"w": "ya", "s": 38.09, "e": 38.14, "key": false}, {"w": "pesa", "s": 38.14, "e": 38.45, "key": false}, {"w": "más", "s": 38.51, "e": 38.74, "key": false}, {"w": "que", "s": 38.74, "e": 39.0, "key": false}, {"w": "una", "s": 39, "e": 39.26, "key": false}, {"w": "vaca.", "s": 39.26, "e": 39.72, "key": true}]}, {"id": "l11", "s": 39.79, "e": 46.24, "words": [{"w": "Y", "s": 39.79, "e": 39.825, "key": false}, {"w": "a", "s": 39.825, "e": 39.86, "key": false}, {"w": "los", "s": 39.88, "e": 40.08, "key": false}, {"w": "84,", "s": 40.08, "e": 40.52, "key": false}, {"w": "lo", "s": 40.52, "e": 40.66, "key": false}, {"w": "que", "s": 40.66, "e": 40.88, "key": false}, {"w": "se", "s": 40.88, "e": 41.02, "key": false}, {"w": "vive", "s": 41.02, "e": 41.22, "key": false}, {"w": "de", "s": 41.22, "e": 41.77, "key": false}, {"w": "media", "s": 41.77, "e": 41.81, "key": false}, {"w": "en", "s": 41.81, "e": 41.91, "key": false}, {"w": "España:", "s": 41.95, "e": 42.72, "key": false}, {"w": "844", "s": 42.72, "e": 43.48, "key": true}, {"w": "kilos", "s": 44.1, "e": 44.68, "key": false}, {"w": "de", "s": 44.68, "e": 44.92, "key": false}, {"w": "azúcar.", "s": 45.07, "e": 46.24, "key": false}]}, {"id": "l12", "s": 46.4, "e": 50.58, "words": [{"w": "Pero", "s": 46.4, "e": 46.59, "key": false}, {"w": "lo", "s": 46.59, "e": 46.76, "key": false}, {"w": "más", "s": 46.76, "e": 47.02, "key": false}, {"w": "loco", "s": 47.02, "e": 47.36, "key": false}, {"w": "son", "s": 47.36, "e": 47.62, "key": false}, {"w": "las", "s": 47.62, "e": 47.75, "key": false}, {"w": "latas", "s": 47.94, "e": 48.31, "key": true}, {"w": "vacías:", "s": 48.32, "e": 49.0, "key": false}, {"w": "más", "s": 49, "e": 49.24, "key": false}, {"w": "de", "s": 49.26, "e": 49.37, "key": false}, {"w": "24", "s": 49.43, "e": 49.93, "key": false}, {"w": "mil.", "s": 49.93, "e": 50.58, "key": false}]}, {"id": "l13", "s": 50.74, "e": 57.387, "words": [{"w": "Una", "s": 50.74, "e": 50.78, "key": false}, {"w": "encima", "s": 50.78, "e": 51.18, "key": false}, {"w": "de", "s": 51.18, "e": 51.31, "key": false}, {"w": "otra,", "s": 51.31, "e": 51.58, "key": false}, {"w": "harían", "s": 51.58, "e": 51.98, "key": false}, {"w": "una", "s": 51.98, "e": 52.08, "key": false}, {"w": "torre", "s": 52.38, "e": 52.51, "key": true}, {"w": "de", "s": 52.63, "e": 52.64, "key": false}, {"w": "más", "s": 52.64, "e": 52.84, "key": false}, {"w": "de", "s": 52.84, "e": 52.97, "key": false}, {"w": "dos", "s": 52.97, "e": 53.17, "key": false}, {"w": "kilómetros", "s": 53.17, "e": 53.83, "key": false}, {"w": "y", "s": 53.83, "e": 53.89, "key": false}, {"w": "medio:", "s": 53.89, "e": 54.32, "key": false}, {"w": "más", "s": 54.39, "e": 54.54, "key": false}, {"w": "de", "s": 54.54, "e": 54.69, "key": false}, {"w": "tres", "s": 54.69, "e": 54.99, "key": false}, {"w": "veces", "s": 55.01, "e": 55.39, "key": false}, {"w": "el", "s": 55.39, "e": 55.54, "key": false}, {"w": "edificio", "s": 55.54, "e": 56.14, "key": false}, {"w": "más", "s": 56.37, "e": 56.38, "key": false}, {"w": "alto", "s": 56.38, "e": 56.63, "key": false}, {"w": "del", "s": 56.69, "e": 56.91, "key": false}, {"w": "mundo.", "s": 56.92, "e": 57.387, "key": false}]}, {"id": "l14", "s": 57.387, "e": 60.64, "words": [{"w": "¿Cuántas", "s": 57.387, "e": 58.04, "key": false}, {"w": "latas", "s": 58.04, "e": 58.25, "key": false}, {"w": "te", "s": 58.31, "e": 58.39, "key": false}, {"w": "tomas", "s": 58.39, "e": 58.64, "key": false}, {"w": "tú", "s": 58.64, "e": 58.773, "key": false}, {"w": "a", "s": 58.773, "e": 58.84, "key": false}, {"w": "la", "s": 58.84, "e": 58.94, "key": false}, {"w": "semana?", "s": 58.94, "e": 59.46, "key": false}, {"w": "Te", "s": 59.46, "e": 59.57, "key": false}, {"w": "leo", "s": 59.68, "e": 59.73, "key": false}, {"w": "en", "s": 59.73, "e": 59.82, "key": false}, {"w": "los", "s": 59.87, "e": 59.94, "key": false}, {"w": "comentarios.", "s": 60.01, "e": 60.64, "key": true}]}]}</script>
+    <script id="escena" type="application/json">
+      {
+        "titulo": "¿Y si bebieras un refresco al día?",
+        "nota": "Una lata de cola normal: unos 35 g de azúcar",
+        "formato": "peso",
+        "desde": "AZÚCAR EN",
+        "inicio": 0,
+        "ritmo": 0.00000040509259259259,
+        "hitos": [
+          { "clave": "refresco", "v": 0 },
+          { "clave": "gramos", "v": 0.035, "etiqueta": "UNA LATA" },
+          { "clave": "paquete", "v": 1, "etiqueta": "PAQUETE DE AZÚCAR" },
+          { "clave": "ano", "v": 12.78375, "etiqueta": "1 AÑO" },
+          { "clave": "maleta", "v": 23, "etiqueta": "MALETA FACTURADA" },
+          { "clave": "persona", "v": 70, "etiqueta": "PERSONA ADULTA" },
+          { "clave": "vaca", "v": 600.84, "etiqueta": "VACA" },
+          { "clave": "kilos", "v": 843.73, "etiqueta": "A LOS 84" },
+          { "clave": "latas", "v": 843.73, "solo_etiqueta": true },
+          { "clave": "torre", "v": 843.73, "solo_etiqueta": true }
+        ],
+        "sonido": { "viento": true }
+      }
+    </script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 62.5 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import * as THREE from "three";
+      import { crearContador } from "./comun/contador.js";
+
+      // The counter is the sugar in one can of regular cola a day (35 g, fuentes.md), from 18 to 84 years old.
+      // Everything is in real metres and kilos. Our character drinks his can on the terrace and grows older with the
+      // counter (beard, grey hair, glasses); his body never changes (this video only adds up sugar, it says nothing
+      // about what it does to anyone). The sugar piles up next to him as a white mound whose size follows its weight
+      // (a bulk density of 850 kg per cubic metre, only to give it a size). Each object that weighs the same drops in
+      // on the left at its real size. At the end the empty cans rise from the ground as one column (each can 11.52 cm)
+      // and the camera rides its top up to 2,777 m, past the height of the tallest building in the world (828 m).
+      const C = crearContador(THREE);
+      const { VOZ, D, words, anchors, scene, camera, mat, glow, box, at, v3, hash, clamp, lerp, ease, smooth, ramp, norm, miles, Y, V, W, H } = C;
+      scene.fog = new THREE.Fog(0xcfefff, 120, 900);
+      const cyl = (rt, rb, h, m, seg = 10) => new THREE.Mesh(new THREE.CylinderGeometry(rt, rb, h, seg), m);
+      const L = VOZ.lines;
+      const A = {};
+      anchors.forEach((a) => (A[a.hito.etiqueta || a.hito.clave] = a));
+      const buscar = (c, desde) => words.find((w) => w.s >= desde && norm(w.w).startsWith(c));
+      const tDe = (a, def) => (a ? a.t : def);
+      const RAD = Math.PI / 180;
+
+      // ---------- the counter: kilos of sugar; it ticks from the first frame and time keeps running between landmarks ----------
+      const LATA = 0.035, DIA = 365.25;
+      const KF = anchors.filter((a) => !a.hito.solo_etiqueta && a.v > 0).map((a) => ({ t: a.t, v: a.v, fin: a.fin }));
+      const tL = tDe(A.latas, D - 14), wMedio = buscar("medio", tL), tTop = wMedio ? wMedio.s + 0.3 : tL + 6;
+      function kilosAt(t) {
+        const a0 = KF[0];
+        if (t <= a0.t) return a0.v * Math.max(0, t) / a0.t;
+        let i = 0;
+        while (i + 1 < KF.length && t >= KF[i + 1].t) i++;
+        const a = KF[i], b = KF[i + 1];
+        // half a can a second at first, then a few per cent a second so the last digit keeps moving
+        const ritmo = i === 0 ? LATA / 2 : Math.max(LATA, 0.03 * a.v);
+        // after the last landmark the sugar stays put: the column of cans takes over
+        if (!b) return a.v;
+        const st = Math.max(a.t + 0.25, b.t - 3.2, Math.min(a.fin, b.t - 1.5));
+        const k = smooth(clamp((t - st) / (b.t - st)));
+        return V(lerp(Y(a.v + ritmo * (Math.min(t, st) - a.t)), Y(b.v), k));
+      }
+      const coma = (n, d) => n.toFixed(d).replace(".", ",");
+      function fmt(v) {
+        if (v < 0.9995) return [String(Math.round(v * 1000)), "g"];
+        if (v < 99.95) return [coma(v, 1).replace(/,0$/, ""), "kg"];
+        return [miles(v), "kg"];
+      }
+      const plural = (n, a, b) => `${n} ${n === 1 ? a : b}`;
+      function reloj(dias) {
+        const d = dias + 1e-6;
+        if (d < 1) return "su primera lata";
+        if (d < 7) return plural(Math.floor(d), "día", "días");
+        if (d < 28) return plural(Math.floor(d / 7), "semana", "semanas");
+        if (d < DIA - 0.5) return plural(Math.max(1, Math.round(d / 30.4375)), "mes", "meses");
+        const y = d / DIA, a = Math.floor(y), m = Math.floor((y - a) * 12);
+        return plural(a, "año", "años") + (m ? " y " + plural(m, "mes", "meses") : "");
+      }
+
+      // ---------- the column of empty cans ----------
+      const ALTO_LATA = 0.1152, N_LATAS = Math.floor(66 * DIA), ALTO_TORRE = N_LATAS * ALTO_LATA;
+      const torreAt = (t) => (t < tL ? 0 : V(lerp(Y(0), Y(ALTO_TORRE), smooth(clamp((t - tL) / (tTop - tL))))));
+
+      // ---------- ground, terrace tiles ----------
+      scene.add(at(box(30000, 0.2, 30000, mat(0x86c96e)), 0, -0.105, 0));
+      // big field patches, for the view from two kilometres up
+      for (let i = 0; i < 70; i++) {
+        const x = (hash(i + 900) - 0.5) * 9000, z = (hash(i + 950) - 0.5) * 9000;
+        if (Math.hypot(x, z) < 1000) continue;
+        const f = at(box(250 + hash(i + 980) * 500, 0.05, 200 + hash(i + 990) * 450, mat([0x9bd47a, 0x74b85f, 0xc9d27a, 0x86c96e, 0x6fae5a][i % 5])), x, 0.01, z);
+        f.rotation.y = hash(i + 970) * 1.2; scene.add(f);
+      }
+      scene.add(at(box(9.2, 0.01, 5.2, mat(0xcfc6b8)), -1.0, -0.006, -0.1));
+      {
+        const pos = [];
+        for (let i = 0; i < 18; i++) for (let k = 0; k < 10; k++) pos.push([-5.35 + i * 0.5, -2.35 + k * 0.5, (i + k) % 2]);
+        const tiles = new THREE.InstancedMesh(new THREE.BoxGeometry(0.47, 0.02, 0.47), mat(0xffffff, { roughness: 0.55 }), pos.length);
+        const m4 = new THREE.Matrix4();
+        pos.forEach(([x, z, c], i) => { tiles.setMatrixAt(i, m4.makeTranslation(x, -0.01, z)); tiles.setColorAt(i, new THREE.Color(c ? 0xf3e9d8 : 0xdcc9a9)); });
+        scene.add(tiles);
+      }
+
+      // ---------- the house and its kitchen (the kitchen runs along the back wall, z = -2.6) ----------
+      const WALL = mat(0xf0e2cf);
+      scene.add(at(box(11.4, 5.8, 8, WALL), -3.3, 2.9, -6.6));
+      {
+        const sh = new THREE.Shape([new THREE.Vector2(-4.4, 0), new THREE.Vector2(4.4, 0), new THREE.Vector2(0, 2.3)]);
+        const rg = new THREE.ExtrudeGeometry(sh, { depth: 11.9, bevelEnabled: false }); rg.rotateY(Math.PI / 2); rg.translate(-5.95, 0, 0);
+        const roof = new THREE.Mesh(rg, mat(0xc4552e)); roof.position.set(-3.3, 5.8, -6.6); scene.add(roof);
+      }
+      for (const x of [-7.6, -5.2, -2.6, 0.4]) {
+        scene.add(at(box(1.2, 1.2, 0.06, glow(0xffe7a6, 0.92)), x, 4.2, -2.57));
+        scene.add(at(box(1.4, 0.12, 0.14, mat(0xffffff)), x, 3.55, -2.55));
+      }
+      scene.add(at(box(1.0, 2.1, 0.08, mat(0x8c5a33)), -6.9, 1.05, -2.56));
+      const fridge = new THREE.Group(); fridge.position.set(-4.25, 0, -2.27); scene.add(fridge);
+      fridge.add(at(box(0.74, 1.86, 0.66, mat(0xe6ebf1, { roughness: 0.4 })), 0, 0.93, 0));
+      fridge.add(at(box(0.75, 0.02, 0.67, mat(0x9aa6b4)), 0, 1.22, 0.001));
+      for (const y of [0.85, 1.55]) fridge.add(at(box(0.04, 0.32, 0.05, mat(0x9aa6b4)), 0.28, y, 0.35));
+      const FRONT = mat(0x5fa8d8), DARK = mat(0x2b3a6b);
+      scene.add(at(box(4.8, 0.76, 0.58, FRONT), -1.4, 0.48, -2.3));
+      scene.add(at(box(4.8, 0.1, 0.52, DARK), -1.4, 0.05, -2.33));
+      scene.add(at(box(4.9, 0.05, 0.64, mat(0xf4efe2, { roughness: 0.5 })), -1.4, 0.885, -2.28));
+      for (let i = 0; i <= 8; i++) scene.add(at(box(0.012, 0.72, 0.02, DARK), -3.8 + i * 0.6, 0.48, -2.0));
+      for (let i = 0; i < 8; i++) scene.add(at(box(0.16, 0.025, 0.03, mat(0xf4efe2)), -3.5 + i * 0.6, 0.76, -1.99));
+      scene.add(at(box(0.62, 0.012, 0.4, mat(0x9aa6b4, { roughness: 0.3, metalness: 0.3 })), -1.0, 0.913, -2.3));
+      scene.add(at(box(0.04, 0.3, 0.04, mat(0xc9d2dc, { metalness: 0.4, roughness: 0.3 })), -1.0, 1.06, -2.5));
+      scene.add(at(box(0.04, 0.04, 0.18, mat(0xc9d2dc, { metalness: 0.4, roughness: 0.3 })), -1.0, 1.2, -2.43));
+      scene.add(at(box(4.8, 0.62, 0.02, mat(0xcfe8ef)), -1.4, 1.22, -2.59));
+      scene.add(at(box(1.1, 0.8, 0.05, glow(0xbfe8ff, 0.95)), -1.0, 1.98, -2.58));
+      for (const [w, h, x, y] of [[1.22, 0.06, -1.0, 2.41], [1.22, 0.06, -1.0, 1.55], [0.06, 0.86, -1.58, 1.98], [0.06, 0.86, -0.42, 1.98], [0.04, 0.8, -1.0, 1.98]]) scene.add(at(box(w, h, 0.08, mat(0xffffff)), x, y, -2.55));
+      for (const [x0, x1] of [[-3.8, -1.75], [-0.25, 1.0]]) {
+        scene.add(at(box(x1 - x0, 0.7, 0.34, mat(0xf4efe2)), (x0 + x1) / 2, 2.0, -2.43));
+        for (let x = x0 + 0.3; x < x1; x += 0.6) scene.add(at(box(0.025, 0.16, 0.03, DARK), x, 1.75, -2.25));
+      }
+      // a fruit bowl and a sugar bowl on the worktop
+      scene.add(at(cyl(0.16, 0.1, 0.09, mat(0xffffff), 12), -2.6, 0.955, -2.3));
+      for (const [x, z, c] of [[-2.65, -2.27, 0xd63a3a], [-2.53, -2.33, 0xff9a2e], [-2.6, -2.4, 0x8fd14f]]) scene.add(at(new THREE.Mesh(new THREE.IcosahedronGeometry(0.045, 0), mat(c)), x, 1.02, z));
+
+      // ---------- a can of cola (no brand: caramel with a cream band and a silver top) ----------
+      const CARAMELO = mat(0x8a3d1c, { roughness: 0.35, metalness: 0.2 }), CREMA = mat(0xf2e6c9, { roughness: 0.4 }), PLATA = mat(0xc9d2dc, { roughness: 0.25, metalness: 0.6 });
+      function lataModelo() {
+        const g = new THREE.Group();
+        g.add(at(cyl(0.033, 0.033, 0.1, CARAMELO, 18), 0, 0.0576, 0));
+        g.add(at(cyl(0.0333, 0.0333, 0.026, CREMA, 18), 0, 0.064, 0));
+        g.add(at(cyl(0.028, 0.033, 0.008, PLATA, 18), 0, 0.1112, 0));
+        g.add(at(cyl(0.033, 0.026, 0.008, PLATA, 18), 0, 0.004, 0));
+        return g;
+      }
+
+      // ---------- our character (1.8 m), a step behind the line where things drop; the can in his right hand ----------
+      const P = C.personaje(), { kid, head, body, arms } = P;
+      kid.scale.setScalar(0.246); kid.position.set(-0.35, 0, -1.15); kid.rotation.y = 0.35; scene.add(kid);
+      // the can is held up in front of his chest, upright and side on, so it always reads as a can
+      const lataMano = lataModelo(); lataMano.scale.setScalar(1.35 / 0.246); lataMano.position.set(1.5, 1.68, 1.98); body.add(lataMano);
+      // beard and sideburns (they grow in his twenties and go grey with the years), hair at the back, then glasses
+      const BARBA = mat(0x5a3a22);
+      const barba = new THREE.Group(); head.add(barba);
+      barba.add(at(box(1.8, 0.36, 0.24, BARBA), 0, -1.08, 1.06));
+      barba.add(at(box(0.8, 0.15, 0.1, BARBA), 0, -0.45, 1.16));
+      for (const sx of [-1, 1]) { barba.add(at(box(0.16, 0.8, 0.55, BARBA), sx * 1.2, -0.62, 0.72)); barba.add(at(box(0.4, 0.4, 0.2, BARBA), sx * 0.8, -0.98, 1.06)); }
+      const GAFAS = mat(0x1d1f3a, { roughness: 0.4 });
+      const gafas = new THREE.Group(); head.add(gafas);
+      for (const sx of [-1, 1]) {
+        const ex = sx * 0.52;
+        gafas.add(at(box(0.84, 0.09, 0.06, GAFAS), ex, 0.47, 1.27));
+        gafas.add(at(box(0.84, 0.09, 0.06, GAFAS), ex, -0.31, 1.27));
+        for (const dx of [-0.4, 0.4]) gafas.add(at(box(0.09, 0.86, 0.06, GAFAS), ex + dx, 0.08, 1.27));
+        gafas.add(at(box(0.06, 0.07, 1.1, GAFAS), sx * 1.24, 0.3, 0.72));
+      }
+      gafas.add(at(box(0.26, 0.08, 0.06, GAFAS), 0, 0.22, 1.27));
+      for (const sx of [-1, 1]) head.add(at(box(0.18, 0.42, 1.2, BARBA), sx * 1.22, 0.55, -0.2));
+      head.add(at(box(2.3, 0.42, 0.16, BARBA), 0, 0.6, -1.14));
+      const cBarba = new THREE.Color(), BR = new THREE.Color(0x5a3a22), GR = new THREE.Color(0x9b9b9b), BL = new THREE.Color(0xf2f2ee);
+
+      // ---------- the sugar mound ----------
+      const RHO = 850, MN = 90, NI = 600, MI = 0.15;
+      // mound volume = 0.932 R^3 (the lathe profile below, scaled to 0.93 R wide and 0.6 R high)
+      const RN = Math.cbrt(MN / RHO / 0.932);
+      const Rm = (m) => RN * Math.cbrt(Math.max(m, 0) / MN);
+      const HK = 0.6;
+      const heap = new THREE.Group(); scene.add(heap);
+      const BLANCOS = [0xffffff, 0xf7f5ef, 0xefece4, 0xfbfaf6, 0xe9e6dd];
+      {
+        const prof = [];
+        for (let k = 0; k <= 6; k++) { const r = k / 6; prof.push(new THREE.Vector2(Math.max(r, 0.0001), Math.pow(1 - r * r, 0.75))); }
+        const g = new THREE.LatheGeometry(prof, 13).toNonIndexed();
+        const col = [];
+        for (let i = 0; i < g.attributes.position.count; i += 3) { const c = new THREE.Color(BLANCOS[Math.floor(hash(i * 0.37 + 5) * BLANCOS.length)]).multiplyScalar(0.95); for (let k = 0; k < 3; k++) col.push(c.r, c.g, c.b); }
+        g.setAttribute("color", new THREE.Float32BufferAttribute(col, 3)); g.computeVertexNormals();
+        var core = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ vertexColors: true, flatShading: true, roughness: 0.55 }));
+        heap.add(core);
+      }
+      // sugar cubes and sugar crystals; item i sits on the mound it makes with the ones before
+      const TIPOS = [
+        { geo: new THREE.BoxGeometry(0.034, 0.034, 0.034), w: 0.55, cols: [0xffffff, 0xfbfaf6, 0xf4f1ea], hy: 0.017 },
+        { geo: new THREE.OctahedronGeometry(0.022, 0), w: 0.45, cols: [0xffffff, 0xf2efe7, 0xfaf8f2], hy: 0.016 },
+      ];
+      const tot = TIPOS.reduce((s, k) => s + k.w, 0);
+      const items = [];
+      const e3 = new THREE.Euler(), q4 = new THREE.Quaternion(), m4 = new THREE.Matrix4();
+      for (let i = 0; i < NI; i++) {
+        let u = hash(i * 5 + 1) * tot, ti = 0;
+        if (i === 0) ti = 0; else while (u > TIPOS[ti].w) { u -= TIPOS[ti].w; ti++; }
+        const T = TIPOS[ti], Ri = RN * Math.cbrt((i + 1) / NI);
+        const th = hash(i * 5 + 2) * Math.PI * 2, rho = i === 0 ? 0 : Ri * 0.9 * Math.sqrt(hash(i * 5 + 3));
+        const hs = i === 0 ? 0 : HK * Ri * Math.pow(Math.max(0, 1 - Math.pow(rho / (0.93 * Ri), 2)), 0.75);
+        const s = 0.85 + hash(i * 5 + 4) * 0.5;
+        e3.set((hash(i + 7) - 0.5) * 0.8, hash(i + 8) * Math.PI * 2, (hash(i + 9) - 0.5) * 0.8);
+        q4.setFromEuler(e3);
+        const p = v3(Math.cos(th) * rho, hs + T.hy * s * (i === 0 ? 1 : 0.45), Math.sin(th) * rho);
+        items.push({ i, ti, p, q: q4.clone(), s, col: T.cols[Math.floor(hash(i * 5 + 6) * T.cols.length)] });
+      }
+      for (const T of TIPOS) {
+        T.lista = items.filter((it) => TIPOS[it.ti] === T);
+        T.mesh = new THREE.InstancedMesh(T.geo, mat(0xffffff, { roughness: 0.45 }), T.lista.length);
+        T.lista.forEach((it, k) => { T.mesh.setMatrixAt(k, m4.compose(it.p, it.q, v3(it.s, it.s, it.s))); T.mesh.setColorAt(k, new THREE.Color(it.col)); });
+        T.mesh.frustumCulled = false; heap.add(T.mesh);
+      }
+      const primero = items[0], T0 = TIPOS[0];
+      const cayendo = [0, 1, 0].map((ti) => { const f = new THREE.Mesh(TIPOS[ti].geo, mat(0xffffff, { roughness: 0.45 })); f.visible = false; scene.add(f); return f; });
+      const cima = new THREE.Object3D(); scene.add(cima);
+
+      // ---------- what weighs the same (real size; L = length, H = height, F = depth) ----------
+      const PINK = mat(0xff9aa8);
+      function lata() { return { g: lataModelo(), L: 0.066, H: 0.1152, F: 0.066 }; }
+      function paquete() {
+        const g = new THREE.Group();
+        g.add(at(box(0.105, 0.165, 0.065, mat(0xffffff, { roughness: 0.6 })), 0, 0.0825, 0));
+        g.add(at(box(0.107, 0.05, 0.067, mat(0x2f7fd0)), 0, 0.11, 0));
+        g.add(at(box(0.107, 0.01, 0.067, mat(0xffcf2e)), 0, 0.08, 0));
+        for (let k = 0; k < 4; k++) g.add(at(box(0.012, 0.012, 0.003, mat(0xf4f1ea)), -0.03 + k * 0.02, 0.045, 0.034));
+        return { g, L: 0.105, H: 0.165, F: 0.065 };
+      }
+      function maleta() {
+        const g = new THREE.Group(), Aa = mat(0x2fa89a, { roughness: 0.45 }), B = mat(0x1f7f75), K = mat(0x22242e);
+        g.add(at(box(0.48, 0.66, 0.27, Aa), 0, 0.41, 0));
+        for (const x of [-0.12, 0, 0.12]) g.add(at(box(0.03, 0.6, 0.012, B), x, 0.41, 0.137));
+        g.add(at(box(0.5, 0.025, 0.285, B), 0, 0.41, 0));
+        for (const x of [-0.19, 0.19]) g.add(at(box(0.024, 0.14, 0.024, K), x, 0.81, -0.08));
+        g.add(at(box(0.42, 0.03, 0.035, K), 0, 0.875, -0.08));
+        for (const [x, z] of [[-0.19, 0.1], [0.19, 0.1], [-0.19, -0.1], [0.19, -0.1]]) { const w = at(cyl(0.036, 0.036, 0.03, K, 10), x, 0.04, z); w.rotation.z = Math.PI / 2; g.add(w); }
+        g.add(at(box(0.008, 0.09, 0.06, mat(0xffcf2e)), 0.245, 0.6, 0.05));
+        return { g, L: 0.5, H: 0.88, F: 0.29 };
+      }
+      function vaca() {
+        const g = new THREE.Group(), Aa = mat(0xf7f7f2), B = mat(0x2b2b33);
+        g.add(at(box(2.2, 1.0, 0.8, Aa), 0, 1.25, 0));
+        [[-0.5, 1.4, 0.41, 0.6, 0.5], [0.4, 1.1, 0.41, 0.5, 0.4], [0.1, 1.5, -0.41, 0.7, 0.45], [-0.6, 1.05, -0.41, 0.4, 0.35]].forEach(([x, y, z, w, h]) => g.add(at(box(w, h, 0.02, B), x, y, z)));
+        for (const [x, z] of [[0.8, 0.25], [0.8, -0.25], [-0.8, 0.25], [-0.8, -0.25]]) g.add(at(box(0.16, 0.8, 0.16, Aa), x, 0.4, z));
+        g.add(at(box(0.3, 0.15, 0.3, PINK), -0.5, 0.7, 0));
+        const h = at(box(0.5, 0.45, 0.4, Aa), 1.3, 1.55, 0); g.add(h);
+        h.add(at(box(0.16, 0.22, 0.36, PINK), 0.3, -0.12, 0));
+        for (const z of [-0.18, 0.18]) { const c = at(new THREE.Mesh(new THREE.ConeGeometry(0.05, 0.22, 5), mat(0xe8dcc0)), -0.05, 0.3, z); c.rotation.x = z > 0 ? -0.5 : 0.5; h.add(c); }
+        for (const z of [-0.12, 0.12]) h.add(at(box(0.04, 0.06, 0.06, mat(0x1d1f3a)), 0.26, 0.08, z));
+        return { g, L: 2.7, H: 1.9, F: 0.8 };
+      }
+      const MODELOS = { "UNA LATA": lata, "PAQUETE DE AZÚCAR": paquete, "MALETA FACTURADA": maleta, "VACA": vaca };
+      const comps = [];
+      for (const a of anchors) {
+        const fab = MODELOS[a.hito.etiqueta];
+        if (!fab) continue;
+        const c = fab(); c.a = a; c.z = Math.max(0.12, c.F / 2 - 0.15); c.g.visible = false; scene.add(c.g);
+        c.ancla = new THREE.Object3D(); scene.add(c.ancla);
+        comps.push(c);
+      }
+      comps.forEach((c, i) => (c.fin = comps[i + 1] ? comps[i + 1].a.t - 0.3 : tL + 1.5));
+
+      // ---------- the town around, and the tallest building in the world far behind it ----------
+      const CASA = new THREE.BoxGeometry(1, 1, 1).translate(0, 0.5, 0);
+      const TEJADO = (() => { const g = new THREE.ExtrudeGeometry(new THREE.Shape([new THREE.Vector2(-0.5, 0), new THREE.Vector2(0.5, 0), new THREE.Vector2(0, 1)]), { depth: 1, bevelEnabled: false }); g.translate(0, 0, -0.5); g.rotateY(Math.PI / 2); return g; })();
+      const casas = [], arboles = [];
+      for (let gx = -34; gx <= 34; gx++) for (let gz = -36; gz <= 14; gz++) {
+        const k = (gx + 40) * 131 + (gz + 50) * 7;
+        const x = gx * 24 + (hash(k) - 0.5) * 8, z = gz * 24 + (hash(k + 1) - 0.5) * 8, r = Math.hypot(x, z);
+        if (r > 860) continue;
+        if (x > -30 && x < 30 && z > -28) continue;
+        if (z > -16 && x > -80 && x < 330) continue;
+        const p = hash(k + 2);
+        if (p < 0.28) { for (let j = 0; j < 3; j++) arboles.push({ x: x + (hash(k + 10 + j) - 0.5) * 16, z: z + (hash(k + 20 + j) - 0.5) * 16, h: 6 + hash(k + 30 + j) * 5 }); continue; }
+        if (p < 0.36) continue;
+        const piso = r > 280 && hash(k + 3) < 0.22;
+        const w = piso ? 14 + hash(k + 4) * 6 : 8 + hash(k + 4) * 5, d = piso ? 12 + hash(k + 5) * 4 : 7 + hash(k + 5) * 4;
+        const h = piso ? 16 + hash(k + 6) * 26 : 5 + hash(k + 6) * 4;
+        casas.push({ x, z, w, d, h, piso, ry: (hash(k + 7) - 0.5) * 0.3, c: [0xe8d7c0, 0xf0e2cf, 0xdcc9b0, 0xc9d6e3, 0xf4efe2, 0xe9c8a8][Math.floor(hash(k + 8) * 6)] });
+      }
+      for (const [x, z, h] of [[-12, -1, 8], [-13.5, -5, 7], [7.5, -9, 9], [12, -4, 7]]) arboles.push({ x, z, h });
+      const cuerpos = new THREE.InstancedMesh(CASA, mat(0xffffff), casas.length);
+      const tejados = new THREE.InstancedMesh(TEJADO, mat(0xffffff), casas.length);
+      const troncos = new THREE.InstancedMesh(new THREE.CylinderGeometry(0.25, 0.35, 1, 6).translate(0, 0.5, 0), mat(0x7a5233), arboles.length);
+      const copas = new THREE.InstancedMesh(new THREE.ConeGeometry(1, 1, 7).translate(0, 0.5, 0), mat(0xffffff), arboles.length);
+      const Mq = (x, y, z, sx, sy, sz, ry = 0) => new THREE.Matrix4().compose(v3(x, y, z), new THREE.Quaternion().setFromAxisAngle(v3(0, 1, 0), ry), v3(sx, sy, sz));
+      casas.forEach((c, i) => {
+        cuerpos.setMatrixAt(i, Mq(c.x, 0, c.z, c.w, c.h, c.d, c.ry)); cuerpos.setColorAt(i, new THREE.Color(c.c));
+        tejados.setMatrixAt(i, Mq(c.x, c.h, c.z, c.w + 0.6, c.piso ? 1.2 : 2.6, c.d + 0.6, c.ry));
+        tejados.setColorAt(i, new THREE.Color(c.piso ? 0x8a8f99 : [0xc4552e, 0xb5532e, 0xd06a3a][i % 3]));
+      });
+      arboles.forEach((a, i) => {
+        troncos.setMatrixAt(i, Mq(a.x, 0, a.z, 1, a.h * 0.35, 1)); copas.setMatrixAt(i, Mq(a.x, a.h * 0.28, a.z, a.h * 0.3, a.h * 0.75, a.h * 0.3));
+        copas.setColorAt(i, new THREE.Color([0x4f9e4a, 0x5fae58, 0x3f8e44][i % 3]));
+      });
+      [cuerpos, tejados, troncos, copas].forEach((im) => { im.frustumCulled = false; scene.add(im); });
+      // the skyscraper: stacked setbacks and a spire, 828 m (only its height matters here)
+      const RX = -180, RZ = -1350;
+      const rasca = new THREE.Group(); rasca.position.set(RX, 0, RZ); scene.add(rasca);
+      const RMAT = mat(0xc7ced8, { metalness: 0.3, roughness: 0.4 });
+      for (const [a, b, w] of [[0, 300, 70], [300, 500, 54], [500, 650, 40], [650, 740, 27]]) rasca.add(at(box(w, b - a, w, RMAT), 0, (a + b) / 2, 0));
+      rasca.add(at(cyl(2.5, 6, 88, mat(0xe8eef5, { metalness: 0.5, roughness: 0.3 }), 8), 0, 784, 0));
+      const punta = new THREE.Object3D(); punta.position.set(0, 828, 0); rasca.add(punta);
+      // clouds between 1.1 and 1.6 km, never right next to the column
+      const nubes = new THREE.Group(); scene.add(nubes);
+      for (let i = 0; i < 60; i++) {
+        const ang = hash(i + 400) * Math.PI * 2, r = 150 + hash(i + 410) * 2600, cx = 3 + Math.cos(ang) * r, cz = Math.sin(ang) * r;
+        // keep the line of sight from the top of the column to the skyscraper clear
+        const dAng = Math.abs(((ang - Math.atan2(RZ, RX - 3)) + 3 * Math.PI) % (2 * Math.PI) - Math.PI);
+        if (dAng < 0.45 && r > 400 && r < 1600) continue;
+        const n = new THREE.Group(); n.position.set(cx, 1100 + hash(i + 420) * 500, cz);
+        for (let k = 0; k < 4; k++) n.add(at(new THREE.Mesh(new THREE.IcosahedronGeometry(30 + hash(i * 4 + k) * 30, 0), mat(0xffffff, { roughness: 1 })), (k - 1.5) * 38, hash(i * 7 + k) * 14, (hash(i * 9 + k) - 0.5) * 30));
+        nubes.add(n);
+      }
+
+      // ---------- the column of empty cans: the top 260 are real cans, below them a plain column ----------
+      const COLX = 3.1, COLZ = -0.3, NT = 260;
+      const geoCuerpo = new THREE.CylinderGeometry(0.033, 0.033, 0.1, 16), geoBanda = new THREE.CylinderGeometry(0.0333, 0.0333, 0.026, 16), geoTapa = new THREE.CylinderGeometry(0.029, 0.033, 0.008, 16);
+      const tCuerpo = new THREE.InstancedMesh(geoCuerpo, CARAMELO, NT), tBanda = new THREE.InstancedMesh(geoBanda, CREMA, NT), tTapa = new THREE.InstancedMesh(geoTapa, PLATA, NT);
+      [tCuerpo, tBanda, tTapa].forEach((m) => { m.frustumCulled = false; m.count = 0; scene.add(m); });
+      const fuste = new THREE.Mesh(new THREE.CylinderGeometry(0.033, 0.033, 1, 12), mat(0x7a3a1e, { roughness: 0.4, metalness: 0.15 })); fuste.visible = false; scene.add(fuste);
+      function columna(Ht) {
+        const n = Math.min(NT, Math.ceil(Ht / ALTO_LATA));
+        [tCuerpo, tBanda, tTapa].forEach((m) => (m.count = n));
+        for (let k = 0; k < n; k++) {
+          const y0 = Ht - (k + 1) * ALTO_LATA;
+          tCuerpo.setMatrixAt(k, m4.makeTranslation(COLX, y0 + 0.0576, COLZ));
+          tBanda.setMatrixAt(k, m4.makeTranslation(COLX, y0 + 0.064, COLZ));
+          tTapa.setMatrixAt(k, m4.makeTranslation(COLX, y0 + 0.1112, COLZ));
+        }
+        [tCuerpo, tBanda, tTapa].forEach((m) => (m.instanceMatrix.needsUpdate = true));
+        const resto = Ht - NT * ALTO_LATA;
+        fuste.visible = resto > 0.01;
+        if (fuste.visible) { fuste.scale.set(1, resto, 1); fuste.position.set(COLX, resto / 2, COLZ); }
+      }
+
+      // ---------- labels: their own format (grams, decimals) ----------
+      const labPos = { "PERSONA ADULTA": [kid, v3(0, 7.3, 0)], "1 AÑO": [cima, v3(0, 0, 0)], "A LOS 84": [cima, v3(0, 0, 0)] };
+      for (const c of comps) labPos[c.a.hito.etiqueta] = [c.ancla, v3(0, 0, 0)];
+      C.etiquetas(labPos, [cima, v3(0, 0, 0)]);
+      const labEls = [...document.querySelectorAll("#labels .lab")];
+      const TEXTOS = { "UNA LATA": "UNA LATA · <b>35 g</b>", "PAQUETE DE AZÚCAR": "PAQUETE DE AZÚCAR · <b>1 kg</b>", "1 AÑO": "1 AÑO · <b>12,8 kg</b>", "MALETA FACTURADA": "MALETA FACTURADA · <b>23 kg</b>", "PERSONA ADULTA": "PERSONA ADULTA · <b>70 kg</b>", "VACA": "VACA · <b>600 kg</b>", "A LOS 84": "A LOS 84 · <b>844 kg</b>" };
+      anchors.filter((a) => a.hito.etiqueta).forEach((a, i) => { if (labEls[i]) labEls[i].innerHTML = TEXTOS[a.hito.etiqueta]; });
+      const marcas = [...document.querySelectorAll("#leaders line, #leaders circle")];
+      const altEl = document.getElementById("alt"), sinceEl = document.getElementById("since"), clockEl = document.getElementById("clock");
+      const extraEl = document.getElementById("extra"), hudEl = document.getElementById("hud"), edadEl = document.getElementById("edad"), rascaEl = document.getElementById("rasca");
+      const lineas = [...document.querySelectorAll("#leaders line")];
+
+      // the years go by: the afternoon turns golden towards 84; up the column the sky gets deeper
+      const SKY = [[0, "#4fbfff", "#cfefff"], [22, "#4fbfff", "#cfefff"], [29.6, "#ffb36b", "#ffe2b8"]];
+      const SKY2 = [[0, "#ffb36b", "#ffe2b8"], [12, "#f7a868", "#ffdcb0"], [24, "#5a8fe0", "#ffc89a"], [34.5, "#2f5fc4", "#f7b989"]];
+      const tAmigo = (buscar("amigo", 15) || { s: 19 }).s;
+      // the hook framing (him and his can) stays through "una lata normal de cola", then goes down to the floor for the 35 g
+      const tZ1 = tDe(A["UNA LATA"], 12) - 0.3, tZ0 = Math.max(L[0] ? L[0].e + 0.6 : 2.6, tZ1 - 3);
+      const toScreen = (p) => { const q = p.clone().project(camera); return { x: (q.x + 1) * 0.5 * W, y: (1 - q.y) * 0.5 * H, z: q.z }; };
+      const tmp = new THREE.Vector3(), camA = new THREE.Vector3(), mirA = new THREE.Vector3(), camB = new THREE.Vector3(), mirB = new THREE.Vector3();
+
+      function renderAt(t) {
+        const m = kilosAt(t), y = Y(m), dias = m / LATA, edad = 18 + dias / DIA;
+        const Ht = torreAt(t), kRide = smooth(clamp((t - tL) / 1.6));
+        // ---- comparisons: drop in with a bounce, pop out when the next one arrives ----
+        let objH = 0, objL = 0, left = -0.12;
+        for (const c of comps) {
+          c.kin = clamp((t - (c.a.t - 0.35)) / 0.55); c.kout = clamp((t - c.fin) / 0.3); c.vis = c.kin * (1 - c.kout);
+          objL = Math.max(objL, c.L * c.vis); objH = Math.max(objH, c.H * c.vis);
+        }
+        const Rw = Rm(m), S = Math.max(1, Math.cbrt(m / MN)), Rl = Rm(Math.min(m, MN));
+        const gap = 0.05 + 0.35 * clamp(Math.max(Rw, objL * 0.5) / 1.2);
+        for (const c of comps) {
+          c.ancla.position.set(-gap - c.L / 4, c.H, c.z);
+          c.g.visible = c.vis > 0.001;
+          if (!c.g.visible) continue;
+          const squash = c.kin > 0.7 ? 0.25 * Math.sin((Math.PI * (c.kin - 0.7)) / 0.3) : 0;
+          c.g.position.set(-gap - c.L / 2, (1 - ease(c.kin)) * c.H * 2.5, c.z);
+          c.g.scale.set(1 + squash * 0.5, 1 - squash, 1 + squash * 0.5).multiplyScalar(1 - ease(c.kout));
+          left = Math.min(left, lerp(-0.12, -gap - c.L - 0.05, ease(c.kin) * (1 - ease(c.kout))));
+        }
+        const charVis = A["PERSONA ADULTA"] ? ramp(t, A["PERSONA ADULTA"].t - 0.7, A["PERSONA ADULTA"].t + 0.2) : 1;
+        kid.position.x = lerp(-0.35, 0, clamp((gap - 0.1) / 0.2));
+        left = Math.min(left, lerp(-0.12, kid.position.x - 0.7, charVis));
+        // ---- sugar mound ----
+        const hx = gap + Rw;
+        heap.position.set(hx, 0, 0); heap.scale.setScalar(S);
+        core.visible = Rl > 0.03; core.scale.set(Rl * 0.93, HK * Rl, Rl * 0.93);
+        const n = m <= 0 ? 0 : Math.min(NI, 1 + Math.floor(m / MI));
+        for (const T of TIPOS) { let k = 0; while (k < T.lista.length && T.lista[k].i < n) k++; T.mesh.count = k; }
+        const s0 = Math.cbrt(clamp(m / MI)) * primero.s * 1.6;
+        T0.mesh.setMatrixAt(0, m4.compose(v3(0, T0.hy * s0, 0), primero.q, v3(s0, s0, s0))); T0.mesh.instanceMatrix.needsUpdate = true;
+        const topL = HK * Rl + 0.02, Hw = topL * S;
+        cima.position.set(hx, Hw + 0.02 * S, 0);
+        cayendo.forEach((f, i) => {
+          const k = (t * 1.1 + i / 3) % 1, caida = Math.max(0.3, 1.6 * Rl) * S;
+          f.visible = m > 2 && t < tL && k < 0.95;
+          f.position.set(hx + (hash(i + 40) - 0.5) * 0.4 * Rl * S, Hw + (1 - k * k) * caida, (hash(i + 41) - 0.5) * 0.3 * Rl * S);
+          f.rotation.set(t * (1 + i), t * 0.7, 0.3 * Math.sin(t * 3 + i));
+        });
+        // ---- the character: holds his can, looks at each new object, gets older ----
+        P.animar(t);
+        const sb = 0;
+        // the arm holding the can, forearm forward; the can bobs a little with it
+        const bob = 0.04 * Math.sin(t * 1.3);
+        arms[1].rotation.x = -1.5 + bob; arms[1].rotation.z = 0.15;
+        lataMano.position.y = 1.68 + bob * 1.8;
+        const mira = comps.reduce((s, c) => Math.max(s, ramp(t, c.a.t - 0.2, c.a.t + 0.3) * (1 - ramp(t, c.a.t + 1.8, c.a.t + 2.4))), 0);
+        head.rotation.y = lerp(0.45, -0.55, mira) * (1 - sb) + Math.sin(t * 0.9) * 0.06;
+        head.rotation.x = lerp(lerp(0.3, -0.35, clamp(Hw / 2.2)), -0.22, sb);
+        const kB = smooth(clamp((edad - 21) / 5));
+        barba.visible = kB > 0.02; barba.scale.set(1, Math.max(0.02, kB), Math.max(0.3, kB));
+        cBarba.copy(BR).lerp(GR, smooth(clamp((edad - 48) / 18))).lerp(BL, smooth(clamp((edad - 66) / 16)));
+        BARBA.color.copy(cBarba);
+        const kGaf = clamp((edad - 44.5) / 0.6);
+        gafas.visible = kGaf > 0; gafas.scale.setScalar(kGaf < 1 ? 1 + 0.25 * Math.sin(Math.PI * kGaf) : 1);
+        body.rotation.x = 0.1 * smooth(clamp((edad - 62) / 22));
+
+        // ---- the column of cans ----
+        columna(Ht);
+
+        // ---- camera A: heap + objects (+ the whole character from "persona adulta" on), between the HUD and the captions ----
+        const estab = 1 - ramp(t, tZ0, tZ1);
+        const right = Math.max(hx + Rw * 1.08 + 0.04, Ht > 0 ? COLX + 0.3 : -9);
+        const hS = Math.max(Hw, objH, 1.85 * charVis, Math.min(Ht, 2.2), lerp(0.07, 0.83, estab));
+        const width = Math.max(right - left, lerp(0, 1.1, estab));
+        const cx = lerp((left + right) / 2, -0.15, estab);
+        const Hv = Math.max((width / 0.5625) * 1.12, hS / 0.25);
+        const sway = Math.sin(t * 0.5) * 0.015 * Hv;
+        const distA = Hv / 0.6886;
+        const kChico = clamp((1.4 - Hv) / 0.9);
+        // the hook frames him from the chest up, with his can
+        const cyA = lerp(hS * 0.5, 1.1, estab);
+        camA.set(cx + sway, cyA + Hv * (0.14 + 0.5 * kChico * (1 - estab)), distA);
+        mirA.set(cx, cyA, 0);
+
+        // ---- camera B: riding the top of the column; it looks ahead at first, then down at everything below ----
+        const kAbajo = smooth(clamp((Y(Ht) - Y(400)) / (Y(ALTO_TORRE) - Y(400))));
+        const off = lerp(1.6, 2.4, kAbajo);
+        camB.set(COLX + 0.55, Ht + 0.12 + 0.6 * kAbajo, COLZ + off);
+        const giro = 0.018 * Math.max(0, t - tTop);
+        const pitch = lerp(-10, -50, kAbajo) * RAD, yaw = Math.atan2(RX - COLX, -(RZ - COLZ)) - giro;
+        camB.set(COLX + 0.55 * Math.cos(giro) + off * Math.sin(giro), camB.y, COLZ + off * Math.cos(giro) - 0.55 * Math.sin(giro));
+        mirB.set(camB.x + Math.sin(yaw) * Math.cos(pitch) * 10, camB.y + Math.sin(pitch) * 10, camB.z - Math.cos(yaw) * Math.cos(pitch) * 10);
+        // low on the column the camera looks at its top from the front, so the hand-over from camera A is smooth
+        const kCerca = 1 - smooth(clamp((Ht - 0.5) / 6));
+        const mirTop = v3(COLX, Math.max(0.3, Ht - 0.25), COLZ);
+        mirB.lerp(mirTop, kCerca);
+        camB.lerp(v3(COLX + 0.4, Math.max(0.6, Ht + 0.2), COLZ + 2.6), kCerca);
+
+        const cam = camA.clone().lerp(camB, kRide), mir = mirA.clone().lerp(mirB, kRide);
+        camera.fov = lerp(38, 62, kRide * kAbajo); camera.updateProjectionMatrix();
+        camera.position.copy(cam); camera.lookAt(mir);
+        camera.updateMatrixWorld();
+        const dCam = cam.distanceTo(mir);
+        C.escala(mir, lerp(distA, 3, kRide));
+        if (kRide > 0) { camera.near = lerp(camera.near, 0.25 + 0.15 * kAbajo, kRide); camera.far = Math.max(camera.far, Ht * 3 + 6000); camera.updateProjectionMatrix(); }
+        scene.fog.near = kRide > 0.5 ? 4000 : Math.max(120, distA * 1.4); scene.fog.far = kRide > 0.5 ? 16000 : Math.max(900, distA * 6);
+        const [, bot] = kRide > 0 ? C.fondo(SKY2, Y(Ht)) : C.fondo(SKY, y);
+        scene.fog.color.set(bot);
+        scene.updateMatrixWorld();
+
+        // ---- HUD: grams, then kilos; the time it took; the cans. Up the column: its height and its cans ----
+        let txt;
+        if (t < tL + 0.6) txt = dias >= 1 ? `= ${miles(Math.floor(dias + 1e-6))} ${Math.floor(dias + 1e-6) === 1 ? "lata" : "latas"}` : "";
+        else txt = `= ${miles(m)} kg de azúcar`;
+        extraEl.textContent = txt; extraEl.style.opacity = txt ? 1 : 0; extraEl.style.transform = "none";
+        C.pintar(t, y);
+        if (t < tL + 0.6) {
+          const [num, unit] = fmt(m);
+          altEl.innerHTML = `${num}<small>${unit}</small>`;
+          const porEdad = L[9] && t >= L[9].s - 0.2;
+          sinceEl.textContent = porEdad ? "AZÚCAR A LOS" : C.ESC.desde;
+          clockEl.textContent = porEdad ? plural(Math.floor(edad + 1e-6), "año", "años") : reloj(dias);
+        } else {
+          altEl.innerHTML = `${miles(Ht)}<small>m</small>`;
+          sinceEl.textContent = "TORRE DE LATAS";
+          clockEl.textContent = `${miles(Math.min(N_LATAS, Ht / ALTO_LATA))} latas`;
+        }
+        // labels never go under the HUD; and up the column they leave
+        const topMin = hudEl.offsetTop + hudEl.offsetHeight + 18, fuera = 1 - ramp(t, tL, tL + 0.5);
+        labEls.forEach((el, k) => {
+          if (!(parseFloat(el.style.opacity) > 0)) return;
+          el.style.opacity = parseFloat(el.style.opacity) * fuera;
+          const top = parseFloat(el.style.top);
+          if (top < topMin) { el.style.top = topMin + "px"; if (lineas[k]) lineas[k].setAttribute("y2", topMin + el.offsetHeight / 2); }
+        });
+        if (fuera < 1) marcas.forEach((e) => e.setAttribute("opacity", parseFloat(e.getAttribute("opacity") || 1) * fuera));
+
+        // ---- his age above his head (from "nuestro amigo" until the ride) ----
+        head.getWorldPosition(tmp); tmp.y += 0.45;
+        const otras = labEls.reduce((s, el) => Math.max(s, parseFloat(el.style.opacity) || 0), 0);
+        const pe = toScreen(tmp), kE = ramp(t, tAmigo, tAmigo + 0.4) * (1 - ramp(t, tL, tL + 0.5)) * (1 - clamp(otras * 3));
+        edadEl.textContent = `${Math.floor(edad + 1e-6)} AÑOS`;
+        edadEl.style.opacity = kE;
+        edadEl.style.left = clamp(pe.x - edadEl.offsetWidth / 2, 30, W - 30 - edadEl.offsetWidth) + "px";
+        edadEl.style.top = clamp(pe.y - edadEl.offsetHeight - 26, topMin, 1150) + "px";
+        // ---- the skyscraper's label, pointing at its spire, once the column is high ----
+        punta.getWorldPosition(tmp);
+        const pr = toScreen(tmp), kR = ramp(Ht, 250, 500) * (pr.z < 1 && pr.y > 0 && pr.y < H ? 1 : 0);
+        rascaEl.style.opacity = kR;
+        rascaEl.style.left = clamp(pr.x - rascaEl.offsetWidth / 2, 30, W - 30 - rascaEl.offsetWidth) + "px";
+        rascaEl.style.top = clamp(pr.y - rascaEl.offsetHeight - 24, topMin, 1500) + "px";
+      }
+      await C.arrancar(renderAt);
+    </script>
+  </body>
+</html>

@@ -599,7 +599,19 @@ Ninguna fase empieza por fecha: empieza cuando se cumple el filtro de la anterio
   - **Referencias:** sus 13 reels de este estilo están en `referencias/lascosaspordentro/`. Los temas que ya tiene están en `ideas/lascosaspordentro.md`.
   - **Límite conocido:** three.js llega lejos con texturas y materiales, pero sus planos de manos y objetos parecen imágenes generadas con IA. Si el estudio no llega al 85 % solo con código, la opción es generar imágenes, con la API de pago de Gemini (unos céntimos por imagen) o con un modelo gratis en este Mac (FLUX.1 schnell, licencia Apache 2.0, una descarga de varios GB). Las dos necesitan el permiso de Javier.
   - **Decisión de Javier (3 de noviembre): no se paga por imágenes.** Si la cuenta no funciona, sería dinero perdido que solo sirve para una cuenta. Se sigue con código: más planos de corte y de diagrama (donde ya estamos cerca del original), un encuadre nuevo cada 2 o 3 segundos unido con transiciones suaves, y los planos de la vida real se cambian por otros que el código sí hace bien. Se vuelve a pensar solo si Las cosas por dentro gana el torneo (revisión del 16 y 17 de noviembre).
-- **Siguiente tanda:** Las cosas por dentro necesita un vídeo para el jueves 5 y otro para el viernes 6 (con el estilo nuevo), y Dinero sin lío otro para el viernes 6.
+- **Viernes 6 de noviembre: día sin publicar** en las tres cuentas (Javier no pudo programar). No hay castigo conocido de TikTok por saltarse un día; se pierde un día de datos, igual en las tres, así que el torneo sigue siendo justo.
+- **Tanda de la noche del 6 al 7 de noviembre** (aprobada por Javier, tres agentes en paralelo, uno por cuenta, cada uno solo en sus carpetas):
+  - Dinero sin lío, que se había quedado sin reserva: `06-iva` (para el sábado 7), `07-cajero` y `08-gasolina`. Misma receta que el café (288 visualizaciones en 24 horas, el mejor de la cuenta): un gesto de cada día con un coste o una regla escondida.
+  - Las cosas por dentro: `09-mando` y `10-raton`, con plantillas y transiciones. @speedy_devv no tiene ninguno de los dos (lista del 3 de noviembre).
+  - El contador loco: `09-movil` (idea 24) y `10-refresco` (idea 22, con las reglas de salud). Siguen la receta de los pasos de salud, el mejor vídeo de la fábrica (800 visualizaciones en 24 horas).
+  - Con eso, y con la comida y la nevera ya aprobadas, las tres cuentas tienen vídeo hasta el lunes 9 o el martes 10.
+  - **Resultado (madrugada del 7):** los 7 vídeos están hechos, con el control sin errores; Claude los revisó con hojas de fotogramas. Cada agente tardó de 10 a 29 minutos por vídeo, y las voces costaron unos 10,5 céntimos en total. Falta que Javier los apruebe. La gasolina solo vale para noviembre de 2026.
+  - **Mejoras del motor que pidieron los agentes (pendientes):**
+    - Registrar los objetos nuevos en `herramientas/pordentro/objetos/index.js`.
+    - En El contador loco: los formatos "horas" y "gramos", y que las etiquetas se coloquen según la altura real del marcador.
+    - En `dinero.js`: una entrada "crece" para columnas y poder elegir el tamaño del gancho.
+    - En `vozdata.py`: no perder la coma entre dos números seguidos.
+    - En `producir.sh`: avisar antes de renderizar si la voz no llega a 60 s.
 - **Para cerrar la fase 2 falta:**
   1. **El ritmo:** 1 vídeo al día por cuenta durante las 2 primeras semanas, sin cortes. La fábrica tiene que sacar 3 vídeos al día y conviene ir una semana por delante, con 7 vídeos de reserva por cuenta.
   2. **La hoja de métricas (R14):** cada vídeo, a las 24 horas y a los 7 días. Las visualizaciones y los seguidores se apuntan solos desde el 5 de noviembre; falta conectar Chrome en el perfil de cada cuenta para que Claude lea de TikTok Studio el porcentaje que ve el vídeo entero.

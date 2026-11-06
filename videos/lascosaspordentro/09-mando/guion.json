@@ -1,0 +1,51 @@
+{
+  "titulo": "Tu mando dispara una luz invisible",
+  "lines": [
+    "Tu mando dispara una luz invisible.",
+    "Tus ojos no la ven, pero la cámara de tu móvil sí.",
+    "¿Y por qué el sol, que también da esa luz, no te cambia de canal? Al final lo verás.",
+    "Por dentro hay una placa, unas gomas y, delante, un LED infrarrojo.",
+    "Al pulsar, la goma baja una pastilla de carbón que une dos pistas de la placa.",
+    "El circuito se cierra, y un chip sabe qué botón has pulsado.",
+    "Lo convierte en un código: en muchos mandos, treinta y dos unos y ceros.",
+    "Los primeros dicen para qué aparato es, y los de después, qué botón.",
+    "El LED lo dispara en destellos: una pausa corta entre dos es un cero; una larga, un uno.",
+    "Es luz de novecientos cuarenta nanómetros: más allá del rojo, donde tus ojos no llegan.",
+    "Pero aquí viene lo bueno: la cámara de tu móvil sí la capta, y la ve morada.",
+    "En la tele, detrás de una ventanita oscura, la espera un receptor.",
+    "Es un sensor de luz con un filtro que solo deja pasar el infrarrojo.",
+    "Traduce los destellos a unos y ceros, y la tele cambia de canal.",
+    "Lo prometido: el sol también da infrarrojo, pero su luz no parpadea.",
+    "Cada destello del mando parpadea unas treinta y ocho mil veces por segundo, y el receptor solo escucha ese ritmo.",
+    "Mándaselo a quien aprieta el mando cada vez más fuerte."
+  ],
+  "claves": [
+    "invisible",
+    "cámara",
+    "sol",
+    "LED",
+    "carbón",
+    "chip",
+    "código",
+    "aparato",
+    "destellos",
+    "rojo",
+    "morada",
+    "receptor",
+    "filtro",
+    "canal",
+    "parpadea",
+    "ritmo",
+    "fuerte"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "Tu mando dispara destellos de luz infrarroja que tus ojos no ven, pero la cámara del móvil sí. Cada botón es un código de unos y ceros, y cada destello parpadea unas 38.000 veces por segundo: por eso el sol no te cambia de canal. Ilustración simplificada.",
+    "hashtags": [
+      "#mando",
+      "#infrarrojo",
+      "#ciencia"
+    ],
+    "portada_en": "invisible"
+  }
+}

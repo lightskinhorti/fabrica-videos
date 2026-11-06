@@ -1,0 +1,46 @@
+{
+  "titulo": "¿Y si bebieras un refresco al día?",
+  "lines": [
+    "Un refresco de cola al día.",
+    "¿Cuánto azúcar suma eso en toda una vida? Al final te lo digo, y te enseño algo todavía más loco.",
+    "Una lata normal de cola, de trescientos treinta mililitros, lleva unos treinta y cinco gramos de azúcar.",
+    "Solo esa lata ya pasa de los veinticinco gramos que la OMS pone como objetivo ideal para todo un día.",
+    "Nuestro amigo empieza a los dieciocho años, y no falla ni un solo día.",
+    "En menos de un mes, ya se ha bebido un paquete de azúcar de un kilo.",
+    "Al año, casi trece kilos de azúcar.",
+    "En menos de dos años, lo que pesa una maleta facturada.",
+    "En cinco años y medio, lo que pesa una persona adulta.",
+    "A los sesenta y cinco años, el montón ya pesa más que una vaca.",
+    "Y a los ochenta y cuatro, lo que se vive de media en España: ochocientos cuarenta y cuatro kilos de azúcar.",
+    "Pero lo más loco son las latas vacías: más de veinticuatro mil.",
+    "Una encima de otra, harían una torre de más de dos kilómetros y medio: más de tres veces el edificio más alto del mundo.",
+    "¿Cuántas latas te tomas tú a la semana? Te leo en los comentarios."
+  ],
+  "claves": [
+    "refresco",
+    "vida",
+    "gramos",
+    "OMS",
+    "amigo",
+    "paquete",
+    "año",
+    "maleta",
+    "persona",
+    "vaca",
+    "ochocientos",
+    "latas",
+    "torre",
+    "comentarios"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "Un refresco de cola normal al día, sumado: unos 35 gramos de azúcar por lata, casi 13 kilos al año y unos 844 kilos desde los 18 hasta los 84 años (la esperanza de vida en España). Y las más de 24.000 latas, apiladas, harían una torre de más de 2,5 kilómetros. Una sola lata ya pasa de los 25 gramos de azúcar al día que la OMS propone como objetivo ideal. Cálculo propio, valores aproximados; cada marca lleva un poco más o menos azúcar. No es un consejo médico ni de dieta.",
+    "hashtags": [
+      "#azucar",
+      "#refrescos",
+      "#nutricion"
+    ],
+    "portada_en": "refresco"
+  },
+  "voz_dice": "La voz de Gemini salió de 57,5 s y el vídeo no llegaba a 60 s. Sin cambiar el texto, se añadieron silencios en exports/voces/10-refresco.wav, en pausas naturales: 0,5 s tras la pregunta del principio, 0,4 s antes de \"Nuestro amigo\", 0,4 s tras \"vaca\", 0,9 s antes de \"Pero lo más loco\", 0,6 s antes de \"Una encima de otra\", 0,4 s antes de la pregunta final y 0,5 s al final (61,2 s en total). Whisper oye todos los números igual que el guion."
+}

@@ -1,0 +1,1429 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <script type="importmap">
+      { "imports": { "three": "./lib/three.module.js", "three/addons/": "./lib/addons/" } }
+    </script>
+    <link rel="stylesheet" href="comun/pordentro.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+      .mono { font-family: "JetBrains Mono", monospace; position: absolute; left: -2000px; top: 0; }
+      .lectura-p .v, .panel .cifra { font-family: "JetBrains Mono", monospace; font-weight: 700; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="68.7" data-width="1080" data-height="1920" data-fps="30">
+      <canvas id="gl" class="clip" data-start="0" data-duration="68.7" data-track-index="0" width="1080" height="1920"></canvas>
+      <div id="shade" class="clip" data-start="0" data-duration="68.7" data-track-index="1"></div>
+      <svg id="leaders" class="clip" data-start="0" data-duration="68.7" data-track-index="2" width="1080" height="1920" data-layout-allow-overlap></svg>
+      <div id="labels" class="clip" data-start="0" data-duration="68.7" data-track-index="3" data-layout-allow-overlap><span class="mono">0123456789</span></div>
+      <div id="note" class="clip" data-start="0" data-duration="68.7" data-track-index="4"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="68.7"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="68.7" data-track-index="5" data-track-kind="captions"></div>
+    </div>
+
+        <script id="vozdata" type="application/json">{"duration": 67.46, "lines": [{"id": "l1", "s": 0.05, "e": 2.24, "words": [{"w": "Tu", "s": 0.05, "e": 0.13, "key": false}, {"w": "ratón", "s": 0.14, "e": 0.49, "key": false}, {"w": "hace", "s": 0.49, "e": 0.78, "key": false}, {"w": "miles", "s": 0.78, "e": 1.14, "key": false}, {"w": "de", "s": 1.14, "e": 1.27, "key": false}, {"w": "fotos", "s": 1.35, "e": 1.55, "key": true}, {"w": "por", "s": 1.65, "e": 1.85, "key": false}, {"w": "segundo.", "s": 1.85, "e": 2.24, "key": false}]}, {"id": "l2", "s": 2.42, "e": 4.94, "words": [{"w": "Y", "s": 2.42, "e": 2.45, "key": false}, {"w": "comparándolas", "s": 2.45, "e": 3.14, "key": false}, {"w": "sabe", "s": 3.23, "e": 3.38, "key": false}, {"w": "hacia", "s": 3.38, "e": 3.68, "key": false}, {"w": "dónde", "s": 3.68, "e": 3.9, "key": false}, {"w": "lo", "s": 3.9, "e": 4.16, "key": false}, {"w": "mueves.", "s": 4.16, "e": 4.94, "key": true}]}, {"id": "l3", "s": 4.94, "e": 8.6, "words": [{"w": "¿Y", "s": 4.94, "e": 5.07, "key": false}, {"w": "por", "s": 5.07, "e": 5.24, "key": false}, {"w": "qué", "s": 5.31, "e": 5.43, "key": false}, {"w": "no", "s": 5.43, "e": 5.49, "key": false}, {"w": "funciona", "s": 5.59, "e": 6.02, "key": false}, {"w": "encima", "s": 6.02, "e": 6.37, "key": false}, {"w": "de", "s": 6.37, "e": 6.49, "key": false}, {"w": "un", "s": 6.49, "e": 6.51, "key": false}, {"w": "cristal?", "s": 6.61, "e": 7.2, "key": true}, {"w": "Al", "s": 7.29, "e": 7.4, "key": false}, {"w": "final", "s": 7.4, "e": 7.77, "key": false}, {"w": "lo", "s": 7.87, "e": 7.95, "key": false}, {"w": "verás.", "s": 7.95, "e": 8.6, "key": false}]}, {"id": "l4", "s": 8.65, "e": 13.47, "words": [{"w": "Debajo", "s": 8.65, "e": 9.05, "key": false}, {"w": "tiene", "s": 9.05, "e": 9.44, "key": false}, {"w": "una", "s": 9.44, "e": 9.67, "key": false}, {"w": "luz", "s": 9.67, "e": 9.87, "key": false}, {"w": "roja,", "s": 9.95, "e": 10.35, "key": false}, {"w": "una", "s": 10.35, "e": 10.58, "key": false}, {"w": "lente", "s": 10.58, "e": 10.84, "key": false}, {"w": "y", "s": 11.02, "e": 11.03, "key": false}, {"w": "un", "s": 11.03, "e": 11.18, "key": false}, {"w": "chip", "s": 11.18, "e": 11.49, "key": false}, {"w": "que", "s": 11.49, "e": 11.72, "key": false}, {"w": "es", "s": 11.72, "e": 11.84, "key": false}, {"w": "una", "s": 11.86, "e": 12.1, "key": false}, {"w": "cámara", "s": 12.1, "e": 12.56, "key": true}, {"w": "diminuta.", "s": 12.56, "e": 13.47, "key": false}]}, {"id": "l5", "s": 13.57, "e": 16.6, "words": [{"w": "La", "s": 13.57, "e": 13.65, "key": false}, {"w": "luz", "s": 13.65, "e": 13.8, "key": false}, {"w": "sale", "s": 13.87, "e": 14.05, "key": false}, {"w": "muy", "s": 14.15, "e": 14.31, "key": false}, {"w": "inclinada,", "s": 14.31, "e": 15.04, "key": false}, {"w": "casi", "s": 15.04, "e": 15.3, "key": false}, {"w": "rasante", "s": 15.3, "e": 15.76, "key": true}, {"w": "con", "s": 15.76, "e": 15.96, "key": false}, {"w": "la", "s": 15.96, "e": 16.09, "key": false}, {"w": "mesa.", "s": 16.09, "e": 16.6, "key": false}]}, {"id": "l6", "s": 16.65, "e": 20.12, "words": [{"w": "Así,", "s": 16.65, "e": 16.88, "key": false}, {"w": "cada", "s": 16.95, "e": 17.24, "key": false}, {"w": "fibra", "s": 17.24, "e": 17.59, "key": false}, {"w": "y", "s": 17.59, "e": 17.66, "key": false}, {"w": "cada", "s": 17.66, "e": 17.87, "key": false}, {"w": "grano", "s": 17.95, "e": 18.3, "key": false}, {"w": "de", "s": 18.3, "e": 18.44, "key": false}, {"w": "la", "s": 18.44, "e": 18.58, "key": false}, {"w": "mesa", "s": 18.58, "e": 18.84, "key": false}, {"w": "hacen", "s": 19.03, "e": 19.23, "key": false}, {"w": "una", "s": 19.23, "e": 19.44, "key": false}, {"w": "sombra.", "s": 19.44, "e": 20.12, "key": true}]}, {"id": "l7", "s": 20.21, "e": 25.52, "words": [{"w": "La", "s": 20.21, "e": 20.31, "key": false}, {"w": "lente", "s": 20.31, "e": 20.69, "key": false}, {"w": "lleva", "s": 20.69, "e": 21.07, "key": false}, {"w": "esa", "s": 21.07, "e": 21.3, "key": false}, {"w": "imagen", "s": 21.3, "e": 21.71, "key": false}, {"w": "al", "s": 21.81, "e": 21.91, "key": false}, {"w": "sensor:", "s": 21.91, "e": 22.41, "key": true}, {"w": "en", "s": 22.59, "e": 22.67, "key": false}, {"w": "muchos", "s": 22.7, "e": 23.13, "key": false}, {"w": "ratones,", "s": 23.13, "e": 23.67, "key": false}, {"w": "18", "s": 23.67, "e": 24.13, "key": false}, {"w": "por", "s": 24.13, "e": 24.2, "key": false}, {"w": "18", "s": 24.2, "e": 24.57, "key": false}, {"w": "píxeles.", "s": 24.67, "e": 25.52, "key": false}]}, {"id": "l8", "s": 25.57, "e": 29.28, "words": [{"w": "Cada", "s": 25.57, "e": 25.8, "key": false}, {"w": "foto", "s": 25.8, "e": 26.05, "key": false}, {"w": "es", "s": 26.15, "e": 26.22, "key": false}, {"w": "un", "s": 26.22, "e": 26.36, "key": false}, {"w": "borrón", "s": 26.36, "e": 26.78, "key": false}, {"w": "de", "s": 26.78, "e": 26.92, "key": false}, {"w": "grises,", "s": 26.92, "e": 27.47, "key": false}, {"w": "pero", "s": 27.48, "e": 27.76, "key": false}, {"w": "para", "s": 27.76, "e": 28.02, "key": false}, {"w": "el", "s": 28.06, "e": 28.18, "key": false}, {"w": "chip", "s": 28.18, "e": 28.46, "key": false}, {"w": "es", "s": 28.46, "e": 28.6, "key": false}, {"w": "un", "s": 28.6, "e": 28.66, "key": false}, {"w": "mapa.", "s": 28.74, "e": 29.28, "key": true}]}, {"id": "l9", "s": 29.33, "e": 32.96, "words": [{"w": "Pero", "s": 29.33, "e": 29.55, "key": false}, {"w": "aquí", "s": 29.55, "e": 29.81, "key": false}, {"w": "viene", "s": 29.91, "e": 30.16, "key": false}, {"w": "lo", "s": 30.16, "e": 30.29, "key": false}, {"w": "bueno:", "s": 30.29, "e": 30.76, "key": false}, {"w": "compara", "s": 30.76, "e": 31.22, "key": true}, {"w": "cada", "s": 31.23, "e": 31.5, "key": false}, {"w": "foto", "s": 31.5, "e": 31.76, "key": false}, {"w": "con", "s": 31.77, "e": 31.96, "key": false}, {"w": "la", "s": 32, "e": 32.1, "key": false}, {"w": "anterior.", "s": 32.1, "e": 32.96, "key": false}]}, {"id": "l10", "s": 33.01, "e": 36.1, "words": [{"w": "Busca", "s": 33.01, "e": 33.24, "key": false}, {"w": "cuánto", "s": 33.31, "e": 33.62, "key": false}, {"w": "tiene", "s": 33.62, "e": 33.92, "key": false}, {"w": "que", "s": 33.92, "e": 34.1, "key": false}, {"w": "correr", "s": 34.1, "e": 34.46, "key": false}, {"w": "una", "s": 34.46, "e": 34.64, "key": false}, {"w": "para", "s": 34.64, "e": 34.88, "key": false}, {"w": "que", "s": 34.88, "e": 35.06, "key": false}, {"w": "encaje", "s": 35.06, "e": 35.42, "key": true}, {"w": "con", "s": 35.42, "e": 35.6, "key": false}, {"w": "la", "s": 35.6, "e": 35.72, "key": false}, {"w": "otra.", "s": 35.72, "e": 36.1, "key": false}]}, {"id": "l11", "s": 36.21, "e": 40.0, "words": [{"w": "Si", "s": 36.21, "e": 36.26, "key": false}, {"w": "las", "s": 36.26, "e": 36.41, "key": false}, {"w": "sombras", "s": 36.41, "e": 36.69, "key": false}, {"w": "se", "s": 36.79, "e": 36.86, "key": false}, {"w": "han", "s": 36.86, "e": 37.01, "key": false}, {"w": "corrido", "s": 37.01, "e": 37.36, "key": false}, {"w": "hacia", "s": 37.36, "e": 37.58, "key": false}, {"w": "atrás,", "s": 37.63, "e": 38.0, "key": false}, {"w": "es", "s": 38, "e": 38.11, "key": false}, {"w": "que", "s": 38.12, "e": 38.3, "key": false}, {"w": "el", "s": 38.3, "e": 38.4, "key": false}, {"w": "ratón", "s": 38.41, "e": 38.7, "key": false}, {"w": "ha", "s": 38.72, "e": 38.84, "key": false}, {"w": "ido", "s": 38.88, "e": 39.02, "key": false}, {"w": "hacia", "s": 39.02, "e": 39.3, "key": false}, {"w": "delante.", "s": 39.36, "e": 40.0, "key": true}]}, {"id": "l12", "s": 40.05, "e": 43.64, "words": [{"w": "Esa", "s": 40.05, "e": 40.19, "key": false}, {"w": "cuenta", "s": 40.19, "e": 40.53, "key": false}, {"w": "se", "s": 40.63, "e": 40.73, "key": false}, {"w": "repite", "s": 40.73, "e": 41.13, "key": false}, {"w": "sin", "s": 41.13, "e": 41.27, "key": false}, {"w": "parar,", "s": 41.35, "e": 41.67, "key": false}, {"w": "y", "s": 41.67, "e": 41.73, "key": false}, {"w": "el", "s": 41.73, "e": 41.86, "key": false}, {"w": "ordenador", "s": 41.86, "e": 42.47, "key": false}, {"w": "mueve", "s": 42.47, "e": 42.79, "key": false}, {"w": "la", "s": 42.8, "e": 42.93, "key": false}, {"w": "flecha.", "s": 42.93, "e": 43.64, "key": true}]}, {"id": "l13", "s": 43.69, "e": 48.9, "words": [{"w": "Los", "s": 43.69, "e": 43.81, "key": false}, {"w": "botones,", "s": 43.81, "e": 44.31, "key": false}, {"w": "en", "s": 44.31, "e": 44.42, "key": false}, {"w": "cambio,", "s": 44.42, "e": 44.87, "key": false}, {"w": "son", "s": 44.87, "e": 45.04, "key": false}, {"w": "simples", "s": 45.04, "e": 45.43, "key": false}, {"w": "interruptores:", "s": 45.43, "e": 46.36, "key": false}, {"w": "el", "s": 46.41, "e": 46.49, "key": false}, {"w": "clic", "s": 46.5, "e": 46.79, "key": true}, {"w": "es", "s": 46.79, "e": 46.89, "key": false}, {"w": "una", "s": 46.99, "e": 47.14, "key": false}, {"w": "lámina", "s": 47.14, "e": 47.56, "key": false}, {"w": "de", "s": 47.56, "e": 47.63, "key": false}, {"w": "metal", "s": 47.71, "e": 48.06, "key": false}, {"w": "que", "s": 48.06, "e": 48.27, "key": false}, {"w": "salta.", "s": 48.27, "e": 48.9, "key": false}]}, {"id": "l14", "s": 48.97, "e": 51.92, "words": [{"w": "Lo", "s": 48.97, "e": 49.05, "key": false}, {"w": "prometido:", "s": 49.06, "e": 49.92, "key": false}, {"w": "un", "s": 49.97, "e": 50.04, "key": false}, {"w": "cristal", "s": 50.04, "e": 50.45, "key": false}, {"w": "es", "s": 50.55, "e": 50.6, "key": false}, {"w": "liso", "s": 50.6, "e": 50.85, "key": true}, {"w": "y", "s": 50.85, "e": 50.91, "key": false}, {"w": "transparente.", "s": 50.91, "e": 51.92, "key": false}]}, {"id": "l15", "s": 51.97, "e": 55.88, "words": [{"w": "La", "s": 51.97, "e": 52.05, "key": false}, {"w": "luz", "s": 52.06, "e": 52.2, "key": false}, {"w": "lo", "s": 52.27, "e": 52.41, "key": false}, {"w": "atraviesa,", "s": 52.41, "e": 53.18, "key": false}, {"w": "no", "s": 53.18, "e": 53.32, "key": false}, {"w": "hay", "s": 53.32, "e": 53.47, "key": false}, {"w": "sombras,", "s": 53.57, "e": 54.04, "key": false}, {"w": "y", "s": 54.04, "e": 54.1, "key": false}, {"w": "todas", "s": 54.1, "e": 54.4, "key": false}, {"w": "las", "s": 54.41, "e": 54.6, "key": false}, {"w": "fotos", "s": 54.64, "e": 54.91, "key": false}, {"w": "salen", "s": 54.91, "e": 55.22, "key": false}, {"w": "iguales.", "s": 55.22, "e": 55.88, "key": true}]}, {"id": "l16", "s": 55.93, "e": 57.88, "words": [{"w": "Para", "s": 55.93, "e": 56.14, "key": false}, {"w": "el", "s": 56.14, "e": 56.27, "key": false}, {"w": "chip,", "s": 56.27, "e": 56.53, "key": false}, {"w": "no", "s": 56.53, "e": 56.66, "key": false}, {"w": "te", "s": 56.66, "e": 56.79, "key": false}, {"w": "estás", "s": 56.79, "e": 57.12, "key": false}, {"w": "moviendo.", "s": 57.12, "e": 57.88, "key": true}]}, {"id": "l17", "s": 57.93, "e": 64.68, "words": [{"w": "Y", "s": 57.93, "e": 57.987, "key": false}, {"w": "el", "s": 57.987, "e": 58.1, "key": false}, {"w": "dato", "s": 58.1, "e": 58.41, "key": false}, {"w": "final:", "s": 58.41, "e": 58.95, "key": false}, {"w": "una", "s": 58.95, "e": 59.15, "key": false}, {"w": "película", "s": 59.23, "e": 59.8, "key": true}, {"w": "son", "s": 59.81, "e": 60.03, "key": false}, {"w": "24", "s": 60.03, "e": 60.51, "key": false}, {"w": "fotos", "s": 60.51, "e": 60.9, "key": false}, {"w": "por", "s": 60.9, "e": 61.12, "key": false}, {"w": "segundo;", "s": 61.15, "e": 62.0, "key": false}, {"w": "un", "s": 62.05, "e": 62.15, "key": false}, {"w": "ratón", "s": 62.15, "e": 62.53, "key": false}, {"w": "sencillo", "s": 62.53, "e": 63.15, "key": false}, {"w": "hace", "s": 63.15, "e": 63.42, "key": false}, {"w": "1.500.", "s": 63.47, "e": 64.68, "key": false}]}, {"id": "l18", "s": 64.72, "e": 67.18, "words": [{"w": "Mándaselo", "s": 64.72, "e": 65.09, "key": false}, {"w": "a", "s": 65.09, "e": 65.132, "key": false}, {"w": "quien", "s": 65.132, "e": 65.341, "key": false}, {"w": "usa", "s": 65.341, "e": 65.467, "key": false}, {"w": "el", "s": 65.467, "e": 65.551, "key": false}, {"w": "ratón", "s": 65.551, "e": 65.76, "key": false}, {"w": "encima", "s": 65.76, "e": 66.05, "key": false}, {"w": "de", "s": 66.05, "e": 66.1, "key": false}, {"w": "una", "s": 66.15, "e": 66.23, "key": false}, {"w": "mesa", "s": 66.33, "e": 66.47, "key": false}, {"w": "de", "s": 66.47, "e": 66.56, "key": false}, {"w": "cristal.", "s": 66.56, "e": 67.18, "key": true}]}]}</script>
+    <script id="escena" type="application/json">
+{
+ "momentos": [
+  {
+   "id": "FOTOS1",
+   "clave": "fotos"
+  },
+  {
+   "id": "COMPARANDO",
+   "clave": "comparandolas"
+  },
+  {
+   "id": "DONDE",
+   "clave": "donde"
+  },
+  {
+   "id": "MUEVES",
+   "clave": "mueves"
+  },
+  {
+   "id": "PREGUNTA",
+   "clave": "y"
+  },
+  {
+   "id": "CRISTAL1",
+   "clave": "cristal"
+  },
+  {
+   "id": "FINAL",
+   "clave": "final"
+  },
+  {
+   "id": "DEBAJO",
+   "clave": "debajo"
+  },
+  {
+   "id": "LUZ1",
+   "clave": "luz"
+  },
+  {
+   "id": "LENTE1",
+   "clave": "lente"
+  },
+  {
+   "id": "CHIP1",
+   "clave": "chip"
+  },
+  {
+   "id": "CAMARA",
+   "clave": "camara"
+  },
+  {
+   "id": "LA2",
+   "clave": "la"
+  },
+  {
+   "id": "INCLINADA",
+   "clave": "inclinada"
+  },
+  {
+   "id": "RASANTE",
+   "clave": "rasante"
+  },
+  {
+   "id": "ASI",
+   "clave": "asi"
+  },
+  {
+   "id": "FIBRA",
+   "clave": "fibra"
+  },
+  {
+   "id": "GRANO",
+   "clave": "grano"
+  },
+  {
+   "id": "SOMBRA",
+   "clave": "sombra"
+  },
+  {
+   "id": "LENTE2",
+   "clave": "lente"
+  },
+  {
+   "id": "SENSOR",
+   "clave": "sensor"
+  },
+  {
+   "id": "EN",
+   "clave": "en"
+  },
+  {
+   "id": "N18",
+   "clave": "18"
+  },
+  {
+   "id": "CADA1",
+   "clave": "cada"
+  },
+  {
+   "id": "BORRON",
+   "clave": "borron"
+  },
+  {
+   "id": "PERO1",
+   "clave": "pero"
+  },
+  {
+   "id": "MAPA",
+   "clave": "mapa"
+  },
+  {
+   "id": "PERO2",
+   "clave": "pero"
+  },
+  {
+   "id": "COMPARA",
+   "clave": "compara"
+  },
+  {
+   "id": "ANTERIOR",
+   "clave": "anterior"
+  },
+  {
+   "id": "BUSCA",
+   "clave": "busca"
+  },
+  {
+   "id": "ENCAJE",
+   "clave": "encaje"
+  },
+  {
+   "id": "SI",
+   "clave": "si"
+  },
+  {
+   "id": "SOMBRAS2",
+   "clave": "sombras"
+  },
+  {
+   "id": "ATRAS",
+   "clave": "atras"
+  },
+  {
+   "id": "ES",
+   "clave": "es"
+  },
+  {
+   "id": "DELANTE",
+   "clave": "delante"
+  },
+  {
+   "id": "ESA",
+   "clave": "esa"
+  },
+  {
+   "id": "ORDENADOR",
+   "clave": "ordenador"
+  },
+  {
+   "id": "FLECHA",
+   "clave": "flecha"
+  },
+  {
+   "id": "BOTONES",
+   "clave": "botones"
+  },
+  {
+   "id": "INTERRUPTORES",
+   "clave": "interruptores"
+  },
+  {
+   "id": "CLIC",
+   "clave": "clic"
+  },
+  {
+   "id": "LAMINA",
+   "clave": "lamina"
+  },
+  {
+   "id": "SALTA",
+   "clave": "salta"
+  },
+  {
+   "id": "PROMETIDO",
+   "clave": "prometido"
+  },
+  {
+   "id": "CRISTAL2",
+   "clave": "cristal"
+  },
+  {
+   "id": "LISO",
+   "clave": "liso"
+  },
+  {
+   "id": "LA3",
+   "clave": "la"
+  },
+  {
+   "id": "ATRAVIESA",
+   "clave": "atraviesa"
+  },
+  {
+   "id": "SOMBRAS3",
+   "clave": "sombras"
+  },
+  {
+   "id": "TODAS",
+   "clave": "todas"
+  },
+  {
+   "id": "IGUALES",
+   "clave": "iguales"
+  },
+  {
+   "id": "PARA",
+   "clave": "para"
+  },
+  {
+   "id": "MOVIENDO",
+   "clave": "moviendo"
+  },
+  {
+   "id": "Y5",
+   "clave": "y"
+  },
+  {
+   "id": "DATO",
+   "clave": "dato"
+  },
+  {
+   "id": "PELICULA",
+   "clave": "pelicula"
+  },
+  {
+   "id": "SON",
+   "clave": "son"
+  },
+  {
+   "id": "N24",
+   "clave": "24"
+  },
+  {
+   "id": "UN2",
+   "clave": "un"
+  },
+  {
+   "id": "N1500",
+   "clave": "1500"
+  },
+  {
+   "id": "MANDA",
+   "clave": "mandaselo"
+  },
+  {
+   "id": "USA",
+   "clave": "usa"
+  },
+  {
+   "id": "CRISTAL3",
+   "clave": "cristal"
+  }
+ ],
+ "gancho": {
+  "texto": "Tu ratón hace miles de fotos por segundo",
+  "clave": "fotos"
+ },
+ "estilo": "rejilla",
+ "desenfoque": {
+  "apertura": 0,
+  "max": 0.012
+ },
+ "iconos": {
+  "clic": "rayo"
+ },
+ "etiquetas": [
+  {
+   "texto": "LUZ ROJA",
+   "pieza": "raton3.ventana",
+   "desde": "LUZ1",
+   "hasta": "LENTE1",
+   "dx": 60,
+   "dy": -240
+  },
+  {
+   "texto": "LENTE",
+   "pieza": "raton3.lente",
+   "desde": "LENTE1",
+   "hasta": "CHIP1",
+   "dx": 60,
+   "dy": -240
+  },
+  {
+   "texto": "CHIP",
+   "pieza": "raton3.chip",
+   "desde": "CHIP1",
+   "hasta": "CAMARA",
+   "dx": 60,
+   "dy": -240
+  },
+  {
+   "texto": "UNA CÁMARA DIMINUTA",
+   "pieza": "raton3.chip",
+   "desde": "CAMARA",
+   "hasta": "LA2",
+   "dx": 60,
+   "dy": -240
+  },
+  {
+   "texto": "LED",
+   "pieza": "raton.led",
+   "desde": "LA2",
+   "hasta": "INCLINADA",
+   "dx": 60,
+   "dy": -260
+  },
+  {
+   "texto": "PRISMA",
+   "pieza": "raton.prisma",
+   "desde": "INCLINADA",
+   "hasta": "RASANTE",
+   "dx": 60,
+   "dy": -260
+  },
+  {
+   "texto": "CASI RASANTE",
+   "pieza": "raton.foco",
+   "desde": "RASANTE",
+   "hasta": "ASI",
+   "dx": 60,
+   "dy": 230
+  },
+  {
+   "texto": "FIBRA",
+   "pieza": "sup.fibra",
+   "desde": "FIBRA",
+   "hasta": "GRANO",
+   "dx": 60,
+   "dy": -240
+  },
+  {
+   "texto": "GRANO",
+   "pieza": "sup.grano",
+   "desde": "GRANO",
+   "hasta": "SOMBRA",
+   "dx": 60,
+   "dy": -240
+  },
+  {
+   "texto": "LENTE",
+   "pieza": "raton.lente",
+   "desde": "LENTE2",
+   "hasta": "SENSOR",
+   "dx": 60,
+   "dy": 230
+  },
+  {
+   "texto": "SENSOR",
+   "pieza": "raton.chip",
+   "desde": "SENSOR",
+   "hasta": "EN",
+   "dx": 60,
+   "dy": -240
+  },
+  {
+   "texto": "18 × 18 PÍXELES",
+   "pieza": "sup.marco",
+   "desde": "N18",
+   "hasta": "CADA1",
+   "dx": 60,
+   "dy": -240
+  },
+  {
+   "texto": "UNA FOTO",
+   "pieza": "fotos.antes",
+   "desde": "CADA1",
+   "hasta": "PERO1",
+   "dx": 40,
+   "dy": -200
+  },
+  {
+   "texto": "UN MAPA DE RELIEVE",
+   "pieza": "fotos.antes",
+   "desde": "MAPA",
+   "hasta": "PERO2",
+   "dx": 40,
+   "dy": -200
+  },
+  {
+   "texto": "ANTES",
+   "pieza": "fotos.antes",
+   "desde": "COMPARA",
+   "hasta": "BUSCA",
+   "dx": 30,
+   "dy": -190
+  },
+  {
+   "texto": "AHORA",
+   "pieza": "fotos.ahora",
+   "desde": "ANTERIOR",
+   "hasta": "BUSCA",
+   "dx": 30,
+   "dy": -190
+  },
+  {
+   "texto": "ENCAJA",
+   "pieza": "fotos.antes",
+   "desde": "ENCAJE",
+   "hasta": "SI",
+   "dx": 40,
+   "dy": -200
+  },
+  {
+   "texto": "HACIA ATRÁS",
+   "pieza": "fotos.flecha",
+   "desde": "ATRAS",
+   "hasta": "ES",
+   "dx": 40,
+   "dy": -220
+  },
+  {
+   "texto": "HACIA DELANTE",
+   "pieza": "raton.arriba",
+   "desde": "DELANTE",
+   "hasta": "ESA",
+   "dx": 60,
+   "dy": -240
+  },
+  {
+   "texto": "INTERRUPTOR",
+   "pieza": "raton3.interruptor",
+   "desde": "INTERRUPTORES",
+   "hasta": "CLIC",
+   "dx": 60,
+   "dy": -240
+  },
+  {
+   "texto": "LÁMINA DE METAL",
+   "pieza": "raton3.lamina",
+   "desde": "LAMINA",
+   "hasta": "PROMETIDO",
+   "dx": 60,
+   "dy": -240
+  },
+  {
+   "texto": "CRISTAL",
+   "pieza": "vidrio.canto",
+   "desde": "CRISTAL2",
+   "hasta": "LA3",
+   "dx": 60,
+   "dy": 220
+  }
+ ],
+ "notas": [
+  {
+   "texto": "",
+   "desde": 0
+  },
+  {
+   "texto": "Fotos dibujadas, muy ampliadas",
+   "desde": "COMPARANDO"
+  },
+  {
+   "texto": "Ilustración simplificada, sin marca",
+   "desde": "PREGUNTA"
+  },
+  {
+   "texto": "Ilustración simplificada, sin marca",
+   "desde": "DEBAJO"
+  },
+  {
+   "texto": "Corte lateral, ampliado",
+   "desde": "LA2"
+  },
+  {
+   "texto": "Mesa vista muy de cerca, luz dibujada",
+   "desde": "ASI"
+  },
+  {
+   "texto": "Corte lateral, ampliado",
+   "desde": "LENTE2"
+  },
+  {
+   "texto": "Como el sensor de un ratón sencillo",
+   "desde": "N18"
+  },
+  {
+   "texto": "Imagen ilustrativa",
+   "desde": "CADA1"
+  },
+  {
+   "texto": "Ilustración simplificada",
+   "desde": "PERO2"
+  },
+  {
+   "texto": "Imagen ilustrativa",
+   "desde": "COMPARA"
+  },
+  {
+   "texto": "Ilustración simplificada, sin marca",
+   "desde": "ES"
+  },
+  {
+   "texto": "Imagen ilustrativa",
+   "desde": "ESA"
+  },
+  {
+   "texto": "Pantalla ilustrativa, sin marca",
+   "desde": "ORDENADOR"
+  },
+  {
+   "texto": "Ilustración simplificada",
+   "desde": "BOTONES"
+  },
+  {
+   "texto": "Corte lateral, muy ampliado",
+   "desde": "CLIC"
+  },
+  {
+   "texto": "Ilustración simplificada",
+   "desde": "PROMETIDO"
+  },
+  {
+   "texto": "Luz dibujada",
+   "desde": "LA3"
+  },
+  {
+   "texto": "Imagen ilustrativa",
+   "desde": "TODAS"
+  },
+  {
+   "texto": "Pantalla ilustrativa, sin marca",
+   "desde": "PARA"
+  },
+  {
+   "texto": "El cine clásico: 24 fotos por segundo",
+   "desde": "SON"
+  },
+  {
+   "texto": "Sensor de un ratón sencillo, según su hoja de datos",
+   "desde": "UN2"
+  },
+  {
+   "texto": "",
+   "desde": "MANDA"
+  }
+ ],
+ "leyenda": [
+  {
+   "color": "#ff3c30",
+   "forma": "flecha",
+   "texto": "luz del LED",
+   "desde": "LA2",
+   "hasta": "ASI"
+  },
+  {
+   "color": "#ff3c30",
+   "forma": "onda",
+   "texto": "luz roja casi rasante",
+   "desde": "ASI",
+   "hasta": "LENTE2"
+  },
+  {
+   "color": "#ffb0a0",
+   "forma": "flecha",
+   "texto": "luz que vuelve hacia la lente",
+   "desde": "LENTE2",
+   "hasta": "EN"
+  },
+  {
+   "color": "#ffb347",
+   "forma": "flecha",
+   "texto": "movimiento del ratón",
+   "desde": "ES",
+   "hasta": "ESA"
+  },
+  {
+   "color": "#ff3c30",
+   "forma": "flecha",
+   "texto": "luz que atraviesa el cristal",
+   "desde": "LA3",
+   "hasta": "TODAS"
+  }
+ ],
+ "sonidos": [
+  {
+   "tipo": "teclas",
+   "en": 0.3,
+   "n": 6,
+   "cada": 0.11,
+   "volumen": 0.35
+  },
+  {
+   "tipo": "brillo",
+   "en": "FOTOS1"
+  },
+  {
+   "tipo": "desliza",
+   "en": "COMPARANDO"
+  },
+  {
+   "tipo": "pop",
+   "en": "MUEVES"
+  },
+  {
+   "tipo": "desliza",
+   "en": "PREGUNTA"
+  },
+  {
+   "tipo": "abre",
+   "en": "LENTE1"
+  },
+  {
+   "tipo": "brillo",
+   "en": "CAMARA"
+  },
+  {
+   "tipo": "desliza",
+   "en": "LA2"
+  },
+  {
+   "tipo": "sube",
+   "en": "ASI"
+  },
+  {
+   "tipo": "pop",
+   "en": "N18"
+  },
+  {
+   "tipo": "sube",
+   "en": "MAPA"
+  },
+  {
+   "tipo": "teclas",
+   "en": "COMPARA",
+   "n": 5,
+   "cada": 0.12,
+   "volumen": 0.4
+  },
+  {
+   "tipo": "desliza",
+   "en": "BUSCA"
+  },
+  {
+   "tipo": "pop",
+   "en": "ENCAJE"
+  },
+  {
+   "tipo": "desliza",
+   "en": "ES"
+  },
+  {
+   "tipo": "teclas",
+   "en": "ESA",
+   "n": 8,
+   "cada": 0.1,
+   "volumen": 0.35
+  },
+  {
+   "tipo": "desliza",
+   "en": "ORDENADOR"
+  },
+  {
+   "tipo": "toque",
+   "en": "CLIC",
+   "mas": 0.1
+  },
+  {
+   "tipo": "toque",
+   "en": "SALTA",
+   "volumen": 0.6
+  },
+  {
+   "tipo": "desliza",
+   "en": "PROMETIDO"
+  },
+  {
+   "tipo": "error",
+   "en": "MOVIENDO",
+   "volumen": 0.5
+  },
+  {
+   "tipo": "pop",
+   "en": "N24"
+  },
+  {
+   "tipo": "sube",
+   "en": "N1500"
+  },
+  {
+   "tipo": "desliza",
+   "en": "MANDA"
+  },
+  {
+   "tipo": "toque",
+   "en": "CRISTAL3"
+  }
+ ],
+ "sets": {
+  "mesa": {
+   "objetos": [
+    {
+     "tipo": "raton",
+     "id": "raton"
+    },
+    {
+     "tipo": "mesa",
+     "id": "mesa"
+    }
+   ],
+   "luz": "anuncio"
+  },
+  "cristal": {
+   "objetos": [
+    {
+     "tipo": "raton",
+     "id": "raton2"
+    },
+    {
+     "tipo": "mesa",
+     "id": "vidrio",
+     "opciones": {
+      "tipo": "cristal"
+     }
+    }
+   ],
+   "luz": "anuncio"
+  },
+  "solo": {
+   "objetos": [
+    {
+     "tipo": "raton",
+     "id": "raton3"
+    }
+   ],
+   "luz": "anuncio"
+  },
+  "micro": {
+   "objetos": [
+    {
+     "tipo": "superficie",
+     "id": "sup"
+    }
+   ],
+   "luz": "suave"
+  },
+  "fotos": {
+   "objetos": [
+    {
+     "tipo": "fotosRaton",
+     "id": "fotos"
+    }
+   ],
+   "luz": "estudio"
+  },
+  "pantalla": {
+   "objetos": [
+    {
+     "tipo": "monitor",
+     "id": "monitor"
+    }
+   ],
+   "luz": "estudio"
+  }
+ },
+ "flujos": {
+  "luzLed": {
+   "set": "mesa",
+   "ruta": [
+    [
+     0,
+     0.68,
+     2.2
+    ],
+    [
+     0,
+     0.66,
+     1.75
+    ],
+    [
+     0,
+     0.36,
+     1.42
+    ],
+    [
+     0,
+     0.07,
+     0.6
+    ]
+   ],
+   "color": "#ff3c30",
+   "hebras": 2,
+   "separa": 0.09,
+   "eje": "x",
+   "ancho": 0.035,
+   "puntos": 120,
+   "ondas": 4,
+   "vel": 1.2,
+   "intensidad": 1.1
+  },
+  "rebote": {
+   "set": "mesa",
+   "ruta": [
+    [
+     0,
+     0.07,
+     0.6
+    ],
+    [
+     0,
+     0.45,
+     0.6
+    ],
+    [
+     0,
+     1.1,
+     0.6
+    ]
+   ],
+   "color": "#ffb0a0",
+   "hebras": 3,
+   "separa": 0.12,
+   "eje": "x",
+   "ancho": 0.03,
+   "puntos": 80,
+   "ondas": 3,
+   "vel": 1.0
+  },
+  "luzCristal": {
+   "set": "cristal",
+   "ruta": [
+    [
+     0,
+     0.68,
+     2.2
+    ],
+    [
+     0,
+     0.66,
+     1.75
+    ],
+    [
+     0,
+     0.36,
+     1.42
+    ],
+    [
+     0,
+     0.0,
+     0.62
+    ],
+    [
+     0,
+     -0.8,
+     0.1
+    ],
+    [
+     0,
+     -3.6,
+     -1.9
+    ]
+   ],
+   "color": "#ff3c30",
+   "hebras": 2,
+   "separa": 0.09,
+   "eje": "x",
+   "ancho": 0.035,
+   "puntos": 140,
+   "ondas": 4,
+   "vel": 1.2,
+   "intensidad": 1.1
+  },
+  "flechaDelante": {
+   "set": "mesa",
+   "ruta": [
+    [
+     4.6,
+     0.15,
+     -3
+    ],
+    [
+     4.6,
+     0.15,
+     8
+    ]
+   ],
+   "color": "#ffb347",
+   "hebras": 1,
+   "separa": 0.001,
+   "ancho": 0.14,
+   "puntos": 80,
+   "ondas": 2,
+   "vel": 1.4
+  }
+ },
+ "planos": [
+  {
+   "tipo": "anuncio",
+   "pieza": "raton.arriba",
+   "desde": 0,
+   "angulo": 40,
+   "altura": 24,
+   "orbita": 14,
+   "empuje": 0.12,
+   "radio": 8.5,
+   "desplaza": [
+    0,
+    3.2,
+    0
+   ],
+   "estado": {
+    "luz": 1,
+    "rafaga": 1
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "pieza": "fotos.antesC",
+   "desde": "COMPARANDO",
+   "angulo": 18,
+   "altura": 8,
+   "radio": 15,
+   "estado": {
+    "rafaga": 1,
+    "relieve": 0.35,
+    "desliza": {
+     "de": 0,
+     "a": 1,
+     "en": 0.3,
+     "dur": 1.5
+    },
+    "encaja": {
+     "de": 0,
+     "a": 1,
+     "en": "MUEVES",
+     "dur": 0.3
+    }
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "pieza": "raton2.arriba",
+   "desde": "PREGUNTA",
+   "angulo": -32,
+   "altura": 20,
+   "orbita": 20,
+   "estado": {
+    "luz": 1
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "pieza": "raton3.base",
+   "desde": "DEBAJO",
+   "angulo": 25,
+   "altura": -40,
+   "estado": {
+    "luz": 1
+   }
+  },
+  {
+   "tipo": "rayosX",
+   "objeto": "raton3",
+   "pieza": "raton3.arriba",
+   "desde": "LENTE1",
+   "angulo": 38,
+   "altura": 28,
+   "dist": 0.78,
+   "de": 0,
+   "a": 0.9,
+   "estado": {
+    "luz": 1
+   }
+  },
+  {
+   "tipo": "corte",
+   "pieza": "raton.foco",
+   "eje": "x",
+   "en": 0,
+   "cortar": [
+    "raton"
+   ],
+   "radio": 2.3,
+   "desplaza": [
+    0,
+    0.55,
+    0.9
+   ],
+   "desde": "LA2",
+   "flujos": [
+    "luzLed"
+   ],
+   "crece": true,
+   "estado": {
+    "seccion": 1,
+    "luz": 1,
+    "halo": 0.12
+   }
+  },
+  {
+   "tipo": "macro",
+   "pieza": "sup.centro",
+   "desde": "ASI",
+   "radio": 4.6,
+   "angulo": 25,
+   "altura": 34,
+   "estado": {
+    "luz": {
+     "de": 0,
+     "a": 1,
+     "dur": 0.7
+    }
+   }
+  },
+  {
+   "tipo": "corte",
+   "pieza": "raton.lente",
+   "eje": "x",
+   "en": 0,
+   "cortar": [
+    "raton"
+   ],
+   "radio": 1.7,
+   "desplaza": [
+    0,
+    0.2,
+    0.4
+   ],
+   "desde": "LENTE2",
+   "flujos": [
+    "luzLed",
+    "rebote"
+   ],
+   "crece": true,
+   "estado": {
+    "seccion": 1,
+    "luz": 1,
+    "halo": 0.12
+   }
+  },
+  {
+   "tipo": "macro",
+   "pieza": "sup.centro",
+   "desde": "EN",
+   "radio": 5.2,
+   "angulo": -20,
+   "altura": 50,
+   "estado": {
+    "luz": 1,
+    "marco": {
+     "de": 0,
+     "a": 1,
+     "en": "N18",
+     "dur": 0.4
+    }
+   }
+  },
+  {
+   "tipo": "macro",
+   "pieza": "fotos.antesC",
+   "desde": "CADA1",
+   "radio": 12,
+   "angulo": 0,
+   "altura": 4,
+   "estado": {
+    "relieve": 0
+   }
+  },
+  {
+   "tipo": "macro",
+   "pieza": "fotos.antesC",
+   "desde": "PERO1",
+   "radio": 12,
+   "angulo": 32,
+   "altura": 34,
+   "estado": {
+    "relieve": {
+     "de": 0,
+     "a": 1,
+     "en": "MAPA",
+     "dur": 0.8
+    }
+   }
+  },
+  {
+   "tipo": "rayosX",
+   "objeto": "raton3",
+   "pieza": "raton3.sensor",
+   "desde": "PERO2",
+   "radio": 2.0,
+   "angulo": 30,
+   "altura": 30,
+   "de": 0.9,
+   "a": 0.9,
+   "estado": {
+    "luz": 1,
+    "rafaga": 1
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "pieza": "fotos.centro",
+   "desde": "COMPARA",
+   "angulo": -14,
+   "altura": 10,
+   "radio": 17,
+   "estado": {
+    "relieve": 0.6
+   }
+  },
+  {
+   "tipo": "macro",
+   "pieza": "fotos.antesC",
+   "desde": "BUSCA",
+   "radio": 14,
+   "angulo": 12,
+   "altura": 14,
+   "estado": {
+    "relieve": 0.6,
+    "desliza": {
+     "de": 0,
+     "a": 1,
+     "en": 0.1,
+     "dur": 1.9
+    },
+    "encaja": {
+     "de": 0,
+     "a": 1,
+     "en": "ENCAJE",
+     "dur": 0.3
+    }
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "pieza": "fotos.ahoraC",
+   "desde": "SI",
+   "radio": 13,
+   "desplaza": [
+    2,
+    0,
+    0
+   ],
+   "angulo": -16,
+   "altura": 8,
+   "estado": {
+    "relieve": 0.6,
+    "flecha": {
+     "de": 0,
+     "a": 1,
+     "en": "ATRAS",
+     "dur": 0.4
+    }
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "pieza": "raton.arriba",
+   "desde": "ES",
+   "angulo": 72,
+   "altura": 16,
+   "radio": 8,
+   "estado": {
+    "luz": 1,
+    "avanza": {
+     "de": 0,
+     "a": 3,
+     "en": 0.2,
+     "dur": 1.6
+    }
+   },
+   "flujos": [
+    "flechaDelante"
+   ],
+   "crece": true
+  },
+  {
+   "tipo": "anuncio",
+   "pieza": "fotos.pila",
+   "desde": "ESA",
+   "angulo": 30,
+   "altura": 10,
+   "estado": {
+    "rafaga": 1,
+    "relieve": 0.4
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "pieza": "monitor.pantalla",
+   "desde": "ORDENADOR",
+   "angulo": 18,
+   "altura": 4,
+   "radio": 20,
+   "estado": {
+    "cursor": {
+     "de": 0,
+     "a": 1,
+     "en": 0.2,
+     "dur": 1.5
+    },
+    "estela": 1
+   }
+  },
+  {
+   "tipo": "rayosX",
+   "objeto": "raton3",
+   "pieza": "raton3.interruptor",
+   "desde": "BOTONES",
+   "radio": 2.4,
+   "angulo": 30,
+   "altura": 34,
+   "de": 0,
+   "a": 0.85,
+   "estado": {
+    "clic": {
+     "de": 0,
+     "a": 1,
+     "en": "INTERRUPTORES",
+     "dur": 0.2
+    }
+   }
+  },
+  {
+   "tipo": "corte",
+   "pieza": "raton3.lamina",
+   "eje": "x",
+   "en": -1.25,
+   "radio": 1.15,
+   "desplaza": [
+    0,
+    0.15,
+    0
+   ],
+   "desde": "CLIC",
+   "estado": {
+    "seccionClic": 1,
+    "clic": {
+     "de": 0,
+     "a": 1,
+     "en": 0.15,
+     "dur": 0.25
+    }
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "pieza": "raton2.arriba",
+   "desde": "PROMETIDO",
+   "angulo": 62,
+   "altura": 6,
+   "radio": 9,
+   "estado": {
+    "luz": 1
+   }
+  },
+  {
+   "tipo": "corte",
+   "pieza": "raton2.foco",
+   "eje": "x",
+   "en": 0,
+   "cortar": [
+    "raton2"
+   ],
+   "radio": 2.6,
+   "desplaza": [
+    0,
+    -0.3,
+    0.6
+   ],
+   "desde": "LA3",
+   "flujos": [
+    "luzCristal"
+   ],
+   "crece": true,
+   "estado": {
+    "seccion": 1,
+    "luz": 1,
+    "halo": 0.12
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "pieza": "fotos.antesC",
+   "desde": "TODAS",
+   "angulo": 14,
+   "altura": 8,
+   "radio": 15,
+   "estado": {
+    "iguales": 1,
+    "relieve": 0.3,
+    "desliza": {
+     "de": 0,
+     "a": 0.85,
+     "en": 0.1,
+     "dur": 1.4
+    }
+   }
+  },
+  {
+   "tipo": "macro",
+   "pieza": "monitor.flecha",
+   "desde": "PARA",
+   "radio": 14,
+   "desplaza": [
+    -3,
+    2,
+    0
+   ],
+   "angulo": -10,
+   "altura": 4,
+   "estado": {
+    "cursor": 0.55
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "pieza": "raton.arriba",
+   "desde": "Y5",
+   "angulo": 120,
+   "altura": 18,
+   "orbita": 12,
+   "estado": {
+    "luz": 1,
+    "rafaga": 1
+   }
+  },
+  {
+   "tipo": "cifra",
+   "pieza": "raton.arriba",
+   "desde": "SON",
+   "angulo": -20,
+   "estado": {
+    "luz": 1
+   },
+   "lectura": {
+    "de": 0,
+    "a": 24,
+    "en": "N24",
+    "dur": 0.5,
+    "titulo": "FOTOS POR SEGUNDO: UNA PELÍCULA"
+   }
+  },
+  {
+   "tipo": "cifra",
+   "pieza": "fotos.pila",
+   "desde": "UN2",
+   "angulo": 24,
+   "estado": {
+    "rafaga": 1,
+    "relieve": 0.4
+   },
+   "lectura": {
+    "de": 24,
+    "a": 1500,
+    "en": "N1500",
+    "dur": 0.8,
+    "titulo": "FOTOS POR SEGUNDO: UN RATÓN SENCILLO"
+   }
+  },
+  {
+   "tipo": "compartir",
+   "desde": "MANDA",
+   "elegir": "USA",
+   "enviar": "CRISTAL3"
+  }
+ ]
+}
+</script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 68.7 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      // 10-raton: the scene is the JSON above (sets, flows and shots), built by the shot templates. The mouse, the table,
+      // the close-up surface, the sensor photos and the monitor are new library objects (objetos/raton.js), passed in
+      // with opciones.objetos because objetos/index.js does not list them yet.
+      import * as THREE from "three";
+      import { crearPorDentro } from "./comun/pordentro.js";
+      import { crearDetalle } from "./comun/detalle.js";
+      import { crearPlantillas } from "./comun/plantillas.js";
+      import { raton, mesa, superficie, fotosRaton, monitor } from "./comun/objetos/raton.js";
+      await Promise.all(['700 50px "Inter"', '400 50px "Inter"', '700 50px "JetBrains Mono"', '400 50px "JetBrains Mono"'].map((f) => document.fonts.load(f)));
+      const C = crearPorDentro(THREE);
+      const X = crearDetalle(THREE, C);
+      // near plane at 0.2 cm: the corte shots of the lens and the switch get very close
+      const P = crearPlantillas(THREE, C, X, { cerca: 0.2, objetos: { raton, mesa, superficie, fotosRaton, monitor } });
+      C.camera.far = 3000; C.camera.updateProjectionMatrix();
+      P.arrancar();
+    </script>
+  </body>
+</html>

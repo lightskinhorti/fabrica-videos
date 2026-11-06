@@ -1,0 +1,1160 @@
+[
+  {
+    "text": "Ese",
+    "start": 0.01,
+    "end": 0.24,
+    "id": "w0"
+  },
+  {
+    "text": "cajero",
+    "start": 0.29,
+    "end": 0.63,
+    "id": "w1"
+  },
+  {
+    "text": "no",
+    "start": 0.72,
+    "end": 0.88,
+    "id": "w2"
+  },
+  {
+    "text": "te",
+    "start": 0.88,
+    "end": 0.92,
+    "id": "w3"
+  },
+  {
+    "text": "puede",
+    "start": 1.04,
+    "end": 1.45,
+    "id": "w4"
+  },
+  {
+    "text": "cobrar.",
+    "start": 1.45,
+    "end": 2.22,
+    "id": "w5"
+  },
+  {
+    "text": "Pero",
+    "start": 2.28,
+    "end": 2.51,
+    "id": "w6"
+  },
+  {
+    "text": "tu",
+    "start": 2.51,
+    "end": 2.65,
+    "id": "w7"
+  },
+  {
+    "text": "banco,",
+    "start": 2.65,
+    "end": 3.16,
+    "id": "w8"
+  },
+  {
+    "text": "sí.¿Y",
+    "start": 3.16,
+    "end": 3.74,
+    "id": "w9"
+  },
+  {
+    "text": "cuánto",
+    "start": 3.96,
+    "end": 4.28,
+    "id": "w10"
+  },
+  {
+    "text": "paga",
+    "start": 4.28,
+    "end": 4.64,
+    "id": "w11"
+  },
+  {
+    "text": "de",
+    "start": 4.64,
+    "end": 4.82,
+    "id": "w12"
+  },
+  {
+    "text": "media",
+    "start": 4.82,
+    "end": 5.28,
+    "id": "w13"
+  },
+  {
+    "text": "quien",
+    "start": 5.28,
+    "end": 5.48,
+    "id": "w14"
+  },
+  {
+    "text": "acepta?",
+    "start": 5.48,
+    "end": 6.48,
+    "id": "w15"
+  },
+  {
+    "text": "Te",
+    "start": 6.49,
+    "end": 6.62,
+    "id": "w16"
+  },
+  {
+    "text": "lo",
+    "start": 6.62,
+    "end": 6.77,
+    "id": "w17"
+  },
+  {
+    "text": "digo",
+    "start": 6.77,
+    "end": 7.04,
+    "id": "w18"
+  },
+  {
+    "text": "al",
+    "start": 7.05,
+    "end": 7.11,
+    "id": "w19"
+  },
+  {
+    "text": "final.",
+    "start": 7.2,
+    "end": 7.8,
+    "id": "w20"
+  },
+  {
+    "text": "Imagina",
+    "start": 7.8,
+    "end": 8.16,
+    "id": "w21"
+  },
+  {
+    "text": "que",
+    "start": 8.16,
+    "end": 8.31,
+    "id": "w22"
+  },
+  {
+    "text": "sacas",
+    "start": 8.31,
+    "end": 8.56,
+    "id": "w23"
+  },
+  {
+    "text": "dinero",
+    "start": 8.76,
+    "end": 8.87,
+    "id": "w24"
+  },
+  {
+    "text": "en",
+    "start": 8.87,
+    "end": 8.97,
+    "id": "w25"
+  },
+  {
+    "text": "un",
+    "start": 8.97,
+    "end": 9.07,
+    "id": "w26"
+  },
+  {
+    "text": "cajero",
+    "start": 9.07,
+    "end": 9.34,
+    "id": "w27"
+  },
+  {
+    "text": "que",
+    "start": 9.53,
+    "end": 9.6,
+    "id": "w28"
+  },
+  {
+    "text": "no",
+    "start": 9.6,
+    "end": 9.75,
+    "id": "w29"
+  },
+  {
+    "text": "es",
+    "start": 9.76,
+    "end": 9.77,
+    "id": "w30"
+  },
+  {
+    "text": "de",
+    "start": 9.89,
+    "end": 9.98,
+    "id": "w31"
+  },
+  {
+    "text": "tu",
+    "start": 9.98,
+    "end": 10.19,
+    "id": "w32"
+  },
+  {
+    "text": "banco.",
+    "start": 10.44,
+    "end": 10.94,
+    "id": "w33"
+  },
+  {
+    "text": "Antes",
+    "start": 11.07,
+    "end": 11.16,
+    "id": "w34"
+  },
+  {
+    "text": "de",
+    "start": 11.16,
+    "end": 11.24,
+    "id": "w35"
+  },
+  {
+    "text": "darte",
+    "start": 11.25,
+    "end": 11.55,
+    "id": "w36"
+  },
+  {
+    "text": "nada,",
+    "start": 11.55,
+    "end": 11.87,
+    "id": "w37"
+  },
+  {
+    "text": "la",
+    "start": 11.96,
+    "end": 12.03,
+    "id": "w38"
+  },
+  {
+    "text": "pantalla",
+    "start": 12.04,
+    "end": 12.55,
+    "id": "w39"
+  },
+  {
+    "text": "te",
+    "start": 12.55,
+    "end": 12.67,
+    "id": "w40"
+  },
+  {
+    "text": "avisa",
+    "start": 12.67,
+    "end": 12.98,
+    "id": "w41"
+  },
+  {
+    "text": "de",
+    "start": 12.98,
+    "end": 13.07,
+    "id": "w42"
+  },
+  {
+    "text": "la",
+    "start": 13.09,
+    "end": 13.12,
+    "id": "w43"
+  },
+  {
+    "text": "comisión.",
+    "start": 13.41,
+    "end": 13.92,
+    "id": "w44"
+  },
+  {
+    "text": "Es",
+    "start": 13.92,
+    "end": 14.04,
+    "id": "w45"
+  },
+  {
+    "text": "obligatorio",
+    "start": 14.04,
+    "end": 14.53,
+    "id": "w46"
+  },
+  {
+    "text": "y",
+    "start": 14.7,
+    "end": 14.8,
+    "id": "w47"
+  },
+  {
+    "text": "puedes",
+    "start": 14.8,
+    "end": 15.2,
+    "id": "w48"
+  },
+  {
+    "text": "cancelar.",
+    "start": 15.2,
+    "end": 16,
+    "id": "w49"
+  },
+  {
+    "text": "Pero",
+    "start": 16,
+    "end": 16.09,
+    "id": "w50"
+  },
+  {
+    "text": "esa",
+    "start": 16.09,
+    "end": 16.16,
+    "id": "w51"
+  },
+  {
+    "text": "comisión",
+    "start": 16.37,
+    "end": 16.73,
+    "id": "w52"
+  },
+  {
+    "text": "no",
+    "start": 16.73,
+    "end": 16.79,
+    "id": "w53"
+  },
+  {
+    "text": "te",
+    "start": 16.88,
+    "end": 17.01,
+    "id": "w54"
+  },
+  {
+    "text": "la",
+    "start": 17.01,
+    "end": 17.08,
+    "id": "w55"
+  },
+  {
+    "text": "cobra",
+    "start": 17.2,
+    "end": 17.48,
+    "id": "w56"
+  },
+  {
+    "text": "el",
+    "start": 17.56,
+    "end": 17.64,
+    "id": "w57"
+  },
+  {
+    "text": "dueño",
+    "start": 17.64,
+    "end": 17.99,
+    "id": "w58"
+  },
+  {
+    "text": "del",
+    "start": 18.01,
+    "end": 18.07,
+    "id": "w59"
+  },
+  {
+    "text": "cajero.",
+    "start": 18.35,
+    "end": 18.84,
+    "id": "w60"
+  },
+  {
+    "text": "Se",
+    "start": 18.84,
+    "end": 18.98,
+    "id": "w61"
+  },
+  {
+    "text": "la",
+    "start": 18.98,
+    "end": 19.03,
+    "id": "w62"
+  },
+  {
+    "text": "cobra",
+    "start": 19.21,
+    "end": 19.45,
+    "id": "w63"
+  },
+  {
+    "text": "a",
+    "start": 19.45,
+    "end": 19.61,
+    "id": "w64"
+  },
+  {
+    "text": "tu",
+    "start": 19.61,
+    "end": 19.69,
+    "id": "w65"
+  },
+  {
+    "text": "banco.",
+    "start": 20.05,
+    "end": 20.4,
+    "id": "w66"
+  },
+  {
+    "text": "Ytu",
+    "start": 20.4,
+    "end": 20.53,
+    "id": "w67"
+  },
+  {
+    "text": "banco,",
+    "start": 20.59,
+    "end": 20.96,
+    "id": "w68"
+  },
+  {
+    "text": "según",
+    "start": 20.96,
+    "end": 21.27,
+    "id": "w69"
+  },
+  {
+    "text": "tu",
+    "start": 21.29,
+    "end": 21.45,
+    "id": "w70"
+  },
+  {
+    "text": "contrato,",
+    "start": 21.57,
+    "end": 22.2,
+    "id": "w71"
+  },
+  {
+    "text": "te",
+    "start": 22.32,
+    "end": 22.49,
+    "id": "w72"
+  },
+  {
+    "text": "la",
+    "start": 22.49,
+    "end": 22.6,
+    "id": "w73"
+  },
+  {
+    "text": "pasa",
+    "start": 22.68,
+    "end": 23.01,
+    "id": "w74"
+  },
+  {
+    "text": "entera,",
+    "start": 23.01,
+    "end": 23.7,
+    "id": "w75"
+  },
+  {
+    "text": "una",
+    "start": 23.7,
+    "end": 23.96,
+    "id": "w76"
+  },
+  {
+    "text": "parte",
+    "start": 23.96,
+    "end": 24.39,
+    "id": "w77"
+  },
+  {
+    "text": "o",
+    "start": 24.39,
+    "end": 24.48,
+    "id": "w78"
+  },
+  {
+    "text": "nada.",
+    "start": 24.48,
+    "end": 25.2,
+    "id": "w79"
+  },
+  {
+    "text": "Con",
+    "start": 25.24,
+    "end": 25.34,
+    "id": "w80"
+  },
+  {
+    "text": "tarjeta",
+    "start": 25.34,
+    "end": 25.65,
+    "id": "w81"
+  },
+  {
+    "text": "de",
+    "start": 25.71,
+    "end": 25.74,
+    "id": "w82"
+  },
+  {
+    "text": "débito,",
+    "start": 25.87,
+    "end": 26.12,
+    "id": "w83"
+  },
+  {
+    "text": "la",
+    "start": 26.12,
+    "end": 26.21,
+    "id": "w84"
+  },
+  {
+    "text": "ley",
+    "start": 26.21,
+    "end": 26.35,
+    "id": "w85"
+  },
+  {
+    "text": "le",
+    "start": 26.35,
+    "end": 26.54,
+    "id": "w86"
+  },
+  {
+    "text": "pone",
+    "start": 26.54,
+    "end": 26.76,
+    "id": "w87"
+  },
+  {
+    "text": "un",
+    "start": 26.77,
+    "end": 26.89,
+    "id": "w88"
+  },
+  {
+    "text": "tope.",
+    "start": 27.02,
+    "end": 27.35,
+    "id": "w89"
+  },
+  {
+    "text": "Nunca",
+    "start": 27.35,
+    "end": 27.68,
+    "id": "w90"
+  },
+  {
+    "text": "más",
+    "start": 27.68,
+    "end": 27.88,
+    "id": "w91"
+  },
+  {
+    "text": "de",
+    "start": 27.88,
+    "end": 27.98,
+    "id": "w92"
+  },
+  {
+    "text": "lo",
+    "start": 28.02,
+    "end": 28.08,
+    "id": "w93"
+  },
+  {
+    "text": "que",
+    "start": 28.16,
+    "end": 28.3,
+    "id": "w94"
+  },
+  {
+    "text": "le",
+    "start": 28.34,
+    "end": 28.47,
+    "id": "w95"
+  },
+  {
+    "text": "cobraron",
+    "start": 28.47,
+    "end": 29,
+    "id": "w96"
+  },
+  {
+    "text": "y",
+    "start": 29.04,
+    "end": 29.06,
+    "id": "w97"
+  },
+  {
+    "text": "ni",
+    "start": 29.06,
+    "end": 29.19,
+    "id": "w98"
+  },
+  {
+    "text": "un",
+    "start": 29.19,
+    "end": 29.31,
+    "id": "w99"
+  },
+  {
+    "text": "centimo",
+    "start": 29.31,
+    "end": 29.63,
+    "id": "w100"
+  },
+  {
+    "text": "extra.",
+    "start": 29.81,
+    "end": 30.32,
+    "id": "w101"
+  },
+  {
+    "text": "Con",
+    "start": 30.32,
+    "end": 30.52,
+    "id": "w102"
+  },
+  {
+    "text": "tarjeta",
+    "start": 30.72,
+    "end": 30.99,
+    "id": "w103"
+  },
+  {
+    "text": "de",
+    "start": 30.99,
+    "end": 31.12,
+    "id": "w104"
+  },
+  {
+    "text": "crédito,",
+    "start": 31.12,
+    "end": 31.87,
+    "id": "w105"
+  },
+  {
+    "text": "en",
+    "start": 31.89,
+    "end": 32.02,
+    "id": "w106"
+  },
+  {
+    "text": "cambio,",
+    "start": 32.17,
+    "end": 32.51,
+    "id": "w107"
+  },
+  {
+    "text": "tu",
+    "start": 32.6,
+    "end": 32.72,
+    "id": "w108"
+  },
+  {
+    "text": "banco",
+    "start": 32.72,
+    "end": 33.07,
+    "id": "w109"
+  },
+  {
+    "text": "sí",
+    "start": 33.07,
+    "end": 33.2,
+    "id": "w110"
+  },
+  {
+    "text": "puede",
+    "start": 33.22,
+    "end": 33.56,
+    "id": "w111"
+  },
+  {
+    "text": "añadir",
+    "start": 33.56,
+    "end": 33.98,
+    "id": "w112"
+  },
+  {
+    "text": "algo",
+    "start": 34.16,
+    "end": 34.26,
+    "id": "w113"
+  },
+  {
+    "text": "más.¿Y",
+    "start": 34.26,
+    "end": 34.89,
+    "id": "w114"
+  },
+  {
+    "text": "cuántos",
+    "start": 34.93,
+    "end": 35.5,
+    "id": "w115"
+  },
+  {
+    "text": "cajeros",
+    "start": 35.5,
+    "end": 35.99,
+    "id": "w116"
+  },
+  {
+    "text": "quedan?",
+    "start": 36.11,
+    "end": 36.96,
+    "id": "w117"
+  },
+  {
+    "text": "A",
+    "start": 36.96,
+    "end": 37.01,
+    "id": "w118"
+  },
+  {
+    "text": "mitad",
+    "start": 37.02,
+    "end": 37.36,
+    "id": "w119"
+  },
+  {
+    "text": "de",
+    "start": 37.37,
+    "end": 37.52,
+    "id": "w120"
+  },
+  {
+    "text": "2026,",
+    "start": 37.65,
+    "end": 38.68,
+    "id": "w121"
+  },
+  {
+    "text": "43.324.",
+    "start": 38.68,
+    "end": 40.22,
+    "id": "w122"
+  },
+  {
+    "text": "En",
+    "start": 40.45,
+    "end": 40.59,
+    "id": "w123"
+  },
+  {
+    "text": "2008",
+    "start": 40.59,
+    "end": 41.6,
+    "id": "w124"
+  },
+  {
+    "text": "había",
+    "start": 41.6,
+    "end": 42.02,
+    "id": "w125"
+  },
+  {
+    "text": "61.714.",
+    "start": 42.02,
+    "end": 43.77,
+    "id": "w126"
+  },
+  {
+    "text": "Hoy,",
+    "start": 43.77,
+    "end": 44.12,
+    "id": "w127"
+  },
+  {
+    "text": "casi",
+    "start": 44.18,
+    "end": 44.4,
+    "id": "w128"
+  },
+  {
+    "text": "un",
+    "start": 44.58,
+    "end": 44.59,
+    "id": "w129"
+  },
+  {
+    "text": "30%",
+    "start": 45.12,
+    "end": 45.25,
+    "id": "w130"
+  },
+  {
+    "text": "menos.¿Y",
+    "start": 45.25,
+    "end": 46.34,
+    "id": "w131"
+  },
+  {
+    "text": "a",
+    "start": 46.34,
+    "end": 46.43,
+    "id": "w132"
+  },
+  {
+    "text": "cuánta",
+    "start": 46.47,
+    "end": 47.28,
+    "id": "w133"
+  },
+  {
+    "text": "gente",
+    "start": 47.28,
+    "end": 47.6,
+    "id": "w134"
+  },
+  {
+    "text": "lo",
+    "start": 47.6,
+    "end": 47.72,
+    "id": "w135"
+  },
+  {
+    "text": "piden",
+    "start": 47.73,
+    "end": 48.03,
+    "id": "w136"
+  },
+  {
+    "text": "comisión?",
+    "start": 48.03,
+    "end": 48.64,
+    "id": "w137"
+  },
+  {
+    "text": "En",
+    "start": 48.76,
+    "end": 48.84,
+    "id": "w138"
+  },
+  {
+    "text": "una",
+    "start": 48.84,
+    "end": 49.03,
+    "id": "w139"
+  },
+  {
+    "text": "encuesta",
+    "start": 49.03,
+    "end": 49.52,
+    "id": "w140"
+  },
+  {
+    "text": "del",
+    "start": 49.52,
+    "end": 49.6,
+    "id": "w141"
+  },
+  {
+    "text": "Banco",
+    "start": 49.91,
+    "end": 50.03,
+    "id": "w142"
+  },
+  {
+    "text": "de",
+    "start": 50.03,
+    "end": 50.15,
+    "id": "w143"
+  },
+  {
+    "text": "España",
+    "start": 50.15,
+    "end": 50.53,
+    "id": "w144"
+  },
+  {
+    "text": "de",
+    "start": 50.53,
+    "end": 50.58,
+    "id": "w145"
+  },
+  {
+    "text": "2025,",
+    "start": 50.77,
+    "end": 51.5,
+    "id": "w146"
+  },
+  {
+    "text": "a",
+    "start": 51.5,
+    "end": 51.68,
+    "id": "w147"
+  },
+  {
+    "text": "un",
+    "start": 51.68,
+    "end": 51.71,
+    "id": "w148"
+  },
+  {
+    "text": "15%",
+    "start": 51.71,
+    "end": 52.09,
+    "id": "w149"
+  },
+  {
+    "text": "de",
+    "start": 52.15,
+    "end": 52.18,
+    "id": "w150"
+  },
+  {
+    "text": "quienes",
+    "start": 52.31,
+    "end": 52.71,
+    "id": "w151"
+  },
+  {
+    "text": "sacan",
+    "start": 52.71,
+    "end": 53.12,
+    "id": "w152"
+  },
+  {
+    "text": "en",
+    "start": 53.12,
+    "end": 53.41,
+    "id": "w153"
+  },
+  {
+    "text": "cajero.",
+    "start": 53.41,
+    "end": 54.04,
+    "id": "w154"
+  },
+  {
+    "text": "Uno",
+    "start": 54.16,
+    "end": 54.41,
+    "id": "w155"
+  },
+  {
+    "text": "de",
+    "start": 54.41,
+    "end": 54.59,
+    "id": "w156"
+  },
+  {
+    "text": "cada",
+    "start": 54.59,
+    "end": 54.94,
+    "id": "w157"
+  },
+  {
+    "text": "tres",
+    "start": 54.97,
+    "end": 55,
+    "id": "w158"
+  },
+  {
+    "text": "canceló",
+    "start": 55.4,
+    "end": 55.98,
+    "id": "w159"
+  },
+  {
+    "text": "y",
+    "start": 55.98,
+    "end": 56.17,
+    "id": "w160"
+  },
+  {
+    "text": "buscó",
+    "start": 56.17,
+    "end": 56.53,
+    "id": "w161"
+  },
+  {
+    "text": "otro",
+    "start": 56.53,
+    "end": 56.89,
+    "id": "w162"
+  },
+  {
+    "text": "cajero",
+    "start": 57.08,
+    "end": 57.45,
+    "id": "w163"
+  },
+  {
+    "text": "y",
+    "start": 57.45,
+    "end": 57.49,
+    "id": "w164"
+  },
+  {
+    "text": "el",
+    "start": 57.55,
+    "end": 57.72,
+    "id": "w165"
+  },
+  {
+    "text": "60%",
+    "start": 57.72,
+    "end": 58.37,
+    "id": "w166"
+  },
+  {
+    "text": "pagó.¿Y",
+    "start": 58.37,
+    "end": 59.28,
+    "id": "w167"
+  },
+  {
+    "text": "cuánto",
+    "start": 59.49,
+    "end": 59.67,
+    "id": "w168"
+  },
+  {
+    "text": "pagaron",
+    "start": 59.67,
+    "end": 60.15,
+    "id": "w169"
+  },
+  {
+    "text": "de",
+    "start": 60.15,
+    "end": 60.45,
+    "id": "w170"
+  },
+  {
+    "text": "media?",
+    "start": 60.45,
+    "end": 61.08,
+    "id": "w171"
+  },
+  {
+    "text": "Tres",
+    "start": 61.2,
+    "end": 61.48,
+    "id": "w172"
+  },
+  {
+    "text": "euros,",
+    "start": 61.48,
+    "end": 62.04,
+    "id": "w173"
+  },
+  {
+    "text": "por",
+    "start": 62.04,
+    "end": 62.44,
+    "id": "w174"
+  },
+  {
+    "text": "sacar",
+    "start": 62.44,
+    "end": 62.86,
+    "id": "w175"
+  },
+  {
+    "text": "125.",
+    "start": 62.9,
+    "end": 64.05,
+    "id": "w176"
+  },
+  {
+    "text": "Un",
+    "start": 64.12,
+    "end": 64.24,
+    "id": "w177"
+  },
+  {
+    "text": "2,4%",
+    "start": 64.24,
+    "end": 65.08,
+    "id": "w178"
+  },
+  {
+    "text": "de",
+    "start": 65.08,
+    "end": 65.27,
+    "id": "w179"
+  },
+  {
+    "text": "su",
+    "start": 65.27,
+    "end": 65.45,
+    "id": "w180"
+  },
+  {
+    "text": "propio",
+    "start": 65.45,
+    "end": 65.99,
+    "id": "w181"
+  },
+  {
+    "text": "dinero.¿Tú",
+    "start": 66.02,
+    "end": 67.21,
+    "id": "w182"
+  },
+  {
+    "text": "pagas",
+    "start": 67.27,
+    "end": 67.71,
+    "id": "w183"
+  },
+  {
+    "text": "o",
+    "start": 67.72,
+    "end": 67.81,
+    "id": "w184"
+  },
+  {
+    "text": "buscas",
+    "start": 67.99,
+    "end": 68.36,
+    "id": "w185"
+  },
+  {
+    "text": "otro",
+    "start": 68.65,
+    "end": 68.72,
+    "id": "w186"
+  },
+  {
+    "text": "cajero?",
+    "start": 68.72,
+    "end": 69.56,
+    "id": "w187"
+  },
+  {
+    "text": "Te",
+    "start": 69.56,
+    "end": 69.57,
+    "id": "w188"
+  },
+  {
+    "text": "leo",
+    "start": 69.62,
+    "end": 69.68,
+    "id": "w189"
+  },
+  {
+    "text": "en",
+    "start": 69.76,
+    "end": 69.77,
+    "id": "w190"
+  },
+  {
+    "text": "los",
+    "start": 69.77,
+    "end": 69.86,
+    "id": "w191"
+  },
+  {
+    "text": "comentarios.",
+    "start": 69.86,
+    "end": 70.24,
+    "id": "w192"
+  }
+]

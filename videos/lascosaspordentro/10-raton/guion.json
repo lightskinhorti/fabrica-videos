@@ -1,0 +1,54 @@
+{
+  "titulo": "Tu ratón hace miles de fotos por segundo",
+  "lines": [
+    "Tu ratón hace miles de fotos por segundo.",
+    "Y comparándolas sabe hacia dónde lo mueves.",
+    "¿Y por qué no funciona encima de un cristal? Al final lo verás.",
+    "Debajo tiene una luz roja, una lente y un chip que es una cámara diminuta.",
+    "La luz sale muy inclinada, casi rasante con la mesa.",
+    "Así, cada fibra y cada grano de la mesa hacen una sombra.",
+    "La lente lleva esa imagen al sensor: en muchos ratones, dieciocho por dieciocho píxeles.",
+    "Cada foto es un borrón de grises, pero para el chip es un mapa.",
+    "Pero aquí viene lo bueno: compara cada foto con la anterior.",
+    "Busca cuánto tiene que correr una para que encaje con la otra.",
+    "Si las sombras se han corrido hacia atrás, es que el ratón ha ido hacia delante.",
+    "Esa cuenta se repite sin parar, y el ordenador mueve la flecha.",
+    "Los botones, en cambio, son simples interruptores: el clic es una lámina de metal que salta.",
+    "Lo prometido: un cristal es liso y transparente.",
+    "La luz lo atraviesa, no hay sombras, y todas las fotos salen iguales.",
+    "Para el chip, no te estás moviendo.",
+    "Y el dato final: una película son veinticuatro fotos por segundo; un ratón sencillo hace mil quinientas.",
+    "Mándaselo a quien usa el ratón encima de una mesa de cristal."
+  ],
+  "claves": [
+    "fotos",
+    "mueves",
+    "cristal",
+    "cámara",
+    "rasante",
+    "sombra",
+    "sensor",
+    "mapa",
+    "compara",
+    "encaje",
+    "delante",
+    "flecha",
+    "clic",
+    "liso",
+    "iguales",
+    "moviendo",
+    "película",
+    "cristal"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "Tu ratón óptico lleva una cámara diminuta: hace más de mil fotos por segundo de tu mesa, iluminada con una luz casi rasante, y compara cada foto con la anterior para saber hacia dónde lo mueves. Sobre un cristal no hay sombras y todas las fotos salen iguales. Ilustración simplificada.",
+    "hashtags": [
+      "#raton",
+      "#ordenador",
+      "#ciencia"
+    ],
+    "portada_en": "fotos"
+  },
+  "voz_dice": "La voz se generó con los números en palabras; Whisper los oye en cifras (18, 24 y 1.500) y vozdata.py los pone así en los subtítulos. Después de la voz se recortaron 0,20 s de silencio al principio y 0,18 s del silencio que sigue al gancho en exports/voces/10-raton.wav, para que el gancho acabe antes de 2,5 s."
+}

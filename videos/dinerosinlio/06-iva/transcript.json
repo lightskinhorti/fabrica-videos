@@ -1,0 +1,1172 @@
+[
+  {
+    "text": "Tu",
+    "start": 0.14,
+    "end": 0.23,
+    "id": "w0"
+  },
+  {
+    "text": "refresco",
+    "start": 0.23,
+    "end": 0.66,
+    "id": "w1"
+  },
+  {
+    "text": "paga",
+    "start": 0.73,
+    "end": 0.98,
+    "id": "w2"
+  },
+  {
+    "text": "más",
+    "start": 0.98,
+    "end": 1.19,
+    "id": "w3"
+  },
+  {
+    "text": "IVA",
+    "start": 1.19,
+    "end": 1.39,
+    "id": "w4"
+  },
+  {
+    "text": "que",
+    "start": 1.39,
+    "end": 1.61,
+    "id": "w5"
+  },
+  {
+    "text": "tu",
+    "start": 1.61,
+    "end": 1.73,
+    "id": "w6"
+  },
+  {
+    "text": "pan.",
+    "start": 1.78,
+    "end": 2.01,
+    "id": "w7"
+  },
+  {
+    "text": "No",
+    "start": 2.01,
+    "end": 2.38,
+    "id": "w8"
+  },
+  {
+    "text": "lo",
+    "start": 2.38,
+    "end": 2.5,
+    "id": "w9"
+  },
+  {
+    "text": "decide",
+    "start": 2.5,
+    "end": 2.89,
+    "id": "w10"
+  },
+  {
+    "text": "la",
+    "start": 2.9,
+    "end": 3.03,
+    "id": "w11"
+  },
+  {
+    "text": "tienda,",
+    "start": 3.03,
+    "end": 3.55,
+    "id": "w12"
+  },
+  {
+    "text": "sino",
+    "start": 3.55,
+    "end": 3.82,
+    "id": "w13"
+  },
+  {
+    "text": "la",
+    "start": 3.82,
+    "end": 3.94,
+    "id": "w14"
+  },
+  {
+    "text": "ley.¿Y",
+    "start": 4.2,
+    "end": 4.51,
+    "id": "w15"
+  },
+  {
+    "text": "cuánto",
+    "start": 4.63,
+    "end": 4.85,
+    "id": "w16"
+  },
+  {
+    "text": "IVA",
+    "start": 4.91,
+    "end": 5.06,
+    "id": "w17"
+  },
+  {
+    "text": "pagamos",
+    "start": 5.13,
+    "end": 5.54,
+    "id": "w18"
+  },
+  {
+    "text": "entre",
+    "start": 5.54,
+    "end": 5.86,
+    "id": "w19"
+  },
+  {
+    "text": "todos",
+    "start": 5.86,
+    "end": 6.13,
+    "id": "w20"
+  },
+  {
+    "text": "en",
+    "start": 6.18,
+    "end": 6.3,
+    "id": "w21"
+  },
+  {
+    "text": "un",
+    "start": 6.31,
+    "end": 6.38,
+    "id": "w22"
+  },
+  {
+    "text": "año?",
+    "start": 6.63,
+    "end": 6.88,
+    "id": "w23"
+  },
+  {
+    "text": "Te",
+    "start": 6.88,
+    "end": 7.04,
+    "id": "w24"
+  },
+  {
+    "text": "lo",
+    "start": 7.04,
+    "end": 7.12,
+    "id": "w25"
+  },
+  {
+    "text": "digo",
+    "start": 7.21,
+    "end": 7.49,
+    "id": "w26"
+  },
+  {
+    "text": "al",
+    "start": 7.55,
+    "end": 7.69,
+    "id": "w27"
+  },
+  {
+    "text": "final.",
+    "start": 7.69,
+    "end": 8.34,
+    "id": "w28"
+  },
+  {
+    "text": "El",
+    "start": 8.41,
+    "end": 8.51,
+    "id": "w29"
+  },
+  {
+    "text": "IVA",
+    "start": 8.62,
+    "end": 8.67,
+    "id": "w30"
+  },
+  {
+    "text": "va",
+    "start": 8.67,
+    "end": 8.77,
+    "id": "w31"
+  },
+  {
+    "text": "adentro",
+    "start": 8.78,
+    "end": 9.17,
+    "id": "w32"
+  },
+  {
+    "text": "del",
+    "start": 9.17,
+    "end": 9.34,
+    "id": "w33"
+  },
+  {
+    "text": "precio",
+    "start": 9.34,
+    "end": 9.68,
+    "id": "w34"
+  },
+  {
+    "text": "de",
+    "start": 9.68,
+    "end": 9.79,
+    "id": "w35"
+  },
+  {
+    "text": "casi",
+    "start": 9.79,
+    "end": 10.01,
+    "id": "w36"
+  },
+  {
+    "text": "todo,",
+    "start": 10.01,
+    "end": 10.38,
+    "id": "w37"
+  },
+  {
+    "text": "pero",
+    "start": 10.4,
+    "end": 10.41,
+    "id": "w38"
+  },
+  {
+    "text": "no",
+    "start": 10.41,
+    "end": 10.78,
+    "id": "w39"
+  },
+  {
+    "text": "siempre",
+    "start": 10.78,
+    "end": 11.12,
+    "id": "w40"
+  },
+  {
+    "text": "es",
+    "start": 11.21,
+    "end": 11.33,
+    "id": "w41"
+  },
+  {
+    "text": "el",
+    "start": 11.33,
+    "end": 11.45,
+    "id": "w42"
+  },
+  {
+    "text": "mismo.",
+    "start": 11.45,
+    "end": 12,
+    "id": "w43"
+  },
+  {
+    "text": "El",
+    "start": 12,
+    "end": 12.23,
+    "id": "w44"
+  },
+  {
+    "text": "general",
+    "start": 12.23,
+    "end": 12.89,
+    "id": "w45"
+  },
+  {
+    "text": "es",
+    "start": 12.89,
+    "end": 13.09,
+    "id": "w46"
+  },
+  {
+    "text": "un",
+    "start": 13.09,
+    "end": 13.29,
+    "id": "w47"
+  },
+  {
+    "text": "21%.",
+    "start": 13.29,
+    "end": 13.98,
+    "id": "w48"
+  },
+  {
+    "text": "En",
+    "start": 14.38,
+    "end": 14.43,
+    "id": "w49"
+  },
+  {
+    "text": "el",
+    "start": 14.43,
+    "end": 14.56,
+    "id": "w50"
+  },
+  {
+    "text": "super",
+    "start": 14.56,
+    "end": 14.88,
+    "id": "w51"
+  },
+  {
+    "text": "hay",
+    "start": 14.89,
+    "end": 15.09,
+    "id": "w52"
+  },
+  {
+    "text": "dos",
+    "start": 15.09,
+    "end": 15.29,
+    "id": "w53"
+  },
+  {
+    "text": "más",
+    "start": 15.29,
+    "end": 15.47,
+    "id": "w54"
+  },
+  {
+    "text": "bajos,",
+    "start": 15.51,
+    "end": 15.94,
+    "id": "w55"
+  },
+  {
+    "text": "el",
+    "start": 16.15,
+    "end": 16.2,
+    "id": "w56"
+  },
+  {
+    "text": "10",
+    "start": 16.61,
+    "end": 16.88,
+    "id": "w57"
+  },
+  {
+    "text": "y",
+    "start": 16.88,
+    "end": 16.99,
+    "id": "w58"
+  },
+  {
+    "text": "el",
+    "start": 16.99,
+    "end": 17.21,
+    "id": "w59"
+  },
+  {
+    "text": "4.",
+    "start": 17.21,
+    "end": 17.85,
+    "id": "w60"
+  },
+  {
+    "text": "Al",
+    "start": 17.85,
+    "end": 18.13,
+    "id": "w61"
+  },
+  {
+    "text": "4%",
+    "start": 18.13,
+    "end": 18.46,
+    "id": "w62"
+  },
+  {
+    "text": "van",
+    "start": 18.46,
+    "end": 18.7,
+    "id": "w63"
+  },
+  {
+    "text": "el",
+    "start": 18.77,
+    "end": 18.93,
+    "id": "w64"
+  },
+  {
+    "text": "pan",
+    "start": 18.93,
+    "end": 19.21,
+    "id": "w65"
+  },
+  {
+    "text": "común,",
+    "start": 19.21,
+    "end": 19.88,
+    "id": "w66"
+  },
+  {
+    "text": "la",
+    "start": 19.88,
+    "end": 20.28,
+    "id": "w67"
+  },
+  {
+    "text": "leche,",
+    "start": 20.28,
+    "end": 20.6,
+    "id": "w68"
+  },
+  {
+    "text": "los",
+    "start": 20.6,
+    "end": 20.8,
+    "id": "w69"
+  },
+  {
+    "text": "huevos,",
+    "start": 20.81,
+    "end": 21.38,
+    "id": "w70"
+  },
+  {
+    "text": "el",
+    "start": 21.41,
+    "end": 21.55,
+    "id": "w71"
+  },
+  {
+    "text": "queso,",
+    "start": 21.55,
+    "end": 22.1,
+    "id": "w72"
+  },
+  {
+    "text": "la",
+    "start": 22.1,
+    "end": 22.23,
+    "id": "w73"
+  },
+  {
+    "text": "fruta,",
+    "start": 22.23,
+    "end": 22.7,
+    "id": "w74"
+  },
+  {
+    "text": "la",
+    "start": 22.7,
+    "end": 22.85,
+    "id": "w75"
+  },
+  {
+    "text": "verdura",
+    "start": 22.85,
+    "end": 23.4,
+    "id": "w76"
+  },
+  {
+    "text": "y",
+    "start": 23.4,
+    "end": 23.44,
+    "id": "w77"
+  },
+  {
+    "text": "las",
+    "start": 23.44,
+    "end": 23.62,
+    "id": "w78"
+  },
+  {
+    "text": "legumbres.",
+    "start": 23.62,
+    "end": 24.4,
+    "id": "w79"
+  },
+  {
+    "text": "Ydesde",
+    "start": 24.41,
+    "end": 24.85,
+    "id": "w80"
+  },
+  {
+    "text": "2025,",
+    "start": 24.85,
+    "end": 25.9,
+    "id": "w81"
+  },
+  {
+    "text": "el",
+    "start": 25.96,
+    "end": 26.02,
+    "id": "w82"
+  },
+  {
+    "text": "aceite",
+    "start": 26.07,
+    "end": 26.38,
+    "id": "w83"
+  },
+  {
+    "text": "de",
+    "start": 26.51,
+    "end": 26.58,
+    "id": "w84"
+  },
+  {
+    "text": "oliva.",
+    "start": 26.78,
+    "end": 27.29,
+    "id": "w85"
+  },
+  {
+    "text": "El",
+    "start": 27.3,
+    "end": 27.45,
+    "id": "w86"
+  },
+  {
+    "text": "de",
+    "start": 27.45,
+    "end": 27.6,
+    "id": "w87"
+  },
+  {
+    "text": "girasol",
+    "start": 27.6,
+    "end": 28.13,
+    "id": "w88"
+  },
+  {
+    "text": "paga",
+    "start": 28.13,
+    "end": 28.34,
+    "id": "w89"
+  },
+  {
+    "text": "el",
+    "start": 28.52,
+    "end": 28.58,
+    "id": "w90"
+  },
+  {
+    "text": "10.",
+    "start": 28.68,
+    "end": 29.29,
+    "id": "w91"
+  },
+  {
+    "text": "Al",
+    "start": 29.29,
+    "end": 29.53,
+    "id": "w92"
+  },
+  {
+    "text": "10",
+    "start": 29.53,
+    "end": 29.83,
+    "id": "w93"
+  },
+  {
+    "text": "va",
+    "start": 29.83,
+    "end": 29.96,
+    "id": "w94"
+  },
+  {
+    "text": "casi",
+    "start": 29.96,
+    "end": 30.23,
+    "id": "w95"
+  },
+  {
+    "text": "todo",
+    "start": 30.23,
+    "end": 30.5,
+    "id": "w96"
+  },
+  {
+    "text": "lo",
+    "start": 30.5,
+    "end": 30.62,
+    "id": "w97"
+  },
+  {
+    "text": "demás",
+    "start": 30.63,
+    "end": 30.91,
+    "id": "w98"
+  },
+  {
+    "text": "que",
+    "start": 30.97,
+    "end": 31.16,
+    "id": "w99"
+  },
+  {
+    "text": "se",
+    "start": 31.16,
+    "end": 31.28,
+    "id": "w100"
+  },
+  {
+    "text": "come.",
+    "start": 31.28,
+    "end": 31.8,
+    "id": "w101"
+  },
+  {
+    "text": "Carne,",
+    "start": 32.03,
+    "end": 32.44,
+    "id": "w102"
+  },
+  {
+    "text": "pescado,",
+    "start": 32.44,
+    "end": 33.27,
+    "id": "w103"
+  },
+  {
+    "text": "pasta",
+    "start": 33.27,
+    "end": 33.73,
+    "id": "w104"
+  },
+  {
+    "text": "y",
+    "start": 33.74,
+    "end": 33.78,
+    "id": "w105"
+  },
+  {
+    "text": "también",
+    "start": 34.18,
+    "end": 34.49,
+    "id": "w106"
+  },
+  {
+    "text": "el",
+    "start": 34.49,
+    "end": 34.67,
+    "id": "w107"
+  },
+  {
+    "text": "agua.",
+    "start": 34.68,
+    "end": 35.4,
+    "id": "w108"
+  },
+  {
+    "text": "Yel",
+    "start": 35.41,
+    "end": 35.65,
+    "id": "w109"
+  },
+  {
+    "text": "refresco.",
+    "start": 35.65,
+    "end": 36.6,
+    "id": "w110"
+  },
+  {
+    "text": "Si",
+    "start": 36.6,
+    "end": 36.72,
+    "id": "w111"
+  },
+  {
+    "text": "lleva",
+    "start": 36.73,
+    "end": 37.09,
+    "id": "w112"
+  },
+  {
+    "text": "azúcar",
+    "start": 37.09,
+    "end": 37.38,
+    "id": "w113"
+  },
+  {
+    "text": "o",
+    "start": 37.51,
+    "end": 37.52,
+    "id": "w114"
+  },
+  {
+    "text": "edulcorante",
+    "start": 37.72,
+    "end": 38.35,
+    "id": "w115"
+  },
+  {
+    "text": "añadido,",
+    "start": 38.35,
+    "end": 39.06,
+    "id": "w116"
+  },
+  {
+    "text": "la",
+    "start": 39.06,
+    "end": 39.22,
+    "id": "w117"
+  },
+  {
+    "text": "ley",
+    "start": 39.22,
+    "end": 39.34,
+    "id": "w118"
+  },
+  {
+    "text": "le",
+    "start": 39.49,
+    "end": 39.62,
+    "id": "w119"
+  },
+  {
+    "text": "pone",
+    "start": 39.64,
+    "end": 39.71,
+    "id": "w120"
+  },
+  {
+    "text": "el",
+    "start": 40.01,
+    "end": 40.07,
+    "id": "w121"
+  },
+  {
+    "text": "21.",
+    "start": 40.14,
+    "end": 40.6,
+    "id": "w122"
+  },
+  {
+    "text": "Por",
+    "start": 40.6,
+    "end": 40.83,
+    "id": "w123"
+  },
+  {
+    "text": "eso",
+    "start": 40.83,
+    "end": 41,
+    "id": "w124"
+  },
+  {
+    "text": "un",
+    "start": 41,
+    "end": 41.13,
+    "id": "w125"
+  },
+  {
+    "text": "refresco",
+    "start": 41.13,
+    "end": 41.66,
+    "id": "w126"
+  },
+  {
+    "text": "cero",
+    "start": 41.67,
+    "end": 41.92,
+    "id": "w127"
+  },
+  {
+    "text": "paga",
+    "start": 41.94,
+    "end": 42.21,
+    "id": "w128"
+  },
+  {
+    "text": "lo",
+    "start": 42.21,
+    "end": 42.33,
+    "id": "w129"
+  },
+  {
+    "text": "mismo",
+    "start": 42.34,
+    "end": 42.58,
+    "id": "w130"
+  },
+  {
+    "text": "que",
+    "start": 42.58,
+    "end": 42.98,
+    "id": "w131"
+  },
+  {
+    "text": "uno",
+    "start": 42.98,
+    "end": 43.08,
+    "id": "w132"
+  },
+  {
+    "text": "normal.",
+    "start": 43.08,
+    "end": 43.6,
+    "id": "w133"
+  },
+  {
+    "text": "Yun",
+    "start": 43.61,
+    "end": 43.81,
+    "id": "w134"
+  },
+  {
+    "text": "zumo",
+    "start": 43.83,
+    "end": 44.05,
+    "id": "w135"
+  },
+  {
+    "text": "con",
+    "start": 44.11,
+    "end": 44.26,
+    "id": "w136"
+  },
+  {
+    "text": "azúcar",
+    "start": 44.33,
+    "end": 44.73,
+    "id": "w137"
+  },
+  {
+    "text": "añadido",
+    "start": 44.73,
+    "end": 45.21,
+    "id": "w138"
+  },
+  {
+    "text": "paga",
+    "start": 45.27,
+    "end": 45.5,
+    "id": "w139"
+  },
+  {
+    "text": "más",
+    "start": 45.5,
+    "end": 45.58,
+    "id": "w140"
+  },
+  {
+    "text": "del",
+    "start": 45.58,
+    "end": 45.98,
+    "id": "w141"
+  },
+  {
+    "text": "doble",
+    "start": 45.98,
+    "end": 46.28,
+    "id": "w142"
+  },
+  {
+    "text": "que",
+    "start": 46.28,
+    "end": 46.48,
+    "id": "w143"
+  },
+  {
+    "text": "uno",
+    "start": 46.49,
+    "end": 46.69,
+    "id": "w144"
+  },
+  {
+    "text": "sin",
+    "start": 46.75,
+    "end": 46.91,
+    "id": "w145"
+  },
+  {
+    "text": "él.",
+    "start": 46.91,
+    "end": 47.4,
+    "id": "w146"
+  },
+  {
+    "text": "En",
+    "start": 47.4,
+    "end": 47.63,
+    "id": "w147"
+  },
+  {
+    "text": "un",
+    "start": 47.63,
+    "end": 47.71,
+    "id": "w148"
+  },
+  {
+    "text": "euro",
+    "start": 47.72,
+    "end": 48.04,
+    "id": "w149"
+  },
+  {
+    "text": "de",
+    "start": 48.04,
+    "end": 48.2,
+    "id": "w150"
+  },
+  {
+    "text": "pan,",
+    "start": 48.2,
+    "end": 48.6,
+    "id": "w151"
+  },
+  {
+    "text": "casi",
+    "start": 48.6,
+    "end": 48.9,
+    "id": "w152"
+  },
+  {
+    "text": "4",
+    "start": 48.96,
+    "end": 49.13,
+    "id": "w153"
+  },
+  {
+    "text": "céntimos",
+    "start": 49.18,
+    "end": 49.8,
+    "id": "w154"
+  },
+  {
+    "text": "son",
+    "start": 49.8,
+    "end": 50.04,
+    "id": "w155"
+  },
+  {
+    "text": "IVA.",
+    "start": 50.04,
+    "end": 50.6,
+    "id": "w156"
+  },
+  {
+    "text": "En",
+    "start": 50.6,
+    "end": 50.78,
+    "id": "w157"
+  },
+  {
+    "text": "un",
+    "start": 50.78,
+    "end": 50.96,
+    "id": "w158"
+  },
+  {
+    "text": "euro",
+    "start": 50.96,
+    "end": 51.32,
+    "id": "w159"
+  },
+  {
+    "text": "de",
+    "start": 51.33,
+    "end": 51.34,
+    "id": "w160"
+  },
+  {
+    "text": "refresco",
+    "start": 52.01,
+    "end": 52.25,
+    "id": "w161"
+  },
+  {
+    "text": "más",
+    "start": 52.25,
+    "end": 52.52,
+    "id": "w162"
+  },
+  {
+    "text": "de",
+    "start": 52.53,
+    "end": 52.71,
+    "id": "w163"
+  },
+  {
+    "text": "17.",
+    "start": 52.71,
+    "end": 53.6,
+    "id": "w164"
+  },
+  {
+    "text": "Yentre",
+    "start": 53.61,
+    "end": 54.06,
+    "id": "w165"
+  },
+  {
+    "text": "todos,",
+    "start": 54.11,
+    "end": 54.64,
+    "id": "w166"
+  },
+  {
+    "text": "en",
+    "start": 54.64,
+    "end": 54.8,
+    "id": "w167"
+  },
+  {
+    "text": "2025",
+    "start": 54.8,
+    "end": 55.58,
+    "id": "w168"
+  },
+  {
+    "text": "Hacienda",
+    "start": 55.77,
+    "end": 56.42,
+    "id": "w169"
+  },
+  {
+    "text": "ingresó",
+    "start": 56.42,
+    "end": 56.98,
+    "id": "w170"
+  },
+  {
+    "text": "por",
+    "start": 56.98,
+    "end": 57.22,
+    "id": "w171"
+  },
+  {
+    "text": "el",
+    "start": 57.22,
+    "end": 57.38,
+    "id": "w172"
+  },
+  {
+    "text": "IVA",
+    "start": 57.38,
+    "end": 57.54,
+    "id": "w173"
+  },
+  {
+    "text": "99.532",
+    "start": 57.75,
+    "end": 59.08,
+    "id": "w174"
+  },
+  {
+    "text": "millones",
+    "start": 59.08,
+    "end": 59.73,
+    "id": "w175"
+  },
+  {
+    "text": "de",
+    "start": 59.73,
+    "end": 59.89,
+    "id": "w176"
+  },
+  {
+    "text": "euros.",
+    "start": 59.89,
+    "end": 60.5,
+    "id": "w177"
+  },
+  {
+    "text": "Casi",
+    "start": 60.51,
+    "end": 60.72,
+    "id": "w178"
+  },
+  {
+    "text": "100.000",
+    "start": 60.73,
+    "end": 61.93,
+    "id": "w179"
+  },
+  {
+    "text": "millones",
+    "start": 61.93,
+    "end": 62.39,
+    "id": "w180"
+  },
+  {
+    "text": "en",
+    "start": 62.39,
+    "end": 62.48,
+    "id": "w181"
+  },
+  {
+    "text": "un",
+    "start": 62.48,
+    "end": 62.78,
+    "id": "w182"
+  },
+  {
+    "text": "año.",
+    "start": 62.78,
+    "end": 63,
+    "id": "w183"
+  },
+  {
+    "text": "Pensabas",
+    "start": 63,
+    "end": 63.52,
+    "id": "w184"
+  },
+  {
+    "text": "que",
+    "start": 63.52,
+    "end": 63.71,
+    "id": "w185"
+  },
+  {
+    "text": "era",
+    "start": 63.71,
+    "end": 63.89,
+    "id": "w186"
+  },
+  {
+    "text": "más",
+    "start": 63.9,
+    "end": 64.09,
+    "id": "w187"
+  },
+  {
+    "text": "o",
+    "start": 64.09,
+    "end": 64.15,
+    "id": "w188"
+  },
+  {
+    "text": "menos.",
+    "start": 64.15,
+    "end": 64.7,
+    "id": "w189"
+  },
+  {
+    "text": "Te",
+    "start": 64.71,
+    "end": 64.81,
+    "id": "w190"
+  },
+  {
+    "text": "leo",
+    "start": 64.93,
+    "end": 65,
+    "id": "w191"
+  },
+  {
+    "text": "en",
+    "start": 65,
+    "end": 65.12,
+    "id": "w192"
+  },
+  {
+    "text": "los",
+    "start": 65.12,
+    "end": 65.3,
+    "id": "w193"
+  },
+  {
+    "text": "comentarios.",
+    "start": 65.3,
+    "end": 66.2,
+    "id": "w194"
+  }
+]
