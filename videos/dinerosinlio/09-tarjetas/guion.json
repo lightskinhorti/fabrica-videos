@@ -1,0 +1,50 @@
+{
+  "titulo": "Débito o crédito: no es lo mismo",
+  "lines": [
+    "Débito o crédito: no es lo mismo.",
+    "Y en Estados Unidos, algunas te dan salas VIP y hoteles. ¿Quién lo paga? Te lo digo al final.",
+    "Con la de débito, el dinero sale de tu cuenta al momento.",
+    "Con la de crédito, el banco te lo adelanta: pagas a fin de mes, normalmente sin intereses, o aplazas el pago.",
+    "Y aplazar cuesta: de media, un 18,27% al año, según el Banco de España.",
+    "Algunas traen extras, como un seguro de viaje. Y muchas cobran una cuota.",
+    "En Estados Unidos, además, tu tarjeta de crédito cuenta para tu nota: el credit score, de 300 a 850.",
+    "Lo que más pesa es pagar a tiempo, un 35%, y lo que debes, un 30.",
+    "Y esa nota la miran para darte una hipoteca, o hasta para alquilar un piso.",
+    "Luego están las premium, como la American Express Platinum: más de 1.550 salas VIP y hasta 600 dólares al año en hoteles.",
+    "Pero cuesta 895 dólares al año, unos 800 euros. Y si aplazas, desde un 19,74%.",
+    "¿Y quién paga todo eso? Una parte, tú, con la cuota. Otra, la tienda.",
+    "En cada compra, la tienda paga una comisión, y una parte va al banco de tu tarjeta, como en el vídeo del café.",
+    "En Europa, con crédito, la ley limita esa parte a un 0,3%.",
+    "En Estados Unidos no hay tope: con una premium, un 2,1%. 7 veces más.",
+    "¿Y tú, débito o crédito? Te leo en los comentarios."
+  ],
+  "claves": [
+    "crédito:",
+    "hoteles.",
+    "momento.",
+    "adelanta:",
+    "cuesta:",
+    "cuota.",
+    "nota:",
+    "tiempo,",
+    "hipoteca,",
+    "premium,",
+    "cuesta",
+    "tienda.",
+    "comisión,",
+    "limita",
+    "tope:",
+    "comentarios."
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "Con débito, el dinero sale de tu cuenta al momento; con crédito, pagas a fin de mes o aplazas, y aplazar cuesta: 18,27 % al año de media en septiembre de 2026 (Banco de España, tipo TEDR de las tarjetas de crédito). En Estados Unidos, la tarjeta de crédito cuenta para el credit score (FICO, de 300 a 850). Las premium dan salas VIP y créditos de hotel, pero tienen cuota: la American Express Platinum cuesta 895 dólares al año (web oficial, 7 de noviembre de 2026). Sin publicidad: nadie nos paga por nombrarla. Parte de esos premios la paga la tienda con la comisión de intercambio: en la UE, como mucho un 0,3 % con crédito (Reglamento UE 2015/751); en EE. UU., sin tope, un 2,1 % en tiendas con una premium (tarifas de octubre de 2026). Explicamos, no recomendamos.",
+    "hashtags": [
+      "#tarjetadecredito",
+      "#creditscore",
+      "#bancos"
+    ],
+    "portada_en": "crédito"
+  },
+  "voz_dice": "La voz se generó con los números en palabras (dieciocho coma veintisiete por ciento, trescientos, ochocientos cincuenta, treinta y cinco por ciento, treinta, mil quinientas cincuenta, seiscientos, ochocientos noventa y cinco, ochocientos, diecinueve coma setenta y cuatro por ciento, cero coma tres por ciento, dos coma uno por ciento y siete); aquí van en cifras para que los subtítulos coincidan con lo que oye Whisper y se lean bien."
+}

@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <link rel="stylesheet" href="comun/dinero.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+      .cifra, .fila b, .grande, .pct { font-family: "Archivo Black", sans-serif; }
+      /* this video's layout */
+      .ancho { left: 0; width: 1080px; text-align: center; }
+      /* a narrower hook box, so it breaks as "Débito o crédito:" / "no es lo mismo" */
+      #gancho { left: 150px; right: 150px; }
+      .chip.s36 { font-size: 36px; }
+      .chip.s48 { font-size: 48px; }
+      .sello.s56 { font-size: 56px; }
+      .rotulo.s26 { font-size: 26px; }
+      /* two white boxes: extras and the yearly fee */
+      .caja { width: 440px; height: 430px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 14px; padding-top: 34px; }
+      .caja .tit { font-family: "Archivo Black", sans-serif; font-size: 58px; line-height: 1; }
+      .caja .sub { font-size: 32px; font-weight: 800; letter-spacing: 0.06em; line-height: 1.25; }
+      .verde-t { color: #2f8f6b; }
+      .rojo-t { color: #e5383b; }
+      /* what weighs in the score: one row per part, the bar grows from the left */
+      .factor { width: 900px; }
+      .factor .lab { display: flex; justify-content: space-between; align-items: baseline; font-size: 36px; font-weight: 800; padding: 2px 14px; border-radius: 10px; margin-bottom: 10px; }
+      .factor .lab .pct { font-size: 40px; }
+      .factor.marca .lab { background: #f8dc7a; }
+      .factor .pista { height: 54px; }
+      .factor .bar { height: 54px; border: 6px solid #1d2a44; border-radius: 12px; box-shadow: 8px 8px 0 #1d2a44; background: #fffaf0; transform-origin: 0 50%; }
+      .factor.marca .bar { background: #f2b705; }
+      /* columns that grow from the floor */
+      .barcol { border: 7px solid #1d2a44; border-bottom: none; border-radius: 18px 18px 0 0; box-shadow: 12px 0 0 #1d2a44; }
+      .suelo { height: 9px; background: #1d2a44; border-radius: 5px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="90" data-width="1080" data-height="1920" data-fps="30">
+      <div id="fondo" class="clip" data-start="0" data-duration="90" data-track-index="0"></div>
+      <div id="escenario" class="clip" data-start="0" data-duration="90" data-track-index="1" data-layout-allow-overlap data-layout-allow-overflow>
+        <!-- A1: the hook, with a debit and a credit card (already there in frame 0, the cover) -->
+        <div class="pieza" id="debA" style="left:90px; top:840px" data-dibujo="tarjeta" data-args='[400, "DÉBITO", "#4a78c2"]'></div>
+        <div class="pieza" id="credA" style="left:560px; top:860px" data-dibujo="tarjeta" data-args='[400, "CRÉDITO", "#e5383b"]'></div>
+
+        <!-- A2: in the United States, some give you lounges and hotels; who pays? -->
+        <div class="pieza ancho" id="chipEEUU2" style="top:470px"><div class="chip blanco">EN ESTADOS UNIDOS</div></div>
+        <div class="pieza" id="metalA" style="left:240px; top:580px" data-dibujo="tarjeta" data-args='[600, "PREMIUM", "metal"]'></div>
+        <div class="pieza" id="chipVip" style="left:130px; top:1030px"><div class="chip verde s48">SALAS VIP</div></div>
+        <div class="pieza" id="chipHotel" style="left:610px; top:1030px"><div class="chip verde s48">HOTELES</div></div>
+        <div class="pieza ancho" id="chipQuien" style="top:1170px"><div class="chip rojo s48">¿QUIÉN LO PAGA?</div></div>
+
+        <!-- B: with debit, the money leaves your account at once -->
+        <div class="pieza ancho" id="chipDeb" style="top:470px"><div class="chip" style="background:#4a78c2; color:#fff">CON DÉBITO</div></div>
+        <div class="pieza" id="cuentaB" style="left:60px; top:590px" data-icono="edificio" data-args='["TU CUENTA", "#fffaf0", 340]'></div>
+        <div class="pieza" id="flechaB" style="left:445px; top:745px" data-dibujo="flecha" data-args="[160]"></div>
+        <div class="pieza" id="tiendaB" style="left:640px; top:590px" data-dibujo="tienda" data-args="[340]"></div>
+        <div class="pieza" id="monedaB" style="left:200px; top:740px" data-icono="moneda" data-args='["€", 120]'></div>
+        <div class="pieza ancho" id="selloMomento" style="top:1040px"><div class="sello" style="color:#4a78c2; border-color:#4a78c2">AL MOMENTO</div></div>
+
+        <!-- C: with credit, the bank pays first; you pay at the end of the month or later -->
+        <div class="pieza ancho" id="chipCred" style="top:470px"><div class="chip rojo">CON CRÉDITO</div></div>
+        <div class="pieza" id="bancoC" style="left:60px; top:570px" data-icono="edificio" data-args='["TU BANCO", "#f2b705", 340]'></div>
+        <div class="pieza" id="flechaC" style="left:445px; top:725px" data-dibujo="flecha" data-args="[160]"></div>
+        <div class="pieza" id="tiendaC" style="left:640px; top:570px" data-dibujo="tienda" data-args="[340]"></div>
+        <div class="pieza" id="monedaC" style="left:200px; top:715px" data-icono="moneda" data-args='["€", 120]'></div>
+        <div class="pieza" id="calendario" style="left:80px; top:950px" data-dibujo="calendario" data-args="[250]"></div>
+        <div class="pieza" id="chipFinMes" style="left:390px; top:960px"><div class="chip verde">A FIN DE MES</div></div>
+        <div class="pieza" id="rotSinInt" style="left:395px; top:1060px"><div class="rotulo verde" style="text-align:left">NORMALMENTE, SIN INTERESES</div></div>
+        <div class="pieza" id="chipAplazas" style="left:390px; top:1120px"><div class="chip rojo">O APLAZAS EL PAGO</div></div>
+
+        <!-- D: deferring costs 18.27 % a year on average -->
+        <div class="pieza ancho" id="chipCuesta" style="top:470px"><div class="chip rojo">APLAZAR CUESTA</div></div>
+        <div class="pieza cifra roja ancho" id="c1827" style="top:590px">0 %</div>
+        <div class="pieza rotulo rojo ancho" id="r1827" style="top:740px">AL AÑO, DE MEDIA</div>
+        <div class="pieza rotulo ancho s26" id="r1827b" style="top:792px">TARJETAS DE CRÉDITO · SEPTIEMBRE DE 2026</div>
+        <div class="pieza" id="bde" style="left:348px; top:880px" data-icono="edificio" data-args='["BANCO DE ESPAÑA", "#fffaf0", 360]'></div>
+
+        <!-- E: some bring extras; many charge a yearly fee -->
+        <div class="pieza" id="cajaExtras" style="left:70px; top:560px">
+          <div class="tarjeta caja"><div id="avionE"></div><div class="tit verde-t">EXTRAS</div><div class="sub">SEGURO DE VIAJE,<br />EN ALGUNAS</div></div>
+        </div>
+        <div class="pieza" id="cajaCuota" style="left:570px; top:560px">
+          <div class="tarjeta caja"><div id="monedaE"></div><div class="tit rojo-t">CUOTA</div><div class="sub">MUCHAS<br />LA COBRAN</div></div>
+        </div>
+
+        <!-- F: in the US, the credit card counts for your score: 300 to 850 -->
+        <div class="pieza ancho" id="chipEEUU7" style="top:470px"><div class="chip blanco">EN ESTADOS UNIDOS</div></div>
+        <div class="pieza" id="medidor" style="left:140px; top:610px" data-dibujo="medidor" data-args="[800]"></div>
+        <div class="pieza cifra ancho" id="cScore" style="top:880px">300</div>
+        <div class="pieza rotulo" id="r300" style="left:120px; top:1075px; width:200px">300</div>
+        <div class="pieza rotulo" id="r850" style="left:760px; top:1075px; width:200px">850</div>
+        <div class="pieza ancho" id="chipScore" style="top:1150px"><div class="chip s48">CREDIT SCORE: TU NOTA</div></div>
+
+        <!-- G: what weighs in the score (FICO) -->
+        <div class="pieza ancho" id="chipPesa" style="top:470px"><div class="chip blanco">LO QUE PESA EN TU NOTA</div></div>
+        <div class="pieza factor" id="f0" style="left:90px; top:580px"><div class="lab"><span>PAGAR A TIEMPO</span><span class="pct">35 %</span></div><div class="pista"><div class="bar" id="fb0" style="width:770px"></div></div></div>
+        <div class="pieza factor" id="f1" style="left:90px; top:715px"><div class="lab"><span>LO QUE DEBES</span><span class="pct">30 %</span></div><div class="pista"><div class="bar" id="fb1" style="width:660px"></div></div></div>
+        <div class="pieza factor" id="f2" style="left:90px; top:850px"><div class="lab"><span>ANTIGÜEDAD</span><span class="pct">15 %</span></div><div class="pista"><div class="bar" id="fb2" style="width:330px"></div></div></div>
+        <div class="pieza factor" id="f3" style="left:90px; top:985px"><div class="lab"><span>CRÉDITO NUEVO</span><span class="pct">10 %</span></div><div class="pista"><div class="bar" id="fb3" style="width:220px"></div></div></div>
+        <div class="pieza factor" id="f4" style="left:90px; top:1120px"><div class="lab"><span>TIPOS DE CRÉDITO</span><span class="pct">10 %</span></div><div class="pista"><div class="bar" id="fb4" style="width:220px"></div></div></div>
+
+        <!-- H: lenders and landlords look at it -->
+        <div class="pieza" id="bancoH" style="left:60px; top:560px" data-icono="edificio" data-args='["BANCO", "#f2b705", 360]'></div>
+        <div class="pieza" id="pisoH" style="left:650px; top:520px" data-icono="oficina" data-args='["SE ALQUILA", 320]'></div>
+        <div class="pieza" id="chipHipoteca" style="left:80px; top:960px"><div class="chip s48">HIPOTECA</div></div>
+        <div class="pieza" id="chipAlquiler" style="left:600px; top:960px"><div class="chip s48">ALQUILAR</div></div>
+
+        <!-- I: premium cards; the example Javier asked for, named but drawn with no brand -->
+        <div class="pieza ancho" id="chipPlat" style="top:470px"><div class="chip blanco s36">AMERICAN EXPRESS PLATINUM</div></div>
+        <div class="pieza" id="metalI" style="left:190px; top:570px" data-dibujo="tarjeta" data-args='[700, "PREMIUM", "metal"]'></div>
+        <div class="pieza ancho" id="chipSalas" style="top:1065px"><div class="chip verde">MÁS DE 1.550 SALAS VIP</div></div>
+        <div class="pieza ancho" id="chipHoteles" style="top:1165px"><div class="chip verde">HASTA 600 $ AL AÑO EN HOTELES</div></div>
+        <div class="pieza ancho" id="chipPuntos" style="top:1265px"><div class="chip verde">5 PUNTOS POR DÓLAR EN VUELOS</div></div>
+
+        <!-- J: its yearly fee, in dollars and in euros, and the interest if you defer -->
+        <div class="pieza" id="metalJ" style="left:360px; top:480px" data-dibujo="tarjeta" data-args='[360, "PREMIUM", "metal"]'></div>
+        <div class="pieza cifra roja ancho" id="c895" style="top:760px">0 $</div>
+        <div class="pieza rotulo rojo ancho" id="r895" style="top:905px">DE CUOTA AL AÑO</div>
+        <div class="pieza cifra media ancho" id="c800" style="top:975px">0 €</div>
+        <div class="pieza rotulo ancho s26" id="r800" style="top:1085px">CAMBIO DEL BCE DEL 6 DE NOVIEMBRE DE 2026</div>
+        <div class="pieza ancho" id="chipInteres" style="top:1160px"><div class="chip rojo">SI APLAZAS: DEL 19,74 % AL 28,74 %</div></div>
+
+        <!-- K: who pays for all that -->
+        <div class="pieza ancho" id="chipQuien12" style="top:470px"><div class="chip blanco">¿QUIÉN PAGA TODO ESO?</div></div>
+        <div class="pieza" id="personaK" style="left:180px; top:590px" data-icono="persona" data-args='["#4a78c2", 220]'></div>
+        <div class="pieza" id="tiendaK" style="left:600px; top:600px" data-dibujo="tienda" data-args="[340]"></div>
+        <div class="pieza" id="chipTu" style="left:110px; top:950px"><div class="chip s48">TÚ: LA CUOTA</div></div>
+        <div class="pieza" id="chipTienda" style="left:610px; top:950px"><div class="chip s48">LA TIENDA</div></div>
+
+        <!-- L: in each purchase the shop pays a fee, and a part goes to your card's bank -->
+        <div class="pieza" id="tiendaL" style="left:50px; top:560px" data-dibujo="tienda" data-args="[340]"></div>
+        <div class="pieza" id="flechaL" style="left:435px; top:715px" data-dibujo="flecha" data-args="[160]"></div>
+        <div class="pieza" id="bancoL" style="left:630px; top:560px" data-icono="edificio" data-args='["TU BANCO", "#f2b705", 340]'></div>
+        <div class="pieza" id="monedaL" style="left:200px; top:710px" data-icono="moneda" data-args='["€", 110]'></div>
+        <div class="pieza ancho" id="chipComision" style="top:960px"><div class="chip rojo">UNA COMISIÓN EN CADA COMPRA</div></div>
+        <div class="pieza ancho" id="chipParte" style="top:1070px"><div class="chip blanco">UNA PARTE, AL BANCO DE TU TARJETA</div></div>
+        <div class="pieza ancho" id="chipCafe" style="top:1180px"><div class="chip">COMO EN EL VÍDEO DEL CAFÉ</div></div>
+
+        <!-- M and N: the part for your card's bank, with credit: Europe 0.3 %, US premium 2.1 % (to scale) -->
+        <div class="pieza ancho" id="chipLaParte" style="top:470px"><div class="chip blanco s36">LA PARTE DEL BANCO DE TU TARJETA</div></div>
+        <div class="pieza suelo" id="sueloM" style="left:110px; top:1250px; width:860px"></div>
+        <div class="pieza barcol" id="colEU" style="left:170px; top:1170px; width:300px; height:80px; background:#4a78c2"></div>
+        <div class="pieza barcol" id="colUS" style="left:610px; top:690px; width:300px; height:560px; background:#e5383b"></div>
+        <div class="pieza cifra media" id="cEU" style="left:120px; top:1060px; width:400px">0 %</div>
+        <div class="pieza cifra media roja" id="cUS" style="left:560px; top:578px; width:400px">0 %</div>
+        <div class="pieza rotulo" id="lEU" style="left:120px; top:1275px; width:400px">EUROPA: CON TOPE</div>
+        <div class="pieza rotulo rojo" id="lUS" style="left:560px; top:1275px; width:400px">EE. UU.: SIN TOPE</div>
+        <div class="pieza" id="selloVeces" style="left:70px; top:760px"><div class="sello s56" style="color:#e5383b; border-color:#e5383b">7 VECES MÁS</div></div>
+
+        <!-- O: the closing question, with the two cards again -->
+        <div class="pieza" id="debO" style="left:90px; top:600px" data-dibujo="tarjeta" data-args='[400, "DÉBITO", "#4a78c2"]'></div>
+        <div class="pieza" id="credO" style="left:560px; top:620px" data-dibujo="tarjeta" data-args='[400, "CRÉDITO", "#e5383b"]'></div>
+        <div class="pieza ancho" id="chipFin" style="top:1010px"><div class="chip s48">¿DÉBITO O CRÉDITO?</div></div>
+      </div>
+      <div id="gancho" class="clip" data-start="0" data-duration="90" data-track-index="2"></div>
+      <div id="note" class="clip" data-start="0" data-duration="90" data-track-index="3"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="90"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="90" data-track-index="4" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 88.76, "lines": [{"id": "l1", "s": 0.1, "e": 2.72, "words": [{"w": "Débito", "s": 0.1, "e": 0.71, "key": false}, {"w": "o", "s": 0.71, "e": 0.76, "key": false}, {"w": "crédito:", "s": 0.82, "e": 1.88, "key": true}, {"w": "no", "s": 1.88, "e": 1.98, "key": false}, {"w": "es", "s": 2.02, "e": 2.12, "key": false}, {"w": "lo", "s": 2.12, "e": 2.24, "key": false}, {"w": "mismo.", "s": 2.24, "e": 2.72, "key": false}]}, {"id": "l2", "s": 2.72, "e": 8.32, "words": [{"w": "Y", "s": 2.72, "e": 2.77, "key": false}, {"w": "en", "s": 2.77, "e": 2.87, "key": false}, {"w": "Estados", "s": 2.87, "e": 3.2, "key": false}, {"w": "Unidos,", "s": 3.25, "e": 3.56, "key": false}, {"w": "algunas", "s": 3.67, "e": 4.02, "key": false}, {"w": "te", "s": 4.11, "e": 4.12, "key": false}, {"w": "dan", "s": 4.12, "e": 4.24, "key": false}, {"w": "salas", "s": 4.24, "e": 4.62, "key": false}, {"w": "VIP", "s": 4.69, "e": 4.953, "key": false}, {"w": "y", "s": 4.953, "e": 5.04, "key": false}, {"w": "hoteles.", "s": 5.25, "e": 5.81, "key": true}, {"w": "¿Quién", "s": 5.81, "e": 6.21, "key": false}, {"w": "lo", "s": 6.21, "e": 6.3, "key": false}, {"w": "paga?", "s": 6.44, "e": 6.88, "key": false}, {"w": "Te", "s": 6.88, "e": 7.02, "key": false}, {"w": "lo", "s": 7.06, "e": 7.17, "key": false}, {"w": "digo", "s": 7.17, "e": 7.46, "key": false}, {"w": "al", "s": 7.46, "e": 7.49, "key": false}, {"w": "final.", "s": 7.74, "e": 8.32, "key": false}]}, {"id": "l3", "s": 8.32, "e": 11.04, "words": [{"w": "Con", "s": 8.32, "e": 8.46, "key": false}, {"w": "la", "s": 8.46, "e": 8.55, "key": false}, {"w": "de", "s": 8.55, "e": 8.6, "key": false}, {"w": "débito,", "s": 8.71, "e": 9.04, "key": false}, {"w": "el", "s": 9.04, "e": 9.18, "key": false}, {"w": "dinero", "s": 9.18, "e": 9.6, "key": false}, {"w": "sale", "s": 9.6, "e": 9.8, "key": false}, {"w": "de", "s": 9.8, "e": 9.9, "key": false}, {"w": "tu", "s": 9.9, "e": 9.98, "key": false}, {"w": "cuenta", "s": 10.06, "e": 10.28, "key": false}, {"w": "al", "s": 10.28, "e": 10.5, "key": false}, {"w": "momento.", "s": 10.5, "e": 11.04, "key": true}]}, {"id": "l4", "s": 11.12, "e": 17.64, "words": [{"w": "Con", "s": 11.12, "e": 11.32, "key": false}, {"w": "la", "s": 11.32, "e": 11.47, "key": false}, {"w": "de", "s": 11.47, "e": 11.54, "key": false}, {"w": "crédito,", "s": 11.89, "e": 12.24, "key": false}, {"w": "el", "s": 12.24, "e": 12.38, "key": false}, {"w": "banco", "s": 12.38, "e": 12.7, "key": false}, {"w": "te", "s": 12.7, "e": 12.73, "key": false}, {"w": "lo", "s": 12.98, "e": 13.01, "key": false}, {"w": "adelanta:", "s": 13.01, "e": 13.8, "key": true}, {"w": "pagas", "s": 13.8, "e": 14.05, "key": false}, {"w": "a", "s": 14.05, "e": 14.09, "key": false}, {"w": "fin", "s": 14.1, "e": 14.25, "key": false}, {"w": "de", "s": 14.25, "e": 14.3, "key": false}, {"w": "mes,", "s": 14.39, "e": 14.6, "key": false}, {"w": "normalmente", "s": 14.6, "e": 15.2, "key": false}, {"w": "sin", "s": 15.41, "e": 15.44, "key": false}, {"w": "intereses,", "s": 15.44, "e": 16.4, "key": false}, {"w": "o", "s": 16.41, "e": 16.46, "key": false}, {"w": "aplazas", "s": 16.73, "e": 17.05, "key": false}, {"w": "el", "s": 17.05, "e": 17.18, "key": false}, {"w": "pago.", "s": 17.22, "e": 17.64, "key": false}]}, {"id": "l5", "s": 17.85, "e": 23.48, "words": [{"w": "Y", "s": 17.85, "e": 17.919, "key": false}, {"w": "aplazar", "s": 17.919, "e": 18.4, "key": false}, {"w": "cuesta:", "s": 18.45, "e": 19.15, "key": true}, {"w": "de", "s": 19.15, "e": 19.22, "key": false}, {"w": "media,", "s": 19.31, "e": 19.72, "key": false}, {"w": "un", "s": 19.72, "e": 19.82, "key": false}, {"w": "18,27%", "s": 19.9, "e": 21.1, "key": false}, {"w": "al", "s": 21.16, "e": 21.26, "key": false}, {"w": "año,", "s": 21.26, "e": 21.63, "key": false}, {"w": "según", "s": 22.05, "e": 22.24, "key": false}, {"w": "el", "s": 22.24, "e": 22.45, "key": false}, {"w": "Banco", "s": 22.45, "e": 22.73, "key": false}, {"w": "de", "s": 22.73, "e": 22.87, "key": false}, {"w": "España.", "s": 22.87, "e": 23.48, "key": false}]}, {"id": "l6", "s": 23.85, "e": 28.02, "words": [{"w": "Algunas", "s": 23.85, "e": 23.99, "key": false}, {"w": "traen", "s": 23.99, "e": 24.34, "key": false}, {"w": "extras,", "s": 24.34, "e": 24.9, "key": false}, {"w": "como", "s": 24.94, "e": 25.18, "key": false}, {"w": "un", "s": 25.18, "e": 25.32, "key": false}, {"w": "seguro", "s": 25.32, "e": 25.74, "key": false}, {"w": "de", "s": 25.74, "e": 25.8, "key": false}, {"w": "viaje.", "s": 25.91, "e": 26.48, "key": false}, {"w": "Y", "s": 26.48, "e": 26.533, "key": false}, {"w": "muchas", "s": 26.533, "e": 26.85, "key": false}, {"w": "cobran", "s": 26.94, "e": 27.34, "key": false}, {"w": "una", "s": 27.34, "e": 27.52, "key": false}, {"w": "cuota.", "s": 27.66, "e": 28.02, "key": true}]}, {"id": "l7", "s": 28.1, "e": 35.79, "words": [{"w": "En", "s": 28.1, "e": 28.22, "key": false}, {"w": "Estados", "s": 28.22, "e": 28.71, "key": false}, {"w": "Unidos,", "s": 28.71, "e": 29.27, "key": false}, {"w": "además,", "s": 29.27, "e": 29.79, "key": false}, {"w": "tu", "s": 29.82, "e": 29.94, "key": false}, {"w": "tarjeta", "s": 30.18, "e": 30.46, "key": false}, {"w": "de", "s": 30.46, "e": 30.6, "key": false}, {"w": "crédito", "s": 30.6, "e": 31.08, "key": false}, {"w": "cuenta", "s": 31.19, "e": 31.51, "key": false}, {"w": "para", "s": 31.51, "e": 31.79, "key": false}, {"w": "tu", "s": 31.79, "e": 31.9, "key": false}, {"w": "nota:", "s": 31.95, "e": 32.42, "key": true}, {"w": "el", "s": 32.42, "e": 32.56, "key": false}, {"w": "credit", "s": 32.56, "e": 32.96, "key": false}, {"w": "score,", "s": 33.21, "e": 33.63, "key": false}, {"w": "de", "s": 33.63, "e": 33.76, "key": false}, {"w": "300", "s": 33.82, "e": 34.2, "key": false}, {"w": "a", "s": 34.68, "e": 34.71, "key": false}, {"w": "850.", "s": 34.71, "e": 35.79, "key": false}]}, {"id": "l8", "s": 35.79, "e": 41.6, "words": [{"w": "Lo", "s": 35.79, "e": 35.96, "key": false}, {"w": "que", "s": 36.05, "e": 36.2, "key": false}, {"w": "más", "s": 36.25, "e": 36.51, "key": false}, {"w": "pesa", "s": 36.51, "e": 36.87, "key": false}, {"w": "es", "s": 36.87, "e": 37.02, "key": false}, {"w": "pagar", "s": 37.11, "e": 37.5, "key": false}, {"w": "a", "s": 37.5, "e": 37.59, "key": false}, {"w": "tiempo,", "s": 37.59, "e": 38.31, "key": true}, {"w": "un", "s": 38.31, "e": 38.43, "key": false}, {"w": "35%,", "s": 38.96, "e": 39.3, "key": false}, {"w": "y", "s": 39.3, "e": 39.38, "key": false}, {"w": "lo", "s": 39.38, "e": 39.44, "key": false}, {"w": "que", "s": 39.44, "e": 39.85, "key": false}, {"w": "debes,", "s": 39.85, "e": 40.47, "key": false}, {"w": "un", "s": 40.47, "e": 40.51, "key": false}, {"w": "30.", "s": 40.77, "e": 41.6, "key": false}]}, {"id": "l9", "s": 41.61, "e": 46.44, "words": [{"w": "Y", "s": 41.61, "e": 41.68, "key": false}, {"w": "esa", "s": 41.68, "e": 41.89, "key": false}, {"w": "nota", "s": 41.9, "e": 42.19, "key": false}, {"w": "la", "s": 42.19, "e": 42.34, "key": false}, {"w": "miran", "s": 42.34, "e": 42.65, "key": false}, {"w": "para", "s": 42.73, "e": 42.86, "key": false}, {"w": "darte", "s": 42.98, "e": 43.38, "key": false}, {"w": "una", "s": 43.38, "e": 43.58, "key": false}, {"w": "hipoteca,", "s": 43.62, "e": 44.34, "key": true}, {"w": "o", "s": 44.34, "e": 44.41, "key": false}, {"w": "hasta", "s": 44.41, "e": 44.78, "key": false}, {"w": "para", "s": 44.78, "e": 45.08, "key": false}, {"w": "alquilar", "s": 45.08, "e": 45.62, "key": false}, {"w": "un", "s": 45.71, "e": 45.83, "key": false}, {"w": "piso.", "s": 45.83, "e": 46.44, "key": false}]}, {"id": "l10", "s": 46.65, "e": 54.71, "words": [{"w": "Luego", "s": 46.65, "e": 46.76, "key": false}, {"w": "están", "s": 46.76, "e": 47.08, "key": false}, {"w": "las", "s": 47.08, "e": 47.2, "key": false}, {"w": "premium,", "s": 47.26, "e": 47.84, "key": true}, {"w": "como", "s": 47.84, "e": 48.12, "key": false}, {"w": "la", "s": 48.12, "e": 48.21, "key": false}, {"w": "American", "s": 48.21, "e": 48.7, "key": false}, {"w": "Express", "s": 48.7, "e": 49.17, "key": false}, {"w": "Platinum:", "s": 49.17, "e": 49.86, "key": false}, {"w": "más", "s": 49.86, "e": 50.0, "key": false}, {"w": "de", "s": 50.11, "e": 50.16, "key": false}, {"w": "1.550", "s": 50.16, "e": 51.05, "key": false}, {"w": "salas", "s": 51.14, "e": 51.38, "key": false}, {"w": "VIP", "s": 51.45, "e": 51.58, "key": false}, {"w": "y", "s": 51.64, "e": 51.8, "key": false}, {"w": "hasta", "s": 52.01, "e": 52.18, "key": false}, {"w": "600", "s": 52.18, "e": 52.81, "key": false}, {"w": "dólares", "s": 52.86, "e": 53.05, "key": false}, {"w": "al", "s": 53.48, "e": 53.56, "key": false}, {"w": "año", "s": 53.56, "e": 53.78, "key": false}, {"w": "en", "s": 53.82, "e": 53.93, "key": false}, {"w": "hoteles.", "s": 53.93, "e": 54.71, "key": false}]}, {"id": "l11", "s": 54.71, "e": 62.512, "words": [{"w": "Pero", "s": 54.71, "e": 55.0, "key": false}, {"w": "cuesta", "s": 55.05, "e": 55.36, "key": true}, {"w": "895", "s": 55.49, "e": 56.15, "key": false}, {"w": "dólares", "s": 56.17, "e": 56.71, "key": false}, {"w": "al", "s": 56.71, "e": 56.86, "key": false}, {"w": "año,", "s": 56.86, "e": 57.23, "key": false}, {"w": "unos", "s": 57.23, "e": 57.28, "key": false}, {"w": "800", "s": 57.76, "e": 58.23, "key": false}, {"w": "euros.", "s": 58.23, "e": 58.96, "key": false}, {"w": "Y", "s": 59.06, "e": 59.127, "key": false}, {"w": "si", "s": 59.127, "e": 59.26, "key": false}, {"w": "aplazas,", "s": 59.26, "e": 60.16, "key": false}, {"w": "desde", "s": 60.64, "e": 60.68, "key": false}, {"w": "un", "s": 60.68, "e": 60.88, "key": false}, {"w": "19,74%.", "s": 60.88, "e": 62.512, "key": false}]}, {"id": "l12", "s": 62.512, "e": 68.47, "words": [{"w": "¿Y", "s": 62.512, "e": 62.92, "key": false}, {"w": "quién", "s": 62.92, "e": 63.43, "key": false}, {"w": "paga", "s": 63.43, "e": 63.83, "key": false}, {"w": "todo", "s": 63.83, "e": 64.24, "key": false}, {"w": "eso?", "s": 64.24, "e": 64.96, "key": false}, {"w": "Una", "s": 64.96, "e": 65.23, "key": false}, {"w": "parte,", "s": 65.23, "e": 65.86, "key": false}, {"w": "tú,", "s": 65.86, "e": 66.17, "key": false}, {"w": "con", "s": 66.24, "e": 66.28, "key": false}, {"w": "la", "s": 66.28, "e": 66.45, "key": false}, {"w": "cuota.", "s": 66.73, "e": 67.44, "key": false}, {"w": "Otra,", "s": 67.56, "e": 67.8, "key": false}, {"w": "la", "s": 67.8, "e": 67.92, "key": false}, {"w": "tienda.", "s": 67.92, "e": 68.47, "key": true}]}, {"id": "l13", "s": 68.48, "e": 74.62, "words": [{"w": "En", "s": 68.48, "e": 68.6, "key": false}, {"w": "cada", "s": 68.6, "e": 68.7, "key": false}, {"w": "compra,", "s": 69.12, "e": 69.35, "key": false}, {"w": "la", "s": 69.35, "e": 69.42, "key": false}, {"w": "tienda", "s": 69.47, "e": 69.83, "key": false}, {"w": "paga", "s": 69.83, "e": 70.09, "key": false}, {"w": "una", "s": 70.14, "e": 70.28, "key": false}, {"w": "comisión,", "s": 70.28, "e": 71.0, "key": true}, {"w": "y", "s": 71.1, "e": 71.155, "key": false}, {"w": "una", "s": 71.155, "e": 71.32, "key": false}, {"w": "parte", "s": 71.32, "e": 71.62, "key": false}, {"w": "va", "s": 71.63, "e": 71.75, "key": false}, {"w": "al", "s": 71.75, "e": 71.82, "key": false}, {"w": "banco", "s": 71.87, "e": 72.2, "key": false}, {"w": "de", "s": 72.2, "e": 72.41, "key": false}, {"w": "tu", "s": 72.41, "e": 72.46, "key": false}, {"w": "tarjeta,", "s": 72.46, "e": 72.96, "key": false}, {"w": "como", "s": 73.04, "e": 73.25, "key": false}, {"w": "en", "s": 73.33, "e": 73.45, "key": false}, {"w": "el", "s": 73.45, "e": 73.46, "key": false}, {"w": "vídeo", "s": 73.88, "e": 73.92, "key": false}, {"w": "del", "s": 73.92, "e": 74.12, "key": false}, {"w": "café.", "s": 74.12, "e": 74.62, "key": false}]}, {"id": "l14", "s": 74.62, "e": 78.66, "words": [{"w": "En", "s": 74.62, "e": 74.9, "key": false}, {"w": "Europa,", "s": 74.9, "e": 75.32, "key": false}, {"w": "con", "s": 75.34, "e": 75.52, "key": false}, {"w": "crédito,", "s": 75.52, "e": 76.1, "key": false}, {"w": "la", "s": 76.1, "e": 76.22, "key": false}, {"w": "ley", "s": 76.31, "e": 76.42, "key": false}, {"w": "limita", "s": 76.42, "e": 76.8, "key": true}, {"w": "esa", "s": 76.8, "e": 77.04, "key": false}, {"w": "parte", "s": 77.25, "e": 77.44, "key": false}, {"w": "a", "s": 77.46, "e": 77.53, "key": false}, {"w": "un", "s": 77.53, "e": 77.69, "key": false}, {"w": "0,3%.", "s": 77.69, "e": 78.66, "key": false}]}, {"id": "l15", "s": 78.72, "e": 85.05, "words": [{"w": "En", "s": 78.72, "e": 78.82, "key": false}, {"w": "Estados", "s": 78.82, "e": 79.39, "key": false}, {"w": "Unidos", "s": 79.4, "e": 79.99, "key": false}, {"w": "no", "s": 80.09, "e": 80.21, "key": false}, {"w": "hay", "s": 80.21, "e": 80.45, "key": false}, {"w": "tope:", "s": 80.45, "e": 81.01, "key": true}, {"w": "con", "s": 81.01, "e": 81.25, "key": false}, {"w": "una", "s": 81.25, "e": 81.49, "key": false}, {"w": "premium,", "s": 81.49, "e": 82.18, "key": false}, {"w": "un", "s": 82.24, "e": 82.39, "key": false}, {"w": "2,1%.", "s": 82.39, "e": 83.45, "key": false}, {"w": "7", "s": 83.45, "e": 83.89, "key": false}, {"w": "veces", "s": 83.89, "e": 84.24, "key": false}, {"w": "más.", "s": 84.24, "e": 85.05, "key": false}]}, {"id": "l16", "s": 85.05, "e": 88.36, "words": [{"w": "¿Y", "s": 85.05, "e": 85.32, "key": false}, {"w": "tú,", "s": 85.37, "e": 85.66, "key": false}, {"w": "débito", "s": 85.74, "e": 86.21, "key": false}, {"w": "o", "s": 86.29, "e": 86.32, "key": false}, {"w": "crédito?", "s": 86.32, "e": 87.2, "key": false}, {"w": "Te", "s": 87.2, "e": 87.28, "key": false}, {"w": "leo", "s": 87.28, "e": 87.41, "key": false}, {"w": "en", "s": 87.41, "e": 87.5, "key": false}, {"w": "los", "s": 87.5, "e": 87.6, "key": false}, {"w": "comentarios.", "s": 87.86, "e": 88.36, "key": true}]}]}</script>
+    <script id="escena" type="application/json">
+      {
+        "momentos": [
+          { "id": "EEUU2", "clave": "estados" },
+          { "id": "VIP2", "clave": "vip" },
+          { "id": "HOTELES2", "clave": "hoteles" },
+          { "id": "QUIEN2", "clave": "quien" },
+          { "id": "DEBITO3", "clave": "debito" },
+          { "id": "SALE3", "clave": "sale" },
+          { "id": "MOMENTO3", "clave": "momento" },
+          { "id": "CREDITO4", "clave": "credito" },
+          { "id": "ADELANTA", "clave": "adelanta" },
+          { "id": "FIN4", "clave": "fin" },
+          { "id": "NORMAL4", "clave": "normalmente" },
+          { "id": "APLAZAS4", "clave": "aplazas" },
+          { "id": "APLAZAR5", "clave": "aplazar" },
+          { "id": "MEDIA5", "clave": "media" },
+          { "id": "ESPANA5", "clave": "espana" },
+          { "id": "EXTRAS", "clave": "extras" },
+          { "id": "COBRAN", "clave": "cobran" },
+          { "id": "EEUU7", "clave": "estados" },
+          { "id": "NOTA7", "clave": "nota" },
+          { "id": "SCORE", "clave": "score" },
+          { "id": "PESA", "clave": "pesa" },
+          { "id": "TIEMPO8", "clave": "tiempo" },
+          { "id": "DEBES", "clave": "debes" },
+          { "id": "MIRAN", "clave": "miran" },
+          { "id": "HIPOTECA", "clave": "hipoteca" },
+          { "id": "ALQUILAR", "clave": "alquilar" },
+          { "id": "LUEGO", "clave": "luego" },
+          { "id": "PLATINUM", "clave": "platinum" },
+          { "id": "SALAS10", "clave": "salas" },
+          { "id": "HOTELES10", "clave": "hoteles" },
+          { "id": "CUESTA11", "clave": "cuesta" },
+          { "id": "UNOS", "clave": "unos" },
+          { "id": "APLAZAS11", "clave": "aplazas" },
+          { "id": "QUIEN12", "clave": "quien" },
+          { "id": "CUOTA12", "clave": "cuota" },
+          { "id": "TIENDA12", "clave": "tienda" },
+          { "id": "COMPRA13", "clave": "compra" },
+          { "id": "COMISION13", "clave": "comision" },
+          { "id": "BANCO13", "clave": "banco" },
+          { "id": "CAFE", "clave": "cafe" },
+          { "id": "EUROPA", "clave": "europa" },
+          { "id": "LIMITA", "clave": "limita" },
+          { "id": "EEUU15", "clave": "estados" },
+          { "id": "PREMIUM15", "clave": "premium" },
+          { "id": "VECES", "clave": "veces" },
+          { "id": "TU16", "clave": "tu" }
+        ],
+        "gancho": { "texto": "Débito o crédito: no es lo mismo", "clave": "crédito:", "tam": 92 },
+        "piezas": [
+          { "id": "debA", "desde": 0.1, "hasta": "EEUU2", "entra": "izq", "sale": "izq" },
+          { "id": "credA", "desde": 0.3, "hasta": "EEUU2", "entra": "der", "sale": "der" },
+
+          { "id": "chipEEUU2", "desde": "EEUU2", "hasta": "DEBITO3", "entra": "baja" },
+          { "id": "metalA", "desde": "EEUU2", "hasta": "DEBITO3", "entra": "escala", "dura": 0.6 },
+          { "id": "chipVip", "desde": "VIP2", "hasta": "DEBITO3", "entra": "sello" },
+          { "id": "chipHotel", "desde": "HOTELES2", "hasta": "DEBITO3", "entra": "sello" },
+          { "id": "chipQuien", "desde": "QUIEN2", "hasta": "DEBITO3", "entra": "escala" },
+
+          { "id": "chipDeb", "desde": "DEBITO3", "hasta": "CREDITO4", "entra": "baja" },
+          { "id": "cuentaB", "desde": "DEBITO3", "hasta": "CREDITO4", "entra": "izq" },
+          { "id": "tiendaB", "desde": "DEBITO3", "hasta": "CREDITO4", "entra": "der" },
+          { "id": "flechaB", "desde": "SALE3", "hasta": "CREDITO4", "entra": "izq" },
+          { "id": "monedaB", "desde": "SALE3", "hasta": "CREDITO4", "entra": "escala" },
+          { "id": "selloMomento", "desde": "MOMENTO3", "hasta": "CREDITO4", "entra": "sello" },
+
+          { "id": "chipCred", "desde": "CREDITO4", "hasta": "APLAZAR5", "entra": "baja" },
+          { "id": "bancoC", "desde": "CREDITO4", "hasta": "APLAZAR5", "entra": "izq" },
+          { "id": "tiendaC", "desde": "CREDITO4", "hasta": "APLAZAR5", "entra": "der" },
+          { "id": "flechaC", "desde": "ADELANTA", "hasta": "APLAZAR5", "entra": "izq" },
+          { "id": "monedaC", "desde": "ADELANTA", "hasta": "APLAZAR5", "entra": "escala" },
+          { "id": "calendario", "desde": "FIN4", "hasta": "APLAZAR5", "entra": "escala" },
+          { "id": "chipFinMes", "desde": "FIN4", "hasta": "APLAZAR5", "entra": "der" },
+          { "id": "rotSinInt", "desde": "NORMAL4", "hasta": "APLAZAR5", "entra": "der" },
+          { "id": "chipAplazas", "desde": "APLAZAS4", "hasta": "APLAZAR5", "entra": "sello" },
+
+          { "id": "chipCuesta", "desde": "APLAZAR5", "hasta": "EXTRAS", "entra": "baja" },
+          { "id": "c1827", "desde": "MEDIA5", "hasta": "EXTRAS", "entra": "escala" },
+          { "id": "r1827", "desde": "MEDIA5", "hasta": "EXTRAS" },
+          { "id": "r1827b", "desde": "MEDIA5", "hasta": "EXTRAS" },
+          { "id": "bde", "desde": "ESPANA5", "hasta": "EXTRAS", "entra": "sube" },
+
+          { "id": "cajaExtras", "desde": "EXTRAS", "hasta": "EEUU7", "entra": "izq" },
+          { "id": "cajaCuota", "desde": "COBRAN", "hasta": "EEUU7", "entra": "der" },
+
+          { "id": "chipEEUU7", "desde": "EEUU7", "hasta": "PESA", "entra": "baja" },
+          { "id": "medidor", "desde": "EEUU7", "hasta": "PESA", "entra": "escala", "dura": 0.6 },
+          { "id": "cScore", "desde": "EEUU7", "hasta": "PESA", "entra": "escala", "dura": 0.6 },
+          { "id": "r300", "desde": "EEUU7", "hasta": "PESA" },
+          { "id": "r850", "desde": "EEUU7", "hasta": "PESA" },
+          { "id": "chipScore", "desde": "SCORE", "hasta": "PESA", "entra": "sello" },
+
+          { "id": "chipPesa", "desde": "PESA", "hasta": "MIRAN", "entra": "baja" },
+          { "id": "f0", "desde": "PESA", "hasta": "MIRAN", "entra": "izq" },
+          { "id": "f1", "desde": "PESA", "hasta": "MIRAN", "entra": "izq", "dura": 0.55 },
+          { "id": "f2", "desde": "PESA", "hasta": "MIRAN", "entra": "izq", "dura": 0.65 },
+          { "id": "f3", "desde": "PESA", "hasta": "MIRAN", "entra": "izq", "dura": 0.75 },
+          { "id": "f4", "desde": "PESA", "hasta": "MIRAN", "entra": "izq", "dura": 0.85 },
+
+          { "id": "bancoH", "desde": "MIRAN", "hasta": "LUEGO", "entra": "izq" },
+          { "id": "pisoH", "desde": "MIRAN", "hasta": "LUEGO", "entra": "der" },
+          { "id": "chipHipoteca", "desde": "HIPOTECA", "hasta": "LUEGO", "entra": "sello" },
+          { "id": "chipAlquiler", "desde": "ALQUILAR", "hasta": "LUEGO", "entra": "sello" },
+
+          { "id": "metalI", "desde": "LUEGO", "hasta": "CUESTA11", "entra": "escala", "dura": 0.6 },
+          { "id": "chipPlat", "desde": "PLATINUM", "hasta": "CUESTA11", "entra": "baja" },
+          { "id": "chipSalas", "desde": "SALAS10", "hasta": "CUESTA11", "entra": "sube" },
+          { "id": "chipHoteles", "desde": "HOTELES10", "hasta": "CUESTA11", "entra": "sube" },
+          { "id": "chipPuntos", "desde": "HOTELES10", "hasta": "CUESTA11", "entra": "sube", "dura": 0.7 },
+
+          { "id": "metalJ", "desde": "CUESTA11", "hasta": "QUIEN12", "entra": "baja" },
+          { "id": "c895", "desde": "CUESTA11", "hasta": "QUIEN12", "entra": "escala" },
+          { "id": "r895", "desde": "CUESTA11", "hasta": "QUIEN12" },
+          { "id": "c800", "desde": "UNOS", "hasta": "QUIEN12", "entra": "escala" },
+          { "id": "r800", "desde": "UNOS", "hasta": "QUIEN12" },
+          { "id": "chipInteres", "desde": "APLAZAS11", "hasta": "QUIEN12", "entra": "sello" },
+
+          { "id": "chipQuien12", "desde": "QUIEN12", "hasta": "COMPRA13", "entra": "baja" },
+          { "id": "personaK", "desde": "QUIEN12", "hasta": "COMPRA13", "entra": "sube" },
+          { "id": "tiendaK", "desde": "QUIEN12", "hasta": "COMPRA13", "entra": "sube", "dura": 0.6 },
+          { "id": "chipTu", "desde": "CUOTA12", "hasta": "COMPRA13", "entra": "sello" },
+          { "id": "chipTienda", "desde": "TIENDA12", "hasta": "COMPRA13", "entra": "sello" },
+
+          { "id": "tiendaL", "desde": "COMPRA13", "hasta": "EUROPA", "entra": "izq" },
+          { "id": "bancoL", "desde": "COMPRA13", "hasta": "EUROPA", "entra": "der" },
+          { "id": "flechaL", "desde": "COMISION13", "hasta": "EUROPA", "entra": "izq" },
+          { "id": "monedaL", "desde": "COMISION13", "hasta": "EUROPA", "entra": "escala" },
+          { "id": "chipComision", "desde": "COMISION13", "hasta": "EUROPA", "entra": "sello" },
+          { "id": "chipParte", "desde": "BANCO13", "hasta": "EUROPA", "entra": "sube" },
+          { "id": "chipCafe", "desde": "CAFE", "hasta": "EUROPA", "entra": "sube" },
+
+          { "id": "chipLaParte", "desde": "EUROPA", "hasta": "TU16", "entra": "baja" },
+          { "id": "sueloM", "desde": "EUROPA", "hasta": "TU16", "entra": "fundido" },
+          { "id": "lEU", "desde": "EUROPA", "hasta": "TU16" },
+          { "id": "colEU", "desde": "LIMITA", "hasta": "TU16", "entra": "crece", "dura": 0.6 },
+          { "id": "cEU", "desde": "LIMITA", "hasta": "TU16", "entra": "escala" },
+          { "id": "lUS", "desde": "EEUU15", "hasta": "TU16" },
+          { "id": "colUS", "desde": "PREMIUM15", "hasta": "TU16", "entra": "crece", "dura": 1.0 },
+          { "id": "cUS", "desde": "PREMIUM15", "hasta": "TU16", "entra": "escala" },
+          { "id": "selloVeces", "desde": "VECES", "hasta": "TU16", "entra": "sello" },
+
+          { "id": "debO", "desde": "TU16", "entra": "izq" },
+          { "id": "credO", "desde": "TU16", "entra": "der" },
+          { "id": "chipFin", "desde": "TU16", "entra": "sube", "dura": 0.6 }
+        ],
+        "cifras": [
+          { "id": "c1827", "desde": "MEDIA5", "a": 18.27, "dec": 2, "formato": "pct", "dura": 1.4 },
+          { "id": "cScore", "desde": "SCORE", "de": 300, "a": 850, "formato": "numero", "dura": 1.8 },
+          { "id": "c895", "desde": "CUESTA11", "a": 895, "formato": "numero", "sufijo": " $", "dura": 1.2 },
+          { "id": "c800", "desde": "UNOS", "a": 800, "prefijo": "≈ ", "dura": 0.9 },
+          { "id": "cEU", "desde": "LIMITA", "a": 0.3, "dec": 1, "formato": "pct", "dura": 0.6 },
+          { "id": "cUS", "desde": "PREMIUM15", "a": 2.1, "dec": 1, "formato": "pct", "dura": 1.0 }
+        ],
+        "notas": [
+          { "texto": "Tarjetas de particulares. Explicamos, no recomendamos", "desde": "EEUU2" },
+          { "texto": "Banco de España: con débito, la operación se anota al instante en tu cuenta", "desde": "DEBITO3" },
+          { "texto": "Banco de España: lo más habitual es pagar todo a fin de mes sin intereses. Aplazar o fraccionar suele tener coste", "desde": "CREDITO4" },
+          { "texto": "Banco de España, Boletín Estadístico, cuadro 19.3: tipo medio (TEDR) de las nuevas operaciones con tarjetas de crédito, septiembre de 2026 (provisional). No incluye comisiones", "desde": "APLAZAR5" },
+          { "texto": "Lo que trae cada tarjeta lo dice su contrato. El seguro de viaje suele exigir pagar el billete con ella", "desde": "EXTRAS" },
+          { "texto": "FICO: de 300 a 850. La oficina de protección del consumidor de EE. UU. (CFPB): la mayoría de las notas van de 300 a 850", "desde": "EEUU7" },
+          { "texto": "myFICO: peso de cada parte para la población en general. En cada persona puede variar", "desde": "PESA" },
+          { "texto": "CFPB: se usa para hipotecas, tarjetas y préstamos, y también para revisar a quien alquila y en seguros", "desde": "MIRAN" },
+          { "texto": "Sin publicidad: nadie nos paga por nombrarla. Datos de su web oficial en EE. UU., consultada el 7 de noviembre de 2026", "desde": "LUEGO" },
+          { "texto": "Cambio del BCE del 6 de noviembre de 2026: 1 € = 1,1165 $. El crédito de hotel es para reservas prepagadas con su agencia de viajes", "desde": "CUESTA11" },
+          { "texto": "Los intereses de quien aplaza también son ingresos para el banco", "desde": "QUIEN12" },
+          { "texto": "Es la comisión de intercambio: va del banco de la tienda al banco que emite tu tarjeta", "desde": "COMPRA13" },
+          { "texto": "Reglamento (UE) 2015/751, artículo 4: tarjetas de crédito de particulares", "desde": "EUROPA" },
+          { "texto": "EE. UU.: tarifa de una gran red para tarjetas premium en tiendas desde el 24 de octubre de 2026: 2,10 % + 0,10 $. Cálculo propio: 2,1 / 0,3 = 7", "desde": "EEUU15" },
+          { "texto": "Cada tarjeta tiene sus costes y sus condiciones: las dice su contrato", "desde": "TU16" }
+        ],
+        "fondo": "claro",
+        "sonidos": [
+          { "tipo": "toque", "en": 0.15 },
+          { "tipo": "pop", "en": 0.35 },
+          { "tipo": "desliza", "en": "EEUU2" },
+          { "tipo": "brillo", "en": "EEUU2", "mas": 0.3 },
+          { "tipo": "pop", "en": "VIP2" },
+          { "tipo": "pop", "en": "HOTELES2" },
+          { "tipo": "toque", "en": "QUIEN2" },
+          { "tipo": "desliza", "en": "DEBITO3" },
+          { "tipo": "pagado", "en": "SALE3", "mas": 0.3 },
+          { "tipo": "toque", "en": "MOMENTO3", "mas": 0.1 },
+          { "tipo": "desliza", "en": "CREDITO4" },
+          { "tipo": "metal", "en": "ADELANTA" },
+          { "tipo": "pop", "en": "FIN4" },
+          { "tipo": "error", "en": "APLAZAS4" },
+          { "tipo": "desliza", "en": "APLAZAR5" },
+          { "tipo": "sube", "en": "MEDIA5" },
+          { "tipo": "toque", "en": "ESPANA5" },
+          { "tipo": "desliza", "en": "EXTRAS" },
+          { "tipo": "chip", "en": "COBRAN" },
+          { "tipo": "brillo", "en": "EEUU7" },
+          { "tipo": "sube", "en": "SCORE" },
+          { "tipo": "desliza", "en": "PESA" },
+          { "tipo": "toque", "en": "TIEMPO8" },
+          { "tipo": "toque", "en": "DEBES" },
+          { "tipo": "desliza", "en": "MIRAN" },
+          { "tipo": "pop", "en": "HIPOTECA" },
+          { "tipo": "pop", "en": "ALQUILAR" },
+          { "tipo": "brillo", "en": "LUEGO" },
+          { "tipo": "chip", "en": "PLATINUM" },
+          { "tipo": "pop", "en": "SALAS10" },
+          { "tipo": "pop", "en": "HOTELES10" },
+          { "tipo": "metal", "en": "CUESTA11" },
+          { "tipo": "sube", "en": "UNOS" },
+          { "tipo": "error", "en": "APLAZAS11" },
+          { "tipo": "brillo", "en": "QUIEN12" },
+          { "tipo": "pop", "en": "CUOTA12" },
+          { "tipo": "pop", "en": "TIENDA12" },
+          { "tipo": "desliza", "en": "COMPRA13" },
+          { "tipo": "pagado", "en": "COMISION13", "mas": 0.3 },
+          { "tipo": "chip", "en": "CAFE" },
+          { "tipo": "desliza", "en": "EUROPA" },
+          { "tipo": "sube", "en": "LIMITA" },
+          { "tipo": "sube", "en": "PREMIUM15" },
+          { "tipo": "toque", "en": "VECES", "mas": 0.1 },
+          { "tipo": "pop", "en": "TU16" }
+        ]
+      }
+    </script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 90 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import { crearDinero, COLOR, ICONOS } from "./comun/dinero.js";
+      const $ = (id) => document.getElementById(id);
+      const K = COLOR;
+      const svg = (w, vw, vh, cuerpo) => `<svg width="${w}" height="${Math.round((w * vh) / vw)}" viewBox="0 0 ${vw} ${vh}">${cuerpo}</svg>`;
+      let nClip = 0;
+
+      // ---------- drawings this video needs, in the account's flat style (navy outline, solid offset shadow) ----------
+      // they are built before the engine looks for the ids of pieces and figures
+      const DIBUJOS = {
+        // a payment card with no brand: chip, contactless waves and hidden digits. color "metal" = a generic
+        // brushed-metal premium card (flat silver with two lighter bands), never a real card's design
+        tarjeta: (w = 300, texto = "DÉBITO", color = K.azul) => {
+          const metal = color === "metal";
+          const tinta = metal ? K.tinta : "#fff";
+          const id = `clipT${nClip++}`;
+          const puntos = [0, 1].map((g) => [0, 1, 2, 3].map((i) => `<circle cx="${46 + g * 104 + i * 20}" cy="172" r="6.5" fill="${tinta}"/>`).join("")).join("");
+          const bandas = metal ? `<g clip-path="url(#${id})"><path d="M190 0 L262 0 L130 230 L58 230 Z" fill="#e4e7ec"/><path d="M286 0 L306 0 L174 230 L154 230 Z" fill="#e4e7ec"/></g>` : "";
+          return svg(w, 356, 232, `<defs><clipPath id="${id}"><rect x="4" y="4" width="336" height="212" rx="24"/></clipPath></defs>
+            <rect x="16" y="16" width="336" height="212" rx="24" fill="${K.tinta}"/>
+            <rect x="4" y="4" width="336" height="212" rx="24" fill="${metal ? "#bfc5cf" : color}"/>
+            ${bandas}
+            <rect x="4" y="4" width="336" height="212" rx="24" fill="none" stroke="${K.tinta}" stroke-width="8"/>
+            <rect x="40" y="72" width="64" height="50" rx="9" fill="${K.oro}" stroke="${K.tinta}" stroke-width="5"/>
+            <path d="M40 97 H104 M72 72 V122" stroke="${K.tinta}" stroke-width="4"/>
+            <g fill="none" stroke="${tinta}" stroke-width="7" stroke-linecap="round"><path d="M136 82 q12 15 0 30"/><path d="M152 74 q19 23 0 46"/><path d="M168 66 q26 31 0 62"/></g>
+            ${puntos}
+            <text x="316" y="44" text-anchor="end" dominant-baseline="central" font-family="Inter" font-weight="800" font-size="26" letter-spacing="3" fill="${tinta}">${texto}</text>`);
+        },
+
+        // a thick navy arrow pointing right
+        flecha: (w = 160) => svg(w, 170, 85, `<path d="M14 42 H134" stroke="${K.tinta}" stroke-width="16" stroke-linecap="round"/>
+          <path d="M108 14 L152 42 L108 70" fill="none" stroke="${K.tinta}" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>`),
+
+        // a shop with a striped awning, no brand
+        tienda: (w = 340) => {
+          const rayas = Array.from({ length: 6 }, (_, i) => `<path d="M${30 + i * 46} 92 h46 v34 a23 23 0 0 1 -46 0 z" fill="${i % 2 ? K.blanco : K.rojo}" stroke="${K.tinta}" stroke-width="6" stroke-linejoin="round"/>`).join("");
+          return svg(w, 340, 320, `<rect x="46" y="96" width="270" height="214" rx="10" fill="${K.tinta}"/>
+            <rect x="34" y="84" width="270" height="214" rx="10" fill="${K.blanco}" stroke="${K.tinta}" stroke-width="8"/>
+            <rect x="50" y="20" width="238" height="60" rx="10" fill="${K.tinta}"/>
+            <text x="169" y="51" text-anchor="middle" dominant-baseline="central" font-family="Archivo Black" font-size="30" letter-spacing="3" fill="${K.oro}">TIENDA</text>
+            ${rayas}
+            <rect x="62" y="166" width="110" height="80" rx="8" fill="${K.azul}" stroke="${K.tinta}" stroke-width="6"/>
+            <path d="M62 206 H172" stroke="${K.tinta}" stroke-width="5"/>
+            <rect x="196" y="166" width="82" height="132" rx="8" fill="${K.oro}" stroke="${K.tinta}" stroke-width="6"/>
+            <circle cx="262" cy="236" r="6" fill="${K.tinta}"/>`);
+        },
+
+        // a month on a calendar, with the last day marked
+        calendario: (w = 250) => {
+          const dias = [];
+          for (let f = 0; f < 4; f++) for (let c = 0; c < 5; c++) {
+            const ult = f === 3 && c === 4;
+            dias.push(`<rect x="${38 + c * 40}" y="${110 + f * 38}" width="30" height="28" rx="6" fill="${ult ? K.oro : "#e9e1cf"}" stroke="${ult ? K.tinta : "none"}" stroke-width="5"/>`);
+          }
+          return svg(w, 260, 290, `<rect x="24" y="38" width="226" height="244" rx="18" fill="${K.tinta}"/>
+            <rect x="12" y="26" width="226" height="244" rx="18" fill="${K.blanco}" stroke="${K.tinta}" stroke-width="8"/>
+            <path d="M16 30 H234 V88 H16 Z" fill="${K.rojo}"/>
+            <path d="M12 88 H238" stroke="${K.tinta}" stroke-width="7"/>
+            <rect x="66" y="10" width="16" height="40" rx="8" fill="${K.tinta}"/><rect x="168" y="10" width="16" height="40" rx="8" fill="${K.tinta}"/>
+            <text x="125" y="62" text-anchor="middle" dominant-baseline="central" font-family="Archivo Black" font-size="28" letter-spacing="3" fill="#fff">MES</text>
+            ${dias.join("")}`);
+        },
+
+        // a plane seen from above
+        avion: (w = 200) => svg(w, 220, 220, `<g transform="translate(10 10)" fill="${K.tinta}"><path d="M110 12 c14 0 20 18 20 34 v40 l78 46 v22 l-78 -22 v44 l26 20 v16 l-46 -12 l-46 12 v-16 l26 -20 v-44 l-78 22 v-22 l78 -46 v-40 c0 -16 6 -34 20 -34 z"/></g>
+          <path d="M110 12 c14 0 20 18 20 34 v40 l78 46 v22 l-78 -22 v44 l26 20 v16 l-46 -12 l-46 12 v-16 l26 -20 v-44 l-78 22 v-22 l78 -46 v-40 c0 -16 6 -34 20 -34 z" fill="${K.blanco}" stroke="${K.tinta}" stroke-width="8" stroke-linejoin="round"/>`),
+
+        // a half-circle gauge from 300 to 850; the gold arc and the needle move with the score
+        medidor: (w = 800) => {
+          const arco = "M70 420 A330 330 0 0 1 730 420";
+          return svg(w, 800, 470, `<path d="${arco}" transform="translate(12 12)" fill="none" stroke="${K.tinta}" stroke-width="86" stroke-linecap="round"/>
+            <path d="${arco}" fill="none" stroke="${K.tinta}" stroke-width="86" stroke-linecap="round"/>
+            <path d="${arco}" fill="none" stroke="#e9e1cf" stroke-width="66" stroke-linecap="round"/>
+            <path id="gaugeProg" d="${arco}" fill="none" stroke="${K.oro}" stroke-width="66" stroke-linecap="round" pathLength="1000" stroke-dasharray="0 1000"/>
+            <g id="gaugeAguja"><path d="M400 420 L400 150" stroke="${K.tinta}" stroke-width="16" stroke-linecap="round"/></g>
+            <circle cx="400" cy="420" r="30" fill="${K.tinta}"/><circle cx="400" cy="420" r="12" fill="${K.oro}"/>`);
+        },
+      };
+      for (const el of document.querySelectorAll("[data-dibujo]")) el.innerHTML = DIBUJOS[el.dataset.dibujo](...JSON.parse(el.dataset.args || "[]"));
+      $("avionE").innerHTML = DIBUJOS.avion(170);
+      $("monedaE").innerHTML = ICONOS.moneda("€", 170);
+
+      // ---------- the engine ----------
+      const C = crearDinero();
+      const { T, ramp, clamp, ease } = C;
+      const marca = (id, on) => $(id).classList.toggle("marca", on);
+
+      function renderAt(t) {
+        // A1: the two cards of the hook lean and float
+        C.mover("debA", { y: 6 * Math.sin(t * 2.2), r: -7 });
+        C.mover("credA", { y: 6 * Math.sin(t * 2.2 + 1), r: 6 });
+        // A2 and I: the premium card floats
+        C.mover("metalA", { y: 6 * Math.sin(t * 2), r: -4 });
+        C.mover("metalI", { y: 6 * Math.sin(t * 2), r: -4 });
+        C.mover("metalJ", { y: 4 * Math.sin(t * 2), r: -6 });
+
+        // a coin that goes from one building to the other again and again, and fades as it gets there (so it never
+        // sits on top of a sign)
+        const viaje = (id, desde, dx = 560) => {
+          const c = ((t - desde) % 1.9 + 1.9) % 1.9;
+          const k = ease(clamp(c / 1.0));
+          C.mover(id, { x: dx * k, y: -60 * Math.sin(Math.PI * k), o: t < desde ? 0 : clamp(c / 0.15) * (1 - clamp((c - 0.95) / 0.25)) });
+        };
+        // B: a coin leaves your account for the shop, at once
+        viaje("monedaB", T.SALE3 + 0.1);
+        // C: the coin goes from your bank to the shop: the bank pays first
+        viaje("monedaC", T.ADELANTA + 0.1);
+        C.mover("calendario", { r: -4, y: 4 * Math.sin(t * 2) });
+
+        // E: the plane and the coin float inside their boxes
+        $("avionE").style.transform = `translateY(${5 * Math.sin(t * 2.4)}px) rotate(${-8 + 3 * Math.sin(t * 1.3)}deg)`;
+        $("monedaE").style.transform = `translateY(${5 * Math.sin(t * 2.4 + 1)}px)`;
+
+        // F: the needle and the gold arc follow the score, from 300 to 850
+        const f = ease(clamp((t - T.SCORE) / 1.8));
+        $("gaugeProg").setAttribute("stroke-dasharray", `${(1000 * f).toFixed(1)} 1000`);
+        $("gaugeAguja").setAttribute("transform", `rotate(${-90 + 180 * f} 400 420)`);
+
+        // G: each bar grows from the left; the two that weigh most light up as the voice says them
+        for (let i = 0; i < 5; i++) $(`fb${i}`).style.transform = `scaleX(${ramp(t, T.PESA + 0.15 * i, T.PESA + 0.15 * i + 0.7)})`;
+        marca("f0", t >= T.TIEMPO8 && t < T.MIRAN);
+        marca("f1", t >= T.DEBES && t < T.MIRAN);
+
+        // K: the person and the shop float
+        C.mover("personaK", { y: 5 * Math.sin(t * 2) });
+        C.mover("tiendaK", { y: 5 * Math.sin(t * 2 + 1) });
+
+        // L: a coin goes from the shop to your card's bank
+        viaje("monedaL", T.COMISION13 + 0.1);
+
+        // O: the two cards again
+        C.mover("debO", { y: 6 * Math.sin(t * 2.2), r: -7 });
+        C.mover("credO", { y: 6 * Math.sin(t * 2.2 + 1), r: 6 });
+
+        C.pintar(t);
+      }
+
+      C.arrancar(renderAt);
+    </script>
+  </body>
+</html>
