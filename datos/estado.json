@@ -29,6 +29,12 @@
     "hora": "20:00",
     "programado": true
   },
+  "dinerosinlio/06-iva": {
+    "aprobado": true,
+    "fecha": "2026-11-07",
+    "hora": "22:00",
+    "programado": true
+  },
   "elcontadorloco/01-ascensor": {
     "aprobado": true,
     "fecha": "2026-11-02",
@@ -66,8 +72,9 @@
   },
   "elcontadorloco/07-comida": {
     "aprobado": true,
-    "fecha": "2026-11-06",
-    "hora": "20:00"
+    "fecha": "2026-11-07",
+    "hora": "22:00",
+    "programado": true
   },
   "elcontadorloco/08-pasos-salud": {
     "aprobado": true,
@@ -112,11 +119,13 @@
   "lascosaspordentro/07-microondas": {
     "aprobado": true,
     "fecha": "2026-11-05",
-    "hora": "20:00"
+    "hora": "20:00",
+    "programado": true
   },
   "lascosaspordentro/08-nevera": {
     "aprobado": true,
-    "fecha": "2026-11-06",
-    "hora": "20:00"
+    "fecha": "2026-11-07",
+    "hora": "22:00",
+    "programado": true
   }
 }
