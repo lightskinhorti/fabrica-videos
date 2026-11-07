@@ -51,7 +51,7 @@ Los de mejor gancho y datos, y que comparten piezas para hacerlos más rápido:
 
 ## Estado
 
-- [x] Vídeo 9: el mando a distancia (idea 10). `exports/render/09-mando.mp4` (73,7 s), control sin errores, 0 cortes secos (mediana de 2,64 s por plano). Hecho la noche del 6 de noviembre en unos 29 minutos; falta que Javier lo apruebe.
+- [x] Vídeo 9: el mando a distancia (idea 10). `exports/render/09-mando.mp4` (73,7 s), control sin errores, 0 cortes secos (mediana de 2,64 s por plano). Hecho la noche del 6 de noviembre en unos 29 minutos. El 7 de noviembre Javier vio los botones al revés (rótulos girados y columnas en espejo): arreglado en `objetos/mando.js` y vuelto a producir con la misma voz. Desde la punta los números se ven boca abajo, como en un mando de verdad, y a Javier le vale ("así vale").
 - [x] Vídeo 10: el ratón óptico (idea 7). `exports/render/10-raton.mp4` (68,7 s), control sin errores, 0 cortes secos (mediana de 2,27 s). Hecho la noche del 6 de noviembre en unos 17 minutos; falta que Javier lo apruebe.
 - Objetos nuevos de la biblioteca: `objetos/mando.js` (mando, tele, receptor, móvil con cámara), `objetos/senales.js` (señal infrarroja y espectro) y `objetos/raton.js` (ratón, mesa, superficie, fotos del sensor y monitor).
 
