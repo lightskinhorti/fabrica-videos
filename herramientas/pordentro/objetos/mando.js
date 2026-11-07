@@ -6,6 +6,9 @@
 //   menú) con sus rótulos, ventana oscura delante. Dentro: placa verde con las pistas de cada botón (las del botón 2
 //   son piezas de verdad, para los macros), chip, resonador, transistor, resistencia, LED infrarrojo de 5 mm con su
 //   yunque, dos pilas AAA y muelles. Debajo de cada botón, una cúpula de goma con su pastilla de carbón.
+//   Los rótulos se leen desde quien lo sujeta con la punta hacia delante (mirando a +z, su izquierda es +x): el
+//   1 a su izquierda, el volumen a la izquierda y el canal a la derecha. Visto desde la punta salen boca abajo,
+//   como en un mando de verdad (arreglado el 7 nov: antes estaban girados 180° y en espejo).
 //   Mandos: abre (0..1, vista despiezada: sube la tapa y la goma), pulsa (0..1, hunde el botón 2 hasta que la
 //           pastilla toca las pistas), contacto (0..1, las pistas del 2 brillan), ir (0..1, luz infrarroja dibujada
 //           en la punta), parpadeo (0/1, la luz sigue un código, ralentizado para que se vea), placa (0/1, quita
@@ -103,8 +106,10 @@ export function mando(THREE, C, X, M) {
   const impreso = X.lienzo(512, 1792, (g, w, h) => {
     const cx = (x) => ((x + W / 2) / W) * w, cz = (z) => ((z - Z0) / L) * h;
     g.fillStyle = "rgba(235,238,242,0.78)"; g.font = '700 30px "Inter", sans-serif'; g.textAlign = "center"; g.textBaseline = "middle";
-    g.fillText("VOL", cx(-1.3), cz(-4.85)); g.fillText("CH", cx(1.3), cz(-4.85));
-    g.font = '400 22px "Inter", sans-serif'; g.fillText("SILENCIO", cx(-1.2), cz(-5.08) + 30 * 0 + 74); g.fillText("MENÚ", cx(1.2), cz(-5.08) + 74);
+    // read by whoever holds the remote: each word turned 180° in the canvas, under its buttons (towards the tail)
+    const texto = (s, x, z) => { g.save(); g.translate(cx(x), cz(z)); g.rotate(PI); g.fillText(s, 0, 0); g.restore(); };
+    texto("VOL", 1.3, -4.8); texto("CH", -1.3, -4.8);
+    g.font = '400 22px "Inter", sans-serif'; texto("SILENCIO", 1.2, -6.1); texto("MENÚ", -1.2, -6.1);
     g.strokeStyle = "rgba(235,238,242,0.35)"; g.lineWidth = 3; g.beginPath(); g.moveTo(cx(-1.7), cz(1.65)); g.lineTo(cx(1.7), cz(1.65)); g.stroke();
     g.beginPath(); g.moveTo(cx(-1.7), cz(-1.75)); g.lineTo(cx(1.7), cz(-1.75)); g.stroke();
   });
@@ -133,17 +138,18 @@ export function mando(THREE, C, X, M) {
     mas: (g, w, h) => { g.lineWidth = 8; g.beginPath(); g.moveTo(w / 2 - 18, h / 2); g.lineTo(w / 2 + 18, h / 2); g.moveTo(w / 2, h / 2 - 18); g.lineTo(w / 2, h / 2 + 18); g.stroke(); },
     menos: (g, w, h) => { g.lineWidth = 8; g.beginPath(); g.moveTo(w / 2 - 18, h / 2); g.lineTo(w / 2 + 18, h / 2); g.stroke(); },
   };
+  // the holder looks towards +z, so their left is +x: the first column of each row goes at x > 0
   const B = []; // { id, x, z, w, d, redondo, mat, label | icono }
-  B.push({ id: "power", x: -1.25, z: 6.5, w: 0.84, d: 0.84, redondo: true, mat: gomaRoja, icono: ico.power });
-  B.push({ id: "fuente", x: 1.25, z: 6.5, w: 0.76, d: 0.76, redondo: true, mat: goma, icono: ico.fuente });
+  B.push({ id: "power", x: 1.25, z: 6.5, w: 0.84, d: 0.84, redondo: true, mat: gomaRoja, icono: ico.power });
+  B.push({ id: "fuente", x: -1.25, z: 6.5, w: 0.76, d: 0.76, redondo: true, mat: goma, icono: ico.fuente });
   const NUM = [["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"], ["lista", "0", "atras"]];
-  NUM.forEach((fila, r) => fila.forEach((n, c) => B.push({ id: n === "lista" || n === "atras" ? n : "n" + n, x: (c - 1) * 1.42, z: 5.2 - r * 1.05, w: 1.06, d: 0.68, mat: goma, label: ico[n] ? null : n, icono: ico[n] || null })));
-  B.push({ id: "volMas", x: -1.3, z: -2.75, w: 0.8, d: 1.12, mat: goma, icono: ico.mas, roc: true });
-  B.push({ id: "volMenos", x: -1.3, z: -3.95, w: 0.8, d: 1.12, mat: goma, icono: ico.menos, roc: true });
-  B.push({ id: "chMas", x: 1.3, z: -2.75, w: 0.8, d: 1.12, mat: goma, icono: ico.mas, roc: true });
-  B.push({ id: "chMenos", x: 1.3, z: -3.95, w: 0.8, d: 1.12, mat: goma, icono: ico.menos, roc: true });
-  B.push({ id: "silencio", x: -1.2, z: -5.45, w: 0.72, d: 0.72, redondo: true, mat: goma, icono: ico.silencio });
-  B.push({ id: "menu", x: 1.2, z: -5.45, w: 0.72, d: 0.72, redondo: true, mat: goma, icono: ico.menu });
+  NUM.forEach((fila, r) => fila.forEach((n, c) => B.push({ id: n === "lista" || n === "atras" ? n : "n" + n, x: (1 - c) * 1.42, z: 5.2 - r * 1.05, w: 1.06, d: 0.68, mat: goma, label: ico[n] ? null : n, icono: ico[n] || null })));
+  B.push({ id: "volMas", x: 1.3, z: -2.75, w: 0.8, d: 1.12, mat: goma, icono: ico.mas, roc: true });
+  B.push({ id: "volMenos", x: 1.3, z: -3.95, w: 0.8, d: 1.12, mat: goma, icono: ico.menos, roc: true });
+  B.push({ id: "chMas", x: -1.3, z: -2.75, w: 0.8, d: 1.12, mat: goma, icono: ico.mas, roc: true });
+  B.push({ id: "chMenos", x: -1.3, z: -3.95, w: 0.8, d: 1.12, mat: goma, icono: ico.menos, roc: true });
+  B.push({ id: "silencio", x: 1.2, z: -5.45, w: 0.72, d: 0.72, redondo: true, mat: goma, icono: ico.silencio });
+  B.push({ id: "menu", x: -1.2, z: -5.45, w: 0.72, d: 0.72, redondo: true, mat: goma, icono: ico.menu });
   const DPAD = { z: 0.05, r0: 0.66, r1: 1.42 };
 
   const domoGeo = (r) => new THREE.CylinderGeometry(r * 0.78, r * 1.18, LAM1 + 0.3 - LAM1, 32, 1, true);
@@ -156,7 +162,8 @@ export function mando(THREE, C, X, M) {
     if (b.redondo) { const cap = new THREE.Mesh(new THREE.SphereGeometry(b.w / 2, 40, 12, 0, 2 * PI, 0, 0.35), b.mat); cap.scale.y = 0.5; cap.position.y = TOP - 0.06; g.add(cap); }
     const tex = rotulo(X, b.label || "", { icono: b.icono, tam: 70 });
     const lab = new THREE.Mesh(new THREE.PlaneGeometry(Math.min(b.w, 0.9) * 0.78, Math.min(b.w, 0.9) * 0.585), new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false, toneMapped: false, color: 0xd6d9de }));
-    lab.rotation.x = -PI / 2; lab.position.y = TOP + (b.redondo ? 0.025 : 0.008); lab.userData.sinBordes = true; g.add(lab);
+    // lying flat with the top of the label towards the tip (+z): turned 180° in its own plane first
+    lab.rotation.x = -PI / 2; lab.rotation.z = PI; lab.position.y = TOP + (b.redondo ? 0.025 : 0.008); lab.userData.sinBordes = true; g.add(lab);
     const rr = Math.min(b.w, b.d) / 2;
     const domo = new THREE.Mesh(new THREE.CylinderGeometry(rr * 0.82, rr * 1.25, 0.32, 32, 1, true), gomaLamina); domo.position.y = LAM1 + 0.16; g.add(domo);
     const pill = new THREE.Mesh(new THREE.CylinderGeometry(rr * 0.58, rr * 0.58, PILL1 - PILL0, 32), carbon); pill.position.y = (PILL0 + PILL1) / 2; g.add(pill);
@@ -175,7 +182,7 @@ export function mando(THREE, C, X, M) {
     fl.rotation.x = -PI / 2; fl.position.y = PILL1 + alto + 0.008; fl.userData.sinBordes = true; g.add(fl);
     const ok = new THREE.Mesh(new THREE.CylinderGeometry(0.56, 0.58, TOP - PILL1, 48), gomaClara); ok.position.y = (TOP + PILL1) / 2; g.add(ok);
     const okL = new THREE.Mesh(new THREE.PlaneGeometry(0.8, 0.6), new THREE.MeshBasicMaterial({ map: rotulo(X, "OK", { tam: 56, color: "#1d2026" }), transparent: true, depthWrite: false, toneMapped: false }));
-    okL.rotation.x = -PI / 2; okL.position.y = TOP + 0.008; okL.userData.sinBordes = true; g.add(okL);
+    okL.rotation.x = -PI / 2; okL.rotation.z = PI; okL.position.y = TOP + 0.008; okL.userData.sinBordes = true; g.add(okL);
     for (let k = 0; k < 4; k++) { const a = (k * PI) / 2, pill = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.17, PILL1 - PILL0, 24), carbon); pill.position.set(Math.sin(a) * 1.04, (PILL0 + PILL1) / 2, Math.cos(a) * 1.04); g.add(pill); }
     const pOk = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, PILL1 - PILL0, 24), carbon); pOk.position.y = (PILL0 + PILL1) / 2; g.add(pOk);
     const domo = new THREE.Mesh(new THREE.CylinderGeometry(DPAD.r1 * 0.95, DPAD.r1 * 1.05, 0.3, 48, 1, true), gomaLamina); domo.position.y = LAM1 + 0.15; g.add(domo);
