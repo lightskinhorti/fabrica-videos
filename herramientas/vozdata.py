@@ -8,7 +8,8 @@ Uso:
   Las palabras se emparejan aunque Whisper oiga algo distinto ("Burg Califa", "Leverest"): los tramos que
   no coinciden se reparten el tiempo de lo que oyó Whisper, y cada diferencia sale como aviso.
 - Los números que el guion escribe en palabras para la voz ("doscientos cuarenta y nueve") y Whisper
-  escribe en cifras ("249") salen en cifras en los subtítulos.
+  escribe en cifras ("249") salen en cifras en los subtítulos. Si van dos seguidas, se queda la puntuación del
+  guion entre ellas ("A mitad de 2026, 43.324", no "2026 43.324").
 - Sin transcript.json: estima los tiempos (2,9 palabras por segundo), para montar la escena antes de tener la voz.
 - La palabra clave de cada frase sale de "claves" en guion.json (una por frase).
 - Con --texto (vídeo sin voz, con canción de TikTok): usa las frases cortas de "texto" y "claves_texto".
@@ -119,7 +120,14 @@ elif len(args) > 1:
             pre = re.match(r"[¿¡]*", guion_w[i1]).group(0)
             post = re.search(r"\W*$", guion_w[i2 - 1]).group(0)
             cifras = [limpia(w["t"]) for w in words[j1:j2]]
-            texto_cifras = " ".join(c if es_ano(c, i1, i2) else miles(c) for c in cifras)
+            # the punctuation between two figures ("2026, 43.324") comes from the script; if the script and Whisper
+            # split the figures differently, from what Whisper wrote after each one
+            cortes = [re.search(r"[.,:;!?]*$", guion_w[i]).group(0) for i in range(i1, i2 - 1)
+                      if re.search(r"[.,:;!?]$", guion_w[i])]
+            if len(cortes) != len(cifras) - 1:
+                cortes = [re.search(r"[.,:;!?]*$", w["t"]).group(0) for w in words[j1:j2 - 1]]
+            texto_cifras = "".join((cortes[k - 1] + " " if k else "") + (c if es_ano(c, i1, i2) else miles(c))
+                                   for k, c in enumerate(cifras))
             mostrar[i1] = (pre + texto_cifras + post, s, e, list(range(i1, i2)))
 
     def partir(i1, i2, j1, j2):

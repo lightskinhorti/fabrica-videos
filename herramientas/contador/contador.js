@@ -3,13 +3,21 @@
 // Cada vídeo construye su mundo, mueve la cámara y llama a pintar(t, y) en cada fotograma.
 //
 // En escena (JSON del index.html):
-//   formato: "altura" | "pila" | "estatura" | "temperatura" | "peso"   (cómo se escribe la cifra)
+//   formato: "altura" | "pila" | "estatura" | "temperatura" | "peso" | "horas" | "gramos"   (cómo se escribe la cifra)
+//            horas: el valor va en horas; sale en minutos la primera hora, luego "4 h 05 min" y desde 100 h, horas
+//                   enteras ("1.461 h"). En las etiquetas, "4 h 5 min".
+//            gramos: el valor va en kilos; sale en gramos por debajo de 1 kg, con un decimal hasta 100 kg ("23,5 kg"),
+//                    en kilos enteros hasta 10 t y luego en toneladas. Así lo hacían a mano 07-comida y 10-refresco.
 //   inicio, ritmo: valor de partida y unidades por segundo (crecimiento lineal), o
 //   crecimiento: "doble" + periodo: el valor se duplica cada `periodo` segundos
 //   desde: texto bajo la cifra ("SUBIENDO DESDE HACE")
 //   hitos: [{ clave, v, etiqueta?, solo_etiqueta? }]  (clave = comienzo de la palabra de la voz que lo ancla;
 //          solo_etiqueta: sale la etiqueta pero el contador no va a ese valor)
 //   extra: { clave, texto }  (línea extra del marcador que aparece con esa palabra)
+//   etiquetas_bajo_marcador: true  (las etiquetas nunca se meten debajo del marcador: se colocan 18 px por debajo
+//          de su altura real, medida en cada fotograma. Con nota, el marcador acaba a los 577 px; con línea extra y
+//          nota, a los 638 (medido en 09-movil). Sin él, como hasta el 7 de noviembre: la etiqueta, como poco, a
+//          590 px, y el marcador la puede tapar. Los vídeos nuevos lo llevan; los de antes no, para que no cambien.)
 
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
@@ -74,8 +82,27 @@ export function crearContador(THREE) {
     estatura: (v) => [(v < 10 ? coma(v, 2) : v < 1000 ? coma(v, 1) : miles(v)).replace(/,0+$/, ""), "m"],
     temperatura: (v) => [miles(v), "°C"],
     peso: (v) => (v < 10000 ? [miles(v), "kg"] : [miles(v / 1000), "t"]),
+    // the value is in hours: minutes during the first hour, then "4 h 05 min" (two units in the HUD), then hours
+    horas: (v) => {
+      const m = Math.floor(v * 60 + 1e-6), h = Math.floor(m / 60), mm = m % 60;
+      if (v < 1) return [String(mm), "min"];
+      if (v < 100) return [`${h}<small>h</small> ${String(mm).padStart(2, "0")}`, "min"];
+      return [miles(v), "h"];
+    },
+    // the value is in kilos: grams under 1 kg and one decimal under 100 kg (peso only writes whole kilos)
+    gramos: (v) => (v < 0.9995 ? [String(Math.round(v * 1000)), "g"] : v < 99.95 ? [coma(v, 1).replace(/,0$/, ""), "kg"]
+      : v < 10000 ? [miles(v), "kg"] : [miles(v / 1000), "t"]),
   };
   const fmtValor = FORMATOS[ESC.formato || "altura"];
+  if (!fmtValor) throw new Error(`No hay ningún formato "${ESC.formato}" en contador.js`);
+  // a label's figure is plain text: "4 h 5 min", without the HUD's small units (the rest, as in the HUD)
+  const ETIQUETA = {
+    horas: (v) => {
+      const m = Math.round(v * 60), h = Math.floor(m / 60), mm = m % 60;
+      return v < 1 ? `${mm} min` : v < 100 ? `${h} h${mm ? ` ${mm} min` : ""}` : `${miles(v)} h`;
+    },
+  };
+  const fmtEtiqueta = ETIQUETA[ESC.formato] || ((v) => fmtValor(v).join(" "));
   function fmtTime(s) {
     // round to the second first: V(Y(249)) is 248.9999… and a rate like 1/60 is stored inexactly
     s = Math.max(0, Math.round(s));
@@ -245,7 +272,7 @@ export function crearContador(THREE) {
     for (const a of anchors) {
       if (!a.hito.etiqueta) continue;
       const el = document.createElement("div"); el.className = "lab";
-      const [num, unit] = fmtValor(a.v); el.innerHTML = `${a.hito.etiqueta} · <b>${num} ${unit}</b>`;
+      el.innerHTML = `${a.hito.etiqueta} · <b>${fmtEtiqueta(a.v)}</b>`;
       document.getElementById("labels").appendChild(el);
       const ln = document.createElementNS(svgNS, "line"); ln.setAttribute("stroke", "rgba(255,255,255,0.85)"); ln.setAttribute("stroke-width", "3"); leaders.appendChild(ln);
       const dot = document.createElementNS(svgNS, "circle"); dot.setAttribute("r", "7"); dot.setAttribute("fill", "#ffcf2e"); leaders.appendChild(dot);
@@ -256,7 +283,12 @@ export function crearContador(THREE) {
     conEtiqueta.forEach((a, i) => (a.hasta = Math.min(a.t + 5, conEtiqueta[i + 1] ? conEtiqueta[i + 1].t - 1.6 : Infinity)));
   }
   const toScreen = (p) => { const v = p.clone().project(camera); return { x: (v.x + 1) * 0.5 * W, y: (1 - v.y) * 0.5 * H, z: v.z }; };
+  // with etiquetas_bajo_marcador the labels stay 18 px under the HUD, measured every frame (the extra line can
+  // change its height); the dot keeps pointing at its object, and never goes under the HUD either
+  const bajoMarcador = !!ESC.etiquetas_bajo_marcador;
   function drawLabels(t, y) {
+    const hud = document.getElementById("hud");
+    const tope = bajoMarcador && hud ? hud.offsetTop + hud.offsetHeight + 18 : 0;
     for (const [a, L] of labEls) {
       const near = clamp(1 - Math.abs(y - a.y) / 2.2) * clamp((t - a.t + 1.2) / 0.4) * (t < a.hasta ? 1 : clamp(1 - (t - a.hasta) / 0.4));
       const [obj, local] = LAB_POS[a.hito.etiqueta] || LAB_DEF;
@@ -264,10 +296,12 @@ export function crearContador(THREE) {
       const ok = near > 0.01 && p.z < 1;
       L.el.style.opacity = ok ? near : 0; L.ln.setAttribute("opacity", ok ? near : 0); L.dot.setAttribute("opacity", ok ? near : 0);
       if (!ok) continue;
-      const px = clamp(p.x, 60, W - 60), py = clamp(p.y, 700, 1080);
-      const lx = px > W / 2 ? px - 40 - L.el.offsetWidth : px + 40, ly = py - 110;
+      const px = clamp(p.x, 60, W - 60), py = clamp(p.y, Math.max(700, tope), Math.max(1080, tope));
+      const lx = px > W / 2 ? px - 40 - L.el.offsetWidth : px + 40, ly = Math.max(py - 110, tope);
       L.el.style.left = clamp(lx, 40, W - 40 - L.el.offsetWidth) + "px"; L.el.style.top = ly + "px";
-      L.ln.setAttribute("x1", px); L.ln.setAttribute("y1", py); L.ln.setAttribute("x2", clamp(lx, 40, W - 40) + (px > W / 2 ? L.el.offsetWidth : 0)); L.ln.setAttribute("y2", ly + 30);
+      // the leader ends at the middle of the label (its height with etiquetas_bajo_marcador; 30 px as before without)
+      const medio = bajoMarcador ? L.el.offsetHeight / 2 : 30;
+      L.ln.setAttribute("x1", px); L.ln.setAttribute("y1", py); L.ln.setAttribute("x2", clamp(lx, 40, W - 40) + (px > W / 2 ? L.el.offsetWidth : 0)); L.ln.setAttribute("y2", ly + medio);
       L.dot.setAttribute("cx", px); L.dot.setAttribute("cy", py);
     }
   }
@@ -306,7 +340,7 @@ export function crearContador(THREE) {
 
   return {
     VOZ, ESC, W, H, D, words, anchors, extraWord,
-    clamp, lerp, ease, smooth, ramp, v3, hash, norm, miles, Y, V, yAt, fmtValor, fmtTime, tiempoDe,
+    clamp, lerp, ease, smooth, ramp, v3, hash, norm, miles, Y, V, yAt, fmtValor, fmtEtiqueta, fmtTime, tiempoDe,
     renderer, composer, scene, camera, hemi, key, rim, mat, glow, box, at,
     personaje, fondo, escala, etiquetas, pintar, arrancar,
   };

@@ -27,6 +27,8 @@ html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1592f
   text-shadow: 0 8px 0 var(--stroke), 0 0 30px rgba(0, 0, 0, 0.25);
 }
 #alt small { font-size: 0.5em; margin-left: 0.12em; }
+/* formato horas: "4 h 05 min" lleva dos unidades; la segunda, un poco más pegada (como en 09-movil) */
+#alt small + small { margin-left: 0.08em; }
 #since { margin-top: 22px; font-weight: 900; font-size: 30px; letter-spacing: 0.16em; opacity: 0.92; text-shadow: 0 3px 0 var(--stroke); }
 #clock {
   font-family: "Archivo Black", sans-serif; font-size: 66px; color: var(--yellow); margin-top: 4px;

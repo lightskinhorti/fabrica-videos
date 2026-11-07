@@ -18,12 +18,31 @@
 //               (08-nevera, 3 nov; curvas: descarga, condensador, salida, capilar, evaporador, puente,
 //               evapCong, aspiracion)
 //   compresor   cupula, piston, cilindro, motor, bobinado, descarga, aspiracion, rele      (08-nevera, 3 nov)
+//   mando       led, ventana, punta, placa, chip, cristal, goma, boton, pastilla, pistas, pilas, power, ok, arriba,
+//               abajo (curvas: pista, aLed, haz)                                  (09-mando, 7 nov; mandos en mando.js)
+//   tele        pantalla, ventana, receptor, piloto, placa, pie                  receptor  lente, diodo, chip, patas,
+//   movilCamara pantalla, visor, lente                                                     cuerpo, salida
+//   senalIR     inicio, aparato, boton, cero, uno, destello, lupa, sol, centro, final      (09-mando, en senales.js)
+//   espectro    visible, ir, rojo, marca, ojo, centro                                      (09-mando, en senales.js)
+//   raton       led, lente, sensor, chip, prisma, foco, base, ventana, rueda, boton, interruptor, lamina, placa,
+//               cable, arriba                                                     (10-raton, 7 nov; mandos en raton.js)
+//   mesa        centro, canto    (opciones: { "tipo": "madera" | "cristal", "ancho", "fondo" })
+//   superficie  centro, fibra, grano, marco          fotosRaton  antes, ahora, centro, flecha, pila
+//   monitor     pantalla, flecha
+// (09-mando y 10-raton, hechos antes de registrarlos, aún los pasan a mano con crearPlantillas(..., { objetos });
+// funciona igual, porque lo que se pasa a mano manda sobre esta lista.)
 import { magnetron } from "./magnetron.js";
 import { microondas } from "./microondas.js";
 import { cuenco, plato, vaso } from "./menaje.js";
 import { placa, bobina, serpentin, tubo } from "./generico.js";
 import { nevera, compresor } from "./nevera.js";
+import { mando, tele, receptor, movilCamara } from "./mando.js";
+import { senalIR, espectro } from "./senales.js";
+import { raton, mesa, superficie, fotosRaton, monitor } from "./raton.js";
 
-export const OBJETOS = { microondas, magnetron, cuenco, plato, vaso, placa, bobina, serpentin, tubo, nevera, compresor };
+export const OBJETOS = {
+  microondas, magnetron, cuenco, plato, vaso, placa, bobina, serpentin, tubo, nevera, compresor,
+  mando, tele, receptor, movilCamara, senalIR, espectro, raton, mesa, superficie, fotosRaton, monitor,
+};
 export { crearMateriales } from "./materiales.js";
 export { crearBase } from "./base.js";

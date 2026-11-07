@@ -2,7 +2,7 @@
 # Del guion al vídeo terminado, para una carpeta de vídeo con guion.json e index.html.
 # Uso: bash herramientas/producir.sh videos/<cuenta>/<video> [voz.wav] [--sin-render] [--texto]
 # Sin voz.wav usa exports/voces/<video>.wav. Si la voz no existe, la genera con Gemini
-# (la clave se lee del .env de la raíz del proyecto).
+# (la clave se lee del .env de la raíz del proyecto). Si la voz no llega a 60 s, avisa antes de mezclar y renderizar.
 # Al final deja publicacion.md (descripción, hashtags, portada) y pasa el control automático (control.py).
 # Con --texto hace la versión sin voz: frases cortas de "texto" en guion.json, solo efectos de sonido
 # (la canción se pone al publicar en TikTok) y sale en exports/render/<video>-texto.mp4.
@@ -37,6 +37,22 @@ if [ ! -f "$VOZ" ]; then
   VOZ="$RAIZ/exports/voces/$(basename "$VOZ")"
   [ -f "$VOZ" ] || { echo "No se ha creado la voz: mira el error de arriba"; exit 1; }
 fi
+
+# a voice under 60 s gives a video under or just over 1 minute (voice + 1.2 s, as montar.py does), and TikTok only
+# pays videos of more than 1 minute: say so now, before the mix and the render, not only in the final check
+python3 - "$VOZ" <<'FIN'
+import math, sys, wave
+with wave.open(sys.argv[1]) as w:
+    voz = w.getnframes() / w.getframerate()
+video = math.ceil((voz + 1.2) * 10) / 10
+coma = lambda x: f"{x:.1f}".replace(".", ",")
+if voz < 60:
+    print(f"AVISO: la voz dura {coma(voz)} s, menos de 60. El vídeo saldrá de {coma(video)} s.")
+    if video <= 60:
+        print("       TikTok solo paga vídeos de más de 1 minuto y el control dará error: alarga el guion.")
+    else:
+        print("       Pasa el minuto solo por el margen del final: mejor alargar el guion una frase.")
+FIN
 
 echo "1/6 Transcribiendo la voz (Whisper, español)"
 (cd "$VIDEO" && npx -y hyperframes@0.8.228 transcribe "$VOZ" --engine whisper --model small --language es -d "$VIDEO" > /dev/null)

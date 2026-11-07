@@ -6,10 +6,15 @@
 // En escena (JSON del index.html):
 //   momentos: [{ id, clave, fin?, mas? }]  (igual que en Las cosas por dentro: clave = comienzo de una palabra de la
 //             voz, buscada en orden; sin palabras de números, que Whisper escribe en cifras)
-//   gancho: { texto, clave }  (el gancho en grande durante los primeros segundos; los subtítulos esperan)
-//   piezas: [{ id, desde, hasta?, entra?, sale?, dura? }]  (id de un elemento del HTML; desde y hasta = momento o
-//           segundos; entra y sale: "sube", "baja", "izq", "der", "escala", "sello" o "fundido"; las que entran
-//           antes del segundo 1 ya están en el fotograma 0, que es la portada de TikTok)
+//   gancho: { texto, clave, tam? }  (el gancho en grande durante los primeros segundos; los subtítulos esperan.
+//           tam: tamaño de la letra en px, 104 si no se dice; un gancho largo en dos líneas va mejor a 90)
+//   piezas: [{ id, desde, hasta?, entra?, sale?, dura?, alto? }]  (id de un elemento del HTML; desde y hasta =
+//           momento o segundos; entra y sale: "sube", "baja", "izq", "der", "escala", "sello", "fundido" o "crece";
+//           las que entran antes del segundo 1 ya están en el fotograma 0, que es la portada de TikTok)
+//           crece: para columnas que suben desde el suelo. La pieza pasa de 0 a su alto (el height de su style, o
+//           alto en px) con el borde de abajo quieto; dura 0,8 s si no se dice. Al salir con "crece", baja.
+//           Ejemplo: <div class="pieza barcol" id="b21" style="left:110px; top:650px; width:240px; height:600px">
+//           con { "id": "b21", "desde": "GENERAL", "entra": "crece" } (06-iva y 07-cajero lo hacían a mano).
 //   cifras: [{ id, desde, a, de?, dura?, formato?: "euros" | "numero" | "pct", dec? }]  (el texto del elemento
 //           cuenta de `de` a `a`; varias entradas con el mismo id van una detrás de otra)
 //   notas: [{ texto, desde }]  (cada nota dura hasta la siguiente; texto "" la quita)
@@ -177,6 +182,7 @@ export function crearDinero() {
   const G = ESC.gancho;
   const ganchoEl = document.getElementById("gancho");
   if (G && ganchoEl) ganchoEl.innerHTML = G.texto.split(" ").map((w) => (norm(w) === norm(G.clave || "") ? `<span class="sel">${w}</span>` : w)).join(" ");
+  if (G && ganchoEl && G.tam) ganchoEl.style.fontSize = G.tam + "px";
   const ganchoFin = G ? Math.max(2.4, VOZ.lines[0] ? VOZ.lines[0].e + 0.3 : 0) : 0;
   function drawGancho(t) {
     if (!G || !ganchoEl) return 0;
@@ -212,13 +218,21 @@ export function crearDinero() {
   function drawPiezas(t) {
     for (const p of piezas) {
       const a = cuando(p.desde), b = p.hasta !== undefined ? cuando(p.hasta) : Infinity;
-      const d = p.dura ?? (p.entra === "sello" ? 0.22 : 0.45), tin = p.entra || "sube", tout = p.sale || "fundido";
+      const d = p.dura ?? (p.entra === "sello" ? 0.22 : p.entra === "crece" ? 0.8 : 0.45), tin = p.entra || "sube", tout = p.sale || "fundido";
       const kin = a < PORTADA ? 1 : clamp((t - a) / d), kout = 1 - clamp((t - (b - 0.35)) / 0.35);
       const ki = tin === "escala" ? backOut(kin) : tin === "sello" ? kin : ease(kin);
       const A = desplaza(tin, ki), B = desplaza(tout, ease(kout)), X = EXTRA[p.id] || {};
-      const x = (A.x || 0) + (B.x || 0) + (X.x || 0), y = (A.y || 0) + (B.y || 0) + (X.y || 0);
+      let x = (A.x || 0) + (B.x || 0) + (X.x || 0), y = (A.y || 0) + (B.y || 0) + (X.y || 0);
+      // crece: the height goes from 0 to the full one and the piece moves down by what is missing, so its bottom
+      // edge stays on the floor (the full height is read once, before the first change)
+      if (tin === "crece" || tout === "crece") {
+        if (p.alto === undefined) p.alto = parseFloat(p.el.style.height) || p.el.offsetHeight;
+        const k = (tin === "crece" ? ki : 1) * (tout === "crece" ? ease(kout) : 1);
+        p.el.style.height = p.alto * k + "px";
+        y += p.alto * (1 - k);
+      }
       const s = (A.s ?? 1) * (B.s ?? 1) * (X.s ?? 1);
-      const o = Math.min(clamp(kin * (tin === "sello" ? 4 : 2.5)), clamp(kout * 2.5)) * (X.o ?? 1);
+      const o = Math.min(clamp(kin * (tin === "sello" || tin === "crece" ? 4 : 2.5)), clamp(kout * 2.5)) * (X.o ?? 1);
       p.el.style.opacity = o;
       p.el.style.transform = `translate(${x}px, ${y}px) scale(${s}) rotate(${X.r || 0}deg)`;
     }

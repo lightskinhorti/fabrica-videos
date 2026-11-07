@@ -256,7 +256,7 @@ git clone https://github.com/JohnHeibel/ClaudeAnimationBase.git
   - Los subtítulos van en grupos de 4 palabras y más abajo (hasta 1.420 px), a petición de Javier.
   - HyperFrames sube el volumen unos 3 dB al renderizar, así que el ajuste a -14 LUFS se hace sobre el vídeo final.
   - Tres formas de escena que ya funcionan: subir por una escala (ascensor, termómetro del móvil, montón de ropa), crecer en el sitio con comparaciones a tamaño real al lado (gato, personaje) y los hitos de "solo etiqueta" para comparar sin mover el contador.
-- **Motor común (2 de noviembre):** las piezas que se repiten en todos los vídeos de El contador loco (marcador, subtítulos, etiquetas, anclas a la voz, formato de cifras y el personaje de bloques) están en `herramientas/contador/`. Cada vídeo solo construye su escena 3D. Se comprobó con el ascensor: las capturas salen idénticas píxel a píxel.
+- **Motor común (2 de noviembre):** las piezas que se repiten en todos los vídeos de El contador loco (marcador, subtítulos, etiquetas, anclas a la voz, formato de cifras y el personaje de bloques) están en `herramientas/contador/`. Cada vídeo solo construye su escena 3D. Se comprobó con el ascensor: las capturas salen idénticas píxel a píxel. Desde el 7 de noviembre escribe también horas (`"horas"`) y gramos con decimales (`"gramos"`), y con `etiquetas_bajo_marcador: true` las etiquetas nunca se meten debajo del marcador.
 - **El formato principal es con voz,** como el del ascensor, que a Javier le gustó.
 - **Mejora de gráficos (2 de noviembre), a petición de Javier, mirando el vídeo voxel de referencia:**
   - El personaje tiene brazos, piernas, zapatillas y expresiones: sonríe con la boca cerrada, parpadea, respira y en cada hito pone cara de sorpresa (cejas arriba, boca abierta y brazos fuera) antes de volver a sonreír. Antes tenía siempre la boca abierta.
@@ -488,8 +488,9 @@ El objetivo es 3 vídeos al día por cuenta, pero se llega por escalones. Si la 
 
 **Dinero sin lío (2 de noviembre), hecho mientras Javier cenaba:**
 - **Motor plano 2D** en `herramientas/dinero/` (`dinero.js` y `dinero.css`), con los colores de la foto de perfil: papel crema, tinta azul marino, oro y rojo. Sin three.js. Comparte con Las cosas por dentro los momentos anclados a la voz, el gancho en grande y los subtítulos (palabra clave subrayada en amarillo), y añade:
-  - `piezas` que entran y salen;
+  - `piezas` que entran y salen (desde el 7 de noviembre, también `crece`: columnas que suben desde el suelo);
   - `cifras` que cuentan;
+  - el tamaño del gancho se elige con `gancho.tam` (104 px si no se dice);
   - iconos planos con sombra sólida: moneda, billete, décimo, edificio, oficina, persona, maletín, fábrica, tachado, sello y documento.
 - **Sonido:** usa `sonido_pordentro.py`, con `fondo: "claro"` (una base suave y luminosa en vez del zumbido grave). `producir.sh` lo elige solo.
 - **Control:** `control.py` revisa también que cada cifra que cuenta tenga fuente.
@@ -592,7 +593,7 @@ Ninguna fase empieza por fecha: empieza cuando se cumple el filtro de la anterio
   - **Resultado del estudio (3 de noviembre, por la mañana):** se recrearon los 46 planos de su vídeo (84,6 s) en `exports/estudio/pantalla-speedy.mp4`, con comparaciones en `exports/estudio/comparacion_01.jpg` a `_04.jpg` y la nota de cada plano en `estudio/pantalla-speedy/NOTAS.md`. Detalle medio frente al original: un 58 %. Los planos de diagrama y de corte llegan al 65 % (hasta el 75 % los mejores) y los de la vida real se quedan en un 45 %. Las piezas nuevas están en `herramientas/pordentro/detalle.js` y `pantallas.js`, y no cambian los vídeos anteriores.
   - **Coste en tiempo:** hacer un vídeo de este estilo cuesta unas 3 o 4 horas de trabajo de Claude (de 25 a 40 planos), frente a los 25 minutos de los vídeos de antes. Un objeto nuevo añade de 2 a 3 horas de modelado. El tiempo de Javier sigue siendo revisar y aprobar.
   - **Tiempo medido del primer vídeo con las piezas (3 de noviembre):** el microondas tardó **52 minutos** de trabajo de Claude, no las 3 o 4 horas que calculaba el agente del estudio. Tiene 58 planos (uno cada 1,35 s de media, el más largo de 2,4 s) y un 60 % del detalle de @speedy_devv según el propio agente. Siguiente paso: plantillas de plano y biblioteca de objetos, y medir otra vez con el vídeo siguiente.
-  - **Plantillas de plano y biblioteca de objetos (3 de noviembre, aprobadas por Javier):** `herramientas/pordentro/plantillas.js` trae los tipos de plano del estilo (anuncio, corte, macro, cenital, cifra, regla, mapa de calor, partículas, flujo, rayos X, compartir y libre) y parte solo cualquier plano largo en variaciones (más de 2,2 s al principio; más de 4 s desde la corrección de las transiciones). Un vídeo ya es casi todo una lista en JSON. `herramientas/pordentro/objetos/` guarda los objetos para reutilizarlos: microondas, magnetrón, nevera, compresor, cuenco, plato, vaso, placa, bobina, serpentín y tubo. Hacerlas costó unos 15 minutos.
+  - **Plantillas de plano y biblioteca de objetos (3 de noviembre, aprobadas por Javier):** `herramientas/pordentro/plantillas.js` trae los tipos de plano del estilo (anuncio, corte, macro, cenital, cifra, regla, mapa de calor, partículas, flujo, rayos X, compartir y libre) y parte solo cualquier plano largo en variaciones (más de 2,2 s al principio; más de 4 s desde la corrección de las transiciones). Un vídeo ya es casi todo una lista en JSON. `herramientas/pordentro/objetos/` guarda los objetos para reutilizarlos: microondas, magnetrón, nevera, compresor, cuenco, plato, vaso, placa, bobina, serpentín y tubo; desde el 7 de noviembre también mando, tele, receptor de infrarrojos, móvil con la cámara abierta, señal infrarroja, espectro de la luz, ratón, mesa, superficie de la mesa, fotos del sensor y monitor. Hacerlas costó unos 15 minutos.
   - **Tiempo medido con las plantillas:** la nevera (`08-nevera`, 69,2 s, 47 planos) tardó **28,5 minutos**, contra los 52 del microondas, con un detalle parecido (un 58 % del de @speedy_devv según el agente). Lo siguiente para bajar más: flujos de lado generados solos, control automático de la exposición, cámara que evite lo que tapa el objeto, rótulos atados a cada plano y un decorado de cocina.
   - **Transiciones en vez de cortes (corrección de Javier del 3 de noviembre por la tarde):** el microondas y la nevera cortaban en seco cada 1,3 a 1,5 s y costaba seguirlos. Medido con `herramientas/transiciones.py` en los 13 reels de @speedy_devv: casi ningún corte seco (3 en total), cada cambio de plano dura de 4 a 10 fotogramas y sus planos duran 2,4 s de media, con un tercio de más de 3 s. Cambios en el motor (`X.planos` en `detalle.js`): dentro del mismo set la cámara viaja de un encuadre al siguiente en 0,7 s girando alrededor del objeto, y lo que cambia en el objeto se funde a la vez; al cambiar de set, el plano anterior se funde en el nuevo en 0,35 s con los dos en movimiento. Las plantillas solo parten los planos de más de 4 s, en trozos de 1,4 a 4 s. El microondas pasó de 58 a 38 planos y la nevera de 44 a 30; los dos se volvieron a montar con la misma voz (sin coste). Regla para los siguientes: de 28 a 35 planos por cada 70 s.
   - **Primer vídeo con el estilo nuevo:** `07-microondas` (el microondas no calienta desde dentro; al final, la velocidad de la luz medida con una tableta de chocolate). Solo planos de corte, diagramas y el objeto limpio como en un anuncio, sin manos. @speedy_devv no tiene este tema.
@@ -606,12 +607,23 @@ Ninguna fase empieza por fecha: empieza cuando se cumple el filtro de la anterio
   - El contador loco: `09-movil` (idea 24) y `10-refresco` (idea 22, con las reglas de salud). Siguen la receta de los pasos de salud, el mejor vídeo de la fábrica (800 visualizaciones en 24 horas).
   - Con eso, y con la comida y la nevera ya aprobadas, las tres cuentas tienen vídeo hasta el lunes 9 o el martes 10.
   - **Resultado (madrugada del 7):** los 7 vídeos están hechos, con el control sin errores; Claude los revisó con hojas de fotogramas. Cada agente tardó de 10 a 29 minutos por vídeo, y las voces costaron unos 10,5 céntimos en total. Falta que Javier los apruebe. La gasolina solo vale para noviembre de 2026.
-  - **Mejoras del motor que pidieron los agentes (pendientes):**
-    - Registrar los objetos nuevos en `herramientas/pordentro/objetos/index.js`.
-    - En El contador loco: los formatos "horas" y "gramos", y que las etiquetas se coloquen según la altura real del marcador.
-    - En `dinero.js`: una entrada "crece" para columnas y poder elegir el tamaño del gancho.
-    - En `vozdata.py`: no perder la coma entre dos números seguidos.
-    - En `producir.sh`: avisar antes de renderizar si la voz no llega a 60 s.
+  - **Mejoras del motor que pidieron los agentes (hechas el 7 de noviembre):**
+    - **Las cosas por dentro:** los objetos del mando y del ratón ya están en la biblioteca (`herramientas/pordentro/objetos/index.js`). Un vídeo nuevo los pide por su tipo en la escena (`mando`, `tele`, `receptor`, `movilCamara`, `senalIR`, `espectro`, `raton`, `mesa`, `superficie`, `fotosRaton` y `monitor`), sin pasarlos a mano.
+    - **El contador loco:**
+      - formato `"horas"`: minutos la primera hora, luego "4 h 05 min" y, desde 100 h, horas enteras;
+      - formato `"gramos"`: gramos por debajo de 1 kg, kilos con un decimal hasta 100 kg, luego kilos enteros y toneladas;
+      - opción `etiquetas_bajo_marcador: true`: las etiquetas se colocan 18 px por debajo del marcador, midiendo su altura real (acaba a los 577 px con nota y a los 638 px con línea extra y nota). Es una opción, y no el comportamiento de siempre, para que los vídeos de antes no cambien. Los nuevos la llevan.
+    - **Dinero sin lío:** la entrada `"crece"` para columnas que suben desde el suelo (la pieza pasa de 0 a su alto con el borde de abajo quieto), y `gancho.tam` para el tamaño de la letra del gancho.
+    - **`vozdata.py`:** deja la puntuación del guion entre dos cifras seguidas ("A mitad de 2026, 43.324", no "2026 43.324").
+    - **`producir.sh`:** si la voz no llega a 60 s, avisa antes de mezclar y renderizar, y dice cuánto durará el vídeo.
+    - **Comprobado sin volver a renderizar ni pagar voces:**
+      - Fotos de los 28 vídeos de las tres cuentas, 20 fotogramas cada uno, con el motor de antes y con el nuevo: salen idénticas píxel a píxel (07-comida, 09-mando y 06-iva incluidos). Los dos fotogramas sueltos que salieron distintos eran ruido de la GPU: el motor de antes también los cambia de una pasada a otra.
+      - Copias de prueba, fuera del proyecto, que usan las opciones nuevas en vez del código hecho a mano:
+        - 09-mando y 10-raton sin pasar los objetos: idénticas.
+        - 06-iva con `crece` y `gancho.tam`: idéntica salvo el primer instante del fundido de cada columna.
+        - 09-movil con `"horas"` y `etiquetas_bajo_marcador`: idéntica salvo medio píxel en la punta de algunas líneas de etiqueta.
+      - Los formatos nuevos dan el mismo texto que el código a mano de 07-comida, 09-movil y 10-refresco en 30.020 valores.
+      - `vozdata.py` da el mismo resultado que antes en todos los vídeos.
 - **Para cerrar la fase 2 falta:**
   1. **El ritmo:** 1 vídeo al día por cuenta durante las 2 primeras semanas, sin cortes. La fábrica tiene que sacar 3 vídeos al día y conviene ir una semana por delante, con 7 vídeos de reserva por cuenta.
   2. **La hoja de métricas (R14):** cada vídeo, a las 24 horas y a los 7 días. Las visualizaciones y los seguidores se apuntan solos desde el 5 de noviembre; falta conectar Chrome en el perfil de cada cuenta para que Claude lea de TikTok Studio el porcentaje que ve el vídeo entero.
