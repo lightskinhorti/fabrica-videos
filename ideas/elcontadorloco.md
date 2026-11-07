@@ -69,6 +69,8 @@ En lugar de algo imposible, un hábito real que el contador va sumando durante d
 | 27 | ¿Y si tiraras la comida que te sobra cada día? | Kilos de comida | Tu peso, un coche, lo que tira España en un año | 4 | 4 | Bajo |
 | 28 | ¿Y si fueras en coche al trabajo cada día? | Kilómetros, horas en atascos y euros de gasolina | La vuelta al mundo, semanas enteras parado en atascos | 4 | 4 | Bajo |
 
+**Enfoque de salud (Javier, 7 de noviembre):** los vídeos de hábitos cuentan qué le pasa al cuerpo, no cuánto se acumula. El contador avanza por el tiempo y en cada escalón sale un efecto en la salud con su estudio y su cifra, como en `08-pasos-salud`, el mejor vídeo de la fábrica.
+
 **Cuidado con las de salud (21 y 22):**
 - Solo cifras acumuladas con fuente oficial (OMS, AESAN, Ministerio de Sanidad). Nada de "te pasará esto en el cuerpo" sin fuente, ni consejos médicos o de dieta.
 - Sin marcas: "una hamburguesa de cadena", no el nombre del restaurante.
@@ -82,4 +84,5 @@ En lugar de algo imposible, un hábito real que el contador va sumando durante d
 - [x] Vídeo 8: idea 23 en versión de salud (lo pidió Javier el 3 de noviembre): qué le pasa al cuerpo si caminas 10.000 pasos cada día, con el personaje que empieza con kilos de más y se pone en forma. Fuentes: Cochrane 2021, Sports Medicine 2022, Preventive Medicine 2015, JAMA Neurology 2022, JAMA Network Open 2024 y Lancet Public Health 2025. Sustituye al vídeo 6 el jueves 5; el 6 queda de reserva.
 - [x] Vídeo 9: idea 24, el móvil 4 horas al día (63,6 s): doce años enteros de pantalla en toda una vida. Hecho la noche del 6 de noviembre; falta que Javier lo apruebe.
 - [x] Vídeo 10: idea 22, un refresco al día (62,5 s): 844 kilos de azúcar en toda una vida, con las reglas de salud (OMS e INE, sin marcas ni consejos). Hecho la noche del 6 de noviembre; falta que Javier lo apruebe.
+- [x] Vídeo 11: idea 22 en versión de salud (lo pidió Javier el 7 de noviembre): una lata al día durante 30 años. Recorre los dientes (OMS), el peso (Malik y otros, 2013), la diabetes tipo 2 (+18 % por cada refresco diario; Imamura y otros, BMJ 2015) y, al final, el corazón (+19 % de riesgo de morir por enfermedad cardiovascular; Malik y otros, Circulation 2019), siempre como asociaciones. 75,3 s, control sin errores. Sustituye al vídeo 10, que queda de reserva. Falta que Javier lo apruebe.
 - [x] Vídeo 7: idea 27, la comida que se tira en casa (64,0 s), con el informe de desperdicio del Ministerio de Agricultura de 2025. Hecho la noche del 3 de noviembre; falta que Javier lo apruebe.

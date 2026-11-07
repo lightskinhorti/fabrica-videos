@@ -1,0 +1,45 @@
+{
+  "titulo": "¿Y si bebieras una lata de refresco cada día?",
+  "lines": [
+    "Una lata de refresco al día.",
+    "Todos los días, durante años. ¿Qué le pasa a tu cuerpo? Y al final: ¿importa una sola lata?",
+    "Primer día: una lata de cola lleva unos treinta y cinco gramos de azúcar.",
+    "Ya pasa de los veinticinco que la OMS pone como objetivo ideal para un día.",
+    "En la boca, la placa dental convierte ese azúcar en ácidos que dañan los dientes.",
+    "Para la OMS, el azúcar es el factor de riesgo más común de la caries.",
+    "Al año, el peso: cada lata son unas ciento cuarenta kilocalorías.",
+    "En los estudios, cada refresco diario se asoció con unos cien a doscientos gramos más al año.",
+    "Con los años, la diabetes tipo dos: en diecisiete estudios, cada refresco diario se asoció con un dieciocho por ciento más de riesgo.",
+    "Y no solo por los kilos: teniendo en cuenta el peso, seguía siendo un trece por ciento más.",
+    "¿Importa una sola lata? Los estudios no miden una: miden una cada día, durante años.",
+    "Lo más fuerte: un estudio siguió a ciento dieciocho mil personas durante unos treinta años.",
+    "Tomar una al día se asoció con un diecinueve por ciento más de riesgo de morir por enfermedad cardiovascular.",
+    "Son asociaciones, no una predicción para cada persona. ¿Y tú, cuántas tomas a la semana? Te leo en los comentarios."
+  ],
+  "claves": [
+    "refresco",
+    "cuerpo",
+    "gramos",
+    "OMS",
+    "dientes",
+    "caries",
+    "peso",
+    "estudios",
+    "diabetes",
+    "kilos",
+    "importa",
+    "fuerte",
+    "cardiovascular",
+    "comentarios"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "Una lata de refresco con azúcar al día, todos los días: qué dicen la OMS y los estudios de los dientes, el peso, la diabetes tipo 2 y el corazón. Fuentes: OMS (directriz de azúcares de 2015 y nota sobre caries de 2025), Am J Clin Nutr 2013 (peso), BMJ 2015 (diabetes, 17 estudios) y Circulation 2019 (118.363 personas seguidas hasta 34 años). Los estudios de cohortes muestran asociaciones, no una predicción para cada persona. El dibujo es una ilustración: cada cuerpo es distinto. No es un consejo médico ni de dieta.",
+    "hashtags": [
+      "#salud",
+      "#refrescos",
+      "#azucar"
+    ],
+    "portada_en": "refresco"
+  }
+}
