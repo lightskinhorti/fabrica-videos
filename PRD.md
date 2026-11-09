@@ -81,6 +81,20 @@ Se mira la mediana porque, en un estudio de Buffer con millones de publicaciones
 
 - En las dos primeras cuentas, los vídeos del día 1 se quedaron entre 0 y 39 visualizaciones, y los del 3 y el 4 de noviembre llegaron a entre 180 y 275.
 - En Dinero sin lío, la nómina y las rebajas llevaban 0 visualizaciones a los 1 o 2 días. Es la cuenta que peor va de momento (Javier comprobó que está activa).
+
+**Datos del 9 de noviembre:** lo publicado el sábado 7 a las 22:00 es lo mejor de las tres cuentas: la comida va por 883 visualizaciones, la nevera por 804 y el IVA por 836, más del triple que los vídeos de las 20:00. Solo es un día. Los vídeos del 9 y el 10 salen también a las 22:00, pero **Javier decidió (9 de noviembre) que desde la siguiente tanda se programen a las 20:00**. El domingo 8 no salió nada.
+
+**Ojo con el cobro (9 de noviembre):**
+- En TikTok Studio de Dinero sin lío, la página de monetización no enseña Creator Rewards entre los programas de la cuenta. Salen otros (suscripciones, Creator Marketplace, TikTok Shop, regalos, LIVE) como "no elegible".
+- Varias fuentes de agosto a octubre de 2026 dicen que TikTok solo tiene Creator Rewards en 8 países y que España no está; una de 2025 decía que sí. Si se confirma, el objetivo de cobrar de TikTok por visualizaciones no se puede cumplir desde España, y el cobro tendría que venir de marcas, suscripciones o regalos, de YouTube o de Instagram con los packs.
+- Pendiente: confirmarlo en la Creator Academy de TikTok con la sesión de Javier.
+
+**YouTube Shorts (investigación del 9 de noviembre, a petición de Javier):**
+- **Dinero:** a partir del 1 de febrero de 2027, los Shorts solo cobran publicidad si el canal pasa de 10 millones de visualizaciones cada 90 días. Para entrar en el programa de socios harán falta 1.000 suscriptores y 20 millones de visualizaciones de Shorts en 90 días, o 8.000 horas de vídeo largo. Un Short paga de 0,03 a 0,10 $ por cada 1.000 visualizaciones. Lo que paga bien en YouTube son los vídeos largos.
+- **Riesgo:** la política de "contenido no auténtico" (julio de 2025, aclarada en julio de 2026) deja sin cobrar a los canales con mucho contenido genérico, hecho con plantilla o en serie, y a los personajes de IA que aconsejan sobre salud o dinero. Se aplica al canal entero. Nuestros vídeos tienen investigación y fuentes propias, pero usan motores y voz sintética.
+- **Saturación:** un estudio de Kapwing ve menos contenido de baja calidad hecho con IA en Shorts (21 %) que en TikTok (59 %), pero porque YouTube lo filtra más. España es el país con más suscriptores en ese tipo de canales.
+- **Coste:** casi ninguno. Es el mismo archivo, un Short puede durar hasta 3 minutos y YouTube Studio programa desde el ordenador.
+- **Propuesta:** probar 6 a 8 semanas con un solo canal y medir las visualizaciones que cuentan y los suscriptores antes de abrir más. Javier decide si se hace y con qué cuenta.
 - TikTok es el foco, porque es donde se cobra (hito 3). Instagram sirve para los packs.
 - No se juzga nada hasta las 2 semanas. Cada vídeo se apunta a las 24 horas y a los 7 días.
 - La reserva se acaba pronto: El contador loco tiene vídeos hasta el miércoles 4 de noviembre, y Las cosas por dentro hasta el reloj (su día 2). Hacen falta el vídeo 6 del contador y el GPS antes del jueves 5, porque cortar el ritmo la primera semana es lo que hay que evitar.
@@ -667,7 +681,7 @@ Esta lista hay que tenerla hecha antes de publicar el primer vídeo. La parte de
 
 - [x] Revisar si el contrato de eduki tiene pacto de plena dedicación. Revisado por ti el 2 de noviembre: no hay nada que prohíba este proyecto. Aun así, la ley prohíbe hacer competencia desleal a tu empresa, y por eso siguen fuera los temas de temario escolar.
 - [x] Crear las cuentas de TikTok como personales, con tus datos reales, porque TikTok lo exige para cobrar. Creadas el 2 de noviembre las 3, en TikTok e Instagram: `@elcontadorloco`, `@lascosaspordentro` y `@dinerosinlio`. No se publica nada hasta la fase 2.
-- [ ] Activar en cada vídeo la etiqueta de contenido generado con IA. TikTok la exige para el contenido realista y la recomienda para el resto.
+- [x] ~~Activar en cada vídeo la etiqueta de contenido generado con IA.~~ **Decisión de Javier del 9 de noviembre: no se marca.** Son animaciones, no imágenes realistas, y TikTok solo la exige para el contenido realista. Los vídeos del 7 de noviembre y el del móvil del 9 salieron con la etiqueta, porque las publicaciones programadas no se pueden editar.
 - [ ] Poner la atribución de las imágenes: "Copernicus Sentinel data" y el año en las de Copernicus, y el crédito a la NASA en las suyas.
 - [ ] Usar solo música y efectos con licencia comercial.
 - [ ] Reglamento de IA: revisar tú los textos sobre temas de interés público, como política o dinero, o avisar de que están hechos con IA. Nada de imitar con IA a personas reales.

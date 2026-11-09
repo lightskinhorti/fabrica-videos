@@ -13,7 +13,7 @@ Un montón de ropa que se duplica cada día: el día 34 casi llega a la Luna y e
 
 ## Al subirlo
 
-- [ ] Activar "Contenido generado con IA" (en Más opciones). Siempre, aunque no parezca real.
+- [ ] No marcar "Contenido generado con IA" (decisión de Javier del 9 de noviembre).
 - [ ] Portada: el primer segundo, con la pregunta.
 - [ ] Comprobar que dura más de 1 minuto.
 - [ ] Verlo entero una vez antes de programarlo.

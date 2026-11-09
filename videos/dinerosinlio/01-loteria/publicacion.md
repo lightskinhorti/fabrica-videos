@@ -13,7 +13,7 @@ Si te toca el Gordo de Navidad, Hacienda se lleva 72.000 euros de tu décimo. Y 
 
 ## Al subirlo
 
-- [ ] Activar "Contenido generado con IA" (en Más opciones). Siempre, aunque no parezca real.
+- [ ] No marcar "Contenido generado con IA" (decisión de Javier del 9 de noviembre).
 - [ ] Portada: el fotograma del gancho (el de la imagen de portada).
 - [ ] Comprobar que dura más de 1 minuto.
 - [ ] Verlo entero una vez antes de programarlo.

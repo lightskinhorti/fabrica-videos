@@ -28,7 +28,7 @@ A las 20:00 va el mejor gancho: la lotería, que además está de actualidad por
 3. **Descripción:** borra lo que ponga TikTok y pega el bloque del vídeo (más abajo), con los hashtags.
 4. **Portada:** desde `05-cafe`, el primer fotograma ya lleva el gancho con su imagen, así que vale la portada que pone TikTok. En 01 a 04 el fotograma 0 solo tiene el texto: si TikTok Studio te deja editar la portada, elige el segundo 1 (o sube la imagen `-portada.png`).
 5. **Quién puede verlo:** todo el mundo, con los comentarios activados.
-6. En "Mostrar más", activa **"Contenido generado por IA"**. Siempre. El contenido de marca se queda desactivado.
+6. En "Mostrar más", deja **desactivado** "Contenido generado por IA" (decisión de Javier del 9 de noviembre: son animaciones, no imágenes realistas). El contenido de marca se queda desactivado.
 7. Sin música de TikTok: los vídeos ya llevan voz, efectos y una base suave.
 8. "Cuándo publicar" > **Programar**, con el día y la hora de la tabla, y pulsa **Programar**.
 9. Comprueba en la lista de TikTok Studio que sale como programado y marca la casilla.

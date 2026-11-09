@@ -35,6 +35,18 @@
     "hora": "22:00",
     "programado": true
   },
+  "dinerosinlio/07-cajero": {
+    "aprobado": true,
+    "fecha": "2026-11-09",
+    "hora": "22:00",
+    "programado": true
+  },
+  "dinerosinlio/08-gasolina": {
+    "aprobado": true,
+    "fecha": "2026-11-10",
+    "hora": "22:00",
+    "programado": true
+  },
   "elcontadorloco/01-ascensor": {
     "aprobado": true,
     "fecha": "2026-11-02",
@@ -82,6 +94,18 @@
     "hora": "20:00",
     "programado": true
   },
+  "elcontadorloco/09-movil": {
+    "aprobado": true,
+    "fecha": "2026-11-09",
+    "hora": "22:00",
+    "programado": true
+  },
+  "elcontadorloco/11-refresco-salud": {
+    "aprobado": true,
+    "fecha": "2026-11-10",
+    "hora": "22:00",
+    "programado": true
+  },
   "lascosaspordentro/01-tarjeta": {
     "aprobado": true,
     "fecha": "2026-11-02",
@@ -125,6 +149,18 @@
   "lascosaspordentro/08-nevera": {
     "aprobado": true,
     "fecha": "2026-11-07",
+    "hora": "22:00",
+    "programado": true
+  },
+  "lascosaspordentro/09-mando": {
+    "aprobado": true,
+    "fecha": "2026-11-09",
+    "hora": "22:00",
+    "programado": true
+  },
+  "lascosaspordentro/10-raton": {
+    "aprobado": true,
+    "fecha": "2026-11-10",
     "hora": "22:00",
     "programado": true
   }

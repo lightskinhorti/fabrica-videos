@@ -13,7 +13,7 @@ El microondas no calienta desde dentro: sus ondas solo entran unos centímetros 
 
 ## Al subirlo
 
-- [ ] Activar "Contenido generado con IA" (en Más opciones). Siempre, aunque no parezca real.
+- [ ] No marcar "Contenido generado con IA" (decisión de Javier del 9 de noviembre).
 - [ ] Portada: el fotograma del gancho (el de la imagen de portada).
 - [ ] Comprobar que dura más de 1 minuto.
 - [ ] Verlo entero una vez antes de programarlo.

@@ -2,27 +2,27 @@
  "cuentas": {
   "dinerosinlio": {
    "error": null,
-   "leido": 1794081809,
-   "megusta": 13,
-   "seguidores": 2,
+   "leido": 1794221733,
+   "megusta": 41,
+   "seguidores": 6,
    "tiktok": "eldinerosinlio"
   },
   "elcontadorloco": {
    "error": null,
-   "leido": 1794081809,
-   "megusta": 128,
+   "leido": 1794221733,
+   "megusta": 139,
    "seguidores": 5,
    "tiktok": "elcontadorloco"
   },
   "lascosaspordentro": {
    "error": null,
-   "leido": 1794081809,
-   "megusta": 39,
-   "seguidores": 2,
+   "leido": 1794221733,
+   "megusta": 84,
+   "seguidores": 6,
    "tiktok": "lascosaspordentro"
   }
  },
- "leido": 1794081809,
+ "leido": 1794221733,
  "videos": {
   "7703610063235190038": {
    "comentarios": 3,
@@ -34,7 +34,7 @@
    "texto": "Un gato que engorda un kilo al día: del labrador a la ballena azul. Tranquilo, tu gato está perfecto como está. Valores ",
    "url": "https://www.tiktok.com/@elcontadorloco/video/7703610063235190038",
    "v24": null,
-   "vistas": 39
+   "vistas": 42
   },
   "7703612725737295126": {
    "comentarios": 1,
@@ -58,43 +58,43 @@
    "texto": "Un montón de ropa que se duplica cada día: el día 34 casi llega a la Luna y el 35 la pasa. Así de rápido crece algo que ",
    "url": "https://www.tiktok.com/@elcontadorloco/video/7703614475424845078",
    "v24": null,
-   "vistas": 7
+   "vistas": 8
   },
   "7703653148577008918": {
    "comentarios": 1,
    "compartidos": 1,
    "cuenta": "lascosaspordentro",
-   "megusta": 3,
+   "megusta": 6,
    "panel": "lascosaspordentro/03-induccion",
    "publicado": 1793646527,
    "texto": "Tu placa de inducción no se calienta: se calienta la sartén. Por dentro hay una bobina de cobre y un campo magnético que",
    "url": "https://www.tiktok.com/@lascosaspordentro/video/7703653148577008918",
    "v24": null,
-   "vistas": 6
+   "vistas": 10
   },
   "7703655655806192918": {
    "comentarios": 0,
    "compartidos": 0,
    "cuenta": "lascosaspordentro",
-   "megusta": 0,
+   "megusta": 3,
    "panel": "lascosaspordentro/01-tarjeta",
    "publicado": 1793653200,
    "texto": "Tu tarjeta no tiene batería, pero paga en menos de medio segundo. Así funciona por dentro: una antena de cobre, un campo",
    "url": "https://www.tiktok.com/@lascosaspordentro/video/7703655655806192918",
    "v24": null,
-   "vistas": 0
+   "vistas": 3
   },
   "7703656043183705366": {
    "comentarios": 0,
    "compartidos": 0,
    "cuenta": "lascosaspordentro",
-   "megusta": 0,
+   "megusta": 3,
    "panel": "lascosaspordentro/02-cargador",
    "publicado": 1793660400,
    "texto": "Tu móvil se carga sin que nada lo toque. Por dentro hay dos bobinas de cobre, un campo magnético y una conversación entr",
    "url": "https://www.tiktok.com/@lascosaspordentro/video/7703656043183705366",
    "v24": null,
-   "vistas": 1
+   "vistas": 4
   },
   "7703939992397073686": {
    "comentarios": 0,
@@ -106,7 +106,7 @@
    "texto": "Si crecieras un centímetro cada día, ¿hasta dónde llegarías en toda tu vida? De la puerta de casa a la Torre de Cristal.",
    "url": "https://www.tiktok.com/@elcontadorloco/video/7703939992397073686",
    "v24": null,
-   "vistas": 277
+   "vistas": 281
   },
   "7703940311143288086": {
    "comentarios": 0,
@@ -118,79 +118,79 @@
    "texto": "Tu móvil, un grado más cada minuto: de la fiebre a la superficie del Sol. No lo intentes: un móvil de verdad avisaría y ",
    "url": "https://www.tiktok.com/@elcontadorloco/video/7703940311143288086",
    "v24": 220,
-   "vistas": 231
+   "vistas": 234
   },
   "7703940797799927062": {
    "comentarios": 0,
    "compartidos": 0,
    "cuenta": "lascosaspordentro",
-   "megusta": 7,
+   "megusta": 10,
    "panel": "lascosaspordentro/05-reloj",
    "publicado": 1793732400,
    "texto": "Tu reloj tiene un cristal de cuarzo que tiembla 32.768 veces por segundo, y ese número no es casualidad. Así funciona po",
    "url": "https://www.tiktok.com/@lascosaspordentro/video/7703940797799927062",
    "v24": null,
-   "vistas": 183
+   "vistas": 187
   },
   "7703941048547953942": {
    "comentarios": 0,
    "compartidos": 0,
    "cuenta": "lascosaspordentro",
-   "megusta": 6,
+   "megusta": 9,
    "panel": "lascosaspordentro/06-gps",
    "publicado": 1793818800,
    "texto": "Los satélites GPS no saben dónde estás: tu móvil solo escucha su hora y mide cuánto tarda cada señal en llegar. Y sus re",
    "url": "https://www.tiktok.com/@lascosaspordentro/video/7703941048547953942",
    "v24": 192,
-   "vistas": 193
+   "vistas": 198
   },
   "7703941507107097878": {
    "comentarios": 0,
    "compartidos": 0,
    "cuenta": "dinerosinlio",
-   "megusta": 1,
+   "megusta": 4,
    "panel": "dinerosinlio/04-rebajas",
    "publicado": 1793818800,
    "texto": "En España, el precio tachado de un descuento tiene que ser el más bajo de los 30 días anteriores (Ley 7/1996, artículo 2",
    "url": "https://www.tiktok.com/@eldinerosinlio/video/7703941507107097878",
    "v24": 0,
-   "vistas": 1
+   "vistas": 8
   },
   "7703941905125559574": {
    "comentarios": 1,
    "compartidos": 0,
    "cuenta": "dinerosinlio",
-   "megusta": 1,
+   "megusta": 4,
    "panel": "dinerosinlio/03-billete",
    "publicado": 1793725200,
    "texto": "El billete de 500 euros ya no se fabrica, pero sigue siendo de curso legal. Por qué lo quitaron y qué hacer si tienes un",
    "url": "https://www.tiktok.com/@eldinerosinlio/video/7703941905125559574",
    "v24": null,
-   "vistas": 6
+   "vistas": 11
   },
   "7703942200400399619": {
    "comentarios": 1,
    "compartidos": 0,
    "cuenta": "dinerosinlio",
-   "megusta": 1,
+   "megusta": 4,
    "panel": "dinerosinlio/01-loteria",
    "publicado": 1793732400,
    "texto": "Si te toca el Gordo de Navidad, Hacienda se lleva 72.000 euros de tu décimo. Y de media, cada décimo de 20 euros devuelv",
    "url": "https://www.tiktok.com/@eldinerosinlio/video/7703942200400399619",
    "v24": null,
-   "vistas": 3
+   "vistas": 10
   },
   "7703942462431120662": {
    "comentarios": 0,
    "compartidos": 0,
    "cuenta": "dinerosinlio",
-   "megusta": 1,
+   "megusta": 4,
    "panel": "dinerosinlio/02-nomina",
    "publicado": 1793739600,
    "texto": "Por cada 100 euros de tu sueldo, tu empresa paga casi 31 más a la Seguridad Social, y a ti te descuentan 6,50. Así se re",
    "url": "https://www.tiktok.com/@eldinerosinlio/video/7703942462431120662",
    "v24": null,
-   "vistas": 1
+   "vistas": 7
   },
   "7704716264723483926": {
    "comentarios": 0,
@@ -202,31 +202,67 @@
    "texto": "10.000 pasos al día, todos los días: qué dicen los estudios del azúcar tras comer, la tensión, la forma física, el cereb",
    "url": "https://www.tiktok.com/@elcontadorloco/video/7704716264723483926",
    "v24": 800,
-   "vistas": 812
+   "vistas": 816
   },
   "7704716506323520790": {
    "comentarios": 0,
    "compartidos": 0,
    "cuenta": "dinerosinlio",
-   "megusta": 9,
+   "megusta": 12,
    "panel": "dinerosinlio/05-cafe",
    "publicado": 1793905200,
    "texto": "Si pagas un café de 2 euros con tarjeta, el bar paga de media unas 7 décimas de céntimo de comisión, y una parte va a tu",
    "url": "https://www.tiktok.com/@eldinerosinlio/video/7704716506323520790",
    "v24": 288,
-   "vistas": 291
+   "vistas": 306
   },
   "7704716784225537302": {
    "comentarios": 0,
    "compartidos": 0,
    "cuenta": "lascosaspordentro",
-   "megusta": 23,
+   "megusta": 26,
    "panel": "lascosaspordentro/07-microondas",
    "publicado": 1793905200,
    "texto": "El microondas no calienta desde dentro: sus ondas solo entran unos centímetros y el centro se calienta después, por cond",
    "url": "https://www.tiktok.com/@lascosaspordentro/video/7704716784225537302",
    "v24": 261,
-   "vistas": 263
+   "vistas": 268
+  },
+  "7705523382627994902": {
+   "comentarios": 0,
+   "compartidos": 0,
+   "cuenta": "elcontadorloco",
+   "megusta": 11,
+   "panel": "elcontadorloco/07-comida",
+   "publicado": 1794085200,
+   "texto": "La comida que se tira en casa, sumada: unos 64 gramos al día por persona, una maleta al año y casi 2 toneladas en toda u",
+   "url": "https://www.tiktok.com/@elcontadorloco/video/7705523382627994902",
+   "v24": null,
+   "vistas": 887
+  },
+  "7705523999446519062": {
+   "comentarios": 0,
+   "compartidos": 1,
+   "cuenta": "lascosaspordentro",
+   "megusta": 27,
+   "panel": "lascosaspordentro/08-nevera",
+   "publicado": 1794085200,
+   "texto": "Tu nevera no fabrica frío: saca el calor de la comida y lo suelta por detrás, en tu cocina. Por eso dejarla abierta no e",
+   "url": "https://www.tiktok.com/@lascosaspordentro/video/7705523999446519062",
+   "v24": null,
+   "vistas": 804
+  },
+  "7705524543095426326": {
+   "comentarios": 0,
+   "compartidos": 0,
+   "cuenta": "dinerosinlio",
+   "megusta": 13,
+   "panel": "dinerosinlio/06-iva",
+   "publicado": 1794085200,
+   "texto": "En España el pan común, la leche, los huevos, el queso, la fruta, la verdura, las legumbres y el aceite de oliva llevan ",
+   "url": "https://www.tiktok.com/@eldinerosinlio/video/7705524543095426326",
+   "v24": null,
+   "vistas": 836
   }
  }
 }

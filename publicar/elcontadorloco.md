@@ -34,7 +34,7 @@ Si empiezas otro día, mueve todas las fechas igual. TikTok deja programar hasta
 4. **Portada:** en "Editar portada", elige el primer segundo, donde sale la pregunta en grande. Si te deja
    subir una imagen, usa el `-portada.png` del vídeo.
 5. **Quién puede verlo:** todo el mundo. Deja activados los comentarios: cada vídeo acaba pidiendo uno.
-6. En "Mostrar más" (o "Más opciones"), activa **"Contenido generado por IA"**. Siempre.
+6. En "Mostrar más" (o "Más opciones"), deja **desactivado** "Contenido generado por IA" (decisión de Javier del 9 de noviembre: son animaciones, no imágenes realistas).
    El contenido de marca o promocional se queda desactivado.
 7. No añadas música de TikTok: estos vídeos ya llevan la voz y los efectos mezclados.
 8. En "Cuándo publicar", elige **Programar**, pon el día y la hora de la tabla y pulsa el botón **Programar**.

@@ -13,7 +13,7 @@ Un gato que engorda un kilo al día: del labrador a la ballena azul. Tranquilo, 
 
 ## Al subirlo
 
-- [ ] Activar "Contenido generado con IA" (en Más opciones). Siempre, aunque no parezca real.
+- [ ] No marcar "Contenido generado con IA" (decisión de Javier del 9 de noviembre).
 - [ ] Portada: el primer segundo, con la pregunta.
 - [ ] Comprobar que dura más de 1 minuto.
 - [ ] Verlo entero una vez antes de programarlo.

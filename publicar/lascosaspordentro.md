@@ -30,7 +30,7 @@ Pon como día 1 el que quieras y mueve el resto igual. TikTok deja programar has
 3. **Descripción:** borra lo que ponga TikTok y pega el bloque del vídeo (de más abajo), con los hashtags.
 4. **Portada:** el fotograma del gancho (el de la imagen `-portada.png`; súbela si te deja).
 5. **Quién puede verlo:** todo el mundo, con los comentarios activados.
-6. En "Mostrar más", activa **"Contenido generado por IA"**. Siempre.
+6. En "Mostrar más", deja **desactivado** "Contenido generado por IA" (decisión de Javier del 9 de noviembre: son animaciones, no imágenes realistas).
 7. Sin música de TikTok: los vídeos ya llevan voz y efectos.
 8. "Cuándo publicar" > **Programar**, con el día y la hora de la tabla, y pulsa **Programar**.
 9. Comprueba en la lista de TikTok Studio que sale como programado y marca la casilla.
