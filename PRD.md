@@ -378,6 +378,34 @@ En Instagram, la cuenta enseña cómo funciona la fábrica, igual que hace la cu
 - **Cuándo empieza:** cuando la fábrica sea estable y haya algún resultado real que enseñar (fase 4).
 - **Cómo se entrega:** quien comenta una palabra clave recibe el enlace por mensaje privado, igual que hace @speedy\_devv con su carpeta. \[Supuesto: hace falta una herramienta de mensajes automáticos; se elige en la fase 4\]
 
+## Formas de cobrar desde España
+
+Comparación del 9 de noviembre, hecha porque TikTok no paga por visualizaciones en España (ver "Cobro desde España" en Objetivos). Ese día cada cuenta tenía 5 o 6 seguidores y entre 1.200 y 2.300 visualizaciones sumando todos sus vídeos, así que todo lo que depende de la audiencia todavía queda lejos. Las cifras son las que dan las fuentes de "Fuentes"; las de blogs son estimaciones, no datos oficiales.
+
+| Forma | Qué hace falta | Cuánto deja (ejemplo) | Con qué cuenta encaja | Pegas |
+| --- | --- | --- | --- | --- |
+| Marcas (vídeo pagado) | Ningún mínimo oficial, pero en la práctica unos 10.000 seguidores. El mercado de marcas de TikTok (TikTok One) pide 10.000 | Un vídeo de TikTok de una cuenta de 10.000 a 100.000 seguidores: de 176 a 915 €, con 412 € de mediana (Kolsquare) | Las cosas por dentro (tecnología y hogar) y El contador loco. Dinero sin lío solo con marcas que no sean productos financieros | Hay que buscarlas y negociar. Se marca como publicidad |
+| Afiliación de Amazon | Amazon no pide seguidores. En TikTok, una cuenta personal no puede poner un enlace en la bio hasta tener unos 1.000 seguidores; Instagram sí deja | Amazon España paga el 5 % en hogar, cocina y bricolaje, el 2,5 % en electrodomésticos y electrónica móvil, y el 3 % en casi todo lo demás. Ejemplo: 100 ventas de un producto de 40 € al 5 % son 200 € | Las cosas por dentro: cada vídeo es un objeto que se puede comprar | Desde un vídeo compra poca gente. Hay que contar que el enlace es de afiliado, sin decir "cómpralo" |
+| Afiliación de TikTok Shop | Entre 1.000 y 1.500 seguidores, según blogs (no hay cifra oficial). TikTok Shop sale en el Studio de Dinero sin lío como "no elegible" | La comisión la pone cada vendedor; los blogs hablan de un 10 a 15 % en España | Las cosas por dentro | Cifras sin confirmar. Una guía dice que para cobrar hay que estar de alta como autónomo |
+| YouTube, vídeos largos | Programa de socios: 1.000 suscriptores y 4.000 horas vistas en 12 meses (8.000 horas desde el 1 de febrero de 2027) | De 2 a 5 € por cada 1.000 visualizaciones en España (un creador español cuenta 2,05 €), y más en finanzas. 100.000 visualizaciones son de 200 a 500 € | Las cosas por dentro y Dinero sin lío | Otro formato (de 8 a 12 minutos), con más voz y más render. Mismo riesgo de "contenido no auténtico" |
+| YouTube Shorts | El mismo programa de socios. Desde el 1 de febrero de 2027, la publicidad de los Shorts solo se cobra con 10 millones de visualizaciones cada 90 días | De 0,03 a 0,10 $ por cada 1.000: un millón de visualizaciones son de 30 a 100 $ | Las tres (es el mismo archivo) | Casi no deja dinero. Solo sirve como camino hacia los vídeos largos |
+| Regalos | Instagram: 500 seguidores y cuenta profesional (oficial). TikTok: en los directos, desde unos 1.000 seguidores; en los vídeos, entre 10.000 y 100.000 según la fuente | Instagram paga 0,01 $ por estrella. Poco dinero | Las tres | Los directos no son nuestro formato |
+| Packs de la fábrica | Ningún mínimo, pero sí una cuenta propia que enseñe la fábrica a gente que quiere hacer vídeos | Ejemplo: 20 packs a 39 € son 780 €, menos lo que se queda Gumroad (10 % + 0,50 $ por venta) | Una cuarta cuenta, no las de nichos (sección de Instagram) | Hay que hacer la cuenta y el pack, y atender dudas |
+| Reels en Facebook | Solo por invitación. Las fuentes no se ponen de acuerdo en si España entra | Una calculadora de terceros da de 0,015 a 0,03 $ por cada 1.000 | Las tres (el mismo archivo) | Sin confirmar. Hace falta una página de Facebook |
+
+**Lectura:**
+- Lo que más deja por cada visualización: marcas y afiliación, sobre todo en Las cosas por dentro. Después, los vídeos largos de YouTube.
+- Lo que antes se puede probar: la afiliación (Instagram desde ya; TikTok desde unos 1.000 seguidores) y los packs, que no dependen de las cuentas de nichos.
+- Lo que casi no deja dinero: los Shorts, los regalos y los Reels de Facebook.
+- Todo lo de las cuentas de nichos pasa por la audiencia, así que lo primero sigue siendo crecer en TikTok, que es lo que ya funciona.
+- Reglas que no cambian: Dinero sin lío explica y nunca recomienda (nada de enlaces a bancos, tarjetas ni inversiones) y El contador loco no aconseja sobre salud (nada de suplementos ni productos milagro).
+
+**Propuesta de Claude (pendiente de que Javier decida):**
+1. Cambiar los hitos 3 y 4 por "una cuenta con 1.000 seguidores" (abre la afiliación y el enlace en la bio) y "una cuenta con 10.000 seguidores" (abre las marcas), y que el primer cobro sea de afiliación o de una marca.
+2. Que Las cosas por dentro sea la primera cuenta en cobrar con afiliación: una lista de Amazon con los objetos de cada vídeo, lista para cuando llegue a 1.000 seguidores.
+3. Probar YouTube Shorts con Las cosas por dentro durante 6 a 8 semanas (el mismo archivo) y pasar a vídeos largos solo si engancha.
+4. Facebook, solo comprobar más adelante si llega la invitación. Prioridad baja.
+
 ## Requisitos de la fábrica
 
 La fábrica convierte una idea aprobada en un vídeo listo para subir. Tú solo intervienes en dos puntos: al aprobar las ideas y al aprobar el vídeo final.
@@ -708,6 +736,7 @@ Esta lista hay que tenerla hecha antes de publicar el primer vídeo. La parte de
   - Objetos por dentro: **Las cosas por dentro**, `@lascosaspordentro`. Primero se eligió «Mira por dentro», pero en Instagram `@mirapordentro` estaba cogido (una cuenta desactivada) y `@mirapordentro_` hace exactamente lo mismo, así que se cambió en las dos plataformas para no confundirse con ella.
   - Dinero cotidiano: **Dinero sin lío**, `@dinerosinlio` en Instagram y `@eldinerosinlio` en TikTok.
 - [ ] Decidir qué incluye cada pack y a qué precio (fase 4).
+- [ ] Decidir de dónde sale el dinero ahora que TikTok no paga por visualizaciones en España, y cómo quedan los hitos 3 y 4 (ver "Formas de cobrar desde España").
 - [x] Confirmar si el contrato de eduki tiene pacto de plena dedicación: revisado por ti el 2 de noviembre, no hay nada que prohíba el proyecto.
 
 ## Fuentes
@@ -716,6 +745,12 @@ Esta lista hay que tenerla hecha antes de publicar el primer vídeo. La parte de
 - Requisitos del programa de TikTok: [Contentstudio](https://contentstudio.io/blog/tiktok-creativity-program) · [TimeToPost](https://timetopost.co/blog/tiktok-creator-rewards-requirements-2026/)
 - Países de Creator Rewards (oficial, sin España): [TikTok Creator Academy](https://www.tiktok.com/creator-academy/article/creator-rewards-program) · Alternativas en Europa: [Fluxnote](https://fluxnote.io/guides/tiktok-earnings-europe-2026)
 - Regalos de Instagram (oficial, con España, desde 500 seguidores): [Instagram Help Center](https://help.instagram.com/738469380549477)
+- Comisiones de Amazon Afiliados España: [Amazon](https://afiliados.amazon.es/help/node/topic/GRXPHT8U84RAYDXZ)
+- Tarifas de marcas en España: [Kolsquare](https://www.kolsquare.com/es/blog/presupuesto-marketing-influencers-2027) · [AICAD](https://www.aicad.es/influencers-espanolas)
+- Cuánto paga YouTube en España: [Monetízate Online](https://monetizateonline.es/cuanto-paga-youtube-espana/) · [ADSLZone](https://www.adslzone.net/reportajes/internet/cuanto-paga-youtube-visitas/)
+- Afiliados de TikTok Shop en España: [Inicia Academy](https://inicia.academy/blog/como-empezar-tiktok-shop-espana) · [Marketing Hoy](https://marketinghoy.com/tiktok-shop-crecimiento-espana-ecommerce/)
+- Enlace en la bio de TikTok: [Stan](https://stan.store/blog/tiktok-link-bio-requirements-2026-guide/)
+- Reels de Facebook: [Clip Short](https://www.clip-short.com/guides/facebook-content-monetization) · [StreamClipping](https://streamclipping.ai/blog/facebook-reels-monetization)
 - Lo que paga TikTok por país: [TTCalculator](https://ttcalculator.net/learn/tiktok-rpm-by-country/)
 - Nichos que pagan más: [FlowShorts](https://flowshorts.app/blog/tiktok-pay-per-view)
 - Frecuencia de publicación: [Search Engine Journal sobre el estudio de Buffer](https://www.searchenginejournal.com/study-shows-2-5-weekly-tiktoks-deliver-biggest-view-increase/558641/) · [Buffer](https://buffer.com/resources/how-often-should-you-post-on-tiktok/) · [TT Calculator](https://ttcalculator.net/data/engagement/posting-frequency-engagement-correlation/) · [Shortimize](https://shortimize.com/blog/how-often-to-post-on-tiktok)
