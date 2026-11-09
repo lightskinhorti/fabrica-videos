@@ -12,7 +12,7 @@ El estilo de referencia es el vídeo que adjuntaste: personajes 3D sencillos, su
 
 Hay dos líneas de ingresos:
 
-1. **TikTok:** cuentas de nichos explicativos en español, que cobran del programa de recompensas de TikTok cuando una cuenta llega a 10.000 seguidores y 100.000 visualizaciones en 30 días.
+1. **TikTok:** cuentas de nichos explicativos en español, que cobran del programa de recompensas de TikTok cuando una cuenta llega a 10.000 seguidores y 100.000 visualizaciones en 30 días. **Ojo (9 de noviembre): ese programa no existe en España.** Ver "Cobro desde España".
 2. **Instagram:** una cuenta que enseña cómo funciona la fábrica, con un enlace en la bio a packs de configuración para montar tu propia fábrica. Es una venta única, sin llamadas.
 
 Primer hito: tener una cuenta de TikTok dentro del programa de recompensas. \[Estimación: de 3 a 6 meses; no hay datos fiables de cuánto se tarda\]
@@ -84,10 +84,12 @@ Se mira la mediana porque, en un estudio de Buffer con millones de publicaciones
 
 **Datos del 9 de noviembre:** lo publicado el sábado 7 a las 22:00 es lo mejor de las tres cuentas: la comida va por 883 visualizaciones, la nevera por 804 y el IVA por 836, más del triple que los vídeos de las 20:00. Solo es un día. Los vídeos del 9 y el 10 salen también a las 22:00, pero **Javier decidió (9 de noviembre) que desde la siguiente tanda se programen a las 20:00**. El domingo 8 no salió nada.
 
-**Ojo con el cobro (9 de noviembre):**
-- En TikTok Studio de Dinero sin lío, la página de monetización no enseña Creator Rewards entre los programas de la cuenta. Salen otros (suscripciones, Creator Marketplace, TikTok Shop, regalos, LIVE) como "no elegible".
-- Varias fuentes de agosto a octubre de 2026 dicen que TikTok solo tiene Creator Rewards en 8 países y que España no está; una de 2025 decía que sí. Si se confirma, el objetivo de cobrar de TikTok por visualizaciones no se puede cumplir desde España, y el cobro tendría que venir de marcas, suscripciones o regalos, de YouTube o de Instagram con los packs.
-- Pendiente: confirmarlo en la Creator Academy de TikTok con la sesión de Javier.
+**Cobro desde España (confirmado el 9 de noviembre):**
+- **TikTok no paga por visualizaciones en España.** La página oficial de Creator Rewards (Creator Academy de TikTok) dice que el programa está abierto solo en Estados Unidos, Reino Unido, Alemania, Japón, Corea del Sur, Francia, México y Brasil, y que hay que vivir en uno de esos países y tener la cuenta registrada allí. España no está. Muchos blogs dicen que sí, pero se equivocan. Cambiar de región o usar una VPN va contra las condiciones de TikTok y no se hace.
+- Coincide con lo que se ve en TikTok Studio de Dinero sin lío: Creator Rewards no aparece, y salen como "no elegible" las suscripciones, Creator Marketplace (marcas), TikTok Shop, los regalos y LIVE.
+- **Lo que sí hay en TikTok desde España** (todo depende de tener audiencia, y las cifras exactas no están confirmadas para España): regalos en los vídeos y en los directos, suscripciones, acuerdos con marcas (TikTok One pide 10.000 seguidores, según una guía de octubre de 2026) y afiliación con TikTok Shop.
+- **Instagram (página oficial de ayuda, leída el 9 de noviembre):** los regalos en los Reels sí funcionan en España, desde 500 seguidores, con cuenta profesional y mayor de 18 años. Pagan 0,01 $ por cada estrella que manda alguien, así que es poco dinero. Los bonos por visualizaciones son solo por invitación y, según Meta en 2024, solo en Estados Unidos, Corea del Sur y Japón. Instagram tampoco paga por visualizaciones en España.
+- **Consecuencia:** los hitos 3 y 4 (entrar en el programa de TikTok y primer cobro de TikTok) no se pueden cumplir desde España tal y como están escritos. Las cuentas de TikTok siguen sirviendo para conseguir audiencia, que es lo que piden los regalos, las marcas, la afiliación y YouTube. **Pendiente: Javier decide cómo quedan los hitos y de dónde sale el dinero** (YouTube, marcas, afiliación, packs o una mezcla).
 
 **YouTube Shorts (investigación del 9 de noviembre, a petición de Javier):**
 - **Dinero:** a partir del 1 de febrero de 2027, los Shorts solo cobran publicidad si el canal pasa de 10 millones de visualizaciones cada 90 días. Para entrar en el programa de socios harán falta 1.000 suscriptores y 20 millones de visualizaciones de Shorts en 90 días, o 8.000 horas de vídeo largo. Un Short paga de 0,03 a 0,10 $ por cada 1.000 visualizaciones. Lo que paga bien en YouTube son los vídeos largos.
@@ -95,7 +97,7 @@ Se mira la mediana porque, en un estudio de Buffer con millones de publicaciones
 - **Saturación:** un estudio de Kapwing ve menos contenido de baja calidad hecho con IA en Shorts (21 %) que en TikTok (59 %), pero porque YouTube lo filtra más. España es el país con más suscriptores en ese tipo de canales.
 - **Coste:** casi ninguno. Es el mismo archivo, un Short puede durar hasta 3 minutos y YouTube Studio programa desde el ordenador.
 - **Propuesta:** probar 6 a 8 semanas con un solo canal y medir las visualizaciones que cuentan y los suscriptores antes de abrir más. Javier decide si se hace y con qué cuenta.
-- TikTok es el foco, porque es donde se cobra (hito 3). Instagram sirve para los packs.
+- TikTok es el foco por la audiencia. Se creía que también era donde se cobraba (hito 3), pero desde España no paga por visualizaciones (ver "Cobro desde España"). Instagram sirve para los packs.
 - No se juzga nada hasta las 2 semanas. Cada vídeo se apunta a las 24 horas y a los 7 días.
 - La reserva se acaba pronto: El contador loco tiene vídeos hasta el miércoles 4 de noviembre, y Las cosas por dentro hasta el reloj (su día 2). Hacen falta el vídeo 6 del contador y el GPS antes del jueves 5, porque cortar el ritmo la primera semana es lo que hay que evitar.
 
@@ -712,6 +714,8 @@ Esta lista hay que tenerla hecha antes de publicar el primer vídeo. La parte de
 
 - Vídeos de referencia: el reel de @vibecodingiseasy y los cinco vídeos que adjuntaste (el trackpad del Mac y cómo hace sus vídeos, de @speedy\_devv; Messi; En Plata; y la creadora que edita con Claude). Son archivos, sin enlace.
 - Requisitos del programa de TikTok: [Contentstudio](https://contentstudio.io/blog/tiktok-creativity-program) · [TimeToPost](https://timetopost.co/blog/tiktok-creator-rewards-requirements-2026/)
+- Países de Creator Rewards (oficial, sin España): [TikTok Creator Academy](https://www.tiktok.com/creator-academy/article/creator-rewards-program) · Alternativas en Europa: [Fluxnote](https://fluxnote.io/guides/tiktok-earnings-europe-2026)
+- Regalos de Instagram (oficial, con España, desde 500 seguidores): [Instagram Help Center](https://help.instagram.com/738469380549477)
 - Lo que paga TikTok por país: [TTCalculator](https://ttcalculator.net/learn/tiktok-rpm-by-country/)
 - Nichos que pagan más: [FlowShorts](https://flowshorts.app/blog/tiktok-pay-per-view)
 - Frecuencia de publicación: [Search Engine Journal sobre el estudio de Buffer](https://www.searchenginejournal.com/study-shows-2-5-weekly-tiktoks-deliver-biggest-view-increase/558641/) · [Buffer](https://buffer.com/resources/how-often-should-you-post-on-tiktok/) · [TT Calculator](https://ttcalculator.net/data/engagement/posting-frequency-engagement-correlation/) · [Shortimize](https://shortimize.com/blog/how-often-to-post-on-tiktok)
