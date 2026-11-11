@@ -1,6 +1,6 @@
 # Lista de afiliación de Las cosas por dentro
 
-Preparada el 11 de noviembre de 2026. Sirve para cuando la cuenta llegue a unos 1.000 seguidores, que es cuando TikTok deja poner un enlace en la bio (hito 3 del PRD). Hoy tiene 6, así que de momento es solo la lista: no se pone ningún enlace todavía.
+Preparada el 11 de noviembre de 2026. Sirve para cuando la cuenta llegue a unos 1.000 seguidores, que es cuando TikTok deja poner un enlace en la bio (un paso intermedio del PRD, antes del hito 3). Hoy tiene 6, así que de momento es solo la lista: no se pone ningún enlace todavía.
 
 ## Qué tiene que hacer Javier (Claude no crea cuentas)
 

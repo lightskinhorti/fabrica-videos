@@ -2,27 +2,27 @@
  "cuentas": {
   "dinerosinlio": {
    "error": null,
-   "leido": 1794386723,
+   "leido": 1794401180,
    "megusta": 85,
    "seguidores": 7,
    "tiktok": "eldinerosinlio"
   },
   "elcontadorloco": {
    "error": null,
-   "leido": 1794386723,
-   "megusta": 204,
+   "leido": 1794401180,
+   "megusta": 206,
    "seguidores": 5,
    "tiktok": "elcontadorloco"
   },
   "lascosaspordentro": {
    "error": null,
-   "leido": 1794386723,
+   "leido": 1794401180,
    "megusta": 138,
    "seguidores": 6,
    "tiktok": "lascosaspordentro"
   }
  },
- "leido": 1794386723,
+ "leido": 1794401180,
  "videos": {
   "7703610063235190038": {
    "comentarios": 3,
@@ -273,7 +273,7 @@
    "texto": "En España el pan común, la leche, los huevos, el queso, la fruta, la verdura, las legumbres y el aceite de oliva llevan ",
    "url": "https://www.tiktok.com/@eldinerosinlio/video/7705524543095426326",
    "v24": null,
-   "vistas": 842
+   "vistas": 843
   },
   "7706114335826824451": {
    "comentarios": 1,
@@ -285,18 +285,18 @@
    "texto": "4 horas de móvil al día, sumadas: 28 horas a la semana, 2 meses enteros al año y 12 años enteros en toda una vida (desde",
    "url": "https://www.tiktok.com/@elcontadorloco/video/7706114335826824451",
    "v24": 781,
-   "vistas": 782
+   "vistas": 784
   },
   "7706115412081069334": {
    "comentarios": 0,
    "compartidos": 0,
    "cuenta": "elcontadorloco",
-   "megusta": 24,
+   "megusta": 26,
    "panel": "elcontadorloco/11-refresco-salud",
    "publicado": 1794344400,
    "texto": "Una lata de refresco con azúcar al día, todos los días: qué dicen la OMS y los estudios de los dientes, el peso, la diab",
    "url": "https://www.tiktok.com/@elcontadorloco/video/7706115412081069334",
-   "vistas": 767
+   "vistas": 773
   },
   "7706116011107405078": {
    "comentarios": 0,
@@ -319,7 +319,7 @@
    "publicado": 1794344400,
    "texto": "Tu ratón óptico lleva una cámara diminuta: hace más de mil fotos por segundo de tu mesa, iluminada con una luz casi rasa",
    "url": "https://www.tiktok.com/@lascosaspordentro/video/7706116389475519766",
-   "vistas": 733
+   "vistas": 736
   },
   "7706116969228946710": {
    "comentarios": 0,
@@ -342,7 +342,7 @@
    "publicado": 1794344400,
    "texto": "El 2 de noviembre de 2026 el litro de gasolina 95 costaba de media en España 1,73 €, y 57 céntimos eran impuestos: el de",
    "url": "https://www.tiktok.com/@eldinerosinlio/video/7706117419705568534",
-   "vistas": 772
+   "vistas": 773
   }
  }
 }

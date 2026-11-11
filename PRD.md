@@ -12,10 +12,10 @@ El estilo de referencia es el vídeo que adjuntaste: personajes 3D sencillos, su
 
 Hay dos líneas de ingresos:
 
-1. **TikTok:** cuentas de nichos explicativos en español. TikTok no paga por visualizaciones en España (comprobado el 9 de noviembre, ver "Cobro desde España"), así que estas cuentas cobran con afiliación desde unos 1.000 seguidores y con marcas desde unos 10.000.
+1. **TikTok:** cuentas de nichos explicativos en español, que cobran del programa de pagos de TikTok cuando una cuenta llega a 10.000 seguidores y 100.000 visualizaciones en 30 días, con vídeos de más de 60 s. Que el programa esté abierto en España lo sabemos por la cuenta de la novia de Javier; la web oficial no lo dice (ver "Cobro desde España"). La afiliación (desde unos 1.000 seguidores) y las marcas (desde unos 10.000) quedan como respaldo.
 2. **Instagram:** una cuenta que enseña cómo funciona la fábrica, con un enlace en la bio a packs de configuración para montar tu propia fábrica. Es una venta única, sin llamadas.
 
-Primer hito de dinero: una cuenta con 1.000 seguidores, que abre la afiliación. No hay datos fiables de cuánto se tarda.
+Primer hito de dinero: tener una cuenta de TikTok dentro del programa de pagos. No hay datos fiables de cuánto se tarda.
 
 ## Decisiones tomadas
 
@@ -44,12 +44,11 @@ El objetivo es un extra mensual. No fijamos una cifra todavía: primero hay que 
 
 1. La fábrica saca un vídeo de calidad con 5 minutos o menos de tu tiempo.
 2. Primer vídeo con más de 100.000 visualizaciones.
-3. Una cuenta con 1.000 seguidores: abre el enlace en la bio de TikTok y la afiliación (Amazon y TikTok Shop).
-4. Una cuenta con 10.000 seguidores: abre las marcas (el mercado de marcas de TikTok y los acuerdos directos).
-5. Primer cobro, de afiliación o de una marca.
-6. Primera venta de un pack en Instagram.
+3. Una cuenta con 10.000 seguidores y 100.000 visualizaciones en los últimos 30 días, que es lo que pide TikTok para entrar en su programa de pagos.
+4. Primer cobro de TikTok.
+5. Primera venta de un pack en Instagram.
 
-Los hitos 3 y 4 los cambió Javier el 9 de noviembre. Antes eran entrar en el programa de pagos de TikTok (10.000 seguidores y 100.000 visualizaciones en 30 días) y el primer cobro de TikTok, pero ese programa no existe en España.
+Los hitos 3 y 4 vuelven a ser los del principio (Javier, 11 de noviembre). El 9 de noviembre se habían cambiado por 1.000 seguidores (afiliación) y 10.000 seguidores (marcas), porque Claude dio por hecho que el programa de pagos no existía en España; la novia de Javier lo tiene con una cuenta española. Por el camino, los 1.000 seguidores siguen abriendo el enlace en la bio y la afiliación, y los 10.000 las marcas: son pasos intermedios, no hitos. Los requisitos exactos del programa en España no están confirmados: 10.000 y 100.000 son los que publica TikTok para los países de su lista.
 
 **Métricas que decide el torneo:**
 
@@ -87,14 +86,14 @@ Se mira la mediana porque, en un estudio de Buffer con millones de publicaciones
 
 **Datos del 9 de noviembre:** lo publicado el sábado 7 a las 22:00 es lo mejor de las tres cuentas: la comida va por 883 visualizaciones, la nevera por 804 y el IVA por 836, más del triple que los vídeos de las 20:00. Solo es un día. Los vídeos del 9 y el 10 salen también a las 22:00, pero **Javier decidió (9 de noviembre) que desde la siguiente tanda se programen a las 20:00**. El domingo 8 no salió nada.
 
-**Corrección del 11 de noviembre sobre el pago de TikTok:** Javier dice que su novia tiene el programa de pago de TikTok con una cuenta de España. Eso contradice lo que Claude dio por confirmado el 9 de noviembre, así que **no se da por hecho que TikTok no pague en España**. Lo que se sabe de verdad: la página oficial de Creator Academy solo nombra 8 países y no incluye España, y el programa no aparece en la página de monetización de ninguna de las 3 cuentas (que tienen 5 o 6 seguidores). Puede que esa página esté desactualizada o que el programa solo se enseñe a las cuentas que ya cumplen los requisitos. Mientras no se aclare: los vídeos siguen durando más de 60 s, por si acaso, y todo lo que en este PRD diga "TikTok no paga por visualizaciones en España" se lee como "no confirmado". Pendiente: ver en la cuenta de la novia de Javier cómo se llama el programa y qué requisitos le pidieron, y que Javier decida si vuelven los hitos de antes (10.000 seguidores y 100.000 visualizaciones en 30 días).
+**Corrección del 11 de noviembre sobre el pago de TikTok:** Javier dice que su novia tiene el programa de pago de TikTok con una cuenta de España. Eso contradice lo que Claude dio por confirmado el 9 de noviembre, así que **no se da por hecho que TikTok no pague en España**. Lo que se sabe de verdad: la página oficial de Creator Academy solo nombra 8 países y no incluye España, y el programa no aparece en la página de monetización de ninguna de las 3 cuentas (que tienen 5 o 6 seguidores). Puede que esa página esté desactualizada o que el programa solo se enseñe a las cuentas que ya cumplen los requisitos. Mientras no se aclare: los vídeos siguen durando más de 60 s, por si acaso, y todo lo que en este PRD diga "TikTok no paga por visualizaciones en España" se lee como "no confirmado". **Decidido por Javier el 11 de noviembre: vuelven los hitos de antes** (10.000 seguidores y 100.000 visualizaciones en 30 días, y el primer cobro de TikTok). Pendiente: ver en la cuenta de la novia de Javier cómo se llama el programa y qué requisitos le pidieron.
 
 **Cobro desde España (escrito el 9 de noviembre; ver la corrección de arriba):**
 - **TikTok no paga por visualizaciones en España.** La página oficial de Creator Rewards (Creator Academy de TikTok) dice que el programa está abierto solo en Estados Unidos, Reino Unido, Alemania, Japón, Corea del Sur, Francia, México y Brasil, y que hay que vivir en uno de esos países y tener la cuenta registrada allí. España no está. Muchos blogs dicen que sí, pero se equivocan. Cambiar de región o usar una VPN va contra las condiciones de TikTok y no se hace.
 - Coincide con lo que se ve en TikTok Studio de Dinero sin lío: Creator Rewards no aparece, y salen como "no elegible" las suscripciones, Creator Marketplace (marcas), TikTok Shop, los regalos y LIVE.
 - **Lo que sí hay en TikTok desde España** (todo depende de tener audiencia, y las cifras exactas no están confirmadas para España): regalos en los vídeos y en los directos, suscripciones, acuerdos con marcas (TikTok One pide 10.000 seguidores, según una guía de octubre de 2026) y afiliación con TikTok Shop.
 - **Instagram (página oficial de ayuda, leída el 9 de noviembre):** los regalos en los Reels sí funcionan en España, desde 500 seguidores, con cuenta profesional y mayor de 18 años. Pagan 0,01 $ por cada estrella que manda alguien, así que es poco dinero. Los bonos por visualizaciones son solo por invitación y, según Meta en 2024, solo en Estados Unidos, Corea del Sur y Japón. Instagram tampoco paga por visualizaciones en España.
-- **Consecuencia:** los hitos 3 y 4 (entrar en el programa de TikTok y primer cobro de TikTok) no se pueden cumplir desde España tal y como están escritos. Las cuentas de TikTok siguen sirviendo para conseguir audiencia, que es lo que piden los regalos, las marcas, la afiliación y YouTube. **Decidido por Javier (9 de noviembre):** los hitos 3 y 4 pasan a ser 1.000 seguidores (afiliación) y 10.000 seguidores (marcas). El detalle de cada forma de cobrar está en "Formas de cobrar desde España".
+- **Consecuencia:** los hitos 3 y 4 (entrar en el programa de TikTok y primer cobro de TikTok) no se pueden cumplir desde España tal y como están escritos. Las cuentas de TikTok siguen sirviendo para conseguir audiencia, que es lo que piden los regalos, las marcas, la afiliación y YouTube. **Decidido por Javier (9 de noviembre):** los hitos 3 y 4 pasan a ser 1.000 seguidores (afiliación) y 10.000 seguidores (marcas). **Deshecho el 11 de noviembre:** vuelven los hitos del programa de pagos (ver la corrección de arriba). El detalle de cada forma de cobrar está en "Formas de cobrar desde España".
 
 **Estadísticas de TikTok Studio (leídas el 11 de noviembre, guardadas en `datos/studio.json`):**
 
@@ -120,7 +119,7 @@ Se mira la mediana porque, en un estudio de Buffer con millones de publicaciones
 - **Saturación:** un estudio de Kapwing ve menos contenido de baja calidad hecho con IA en Shorts (21 %) que en TikTok (59 %), pero porque YouTube lo filtra más. España es el país con más suscriptores en ese tipo de canales.
 - **Coste:** casi ninguno. Es el mismo archivo, un Short puede durar hasta 3 minutos y YouTube Studio programa desde el ordenador.
 - **Propuesta:** probar 6 a 8 semanas con un solo canal y medir las visualizaciones que cuentan y los suscriptores antes de abrir más. Javier decide si se hace y con qué cuenta.
-- TikTok es el foco porque es donde más rápido crece la audiencia, y los hitos 3 y 4 se miden en seguidores. Desde España no paga por visualizaciones (ver "Cobro desde España"). Instagram sirve para los packs.
+- TikTok es el foco porque es donde más rápido crece la audiencia y donde están los hitos 3 y 4 (el programa de pagos; ver "Cobro desde España"). Instagram sirve para los packs.
 - No se juzga nada hasta las 2 semanas. Cada vídeo se apunta a las 24 horas y a los 7 días.
 - La reserva se acaba pronto: El contador loco tiene vídeos hasta el miércoles 4 de noviembre, y Las cosas por dentro hasta el reloj (su día 2). Hacen falta el vídeo 6 del contador y el GPS antes del jueves 5, porque cortar el ritmo la primera semana es lo que hay que evitar.
 
@@ -424,7 +423,7 @@ Comparación del 9 de noviembre, hecha porque TikTok no paga por visualizaciones
 - Reglas que no cambian: Dinero sin lío explica y nunca recomienda (nada de enlaces a bancos, tarjetas ni inversiones) y El contador loco no aconseja sobre salud (nada de suplementos ni productos milagro).
 
 **Propuesta de Claude:**
-1. **Hecho (Javier, 9 de noviembre):** los hitos 3 y 4 son ahora "una cuenta con 1.000 seguidores" (abre la afiliación y el enlace en la bio) y "una cuenta con 10.000 seguidores" (abre las marcas), y el primer cobro será de afiliación o de una marca.
+1. **Hecho el 9 de noviembre y deshecho el 11 (Javier):** los hitos 3 y 4 fueron dos días "una cuenta con 1.000 seguidores" y "una cuenta con 10.000 seguidores". Han vuelto a ser los del programa de pagos de TikTok; la afiliación y las marcas quedan como pasos intermedios y como respaldo.
 
 Los puntos 2 a 4 siguen pendientes de que Javier decida:
 
@@ -722,7 +721,7 @@ El riesgo más probable es que ninguna cuenta despegue. Por eso el proyecto est�
 | El programador de TikTok exige cuenta de empresa (descartado: funciona con la personal, 2 de noviembre) | No se puede programar | Publicar a mano en las franjas de tarde-noche |
 | Conflicto con eduki | Problemas en el trabajo, más aún en periodo de prueba | Equipo y cuentas personales, nada de eduki, marca sin tu nombre y revisar el contrato antes de lanzar |
 | Cansancio | Dejarlo antes de ver resultados | Subir por escalones y tener una semana de vídeos en reserva |
-| TikTok no paga por visualizaciones en España (confirmado el 9 de noviembre) | El dinero depende de la afiliación y de las marcas, que piden audiencia | Hitos de 1.000 y 10.000 seguidores, y YouTube y packs como respaldo |
+| El programa de pagos de TikTok no está disponible para nuestras cuentas, o cambia (la web oficial no nombra a España; la novia de Javier sí lo tiene) | Cae el ingreso principal | Afiliación desde 1.000 seguidores, marcas desde 10.000, y YouTube y packs como respaldo |
 | Nicho de política | Mucha audiencia pero poco cobro, y comentarios tóxicos | Las cuatro condiciones de la sección Nichos y torneo |
 | Usar a Clawd u otro personaje ajeno | Reclamación de marca y vídeos que no cuentan como originales | Personajes propios diseñados desde cero; Clawd nunca sale |
 | Licencia de una skill | Usar en vídeos que cobran una herramienta solo para uso no comercial, como onetake | Solo HyperFrames, lemo-opuscar y ClaudeAnimationBase; revisar la licencia de cualquier skill nueva antes de instalarla |
@@ -762,7 +761,8 @@ Esta lista hay que tenerla hecha antes de publicar el primer vídeo. La parte de
   - Objetos por dentro: **Las cosas por dentro**, `@lascosaspordentro`. Primero se eligió «Mira por dentro», pero en Instagram `@mirapordentro` estaba cogido (una cuenta desactivada) y `@mirapordentro_` hace exactamente lo mismo, así que se cambió en las dos plataformas para no confundirse con ella.
   - Dinero cotidiano: **Dinero sin lío**, `@dinerosinlio` en Instagram y `@eldinerosinlio` en TikTok.
 - [ ] Decidir qué incluye cada pack y a qué precio (fase 4).
-- [x] Decidir cómo quedan los hitos 3 y 4 ahora que TikTok no paga por visualizaciones en España: 1.000 seguidores (afiliación) y 10.000 (marcas), decidido por Javier el 9 de noviembre.
+- [x] Decidir cómo quedan los hitos 3 y 4: vuelven a ser los del programa de pagos de TikTok (10.000 seguidores y 100.000 visualizaciones en 30 días), decidido por Javier el 11 de noviembre.
+- [ ] Ver en la cuenta de la novia de Javier cómo se llama el programa de pagos y qué requisitos le pidieron.
 - [ ] Decidir si se prepara la lista de Amazon de Las cosas por dentro y si se prueban los YouTube Shorts (ver "Formas de cobrar desde España").
 - [x] Confirmar si el contrato de eduki tiene pacto de plena dedicación: revisado por ti el 2 de noviembre, no hay nada que prohíba el proyecto.
 
