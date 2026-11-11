@@ -1,167 +1,185 @@
 {
-  "dinerosinlio/01-loteria": {
-    "aprobado": true,
-    "fecha": "2026-11-03",
-    "hora": "20:00",
-    "programado": true
-  },
-  "dinerosinlio/02-nomina": {
-    "aprobado": true,
-    "fecha": "2026-11-03",
-    "hora": "22:00",
-    "programado": true
-  },
-  "dinerosinlio/03-billete": {
-    "aprobado": true,
-    "fecha": "2026-11-03",
-    "hora": "18:00",
-    "programado": true
-  },
-  "dinerosinlio/04-rebajas": {
-    "aprobado": true,
-    "fecha": "2026-11-04",
-    "hora": "20:00",
-    "programado": true
-  },
-  "dinerosinlio/05-cafe": {
-    "aprobado": true,
-    "fecha": "2026-11-05",
-    "hora": "20:00",
-    "programado": true
-  },
-  "dinerosinlio/06-iva": {
-    "aprobado": true,
-    "fecha": "2026-11-07",
-    "hora": "22:00",
-    "programado": true
-  },
-  "dinerosinlio/07-cajero": {
-    "aprobado": true,
-    "fecha": "2026-11-09",
-    "hora": "22:00",
-    "programado": true
-  },
-  "dinerosinlio/08-gasolina": {
-    "aprobado": true,
-    "fecha": "2026-11-10",
-    "hora": "22:00",
-    "programado": true
-  },
-  "elcontadorloco/01-ascensor": {
-    "aprobado": true,
-    "fecha": "2026-11-02",
-    "hora": "20:00",
-    "instagram": true,
-    "programado": true
-  },
-  "elcontadorloco/02-movil": {
-    "aprobado": true,
-    "fecha": "2026-11-04",
-    "hora": "20:00",
-    "programado": true
-  },
-  "elcontadorloco/03-gato": {
-    "aprobado": true,
-    "fecha": "2026-11-02",
-    "hora": "18:00",
-    "programado": true
-  },
-  "elcontadorloco/04-crecer": {
-    "aprobado": true,
-    "fecha": "2026-11-03",
-    "hora": "20:00",
-    "programado": true
-  },
-  "elcontadorloco/05-ropa": {
-    "aprobado": true,
-    "fecha": "2026-11-02",
-    "hora": "22:00",
-    "programado": true
-  },
-  "elcontadorloco/06-pasos": {
-    "aprobado": false,
-    "nota": "Reserva: en su hueco del jueves 5 va 08-pasos-salud, la versión de salud que pidió Javier"
-  },
-  "elcontadorloco/07-comida": {
-    "aprobado": true,
-    "fecha": "2026-11-07",
-    "hora": "22:00",
-    "programado": true
-  },
-  "elcontadorloco/08-pasos-salud": {
-    "aprobado": true,
-    "fecha": "2026-11-05",
-    "hora": "20:00",
-    "programado": true
-  },
-  "elcontadorloco/09-movil": {
-    "aprobado": true,
-    "fecha": "2026-11-09",
-    "hora": "22:00",
-    "programado": true
-  },
-  "elcontadorloco/11-refresco-salud": {
-    "aprobado": true,
-    "fecha": "2026-11-10",
-    "hora": "22:00",
-    "programado": true
-  },
-  "lascosaspordentro/01-tarjeta": {
-    "aprobado": true,
-    "fecha": "2026-11-02",
-    "hora": "20:00",
-    "programado": true
-  },
-  "lascosaspordentro/02-cargador": {
-    "aprobado": true,
-    "fecha": "2026-11-02",
-    "hora": "22:00",
-    "programado": true
-  },
-  "lascosaspordentro/03-induccion": {
-    "aprobado": true,
-    "fecha": "2026-11-02",
-    "hora": "18:00",
-    "programado": true
-  },
-  "lascosaspordentro/04-pantalla": {
-    "descartado": true,
-    "nota": "Tema que ya tiene @speedy_devv"
-  },
-  "lascosaspordentro/05-reloj": {
-    "aprobado": true,
-    "fecha": "2026-11-03",
-    "hora": "20:00",
-    "programado": true
-  },
-  "lascosaspordentro/06-gps": {
-    "aprobado": true,
-    "fecha": "2026-11-04",
-    "hora": "20:00",
-    "programado": true
-  },
-  "lascosaspordentro/07-microondas": {
-    "aprobado": true,
-    "fecha": "2026-11-05",
-    "hora": "20:00",
-    "programado": true
-  },
-  "lascosaspordentro/08-nevera": {
-    "aprobado": true,
-    "fecha": "2026-11-07",
-    "hora": "22:00",
-    "programado": true
-  },
-  "lascosaspordentro/09-mando": {
-    "aprobado": true,
-    "fecha": "2026-11-09",
-    "hora": "22:00",
-    "programado": true
-  },
-  "lascosaspordentro/10-raton": {
-    "aprobado": true,
-    "fecha": "2026-11-10",
-    "hora": "22:00",
-    "programado": true
-  }
+ "dinerosinlio/01-loteria": {
+  "aprobado": true,
+  "fecha": "2026-11-03",
+  "hora": "20:00",
+  "programado": true
+ },
+ "dinerosinlio/02-nomina": {
+  "aprobado": true,
+  "fecha": "2026-11-03",
+  "hora": "22:00",
+  "programado": true
+ },
+ "dinerosinlio/03-billete": {
+  "aprobado": true,
+  "fecha": "2026-11-03",
+  "hora": "18:00",
+  "programado": true
+ },
+ "dinerosinlio/04-rebajas": {
+  "aprobado": true,
+  "fecha": "2026-11-04",
+  "hora": "20:00",
+  "programado": true
+ },
+ "dinerosinlio/05-cafe": {
+  "aprobado": true,
+  "fecha": "2026-11-05",
+  "hora": "20:00",
+  "programado": true
+ },
+ "dinerosinlio/06-iva": {
+  "aprobado": true,
+  "fecha": "2026-11-07",
+  "hora": "22:00",
+  "programado": true
+ },
+ "dinerosinlio/07-cajero": {
+  "aprobado": true,
+  "fecha": "2026-11-09",
+  "hora": "22:00",
+  "programado": true
+ },
+ "dinerosinlio/08-gasolina": {
+  "aprobado": true,
+  "fecha": "2026-11-10",
+  "hora": "22:00",
+  "programado": true
+ },
+ "elcontadorloco/01-ascensor": {
+  "aprobado": true,
+  "fecha": "2026-11-02",
+  "hora": "20:00",
+  "instagram": true,
+  "programado": true
+ },
+ "elcontadorloco/02-movil": {
+  "aprobado": true,
+  "fecha": "2026-11-04",
+  "hora": "20:00",
+  "programado": true
+ },
+ "elcontadorloco/03-gato": {
+  "aprobado": true,
+  "fecha": "2026-11-02",
+  "hora": "18:00",
+  "programado": true
+ },
+ "elcontadorloco/04-crecer": {
+  "aprobado": true,
+  "fecha": "2026-11-03",
+  "hora": "20:00",
+  "programado": true
+ },
+ "elcontadorloco/05-ropa": {
+  "aprobado": true,
+  "fecha": "2026-11-02",
+  "hora": "22:00",
+  "programado": true
+ },
+ "elcontadorloco/06-pasos": {
+  "aprobado": false,
+  "nota": "Reserva: en su hueco del jueves 5 va 08-pasos-salud, la versión de salud que pidió Javier"
+ },
+ "elcontadorloco/07-comida": {
+  "aprobado": true,
+  "fecha": "2026-11-07",
+  "hora": "22:00",
+  "programado": true
+ },
+ "elcontadorloco/08-pasos-salud": {
+  "aprobado": true,
+  "fecha": "2026-11-05",
+  "hora": "20:00",
+  "programado": true
+ },
+ "elcontadorloco/09-movil": {
+  "aprobado": true,
+  "fecha": "2026-11-09",
+  "hora": "22:00",
+  "programado": true
+ },
+ "elcontadorloco/11-refresco-salud": {
+  "aprobado": true,
+  "fecha": "2026-11-10",
+  "hora": "22:00",
+  "programado": true
+ },
+ "lascosaspordentro/01-tarjeta": {
+  "aprobado": true,
+  "fecha": "2026-11-02",
+  "hora": "20:00",
+  "programado": true
+ },
+ "lascosaspordentro/02-cargador": {
+  "aprobado": true,
+  "fecha": "2026-11-02",
+  "hora": "22:00",
+  "programado": true
+ },
+ "lascosaspordentro/03-induccion": {
+  "aprobado": true,
+  "fecha": "2026-11-02",
+  "hora": "18:00",
+  "programado": true
+ },
+ "lascosaspordentro/04-pantalla": {
+  "descartado": true,
+  "nota": "Tema que ya tiene @speedy_devv"
+ },
+ "lascosaspordentro/05-reloj": {
+  "aprobado": true,
+  "fecha": "2026-11-03",
+  "hora": "20:00",
+  "programado": true
+ },
+ "lascosaspordentro/06-gps": {
+  "aprobado": true,
+  "fecha": "2026-11-04",
+  "hora": "20:00",
+  "programado": true
+ },
+ "lascosaspordentro/07-microondas": {
+  "aprobado": true,
+  "fecha": "2026-11-05",
+  "hora": "20:00",
+  "programado": true
+ },
+ "lascosaspordentro/08-nevera": {
+  "aprobado": true,
+  "fecha": "2026-11-07",
+  "hora": "22:00",
+  "programado": true
+ },
+ "lascosaspordentro/09-mando": {
+  "aprobado": true,
+  "fecha": "2026-11-09",
+  "hora": "22:00",
+  "programado": true
+ },
+ "lascosaspordentro/10-raton": {
+  "aprobado": true,
+  "fecha": "2026-11-10",
+  "hora": "22:00",
+  "programado": true
+ },
+ "elcontadorloco/12-cafe": {
+  "aprobado": true,
+  "programado": true,
+  "fecha": "2026-11-11",
+  "hora": "18:00"
+ },
+ "lascosaspordentro/12-usb": {
+  "aprobado": true,
+  "programado": true,
+  "fecha": "2026-11-11",
+  "hora": "18:00"
+ },
+ "dinerosinlio/10-centimos": {
+  "aprobado": true,
+  "programado": true,
+  "fecha": "2026-11-11",
+  "hora": "18:00"
+ }
 }
