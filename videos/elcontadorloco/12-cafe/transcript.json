@@ -1,0 +1,1058 @@
+[
+  {
+    "text": "¿Tres",
+    "start": 0.05,
+    "end": 0.39,
+    "id": "w0"
+  },
+  {
+    "text": "cafés",
+    "start": 0.46,
+    "end": 0.83,
+    "id": "w1"
+  },
+  {
+    "text": "al",
+    "start": 0.83,
+    "end": 0.97,
+    "id": "w2"
+  },
+  {
+    "text": "día",
+    "start": 1.08,
+    "end": 1.25,
+    "id": "w3"
+  },
+  {
+    "text": "son",
+    "start": 1.25,
+    "end": 1.5,
+    "id": "w4"
+  },
+  {
+    "text": "demasiados?",
+    "start": 1.5,
+    "end": 2.68,
+    "id": "w5"
+  },
+  {
+    "text": "Esto",
+    "start": 2.72,
+    "end": 2.9,
+    "id": "w6"
+  },
+  {
+    "text": "le",
+    "start": 2.9,
+    "end": 3,
+    "id": "w7"
+  },
+  {
+    "text": "pasa",
+    "start": 3.01,
+    "end": 3.23,
+    "id": "w8"
+  },
+  {
+    "text": "a",
+    "start": 3.23,
+    "end": 3.28,
+    "id": "w9"
+  },
+  {
+    "text": "tu",
+    "start": 3.28,
+    "end": 3.39,
+    "id": "w10"
+  },
+  {
+    "text": "cuerpo,",
+    "start": 3.39,
+    "end": 3.83,
+    "id": "w11"
+  },
+  {
+    "text": "según",
+    "start": 3.83,
+    "end": 4.11,
+    "id": "w12"
+  },
+  {
+    "text": "los",
+    "start": 4.11,
+    "end": 4.27,
+    "id": "w13"
+  },
+  {
+    "text": "estudios,",
+    "start": 4.27,
+    "end": 4.88,
+    "id": "w14"
+  },
+  {
+    "text": "y",
+    "start": 4.88,
+    "end": 4.96,
+    "id": "w15"
+  },
+  {
+    "text": "el",
+    "start": 4.96,
+    "end": 5.13,
+    "id": "w16"
+  },
+  {
+    "text": "final",
+    "start": 5.13,
+    "end": 5.57,
+    "id": "w17"
+  },
+  {
+    "text": "no",
+    "start": 5.57,
+    "end": 5.7,
+    "id": "w18"
+  },
+  {
+    "text": "es",
+    "start": 5.76,
+    "end": 5.91,
+    "id": "w19"
+  },
+  {
+    "text": "el",
+    "start": 5.91,
+    "end": 6.02,
+    "id": "w20"
+  },
+  {
+    "text": "que",
+    "start": 6.09,
+    "end": 6.15,
+    "id": "w21"
+  },
+  {
+    "text": "esperas.",
+    "start": 6.35,
+    "end": 7.18,
+    "id": "w22"
+  },
+  {
+    "text": "Primer",
+    "start": 7.3,
+    "end": 7.75,
+    "id": "w23"
+  },
+  {
+    "text": "día.",
+    "start": 7.75,
+    "end": 8.23,
+    "id": "w24"
+  },
+  {
+    "text": "Tres",
+    "start": 8.31,
+    "end": 8.5,
+    "id": "w25"
+  },
+  {
+    "text": "tazas",
+    "start": 8.57,
+    "end": 8.81,
+    "id": "w26"
+  },
+  {
+    "text": "son",
+    "start": 8.81,
+    "end": 8.99,
+    "id": "w27"
+  },
+  {
+    "text": "unos",
+    "start": 9,
+    "end": 9.23,
+    "id": "w28"
+  },
+  {
+    "text": "240",
+    "start": 9.34,
+    "end": 9.82,
+    "id": "w29"
+  },
+  {
+    "text": "miligramos",
+    "start": 9.82,
+    "end": 10.14,
+    "id": "w30"
+  },
+  {
+    "text": "de",
+    "start": 10.42,
+    "end": 10.56,
+    "id": "w31"
+  },
+  {
+    "text": "cafeína.",
+    "start": 10.71,
+    "end": 11.26,
+    "id": "w32"
+  },
+  {
+    "text": "La",
+    "start": 11.3,
+    "end": 11.4,
+    "id": "w33"
+  },
+  {
+    "text": "Agencia",
+    "start": 11.4,
+    "end": 11.89,
+    "id": "w34"
+  },
+  {
+    "text": "Europea,",
+    "start": 11.89,
+    "end": 12.53,
+    "id": "w35"
+  },
+  {
+    "text": "EFSA,",
+    "start": 12.53,
+    "end": 12.95,
+    "id": "w36"
+  },
+  {
+    "text": "ve",
+    "start": 12.95,
+    "end": 13.06,
+    "id": "w37"
+  },
+  {
+    "text": "seguros",
+    "start": 13.06,
+    "end": 13.56,
+    "id": "w38"
+  },
+  {
+    "text": "hasta",
+    "start": 13.71,
+    "end": 13.95,
+    "id": "w39"
+  },
+  {
+    "text": "400",
+    "start": 13.95,
+    "end": 14.59,
+    "id": "w40"
+  },
+  {
+    "text": "al",
+    "start": 14.59,
+    "end": 14.73,
+    "id": "w41"
+  },
+  {
+    "text": "día",
+    "start": 14.92,
+    "end": 14.95,
+    "id": "w42"
+  },
+  {
+    "text": "en",
+    "start": 14.95,
+    "end": 15.09,
+    "id": "w43"
+  },
+  {
+    "text": "adultos",
+    "start": 15.09,
+    "end": 15.59,
+    "id": "w44"
+  },
+  {
+    "text": "sanos.",
+    "start": 15.59,
+    "end": 16.3,
+    "id": "w45"
+  },
+  {
+    "text": "Esa",
+    "start": 16.34,
+    "end": 16.52,
+    "id": "w46"
+  },
+  {
+    "text": "noche",
+    "start": 16.52,
+    "end": 16.9,
+    "id": "w47"
+  },
+  {
+    "text": "el",
+    "start": 16.9,
+    "end": 17.03,
+    "id": "w48"
+  },
+  {
+    "text": "sueño.",
+    "start": 17.05,
+    "end": 17.69,
+    "id": "w49"
+  },
+  {
+    "text": "En",
+    "start": 17.74,
+    "end": 17.84,
+    "id": "w50"
+  },
+  {
+    "text": "24",
+    "start": 17.84,
+    "end": 18.27,
+    "id": "w51"
+  },
+  {
+    "text": "estudios,",
+    "start": 18.27,
+    "end": 18.98,
+    "id": "w52"
+  },
+  {
+    "text": "la",
+    "start": 18.98,
+    "end": 19.11,
+    "id": "w53"
+  },
+  {
+    "text": "cafeína",
+    "start": 19.12,
+    "end": 19.55,
+    "id": "w54"
+  },
+  {
+    "text": "quitó",
+    "start": 19.61,
+    "end": 19.96,
+    "id": "w55"
+  },
+  {
+    "text": "de",
+    "start": 19.96,
+    "end": 20.15,
+    "id": "w56"
+  },
+  {
+    "text": "media",
+    "start": 20.15,
+    "end": 20.46,
+    "id": "w57"
+  },
+  {
+    "text": "45",
+    "start": 20.46,
+    "end": 20.84,
+    "id": "w58"
+  },
+  {
+    "text": "minutos.",
+    "start": 20.89,
+    "end": 21.68,
+    "id": "w59"
+  },
+  {
+    "text": "Yun",
+    "start": 21.73,
+    "end": 21.87,
+    "id": "w60"
+  },
+  {
+    "text": "café",
+    "start": 21.87,
+    "end": 22.07,
+    "id": "w61"
+  },
+  {
+    "text": "puede",
+    "start": 22.14,
+    "end": 22.48,
+    "id": "w62"
+  },
+  {
+    "text": "notarse",
+    "start": 22.48,
+    "end": 22.95,
+    "id": "w63"
+  },
+  {
+    "text": "casi",
+    "start": 22.95,
+    "end": 23.21,
+    "id": "w64"
+  },
+  {
+    "text": "9",
+    "start": 23.22,
+    "end": 23.42,
+    "id": "w65"
+  },
+  {
+    "text": "horas",
+    "start": 23.42,
+    "end": 23.54,
+    "id": "w66"
+  },
+  {
+    "text": "después",
+    "start": 24.13,
+    "end": 24.24,
+    "id": "w67"
+  },
+  {
+    "text": "de",
+    "start": 24.31,
+    "end": 24.37,
+    "id": "w68"
+  },
+  {
+    "text": "tomarlo.",
+    "start": 24.37,
+    "end": 25.12,
+    "id": "w69"
+  },
+  {
+    "text": "Al",
+    "start": 25.16,
+    "end": 25.24,
+    "id": "w70"
+  },
+  {
+    "text": "año",
+    "start": 25.24,
+    "end": 25.36,
+    "id": "w71"
+  },
+  {
+    "text": "ya",
+    "start": 25.43,
+    "end": 25.51,
+    "id": "w72"
+  },
+  {
+    "text": "van",
+    "start": 25.58,
+    "end": 25.72,
+    "id": "w73"
+  },
+  {
+    "text": "más",
+    "start": 25.72,
+    "end": 25.9,
+    "id": "w74"
+  },
+  {
+    "text": "de",
+    "start": 25.9,
+    "end": 26.02,
+    "id": "w75"
+  },
+  {
+    "text": "1000",
+    "start": 26.02,
+    "end": 26.73,
+    "id": "w76"
+  },
+  {
+    "text": "tazas.",
+    "start": 26.73,
+    "end": 27.02,
+    "id": "w77"
+  },
+  {
+    "text": "Yel",
+    "start": 27.27,
+    "end": 27.46,
+    "id": "w78"
+  },
+  {
+    "text": "cáncer.",
+    "start": 27.46,
+    "end": 28.19,
+    "id": "w79"
+  },
+  {
+    "text": "La",
+    "start": 28.27,
+    "end": 28.3,
+    "id": "w80"
+  },
+  {
+    "text": "Agencia",
+    "start": 28.32,
+    "end": 28.69,
+    "id": "w81"
+  },
+  {
+    "text": "de",
+    "start": 28.69,
+    "end": 28.79,
+    "id": "w82"
+  },
+  {
+    "text": "la",
+    "start": 28.79,
+    "end": 28.89,
+    "id": "w83"
+  },
+  {
+    "text": "HOMS",
+    "start": 28.89,
+    "end": 29.09,
+    "id": "w84"
+  },
+  {
+    "text": "revisó",
+    "start": 29.09,
+    "end": 29.41,
+    "id": "w85"
+  },
+  {
+    "text": "más",
+    "start": 29.41,
+    "end": 29.57,
+    "id": "w86"
+  },
+  {
+    "text": "de",
+    "start": 29.57,
+    "end": 29.67,
+    "id": "w87"
+  },
+  {
+    "text": "1000",
+    "start": 29.67,
+    "end": 30.07,
+    "id": "w88"
+  },
+  {
+    "text": "estudios",
+    "start": 30.58,
+    "end": 30.77,
+    "id": "w89"
+  },
+  {
+    "text": "y",
+    "start": 30.85,
+    "end": 30.87,
+    "id": "w90"
+  },
+  {
+    "text": "no",
+    "start": 30.87,
+    "end": 30.97,
+    "id": "w91"
+  },
+  {
+    "text": "hay",
+    "start": 30.97,
+    "end": 31.12,
+    "id": "w92"
+  },
+  {
+    "text": "yo",
+    "start": 31.12,
+    "end": 31.22,
+    "id": "w93"
+  },
+  {
+    "text": "pruebas",
+    "start": 31.22,
+    "end": 31.55,
+    "id": "w94"
+  },
+  {
+    "text": "claras",
+    "start": 31.55,
+    "end": 31.83,
+    "id": "w95"
+  },
+  {
+    "text": "de",
+    "start": 31.89,
+    "end": 31.92,
+    "id": "w96"
+  },
+  {
+    "text": "que",
+    "start": 31.94,
+    "end": 32.12,
+    "id": "w97"
+  },
+  {
+    "text": "el",
+    "start": 32.16,
+    "end": 32.29,
+    "id": "w98"
+  },
+  {
+    "text": "café",
+    "start": 32.29,
+    "end": 32.63,
+    "id": "w99"
+  },
+  {
+    "text": "lo",
+    "start": 32.63,
+    "end": 32.8,
+    "id": "w100"
+  },
+  {
+    "text": "cause.",
+    "start": 32.8,
+    "end": 33.48,
+    "id": "w101"
+  },
+  {
+    "text": "A",
+    "start": 33.53,
+    "end": 33.55,
+    "id": "w102"
+  },
+  {
+    "text": "los",
+    "start": 33.55,
+    "end": 33.72,
+    "id": "w103"
+  },
+  {
+    "text": "10",
+    "start": 33.79,
+    "end": 34.22,
+    "id": "w104"
+  },
+  {
+    "text": "años,",
+    "start": 34.23,
+    "end": 34.68,
+    "id": "w105"
+  },
+  {
+    "text": "la",
+    "start": 34.68,
+    "end": 34.83,
+    "id": "w106"
+  },
+  {
+    "text": "diabetes",
+    "start": 34.83,
+    "end": 35.33,
+    "id": "w107"
+  },
+  {
+    "text": "tipo",
+    "start": 35.33,
+    "end": 35.93,
+    "id": "w108"
+  },
+  {
+    "text": "2.",
+    "start": 35.93,
+    "end": 36.24,
+    "id": "w109"
+  },
+  {
+    "text": "En",
+    "start": 36.28,
+    "end": 36.38,
+    "id": "w110"
+  },
+  {
+    "text": "28",
+    "start": 36.38,
+    "end": 36.81,
+    "id": "w111"
+  },
+  {
+    "text": "estudios,",
+    "start": 36.82,
+    "end": 37.54,
+    "id": "w112"
+  },
+  {
+    "text": "tres",
+    "start": 37.54,
+    "end": 37.83,
+    "id": "w113"
+  },
+  {
+    "text": "tazas",
+    "start": 37.83,
+    "end": 38.1,
+    "id": "w114"
+  },
+  {
+    "text": "al",
+    "start": 38.1,
+    "end": 38.32,
+    "id": "w115"
+  },
+  {
+    "text": "día",
+    "start": 38.32,
+    "end": 38.54,
+    "id": "w116"
+  },
+  {
+    "text": "se",
+    "start": 38.54,
+    "end": 38.69,
+    "id": "w117"
+  },
+  {
+    "text": "asociaron",
+    "start": 38.69,
+    "end": 39.26,
+    "id": "w118"
+  },
+  {
+    "text": "con",
+    "start": 39.32,
+    "end": 39.52,
+    "id": "w119"
+  },
+  {
+    "text": "un",
+    "start": 39.53,
+    "end": 39.68,
+    "id": "w120"
+  },
+  {
+    "text": "21%",
+    "start": 39.68,
+    "end": 40.19,
+    "id": "w121"
+  },
+  {
+    "text": "menos",
+    "start": 40.19,
+    "end": 40.55,
+    "id": "w122"
+  },
+  {
+    "text": "de",
+    "start": 40.55,
+    "end": 40.69,
+    "id": "w123"
+  },
+  {
+    "text": "riesgo.",
+    "start": 40.69,
+    "end": 41.48,
+    "id": "w124"
+  },
+  {
+    "text": "Ylo",
+    "start": 41.53,
+    "end": 41.7,
+    "id": "w125"
+  },
+  {
+    "text": "más",
+    "start": 41.7,
+    "end": 41.87,
+    "id": "w126"
+  },
+  {
+    "text": "fuerte,",
+    "start": 41.94,
+    "end": 42.45,
+    "id": "w127"
+  },
+  {
+    "text": "una",
+    "start": 42.56,
+    "end": 42.74,
+    "id": "w128"
+  },
+  {
+    "text": "gran",
+    "start": 42.74,
+    "end": 43.04,
+    "id": "w129"
+  },
+  {
+    "text": "revisión",
+    "start": 43.04,
+    "end": 43.64,
+    "id": "w130"
+  },
+  {
+    "text": "de",
+    "start": 43.64,
+    "end": 43.79,
+    "id": "w131"
+  },
+  {
+    "text": "201",
+    "start": 43.93,
+    "end": 44.47,
+    "id": "w132"
+  },
+  {
+    "text": "análisis.",
+    "start": 44.47,
+    "end": 45.36,
+    "id": "w133"
+  },
+  {
+    "text": "Tres",
+    "start": 45.41,
+    "end": 45.6,
+    "id": "w134"
+  },
+  {
+    "text": "o",
+    "start": 45.6,
+    "end": 45.67,
+    "id": "w135"
+  },
+  {
+    "text": "cuatro",
+    "start": 45.67,
+    "end": 46.06,
+    "id": "w136"
+  },
+  {
+    "text": "tazas",
+    "start": 46.06,
+    "end": 46.33,
+    "id": "w137"
+  },
+  {
+    "text": "al",
+    "start": 46.44,
+    "end": 46.51,
+    "id": "w138"
+  },
+  {
+    "text": "día",
+    "start": 46.51,
+    "end": 46.7,
+    "id": "w139"
+  },
+  {
+    "text": "se",
+    "start": 46.7,
+    "end": 46.83,
+    "id": "w140"
+  },
+  {
+    "text": "asociaron",
+    "start": 46.83,
+    "end": 47.23,
+    "id": "w141"
+  },
+  {
+    "text": "con",
+    "start": 47.4,
+    "end": 47.6,
+    "id": "w142"
+  },
+  {
+    "text": "un",
+    "start": 47.6,
+    "end": 47.81,
+    "id": "w143"
+  },
+  {
+    "text": "17%",
+    "start": 47.81,
+    "end": 48.13,
+    "id": "w144"
+  },
+  {
+    "text": "menos",
+    "start": 48.19,
+    "end": 48.5,
+    "id": "w145"
+  },
+  {
+    "text": "de",
+    "start": 48.51,
+    "end": 48.64,
+    "id": "w146"
+  },
+  {
+    "text": "riesgo",
+    "start": 48.64,
+    "end": 49.03,
+    "id": "w147"
+  },
+  {
+    "text": "de",
+    "start": 49.03,
+    "end": 49.16,
+    "id": "w148"
+  },
+  {
+    "text": "morir",
+    "start": 49.16,
+    "end": 49.48,
+    "id": "w149"
+  },
+  {
+    "text": "por",
+    "start": 49.48,
+    "end": 49.67,
+    "id": "w150"
+  },
+  {
+    "text": "cualquier",
+    "start": 49.67,
+    "end": 50.38,
+    "id": "w151"
+  },
+  {
+    "text": "causa.",
+    "start": 50.42,
+    "end": 51.35,
+    "id": "w152"
+  },
+  {
+    "text": "Demasiados.",
+    "start": 51.42,
+    "end": 52.35,
+    "id": "w153"
+  },
+  {
+    "text": "En",
+    "start": 52.42,
+    "end": 52.51,
+    "id": "w154"
+  },
+  {
+    "text": "adultos",
+    "start": 52.51,
+    "end": 52.97,
+    "id": "w155"
+  },
+  {
+    "text": "sanos,",
+    "start": 52.97,
+    "end": 53.35,
+    "id": "w156"
+  },
+  {
+    "text": "los",
+    "start": 53.46,
+    "end": 53.63,
+    "id": "w157"
+  },
+  {
+    "text": "datos",
+    "start": 53.63,
+    "end": 53.96,
+    "id": "w158"
+  },
+  {
+    "text": "dicen",
+    "start": 53.96,
+    "end": 54.23,
+    "id": "w159"
+  },
+  {
+    "text": "que",
+    "start": 54.23,
+    "end": 54.49,
+    "id": "w160"
+  },
+  {
+    "text": "no,",
+    "start": 54.49,
+    "end": 54.75,
+    "id": "w161"
+  },
+  {
+    "text": "son",
+    "start": 54.83,
+    "end": 54.93,
+    "id": "w162"
+  },
+  {
+    "text": "asociaciones,",
+    "start": 55.01,
+    "end": 55.85,
+    "id": "w163"
+  },
+  {
+    "text": "no",
+    "start": 55.85,
+    "end": 56.05,
+    "id": "w164"
+  },
+  {
+    "text": "una",
+    "start": 56.05,
+    "end": 56.2,
+    "id": "w165"
+  },
+  {
+    "text": "receta.",
+    "start": 56.2,
+    "end": 56.88,
+    "id": "w166"
+  },
+  {
+    "text": "Ytú,¿cuántos",
+    "start": 56.97,
+    "end": 57.58,
+    "id": "w167"
+  },
+  {
+    "text": "cafés",
+    "start": 57.58,
+    "end": 57.84,
+    "id": "w168"
+  },
+  {
+    "text": "llevas",
+    "start": 57.84,
+    "end": 58.16,
+    "id": "w169"
+  },
+  {
+    "text": "hoy?",
+    "start": 58.16,
+    "end": 58.56,
+    "id": "w170"
+  },
+  {
+    "text": "Te",
+    "start": 58.56,
+    "end": 58.65,
+    "id": "w171"
+  },
+  {
+    "text": "leo",
+    "start": 58.65,
+    "end": 58.78,
+    "id": "w172"
+  },
+  {
+    "text": "en",
+    "start": 58.78,
+    "end": 58.79,
+    "id": "w173"
+  },
+  {
+    "text": "los",
+    "start": 58.79,
+    "end": 59.37,
+    "id": "w174"
+  },
+  {
+    "text": "comentarios.",
+    "start": 59.37,
+    "end": 59.66,
+    "id": "w175"
+  }
+]

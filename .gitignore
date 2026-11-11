@@ -27,3 +27,4 @@ exports/
 lemo-opuscar/
 videos/*/*/assets/mezcla.wav
 videos/*/*/.hyperframes/
+videos/*/*/snaps/

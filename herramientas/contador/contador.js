@@ -18,6 +18,26 @@
 //          de su altura real, medida en cada fotograma. Con nota, el marcador acaba a los 577 px; con línea extra y
 //          nota, a los 638 (medido en 09-movil). Sin él, como hasta el 7 de noviembre: la etiqueta, como poco, a
 //          590 px, y el marcador la puede tapar. Los vídeos nuevos lo llevan; los de antes no, para que no cambien.)
+//   arranque: true | { dur?, zoom?, giro?, adelanto? }  (11 de noviembre. En TikTok Studio, el 46 % se iba en los 2
+//          primeros segundos: el plano era casi fijo. Con esta opción hay movimiento desde el fotograma 0, y el
+//          fotograma 0 sigue sirviendo de portada: título entero y legible, personaje a la vista. Sin ella, el
+//          vídeo sale igual que antes, fotograma a fotograma; los de antes del 11 de noviembre no la llevan.)
+//          - La cámara ya viene en marcha: empieza con el plano un `zoom` más abierto (0.3 = un 30 %) y ladeada
+//            `giro` grados (5), y se cierra y se endereza en `dur` segundos (1.8), rápido al principio y frenando.
+//            Lo hace pintar() sobre la cámara que haya puesto el vídeo, así que el vídeo no tiene que hacer nada;
+//            eso sí, los puntos que el vídeo pase a la pantalla (tarjetas) se calculan DESPUÉS de pintar().
+//          - C.impulso(t) da lo que queda de ese arranque (1 en el fotograma 0, 0 al acabar), por si el vídeo
+//            quiere sumar su propio giro alrededor del personaje ("az += 20 * C.impulso(t)") o una acción.
+//          - El título entra con un golpe (un 10 % más grande y torcido 3 grados, y se asienta en medio segundo)
+//            y se va cuando acaba el gancho hablado (entre 1,8 y 2,9 s), no siempre a los 2,9: los subtítulos
+//            empiezan antes.
+//          - adelanto: { cifra, rotulo?, pie?, dur?, top?, vuelve?, dur_vuelve? }  un sello amarillo a la derecha,
+//            bajo el marcador, con la cifra del final borrosa (se adivina, no se lee), para abrir la pregunta.
+//            rotulo: "AL FINAL"; pie: "¿?"; dur: 1.6 s en pantalla; top: 700 px. Está ya en el fotograma 0.
+//            vuelve: comienzo de una palabra de la voz con la que el sello sale otra vez, dur_vuelve segundos (2.2):
+//            para cuando el guion dice "y el final no es el que esperas". La cifra tiene que estar en fuentes.md.
+//          - Lo que el motor no puede hacer solo: que el personaje ya esté haciendo la acción del vídeo en el
+//            fotograma 0 (en 12-cafe, a medio sorbo y con las tazas cayendo a la mesa). Eso va en cada vídeo.
 
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
@@ -113,6 +133,9 @@ export function crearContador(THREE) {
     const y = s / (86400 * 365.25), a = Math.floor(y), m = Math.floor((y - a) * 12);
     return `${a} ${a === 1 ? "año" : "años"}${m ? ` ${m} ${m === 1 ? "mes" : "meses"}` : ""}`;
   }
+  // the moving start (ESC.arranque): what is left of it, 1 at frame 0 and 0 after `dur`; fastest at frame 0
+  const ARR = ESC.arranque ? { dur: 1.8, zoom: 0.3, giro: 5, ...(ESC.arranque === true ? {} : ESC.arranque) } : null;
+  const impulso = (t) => (ARR ? Math.pow(1 - clamp(t / ARR.dur), 3) : 0);
   const inicio = ESC.inicio ?? 0;
   const tiempoDe = (v) => (ESC.crecimiento === "doble" ? ESC.periodo * Math.log2(Math.max(v, inicio) / inicio) : (v - inicio) / (ESC.ritmo ?? ESC.velocidad ?? 1));
 
@@ -313,8 +336,38 @@ export function crearContador(THREE) {
   document.getElementById("note").textContent = ESC.nota || "";
   document.getElementById("since").textContent = ESC.desde || "SUBIENDO DESDE HACE";
 
+  // the teaser of the moving start: a stamp with the final figure, blurred
+  let adelEl = null;
+  if (ARR && ARR.adelanto) {
+    const a = ARR.adelanto;
+    adelEl = document.createElement("div"); adelEl.className = "adelanto"; adelEl.style.top = (a.top ?? 700) + "px";
+    adelEl.innerHTML = `<div class="rot">${a.rotulo ?? "AL FINAL"}</div><div class="cifra">${a.cifra}</div><div class="pie">${a.pie ?? "¿?"}</div>`;
+    document.getElementById("labels").appendChild(adelEl);
+  }
+  // it shows from frame 0 for `dur` seconds and, with `vuelve`, again from that word of the voice
+  const ventanas = [];
+  if (adelEl) {
+    const a = ARR.adelanto, w = a.vuelve ? words.find((x) => norm(x.w).startsWith(a.vuelve)) : null;
+    ventanas.push([0, a.dur ?? 1.6]); if (w) ventanas.push([w.s - 0.1, a.dur_vuelve ?? 2.2]);
+  }
+  function drawAdelanto(t) {
+    const v = ventanas.find(([t0, d]) => t >= t0 && t <= t0 + d + 0.3);
+    if (!v) { adelEl.style.opacity = 0; return; }
+    const u = t - v[0], kin = 1 - Math.pow(1 - clamp(u / 0.3), 3), kout = ease(clamp((u - v[1]) / 0.3));
+    adelEl.style.opacity = 1 - kout;
+    adelEl.style.transform = `translateX(${kout * 240}px) rotate(${2 + 4 * kin + 8 * kout}deg) scale(${0.74 + 0.26 * kin + 0.07 * Math.sin(Math.PI * clamp(u / 0.5)) - 0.2 * kout})`;
+    adelEl.querySelector(".cifra").style.filter = `blur(${(11 + 4 * Math.sin(t * 8)).toFixed(1)}px)`;
+  }
+
   // draws the 3D scene (camera already placed) and every overlay for time t at scene height y
+  const FOV0 = camera.fov;
   function pintar(t, y) {
+    if (ARR) {
+      // the camera the video has placed, opened and tilted by what is left of the start
+      const r = impulso(t);
+      camera.fov = FOV0 * (1 + ARR.zoom * r); camera.updateProjectionMatrix();
+      camera.rotateZ((ARR.giro * Math.PI / 180) * r); camera.updateMatrixWorld();
+    }
     composer.render();
     const v = V(y);
     const [num, unit] = fmtValor(v);
@@ -322,8 +375,11 @@ export function crearContador(THREE) {
     clockEl.textContent = fmtTime(tiempoDe(v));
     if (extraWord) { const k = ramp(t, extraWord.s, extraWord.s + 0.4); extraEl.style.opacity = k; extraEl.textContent = ESC.extra.texto; extraEl.style.transform = `scale(${0.8 + 0.2 * k})`; }
     // the title card (the hook) stays until the first text line in text mode, at least 2.9 s
-    const tFin = Math.max(2.9, VOZ.modo === "texto" ? VOZ.lines[0].s : 0);
+    // (with the moving start it leaves when the spoken hook ends, and it comes in with a punch)
+    const tFin = ARR && VOZ.modo !== "texto" ? clamp(VOZ.lines[0].e + 0.3, 1.8, 2.9) : Math.max(2.9, VOZ.modo === "texto" ? VOZ.lines[0].s : 0);
     const tk = 1 - ramp(t, tFin - 0.5, tFin); titleEl.style.opacity = tk; titleEl.style.transform = `scale(${0.96 + 0.04 * tk})`;
+    if (ARR) { const q = Math.pow(1 - clamp(t / 0.5), 3); titleEl.style.transform = `scale(${(0.96 + 0.04 * tk) * (1 + 0.1 * q)}) rotate(${-3 * q}deg)`; }
+    if (adelEl) drawAdelanto(t);
     capsEl.style.opacity = 1 - tk;
     drawLabels(t, y);
     drawCaps(t);
@@ -342,6 +398,6 @@ export function crearContador(THREE) {
     VOZ, ESC, W, H, D, words, anchors, extraWord,
     clamp, lerp, ease, smooth, ramp, v3, hash, norm, miles, Y, V, yAt, fmtValor, fmtEtiqueta, fmtTime, tiempoDe,
     renderer, composer, scene, camera, hemi, key, rim, mat, glow, box, at,
-    personaje, fondo, escala, etiquetas, pintar, arrancar,
+    personaje, fondo, escala, etiquetas, pintar, arrancar, impulso,
   };
 }

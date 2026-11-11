@@ -1,0 +1,154 @@
+{
+ "leido": "2026-11-11 00:15",
+ "fuente": "TikTok Studio, leído por Claude en el perfil de Chrome de cada cuenta",
+ "campos": [
+  "visualizaciones",
+  "segundos_vistos_de_media",
+  "pct_ve_entero",
+  "seguidores_nuevos",
+  "duracion_s"
+ ],
+ "videos": {
+  "elcontadorloco/03-gato": [
+   44,
+   13.61,
+   4.6,
+   5,
+   65
+  ],
+  "elcontadorloco/04-crecer": [
+   283,
+   20.15,
+   3.8,
+   0,
+   64
+  ],
+  "elcontadorloco/02-movil": [
+   237,
+   12.8,
+   2.9,
+   0,
+   61
+  ],
+  "elcontadorloco/08-pasos-salud": [
+   819,
+   17.71,
+   3.3,
+   0,
+   null
+  ],
+  "elcontadorloco/07-comida": [
+   895,
+   13.36,
+   1.8,
+   0,
+   64
+  ],
+  "elcontadorloco/09-movil": [
+   782,
+   13.47,
+   3.8,
+   0,
+   63
+  ],
+  "elcontadorloco/11-refresco-salud": [
+   478,
+   10.03,
+   1.7,
+   0,
+   75
+  ],
+  "lascosaspordentro/05-reloj": [
+   191,
+   13.26,
+   5.1,
+   0,
+   null
+  ],
+  "lascosaspordentro/06-gps": [
+   201,
+   19.75,
+   4.4,
+   0,
+   73
+  ],
+  "lascosaspordentro/07-microondas": [
+   274,
+   17.99,
+   3.9,
+   0,
+   78
+  ],
+  "lascosaspordentro/08-nevera": [
+   813,
+   12.93,
+   4.1,
+   1,
+   69
+  ],
+  "lascosaspordentro/09-mando": [
+   810,
+   11.93,
+   2.1,
+   0,
+   73
+  ],
+  "lascosaspordentro/10-raton": [
+   420,
+   11.4,
+   1.5,
+   0,
+   68
+  ],
+  "dinerosinlio/05-cafe": [
+   316,
+   19.03,
+   7.3,
+   1,
+   null
+  ],
+  "dinerosinlio/06-iva": [
+   842,
+   10.31,
+   3.8,
+   0,
+   67
+  ],
+  "dinerosinlio/07-cajero": [
+   779,
+   11.21,
+   3.1,
+   0,
+   71
+  ],
+  "dinerosinlio/08-gasolina": [
+   427,
+   7.91,
+   2.1,
+   0,
+   80
+  ]
+ },
+ "retencion_pct_por_segundo": {
+  "elcontadorloco/09-movil": {
+   "2": 54,
+   "5": 36,
+   "10": 25,
+   "30": 12,
+   "62": 2
+  },
+  "lascosaspordentro/09-mando": {
+   "2": 43,
+   "5": 24,
+   "10": 19,
+   "30": 10
+  },
+  "dinerosinlio/07-cajero": {
+   "2": 46,
+   "5": 25,
+   "10": 13,
+   "30": 10
+  }
+ },
+ "notas": "Casi todas las visualizaciones llegan de Para ti (94-100 %) en las primeras 4 a 11 horas y luego se paran. Creator Rewards no aparece en la página de monetización de ninguna de las 3 cuentas."
+}

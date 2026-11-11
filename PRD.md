@@ -94,6 +94,22 @@ Se mira la mediana porque, en un estudio de Buffer con millones de publicaciones
 - **Instagram (página oficial de ayuda, leída el 9 de noviembre):** los regalos en los Reels sí funcionan en España, desde 500 seguidores, con cuenta profesional y mayor de 18 años. Pagan 0,01 $ por cada estrella que manda alguien, así que es poco dinero. Los bonos por visualizaciones son solo por invitación y, según Meta en 2024, solo en Estados Unidos, Corea del Sur y Japón. Instagram tampoco paga por visualizaciones en España.
 - **Consecuencia:** los hitos 3 y 4 (entrar en el programa de TikTok y primer cobro de TikTok) no se pueden cumplir desde España tal y como están escritos. Las cuentas de TikTok siguen sirviendo para conseguir audiencia, que es lo que piden los regalos, las marcas, la afiliación y YouTube. **Decidido por Javier (9 de noviembre):** los hitos 3 y 4 pasan a ser 1.000 seguidores (afiliación) y 10.000 seguidores (marcas). El detalle de cada forma de cobrar está en "Formas de cobrar desde España".
 
+**Estadísticas de TikTok Studio (leídas el 11 de noviembre, guardadas en `datos/studio.json`):**
+
+| Cuenta | Vídeos | Visualizaciones | Seguidores | Segundos vistos de media | Ven el vídeo entero |
+| --- | --- | --- | --- | --- | --- |
+| El contador loco | 9 | 3.492 | 5 | de 10 a 20 | de 1,7 a 4,6 % |
+| Las cosas por dentro | 9 | 2.651 | 6 | de 11 a 20 | de 1,5 a 5,1 % |
+| Dinero sin lío | 8 | 2.321 | 6 | de 8 a 19 | de 2,1 a 7,3 % |
+
+- **Dónde se va la gente:** en los 2 primeros segundos se va la mitad (queda el 54 % en el móvil de El contador loco, el 43 % en el mando y el 46 % en el cajero). A los 5 segundos queda entre el 24 y el 36 %, y a los 10, entre el 13 y el 25 %. Quien pasa de 10 segundos aguanta bien: a los 30 segundos queda entre el 10 y el 12 %.
+- **Por qué se paran las visualizaciones:** casi todas vienen de "Para ti" (del 94 al 100 %) y llegan en las primeras 4 a 11 horas. TikTok enseña el vídeo a unas 800 personas, ve que la mayoría pasa de largo y deja de enseñarlo. Los seguidores no suben: 17 en total.
+- **Qué se ve en los vídeos:** los 2 primeros segundos son casi un plano fijo (el rótulo del gancho y el objeto quieto). En Las cosas por dentro y en Dinero sin lío, además, el objeto y el texto ocupan solo la franja central, sobre un 30 a 35 % del alto de la pantalla.
+- **Los mejores y los peores:** el café con tarjeta (19 s de media y 7,3 % hasta el final) y el centímetro al día (20 s) son los que más retienen. La gasolina (7,9 s) es el peor: arranca con fechas, leyes y cifras.
+- **Cambios desde el 11 de noviembre:** movimiento desde el primer fotograma, el objeto más grande, primer cambio de plano antes de 1,5 s, gancho que arranca con un ejemplo cotidiano y vídeos de 60 a 68 s como mucho. Las opciones nuevas de cada motor son opcionales: los vídeos antiguos no cambian.
+- **Propuesta pendiente de Javier:** probar vídeos de 35 a 45 s. El mínimo de 60 s venía del programa de pago de TikTok, que no aparece en la página de monetización de ninguna de las 3 cuentas (comprobado el 11 de noviembre). Con vídeos más cortos, más gente llega al final, que es lo que TikTok premia.
+- **Lista de afiliación** de Las cosas por dentro: `publicar/afiliacion-lascosaspordentro.md`. No se pone ningún enlace hasta llegar a unos 1.000 seguidores.
+
 **YouTube Shorts (investigación del 9 de noviembre, a petición de Javier):**
 - **Dinero:** a partir del 1 de febrero de 2027, los Shorts solo cobran publicidad si el canal pasa de 10 millones de visualizaciones cada 90 días. Para entrar en el programa de socios harán falta 1.000 suscriptores y 20 millones de visualizaciones de Shorts en 90 días, o 8.000 horas de vídeo largo. Un Short paga de 0,03 a 0,10 $ por cada 1.000 visualizaciones. Lo que paga bien en YouTube son los vídeos largos.
 - **Riesgo:** la política de "contenido no auténtico" (julio de 2025, aclarada en julio de 2026) deja sin cobrar a los canales con mucho contenido genérico, hecho con plantilla o en serie, y a los personajes de IA que aconsejan sobre salud o dinero. Se aplica al canal entero. Nuestros vídeos tienen investigación y fuentes propias, pero usan motores y voz sintética.

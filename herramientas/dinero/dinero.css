@@ -21,6 +21,9 @@ html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--
 #escenario { position: absolute; inset: 0; }
 .pieza { position: absolute; opacity: 0; transform-origin: 50% 50%; }
 .pieza svg { display: block; }
+/* icons that fall behind the pieces (escena.lluvia) */
+.lluvia { position: absolute; left: 0; top: 0; opacity: 0; transform-origin: 50% 50%; }
+.lluvia svg { display: block; }
 
 #caps {
   /* top: below TikTok's tabs; two lines at most (control.py measures it with Inter 700 68 px in 900 px) */

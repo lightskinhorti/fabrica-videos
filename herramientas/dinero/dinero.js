@@ -21,6 +21,35 @@
 //   sonidos: los usa sonido_pordentro.py (fondo: "claro" pone una base suave y luminosa en vez del zumbido grave)
 // Iconos planos para el HTML: <div class="pieza" id="x" data-icono="moneda" data-args='["€", 220]'></div>
 // (moneda, billete, decimo, edificio, oficina, persona, maletin, fabrica, tachado, sello, doc).
+// La moneda admite color y borde: data-args='["1", 520, "#d98a4e", "#a85f2a"]' (cobre); sin ellos es dorada.
+//
+// ARRANQUE Y ENCUADRE (10 de noviembre; todo opcional: un vídeo que no lo pide se ve igual que antes).
+// Por qué: en TikTok Studio, el 54 % se iba en los 2 primeros segundos; el arranque era un plano fijo y el titular con
+// sus iconos ocupaba solo un 30 % del alto. Receta para los vídeos nuevos (ejemplo completo: 10-centimos):
+//   1. Movimiento desde el fotograma 0, sin estropear la portada (titular e imagen ya están en el fotograma 0):
+//      arranque: { zoom?, dura?, centro? }  zoom lento de todo el escenario y del gancho: de 1 a `zoom` (1,08 si no
+//                se dice) en `dura` segundos (hasta que se va el gancho si no se dice), lineal para que se note desde
+//                el primer fotograma, y vuelve a 1 en 0,4 s. centro: [x, y] del zoom, [540, 900] si no se dice.
+//      piezas[].viaja: { x?, y?, s?, r?, dura?, desde? }  la pieza empieza desplazada (px), a otra escala o girada
+//                (grados) y viaja a su sitio en `dura` segundos (1,2), frenando al final. Con desde menor que 1 ya
+//                está en el fotograma 0, visible y desplazada: una moneda que rueda es { "x": -220, "r": -45 }.
+//      piezas[].mueve: "flota" | "late" | "balancea" | "gira", o { tipo, fuerza?, ritmo? }  movimiento que no para
+//                mientras la pieza está: flota (sube y baja, fuerza en px, 10), late (crece y encoge, fuerza en %, 5),
+//                balancea (se inclina a los lados, grados, 5) y gira (grados por segundo, 40).
+//      lluvia: [{ icono, args?, n?, desde?, hasta?, vel?, zona?, opacidad? }]  n (8) iconos que caen sin parar por
+//                detrás de las piezas, entre desde (0) y hasta; vel en px por segundo (380); zona: [x0, x1] de la
+//                franja por la que caen ([40, 1040]); opacidad 0,55. Con desde menor que 1 ya caen en el fotograma 0.
+//      cifras[].curva: "lineal" | "sale"  la cifra cuenta a ritmo constante, o deprisa al principio. Sin curva
+//                arranca despacio y en los primeros fotogramas no se nota. Con desde: 0 ya cuenta en el fotograma 0.
+//   2. Llenar la pantalla. TikTok tapa unos 250 px arriba y 480 abajo, y la columna de botones ocupa a la derecha
+//      de x = 940 desde y = 850: lo útil va de y = 250 a 1440. Durante el gancho no hay subtítulos, así que:
+//      gancho.top: el centro del titular en px (640 si no se dice). Con top 480 y tam 150 llena de 300 a 660, y la
+//                imagen va debajo, grande, de 720 a 1420. Después del gancho, las piezas de 430 a 1420 (los
+//                subtítulos ocupan de 196 a 400) y lo que mida 800 px de ancho o más, mejor que tres cosas pequeñas.
+//      gancho.hasta: segundos o momento en que se va el titular (si no se dice, a los 2,4 s o al acabar la primera
+//                frase). Con un gancho hablado de menos de 2 s, hasta: 2.1 deja sitio antes a los subtítulos.
+//   3. Primer cambio visual antes de 1,5 s: una pieza con desde entre 1,0 y 1,4 (no menos de 1: estaría ya en la
+//      portada) y entra: "sello" o "escala", con su sonido.
 
 export const COLOR = {
   tinta: "#1d2a44", papel: "#f4eee2", oro: "#f2b705", oro2: "#c98f00", rojo: "#e5383b",
@@ -31,7 +60,7 @@ const C = COLOR;
 // flat icons: a navy silhouette offset behind each shape, like the profile picture's coin
 const sombra = (forma) => `<g transform="translate(12 12)" fill="${C.tinta}" stroke="none">${forma(true)}</g>${forma(false)}`;
 export const ICONOS = {
-  moneda: (texto = "€", tam = 220) => `<svg width="${tam}" height="${tam}" viewBox="0 0 240 240">${sombra((s) => `<circle cx="116" cy="116" r="104" ${s ? "" : `fill="${C.oro}" stroke="${C.tinta}" stroke-width="10"`}/>`)}<circle cx="116" cy="116" r="80" fill="none" stroke="${C.oro2}" stroke-width="7"/><text x="116" y="122" text-anchor="middle" dominant-baseline="central" font-family="Archivo Black" font-size="${String(texto).length > 2 ? 58 : 112}" fill="${C.tinta}">${texto}</text></svg>`,
+  moneda: (texto = "€", tam = 220, color = C.oro, borde = C.oro2) => `<svg width="${tam}" height="${tam}" viewBox="0 0 240 240">${sombra((s) => `<circle cx="116" cy="116" r="104" ${s ? "" : `fill="${color}" stroke="${C.tinta}" stroke-width="10"`}/>`)}<circle cx="116" cy="116" r="80" fill="none" stroke="${borde}" stroke-width="7"/><text x="116" y="122" text-anchor="middle" dominant-baseline="central" font-family="Archivo Black" font-size="${String(texto).length > 2 ? 58 : 112}" fill="${C.tinta}">${texto}</text></svg>`,
 
   billete: (valor = "500", color = C.morado, w = 520) => {
     const h = Math.round(w * 0.5125);
@@ -113,6 +142,7 @@ export function crearDinero() {
   const ramp = (t, a, b) => ease(clamp((t - a) / (b - a)));
   // 0 before a, 1 between a and b, back to 0 after b (f = fade length)
   const ventana = (t, a, b, f = 0.3) => ramp(t, a, a + f) * (1 - ramp(t, b - f, b));
+  const sale = (k) => 1 - Math.pow(1 - k, 3);
   const backOut = (k) => 1 + 2.6 * Math.pow(k - 1, 3) + 1.6 * Math.pow(k - 1, 2);
   const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[^a-z0-9]/g, "");
   const miles = (n) => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -183,20 +213,44 @@ export function crearDinero() {
   const ganchoEl = document.getElementById("gancho");
   if (G && ganchoEl) ganchoEl.innerHTML = G.texto.split(" ").map((w) => (norm(w) === norm(G.clave || "") ? `<span class="sel">${w}</span>` : w)).join(" ");
   if (G && ganchoEl && G.tam) ganchoEl.style.fontSize = G.tam + "px";
-  const ganchoFin = G ? Math.max(2.4, VOZ.lines[0] ? VOZ.lines[0].e + 0.3 : 0) : 0;
+  if (G && ganchoEl && G.top !== undefined) ganchoEl.style.top = G.top + "px";
+  const ganchoFin = G ? (G.hasta !== undefined ? cuando(G.hasta) : Math.max(2.4, VOZ.lines[0] ? VOZ.lines[0].e + 0.3 : 0)) : 0;
+
+  // ---------- the opening: a slow zoom of the whole stage and the hook, moving from frame 0 ----------
+  const AR = ESC.arranque;
+  const escEl = document.getElementById("escenario");
+  const [zcx, zcy] = (AR && AR.centro) || [540, 900];
+  function zoomEn(t) {
+    if (!AR) return 1;
+    const d = AR.dura ?? (ganchoFin || 2.4), z = AR.zoom ?? 1.08;
+    return 1 + (z - 1) * (t < d ? t / d : 1 - ramp(t, d, d + 0.4));
+  }
+  function drawArranque(t) {
+    if (!AR || !escEl) return;
+    escEl.style.transformOrigin = `${zcx}px ${zcy}px`;
+    escEl.style.transform = `scale(${zoomEn(t)})`;
+  }
+
   function drawGancho(t) {
     if (!G || !ganchoEl) return 0;
     const k = 1 - ramp(t, ganchoFin - 0.35, ganchoFin);
     ganchoEl.style.opacity = k;
-    ganchoEl.style.transform = `translateY(-50%) scale(${0.96 + 0.04 * k})`;
+    if (AR) {
+      // the hook follows the stage's zoom, around the same centre
+      const z = zoomEn(t), gy = G.top ?? 640;
+      ganchoEl.style.transform = `translate(${(540 - zcx) * (z - 1)}px, ${(gy - zcy) * (z - 1)}px) translateY(-50%) scale(${(0.96 + 0.04 * k) * z})`;
+    } else ganchoEl.style.transform = `translateY(-50%) scale(${0.96 + 0.04 * k})`;
     return k;
   }
 
   // ---------- pieces that come in and go out ----------
-  const piezas = (ESC.piezas || []).map((p) => {
+  const MUEVE = { flota: [10, 2.2], late: [5, 5], balancea: [5, 2.4], gira: [40, 1] };
+  const piezas = (ESC.piezas || []).map((p, i) => {
     const el = document.getElementById(p.id);
     if (!el) throw new Error(`No hay ningún elemento con id="${p.id}" para la pieza`);
-    return { ...p, el };
+    const mueve = typeof p.mueve === "string" ? { tipo: p.mueve } : p.mueve;
+    if (mueve && !MUEVE[mueve.tipo]) throw new Error(`La pieza ${p.id} pide un movimiento desconocido: ${mueve.tipo}`);
+    return { ...p, mueve, fase: i * 1.7, el };
   });
   const EXTRA = {};
   // extra movement for a piece this frame: { x, y, s, r, o }
@@ -231,10 +285,52 @@ export function crearDinero() {
         p.el.style.height = p.alto * k + "px";
         y += p.alto * (1 - k);
       }
-      const s = (A.s ?? 1) * (B.s ?? 1) * (X.s ?? 1);
+      let s = (A.s ?? 1) * (B.s ?? 1) * (X.s ?? 1), r = X.r || 0;
+      // viaja: the piece starts away from its place (already in frame 0 if it comes in before PORTADA) and travels
+      // to it, fast at first so the movement shows from the first frame
+      if (p.viaja) {
+        const v = p.viaja, k = 1 - sale(clamp((t - (v.desde !== undefined ? cuando(v.desde) : a)) / (v.dura ?? 1.2)));
+        x += (v.x || 0) * k; y += (v.y || 0) * k; r += (v.r || 0) * k; s *= 1 + ((v.s ?? 1) - 1) * k;
+      }
+      // mueve: a movement that never stops while the piece is there
+      if (p.mueve) {
+        const m = p.mueve, f = m.fuerza ?? MUEVE[m.tipo][0], w = Math.sin(t * (m.ritmo ?? MUEVE[m.tipo][1]) + p.fase);
+        if (m.tipo === "flota") y += f * w;
+        else if (m.tipo === "late") s *= 1 + (f / 100) * (0.5 + 0.5 * w);
+        else if (m.tipo === "balancea") r += f * w;
+        else if (m.tipo === "gira") r += f * t * (m.ritmo ?? 1);
+      }
       const o = Math.min(clamp(kin * (tin === "sello" || tin === "crece" ? 4 : 2.5)), clamp(kout * 2.5)) * (X.o ?? 1);
       p.el.style.opacity = o;
-      p.el.style.transform = `translate(${x}px, ${y}px) scale(${s}) rotate(${X.r || 0}deg)`;
+      p.el.style.transform = `translate(${x}px, ${y}px) scale(${s}) rotate(${r}deg)`;
+    }
+  }
+
+  // ---------- rain: icons that keep falling behind the pieces (movement from frame 0) ----------
+  const azar = (i, k) => { const v = Math.sin(i * 127.1 + k * 311.7) * 43758.5453; return v - Math.floor(v); };
+  const lluvias = (ESC.lluvia || []).map((L, j) => {
+    const f = ICONOS[L.icono];
+    if (!f) throw new Error(`Icono desconocido en la lluvia: ${L.icono}`);
+    const n = L.n ?? 8, [x0, x1] = L.zona || [40, 1040];
+    const gotas = Array.from({ length: n }, (_, i) => {
+      const el = document.createElement("div");
+      el.className = "lluvia"; el.innerHTML = f(...(L.args || []));
+      escEl.insertBefore(el, escEl.firstChild);
+      // one lane per drop, so they spread over the width, each with its own start, speed and spin
+      return { el, x: x0 + ((i + 0.15 + 0.7 * azar(i, j)) / n) * (x1 - x0), y0: azar(i, j + 7), v: 0.75 + 0.5 * azar(i, j + 13), g: (azar(i, j + 19) - 0.5) * 90 };
+    });
+    return { ...L, gotas, a: cuando(L.desde ?? 0), b: L.hasta !== undefined ? cuando(L.hasta) : Infinity };
+  });
+  function drawLluvia(t) {
+    for (const L of lluvias) {
+      const o = (L.a < PORTADA ? 1 : ramp(t, L.a, L.a + 0.3)) * (1 - ramp(t, L.b - 0.35, L.b)) * (L.opacidad ?? 0.55);
+      for (const g of L.gotas) {
+        g.el.style.opacity = o;
+        if (!o) continue;
+        if (g.alto === undefined) { g.alto = g.el.offsetHeight; g.ancho = g.el.offsetWidth; }
+        const tramo = H + g.alto, y = ((g.y0 * tramo + t * (L.vel ?? 380) * g.v) % tramo) - g.alto;
+        g.el.style.transform = `translate(${g.x - g.ancho / 2}px, ${y}px) rotate(${g.g * t}deg)`;
+      }
     }
   }
 
@@ -252,7 +348,8 @@ export function crearDinero() {
     const actual = {};
     for (const c of cifras) if (t >= cuando(c.desde) || !(c.id in actual)) actual[c.id] = c;
     for (const c of Object.values(actual)) {
-      const k = ease(clamp((t - cuando(c.desde)) / (c.dura ?? 1.2)));
+      const k0 = clamp((t - cuando(c.desde)) / (c.dura ?? 1.2));
+      const k = c.curva === "lineal" ? k0 : c.curva === "sale" ? sale(k0) : ease(k0);
       c.el.textContent = (c.prefijo || "") + formatea(c, lerp(c.de ?? 0, c.a, k)) + (c.sufijo || "");
     }
   }
@@ -270,8 +367,10 @@ export function crearDinero() {
 
   // draws every layer for time t (call mover() before, for this frame's extra movement)
   function pintar(t) {
+    drawArranque(t);
     capsEl.style.opacity = 1 - drawGancho(t);
     drawCaps(t);
+    drawLluvia(t);
     drawPiezas(t);
     drawCifras(t);
     drawNote(t);
@@ -286,7 +385,7 @@ export function crearDinero() {
 
   return {
     VOZ, ESC, W, H, D, T, cuando, words, C,
-    clamp, lerp, ease, ramp, ventana, backOut, norm, miles, coma,
+    clamp, lerp, ease, ramp, ventana, sale, backOut, norm, miles, coma,
     mover, pintar, arrancar,
   };
 }

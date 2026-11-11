@@ -1,0 +1,47 @@
+{
+  "titulo": "Tu céntimo sale caro",
+  "lines": [
+    "Tu céntimo sale caro.",
+    "Fabricarlo suele costar más de lo que vale. ¿Cuánto se ha perdido así? Te lo digo al final.",
+    "Pagas uno noventa y nueve con dos euros, y te devuelven un céntimo.",
+    "Ese céntimo acaba en un cajón. Y muchas veces no vuelve a la tienda.",
+    "Según la Comisión Europea, se pierde como poco una de cada cuatro.",
+    "Así que hay que fabricar más.",
+    "Hasta dos mil trece se acuñaron más de cuarenta y seis mil millones de monedas de uno y dos céntimos. Casi una de cada dos monedas de euro.",
+    "¿Y cuánto valen todas juntas? Unos setecientos catorce millones de euros.",
+    "El problema es el coste. Solo el disco de metal ya cuesta al menos la mitad de lo que vale.",
+    "Y luego hay que acuñarla, empaquetarla y transportarla.",
+    "Una fábrica consigue hacerla por menos de un céntimo. Otra la vende a su país por cuatro.",
+    "En Finlandia y Países Bajos casi no se fabrican: allí la cuenta se redondea a cinco céntimos.",
+    "¿Y la cuenta final? Según la Comisión Europea, fabricarlos costó mil cuatrocientos millones de euros más de lo que valen.",
+    "Casi el doble de lo que valen todas juntas.",
+    "¿Tú qué haces con los tuyos? Te leo en los comentarios."
+  ],
+  "claves": [
+    "caro",
+    "vale",
+    "devuelven",
+    "cajón",
+    "pierde",
+    "fabricar",
+    "monedas",
+    "juntas",
+    "mitad",
+    "transportarla",
+    "fábrica",
+    "redondea",
+    "millones",
+    "doble",
+    "comentarios"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "¿Qué haces con los céntimos del cambio? Muchos acaban en un cajón y hay que fabricar más. Y fabricar las monedas de 1 y 2 céntimos costó 1.400 millones de euros más de lo que valen. Datos de la zona del euro hasta 2013, de la Comisión Europea, COM(2013) 281.",
+    "hashtags": [
+      "#centimos",
+      "#monedas",
+      "#euro"
+    ],
+    "portada_en": "caro"
+  }
+}

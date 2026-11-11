@@ -1,0 +1,43 @@
+{
+  "titulo": "¿Y si tomaras 3 cafés al día?",
+  "lines": [
+    "¿Tres cafés al día son demasiados?",
+    "Esto le pasa a tu cuerpo, según los estudios. Y el final no es el que esperas.",
+    "Primer día: tres tazas son unos doscientos cuarenta miligramos de cafeína.",
+    "La agencia europea EFSA ve seguros hasta cuatrocientos al día en adultos sanos.",
+    "Esa noche, el sueño: en veinticuatro estudios, la cafeína quitó de media cuarenta y cinco minutos.",
+    "Y un café puede notarse casi nueve horas después de tomarlo.",
+    "Al año ya van más de mil tazas. ¿Y el cáncer?",
+    "La agencia de la OMS revisó más de mil estudios y no halló pruebas claras de que el café lo cause.",
+    "A los diez años, la diabetes tipo dos: en veintiocho estudios, tres tazas al día se asociaron con un veintiuno por ciento menos de riesgo.",
+    "Y lo más fuerte: una gran revisión de doscientos un análisis.",
+    "Tres o cuatro tazas al día se asociaron con un diecisiete por ciento menos de riesgo de morir por cualquier causa.",
+    "¿Demasiados? En adultos sanos, los datos dicen que no.",
+    "Son asociaciones, no una receta. ¿Y tú, cuántos cafés llevas hoy? Te leo en los comentarios."
+  ],
+  "claves": [
+    "demasiados",
+    "cuerpo",
+    "cafeína",
+    "seguros",
+    "sueño",
+    "horas",
+    "cáncer",
+    "pruebas",
+    "diabetes",
+    "fuerte",
+    "morir",
+    "no",
+    "comentarios"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "Tres cafés al día, todos los días: qué dicen los estudios del sueño, el cáncer, la diabetes tipo 2 y la mortalidad. Fuentes: EFSA 2015 (cafeína: hasta 400 mg al día en adultos sanos; en el embarazo, 200 mg), Sleep Medicine Reviews 2023 (24 estudios), IARC-OMS 2016 (café, grupo 3; las bebidas a más de 65 °C son otro caso), Diabetes Care 2014 (28 estudios) y BMJ 2017 (revisión de 201 metaanálisis). Los estudios de observación muestran asociaciones, no causa ni una predicción para cada persona. No es un consejo médico ni de dieta.",
+    "hashtags": [
+      "#salud",
+      "#cafe",
+      "#cafeina"
+    ],
+    "portada_en": 0
+  }
+}

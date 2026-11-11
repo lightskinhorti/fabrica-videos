@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <link rel="stylesheet" href="comun/dinero.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+      .cifra, .fila b { font-family: "Archivo Black", sans-serif; }
+      /* this video's layout: everything big, from y = 430 to 1420 (what TikTok leaves free) */
+      .ancho { left: 0; width: 1080px; text-align: center; }
+      .cifra.enorme { font-size: 210px; }
+      .rotulo.r44 { font-size: 44px; line-height: 1.3; letter-spacing: 0.06em; }
+      .rotulo.r40 { font-size: 40px; letter-spacing: 0.08em; }
+      .chip.c58 { font-size: 58px; }
+      .chip.c50 { font-size: 50px; }
+      .chip.c44 { font-size: 44px; }
+      .chip.c38 { font-size: 38px; }
+      .sello.s62 { font-size: 62px; line-height: 1.12; text-align: center; }
+      .sello.s54 { font-size: 54px; }
+      .sello.s50 { font-size: 50px; }
+      .docg .doc { width: 820px; padding: 30px 40px 20px; }
+      .docg .doc-tit { font-size: 42px; }
+      .docg .fila { font-size: 48px; padding: 16px 0; }
+      .docg .fila b { font-size: 54px; white-space: nowrap; }
+      .fila.marca { background: #f8dc7a; margin: 0 -18px; padding-left: 18px; padding-right: 18px; border-radius: 10px; }
+      .seg.metal { background: #d98a4e; color: #1d2a44; font-size: 44px; }
+      .barra.alta { height: 140px; }
+      .col {
+        border: 7px solid #1d2a44; border-bottom-width: 0; border-radius: 20px 20px 0 0; box-shadow: 12px 0 0 #1d2a44;
+        overflow: hidden; text-align: center; color: #fff; font-weight: 800; font-size: 34px; letter-spacing: 0.06em; padding-top: 22px; line-height: 1.25;
+      }
+      .col b { display: block; font-family: "Archivo Black", sans-serif; font-weight: 400; font-size: 64px; letter-spacing: 0; }
+      .col.roja { background: #e5383b; }
+      .col.verde { background: #2f8f6b; }
+      #suelo { height: 10px; background: #1d2a44; border-radius: 5px; }
+      .rejilla > div { position: absolute; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="64.4" data-width="1080" data-height="1920" data-fps="30">
+      <div id="fondo" class="clip" data-start="0" data-duration="64.4" data-track-index="0"></div>
+      <div id="escenario" class="clip" data-start="0" data-duration="64.4" data-track-index="1" data-layout-allow-overlap data-layout-allow-overflow>
+        <!-- A: the hook. A big cent rolls in from frame 0, small cents rain behind and a stamp lands at 1.15 s -->
+        <div class="pieza" id="cA" style="left:270px; top:770px" data-dibujo="centimo" data-args="[540]"></div>
+        <div class="pieza" id="selloA" style="left:205px; top:1212px"><div class="sello s62" style="color:#e5383b; border-color:#e5383b">CUESTA MÁS<br />DE LO QUE VALE</div></div>
+        <!-- B: the open question -->
+        <div class="pieza ancho" id="chipCuanto" style="top:440px"><div class="chip blanco c58">¿CUÁNTO SE HA PERDIDO?</div></div>
+        <div class="pieza cifra roja ancho" id="cTease" style="top:1310px">¿? €</div>
+
+        <!-- C: the change of a 1,99 € purchase -->
+        <div class="pieza docg" id="ticket" style="left:130px; top:450px" data-icono="doc"
+          data-args='["TU COMPRA", [["TOTAL", "1,99 €"], ["PAGAS", "2,00 €", "filaPagas"], ["CAMBIO", "0,01 €", "filaCambio", "verde"]]]'></div>
+        <div class="pieza" id="m2" style="left:100px; top:930px" data-icono="moneda" data-args='["2 €", 340]'></div>
+        <div class="pieza" id="flechaC" style="left:455px; top:1050px" data-dibujo="flecha" data-args="[190]"></div>
+        <div class="pieza" id="cC" style="left:640px; top:950px" data-dibujo="centimo" data-args="[290]"></div>
+        <div class="pieza" id="chipCambio" style="left:625px; top:1280px"><div class="chip c44">TU CAMBIO</div></div>
+
+        <!-- D: the cent ends up in a drawer and often does not go back to the shop -->
+        <div class="pieza" id="cD0" style="left:90px; top:505px" data-dibujo="centimo" data-args="[200]"></div>
+        <div class="pieza" id="flechaD" style="left:330px; top:555px" data-dibujo="flecha" data-args="[250]"></div>
+        <div class="pieza" id="tachadoD" style="left:335px; top:490px" data-icono="tachado" data-args="[240]"></div>
+        <div class="pieza" id="tiendaD" style="left:640px; top:450px" data-dibujo="tienda" data-args='[330, "TIENDA"]'></div>
+        <div class="pieza ancho" id="chipD" style="top:440px"><div class="chip rojo c44">SE PIERDE, COMO POCO, 1 DE CADA 4</div></div>
+        <div class="pieza rejilla" id="cuatroD" style="left:96px; top:570px; width:900px; height:215px"></div>
+        <div class="pieza" id="tachadoD4" style="left:765px; top:562px" data-icono="tachado" data-args="[230]"></div>
+        <div class="pieza" id="cajonFondo" style="left:130px; top:830px" data-dibujo="cajonFondo" data-args="[800]"></div>
+        <div class="pieza" id="cD" style="left:390px; top:905px" data-dibujo="centimo" data-args="[300]"></div>
+        <div class="pieza" id="cajonFrente" style="left:130px; top:830px" data-dibujo="cajonFrente" data-args="[800]"></div>
+
+        <!-- E: so more have to be made -->
+        <div class="pieza ancho" id="chipMas" style="top:440px"><div class="chip c58">MÁS Y MÁS MONEDAS</div></div>
+        <div class="pieza" id="fabE" style="left:110px; top:560px" data-icono="fabrica" data-args="[700]"></div>
+        <div class="pieza" id="cinta" style="left:90px; top:1335px; width:900px; height:26px; background:#1d2a44; border-radius:13px"></div>
+        <div class="pieza rejilla" id="cintaMonedas" style="left:0; top:1180px; width:1080px; height:150px"></div>
+
+        <!-- F and G: how many, and what they are all worth -->
+        <div class="pieza ancho" id="chipF" style="top:440px"><div class="chip blanco c50">DE 2002 A 2013</div></div>
+        <div class="pieza ancho" id="chipMitad" style="top:440px"><div class="chip c38">CASI 1 DE CADA 2 MONEDAS DE EURO</div></div>
+        <div class="pieza ancho" id="chipG" style="top:440px"><div class="chip blanco c50">¿CUÁNTO VALEN TODAS?</div></div>
+        <div class="pieza rotulo r40 ancho" id="rotMas" style="top:566px">MÁS DE</div>
+        <div class="pieza cifra enorme ancho" id="c46" style="top:606px">0</div>
+        <div class="pieza rotulo r44 ancho" id="rot46" style="top:822px">MILLONES DE MONEDAS<br />DE 1 Y 2 CÉNTIMOS</div>
+        <div class="pieza rotulo r40 verde ancho" id="rotUnos" style="top:566px">UNOS</div>
+        <div class="pieza cifra enorme verde ancho" id="c714" style="top:606px">0</div>
+        <div class="pieza rotulo r44 verde ancho" id="rot714" style="top:822px">MILLONES DE EUROS<br />TODAS JUNTAS</div>
+        <div class="pieza rejilla" id="rejilla" style="left:128px; top:968px; width:826px; height:464px"></div>
+
+        <!-- H: the cost. The metal blank alone is at least half of the coin's value -->
+        <div class="pieza ancho" id="chipH" style="top:440px"><div class="chip rojo c58">EL COSTE</div></div>
+        <div class="pieza" id="disco" style="left:330px; top:580px" data-dibujo="disco" data-args="[420]"></div>
+        <div class="pieza rotulo r44 ancho" id="rotDisco" style="top:1020px">EL DISCO DE METAL</div>
+        <div class="pieza" id="barraH" style="left:90px; top:1110px; width:900px">
+          <div class="barra alta"><div class="seg metal" id="segMetal" style="width:0%">50-60 %</div></div>
+        </div>
+        <div class="pieza rotulo r40 ancho" id="rotBarra" style="top:1290px">DE LO QUE VALE LA MONEDA</div>
+
+        <!-- I: then it has to be struck and carried -->
+        <div class="pieza" id="chipI1" style="left:88px; top:440px"><div class="chip" style="font-size:31px">+ ACUÑAR</div></div>
+        <div class="pieza" id="chipI3" style="left:334px; top:440px"><div class="chip" style="font-size:31px">+ EMPAQUETAR</div></div>
+        <div class="pieza" id="chipI2" style="left:662px; top:440px"><div class="chip" style="font-size:31px">+ TRANSPORTAR</div></div>
+        <div class="pieza" id="cI" style="left:330px; top:580px" data-dibujo="centimo" data-args="[420]"></div>
+        <div class="pieza" id="caja" style="left:80px; top:1085px" data-dibujo="caja" data-args="[360]"></div>
+        <div class="pieza" id="camion" style="left:440px; top:1090px" data-dibujo="camion" data-args="[520]"></div>
+
+        <!-- J: one mint makes it for less than a cent, another sells it for four -->
+        <div class="pieza" id="fabJ1" style="left:70px; top:470px" data-icono="fabrica" data-args="[420]"></div>
+        <div class="pieza" id="chipJ1" style="left:55px; top:860px"><div class="chip verde c38">MENOS DE 1 CÉNT.</div></div>
+        <div class="pieza" id="cJ1" style="left:150px; top:1010px" data-dibujo="centimo" data-args="[270]"></div>
+        <div class="pieza" id="fabJ2" style="left:575px; top:470px" data-icono="fabrica" data-args="[420]"></div>
+        <div class="pieza" id="chipJ2" style="left:600px; top:860px"><div class="chip rojo c44">4 CÉNTIMOS</div></div>
+        <div class="pieza rejilla" id="cuatro" style="left:580px; top:985px; width:370px; height:370px"></div>
+
+        <!-- K: Finland and the Netherlands hardly make them: the bill is rounded to 5 cents -->
+        <div class="pieza" id="banFI" style="left:80px; top:450px" data-dibujo="bandera" data-args='["FI", 430, "FINLANDIA"]'></div>
+        <div class="pieza" id="banNL" style="left:570px; top:450px" data-dibujo="bandera" data-args='["NL", 430, "PAÍSES BAJOS"]'></div>
+        <div class="pieza ancho" id="selloK" style="top:858px"><div class="sello s54" style="color:#4a78c2; border-color:#4a78c2">CASI NO SE FABRICAN</div></div>
+        <div class="pieza" id="fabK" style="left:340px; top:1010px" data-icono="fabrica" data-args="[400]"></div>
+        <div class="pieza" id="tachadoK" style="left:345px; top:985px" data-icono="tachado" data-args="[400]"></div>
+        <div class="pieza docg" id="docK" style="left:130px; top:1000px" data-icono="doc"
+          data-args='["LA CUENTA, EN EFECTIVO", [["MARCA", "1,99 €"], ["PAGAS", "1,99 €", "filaRed", "verde"]]]'></div>
+        <div class="pieza ancho" id="chipK" style="top:1332px"><div class="chip verde c44">REDONDEO A 5 CÉNTIMOS</div></div>
+
+        <!-- L and M: the final bill, and the comparison -->
+        <div class="pieza ancho" id="chipL" style="top:440px"><div class="chip blanco c58">LA CUENTA FINAL</div></div>
+        <div class="pieza" id="ceL" style="left:180px; top:610px" data-icono="edificio" data-args='["COMISIÓN EUROPEA", "#fffaf0", 700]'></div>
+        <div class="pieza cifra enorme roja ancho" id="c1400" style="top:560px">0</div>
+        <div class="pieza rotulo r44 rojo ancho" id="rot1400" style="top:778px">MILLONES DE EUROS<br />MÁS DE LO QUE VALEN</div>
+        <div class="pieza col verde" id="colV" style="left:170px; top:1165px; width:330px; height:255px">VALEN<b>714</b></div>
+        <div class="pieza col roja" id="colR" style="left:560px; top:920px; width:330px; height:500px">COSTE DE MÁS<b>1.400</b></div>
+        <div class="pieza" id="suelo" style="left:110px; top:1420px; width:860px"></div>
+        <div class="pieza" id="selloDoble" style="left:60px; top:985px"><div class="sello s50" style="color:#1d2a44; border-color:#1d2a44">CASI EL DOBLE</div></div>
+        <div class="pieza ancho" id="chipFin" style="top:440px"><div class="chip c50">¿QUÉ HACES CON LOS TUYOS?</div></div>
+      </div>
+      <div id="gancho" class="clip" data-start="0" data-duration="64.4" data-track-index="2"></div>
+      <div id="note" class="clip" data-start="0" data-duration="64.4" data-track-index="3"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="64.4"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="64.4" data-track-index="4" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 63.16, "lines": [{"id": "l1", "s": 0.19, "e": 1.97, "words": [{"w": "Tu", "s": 0.19, "e": 0.21, "key": false}, {"w": "céntimo", "s": 0.21, "e": 0.86, "key": false}, {"w": "sale", "s": 0.99, "e": 1.36, "key": false}, {"w": "caro.", "s": 1.36, "e": 1.97, "key": true}]}, {"id": "l2", "s": 2.02, "e": 7.08, "words": [{"w": "Fabricarlo", "s": 2.02, "e": 2.45, "key": false}, {"w": "suele", "s": 2.57, "e": 2.83, "key": false}, {"w": "costar", "s": 2.84, "e": 3.16, "key": false}, {"w": "más", "s": 3.17, "e": 3.31, "key": false}, {"w": "de", "s": 3.35, "e": 3.45, "key": false}, {"w": "lo", "s": 3.45, "e": 3.56, "key": false}, {"w": "que", "s": 3.56, "e": 3.73, "key": false}, {"w": "vale.", "s": 3.73, "e": 4.038, "key": true}, {"w": "¿Cuánto", "s": 4.038, "e": 4.5, "key": false}, {"w": "se", "s": 4.5, "e": 4.62, "key": false}, {"w": "ha", "s": 4.62, "e": 4.69, "key": false}, {"w": "perdido", "s": 4.69, "e": 4.94, "key": false}, {"w": "así?", "s": 5.13, "e": 5.94, "key": false}, {"w": "Te", "s": 5.94, "e": 6.06, "key": false}, {"w": "lo", "s": 6.06, "e": 6.16, "key": false}, {"w": "digo", "s": 6.23, "e": 6.42, "key": false}, {"w": "al", "s": 6.42, "e": 6.44, "key": false}, {"w": "final.", "s": 6.54, "e": 7.08, "key": false}]}, {"id": "l3", "s": 7.08, "e": 11.34, "words": [{"w": "Pagas", "s": 7.08, "e": 7.4, "key": false}, {"w": "1,99", "s": 7.51, "e": 8.35, "key": false}, {"w": "con", "s": 8.35, "e": 8.56, "key": false}, {"w": "2", "s": 8.56, "e": 8.72, "key": false}, {"w": "euros,", "s": 8.86, "e": 9.27, "key": false}, {"w": "y", "s": 9.27, "e": 9.34, "key": false}, {"w": "te", "s": 9.34, "e": 9.46, "key": false}, {"w": "devuelven", "s": 9.48, "e": 10.12, "key": true}, {"w": "un", "s": 10.56, "e": 10.68, "key": false}, {"w": "céntimo.", "s": 10.68, "e": 11.34, "key": false}]}, {"id": "l4", "s": 11.34, "e": 15.08, "words": [{"w": "Ese", "s": 11.34, "e": 11.4, "key": false}, {"w": "céntimo", "s": 11.4, "e": 11.77, "key": false}, {"w": "acaba", "s": 11.97, "e": 12.09, "key": false}, {"w": "en", "s": 12.2, "e": 12.26, "key": false}, {"w": "un", "s": 12.26, "e": 12.36, "key": false}, {"w": "cajón.", "s": 12.41, "e": 12.86, "key": true}, {"w": "Y", "s": 12.86, "e": 12.93, "key": false}, {"w": "muchas", "s": 12.93, "e": 13.26, "key": false}, {"w": "veces", "s": 13.34, "e": 13.44, "key": false}, {"w": "no", "s": 13.75, "e": 13.82, "key": false}, {"w": "vuelve", "s": 13.82, "e": 14.23, "key": false}, {"w": "a", "s": 14.23, "e": 14.24, "key": false}, {"w": "la", "s": 14.35, "e": 14.44, "key": false}, {"w": "tienda.", "s": 14.44, "e": 15.08, "key": false}]}, {"id": "l5", "s": 15.14, "e": 18.88, "words": [{"w": "Según", "s": 15.14, "e": 15.38, "key": false}, {"w": "la", "s": 15.38, "e": 15.48, "key": false}, {"w": "Comisión", "s": 15.48, "e": 15.73, "key": false}, {"w": "Europea,", "s": 16.09, "e": 16.42, "key": false}, {"w": "se", "s": 16.42, "e": 16.63, "key": false}, {"w": "pierde", "s": 16.63, "e": 17.01, "key": true}, {"w": "como", "s": 17.01, "e": 17.29, "key": false}, {"w": "poco", "s": 17.3, "e": 17.59, "key": false}, {"w": "una", "s": 17.59, "e": 17.8, "key": false}, {"w": "de", "s": 17.8, "e": 17.94, "key": false}, {"w": "cada", "s": 17.96, "e": 18.05, "key": false}, {"w": "cuatro.", "s": 18.46, "e": 18.88, "key": false}]}, {"id": "l6", "s": 18.88, "e": 20.84, "words": [{"w": "Así", "s": 18.88, "e": 19.1, "key": false}, {"w": "que", "s": 19.1, "e": 19.27, "key": false}, {"w": "hay", "s": 19.38, "e": 19.54, "key": false}, {"w": "que", "s": 19.54, "e": 19.74, "key": false}, {"w": "fabricar", "s": 19.79, "e": 20.22, "key": true}, {"w": "más.", "s": 20.3, "e": 20.84, "key": false}]}, {"id": "l7", "s": 20.84, "e": 28.402, "words": [{"w": "Hasta", "s": 20.84, "e": 21.16, "key": false}, {"w": "2013", "s": 21.16, "e": 21.62, "key": false}, {"w": "se", "s": 22.06, "e": 22.1, "key": false}, {"w": "acuñaron", "s": 22.1, "e": 22.41, "key": false}, {"w": "más", "s": 22.41, "e": 22.67, "key": false}, {"w": "de", "s": 22.67, "e": 22.78, "key": false}, {"w": "46.000", "s": 22.78, "e": 23.86, "key": false}, {"w": "millones", "s": 23.86, "e": 23.98, "key": false}, {"w": "de", "s": 24.45, "e": 24.51, "key": false}, {"w": "monedas", "s": 24.51, "e": 24.93, "key": true}, {"w": "de", "s": 24.93, "e": 25.05, "key": false}, {"w": "1", "s": 25.05, "e": 25.2, "key": false}, {"w": "y", "s": 25.25, "e": 25.29, "key": false}, {"w": "2", "s": 25.29, "e": 25.47, "key": false}, {"w": "céntimos.", "s": 25.47, "e": 26.08, "key": false}, {"w": "Casi", "s": 26.08, "e": 26.26, "key": false}, {"w": "una", "s": 26.4, "e": 26.42, "key": false}, {"w": "de", "s": 26.42, "e": 26.61, "key": false}, {"w": "cada", "s": 26.79, "e": 26.88, "key": false}, {"w": "dos", "s": 26.88, "e": 27.06, "key": false}, {"w": "monedas", "s": 27.06, "e": 27.65, "key": false}, {"w": "de", "s": 27.65, "e": 27.67, "key": false}, {"w": "euro.", "s": 28.11, "e": 28.402, "key": false}]}, {"id": "l8", "s": 28.402, "e": 32.76, "words": [{"w": "¿Y", "s": 28.402, "e": 28.5, "key": false}, {"w": "cuánto", "s": 28.5, "e": 28.94, "key": false}, {"w": "valen", "s": 28.94, "e": 29.3, "key": false}, {"w": "todas", "s": 29.3, "e": 29.42, "key": false}, {"w": "juntas?", "s": 29.88, "e": 30.35, "key": true}, {"w": "Unos", "s": 30.35, "e": 30.64, "key": false}, {"w": "714", "s": 30.69, "e": 31.32, "key": false}, {"w": "millones", "s": 31.32, "e": 31.7, "key": false}, {"w": "de", "s": 31.77, "e": 32.05, "key": false}, {"w": "euros.", "s": 32.23, "e": 32.76, "key": false}]}, {"id": "l9", "s": 32.76, "e": 36.93, "words": [{"w": "El", "s": 32.76, "e": 32.87, "key": false}, {"w": "problema", "s": 32.87, "e": 33.1, "key": false}, {"w": "es", "s": 33.1, "e": 33.54, "key": false}, {"w": "el", "s": 33.54, "e": 33.56, "key": false}, {"w": "coste.", "s": 33.56, "e": 34.16, "key": false}, {"w": "Solo", "s": 34.57, "e": 34.66, "key": false}, {"w": "el", "s": 34.67, "e": 34.75, "key": false}, {"w": "disco", "s": 34.75, "e": 34.99, "key": false}, {"w": "de", "s": 34.99, "e": 35.06, "key": false}, {"w": "metal", "s": 35.11, "e": 35.32, "key": false}, {"w": "ya", "s": 35.32, "e": 35.34, "key": false}, {"w": "cuesta", "s": 35.45, "e": 35.69, "key": false}, {"w": "al", "s": 35.69, "e": 35.77, "key": false}, {"w": "menos", "s": 35.77, "e": 35.97, "key": false}, {"w": "la", "s": 36.08, "e": 36.09, "key": false}, {"w": "mitad", "s": 36.09, "e": 36.32, "key": true}, {"w": "de", "s": 36.32, "e": 36.45, "key": false}, {"w": "lo", "s": 36.45, "e": 36.53, "key": false}, {"w": "que", "s": 36.53, "e": 36.66, "key": false}, {"w": "vale.", "s": 36.7, "e": 36.93, "key": false}]}, {"id": "l10", "s": 37.04, "e": 40.39, "words": [{"w": "Y", "s": 37.04, "e": 37.08, "key": false}, {"w": "luego", "s": 37.08, "e": 37.28, "key": false}, {"w": "hay", "s": 37.28, "e": 37.31, "key": false}, {"w": "que", "s": 37.42, "e": 37.72, "key": false}, {"w": "acuñarla,", "s": 37.72, "e": 38.6, "key": false}, {"w": "empaquetarla", "s": 38.78, "e": 39.34, "key": false}, {"w": "y", "s": 39.34, "e": 39.4, "key": false}, {"w": "transportarla.", "s": 39.4, "e": 40.39, "key": true}]}, {"id": "l11", "s": 40.56, "e": 45.4, "words": [{"w": "Una", "s": 40.56, "e": 40.57, "key": false}, {"w": "fábrica", "s": 40.57, "e": 41.0, "key": true}, {"w": "consigue", "s": 41, "e": 41.43, "key": false}, {"w": "hacerla", "s": 41.54, "e": 41.91, "key": false}, {"w": "por", "s": 41.95, "e": 42.07, "key": false}, {"w": "menos", "s": 42.15, "e": 42.38, "key": false}, {"w": "de", "s": 42.38, "e": 42.64, "key": false}, {"w": "un", "s": 42.64, "e": 42.73, "key": false}, {"w": "céntimo.", "s": 42.91, "e": 43.56, "key": false}, {"w": "Otra", "s": 43.7, "e": 43.84, "key": false}, {"w": "la", "s": 43.84, "e": 43.86, "key": false}, {"w": "vende", "s": 43.98, "e": 44.33, "key": false}, {"w": "a", "s": 44.33, "e": 44.4, "key": false}, {"w": "su", "s": 44.4, "e": 44.42, "key": false}, {"w": "país", "s": 44.55, "e": 44.79, "key": false}, {"w": "por", "s": 44.85, "e": 45.03, "key": false}, {"w": "4.", "s": 45.03, "e": 45.4, "key": false}]}, {"id": "l12", "s": 45.52, "e": 51.443, "words": [{"w": "En", "s": 45.52, "e": 45.59, "key": false}, {"w": "Finlandia", "s": 45.59, "e": 46.22, "key": false}, {"w": "y", "s": 46.22, "e": 46.28, "key": false}, {"w": "Países", "s": 46.33, "e": 46.71, "key": false}, {"w": "Bajos", "s": 46.71, "e": 47.03, "key": false}, {"w": "casi", "s": 47.11, "e": 47.33, "key": false}, {"w": "no", "s": 47.33, "e": 47.34, "key": false}, {"w": "se", "s": 47.41, "e": 47.62, "key": false}, {"w": "fabrican:", "s": 47.87, "e": 48.39, "key": false}, {"w": "allí", "s": 48.39, "e": 48.74, "key": false}, {"w": "la", "s": 48.74, "e": 48.95, "key": false}, {"w": "cuenta", "s": 48.95, "e": 49.4, "key": false}, {"w": "se", "s": 49.4, "e": 49.56, "key": false}, {"w": "redondea", "s": 49.56, "e": 50.2, "key": true}, {"w": "a", "s": 50.2, "e": 50.25, "key": false}, {"w": "5", "s": 50.28, "e": 50.37, "key": false}, {"w": "céntimos.", "s": 50.51, "e": 51.443, "key": false}]}, {"id": "l13", "s": 51.443, "e": 58.06, "words": [{"w": "¿Y", "s": 51.443, "e": 51.56, "key": false}, {"w": "la", "s": 51.56, "e": 51.72, "key": false}, {"w": "cuenta", "s": 51.72, "e": 52.2, "key": false}, {"w": "final?", "s": 52.2, "e": 52.71, "key": false}, {"w": "Según", "s": 53.04, "e": 53.12, "key": false}, {"w": "la", "s": 53.12, "e": 53.19, "key": false}, {"w": "Comisión", "s": 53.23, "e": 53.52, "key": false}, {"w": "Europea,", "s": 53.52, "e": 53.95, "key": false}, {"w": "fabricarlos", "s": 54.47, "e": 54.58, "key": false}, {"w": "costó", "s": 54.7, "e": 55.01, "key": false}, {"w": "1.400", "s": 55.01, "e": 55.77, "key": false}, {"w": "millones", "s": 56.3, "e": 56.55, "key": true}, {"w": "de", "s": 56.55, "e": 56.68, "key": false}, {"w": "euros", "s": 56.68, "e": 57.0, "key": false}, {"w": "más", "s": 57.05, "e": 57.11, "key": false}, {"w": "de", "s": 57.22, "e": 57.34, "key": false}, {"w": "lo", "s": 57.34, "e": 57.46, "key": false}, {"w": "que", "s": 57.47, "e": 57.67, "key": false}, {"w": "valen.", "s": 57.67, "e": 58.06, "key": false}]}, {"id": "l14", "s": 58.13, "e": 60.168, "words": [{"w": "Casi", "s": 58.13, "e": 58.41, "key": false}, {"w": "el", "s": 58.41, "e": 58.59, "key": false}, {"w": "doble", "s": 58.59, "e": 58.76, "key": true}, {"w": "de", "s": 58.76, "e": 58.85, "key": false}, {"w": "lo", "s": 58.85, "e": 58.92, "key": false}, {"w": "que", "s": 58.96, "e": 59.12, "key": false}, {"w": "valen", "s": 59.28, "e": 59.38, "key": false}, {"w": "todas", "s": 59.38, "e": 59.65, "key": false}, {"w": "juntas.", "s": 59.65, "e": 60.168, "key": false}]}, {"id": "l15", "s": 60.168, "e": 62.84, "words": [{"w": "¿Tú", "s": 60.168, "e": 60.34, "key": false}, {"w": "qué", "s": 60.41, "e": 60.6, "key": false}, {"w": "haces", "s": 60.6, "e": 60.96, "key": false}, {"w": "con", "s": 61.08, "e": 61.2, "key": false}, {"w": "los", "s": 61.2, "e": 61.43, "key": false}, {"w": "tuyos?", "s": 61.43, "e": 62.08, "key": false}, {"w": "Te", "s": 62.08, "e": 62.13, "key": false}, {"w": "leo", "s": 62.15, "e": 62.22, "key": false}, {"w": "en", "s": 62.23, "e": 62.28, "key": false}, {"w": "los", "s": 62.29, "e": 62.38, "key": false}, {"w": "comentarios.", "s": 62.38, "e": 62.84, "key": true}]}]}</script>
+    <script id="escena" type="application/json">
+      {
+        "momentos": [
+          { "id": "GFIN", "clave": "fabricarlo", "mas": 0.2 },
+          { "id": "CUANTO", "clave": "cuanto" },
+          { "id": "PAGAS", "clave": "pagas" },
+          { "id": "EUROS", "clave": "euros" },
+          { "id": "DEVUELVEN", "clave": "devuelven" },
+          { "id": "ESE", "clave": "ese" },
+          { "id": "CAJON", "clave": "cajon" },
+          { "id": "VECES", "clave": "veces" },
+          { "id": "VUELVE", "clave": "vuelve" },
+          { "id": "TIENDA", "clave": "tienda" },
+          { "id": "SEGUN", "clave": "segun" },
+          { "id": "PIERDE", "clave": "pierde" },
+          { "id": "POCO", "clave": "poco", "fin": true },
+          { "id": "ASI", "clave": "asi" },
+          { "id": "FABRICAR", "clave": "fabricar" },
+          { "id": "HASTA", "clave": "hasta" },
+          { "id": "ACUNARON", "clave": "acunaron" },
+          { "id": "CADA", "clave": "cada", "mas": -0.25 },
+          { "id": "VALEN", "clave": "valen" },
+          { "id": "UNOS", "clave": "unos" },
+          { "id": "PROBLEMA", "clave": "problema" },
+          { "id": "DISCO", "clave": "disco" },
+          { "id": "CUESTA", "clave": "cuesta" },
+          { "id": "MITAD", "clave": "mitad" },
+          { "id": "LUEGO", "clave": "luego" },
+          { "id": "ACUNARLA", "clave": "acunarla" },
+          { "id": "EMPAQUETARLA", "clave": "empaquetarla" },
+          { "id": "TRANSPORTARLA", "clave": "transportarla" },
+          { "id": "UNA", "clave": "fabrica", "mas": -0.3 },
+          { "id": "MENOS", "clave": "menos" },
+          { "id": "OTRA", "clave": "otra" },
+          { "id": "VENDE", "clave": "vende" },
+          { "id": "PAIS", "clave": "pais", "fin": true },
+          { "id": "FINLANDIA", "clave": "finlandia" },
+          { "id": "PAISES", "clave": "paises" },
+          { "id": "CASINO", "clave": "casi" },
+          { "id": "CUENTA", "clave": "cuenta" },
+          { "id": "REDONDEA", "clave": "redondea" },
+          { "id": "FINAL", "clave": "cuenta" },
+          { "id": "COMISION", "clave": "comision" },
+          { "id": "COSTO", "clave": "costo" },
+          { "id": "MASDE", "clave": "mas" },
+          { "id": "CASI", "clave": "casi" },
+          { "id": "DOBLE", "clave": "doble" },
+          { "id": "HACES", "clave": "haces" }
+        ],
+        "gancho": { "texto": "Tu céntimo sale caro", "clave": "caro", "tam": 156, "top": 500, "hasta": "GFIN" },
+        "arranque": { "zoom": 1.07, "centro": [540, 860] },
+        "lluvia": [
+          { "icono": "moneda", "args": ["1", 118, "#d98a4e", "#a85f2a"], "n": 9, "desde": 0, "hasta": "PAGAS", "vel": 430, "opacidad": 0.5 }
+        ],
+        "piezas": [
+          { "id": "cA", "desde": 0, "hasta": "PAGAS", "viaja": { "x": -235, "r": -50, "dura": 1.1 }, "mueve": { "tipo": "late", "fuerza": 3, "ritmo": 4 } },
+          { "id": "selloA", "desde": 1.15, "hasta": "CUANTO", "entra": "sello" },
+          { "id": "chipCuanto", "desde": "CUANTO", "hasta": "PAGAS", "entra": "baja" },
+          { "id": "cTease", "desde": "CUANTO", "hasta": "PAGAS", "entra": "escala", "mueve": { "tipo": "late", "fuerza": 8, "ritmo": 6 } },
+
+          { "id": "ticket", "desde": "PAGAS", "hasta": "ESE", "entra": "baja" },
+          { "id": "m2", "desde": "PAGAS", "hasta": "ESE", "entra": "izq", "mueve": "flota" },
+          { "id": "flechaC", "desde": "DEVUELVEN", "hasta": "ESE", "entra": "izq" },
+          { "id": "cC", "desde": "DEVUELVEN", "hasta": "ESE", "entra": "escala", "mueve": "balancea" },
+          { "id": "chipCambio", "desde": "DEVUELVEN", "hasta": "ESE", "entra": "sube" },
+
+          { "id": "cajonFondo", "desde": "ESE", "hasta": "ASI", "entra": "sube" },
+          { "id": "cajonFrente", "desde": "ESE", "hasta": "ASI", "entra": "sube" },
+          { "id": "cD", "desde": "ESE", "hasta": "ASI", "entra": "fundido", "viaja": { "y": -470, "r": -160, "dura": 1.0 } },
+          { "id": "cD0", "desde": "VECES", "hasta": "SEGUN", "entra": "escala", "mueve": "flota" },
+          { "id": "flechaD", "desde": "VUELVE", "hasta": "SEGUN", "entra": "izq" },
+          { "id": "tachadoD", "desde": "VUELVE", "hasta": "SEGUN", "entra": "sello" },
+          { "id": "tiendaD", "desde": "TIENDA", "hasta": "SEGUN", "entra": "der" },
+          { "id": "cuatroD", "desde": "SEGUN", "hasta": "ASI", "entra": "fundido" },
+          { "id": "chipD", "desde": "PIERDE", "hasta": "ASI", "entra": "sello" },
+          { "id": "tachadoD4", "desde": "POCO", "hasta": "ASI", "entra": "sello" },
+
+          { "id": "chipMas", "desde": "FABRICAR", "hasta": "HASTA", "entra": "sello" },
+          { "id": "fabE", "desde": "ASI", "hasta": "HASTA", "entra": "escala" },
+          { "id": "cinta", "desde": "ASI", "hasta": "HASTA", "entra": "izq" },
+          { "id": "cintaMonedas", "desde": "ASI", "hasta": "HASTA", "entra": "fundido" },
+
+          { "id": "chipF", "desde": "HASTA", "hasta": "CADA", "entra": "baja" },
+          { "id": "chipMitad", "desde": "CADA", "hasta": "VALEN", "entra": "sello" },
+          { "id": "rotMas", "desde": "ACUNARON", "hasta": "UNOS" },
+          { "id": "c46", "desde": "ACUNARON", "hasta": "UNOS", "entra": "escala" },
+          { "id": "rot46", "desde": "ACUNARON", "hasta": "UNOS" },
+          { "id": "rejilla", "desde": "HASTA", "hasta": "PROBLEMA", "entra": "fundido" },
+          { "id": "chipG", "desde": "VALEN", "hasta": "PROBLEMA", "entra": "baja" },
+          { "id": "rotUnos", "desde": "UNOS", "hasta": "PROBLEMA" },
+          { "id": "c714", "desde": "UNOS", "hasta": "PROBLEMA", "entra": "escala" },
+          { "id": "rot714", "desde": "UNOS", "hasta": "PROBLEMA" },
+
+          { "id": "chipH", "desde": "PROBLEMA", "hasta": "LUEGO", "entra": "sello" },
+          { "id": "disco", "desde": "PROBLEMA", "hasta": "ACUNARLA", "entra": "escala", "mueve": "balancea" },
+          { "id": "rotDisco", "desde": "DISCO", "entra": "sello", "hasta": "LUEGO" },
+          { "id": "barraH", "desde": "CUESTA", "hasta": "LUEGO", "entra": "izq" },
+          { "id": "rotBarra", "desde": "MITAD", "hasta": "LUEGO" },
+
+          { "id": "chipI1", "desde": "ACUNARLA", "hasta": "UNA", "entra": "sello" },
+          { "id": "cI", "desde": "ACUNARLA", "hasta": "UNA", "entra": "sello", "mueve": "balancea" },
+          { "id": "chipI3", "desde": "EMPAQUETARLA", "hasta": "UNA", "entra": "sello" },
+          { "id": "chipI2", "desde": "TRANSPORTARLA", "hasta": "UNA", "entra": "sello" },
+          { "id": "caja", "desde": "EMPAQUETARLA", "hasta": "UNA", "entra": "escala" },
+          { "id": "camion", "desde": "TRANSPORTARLA", "hasta": "MENOS", "entra": "fundido", "sale": "der", "viaja": { "x": -820, "dura": 0.7 } },
+
+          { "id": "fabJ1", "desde": "UNA", "hasta": "FINLANDIA", "entra": "izq" },
+          { "id": "chipJ1", "desde": "MENOS", "hasta": "FINLANDIA", "entra": "sello" },
+          { "id": "cJ1", "desde": "MENOS", "hasta": "FINLANDIA", "entra": "escala", "mueve": "flota" },
+          { "id": "fabJ2", "desde": "OTRA", "hasta": "FINLANDIA", "entra": "der" },
+          { "id": "cuatro", "desde": "VENDE", "hasta": "FINLANDIA", "entra": "fundido" },
+          { "id": "chipJ2", "desde": "PAIS", "hasta": "FINLANDIA", "entra": "sello" },
+
+          { "id": "banFI", "desde": "FINLANDIA", "hasta": "FINAL", "entra": "izq" },
+          { "id": "banNL", "desde": "PAISES", "hasta": "FINAL", "entra": "der" },
+          { "id": "selloK", "desde": "CASINO", "hasta": "FINAL", "entra": "sello" },
+          { "id": "fabK", "desde": "CASINO", "hasta": "CUENTA", "entra": "sube" },
+          { "id": "tachadoK", "desde": "CASINO", "hasta": "CUENTA", "entra": "sello" },
+          { "id": "docK", "desde": "CUENTA", "hasta": "FINAL", "entra": "sube" },
+          { "id": "chipK", "desde": "REDONDEA", "hasta": "FINAL", "entra": "sello" },
+
+          { "id": "chipL", "desde": "FINAL", "hasta": "HACES", "entra": "baja" },
+          { "id": "ceL", "desde": "FINAL", "hasta": "COSTO", "entra": "escala" },
+          { "id": "c1400", "desde": "COSTO", "entra": "escala" },
+          { "id": "rot1400", "desde": "MASDE" },
+          { "id": "suelo", "desde": "COSTO", "entra": "fundido" },
+          { "id": "colV", "desde": "COSTO", "entra": "crece" },
+          { "id": "colR", "desde": "MASDE", "entra": "crece", "dura": 1.1 },
+          { "id": "selloDoble", "desde": "DOBLE", "entra": "sello" },
+          { "id": "chipFin", "desde": "HACES", "entra": "sello" }
+        ],
+        "cifras": [
+          { "id": "c46", "desde": "ACUNARON", "a": 46000, "formato": "numero", "dura": 2.2, "curva": "sale" },
+          { "id": "c714", "desde": "UNOS", "a": 714, "formato": "numero", "dura": 1.3, "curva": "sale" },
+          { "id": "c1400", "desde": "COSTO", "a": 1400, "formato": "numero", "dura": 1.8, "curva": "sale" }
+        ],
+        "notas": [
+          { "texto": "En la mayoría de los países del euro. Comisión Europea, COM(2013) 281", "desde": 1.2 },
+          { "texto": "", "desde": "CUANTO" },
+          { "texto": "Ejemplo: una compra de 1,99 € pagada en efectivo con una moneda de 2 €", "desde": "PAGAS" },
+          { "texto": "", "desde": "ESE" },
+          { "texto": "Tasas de pérdida de entre el 25 % y casi el 100 %. Comisión Europea, COM(2013) 281, apartado 3.1.1", "desde": "SEGUN" },
+          { "texto": "", "desde": "ASI" },
+          { "texto": "Zona del euro, de 2002 a mayo de 2013. Comisión Europea, COM(2013) 281, apartado 3.1.1", "desde": "HASTA" },
+          { "texto": "El disco (cospel) cuesta entre el 50 % y el 60 % del valor de la moneda. COM(2013) 281, apartado 3.1.2", "desde": "PROBLEMA" },
+          { "texto": "", "desde": "LUEGO" },
+          { "texto": "Lo que paga cada país a su fábrica de moneda. COM(2013) 281, apartado 3.2.2", "desde": "UNA" },
+          { "texto": "COM(2013) 281, nota 5. En esos países el céntimo vale, pero la cuenta en efectivo se redondea", "desde": "FINLANDIA" },
+          { "texto": "Zona del euro, hasta 2013: coste neto acumulado de emitir las monedas de 1 y 2 céntimos. COM(2013) 281, apartado 3.1.2", "desde": "FINAL" },
+          { "texto": "En millones de euros. 1.400 entre 714 = 1,96 (cálculo propio). COM(2013) 281", "desde": "CASI" }
+        ],
+        "fondo": "claro",
+        "sonidos": [
+          { "tipo": "desliza", "en": 0.0 },
+          { "tipo": "metal", "en": 0.12 },
+          { "tipo": "toque", "en": 1.2 },
+          { "tipo": "brillo", "en": "CUANTO" },
+          { "tipo": "desliza", "en": "PAGAS" },
+          { "tipo": "pop", "en": "EUROS" },
+          { "tipo": "metal", "en": "DEVUELVEN" },
+          { "tipo": "desliza", "en": "ESE" },
+          { "tipo": "metal", "en": "ESE", "mas": 0.85 },
+          { "tipo": "pop", "en": "VECES" },
+          { "tipo": "error", "en": "VUELVE" },
+          { "tipo": "pop", "en": "TIENDA" },
+          { "tipo": "teclas", "en": "SEGUN", "n": 4, "cada": 0.15, "volumen": 0.7 },
+          { "tipo": "toque", "en": "PIERDE", "mas": 0.1 },
+          { "tipo": "error", "en": "POCO" },
+          { "tipo": "desliza", "en": "ASI" },
+          { "tipo": "teclas", "en": "ASI", "mas": 0.5, "n": 4, "cada": 0.38, "volumen": 0.6 },
+          { "tipo": "toque", "en": "FABRICAR", "mas": 0.1 },
+          { "tipo": "desliza", "en": "HASTA" },
+          { "tipo": "sube", "en": "ACUNARON" },
+          { "tipo": "toque", "en": "CADA" },
+          { "tipo": "brillo", "en": "VALEN" },
+          { "tipo": "chip", "en": "UNOS" },
+          { "tipo": "toque", "en": "PROBLEMA", "mas": 0.1 },
+          { "tipo": "pop", "en": "DISCO" },
+          { "tipo": "desliza", "en": "CUESTA" },
+          { "tipo": "sube", "en": "MITAD" },
+          { "tipo": "metal", "en": "ACUNARLA" },
+          { "tipo": "toque", "en": "ACUNARLA", "mas": 0.1 },
+          { "tipo": "toque", "en": "EMPAQUETARLA", "mas": 0.1 },
+          { "tipo": "desliza", "en": "TRANSPORTARLA" },
+          { "tipo": "desliza", "en": "UNA" },
+          { "tipo": "chip", "en": "MENOS" },
+          { "tipo": "desliza", "en": "OTRA" },
+          { "tipo": "teclas", "en": "VENDE", "n": 4, "cada": 0.16, "volumen": 0.7 },
+          { "tipo": "error", "en": "PAIS" },
+          { "tipo": "desliza", "en": "FINLANDIA" },
+          { "tipo": "desliza", "en": "PAISES" },
+          { "tipo": "toque", "en": "CASINO", "mas": 0.1 },
+          { "tipo": "pop", "en": "CUENTA" },
+          { "tipo": "pagado", "en": "REDONDEA", "mas": 0.3 },
+          { "tipo": "brillo", "en": "FINAL" },
+          { "tipo": "chip", "en": "COMISION" },
+          { "tipo": "sube", "en": "COSTO" },
+          { "tipo": "metal", "en": "MASDE" },
+          { "tipo": "brillo", "en": "CASI" },
+          { "tipo": "toque", "en": "DOBLE", "mas": 0.1 },
+          { "tipo": "pop", "en": "HACES" }
+        ]
+      }
+    </script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 64.4 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import { crearDinero, COLOR } from "./comun/dinero.js";
+      const $ = (id) => document.getElementById(id);
+      const K = COLOR;
+      const COBRE = "#d98a4e", COBRE2 = "#a85f2a";
+
+      // ---------- drawings this video needs, in the account's flat style (navy outline, solid offset shadow) ----------
+      // they are built before the engine looks for the ids of pieces and figures
+      const DIBUJOS = {
+        // a 1 or 2 cent coin: copper, with its value and "CENT" (no national side, no real design)
+        centimo: (w = 300, valor = "1") => `<svg width="${w}" height="${w}" viewBox="0 0 240 240">
+          <circle cx="128" cy="128" r="104" fill="${K.tinta}"/>
+          <circle cx="116" cy="116" r="104" fill="${COBRE}" stroke="${K.tinta}" stroke-width="9"/>
+          <circle cx="116" cy="116" r="84" fill="none" stroke="${COBRE2}" stroke-width="6"/>
+          <path d="M52 86 A72 72 0 0 1 100 46" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" opacity="0.45"/>
+          <text x="116" y="100" text-anchor="middle" dominant-baseline="central" font-family="Archivo Black" font-size="112" fill="${K.tinta}">${valor}</text>
+          <text x="116" y="168" text-anchor="middle" dominant-baseline="central" font-family="Inter" font-weight="800" font-size="27" letter-spacing="5" fill="${K.tinta}">CENT</text></svg>`,
+
+        // the blank: the metal disc before it is struck
+        disco: (w = 300) => `<svg width="${w}" height="${w}" viewBox="0 0 240 240">
+          <circle cx="128" cy="128" r="104" fill="${K.tinta}"/>
+          <circle cx="116" cy="116" r="104" fill="${COBRE}" stroke="${K.tinta}" stroke-width="9"/>
+          <path d="M46 96 A76 76 0 0 1 104 42" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" opacity="0.45"/>
+          <path d="M150 190 A80 80 0 0 0 192 140" fill="none" stroke="${COBRE2}" stroke-width="10" stroke-linecap="round"/></svg>`,
+
+        // a thick navy arrow pointing right
+        flecha: (w = 160) => `<svg width="${w}" height="${Math.round(w / 2)}" viewBox="0 0 170 85">
+          <path d="M14 42 H134" stroke="${K.tinta}" stroke-width="16" stroke-linecap="round"/>
+          <path d="M108 14 L152 42 L108 70" fill="none" stroke="${K.tinta}" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+
+        // a shop front: sign, striped awning, window and door
+        tienda: (w = 400, letrero = "TIENDA") => {
+          const franjas = Array.from({ length: 8 }, (_, i) => {
+            const x = 8 + i * 50.5, c = i % 2 ? K.blanco : K.verde;
+            return `<rect x="${x}" y="110" width="50.5" height="56" fill="${c}"/><path d="M${x} 166 a25.25 25.25 0 0 0 50.5 0 Z" fill="${c}" stroke="${K.tinta}" stroke-width="6" stroke-linejoin="round"/>`;
+          }).join("");
+          return `<svg width="${w}" height="${Math.round((w * 404) / 424)}" viewBox="0 0 424 404">
+            <g transform="translate(12 12)" fill="${K.tinta}"><rect x="20" y="96" width="380" height="290"/><rect x="100" y="26" width="220" height="70" rx="12"/><rect x="8" y="110" width="404" height="56"/></g>
+            <rect x="20" y="96" width="380" height="290" fill="${K.blanco}" stroke="${K.tinta}" stroke-width="8"/>
+            <rect x="100" y="26" width="220" height="70" rx="12" fill="${K.tinta}" stroke="${K.tinta}" stroke-width="8"/>
+            <text x="210" y="63" text-anchor="middle" dominant-baseline="central" font-family="Archivo Black" font-size="36" letter-spacing="2" fill="${K.oro}">${letrero}</text>
+            <rect x="48" y="214" width="190" height="130" rx="8" fill="${K.azul}" stroke="${K.tinta}" stroke-width="6"/>
+            <path d="M74 326 L128 234" stroke="#fff" stroke-width="12" opacity="0.35" stroke-linecap="round"/>
+            <rect x="268" y="214" width="104" height="172" fill="${K.oro}" stroke="${K.tinta}" stroke-width="6"/>
+            <circle cx="352" cy="304" r="8" fill="${K.tinta}"/>
+            ${franjas}
+            <rect x="8" y="110" width="404" height="56" fill="none" stroke="${K.tinta}" stroke-width="7"/></svg>`;
+        },
+
+        // an open drawer seen from the front, in two layers so the coin falls between them:
+        // the back (the cabinet and the dark inside of the drawer) and the front panel with its handle
+        cajonFondo: (w = 800) => `<svg width="${w}" height="${Math.round((w * 520) / 800)}" viewBox="0 0 800 520">
+          <rect x="32" y="52" width="760" height="460" rx="22" fill="${K.tinta}"/>
+          <rect x="20" y="40" width="760" height="460" rx="22" fill="#b98556" stroke="${K.tinta}" stroke-width="9"/>
+          <rect x="70" y="90" width="660" height="250" rx="12" fill="${K.tinta}"/>
+          <rect x="88" y="108" width="624" height="232" fill="#3a2a22"/>
+          <g fill="${COBRE}" stroke="${K.tinta}" stroke-width="6">
+            <circle cx="170" cy="318" r="46"/><circle cx="246" cy="330" r="40"/><circle cx="610" cy="322" r="48"/><circle cx="536" cy="334" r="38"/><circle cx="680" cy="336" r="34"/></g></svg>`,
+        cajonFrente: (w = 800) => `<svg width="${w}" height="${Math.round((w * 520) / 800)}" viewBox="0 0 800 520">
+          <rect x="52" y="302" width="720" height="200" rx="18" fill="${K.tinta}"/>
+          <rect x="40" y="290" width="720" height="200" rx="18" fill="#d9a877" stroke="${K.tinta}" stroke-width="9"/>
+          <rect x="70" y="316" width="660" height="148" rx="10" fill="none" stroke="#b98556" stroke-width="7"/>
+          <rect x="320" y="368" width="160" height="40" rx="20" fill="${K.oro}" stroke="${K.tinta}" stroke-width="7"/></svg>`,
+
+        // a van that carries coins
+        camion: (w = 600) => `<svg width="${w}" height="${Math.round((w * 330) / 640)}" viewBox="0 0 640 330">
+          <g transform="translate(12 12)" fill="${K.tinta}"><rect x="10" y="20" width="400" height="230" rx="16"/><path d="M410 90 H530 L610 170 V250 H410 Z"/></g>
+          <rect x="10" y="20" width="400" height="230" rx="16" fill="${K.blanco}" stroke="${K.tinta}" stroke-width="9"/>
+          <path d="M410 90 H530 L610 170 V250 H410 Z" fill="${K.azul}" stroke="${K.tinta}" stroke-width="9" stroke-linejoin="round"/>
+          <path d="M440 116 H518 L566 168 H440 Z" fill="${K.blanco}" stroke="${K.tinta}" stroke-width="7" stroke-linejoin="round"/>
+          <circle cx="210" cy="135" r="76" fill="${COBRE}" stroke="${K.tinta}" stroke-width="8"/>
+          <circle cx="210" cy="135" r="58" fill="none" stroke="${COBRE2}" stroke-width="5"/>
+          <text x="210" y="139" text-anchor="middle" dominant-baseline="central" font-family="Archivo Black" font-size="84" fill="${K.tinta}">1</text>
+          <g class="rueda" fill="${K.tinta}"><circle cx="130" cy="262" r="52"/><circle cx="500" cy="262" r="52"/></g>
+          <g fill="${K.papel}" stroke="${K.tinta}" stroke-width="6"><circle cx="130" cy="262" r="22"/><circle cx="500" cy="262" r="22"/></g></svg>`,
+
+        // a cardboard box of coins
+        caja: (w = 400) => `<svg width="${w}" height="${Math.round((w * 330) / 420)}" viewBox="0 0 420 330">
+          <rect x="22" y="72" width="390" height="250" rx="12" fill="${K.tinta}"/>
+          <rect x="10" y="60" width="390" height="250" rx="12" fill="#d9a877" stroke="${K.tinta}" stroke-width="9"/>
+          <path d="M10 60 L60 10 H350 L400 60 Z" fill="#b98556" stroke="${K.tinta}" stroke-width="9" stroke-linejoin="round"/>
+          <rect x="180" y="10" width="50" height="130" fill="${K.blanco}" stroke="${K.tinta}" stroke-width="7"/>
+          <circle cx="205" cy="212" r="62" fill="${COBRE}" stroke="${K.tinta}" stroke-width="8"/>
+          <text x="205" y="216" text-anchor="middle" dominant-baseline="central" font-family="Archivo Black" font-size="72" fill="${K.tinta}">1</text></svg>`,
+
+        // a flag on a card, with the country's name under it
+        bandera: (pais = "FI", w = 400, nombre = "") => {
+          const h = Math.round(w * 0.62);
+          const dentro = pais === "FI"
+            ? `<rect x="6" y="6" width="${w}" height="${h}" fill="#fff"/><rect x="${6 + w * 0.28}" y="6" width="${w * 0.17}" height="${h}" fill="#1f4fa3"/><rect x="6" y="${6 + h * 0.36}" width="${w}" height="${h * 0.28}" fill="#1f4fa3"/>`
+            : `<rect x="6" y="6" width="${w}" height="${h / 3 + 1}" fill="#c8253a"/><rect x="6" y="${6 + h / 3}" width="${w}" height="${h / 3 + 1}" fill="#fff"/><rect x="6" y="${6 + (2 * h) / 3}" width="${w}" height="${h / 3}" fill="#27509b"/>`;
+          return `<svg width="${w + 24}" height="${h + 96}" viewBox="0 0 ${w + 24} ${h + 96}">
+            <rect x="18" y="18" width="${w}" height="${h}" rx="14" fill="${K.tinta}"/>
+            <clipPath id="cl${pais}"><rect x="6" y="6" width="${w}" height="${h}" rx="14"/></clipPath>
+            <g clip-path="url(#cl${pais})">${dentro}</g>
+            <rect x="6" y="6" width="${w}" height="${h}" rx="14" fill="none" stroke="${K.tinta}" stroke-width="9"/>
+            <text x="${6 + w / 2}" y="${h + 58}" text-anchor="middle" dominant-baseline="central" font-family="Inter" font-weight="800" font-size="42" letter-spacing="3" fill="${K.tinta}">${nombre}</text></svg>`;
+        },
+      };
+      for (const el of document.querySelectorAll("[data-dibujo]")) el.innerHTML = DIBUJOS[el.dataset.dibujo](...JSON.parse(el.dataset.args || "[]"));
+
+      // groups of small coins that the scene shows one by one: the belt, the grid and the four cents
+      const llena = (id, n, f) => { for (let i = 0; i < n; i++) { const d = document.createElement("div"); const [x, y, html] = f(i); d.style.left = x + "px"; d.style.top = y + "px"; d.innerHTML = html; $(id).appendChild(d); } return [...$(id).children]; };
+      const cintaM = llena("cintaMonedas", 4, () => [0, 0, DIBUJOS.centimo(150)]);
+      const rejilla = llena("rejilla", 28, (i) => [(i % 7) * 118, Math.floor(i / 7) * 116, DIBUJOS.centimo(112, (i + Math.floor(i / 7)) % 2 ? "2" : "1")]);
+      const cuatroD = llena("cuatroD", 4, (i) => [i * 228, 0, DIBUJOS.centimo(215)]);
+      const cuatro = llena("cuatro", 4, (i) => [(i % 2) * 185, Math.floor(i / 2) * 185, DIBUJOS.centimo(180)]);
+
+      // ---------- the engine ----------
+      const C = crearDinero();
+      const { T, ramp, clamp, backOut } = C;
+      const filaClase = (id, clase, on) => { const b = $(id); if (b) b.parentElement.classList.toggle(clase, on); };
+      // shows the children of a group one after another from t0, each with a little pop
+      const revela = (els, t, t0, paso) => els.forEach((el, i) => {
+        const k = clamp((t - t0 - i * paso) / 0.22);
+        el.style.opacity = clamp(k * 3);
+        el.style.transform = `scale(${k ? backOut(k) : 0})`;
+      });
+
+      function renderAt(t) {
+        // C: the rows of the receipt light up as the voice names them
+        filaClase("filaPagas", "marca", t >= T.EUROS && t < T.DEVUELVEN);
+        filaClase("filaCambio", "marca", t >= T.DEVUELVEN);
+
+        // D: the cent in the drawer keeps still once it lands; the crossed arrow shakes a little
+        const tiembla = clamp((t - T.VUELVE) / 0.3) * (1 - clamp((t - T.VUELVE - 0.3) / 0.4));
+        C.mover("tachadoD", { x: 9 * Math.sin(t * 55) * tiembla });
+
+        revela(cuatroD, t, T.SEGUN, 0.16);
+        cuatroD[3].style.filter = t >= T.POCO ? "grayscale(1) opacity(0.55)" : "";
+
+        // E: cents come out of the mint on a belt, one after another, without stopping
+        cintaM.forEach((el, i) => {
+          const k = (((t - T.ASI) * 0.42 + i / 4) % 1 + 1) % 1;
+          el.style.transform = `translate(${250 + k * 700}px, 0) rotate(${k * 700 * 0.76}deg)`;
+          el.style.opacity = clamp(k * 8) * clamp((1 - k) * 8);
+        });
+        C.mover("fabE", { y: 5 * Math.sin(t * 9), s: 1 + 0.012 * Math.sin(t * 9) });
+
+        // F and G: the grid fills while the figure counts, and then breathes
+        revela(rejilla, t, T.HASTA + 0.15, 0.085);
+        if (t > T.VALEN) rejilla.forEach((el, i) => (el.style.transform = `translateY(${5 * Math.sin(t * 2.4 + i * 0.6)}px)`));
+
+        // H: the metal's share of the coin's value grows up to between 50 and 60 %
+        $("segMetal").style.width = 55 * ramp(t, T.MITAD - 0.1, T.MITAD + 0.9) + "%";
+        $("segMetal").style.color = t >= T.MITAD + 0.5 ? K.tinta : "transparent";
+
+        // I: the van's wheels bob while it drives in
+        C.mover("camion", { y: 4 * Math.sin(t * 14) * (1 - ramp(t, T.TRANSPORTARLA + 0.9, T.TRANSPORTARLA + 1.3)) });
+
+        // J: the four cents the other mint charges, one by one
+        revela(cuatro, t, T.VENDE, 0.2);
+
+        // K: in cash, 1,99 becomes 2,00
+        const red = t >= T.REDONDEA + 0.3;
+        $("filaRed").textContent = red ? "2,00 €" : "1,99 €";
+        filaClase("filaRed", "marca", red);
+
+        C.pintar(t);
+      }
+
+      C.arrancar(renderAt);
+    </script>
+  </body>
+</html>

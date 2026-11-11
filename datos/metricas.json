@@ -2,27 +2,27 @@
  "cuentas": {
   "dinerosinlio": {
    "error": null,
-   "leido": 1794221733,
-   "megusta": 41,
-   "seguidores": 6,
+   "leido": 1794386723,
+   "megusta": 85,
+   "seguidores": 7,
    "tiktok": "eldinerosinlio"
   },
   "elcontadorloco": {
    "error": null,
-   "leido": 1794221733,
-   "megusta": 139,
+   "leido": 1794386723,
+   "megusta": 204,
    "seguidores": 5,
    "tiktok": "elcontadorloco"
   },
   "lascosaspordentro": {
    "error": null,
-   "leido": 1794221733,
-   "megusta": 84,
+   "leido": 1794386723,
+   "megusta": 138,
    "seguidores": 6,
    "tiktok": "lascosaspordentro"
   }
  },
- "leido": 1794221733,
+ "leido": 1794386723,
  "videos": {
   "7703610063235190038": {
    "comentarios": 3,
@@ -34,7 +34,8 @@
    "texto": "Un gato que engorda un kilo al día: del labrador a la ballena azul. Tranquilo, tu gato está perfecto como está. Valores ",
    "url": "https://www.tiktok.com/@elcontadorloco/video/7703610063235190038",
    "v24": null,
-   "vistas": 42
+   "v7": 42,
+   "vistas": 44
   },
   "7703612725737295126": {
    "comentarios": 1,
@@ -46,7 +47,8 @@
    "texto": "Un ascensor a un metro por segundo que no para nunca: de tu planta a la Luna. ¿Hasta qué piso aguantarías tú? Valores ap",
    "url": "https://www.tiktok.com/@elcontadorloco/video/7703612725737295126",
    "v24": null,
-   "vistas": 17
+   "v7": 17,
+   "vistas": 19
   },
   "7703614475424845078": {
    "comentarios": 1,
@@ -58,7 +60,8 @@
    "texto": "Un montón de ropa que se duplica cada día: el día 34 casi llega a la Luna y el 35 la pasa. Así de rápido crece algo que ",
    "url": "https://www.tiktok.com/@elcontadorloco/video/7703614475424845078",
    "v24": null,
-   "vistas": 8
+   "v7": 8,
+   "vistas": 10
   },
   "7703653148577008918": {
    "comentarios": 1,
@@ -70,7 +73,8 @@
    "texto": "Tu placa de inducción no se calienta: se calienta la sartén. Por dentro hay una bobina de cobre y un campo magnético que",
    "url": "https://www.tiktok.com/@lascosaspordentro/video/7703653148577008918",
    "v24": null,
-   "vistas": 10
+   "v7": 10,
+   "vistas": 12
   },
   "7703655655806192918": {
    "comentarios": 0,
@@ -82,7 +86,8 @@
    "texto": "Tu tarjeta no tiene batería, pero paga en menos de medio segundo. Así funciona por dentro: una antena de cobre, un campo",
    "url": "https://www.tiktok.com/@lascosaspordentro/video/7703655655806192918",
    "v24": null,
-   "vistas": 3
+   "v7": 3,
+   "vistas": 5
   },
   "7703656043183705366": {
    "comentarios": 0,
@@ -94,7 +99,8 @@
    "texto": "Tu móvil se carga sin que nada lo toque. Por dentro hay dos bobinas de cobre, un campo magnético y una conversación entr",
    "url": "https://www.tiktok.com/@lascosaspordentro/video/7703656043183705366",
    "v24": null,
-   "vistas": 4
+   "v7": 4,
+   "vistas": 6
   },
   "7703939992397073686": {
    "comentarios": 0,
@@ -106,7 +112,8 @@
    "texto": "Si crecieras un centímetro cada día, ¿hasta dónde llegarías en toda tu vida? De la puerta de casa a la Torre de Cristal.",
    "url": "https://www.tiktok.com/@elcontadorloco/video/7703939992397073686",
    "v24": null,
-   "vistas": 281
+   "v7": 283,
+   "vistas": 283
   },
   "7703940311143288086": {
    "comentarios": 0,
@@ -118,7 +125,7 @@
    "texto": "Tu móvil, un grado más cada minuto: de la fiebre a la superficie del Sol. No lo intentes: un móvil de verdad avisaría y ",
    "url": "https://www.tiktok.com/@elcontadorloco/video/7703940311143288086",
    "v24": 220,
-   "vistas": 234
+   "vistas": 237
   },
   "7703940797799927062": {
    "comentarios": 0,
@@ -130,7 +137,8 @@
    "texto": "Tu reloj tiene un cristal de cuarzo que tiembla 32.768 veces por segundo, y ese número no es casualidad. Así funciona po",
    "url": "https://www.tiktok.com/@lascosaspordentro/video/7703940797799927062",
    "v24": null,
-   "vistas": 187
+   "v7": 191,
+   "vistas": 191
   },
   "7703941048547953942": {
    "comentarios": 0,
@@ -142,7 +150,7 @@
    "texto": "Los satélites GPS no saben dónde estás: tu móvil solo escucha su hora y mide cuánto tarda cada señal en llegar. Y sus re",
    "url": "https://www.tiktok.com/@lascosaspordentro/video/7703941048547953942",
    "v24": 192,
-   "vistas": 198
+   "vistas": 201
   },
   "7703941507107097878": {
    "comentarios": 0,
@@ -154,7 +162,7 @@
    "texto": "En España, el precio tachado de un descuento tiene que ser el más bajo de los 30 días anteriores (Ley 7/1996, artículo 2",
    "url": "https://www.tiktok.com/@eldinerosinlio/video/7703941507107097878",
    "v24": 0,
-   "vistas": 8
+   "vistas": 12
   },
   "7703941905125559574": {
    "comentarios": 1,
@@ -166,7 +174,8 @@
    "texto": "El billete de 500 euros ya no se fabrica, pero sigue siendo de curso legal. Por qué lo quitaron y qué hacer si tienes un",
    "url": "https://www.tiktok.com/@eldinerosinlio/video/7703941905125559574",
    "v24": null,
-   "vistas": 11
+   "v7": 14,
+   "vistas": 14
   },
   "7703942200400399619": {
    "comentarios": 1,
@@ -178,7 +187,8 @@
    "texto": "Si te toca el Gordo de Navidad, Hacienda se lleva 72.000 euros de tu décimo. Y de media, cada décimo de 20 euros devuelv",
    "url": "https://www.tiktok.com/@eldinerosinlio/video/7703942200400399619",
    "v24": null,
-   "vistas": 10
+   "v7": 14,
+   "vistas": 14
   },
   "7703942462431120662": {
    "comentarios": 0,
@@ -190,7 +200,8 @@
    "texto": "Por cada 100 euros de tu sueldo, tu empresa paga casi 31 más a la Seguridad Social, y a ti te descuentan 6,50. Así se re",
    "url": "https://www.tiktok.com/@eldinerosinlio/video/7703942462431120662",
    "v24": null,
-   "vistas": 7
+   "v7": 11,
+   "vistas": 11
   },
   "7704716264723483926": {
    "comentarios": 0,
@@ -202,7 +213,7 @@
    "texto": "10.000 pasos al día, todos los días: qué dicen los estudios del azúcar tras comer, la tensión, la forma física, el cereb",
    "url": "https://www.tiktok.com/@elcontadorloco/video/7704716264723483926",
    "v24": 800,
-   "vistas": 816
+   "vistas": 819
   },
   "7704716506323520790": {
    "comentarios": 0,
@@ -214,7 +225,7 @@
    "texto": "Si pagas un café de 2 euros con tarjeta, el bar paga de media unas 7 décimas de céntimo de comisión, y una parte va a tu",
    "url": "https://www.tiktok.com/@eldinerosinlio/video/7704716506323520790",
    "v24": 288,
-   "vistas": 306
+   "vistas": 316
   },
   "7704716784225537302": {
    "comentarios": 0,
@@ -226,19 +237,19 @@
    "texto": "El microondas no calienta desde dentro: sus ondas solo entran unos centímetros y el centro se calienta después, por cond",
    "url": "https://www.tiktok.com/@lascosaspordentro/video/7704716784225537302",
    "v24": 261,
-   "vistas": 268
+   "vistas": 274
   },
   "7705523382627994902": {
    "comentarios": 0,
    "compartidos": 0,
    "cuenta": "elcontadorloco",
-   "megusta": 11,
+   "megusta": 13,
    "panel": "elcontadorloco/07-comida",
    "publicado": 1794085200,
    "texto": "La comida que se tira en casa, sumada: unos 64 gramos al día por persona, una maleta al año y casi 2 toneladas en toda u",
    "url": "https://www.tiktok.com/@elcontadorloco/video/7705523382627994902",
    "v24": null,
-   "vistas": 887
+   "vistas": 895
   },
   "7705523999446519062": {
    "comentarios": 0,
@@ -250,7 +261,7 @@
    "texto": "Tu nevera no fabrica frío: saca el calor de la comida y lo suelta por detrás, en tu cocina. Por eso dejarla abierta no e",
    "url": "https://www.tiktok.com/@lascosaspordentro/video/7705523999446519062",
    "v24": null,
-   "vistas": 804
+   "vistas": 814
   },
   "7705524543095426326": {
    "comentarios": 0,
@@ -262,7 +273,76 @@
    "texto": "En España el pan común, la leche, los huevos, el queso, la fruta, la verdura, las legumbres y el aceite de oliva llevan ",
    "url": "https://www.tiktok.com/@eldinerosinlio/video/7705524543095426326",
    "v24": null,
-   "vistas": 836
+   "vistas": 842
+  },
+  "7706114335826824451": {
+   "comentarios": 1,
+   "compartidos": 1,
+   "cuenta": "elcontadorloco",
+   "megusta": 39,
+   "panel": "elcontadorloco/09-movil",
+   "publicado": 1794258000,
+   "texto": "4 horas de móvil al día, sumadas: 28 horas a la semana, 2 meses enteros al año y 12 años enteros en toda una vida (desde",
+   "url": "https://www.tiktok.com/@elcontadorloco/video/7706114335826824451",
+   "v24": 781,
+   "vistas": 782
+  },
+  "7706115412081069334": {
+   "comentarios": 0,
+   "compartidos": 0,
+   "cuenta": "elcontadorloco",
+   "megusta": 24,
+   "panel": "elcontadorloco/11-refresco-salud",
+   "publicado": 1794344400,
+   "texto": "Una lata de refresco con azúcar al día, todos los días: qué dicen la OMS y los estudios de los dientes, el peso, la diab",
+   "url": "https://www.tiktok.com/@elcontadorloco/video/7706115412081069334",
+   "vistas": 767
+  },
+  "7706116011107405078": {
+   "comentarios": 0,
+   "compartidos": 1,
+   "cuenta": "lascosaspordentro",
+   "megusta": 19,
+   "panel": "lascosaspordentro/09-mando",
+   "publicado": 1794258000,
+   "texto": "Tu mando dispara destellos de luz infrarroja que tus ojos no ven, pero la cámara del móvil sí. Cada botón es un código d",
+   "url": "https://www.tiktok.com/@lascosaspordentro/video/7706116011107405078",
+   "v24": 809,
+   "vistas": 812
+  },
+  "7706116389475519766": {
+   "comentarios": 0,
+   "compartidos": 0,
+   "cuenta": "lascosaspordentro",
+   "megusta": 35,
+   "panel": "lascosaspordentro/10-raton",
+   "publicado": 1794344400,
+   "texto": "Tu ratón óptico lleva una cámara diminuta: hace más de mil fotos por segundo de tu mesa, iluminada con una luz casi rasa",
+   "url": "https://www.tiktok.com/@lascosaspordentro/video/7706116389475519766",
+   "vistas": 733
+  },
+  "7706116969228946710": {
+   "comentarios": 0,
+   "compartidos": 0,
+   "cuenta": "dinerosinlio",
+   "megusta": 17,
+   "panel": "dinerosinlio/07-cajero",
+   "publicado": 1794258000,
+   "texto": "En España, si sacas dinero en un cajero de otro banco, el dueño del cajero no puede cobrarte a ti: cobra a tu banco, que",
+   "url": "https://www.tiktok.com/@eldinerosinlio/video/7706116969228946710",
+   "v24": 777,
+   "vistas": 780
+  },
+  "7706117419705568534": {
+   "comentarios": 1,
+   "compartidos": 2,
+   "cuenta": "dinerosinlio",
+   "megusta": 27,
+   "panel": "dinerosinlio/08-gasolina",
+   "publicado": 1794344400,
+   "texto": "El 2 de noviembre de 2026 el litro de gasolina 95 costaba de media en España 1,73 €, y 57 céntimos eran impuestos: el de",
+   "url": "https://www.tiktok.com/@eldinerosinlio/video/7706117419705568534",
+   "vistas": 772
   }
  }
 }
