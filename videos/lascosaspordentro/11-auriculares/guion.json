@@ -1,0 +1,54 @@
+{
+  "titulo": "Tus auriculares fabrican ruido",
+  "lines": [
+    "Tus auriculares fabrican ruido.",
+    "Un ruido a medida para borrar el de fuera.",
+    "¿Y por qué sigues oyendo las voces? Al final lo verás.",
+    "Por fuera, cada auricular lleva un micrófono diminuto.",
+    "Escucha el ruido antes de que llegue a tu oído.",
+    "El sonido es una onda: el aire aprieta y afloja.",
+    "Un chip copia esa onda y le da la vuelta.",
+    "Donde el ruido aprieta, el altavoz afloja. Y donde afloja, aprieta.",
+    "Las dos ondas se encuentran y se anulan: queda silencio.",
+    "Pero aquí viene lo bueno: dentro hay otro micrófono.",
+    "Escucha lo que se cuela, y el chip corrige al momento.",
+    "Con un motor funciona de maravilla: es un ruido grave que se repite.",
+    "Lo prometido: una voz es aguda y cambia sin parar.",
+    "Su onda es tan corta que la copia ya no encaja.",
+    "A esas las frena la almohadilla, como un tapón de espuma.",
+    "Y el dato final: esta idea se patentó en mil novecientos treinta y seis.",
+    "Tardó más de cincuenta años en llegar a unos auriculares que se pudieran comprar.",
+    "Mándaselo a quien se los pone para no oír a nadie."
+  ],
+  "claves": [
+    "ruido",
+    "borrar",
+    "voces",
+    "micrófono",
+    "antes",
+    "onda",
+    "vuelta",
+    "afloja",
+    "silencio",
+    "dentro",
+    "corrige",
+    "motor",
+    "aguda",
+    "encaja",
+    "almohadilla",
+    "patentó",
+    "cincuenta",
+    "nadie"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "Los auriculares con cancelación de ruido llevan un micrófono por fuera que escucha el ruido, un chip que copia esa onda y le da la vuelta, y un altavoz que la suelta: las dos ondas se anulan. Funciona con ruidos graves y repetidos, como un motor; las voces las frena la almohadilla. Ilustración simplificada, ondas dibujadas.",
+    "hashtags": [
+      "#auriculares",
+      "#cancelacionderuido",
+      "#ciencia"
+    ],
+    "portada_en": "ruido"
+  },
+  "voz_dice": "La voz se generó con los números en palabras; Whisper los oye en cifras (1936 y 50) y vozdata.py los pone así en los subtítulos. Después de la voz se recortaron 0,19 s de silencio al principio de exports/voces/11-auriculares.wav (la original está en 11-auriculares-original.wav), para que el gancho acabe antes de 2 s."
+}

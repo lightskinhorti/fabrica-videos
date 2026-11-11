@@ -29,6 +29,14 @@
 //   mesa        centro, canto    (opciones: { "tipo": "madera" | "cristal", "ancho", "fondo" })
 //   superficie  centro, fibra, grano, marco          fotosRaton  antes, ahora, centro, flecha, pila
 //   monitor     pantalla, flecha
+//   auriculares copa, copaD, micro, microDentro, chip, placa, altavoz, iman, almohadilla, bateria, diadema, centro,
+//               oido, fuera, corte                              (11-auriculares, 11 nov; mandos en auriculares.js)
+//   ondasSonido ruido, copia, suma, centro, dos, aprieta, afloja            (11-auriculares, en auriculares.js)
+//   pendrive    conector, contactos, memoria, controlador, cristal, led, placa, carcasa, centro
+//               (12-usb, 11 nov; mandos en pendrive.js: luz, datos)
+//   celdaFlash  puerta, flotante, oxido, aislante, sustrato, fuente, drenador, canal, reserva, defectos, lado, centro
+//               (12-usb; mandos: carga, volt, signo, lee, bombeo, desgaste, fuga, rebote)
+//   memoriaCeldas  centro, bloque, sol, agua  (12-usb; mandos: ver, rellena, foto, bloque, borra, olvida)
 // (09-mando y 10-raton, hechos antes de registrarlos, aún los pasan a mano con crearPlantillas(..., { objetos });
 // funciona igual, porque lo que se pasa a mano manda sobre esta lista.)
 import { magnetron } from "./magnetron.js";
@@ -39,10 +47,13 @@ import { nevera, compresor } from "./nevera.js";
 import { mando, tele, receptor, movilCamara } from "./mando.js";
 import { senalIR, espectro } from "./senales.js";
 import { raton, mesa, superficie, fotosRaton, monitor } from "./raton.js";
+import { auriculares, ondasSonido } from "./auriculares.js";
+import { pendrive, celdaFlash, memoriaCeldas } from "./pendrive.js";
 
 export const OBJETOS = {
   microondas, magnetron, cuenco, plato, vaso, placa, bobina, serpentin, tubo, nevera, compresor,
   mando, tele, receptor, movilCamara, senalIR, espectro, raton, mesa, superficie, fotosRaton, monitor,
+  auriculares, ondasSonido, pendrive, celdaFlash, memoriaCeldas,
 };
 export { crearMateriales } from "./materiales.js";
 export { crearBase } from "./base.js";

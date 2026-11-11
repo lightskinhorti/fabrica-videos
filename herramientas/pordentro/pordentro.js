@@ -11,6 +11,14 @@
 //   iconos: { palabra: "bateria" | "rayo" | "onda" | "candado" | "reloj" }
 //   sonidos: los usa sonido_pordentro.py
 //   gancho: { texto, clave }  (el gancho en grande durante los primeros segundos; los subtítulos esperan)
+// Arranque (10 de noviembre, opcional: sin estas opciones todo se ve como antes). En TikTok el 57 % se iba en los
+// 2 primeros segundos: el gancho tapaba el centro y el objeto se quedaba pequeño y quieto debajo.
+//   gancho: { texto, clave, y, tam }  y = centro del rótulo en px (por defecto 720); tam = tamaño de letra en px
+//             (por defecto 96). Con y: 400 el rótulo va arriba, donde luego salen los subtítulos (debajo de las
+//             pestañas de TikTok), y deja el centro de la pantalla para el objeto.
+//   arranque: true | { ... }  el rótulo del gancho ya está entero y legible en el fotograma 0 (sirve de portada) y
+//             se asienta durante 0,6 s (de un 7 % más grande a su tamaño). El resto del arranque (cámara que ya se
+//             mueve y primer cambio de plano antes de 1,5 s) lo hacen las plantillas: ver plantillas.js.
 // Opciones del estilo de @speedy_devv (referencias 06 y speedy_devv/), para los vídeos nuevos:
 //   estilo: "rejilla"  (fondo negro con rejilla suave y los objetos flotando, sin mesa)
 //   leyenda: [{ color, forma: "flecha" | "onda" | "punto", texto, desde?, hasta? }]  (fija abajo, como en un mapa)
@@ -387,11 +395,15 @@ export function crearPorDentro(THREE) {
   const ganchoEl = document.createElement("div"); ganchoEl.className = "gancho";
   document.getElementById("labels").appendChild(ganchoEl);
   if (G) ganchoEl.innerHTML = G.texto.split(" ").map((w) => (norm(w) === norm(G.clave || "") ? `<span class="sel">${w}</span>` : w)).join(" ");
+  if (G && G.y !== undefined) ganchoEl.style.top = G.y + "px";
+  if (G && G.tam !== undefined) ganchoEl.style.fontSize = G.tam + "px";
   const ganchoFin = G ? Math.max(2.4, VOZ.lines[0] ? VOZ.lines[0].e + 0.3 : 0) : 0;
   function drawGancho(t) {
     if (!G) return 0;
     const k = 1 - ramp(t, ganchoFin - 0.35, ganchoFin);
-    ganchoEl.style.opacity = k; ganchoEl.style.transform = `translateY(-50%) scale(${0.96 + 0.04 * k})`;
+    // with "arranque" the title settles during the first 0.6 s (already whole and readable at frame 0)
+    const asienta = ESC.arranque ? 0.07 * Math.pow(1 - clamp(t / 0.6), 3) : 0;
+    ganchoEl.style.opacity = k; ganchoEl.style.transform = `translateY(-50%) scale(${0.96 + 0.04 * k + asienta})`;
     return k;
   }
 

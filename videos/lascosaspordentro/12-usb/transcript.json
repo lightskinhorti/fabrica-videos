@@ -1,0 +1,1028 @@
+[
+  {
+    "text": "Tu",
+    "start": 0.11,
+    "end": 0.17,
+    "id": "w0"
+  },
+  {
+    "text": "pendrive",
+    "start": 0.17,
+    "end": 0.85,
+    "id": "w1"
+  },
+  {
+    "text": "no",
+    "start": 0.85,
+    "end": 1,
+    "id": "w2"
+  },
+  {
+    "text": "tiene",
+    "start": 1.05,
+    "end": 1.42,
+    "id": "w3"
+  },
+  {
+    "text": "pilas,",
+    "start": 1.42,
+    "end": 2,
+    "id": "w4"
+  },
+  {
+    "text": "y",
+    "start": 2,
+    "end": 2.06,
+    "id": "w5"
+  },
+  {
+    "text": "aun",
+    "start": 2.06,
+    "end": 2.24,
+    "id": "w6"
+  },
+  {
+    "text": "así",
+    "start": 2.24,
+    "end": 2.42,
+    "id": "w7"
+  },
+  {
+    "text": "recuerda",
+    "start": 2.42,
+    "end": 2.91,
+    "id": "w8"
+  },
+  {
+    "text": "tus",
+    "start": 2.91,
+    "end": 3.05,
+    "id": "w9"
+  },
+  {
+    "text": "fotos",
+    "start": 3.17,
+    "end": 3.44,
+    "id": "w10"
+  },
+  {
+    "text": "durante",
+    "start": 3.44,
+    "end": 3.94,
+    "id": "w11"
+  },
+  {
+    "text": "años,",
+    "start": 3.94,
+    "end": 4.7,
+    "id": "w12"
+  },
+  {
+    "text": "y",
+    "start": 4.72,
+    "end": 4.74,
+    "id": "w13"
+  },
+  {
+    "text": "por",
+    "start": 4.74,
+    "end": 4.86,
+    "id": "w14"
+  },
+  {
+    "text": "qué",
+    "start": 4.87,
+    "end": 5,
+    "id": "w15"
+  },
+  {
+    "text": "acaba",
+    "start": 5,
+    "end": 5.26,
+    "id": "w16"
+  },
+  {
+    "text": "o",
+    "start": 5.26,
+    "end": 5.37,
+    "id": "w17"
+  },
+  {
+    "text": "lo",
+    "start": 5.37,
+    "end": 5.44,
+    "id": "w18"
+  },
+  {
+    "text": "irándolo.",
+    "start": 5.5,
+    "end": 6.26,
+    "id": "w19"
+  },
+  {
+    "text": "Lo",
+    "start": 6.26,
+    "end": 6.48,
+    "id": "w20"
+  },
+  {
+    "text": "verás",
+    "start": 6.48,
+    "end": 6.87,
+    "id": "w21"
+  },
+  {
+    "text": "al",
+    "start": 7.19,
+    "end": 7.3,
+    "id": "w22"
+  },
+  {
+    "text": "final.",
+    "start": 7.3,
+    "end": 8.25,
+    "id": "w23"
+  },
+  {
+    "text": "Dentro",
+    "start": 8.37,
+    "end": 8.78,
+    "id": "w24"
+  },
+  {
+    "text": "un",
+    "start": 8.78,
+    "end": 8.82,
+    "id": "w25"
+  },
+  {
+    "text": "chip",
+    "start": 8.98,
+    "end": 9.27,
+    "id": "w26"
+  },
+  {
+    "text": "negro,",
+    "start": 9.3,
+    "end": 9.87,
+    "id": "w27"
+  },
+  {
+    "text": "la",
+    "start": 9.87,
+    "end": 10.19,
+    "id": "w28"
+  },
+  {
+    "text": "memoria.",
+    "start": 10.19,
+    "end": 10.98,
+    "id": "w29"
+  },
+  {
+    "text": "Cada",
+    "start": 10.98,
+    "end": 11.27,
+    "id": "w30"
+  },
+  {
+    "text": "celda",
+    "start": 11.27,
+    "end": 11.62,
+    "id": "w31"
+  },
+  {
+    "text": "es",
+    "start": 11.62,
+    "end": 11.76,
+    "id": "w32"
+  },
+  {
+    "text": "un",
+    "start": 11.76,
+    "end": 11.9,
+    "id": "w33"
+  },
+  {
+    "text": "interruptor",
+    "start": 11.9,
+    "end": 12.69,
+    "id": "w34"
+  },
+  {
+    "text": "con",
+    "start": 12.69,
+    "end": 12.98,
+    "id": "w35"
+  },
+  {
+    "text": "truco.",
+    "start": 12.98,
+    "end": 13.54,
+    "id": "w36"
+  },
+  {
+    "text": "Un",
+    "start": 13.54,
+    "end": 13.64,
+    "id": "w37"
+  },
+  {
+    "text": "transistor",
+    "start": 13.64,
+    "end": 14.08,
+    "id": "w38"
+  },
+  {
+    "text": "con",
+    "start": 14.29,
+    "end": 14.36,
+    "id": "w39"
+  },
+  {
+    "text": "puerta",
+    "start": 14.41,
+    "end": 14.74,
+    "id": "w40"
+  },
+  {
+    "text": "flotante,",
+    "start": 14.9,
+    "end": 15.64,
+    "id": "w41"
+  },
+  {
+    "text": "rodeada",
+    "start": 15.64,
+    "end": 16.18,
+    "id": "w42"
+  },
+  {
+    "text": "de",
+    "start": 16.18,
+    "end": 16.33,
+    "id": "w43"
+  },
+  {
+    "text": "aislante.",
+    "start": 16.33,
+    "end": 17.12,
+    "id": "w44"
+  },
+  {
+    "text": "Ningún",
+    "start": 17.18,
+    "end": 17.63,
+    "id": "w45"
+  },
+  {
+    "text": "cable",
+    "start": 17.63,
+    "end": 18.02,
+    "id": "w46"
+  },
+  {
+    "text": "la",
+    "start": 18.02,
+    "end": 18.17,
+    "id": "w47"
+  },
+  {
+    "text": "toca.",
+    "start": 18.17,
+    "end": 18.5,
+    "id": "w48"
+  },
+  {
+    "text": "Escribir",
+    "start": 18.9,
+    "end": 19.32,
+    "id": "w49"
+  },
+  {
+    "text": "es",
+    "start": 19.32,
+    "end": 19.44,
+    "id": "w50"
+  },
+  {
+    "text": "meter",
+    "start": 19.44,
+    "end": 19.77,
+    "id": "w51"
+  },
+  {
+    "text": "electrones",
+    "start": 19.77,
+    "end": 20.26,
+    "id": "w52"
+  },
+  {
+    "text": "ahí",
+    "start": 20.37,
+    "end": 20.51,
+    "id": "w53"
+  },
+  {
+    "text": "dentro.",
+    "start": 20.51,
+    "end": 21.26,
+    "id": "w54"
+  },
+  {
+    "text": "No",
+    "start": 21.26,
+    "end": 21.39,
+    "id": "w55"
+  },
+  {
+    "text": "pasan",
+    "start": 21.39,
+    "end": 21.72,
+    "id": "w56"
+  },
+  {
+    "text": "por",
+    "start": 21.72,
+    "end": 21.87,
+    "id": "w57"
+  },
+  {
+    "text": "la",
+    "start": 21.87,
+    "end": 22.19,
+    "id": "w58"
+  },
+  {
+    "text": "puerta,",
+    "start": 22.19,
+    "end": 22.59,
+    "id": "w59"
+  },
+  {
+    "text": "atraviesan",
+    "start": 22.59,
+    "end": 23.25,
+    "id": "w60"
+  },
+  {
+    "text": "la",
+    "start": 23.26,
+    "end": 23.31,
+    "id": "w61"
+  },
+  {
+    "text": "pared.",
+    "start": 23.43,
+    "end": 23.97,
+    "id": "w62"
+  },
+  {
+    "text": "El",
+    "start": 24.04,
+    "end": 24.14,
+    "id": "w63"
+  },
+  {
+    "text": "chip",
+    "start": 24.14,
+    "end": 24.31,
+    "id": "w64"
+  },
+  {
+    "text": "sube",
+    "start": 24.31,
+    "end": 24.63,
+    "id": "w65"
+  },
+  {
+    "text": "la",
+    "start": 24.63,
+    "end": 24.75,
+    "id": "w66"
+  },
+  {
+    "text": "tensión",
+    "start": 24.98,
+    "end": 25.15,
+    "id": "w67"
+  },
+  {
+    "text": "a",
+    "start": 25.2,
+    "end": 25.25,
+    "id": "w68"
+  },
+  {
+    "text": "20",
+    "start": 25.25,
+    "end": 25.63,
+    "id": "w69"
+  },
+  {
+    "text": "voltios",
+    "start": 25.63,
+    "end": 26.12,
+    "id": "w70"
+  },
+  {
+    "text": "y",
+    "start": 26.12,
+    "end": 26.23,
+    "id": "w71"
+  },
+  {
+    "text": "cruzan",
+    "start": 26.23,
+    "end": 26.61,
+    "id": "w72"
+  },
+  {
+    "text": "el",
+    "start": 26.61,
+    "end": 26.69,
+    "id": "w73"
+  },
+  {
+    "text": "aislante",
+    "start": 26.82,
+    "end": 27.3,
+    "id": "w74"
+  },
+  {
+    "text": "por",
+    "start": 27.3,
+    "end": 27.52,
+    "id": "w75"
+  },
+  {
+    "text": "efecto",
+    "start": 27.52,
+    "end": 27.73,
+    "id": "w76"
+  },
+  {
+    "text": "túnel.",
+    "start": 28.05,
+    "end": 28.47,
+    "id": "w77"
+  },
+  {
+    "text": "Quedan",
+    "start": 28.5,
+    "end": 28.92,
+    "id": "w78"
+  },
+  {
+    "text": "atrapados.",
+    "start": 28.92,
+    "end": 29.79,
+    "id": "w79"
+  },
+  {
+    "text": "Para",
+    "start": 29.8,
+    "end": 30.04,
+    "id": "w80"
+  },
+  {
+    "text": "leer,",
+    "start": 30.04,
+    "end": 30.39,
+    "id": "w81"
+  },
+  {
+    "text": "mide",
+    "start": 30.39,
+    "end": 30.63,
+    "id": "w82"
+  },
+  {
+    "text": "si",
+    "start": 30.63,
+    "end": 30.84,
+    "id": "w83"
+  },
+  {
+    "text": "la",
+    "start": 30.84,
+    "end": 30.88,
+    "id": "w84"
+  },
+  {
+    "text": "celda",
+    "start": 30.88,
+    "end": 31.16,
+    "id": "w85"
+  },
+  {
+    "text": "deja",
+    "start": 31.24,
+    "end": 31.48,
+    "id": "w86"
+  },
+  {
+    "text": "pasar",
+    "start": 31.59,
+    "end": 31.87,
+    "id": "w87"
+  },
+  {
+    "text": "corriente.",
+    "start": 31.87,
+    "end": 32.8,
+    "id": "w88"
+  },
+  {
+    "text": "Con",
+    "start": 32.8,
+    "end": 33.03,
+    "id": "w89"
+  },
+  {
+    "text": "electrones,",
+    "start": 33.03,
+    "end": 33.95,
+    "id": "w90"
+  },
+  {
+    "text": "no",
+    "start": 33.95,
+    "end": 34.1,
+    "id": "w91"
+  },
+  {
+    "text": "pasa.",
+    "start": 34.1,
+    "end": 34.53,
+    "id": "w92"
+  },
+  {
+    "text": "Sin",
+    "start": 34.65,
+    "end": 34.87,
+    "id": "w93"
+  },
+  {
+    "text": "ellos,",
+    "start": 34.87,
+    "end": 35.41,
+    "id": "w94"
+  },
+  {
+    "text": "sí.",
+    "start": 35.41,
+    "end": 35.69,
+    "id": "w95"
+  },
+  {
+    "text": "Tus",
+    "start": 35.69,
+    "end": 36.01,
+    "id": "w96"
+  },
+  {
+    "text": "ceros",
+    "start": 36.2,
+    "end": 36.37,
+    "id": "w97"
+  },
+  {
+    "text": "y",
+    "start": 36.42,
+    "end": 36.47,
+    "id": "w98"
+  },
+  {
+    "text": "unos.",
+    "start": 36.47,
+    "end": 37.09,
+    "id": "w99"
+  },
+  {
+    "text": "Tu",
+    "start": 37.09,
+    "end": 37.17,
+    "id": "w100"
+  },
+  {
+    "text": "foto",
+    "start": 37.18,
+    "end": 37.34,
+    "id": "w101"
+  },
+  {
+    "text": "es",
+    "start": 37.34,
+    "end": 37.39,
+    "id": "w102"
+  },
+  {
+    "text": "un",
+    "start": 37.58,
+    "end": 37.61,
+    "id": "w103"
+  },
+  {
+    "text": "dibujo",
+    "start": 37.61,
+    "end": 38.01,
+    "id": "w104"
+  },
+  {
+    "text": "de",
+    "start": 38.01,
+    "end": 38.04,
+    "id": "w105"
+  },
+  {
+    "text": "celdas",
+    "start": 38.2,
+    "end": 38.48,
+    "id": "w106"
+  },
+  {
+    "text": "cargadas",
+    "start": 38.53,
+    "end": 39.06,
+    "id": "w107"
+  },
+  {
+    "text": "y",
+    "start": 39.06,
+    "end": 39.09,
+    "id": "w108"
+  },
+  {
+    "text": "vacías.",
+    "start": 39.32,
+    "end": 39.72,
+    "id": "w109"
+  },
+  {
+    "text": "Sin",
+    "start": 39.72,
+    "end": 39.92,
+    "id": "w110"
+  },
+  {
+    "text": "corriente,",
+    "start": 39.92,
+    "end": 40.66,
+    "id": "w111"
+  },
+  {
+    "text": "nada",
+    "start": 40.66,
+    "end": 40.93,
+    "id": "w112"
+  },
+  {
+    "text": "los",
+    "start": 40.93,
+    "end": 41.12,
+    "id": "w113"
+  },
+  {
+    "text": "empuja",
+    "start": 41.13,
+    "end": 41.5,
+    "id": "w114"
+  },
+  {
+    "text": "a",
+    "start": 41.52,
+    "end": 41.53,
+    "id": "w115"
+  },
+  {
+    "text": "salir.",
+    "start": 41.53,
+    "end": 42.32,
+    "id": "w116"
+  },
+  {
+    "text": "Borrar",
+    "start": 42.32,
+    "end": 42.8,
+    "id": "w117"
+  },
+  {
+    "text": "es",
+    "start": 42.91,
+    "end": 42.95,
+    "id": "w118"
+  },
+  {
+    "text": "lo",
+    "start": 42.95,
+    "end": 43.1,
+    "id": "w119"
+  },
+  {
+    "text": "contrario,",
+    "start": 43.1,
+    "end": 43.92,
+    "id": "w120"
+  },
+  {
+    "text": "por",
+    "start": 43.92,
+    "end": 44.13,
+    "id": "w121"
+  },
+  {
+    "text": "bloques",
+    "start": 44.13,
+    "end": 44.41,
+    "id": "w122"
+  },
+  {
+    "text": "enteros.",
+    "start": 44.73,
+    "end": 45.42,
+    "id": "w123"
+  },
+  {
+    "text": "Aquí",
+    "start": 45.49,
+    "end": 45.69,
+    "id": "w124"
+  },
+  {
+    "text": "está",
+    "start": 45.69,
+    "end": 45.85,
+    "id": "w125"
+  },
+  {
+    "text": "la",
+    "start": 45.97,
+    "end": 46.05,
+    "id": "w126"
+  },
+  {
+    "text": "trampa.",
+    "start": 46.12,
+    "end": 46.61,
+    "id": "w127"
+  },
+  {
+    "text": "Cada",
+    "start": 46.61,
+    "end": 46.85,
+    "id": "w128"
+  },
+  {
+    "text": "cruce",
+    "start": 46.86,
+    "end": 47.16,
+    "id": "w129"
+  },
+  {
+    "text": "daña",
+    "start": 47.16,
+    "end": 47.39,
+    "id": "w130"
+  },
+  {
+    "text": "el",
+    "start": 47.52,
+    "end": 47.58,
+    "id": "w131"
+  },
+  {
+    "text": "aislante.",
+    "start": 47.61,
+    "end": 48.39,
+    "id": "w132"
+  },
+  {
+    "text": "Aparecen",
+    "start": 48.51,
+    "end": 48.96,
+    "id": "w133"
+  },
+  {
+    "text": "defectos",
+    "start": 49.12,
+    "end": 49.63,
+    "id": "w134"
+  },
+  {
+    "text": "y",
+    "start": 49.63,
+    "end": 49.72,
+    "id": "w135"
+  },
+  {
+    "text": "por",
+    "start": 49.72,
+    "end": 49.96,
+    "id": "w136"
+  },
+  {
+    "text": "ellos",
+    "start": 49.96,
+    "end": 50.36,
+    "id": "w137"
+  },
+  {
+    "text": "se",
+    "start": 50.36,
+    "end": 50.52,
+    "id": "w138"
+  },
+  {
+    "text": "escapan.",
+    "start": 50.52,
+    "end": 51.33,
+    "id": "w139"
+  },
+  {
+    "text": "Lo",
+    "start": 51.39,
+    "end": 51.45,
+    "id": "w140"
+  },
+  {
+    "text": "prometido.",
+    "start": 51.57,
+    "end": 52.36,
+    "id": "w141"
+  },
+  {
+    "text": "Según",
+    "start": 52.47,
+    "end": 52.69,
+    "id": "w142"
+  },
+  {
+    "text": "las",
+    "start": 52.69,
+    "end": 52.89,
+    "id": "w143"
+  },
+  {
+    "text": "fichas",
+    "start": 52.89,
+    "end": 53.28,
+    "id": "w144"
+  },
+  {
+    "text": "técnicas,",
+    "start": 53.28,
+    "end": 53.94,
+    "id": "w145"
+  },
+  {
+    "text": "un",
+    "start": 53.94,
+    "end": 53.97,
+    "id": "w146"
+  },
+  {
+    "text": "pendrive",
+    "start": 54.28,
+    "end": 54.61,
+    "id": "w147"
+  },
+  {
+    "text": "casi",
+    "start": 54.61,
+    "end": 54.88,
+    "id": "w148"
+  },
+  {
+    "text": "nuevo",
+    "start": 54.88,
+    "end": 55.21,
+    "id": "w149"
+  },
+  {
+    "text": "recuerda",
+    "start": 55.22,
+    "end": 55.75,
+    "id": "w150"
+  },
+  {
+    "text": "10",
+    "start": 55.75,
+    "end": 56.14,
+    "id": "w151"
+  },
+  {
+    "text": "años,",
+    "start": 56.14,
+    "end": 56.5,
+    "id": "w152"
+  },
+  {
+    "text": "uno",
+    "start": 56.56,
+    "end": 56.74,
+    "id": "w153"
+  },
+  {
+    "text": "con",
+    "start": 56.74,
+    "end": 56.95,
+    "id": "w154"
+  },
+  {
+    "text": "todos",
+    "start": 57.08,
+    "end": 57.4,
+    "id": "w155"
+  },
+  {
+    "text": "sus",
+    "start": 57.51,
+    "end": 57.57,
+    "id": "w156"
+  },
+  {
+    "text": "borrados",
+    "start": 57.57,
+    "end": 57.96,
+    "id": "w157"
+  },
+  {
+    "text": "gastados",
+    "start": 58.13,
+    "end": 58.49,
+    "id": "w158"
+  },
+  {
+    "text": "solo",
+    "start": 58.49,
+    "end": 58.72,
+    "id": "w159"
+  },
+  {
+    "text": "un",
+    "start": 58.72,
+    "end": 58.83,
+    "id": "w160"
+  },
+  {
+    "text": "año.",
+    "start": 58.83,
+    "end": 59.01,
+    "id": "w161"
+  },
+  {
+    "text": "Vándaselo",
+    "start": 59.22,
+    "end": 59.67,
+    "id": "w162"
+  },
+  {
+    "text": "aquí",
+    "start": 59.69,
+    "end": 59.9,
+    "id": "w163"
+  },
+  {
+    "text": "en",
+    "start": 59.9,
+    "end": 60.01,
+    "id": "w164"
+  },
+  {
+    "text": "guarda",
+    "start": 60.01,
+    "end": 60.33,
+    "id": "w165"
+  },
+  {
+    "text": "sus",
+    "start": 60.39,
+    "end": 60.45,
+    "id": "w166"
+  },
+  {
+    "text": "fotos",
+    "start": 60.57,
+    "end": 60.81,
+    "id": "w167"
+  },
+  {
+    "text": "en",
+    "start": 60.81,
+    "end": 60.92,
+    "id": "w168"
+  },
+  {
+    "text": "un",
+    "start": 60.92,
+    "end": 61.03,
+    "id": "w169"
+  },
+  {
+    "text": "pendrive.",
+    "start": 61.03,
+    "end": 61.61,
+    "id": "w170"
+  }
+]

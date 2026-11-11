@@ -1,0 +1,57 @@
+{
+  "titulo": "Tu pendrive no tiene pilas",
+  "lines": [
+    "Tu pendrive no tiene pilas.",
+    "Y aun así recuerda tus fotos durante años.",
+    "¿Y por qué acaba olvidándolo? Lo verás al final.",
+    "Dentro, un chip negro: la memoria.",
+    "Cada celda es un interruptor con truco.",
+    "Un transistor con puerta flotante, rodeada de aislante. Ningún cable la toca.",
+    "Escribir es meter electrones ahí dentro.",
+    "No pasan por la puerta: atraviesan la pared.",
+    "El chip sube la tensión a veinte voltios, y cruzan el aislante por efecto túnel.",
+    "Quedan atrapados.",
+    "Para leer, mide si la celda deja pasar corriente.",
+    "Con electrones, no pasa. Sin ellos, sí: tus ceros y unos.",
+    "Tu foto es un dibujo de celdas cargadas y vacías.",
+    "Sin corriente, nada los empuja a salir.",
+    "Borrar es lo contrario, por bloques enteros.",
+    "Aquí está la trampa: cada cruce daña el aislante.",
+    "Aparecen defectos, y por ellos se escapan.",
+    "Lo prometido: según las fichas técnicas, un pendrive casi nuevo recuerda diez años.",
+    "Uno con todos sus borrados gastados, solo un año.",
+    "Mándaselo a quien guarda sus fotos en un pendrive."
+  ],
+  "claves": [
+    "pilas",
+    "fotos",
+    "olvidándolo",
+    "chip",
+    "interruptor",
+    "flotante",
+    "escribir",
+    "pared",
+    "túnel",
+    "atrapados",
+    "leer",
+    "pasa",
+    "foto",
+    "empuja",
+    "borrar",
+    "trampa",
+    "defectos",
+    "diez",
+    "año",
+    "pendrive"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "Un pendrive guarda tus fotos sin pilas porque cada celda de su memoria flash atrapa electrones en una puerta flotante rodeada de aislante. Escribir y borrar obliga a los electrones a cruzar ese aislante, y cada cruce lo daña un poco: por eso se gasta. Ilustración simplificada, sin marca.",
+    "hashtags": [
+      "#pendrive",
+      "#memoriaflash",
+      "#ciencia"
+    ],
+    "portada_en": "pilas"
+  }
+}

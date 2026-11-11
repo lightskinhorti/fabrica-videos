@@ -1,0 +1,1082 @@
+[
+  {
+    "text": "Tus",
+    "start": 0.05,
+    "end": 0.22,
+    "id": "w0"
+  },
+  {
+    "text": "auriculares",
+    "start": 0.22,
+    "end": 1.02,
+    "id": "w1"
+  },
+  {
+    "text": "fabrican",
+    "start": 1.02,
+    "end": 1.6,
+    "id": "w2"
+  },
+  {
+    "text": "ruido,",
+    "start": 1.6,
+    "end": 2.12,
+    "id": "w3"
+  },
+  {
+    "text": "un",
+    "start": 2.12,
+    "end": 2.24,
+    "id": "w4"
+  },
+  {
+    "text": "ruido",
+    "start": 2.24,
+    "end": 2.54,
+    "id": "w5"
+  },
+  {
+    "text": "a",
+    "start": 2.54,
+    "end": 2.6,
+    "id": "w6"
+  },
+  {
+    "text": "medida",
+    "start": 2.6,
+    "end": 2.95,
+    "id": "w7"
+  },
+  {
+    "text": "para",
+    "start": 3.03,
+    "end": 3.21,
+    "id": "w8"
+  },
+  {
+    "text": "borrar",
+    "start": 3.21,
+    "end": 3.51,
+    "id": "w9"
+  },
+  {
+    "text": "el",
+    "start": 3.51,
+    "end": 3.6,
+    "id": "w10"
+  },
+  {
+    "text": "de",
+    "start": 3.61,
+    "end": 3.67,
+    "id": "w11"
+  },
+  {
+    "text": "fuera.¿Y",
+    "start": 3.78,
+    "end": 4.74,
+    "id": "w12"
+  },
+  {
+    "text": "por",
+    "start": 4.74,
+    "end": 4.93,
+    "id": "w13"
+  },
+  {
+    "text": "qué",
+    "start": 4.93,
+    "end": 5.12,
+    "id": "w14"
+  },
+  {
+    "text": "sigues",
+    "start": 5.12,
+    "end": 5.38,
+    "id": "w15"
+  },
+  {
+    "text": "oyendo",
+    "start": 5.62,
+    "end": 5.86,
+    "id": "w16"
+  },
+  {
+    "text": "las",
+    "start": 5.87,
+    "end": 6.04,
+    "id": "w17"
+  },
+  {
+    "text": "voces?",
+    "start": 6.06,
+    "end": 6.4,
+    "id": "w18"
+  },
+  {
+    "text": "Al",
+    "start": 6.69,
+    "end": 6.77,
+    "id": "w19"
+  },
+  {
+    "text": "final",
+    "start": 6.77,
+    "end": 7.15,
+    "id": "w20"
+  },
+  {
+    "text": "lo",
+    "start": 7.15,
+    "end": 7.29,
+    "id": "w21"
+  },
+  {
+    "text": "verás.",
+    "start": 7.29,
+    "end": 7.93,
+    "id": "w22"
+  },
+  {
+    "text": "Por",
+    "start": 7.99,
+    "end": 8.14,
+    "id": "w23"
+  },
+  {
+    "text": "fuera,",
+    "start": 8.14,
+    "end": 8.6,
+    "id": "w24"
+  },
+  {
+    "text": "cada",
+    "start": 8.6,
+    "end": 8.68,
+    "id": "w25"
+  },
+  {
+    "text": "auricular",
+    "start": 8.94,
+    "end": 9.46,
+    "id": "w26"
+  },
+  {
+    "text": "lleva",
+    "start": 9.46,
+    "end": 9.67,
+    "id": "w27"
+  },
+  {
+    "text": "un",
+    "start": 9.67,
+    "end": 10.01,
+    "id": "w28"
+  },
+  {
+    "text": "micrófono",
+    "start": 10.01,
+    "end": 10.51,
+    "id": "w29"
+  },
+  {
+    "text": "diminuto.",
+    "start": 10.51,
+    "end": 11.1,
+    "id": "w30"
+  },
+  {
+    "text": "Escucha",
+    "start": 11.15,
+    "end": 11.57,
+    "id": "w31"
+  },
+  {
+    "text": "el",
+    "start": 11.57,
+    "end": 11.68,
+    "id": "w32"
+  },
+  {
+    "text": "ruido",
+    "start": 11.69,
+    "end": 11.86,
+    "id": "w33"
+  },
+  {
+    "text": "antes",
+    "start": 12.1,
+    "end": 12.37,
+    "id": "w34"
+  },
+  {
+    "text": "de",
+    "start": 12.37,
+    "end": 12.5,
+    "id": "w35"
+  },
+  {
+    "text": "que",
+    "start": 12.5,
+    "end": 12.7,
+    "id": "w36"
+  },
+  {
+    "text": "llegue",
+    "start": 12.7,
+    "end": 13.1,
+    "id": "w37"
+  },
+  {
+    "text": "a",
+    "start": 13.1,
+    "end": 13.17,
+    "id": "w38"
+  },
+  {
+    "text": "tu",
+    "start": 13.17,
+    "end": 13.29,
+    "id": "w39"
+  },
+  {
+    "text": "oído.",
+    "start": 13.29,
+    "end": 13.86,
+    "id": "w40"
+  },
+  {
+    "text": "El",
+    "start": 13.91,
+    "end": 13.98,
+    "id": "w41"
+  },
+  {
+    "text": "sonido",
+    "start": 14.03,
+    "end": 14.44,
+    "id": "w42"
+  },
+  {
+    "text": "es",
+    "start": 14.44,
+    "end": 14.55,
+    "id": "w43"
+  },
+  {
+    "text": "una",
+    "start": 14.58,
+    "end": 14.61,
+    "id": "w44"
+  },
+  {
+    "text": "onda,",
+    "start": 14.86,
+    "end": 15.23,
+    "id": "w45"
+  },
+  {
+    "text": "el",
+    "start": 15.23,
+    "end": 15.37,
+    "id": "w46"
+  },
+  {
+    "text": "aire",
+    "start": 15.37,
+    "end": 15.59,
+    "id": "w47"
+  },
+  {
+    "text": "aprieta",
+    "start": 15.59,
+    "end": 16.16,
+    "id": "w48"
+  },
+  {
+    "text": "y",
+    "start": 16.16,
+    "end": 16.23,
+    "id": "w49"
+  },
+  {
+    "text": "afloja.",
+    "start": 16.23,
+    "end": 16.98,
+    "id": "w50"
+  },
+  {
+    "text": "Un",
+    "start": 17.03,
+    "end": 17.1,
+    "id": "w51"
+  },
+  {
+    "text": "chip",
+    "start": 17.15,
+    "end": 17.49,
+    "id": "w52"
+  },
+  {
+    "text": "copia",
+    "start": 17.49,
+    "end": 17.92,
+    "id": "w53"
+  },
+  {
+    "text": "esa",
+    "start": 17.98,
+    "end": 18.17,
+    "id": "w54"
+  },
+  {
+    "text": "onda",
+    "start": 18.22,
+    "end": 18.52,
+    "id": "w55"
+  },
+  {
+    "text": "y",
+    "start": 18.52,
+    "end": 18.6,
+    "id": "w56"
+  },
+  {
+    "text": "le",
+    "start": 18.6,
+    "end": 18.71,
+    "id": "w57"
+  },
+  {
+    "text": "da",
+    "start": 18.71,
+    "end": 19.05,
+    "id": "w58"
+  },
+  {
+    "text": "la",
+    "start": 19.05,
+    "end": 19.11,
+    "id": "w59"
+  },
+  {
+    "text": "vuelta.",
+    "start": 19.11,
+    "end": 19.93,
+    "id": "w60"
+  },
+  {
+    "text": "Donde",
+    "start": 19.98,
+    "end": 20.27,
+    "id": "w61"
+  },
+  {
+    "text": "el",
+    "start": 20.27,
+    "end": 20.4,
+    "id": "w62"
+  },
+  {
+    "text": "ruido",
+    "start": 20.4,
+    "end": 20.68,
+    "id": "w63"
+  },
+  {
+    "text": "aprieta,",
+    "start": 20.82,
+    "end": 21.32,
+    "id": "w64"
+  },
+  {
+    "text": "el",
+    "start": 21.32,
+    "end": 21.45,
+    "id": "w65"
+  },
+  {
+    "text": "altavoz",
+    "start": 21.45,
+    "end": 21.91,
+    "id": "w66"
+  },
+  {
+    "text": "afloja.",
+    "start": 22.01,
+    "end": 22.38,
+    "id": "w67"
+  },
+  {
+    "text": "Ydonde",
+    "start": 22.42,
+    "end": 22.83,
+    "id": "w68"
+  },
+  {
+    "text": "afloja,",
+    "start": 22.83,
+    "end": 23.43,
+    "id": "w69"
+  },
+  {
+    "text": "aprieta.",
+    "start": 23.43,
+    "end": 24.11,
+    "id": "w70"
+  },
+  {
+    "text": "Las",
+    "start": 24.27,
+    "end": 24.43,
+    "id": "w71"
+  },
+  {
+    "text": "dos",
+    "start": 24.43,
+    "end": 24.57,
+    "id": "w72"
+  },
+  {
+    "text": "ondas",
+    "start": 24.65,
+    "end": 24.91,
+    "id": "w73"
+  },
+  {
+    "text": "se",
+    "start": 24.91,
+    "end": 25.22,
+    "id": "w74"
+  },
+  {
+    "text": "encuentran",
+    "start": 25.22,
+    "end": 25.84,
+    "id": "w75"
+  },
+  {
+    "text": "y",
+    "start": 25.85,
+    "end": 25.92,
+    "id": "w76"
+  },
+  {
+    "text": "se",
+    "start": 25.92,
+    "end": 26,
+    "id": "w77"
+  },
+  {
+    "text": "anulan.",
+    "start": 26.2,
+    "end": 26.78,
+    "id": "w78"
+  },
+  {
+    "text": "Queda",
+    "start": 26.83,
+    "end": 27.25,
+    "id": "w79"
+  },
+  {
+    "text": "silencio.",
+    "start": 27.25,
+    "end": 28.3,
+    "id": "w80"
+  },
+  {
+    "text": "Pero",
+    "start": 28.35,
+    "end": 28.52,
+    "id": "w81"
+  },
+  {
+    "text": "aquí",
+    "start": 28.52,
+    "end": 28.74,
+    "id": "w82"
+  },
+  {
+    "text": "viene",
+    "start": 28.74,
+    "end": 28.99,
+    "id": "w83"
+  },
+  {
+    "text": "lo",
+    "start": 28.99,
+    "end": 29.06,
+    "id": "w84"
+  },
+  {
+    "text": "bueno.",
+    "start": 29.3,
+    "end": 29.62,
+    "id": "w85"
+  },
+  {
+    "text": "Dentro",
+    "start": 29.66,
+    "end": 30.07,
+    "id": "w86"
+  },
+  {
+    "text": "hay",
+    "start": 30.07,
+    "end": 30.3,
+    "id": "w87"
+  },
+  {
+    "text": "otro",
+    "start": 30.3,
+    "end": 30.36,
+    "id": "w88"
+  },
+  {
+    "text": "micrófono.",
+    "start": 30.62,
+    "end": 31.37,
+    "id": "w89"
+  },
+  {
+    "text": "Escucha",
+    "start": 31.59,
+    "end": 32.04,
+    "id": "w90"
+  },
+  {
+    "text": "lo",
+    "start": 32.04,
+    "end": 32.18,
+    "id": "w91"
+  },
+  {
+    "text": "que",
+    "start": 32.18,
+    "end": 32.28,
+    "id": "w92"
+  },
+  {
+    "text": "se",
+    "start": 32.28,
+    "end": 32.54,
+    "id": "w93"
+  },
+  {
+    "text": "cuela",
+    "start": 32.54,
+    "end": 32.88,
+    "id": "w94"
+  },
+  {
+    "text": "y",
+    "start": 32.88,
+    "end": 32.95,
+    "id": "w95"
+  },
+  {
+    "text": "el",
+    "start": 32.95,
+    "end": 33.09,
+    "id": "w96"
+  },
+  {
+    "text": "chip",
+    "start": 33.09,
+    "end": 33.27,
+    "id": "w97"
+  },
+  {
+    "text": "corrige",
+    "start": 33.61,
+    "end": 33.88,
+    "id": "w98"
+  },
+  {
+    "text": "al",
+    "start": 33.88,
+    "end": 34.02,
+    "id": "w99"
+  },
+  {
+    "text": "momento.",
+    "start": 34.02,
+    "end": 34.81,
+    "id": "w100"
+  },
+  {
+    "text": "Con",
+    "start": 34.87,
+    "end": 35,
+    "id": "w101"
+  },
+  {
+    "text": "un",
+    "start": 35,
+    "end": 35.12,
+    "id": "w102"
+  },
+  {
+    "text": "motor",
+    "start": 35.12,
+    "end": 35.4,
+    "id": "w103"
+  },
+  {
+    "text": "funciona",
+    "start": 35.41,
+    "end": 35.9,
+    "id": "w104"
+  },
+  {
+    "text": "de",
+    "start": 35.9,
+    "end": 36.01,
+    "id": "w105"
+  },
+  {
+    "text": "maravilla.",
+    "start": 36.06,
+    "end": 36.6,
+    "id": "w106"
+  },
+  {
+    "text": "Es",
+    "start": 36.83,
+    "end": 36.9,
+    "id": "w107"
+  },
+  {
+    "text": "un",
+    "start": 36.95,
+    "end": 37.06,
+    "id": "w108"
+  },
+  {
+    "text": "ruido",
+    "start": 37.06,
+    "end": 37.42,
+    "id": "w109"
+  },
+  {
+    "text": "grave",
+    "start": 37.42,
+    "end": 37.79,
+    "id": "w110"
+  },
+  {
+    "text": "que",
+    "start": 37.79,
+    "end": 37.97,
+    "id": "w111"
+  },
+  {
+    "text": "se",
+    "start": 38.02,
+    "end": 38.15,
+    "id": "w112"
+  },
+  {
+    "text": "repite.",
+    "start": 38.15,
+    "end": 38.86,
+    "id": "w113"
+  },
+  {
+    "text": "Lo",
+    "start": 38.91,
+    "end": 38.98,
+    "id": "w114"
+  },
+  {
+    "text": "prometido.",
+    "start": 39.03,
+    "end": 39.6,
+    "id": "w115"
+  },
+  {
+    "text": "Una",
+    "start": 39.87,
+    "end": 40.07,
+    "id": "w116"
+  },
+  {
+    "text": "voz",
+    "start": 40.07,
+    "end": 40.32,
+    "id": "w117"
+  },
+  {
+    "text": "es",
+    "start": 40.32,
+    "end": 40.49,
+    "id": "w118"
+  },
+  {
+    "text": "aguda",
+    "start": 40.49,
+    "end": 40.91,
+    "id": "w119"
+  },
+  {
+    "text": "y",
+    "start": 40.91,
+    "end": 40.99,
+    "id": "w120"
+  },
+  {
+    "text": "cambia",
+    "start": 40.99,
+    "end": 41.45,
+    "id": "w121"
+  },
+  {
+    "text": "sin",
+    "start": 41.5,
+    "end": 41.6,
+    "id": "w122"
+  },
+  {
+    "text": "parar.",
+    "start": 41.89,
+    "end": 42.49,
+    "id": "w123"
+  },
+  {
+    "text": "Su",
+    "start": 42.55,
+    "end": 42.62,
+    "id": "w124"
+  },
+  {
+    "text": "onda",
+    "start": 42.67,
+    "end": 42.96,
+    "id": "w125"
+  },
+  {
+    "text": "es",
+    "start": 42.96,
+    "end": 43.08,
+    "id": "w126"
+  },
+  {
+    "text": "tan",
+    "start": 43.1,
+    "end": 43.24,
+    "id": "w127"
+  },
+  {
+    "text": "corta",
+    "start": 43.5,
+    "end": 43.69,
+    "id": "w128"
+  },
+  {
+    "text": "que",
+    "start": 43.75,
+    "end": 43.94,
+    "id": "w129"
+  },
+  {
+    "text": "la",
+    "start": 43.94,
+    "end": 44.1,
+    "id": "w130"
+  },
+  {
+    "text": "copia",
+    "start": 44.1,
+    "end": 44.48,
+    "id": "w131"
+  },
+  {
+    "text": "ya",
+    "start": 44.57,
+    "end": 44.63,
+    "id": "w132"
+  },
+  {
+    "text": "no",
+    "start": 44.63,
+    "end": 44.78,
+    "id": "w133"
+  },
+  {
+    "text": "encaja.",
+    "start": 44.78,
+    "end": 45.58,
+    "id": "w134"
+  },
+  {
+    "text": "A",
+    "start": 45.62,
+    "end": 45.65,
+    "id": "w135"
+  },
+  {
+    "text": "esas",
+    "start": 45.65,
+    "end": 45.93,
+    "id": "w136"
+  },
+  {
+    "text": "las",
+    "start": 46,
+    "end": 46.16,
+    "id": "w137"
+  },
+  {
+    "text": "frena",
+    "start": 46.18,
+    "end": 46.57,
+    "id": "w138"
+  },
+  {
+    "text": "la",
+    "start": 46.58,
+    "end": 46.72,
+    "id": "w139"
+  },
+  {
+    "text": "almohadilla,",
+    "start": 46.72,
+    "end": 47.78,
+    "id": "w140"
+  },
+  {
+    "text": "como",
+    "start": 47.78,
+    "end": 48.14,
+    "id": "w141"
+  },
+  {
+    "text": "un",
+    "start": 48.14,
+    "end": 48.31,
+    "id": "w142"
+  },
+  {
+    "text": "tapón",
+    "start": 48.31,
+    "end": 48.76,
+    "id": "w143"
+  },
+  {
+    "text": "de",
+    "start": 48.77,
+    "end": 48.95,
+    "id": "w144"
+  },
+  {
+    "text": "espuma.",
+    "start": 48.95,
+    "end": 49.56,
+    "id": "w145"
+  },
+  {
+    "text": "Yel",
+    "start": 49.82,
+    "end": 49.99,
+    "id": "w146"
+  },
+  {
+    "text": "dato",
+    "start": 49.99,
+    "end": 50.27,
+    "id": "w147"
+  },
+  {
+    "text": "final.",
+    "start": 50.27,
+    "end": 50.86,
+    "id": "w148"
+  },
+  {
+    "text": "Esta",
+    "start": 50.91,
+    "end": 51.21,
+    "id": "w149"
+  },
+  {
+    "text": "idea",
+    "start": 51.28,
+    "end": 51.55,
+    "id": "w150"
+  },
+  {
+    "text": "se",
+    "start": 51.61,
+    "end": 51.62,
+    "id": "w151"
+  },
+  {
+    "text": "patentó",
+    "start": 51.86,
+    "end": 52.47,
+    "id": "w152"
+  },
+  {
+    "text": "en",
+    "start": 52.47,
+    "end": 52.59,
+    "id": "w153"
+  },
+  {
+    "text": "1936.",
+    "start": 52.93,
+    "end": 54.1,
+    "id": "w154"
+  },
+  {
+    "text": "Tardó",
+    "start": 54.14,
+    "end": 54.37,
+    "id": "w155"
+  },
+  {
+    "text": "más",
+    "start": 54.37,
+    "end": 54.54,
+    "id": "w156"
+  },
+  {
+    "text": "de",
+    "start": 54.54,
+    "end": 54.65,
+    "id": "w157"
+  },
+  {
+    "text": "50",
+    "start": 54.65,
+    "end": 54.84,
+    "id": "w158"
+  },
+  {
+    "text": "años",
+    "start": 55.1,
+    "end": 55.22,
+    "id": "w159"
+  },
+  {
+    "text": "en",
+    "start": 55.22,
+    "end": 55.29,
+    "id": "w160"
+  },
+  {
+    "text": "llegar",
+    "start": 55.34,
+    "end": 55.67,
+    "id": "w161"
+  },
+  {
+    "text": "a",
+    "start": 55.67,
+    "end": 55.72,
+    "id": "w162"
+  },
+  {
+    "text": "unos",
+    "start": 55.72,
+    "end": 55.83,
+    "id": "w163"
+  },
+  {
+    "text": "auriculares",
+    "start": 56.12,
+    "end": 56.66,
+    "id": "w164"
+  },
+  {
+    "text": "que",
+    "start": 56.66,
+    "end": 56.88,
+    "id": "w165"
+  },
+  {
+    "text": "se",
+    "start": 56.88,
+    "end": 57.03,
+    "id": "w166"
+  },
+  {
+    "text": "pudieran",
+    "start": 57.03,
+    "end": 57.62,
+    "id": "w167"
+  },
+  {
+    "text": "comprar.",
+    "start": 57.63,
+    "end": 58.39,
+    "id": "w168"
+  },
+  {
+    "text": "Mándaselo",
+    "start": 58.46,
+    "end": 58.92,
+    "id": "w169"
+  },
+  {
+    "text": "a",
+    "start": 58.92,
+    "end": 58.97,
+    "id": "w170"
+  },
+  {
+    "text": "quien",
+    "start": 58.97,
+    "end": 59.16,
+    "id": "w171"
+  },
+  {
+    "text": "se",
+    "start": 59.16,
+    "end": 59.42,
+    "id": "w172"
+  },
+  {
+    "text": "los",
+    "start": 59.42,
+    "end": 59.53,
+    "id": "w173"
+  },
+  {
+    "text": "pone",
+    "start": 59.53,
+    "end": 59.76,
+    "id": "w174"
+  },
+  {
+    "text": "para",
+    "start": 59.76,
+    "end": 59.99,
+    "id": "w175"
+  },
+  {
+    "text": "no",
+    "start": 59.99,
+    "end": 60.05,
+    "id": "w176"
+  },
+  {
+    "text": "ir",
+    "start": 60.1,
+    "end": 60.17,
+    "id": "w177"
+  },
+  {
+    "text": "a",
+    "start": 60.2,
+    "end": 60.22,
+    "id": "w178"
+  },
+  {
+    "text": "nadie.",
+    "start": 60.49,
+    "end": 60.62,
+    "id": "w179"
+  }
+]

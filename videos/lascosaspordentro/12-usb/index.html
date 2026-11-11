@@ -1,0 +1,1742 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <script type="importmap">
+      { "imports": { "three": "./lib/three.module.js", "three/addons/": "./lib/addons/" } }
+    </script>
+    <link rel="stylesheet" href="comun/pordentro.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+      .mono { font-family: "JetBrains Mono", monospace; position: absolute; left: -2000px; top: 0; }
+      .lectura-p .v, .panel .cifra { font-family: "JetBrains Mono", monospace; font-weight: 700; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="63.3" data-width="1080" data-height="1920" data-fps="30">
+      <canvas id="gl" class="clip" data-start="0" data-duration="63.3" data-track-index="0" width="1080" height="1920"></canvas>
+      <div id="shade" class="clip" data-start="0" data-duration="63.3" data-track-index="1"></div>
+      <svg id="leaders" class="clip" data-start="0" data-duration="63.3" data-track-index="2" width="1080" height="1920" data-layout-allow-overlap></svg>
+      <div id="labels" class="clip" data-start="0" data-duration="63.3" data-track-index="3" data-layout-allow-overlap><span class="mono">0123456789</span></div>
+      <div id="note" class="clip" data-start="0" data-duration="63.3" data-track-index="4"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="63.3"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="63.3" data-track-index="5" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 62.07, "lines": [{"id": "l1", "s": 0.11, "e": 2.0, "words": [{"w": "Tu", "s": 0.11, "e": 0.17, "key": false}, {"w": "pendrive", "s": 0.17, "e": 0.85, "key": false}, {"w": "no", "s": 0.85, "e": 1.0, "key": false}, {"w": "tiene", "s": 1.05, "e": 1.42, "key": false}, {"w": "pilas.", "s": 1.42, "e": 2.0, "key": true}]}, {"id": "l2", "s": 2, "e": 4.7, "words": [{"w": "Y", "s": 2, "e": 2.06, "key": false}, {"w": "aun", "s": 2.06, "e": 2.24, "key": false}, {"w": "así", "s": 2.24, "e": 2.42, "key": false}, {"w": "recuerda", "s": 2.42, "e": 2.91, "key": false}, {"w": "tus", "s": 2.91, "e": 3.05, "key": false}, {"w": "fotos", "s": 3.17, "e": 3.44, "key": true}, {"w": "durante", "s": 3.44, "e": 3.94, "key": false}, {"w": "años.", "s": 3.94, "e": 4.7, "key": false}]}, {"id": "l3", "s": 4.72, "e": 8.25, "words": [{"w": "¿Y", "s": 4.72, "e": 4.74, "key": false}, {"w": "por", "s": 4.74, "e": 4.86, "key": false}, {"w": "qué", "s": 4.87, "e": 5.0, "key": false}, {"w": "acaba", "s": 5, "e": 5.26, "key": false}, {"w": "olvidándolo?", "s": 5.26, "e": 6.26, "key": true}, {"w": "Lo", "s": 6.26, "e": 6.48, "key": false}, {"w": "verás", "s": 6.48, "e": 6.87, "key": false}, {"w": "al", "s": 7.19, "e": 7.3, "key": false}, {"w": "final.", "s": 7.3, "e": 8.25, "key": false}]}, {"id": "l4", "s": 8.37, "e": 10.98, "words": [{"w": "Dentro,", "s": 8.37, "e": 8.78, "key": false}, {"w": "un", "s": 8.78, "e": 8.82, "key": false}, {"w": "chip", "s": 8.98, "e": 9.27, "key": true}, {"w": "negro:", "s": 9.3, "e": 9.87, "key": false}, {"w": "la", "s": 9.87, "e": 10.19, "key": false}, {"w": "memoria.", "s": 10.19, "e": 10.98, "key": false}]}, {"id": "l5", "s": 10.98, "e": 13.54, "words": [{"w": "Cada", "s": 10.98, "e": 11.27, "key": false}, {"w": "celda", "s": 11.27, "e": 11.62, "key": false}, {"w": "es", "s": 11.62, "e": 11.76, "key": false}, {"w": "un", "s": 11.76, "e": 11.9, "key": false}, {"w": "interruptor", "s": 11.9, "e": 12.69, "key": true}, {"w": "con", "s": 12.69, "e": 12.98, "key": false}, {"w": "truco.", "s": 12.98, "e": 13.54, "key": false}]}, {"id": "l6", "s": 13.54, "e": 18.5, "words": [{"w": "Un", "s": 13.54, "e": 13.64, "key": false}, {"w": "transistor", "s": 13.64, "e": 14.08, "key": false}, {"w": "con", "s": 14.29, "e": 14.36, "key": false}, {"w": "puerta", "s": 14.41, "e": 14.74, "key": false}, {"w": "flotante,", "s": 14.9, "e": 15.64, "key": true}, {"w": "rodeada", "s": 15.64, "e": 16.18, "key": false}, {"w": "de", "s": 16.18, "e": 16.33, "key": false}, {"w": "aislante.", "s": 16.33, "e": 17.12, "key": false}, {"w": "Ningún", "s": 17.18, "e": 17.63, "key": false}, {"w": "cable", "s": 17.63, "e": 18.02, "key": false}, {"w": "la", "s": 18.02, "e": 18.17, "key": false}, {"w": "toca.", "s": 18.17, "e": 18.5, "key": false}]}, {"id": "l7", "s": 18.9, "e": 21.26, "words": [{"w": "Escribir", "s": 18.9, "e": 19.32, "key": true}, {"w": "es", "s": 19.32, "e": 19.44, "key": false}, {"w": "meter", "s": 19.44, "e": 19.77, "key": false}, {"w": "electrones", "s": 19.77, "e": 20.26, "key": false}, {"w": "ahí", "s": 20.37, "e": 20.51, "key": false}, {"w": "dentro.", "s": 20.51, "e": 21.26, "key": false}]}, {"id": "l8", "s": 21.26, "e": 23.97, "words": [{"w": "No", "s": 21.26, "e": 21.39, "key": false}, {"w": "pasan", "s": 21.39, "e": 21.72, "key": false}, {"w": "por", "s": 21.72, "e": 21.87, "key": false}, {"w": "la", "s": 21.87, "e": 22.19, "key": false}, {"w": "puerta:", "s": 22.19, "e": 22.59, "key": false}, {"w": "atraviesan", "s": 22.59, "e": 23.25, "key": false}, {"w": "la", "s": 23.26, "e": 23.31, "key": false}, {"w": "pared.", "s": 23.43, "e": 23.97, "key": true}]}, {"id": "l9", "s": 24.04, "e": 28.47, "words": [{"w": "El", "s": 24.04, "e": 24.14, "key": false}, {"w": "chip", "s": 24.14, "e": 24.31, "key": false}, {"w": "sube", "s": 24.31, "e": 24.63, "key": false}, {"w": "la", "s": 24.63, "e": 24.75, "key": false}, {"w": "tensión", "s": 24.98, "e": 25.15, "key": false}, {"w": "a", "s": 25.2, "e": 25.25, "key": false}, {"w": "20", "s": 25.25, "e": 25.63, "key": false}, {"w": "voltios,", "s": 25.63, "e": 26.12, "key": false}, {"w": "y", "s": 26.12, "e": 26.23, "key": false}, {"w": "cruzan", "s": 26.23, "e": 26.61, "key": false}, {"w": "el", "s": 26.61, "e": 26.69, "key": false}, {"w": "aislante", "s": 26.82, "e": 27.3, "key": false}, {"w": "por", "s": 27.3, "e": 27.52, "key": false}, {"w": "efecto", "s": 27.52, "e": 27.73, "key": false}, {"w": "túnel.", "s": 28.05, "e": 28.47, "key": true}]}, {"id": "l10", "s": 28.5, "e": 29.79, "words": [{"w": "Quedan", "s": 28.5, "e": 28.92, "key": false}, {"w": "atrapados.", "s": 28.92, "e": 29.79, "key": true}]}, {"id": "l11", "s": 29.8, "e": 32.8, "words": [{"w": "Para", "s": 29.8, "e": 30.04, "key": false}, {"w": "leer,", "s": 30.04, "e": 30.39, "key": true}, {"w": "mide", "s": 30.39, "e": 30.63, "key": false}, {"w": "si", "s": 30.63, "e": 30.84, "key": false}, {"w": "la", "s": 30.84, "e": 30.88, "key": false}, {"w": "celda", "s": 30.88, "e": 31.16, "key": false}, {"w": "deja", "s": 31.24, "e": 31.48, "key": false}, {"w": "pasar", "s": 31.59, "e": 31.87, "key": false}, {"w": "corriente.", "s": 31.87, "e": 32.8, "key": false}]}, {"id": "l12", "s": 32.8, "e": 37.09, "words": [{"w": "Con", "s": 32.8, "e": 33.03, "key": false}, {"w": "electrones,", "s": 33.03, "e": 33.95, "key": false}, {"w": "no", "s": 33.95, "e": 34.1, "key": false}, {"w": "pasa.", "s": 34.1, "e": 34.53, "key": true}, {"w": "Sin", "s": 34.65, "e": 34.87, "key": false}, {"w": "ellos,", "s": 34.87, "e": 35.41, "key": false}, {"w": "sí:", "s": 35.41, "e": 35.69, "key": false}, {"w": "tus", "s": 35.69, "e": 36.01, "key": false}, {"w": "ceros", "s": 36.2, "e": 36.37, "key": false}, {"w": "y", "s": 36.42, "e": 36.47, "key": false}, {"w": "unos.", "s": 36.47, "e": 37.09, "key": false}]}, {"id": "l13", "s": 37.09, "e": 39.72, "words": [{"w": "Tu", "s": 37.09, "e": 37.17, "key": false}, {"w": "foto", "s": 37.18, "e": 37.34, "key": true}, {"w": "es", "s": 37.34, "e": 37.39, "key": false}, {"w": "un", "s": 37.58, "e": 37.61, "key": false}, {"w": "dibujo", "s": 37.61, "e": 38.01, "key": false}, {"w": "de", "s": 38.01, "e": 38.04, "key": false}, {"w": "celdas", "s": 38.2, "e": 38.48, "key": false}, {"w": "cargadas", "s": 38.53, "e": 39.06, "key": false}, {"w": "y", "s": 39.06, "e": 39.09, "key": false}, {"w": "vacías.", "s": 39.32, "e": 39.72, "key": false}]}, {"id": "l14", "s": 39.72, "e": 42.32, "words": [{"w": "Sin", "s": 39.72, "e": 39.92, "key": false}, {"w": "corriente,", "s": 39.92, "e": 40.66, "key": false}, {"w": "nada", "s": 40.66, "e": 40.93, "key": false}, {"w": "los", "s": 40.93, "e": 41.12, "key": false}, {"w": "empuja", "s": 41.13, "e": 41.5, "key": true}, {"w": "a", "s": 41.52, "e": 41.53, "key": false}, {"w": "salir.", "s": 41.53, "e": 42.32, "key": false}]}, {"id": "l15", "s": 42.32, "e": 45.42, "words": [{"w": "Borrar", "s": 42.32, "e": 42.8, "key": true}, {"w": "es", "s": 42.91, "e": 42.95, "key": false}, {"w": "lo", "s": 42.95, "e": 43.1, "key": false}, {"w": "contrario,", "s": 43.1, "e": 43.92, "key": false}, {"w": "por", "s": 43.92, "e": 44.13, "key": false}, {"w": "bloques", "s": 44.13, "e": 44.41, "key": false}, {"w": "enteros.", "s": 44.73, "e": 45.42, "key": false}]}, {"id": "l16", "s": 45.49, "e": 48.39, "words": [{"w": "Aquí", "s": 45.49, "e": 45.69, "key": false}, {"w": "está", "s": 45.69, "e": 45.85, "key": false}, {"w": "la", "s": 45.97, "e": 46.05, "key": false}, {"w": "trampa:", "s": 46.12, "e": 46.61, "key": true}, {"w": "cada", "s": 46.61, "e": 46.85, "key": false}, {"w": "cruce", "s": 46.86, "e": 47.16, "key": false}, {"w": "daña", "s": 47.16, "e": 47.39, "key": false}, {"w": "el", "s": 47.52, "e": 47.58, "key": false}, {"w": "aislante.", "s": 47.61, "e": 48.39, "key": false}]}, {"id": "l17", "s": 48.51, "e": 51.33, "words": [{"w": "Aparecen", "s": 48.51, "e": 48.96, "key": false}, {"w": "defectos,", "s": 49.12, "e": 49.63, "key": true}, {"w": "y", "s": 49.63, "e": 49.72, "key": false}, {"w": "por", "s": 49.72, "e": 49.96, "key": false}, {"w": "ellos", "s": 49.96, "e": 50.36, "key": false}, {"w": "se", "s": 50.36, "e": 50.52, "key": false}, {"w": "escapan.", "s": 50.52, "e": 51.33, "key": false}]}, {"id": "l18", "s": 51.39, "e": 56.5, "words": [{"w": "Lo", "s": 51.39, "e": 51.45, "key": false}, {"w": "prometido:", "s": 51.57, "e": 52.36, "key": false}, {"w": "según", "s": 52.47, "e": 52.69, "key": false}, {"w": "las", "s": 52.69, "e": 52.89, "key": false}, {"w": "fichas", "s": 52.89, "e": 53.28, "key": false}, {"w": "técnicas,", "s": 53.28, "e": 53.94, "key": false}, {"w": "un", "s": 53.94, "e": 53.97, "key": false}, {"w": "pendrive", "s": 54.28, "e": 54.61, "key": false}, {"w": "casi", "s": 54.61, "e": 54.88, "key": false}, {"w": "nuevo", "s": 54.88, "e": 55.21, "key": false}, {"w": "recuerda", "s": 55.22, "e": 55.75, "key": false}, {"w": "10", "s": 55.75, "e": 56.14, "key": true}, {"w": "años.", "s": 56.14, "e": 56.5, "key": false}]}, {"id": "l19", "s": 56.56, "e": 59.01, "words": [{"w": "Uno", "s": 56.56, "e": 56.74, "key": false}, {"w": "con", "s": 56.74, "e": 56.95, "key": false}, {"w": "todos", "s": 57.08, "e": 57.4, "key": false}, {"w": "sus", "s": 57.51, "e": 57.57, "key": false}, {"w": "borrados", "s": 57.57, "e": 57.96, "key": false}, {"w": "gastados,", "s": 58.13, "e": 58.49, "key": false}, {"w": "solo", "s": 58.49, "e": 58.72, "key": false}, {"w": "un", "s": 58.72, "e": 58.83, "key": false}, {"w": "año.", "s": 58.83, "e": 59.01, "key": true}]}, {"id": "l20", "s": 59.22, "e": 61.61, "words": [{"w": "Mándaselo", "s": 59.22, "e": 59.67, "key": false}, {"w": "a", "s": 59.69, "e": 59.9, "key": false}, {"w": "quien", "s": 59.9, "e": 60.01, "key": false}, {"w": "guarda", "s": 60.01, "e": 60.33, "key": false}, {"w": "sus", "s": 60.39, "e": 60.45, "key": false}, {"w": "fotos", "s": 60.57, "e": 60.81, "key": false}, {"w": "en", "s": 60.81, "e": 60.92, "key": false}, {"w": "un", "s": 60.92, "e": 61.03, "key": false}, {"w": "pendrive.", "s": 61.03, "e": 61.61, "key": true}]}]}</script>
+    <script id="escena" type="application/json">
+{
+ "momentos": [
+  {
+   "id": "PILAS",
+   "clave": "pilas"
+  },
+  {
+   "id": "AUN",
+   "clave": "aun"
+  },
+  {
+   "id": "RECUERDA",
+   "clave": "recuerda"
+  },
+  {
+   "id": "FOTOS",
+   "clave": "fotos"
+  },
+  {
+   "id": "ANOS",
+   "clave": "anos"
+  },
+  {
+   "id": "POR4",
+   "clave": "por"
+  },
+  {
+   "id": "ACABA",
+   "clave": "acaba"
+  },
+  {
+   "id": "OLVIDA",
+   "clave": "olvidandolo"
+  },
+  {
+   "id": "VERAS",
+   "clave": "veras"
+  },
+  {
+   "id": "FINAL",
+   "clave": "final"
+  },
+  {
+   "id": "DENTRO",
+   "clave": "dentro"
+  },
+  {
+   "id": "CHIP",
+   "clave": "chip"
+  },
+  {
+   "id": "MEMORIA",
+   "clave": "memoria"
+  },
+  {
+   "id": "CADA",
+   "clave": "cada"
+  },
+  {
+   "id": "CELDA",
+   "clave": "celda"
+  },
+  {
+   "id": "INTERR",
+   "clave": "interruptor"
+  },
+  {
+   "id": "TRUCO",
+   "clave": "truco"
+  },
+  {
+   "id": "UN",
+   "clave": "un"
+  },
+  {
+   "id": "TRANSISTOR",
+   "clave": "transistor"
+  },
+  {
+   "id": "PUERTA",
+   "clave": "puerta"
+  },
+  {
+   "id": "FLOTANTE",
+   "clave": "flotante"
+  },
+  {
+   "id": "RODEADA",
+   "clave": "rodeada"
+  },
+  {
+   "id": "AISLANTE",
+   "clave": "aislante"
+  },
+  {
+   "id": "NINGUN",
+   "clave": "ningun"
+  },
+  {
+   "id": "CABLE",
+   "clave": "cable"
+  },
+  {
+   "id": "TOCA",
+   "clave": "toca"
+  },
+  {
+   "id": "ESCRIBIR",
+   "clave": "escribir"
+  },
+  {
+   "id": "METER",
+   "clave": "meter"
+  },
+  {
+   "id": "ELECTRONES",
+   "clave": "electrones"
+  },
+  {
+   "id": "DENTRO2",
+   "clave": "dentro"
+  },
+  {
+   "id": "NO",
+   "clave": "no"
+  },
+  {
+   "id": "PASAN",
+   "clave": "pasan"
+  },
+  {
+   "id": "PUERTA2",
+   "clave": "puerta"
+  },
+  {
+   "id": "ATRAVIESAN",
+   "clave": "atraviesan"
+  },
+  {
+   "id": "PARED",
+   "clave": "pared"
+  },
+  {
+   "id": "EL",
+   "clave": "el"
+  },
+  {
+   "id": "CHIP2",
+   "clave": "chip"
+  },
+  {
+   "id": "SUBE",
+   "clave": "sube"
+  },
+  {
+   "id": "TENSION",
+   "clave": "tension"
+  },
+  {
+   "id": "VOLTIOS",
+   "clave": "voltios"
+  },
+  {
+   "id": "CRUZAN",
+   "clave": "cruzan"
+  },
+  {
+   "id": "AISLANTE2",
+   "clave": "aislante"
+  },
+  {
+   "id": "EFECTO",
+   "clave": "efecto"
+  },
+  {
+   "id": "TUNEL",
+   "clave": "tunel"
+  },
+  {
+   "id": "QUEDAN",
+   "clave": "quedan"
+  },
+  {
+   "id": "ATRAPADOS",
+   "clave": "atrapados"
+  },
+  {
+   "id": "PARA",
+   "clave": "para"
+  },
+  {
+   "id": "LEER",
+   "clave": "leer"
+  },
+  {
+   "id": "MIDE",
+   "clave": "mide"
+  },
+  {
+   "id": "CELDA2",
+   "clave": "celda"
+  },
+  {
+   "id": "PASAR",
+   "clave": "pasar"
+  },
+  {
+   "id": "CORRIENTE",
+   "clave": "corriente"
+  },
+  {
+   "id": "CON",
+   "clave": "con"
+  },
+  {
+   "id": "ELECTRONES2",
+   "clave": "electrones"
+  },
+  {
+   "id": "NO2",
+   "clave": "no"
+  },
+  {
+   "id": "PASA",
+   "clave": "pasa"
+  },
+  {
+   "id": "SIN",
+   "clave": "sin"
+  },
+  {
+   "id": "ELLOS",
+   "clave": "ellos"
+  },
+  {
+   "id": "SI",
+   "clave": "si"
+  },
+  {
+   "id": "TUS",
+   "clave": "tus"
+  },
+  {
+   "id": "CEROS",
+   "clave": "ceros"
+  },
+  {
+   "id": "UNOS",
+   "clave": "unos"
+  },
+  {
+   "id": "TU2",
+   "clave": "tu"
+  },
+  {
+   "id": "FOTO",
+   "clave": "foto"
+  },
+  {
+   "id": "DIBUJO",
+   "clave": "dibujo"
+  },
+  {
+   "id": "CELDAS",
+   "clave": "celdas"
+  },
+  {
+   "id": "CARGADAS",
+   "clave": "cargadas"
+  },
+  {
+   "id": "VACIAS",
+   "clave": "vacias"
+  },
+  {
+   "id": "SIN2",
+   "clave": "sin"
+  },
+  {
+   "id": "CORRIENTE2",
+   "clave": "corriente"
+  },
+  {
+   "id": "NADA",
+   "clave": "nada"
+  },
+  {
+   "id": "EMPUJA",
+   "clave": "empuja"
+  },
+  {
+   "id": "SALIR",
+   "clave": "salir"
+  },
+  {
+   "id": "BORRAR",
+   "clave": "borrar"
+  },
+  {
+   "id": "CONTRARIO",
+   "clave": "contrario"
+  },
+  {
+   "id": "BLOQUES",
+   "clave": "bloques"
+  },
+  {
+   "id": "ENTEROS",
+   "clave": "enteros"
+  },
+  {
+   "id": "AQUI",
+   "clave": "aqui"
+  },
+  {
+   "id": "TRAMPA",
+   "clave": "trampa"
+  },
+  {
+   "id": "CADA2",
+   "clave": "cada"
+  },
+  {
+   "id": "CRUCE",
+   "clave": "cruce"
+  },
+  {
+   "id": "DANA",
+   "clave": "dana"
+  },
+  {
+   "id": "AISLANTE3",
+   "clave": "aislante"
+  },
+  {
+   "id": "APARECEN",
+   "clave": "aparecen"
+  },
+  {
+   "id": "DEFECTOS",
+   "clave": "defectos"
+  },
+  {
+   "id": "POR2",
+   "clave": "por"
+  },
+  {
+   "id": "ELLOS2",
+   "clave": "ellos"
+  },
+  {
+   "id": "ESCAPAN",
+   "clave": "escapan"
+  },
+  {
+   "id": "LO2",
+   "clave": "lo"
+  },
+  {
+   "id": "PROMETIDO",
+   "clave": "prometido"
+  },
+  {
+   "id": "SEGUN",
+   "clave": "segun"
+  },
+  {
+   "id": "FICHAS",
+   "clave": "fichas"
+  },
+  {
+   "id": "TECNICAS",
+   "clave": "tecnicas"
+  },
+  {
+   "id": "UN2",
+   "clave": "un"
+  },
+  {
+   "id": "PENDRIVE",
+   "clave": "pendrive"
+  },
+  {
+   "id": "NUEVO",
+   "clave": "nuevo"
+  },
+  {
+   "id": "RECUERDA2",
+   "clave": "recuerda"
+  },
+  {
+   "id": "DIEZ",
+   "clave": "10"
+  },
+  {
+   "id": "ANOS2",
+   "clave": "anos"
+  },
+  {
+   "id": "UNO",
+   "clave": "uno"
+  },
+  {
+   "id": "CON2",
+   "clave": "con"
+  },
+  {
+   "id": "TODOS",
+   "clave": "todos"
+  },
+  {
+   "id": "BORRADOS",
+   "clave": "borrados"
+  },
+  {
+   "id": "GASTADOS",
+   "clave": "gastados"
+  },
+  {
+   "id": "SOLO",
+   "clave": "solo"
+  },
+  {
+   "id": "UN3",
+   "clave": "un"
+  },
+  {
+   "id": "ANO",
+   "clave": "ano"
+  },
+  {
+   "id": "MANDA",
+   "clave": "mandaselo"
+  },
+  {
+   "id": "QUIEN",
+   "clave": "quien"
+  },
+  {
+   "id": "GUARDA",
+   "clave": "guarda"
+  },
+  {
+   "id": "FOTOS2",
+   "clave": "fotos"
+  },
+  {
+   "id": "PENDRIVE2",
+   "clave": "pendrive"
+  }
+ ],
+ "gancho": {
+  "texto": "Tu pendrive no tiene pilas",
+  "clave": "pilas",
+  "y": 420,
+  "tam": 100
+ },
+ "arranque": {
+  "cambio": 1.15,
+  "transicion": 0.35
+ },
+ "encuadre": {
+  "llenar": 0.94
+ },
+ "estilo": "rejilla",
+ "desenfoque": {
+  "apertura": 0,
+  "max": 0.012
+ },
+ "iconos": {},
+ "etiquetas": [
+  {
+   "texto": "SIN PILA",
+   "pieza": "usb.placa",
+   "desde": 0.5,
+   "hasta": "AUN",
+   "dx": 60,
+   "dy": -260
+  },
+  {
+   "texto": "MEMORIA FLASH",
+   "pieza": "usb.memoria",
+   "desde": "CHIP",
+   "hasta": "CADA",
+   "dx": 60,
+   "dy": -250
+  },
+  {
+   "texto": "CELDA",
+   "pieza": "mem.sol",
+   "desde": "CELDA",
+   "hasta": "INTERR",
+   "dx": 60,
+   "dy": -200
+  },
+  {
+   "texto": "FUENTE",
+   "pieza": "cel.fuente",
+   "desde": "UN",
+   "hasta": "PUERTA",
+   "dx": 0,
+   "dy": 250
+  },
+  {
+   "texto": "DRENADOR",
+   "pieza": "cel.drenador",
+   "desde": "UN",
+   "hasta": "PUERTA",
+   "dx": 0,
+   "dy": 250
+  },
+  {
+   "texto": "PUERTA FLOTANTE",
+   "pieza": "cel.flotante",
+   "desde": "FLOTANTE",
+   "hasta": "RODEADA",
+   "dx": 40,
+   "dy": -330
+  },
+  {
+   "texto": "AISLANTE",
+   "pieza": "cel.aislante",
+   "desde": "AISLANTE",
+   "hasta": "NINGUN",
+   "dx": 40,
+   "dy": -330
+  },
+  {
+   "texto": "SIN CABLE",
+   "pieza": "cel.flotante",
+   "desde": "CABLE",
+   "hasta": "ESCRIBIR",
+   "dx": 50,
+   "dy": -330
+  },
+  {
+   "texto": "ELECTRONES",
+   "pieza": "cel.reserva",
+   "desde": "ELECTRONES",
+   "hasta": "NO",
+   "dx": 40,
+   "dy": 260
+  },
+  {
+   "texto": "PARED DE ÓXIDO",
+   "pieza": "cel.oxido",
+   "desde": "PASAN",
+   "hasta": "EL",
+   "dx": 40,
+   "dy": -330
+  },
+  {
+   "texto": "ELECTRONES ATRAPADOS",
+   "pieza": "cel.flotante",
+   "desde": "ATRAPADOS",
+   "hasta": "PARA",
+   "dx": 40,
+   "dy": -330
+  },
+  {
+   "texto": "CANAL",
+   "pieza": "cel.canal",
+   "desde": "PASAR",
+   "hasta": "CON",
+   "dx": 40,
+   "dy": 330
+  },
+  {
+   "texto": "NO PASA",
+   "pieza": "cel.canal",
+   "desde": "PASA",
+   "hasta": "SIN",
+   "dx": 40,
+   "dy": 300
+  },
+  {
+   "texto": "PASA",
+   "pieza": "cel.canal",
+   "desde": "ELLOS",
+   "hasta": "CEROS",
+   "dx": 40,
+   "dy": 300
+  },
+  {
+   "texto": "BLOQUE",
+   "pieza": "mem.bloque",
+   "desde": "BLOQUES",
+   "hasta": "AQUI",
+   "dx": -330,
+   "dy": -120
+  },
+  {
+   "texto": "DEFECTOS",
+   "pieza": "cel.defectos",
+   "desde": "DEFECTOS",
+   "hasta": "LO2",
+   "dx": 50,
+   "dy": 300
+  }
+ ],
+ "notas": [
+  {
+   "texto": "",
+   "desde": 0
+  },
+  {
+   "texto": "Sin pila: el pendrive no la necesita",
+   "desde": 0.6
+  },
+  {
+   "texto": "Foto dibujada con celdas, ilustración",
+   "desde": "AUN"
+  },
+  {
+   "texto": "Sin marca",
+   "desde": "DENTRO"
+  },
+  {
+   "texto": "Ilustración ampliada, no a escala",
+   "desde": "CADA"
+  },
+  {
+   "texto": "Corte simplificado, electrones dibujados",
+   "desde": "UN"
+  },
+  {
+   "texto": "Valor típico de las celdas NAND",
+   "desde": "EL"
+  },
+  {
+   "texto": "Corte simplificado, electrones dibujados",
+   "desde": "CRUZAN"
+  },
+  {
+   "texto": "Corriente dibujada, ilustración",
+   "desde": "PARA"
+  },
+  {
+   "texto": "Ilustración ampliada, no a escala",
+   "desde": "CEROS"
+  },
+  {
+   "texto": "Corte simplificado, electrones dibujados",
+   "desde": "SIN2"
+  },
+  {
+   "texto": "Ilustración ampliada, no a escala",
+   "desde": "BLOQUES"
+  },
+  {
+   "texto": "Defectos dibujados, ampliados",
+   "desde": "AQUI"
+  },
+  {
+   "texto": "Sin marca",
+   "desde": "LO2"
+  },
+  {
+   "texto": "Retención típica de ficha técnica, no es una garantía",
+   "desde": "FICHAS"
+  },
+  {
+   "texto": "",
+   "desde": "MANDA"
+  }
+ ],
+ "leyenda": [
+  {
+   "color": "#6fdcff",
+   "forma": "punto",
+   "texto": "electrones",
+   "desde": "UN",
+   "hasta": "EL"
+  },
+  {
+   "color": "#6fdcff",
+   "forma": "punto",
+   "texto": "electrones",
+   "desde": "CRUZAN",
+   "hasta": "PARA"
+  },
+  {
+   "color": "#6fdcff",
+   "forma": "punto",
+   "texto": "electrones",
+   "desde": "SIN2",
+   "hasta": "BLOQUES"
+  },
+  {
+   "color": "#6fdcff",
+   "forma": "punto",
+   "texto": "electrones",
+   "desde": "AQUI",
+   "hasta": "LO2"
+  },
+  {
+   "color": "#6fdcff",
+   "forma": "punto",
+   "texto": "electrones",
+   "desde": "FICHAS",
+   "hasta": "RECUERDA2"
+  },
+  {
+   "color": "#6fdcff",
+   "forma": "punto",
+   "texto": "electrones",
+   "desde": "UNO",
+   "hasta": "GASTADOS"
+  },
+  {
+   "color": "#ffb22e",
+   "forma": "flecha",
+   "texto": "campo eléctrico",
+   "desde": "EL",
+   "hasta": "PARA"
+  },
+  {
+   "color": "#ffb22e",
+   "forma": "flecha",
+   "texto": "campo eléctrico",
+   "desde": "BORRAR",
+   "hasta": "BLOQUES"
+  },
+  {
+   "color": "#ffb22e",
+   "forma": "flecha",
+   "texto": "campo eléctrico",
+   "desde": "AQUI",
+   "hasta": "APARECEN"
+  },
+  {
+   "color": "#ff7a4a",
+   "forma": "punto",
+   "texto": "defectos",
+   "desde": "APARECEN",
+   "hasta": "LO2"
+  }
+ ],
+ "sonidos": [
+  {
+   "tipo": "zumbido",
+   "desde": 0.1,
+   "hasta": "RECUERDA",
+   "volumen": 0.5
+  },
+  {
+   "tipo": "brillo",
+   "en": "RECUERDA"
+  },
+  {
+   "tipo": "desliza",
+   "en": "AUN"
+  },
+  {
+   "tipo": "error",
+   "en": "OLVIDA",
+   "volumen": 0.35
+  },
+  {
+   "tipo": "abre",
+   "en": "DENTRO"
+  },
+  {
+   "tipo": "chip",
+   "en": "CHIP"
+  },
+  {
+   "tipo": "desliza",
+   "en": "CADA"
+  },
+  {
+   "tipo": "pop",
+   "en": "INTERR"
+  },
+  {
+   "tipo": "desliza",
+   "en": "TRUCO"
+  },
+  {
+   "tipo": "desliza",
+   "en": "PUERTA"
+  },
+  {
+   "tipo": "pop",
+   "en": "FLOTANTE"
+  },
+  {
+   "tipo": "desliza",
+   "en": "RODEADA"
+  },
+  {
+   "tipo": "toque",
+   "en": "CABLE"
+  },
+  {
+   "tipo": "desliza",
+   "en": "ESCRIBIR"
+  },
+  {
+   "tipo": "pop",
+   "en": "METER"
+  },
+  {
+   "tipo": "desliza",
+   "en": "NO"
+  },
+  {
+   "tipo": "toque",
+   "en": "PARED"
+  },
+  {
+   "tipo": "desliza",
+   "en": "EL"
+  },
+  {
+   "tipo": "sube",
+   "en": "SUBE"
+  },
+  {
+   "tipo": "zumbido",
+   "desde": "SUBE",
+   "hasta": "QUEDAN",
+   "volumen": 0.55
+  },
+  {
+   "tipo": "pop",
+   "en": "CRUZAN",
+   "mas": 0.1
+  },
+  {
+   "tipo": "pop",
+   "en": "CRUZAN",
+   "mas": 0.5
+  },
+  {
+   "tipo": "pop",
+   "en": "TUNEL",
+   "mas": 0.0
+  },
+  {
+   "tipo": "toque",
+   "en": "ATRAPADOS"
+  },
+  {
+   "tipo": "desliza",
+   "en": "PARA"
+  },
+  {
+   "tipo": "chip",
+   "en": "MIDE"
+  },
+  {
+   "tipo": "desliza",
+   "en": "CON"
+  },
+  {
+   "tipo": "error",
+   "en": "PASA",
+   "volumen": 0.45
+  },
+  {
+   "tipo": "desliza",
+   "en": "SIN"
+  },
+  {
+   "tipo": "brillo",
+   "en": "ELLOS"
+  },
+  {
+   "tipo": "teclas",
+   "en": "CEROS",
+   "n": 4,
+   "cada": 0.12,
+   "volumen": 0.3
+  },
+  {
+   "tipo": "desliza",
+   "en": "FOTO"
+  },
+  {
+   "tipo": "brillo",
+   "en": "VACIAS"
+  },
+  {
+   "tipo": "desliza",
+   "en": "SIN2"
+  },
+  {
+   "tipo": "desliza",
+   "en": "BORRAR"
+  },
+  {
+   "tipo": "sube",
+   "en": "BORRAR"
+  },
+  {
+   "tipo": "desliza",
+   "en": "BLOQUES"
+  },
+  {
+   "tipo": "toque",
+   "en": "ENTEROS"
+  },
+  {
+   "tipo": "desliza",
+   "en": "AQUI"
+  },
+  {
+   "tipo": "pop",
+   "en": "CADA2"
+  },
+  {
+   "tipo": "error",
+   "en": "DEFECTOS",
+   "volumen": 0.4
+  },
+  {
+   "tipo": "desliza",
+   "en": "APARECEN"
+  },
+  {
+   "tipo": "desliza",
+   "en": "LO2"
+  },
+  {
+   "tipo": "desliza",
+   "en": "FICHAS"
+  },
+  {
+   "tipo": "sube",
+   "en": "RECUERDA2"
+  },
+  {
+   "tipo": "desliza",
+   "en": "UNO"
+  },
+  {
+   "tipo": "error",
+   "en": "ANO",
+   "volumen": 0.5
+  },
+  {
+   "tipo": "desliza",
+   "en": "MANDA"
+  },
+  {
+   "tipo": "toque",
+   "en": "PENDRIVE2"
+  }
+ ],
+ "sets": {
+  "usb": {
+   "objetos": [
+    {
+     "tipo": "pendrive",
+     "id": "usb",
+     "rot": [
+      0,
+      0,
+      62
+     ]
+    }
+   ],
+   "luz": "anuncio"
+  },
+  "cel": {
+   "objetos": [
+    {
+     "tipo": "celdaFlash",
+     "id": "cel"
+    }
+   ],
+   "luz": "estudio"
+  },
+  "mem": {
+   "objetos": [
+    {
+     "tipo": "memoriaCeldas",
+     "id": "mem"
+    }
+   ],
+   "luz": "suave"
+  }
+ },
+ "planos": [
+  {
+   "tipo": "rayosX",
+   "set": "usb",
+   "pieza": "usb",
+   "desde": 0,
+   "de": 0.85,
+   "a": 0.85,
+   "dur": 0.1,
+   "angulo": 28,
+   "altura": 16,
+   "orbita": 16,
+   "empuje": 0.1,
+   "llenar": 1.0,
+   "dist": 0.8,
+   "zona": [
+    50,
+    600,
+    950,
+    1440
+   ],
+   "estado": {
+    "luz": 1,
+    "datos": 1
+   },
+   "variantes": [
+    {
+     "pieza": "usb.memoria",
+     "radio": 2.3,
+     "angulo": -34,
+     "altura": 22,
+     "llenar": 0,
+     "zona": [
+      50,
+      600,
+      950,
+      1440
+     ]
+    }
+   ]
+  },
+  {
+   "tipo": "anuncio",
+   "set": "mem",
+   "pieza": "mem",
+   "desde": "AUN",
+   "angulo": 0,
+   "altura": 0,
+   "orbita": 6,
+   "empuje": 0.05,
+   "zona": [
+    50,
+    430,
+    950,
+    1370
+   ],
+   "estado": {
+    "rellena": {
+     "de": 0,
+     "a": 1,
+     "dur": 1.2,
+     "en": 0
+    },
+    "foto": {
+     "de": 0,
+     "a": 1,
+     "en": "FOTOS",
+     "dur": 0.7
+    }
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "set": "mem",
+   "pieza": "mem",
+   "zona": [
+    50,
+    430,
+    950,
+    1370
+   ],
+   "desde": "POR4",
+   "angulo": -14,
+   "altura": 6,
+   "orbita": -10,
+   "empuje": 0.06,
+   "estado": {
+    "rellena": 1,
+    "foto": 1,
+    "olvida": {
+     "de": 0,
+     "a": 1,
+     "en": "OLVIDA",
+     "dur": 2.4
+    }
+   }
+  },
+  {
+   "tipo": "rayosX",
+   "set": "usb",
+   "pieza": "usb.memoria",
+   "radio": 2.2,
+   "desde": "DENTRO",
+   "de": 0.9,
+   "a": 0.9,
+   "dur": 0.1,
+   "angulo": -38,
+   "altura": 26,
+   "orbita": 10,
+   "empuje": 0.1,
+   "estado": {
+    "luz": 1,
+    "datos": 1
+   },
+   "resaltar": [
+    "usb.memoria"
+   ],
+   "fuerzaResalte": 0.12
+  },
+  {
+   "tipo": "macro",
+   "set": "mem",
+   "objetivo": [
+    3.5,
+    5,
+    0
+   ],
+   "radio": 4.2,
+   "desde": "CADA",
+   "angulo": 16,
+   "altura": 9,
+   "apertura": 0.012,
+   "estado": {
+    "rellena": 1,
+    "foto": 0
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "set": "cel",
+   "pieza": "cel",
+   "dist": 0.74,
+   "desde": "TRUCO",
+   "angulo": 10,
+   "altura": 5,
+   "orbita": 8,
+   "empuje": 0.05,
+   "estado": {
+    "carga": 0,
+    "rebote": 0
+   },
+   "resaltar": [
+    "cel.flotante"
+   ],
+   "fuerzaResalte": 0.3
+  },
+  {
+   "tipo": "macro",
+   "set": "cel",
+   "pieza": "cel.flotante",
+   "radio": 4.6,
+   "desde": "PUERTA",
+   "angulo": -14,
+   "altura": 8,
+   "apertura": 0,
+   "estado": {
+    "carga": 0
+   },
+   "resaltar": [
+    "cel.flotante"
+   ],
+   "fuerzaResalte": 0.5
+  },
+  {
+   "tipo": "macro",
+   "set": "cel",
+   "pieza": "cel.lado",
+   "radio": 5.6,
+   "desde": "RODEADA",
+   "angulo": 18,
+   "altura": 6,
+   "apertura": 0,
+   "estado": {
+    "carga": 0
+   },
+   "resaltar": [
+    "cel.aislante",
+    "cel.oxido"
+   ],
+   "colorResalte": "120,200,255",
+   "fuerzaResalte": 0.35
+  },
+  {
+   "tipo": "anuncio",
+   "set": "cel",
+   "pieza": "cel",
+   "dist": 0.74,
+   "desde": "NINGUN",
+   "angulo": -12,
+   "altura": 8,
+   "orbita": -10,
+   "empuje": 0.05,
+   "estado": {
+    "carga": 0
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "set": "cel",
+   "pieza": "cel.reserva",
+   "radio": 6.6,
+   "desde": "ESCRIBIR",
+   "angulo": 8,
+   "altura": 4,
+   "orbita": 6,
+   "empuje": 0.1,
+   "apertura": 0,
+   "estado": {
+    "carga": 0,
+    "rebote": 0.25
+   }
+  },
+  {
+   "tipo": "macro",
+   "set": "cel",
+   "pieza": "cel.oxido",
+   "radio": 4.6,
+   "desde": "NO",
+   "angulo": 14,
+   "altura": 4,
+   "apertura": 0,
+   "empuje": 0.1,
+   "estado": {
+    "rebote": 1,
+    "carga": {
+     "de": 0,
+     "a": 0.12,
+     "en": "ATRAVIESAN",
+     "dur": 1.2
+    }
+   },
+   "resaltar": [
+    "cel.oxido"
+   ],
+   "colorResalte": "120,200,255",
+   "fuerzaResalte": 0.35
+  },
+  {
+   "tipo": "cifra",
+   "set": "cel",
+   "pieza": "cel",
+   "desde": "EL",
+   "angulo": 6,
+   "altura": 4,
+   "estado": {
+    "carga": 0,
+    "volt": {
+     "de": 0,
+     "a": 1,
+     "en": "SUBE",
+     "dur": 1.3
+    }
+   },
+   "lectura": {
+    "de": 0,
+    "a": 20,
+    "decimales": 0,
+    "unidad": "V",
+    "titulo": "TENSIÓN PARA ESCRIBIR",
+    "en": "SUBE",
+    "dur": 1.4,
+    "y": 900
+   },
+   "exposicion": 1.0
+  },
+  {
+   "tipo": "anuncio",
+   "set": "cel",
+   "pieza": "cel",
+   "dist": 0.74,
+   "desde": "CRUZAN",
+   "angulo": 6,
+   "altura": 3,
+   "orbita": 8,
+   "empuje": 0.06,
+   "estado": {
+    "volt": 1,
+    "signo": 1,
+    "carga": {
+     "de": 0,
+     "a": 1,
+     "en": "CRUZAN",
+     "dur": 2.1
+    }
+   }
+  },
+  {
+   "tipo": "macro",
+   "set": "cel",
+   "pieza": "cel.flotante",
+   "radio": 4.8,
+   "desde": "QUEDAN",
+   "angulo": -10,
+   "altura": 6,
+   "apertura": 0,
+   "estado": {
+    "carga": 1,
+    "volt": {
+     "de": 1,
+     "a": 0,
+     "en": 0,
+     "dur": 0.5
+    }
+   },
+   "resaltar": [
+    "cel.flotante"
+   ],
+   "fuerzaResalte": 0.5
+  },
+  {
+   "tipo": "anuncio",
+   "set": "cel",
+   "pieza": "cel",
+   "dist": 0.74,
+   "desde": "PARA",
+   "angulo": 8,
+   "altura": 5,
+   "orbita": 8,
+   "empuje": 0.06,
+   "estado": {
+    "carga": 0,
+    "lee": {
+     "de": 0,
+     "a": 1,
+     "en": "MIDE",
+     "dur": 0.5
+    }
+   },
+   "resaltar": [
+    "cel.canal"
+   ],
+   "colorResalte": "255,190,90",
+   "fuerzaResalte": 0.3
+  },
+  {
+   "tipo": "anuncio",
+   "set": "cel",
+   "pieza": "cel",
+   "dist": 0.74,
+   "desde": "CON",
+   "angulo": -10,
+   "altura": 6,
+   "orbita": 6,
+   "empuje": 0.05,
+   "estado": {
+    "carga": 1,
+    "lee": 1
+   }
+  },
+  {
+   "tipo": "macro",
+   "set": "cel",
+   "pieza": "cel.canal",
+   "radio": 5.2,
+   "desde": "SIN",
+   "angulo": 10,
+   "altura": 10,
+   "apertura": 0,
+   "estado": {
+    "carga": 0,
+    "lee": 1
+   }
+  },
+  {
+   "tipo": "cifra",
+   "set": "mem",
+   "pieza": "mem",
+   "zona": [
+    50,
+    430,
+    950,
+    1370
+   ],
+   "desde": "CEROS",
+   "angulo": 8,
+   "altura": 4,
+   "estado": {
+    "rellena": 1,
+    "foto": 0
+   },
+   "lectura": {
+    "texto": "0 1 1 0",
+    "titulo": "TUS CEROS Y UNOS",
+    "y": 900
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "set": "mem",
+   "pieza": "mem",
+   "zona": [
+    50,
+    430,
+    950,
+    1370
+   ],
+   "desde": "FOTO",
+   "angulo": 0,
+   "altura": 0,
+   "orbita": -6,
+   "empuje": 0.05,
+   "estado": {
+    "rellena": {
+     "de": 0,
+     "a": 1,
+     "en": "FOTO",
+     "dur": 1.3
+    },
+    "foto": 0
+   }
+  },
+  {
+   "tipo": "macro",
+   "set": "mem",
+   "objetivo": [
+    0,
+    3.5,
+    0
+   ],
+   "radio": 8.2,
+   "desde": "CELDAS",
+   "angulo": 14,
+   "altura": 8,
+   "apertura": 0.006,
+   "estado": {
+    "rellena": 1,
+    "foto": {
+     "de": 0,
+     "a": 1,
+     "en": "VACIAS",
+     "dur": 0.8
+    }
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "set": "cel",
+   "pieza": "cel",
+   "dist": 0.74,
+   "desde": "SIN2",
+   "angulo": -8,
+   "altura": 5,
+   "orbita": 8,
+   "empuje": 0.05,
+   "estado": {
+    "carga": 1,
+    "volt": 0,
+    "rebote": 0
+   }
+  },
+  {
+   "tipo": "macro",
+   "set": "cel",
+   "pieza": "cel.oxido",
+   "radio": 5.0,
+   "desde": "EMPUJA",
+   "angulo": 14,
+   "altura": 6,
+   "apertura": 0,
+   "estado": {
+    "carga": 1
+   },
+   "resaltar": [
+    "cel.oxido"
+   ],
+   "colorResalte": "120,200,255",
+   "fuerzaResalte": 0.35
+  },
+  {
+   "tipo": "anuncio",
+   "set": "cel",
+   "pieza": "cel",
+   "dist": 0.74,
+   "desde": "BORRAR",
+   "angulo": 6,
+   "altura": 3,
+   "orbita": 8,
+   "empuje": 0.06,
+   "estado": {
+    "volt": 1,
+    "signo": -1,
+    "carga": {
+     "de": 1,
+     "a": 0,
+     "en": "BORRAR",
+     "dur": 1.6
+    }
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "set": "mem",
+   "pieza": "mem",
+   "zona": [
+    50,
+    430,
+    950,
+    1370
+   ],
+   "desde": "BLOQUES",
+   "angulo": -6,
+   "altura": 5,
+   "orbita": 8,
+   "empuje": 0.05,
+   "estado": {
+    "rellena": 1,
+    "foto": 1,
+    "bloque": {
+     "de": 0,
+     "a": 1,
+     "en": 0,
+     "dur": 0.4
+    },
+    "borra": {
+     "de": 0,
+     "a": 1,
+     "en": "ENTEROS",
+     "dur": 0.8
+    }
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "set": "cel",
+   "pieza": "cel",
+   "dist": 0.74,
+   "desde": "AQUI",
+   "angulo": 8,
+   "altura": 4,
+   "orbita": 8,
+   "empuje": 0.05,
+   "estado": {
+    "volt": 1,
+    "signo": 1,
+    "bombeo": 1,
+    "desgaste": {
+     "de": 0,
+     "a": 1,
+     "en": "TRAMPA",
+     "dur": 2.6
+    }
+   }
+  },
+  {
+   "tipo": "macro",
+   "set": "cel",
+   "pieza": "cel.oxido",
+   "radio": 4.6,
+   "desde": "CADA2",
+   "angulo": -12,
+   "altura": 5,
+   "apertura": 0,
+   "empuje": 0.1,
+   "estado": {
+    "volt": 1,
+    "signo": 1,
+    "bombeo": 1,
+    "desgaste": {
+     "de": 0,
+     "a": 1,
+     "en": "TRAMPA",
+     "dur": 2.6
+    }
+   },
+   "resaltar": [
+    "cel.oxido"
+   ],
+   "colorResalte": "255,110,70",
+   "fuerzaResalte": 0.35
+  },
+  {
+   "tipo": "macro",
+   "set": "cel",
+   "pieza": "cel.defectos",
+   "radio": 4.4,
+   "desde": "APARECEN",
+   "angulo": 10,
+   "altura": 3,
+   "apertura": 0,
+   "empuje": 0.12,
+   "estado": {
+    "carga": 1,
+    "desgaste": 1,
+    "fuga": {
+     "de": 0,
+     "a": 1,
+     "en": "DEFECTOS",
+     "dur": 2.1
+    }
+   },
+   "resaltar": [
+    "cel.defectos"
+   ],
+   "colorResalte": "255,110,70",
+   "fuerzaResalte": 0.35
+  },
+  {
+   "tipo": "anuncio",
+   "set": "usb",
+   "pieza": "usb",
+   "desde": "LO2",
+   "angulo": -24,
+   "altura": 18,
+   "orbita": 14,
+   "empuje": 0.08,
+   "llenar": 0.95,
+   "estado": {
+    "luz": 1,
+    "datos": 0.6
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "set": "cel",
+   "pieza": "cel",
+   "dist": 0.74,
+   "desde": "FICHAS",
+   "angulo": 6,
+   "altura": 4,
+   "orbita": 8,
+   "empuje": 0.05,
+   "estado": {
+    "carga": 1,
+    "desgaste": 0.08
+   }
+  },
+  {
+   "tipo": "cifra",
+   "set": "cel",
+   "pieza": "cel",
+   "desde": "RECUERDA2",
+   "angulo": 6,
+   "altura": 4,
+   "estado": {
+    "carga": 1,
+    "desgaste": 0.08
+   },
+   "lectura": {
+    "texto": "10 AÑOS",
+    "titulo": "PENDRIVE CASI NUEVO · FICHA TÉCNICA",
+    "y": 900
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "set": "cel",
+   "pieza": "cel",
+   "dist": 0.74,
+   "desde": "UNO",
+   "angulo": -8,
+   "altura": 6,
+   "orbita": 8,
+   "empuje": 0.05,
+   "estado": {
+    "carga": 1,
+    "desgaste": 1,
+    "fuga": {
+     "de": 0,
+     "a": 1,
+     "en": "UNO",
+     "dur": 1.6
+    }
+   }
+  },
+  {
+   "tipo": "cifra",
+   "set": "cel",
+   "pieza": "cel",
+   "desde": "GASTADOS",
+   "angulo": -4,
+   "altura": 4,
+   "estado": {
+    "carga": 0,
+    "desgaste": 1
+   },
+   "lectura": {
+    "texto": "1 AÑO",
+    "titulo": "TODOS LOS BORRADOS GASTADOS",
+    "y": 900
+   }
+  },
+  {
+   "tipo": "compartir",
+   "desde": "MANDA",
+   "elegir": "QUIEN",
+   "enviar": "PENDRIVE2"
+  }
+ ]
+}
+</script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 63.3 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      // 12-usb: the scene is the JSON above (sets and shots), built by the shot templates. The USB stick, the flash cell and
+      // the grid of cells are library objects (objetos/pendrive.js, registered in objetos/index.js).
+      // Uses the new start ("arranque", "encuadre" and gancho.y: see the headers of the engine).
+      import * as THREE from "three";
+      import { crearPorDentro } from "./comun/pordentro.js";
+      import { crearDetalle } from "./comun/detalle.js";
+      import { crearPlantillas } from "./comun/plantillas.js";
+      await Promise.all(['700 50px "Inter"', '400 50px "Inter"', '700 50px "JetBrains Mono"', '400 50px "JetBrains Mono"'].map((f) => document.fonts.load(f)));
+      const C = crearPorDentro(THREE);
+      const X = crearDetalle(THREE, C);
+      const P = crearPlantillas(THREE, C, X, { cerca: 0.5 });
+      C.camera.far = 3000; C.camera.updateProjectionMatrix();
+      P.arrancar();
+    </script>
+  </body>
+</html>

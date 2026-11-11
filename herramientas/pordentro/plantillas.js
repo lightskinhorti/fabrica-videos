@@ -66,6 +66,33 @@
 // (0,7 s); al cambiar de set, el plano anterior se funde en el nuevo (0,35 s). En un plano: entrada ("deslizar",
 // "fundido" o "corte") y transicion (segundos). Ritmo: un encuadre nuevo cada 2-3 s, alguno de hasta 4 s cuando la
 // voz explica algo, nunca una ráfaga de cortes.
+//
+// Arranque y encuadre para TikTok (10 de noviembre; opcionales: un vídeo que no las lleve se ve igual que antes).
+// Medido en TikTok Studio: el 57 % se va en los 2 primeros segundos, con el objeto quieto y ocupando solo un 35 %
+// del alto. Las tres opciones van en la escena (JSON):
+//   "arranque": true | { "cambio": 1.2, "transicion": 0.45, "curva": "lineal", "empuje": 0.2, "orbita": 18 }
+//             El primer plano ya se mueve en el fotograma 0: su cámara va a velocidad constante (curva "lineal" en
+//             vez de "suave", que arranca parada) y con más empuje y órbita (los del plano, si los lleva, mandan).
+//             Si ningún otro plano empieza antes de 1,5 s, el primero se parte en el segundo `cambio` y la cámara
+//             viaja en `transicion` s a otro encuadre (la variante 1 del tipo, o variantes[0] del plano): así el
+//             primer cambio de plano llega antes de 1,5 s. El objeto tiene que estar ya "haciendo lo suyo": pon en
+//             el estado del primer plano valores fijos (ondas: 1, luz: 1), no rampas que empiecen de 0.
+//             El fotograma 0 es la portada: gancho legible (gancho.y lo sube) y objeto entero.
+//   "encuadre": { "llenar": 0.92, "zona": [x0, y0, x1, y1] }   valores por defecto para todos los planos.
+//   En un plano: llenar (0 = como siempre: la esfera del objetivo cabe en el ancho y queda centrada en la pantalla;
+//             0,9 = el objetivo ocupa el 90 % de la zona libre) y zona ([x0, y0, x1, y1] en px de 1080 × 1920).
+//             La zona libre por defecto es [50, 430, 950, 1440]: debajo de los subtítulos (TikTok tapa unos 250 px
+//             arriba), encima de la descripción (unos 480 px abajo) y a la izquierda de la columna de botones.
+//             Con un objeto entero ("pieza": "<id>", o sin pieza: todo el set) se encaja su caja de verdad, vista
+//             desde el ángulo del plano, así que un objeto alto llena la pantalla vertical; con una parte o con
+//             "radio" se encaja su esfera. El objetivo queda centrado en la zona, no en la pantalla. Vale en los
+//             planos de órbita (anuncio, macro, rayosX, cifra, regla, mapaCalor, particulas, flujo) y en corte;
+//             no en cenital, compartir ni libre. Un objeto puede dar su caja sin efectos (def.caja: [[x,y,z],
+//             [x,y,z]] en sus unidades) para que los haces y las ondas no cuenten.
+//             Mientras está el gancho no hay subtítulos: en el primer plano la zona puede empezar justo debajo
+//             del rótulo, por ejemplo "zona": [50, 600, 950, 1440] con "gancho": { "y": 400 }.
+//   Además, "entrada" y "transicion" de un plano ya llegan al sistema de planos (antes estaban documentadas pero
+//   no se pasaban; ningún vídeo anterior las usaba).
 // ======================================================================================================
 
 import * as UI from "./pantallas.js";
@@ -80,6 +107,8 @@ export function crearPlantillas(THREE, C, X, opciones = {}) {
   const REG = { ...OBJETOS, ...(opciones.objetos || {}) };
   const frac = (x) => x - Math.floor(x);
   const tri = (x) => 1 - Math.abs((((x % 2) + 2) % 2) - 1);
+  // optional framing by TikTok's free zone (see "llenar" in the header)
+  const ENC = ESC.encuadre || {}, ZONA = ENC.zona || [50, 430, 950, 1440];
 
   // ---------- look (the same as 07-microondas): blue-black backdrop, own light rig per set ----------
   X.fondo(ESC.fondo || { arriba: "#07080c", medio: "#131a26", abajo: "#090b0f" });
@@ -177,8 +206,19 @@ export function crearPlantillas(THREE, C, X, opciones = {}) {
     if (s.set && !S0) throw new Error(`No hay ningún set "${s.set}"`);
     const ref = s.objetivo ?? s.pieza ?? null;
     if (Array.isArray(ref)) { const S = S0 || primerSet(); return { S, q: v3(...ref), r: s.radio ?? S.R * 0.3 }; }
-    if (typeof ref === "string") { const R = resolver(ref, S0 && S0.nombre); return { S: S0 || SETS[R.set], q: R.p, r: s.radio ?? R.r, inst: R.inst, parte: R.parte }; }
-    const S = S0 || primerSet(); return { S, q: S.foco.clone(), r: s.radio ?? S.R };
+    if (typeof ref === "string") { const R = resolver(ref, S0 && S0.nombre); const S = S0 || SETS[R.set]; return { S, q: R.p, r: s.radio ?? R.r, inst: R.inst, parte: R.parte, caja: (s.llenar ?? ENC.llenar) && s.radio === undefined && R.parte === "_todo" ? cajaDe(S, [R.inst]) : null }; }
+    const S = S0 || primerSet(); return { S, q: S.foco.clone(), r: s.radio ?? S.R, caja: (s.llenar ?? ENC.llenar) && s.radio === undefined && S.objetos.length ? cajaDe(S, S.objetos) : null };
+  }
+  // the real box of some objects, in set units (for "llenar"): def.caja if the object gives one, else its meshes
+  function cajaDe(S, objetos) {
+    const b = new THREE.Box3(), p = new THREE.Vector3();
+    S.grupo.updateMatrixWorld(true);
+    for (const o of objetos) {
+      const c = o.def.caja;
+      if (c) for (let i = 0; i < 8; i++) b.expandByPoint(o.grupo.localToWorld(p.set(c[i & 1][0], c[(i >> 1) & 1][1], c[(i >> 2) & 1][2])));
+      else b.expandByObject(o.grupo);
+    }
+    return b.translate(S.centro.clone().negate());
   }
 
   // ===================================== flows: glowing ribbons along a route =====================================
@@ -269,13 +309,41 @@ export function crearPlantillas(THREE, C, X, opciones = {}) {
   const orbitaP = (q, az, el, d) => v3(q.x + d * Math.sin(az * RAD) * Math.cos(el * RAD), q.y + d * Math.sin(el * RAD), q.z + d * Math.cos(az * RAD) * Math.cos(el * RAD));
   // variations used when a long shot is split: [change of angle, of elevation, distance factor, orbit direction]
   const VAR_ORB = [[0, 0, 1, 1], [26, 7, 0.8, -1], [-8, -3, 0.58, 1], [-28, 4, 0.9, -1], [14, 12, 0.68, 1]];
+  // "llenar": the target takes that fraction of TikTok's free zone and sits in the middle of it. Returns the
+  // distance, the point to look at and mover(d): how far camera and aim shift so that point lands on the zone's centre
+  function encaje(s, o, az, el, fov, ll) {
+    const z = s.zona || ZONA, tv = Math.tan((fov * RAD) / 2), th = tv * ASP;
+    const hw = ((z[2] - z[0]) / C.W) * th * ll, hh = ((z[3] - z[1]) / C.H) * tv * ll;
+    const atras = orbitaP(v3(0, 0, 0), az, el, 1);
+    const der = new THREE.Vector3().crossVectors(v3(0, 1, 0), atras).normalize(), arr = new THREE.Vector3().crossVectors(atras, der);
+    let d = 0, c = o.q.clone();
+    if (o.caja) {
+      c = o.caja.getCenter(new THREE.Vector3());
+      const p = new THREE.Vector3();
+      for (let i = 0; i < 8; i++) {
+        p.set(i & 1 ? o.caja.max.x : o.caja.min.x, i & 2 ? o.caja.max.y : o.caja.min.y, i & 4 ? o.caja.max.z : o.caja.min.z).sub(c);
+        const f = p.dot(atras); d = Math.max(d, Math.abs(p.dot(der)) / hw + f, Math.abs(p.dot(arr)) / hh + f);
+      }
+    } else d = o.r / Math.sin(Math.atan(Math.min(hw, hh)));
+    const nx = ((z[0] + z[2]) / C.W) - 1, ny = 1 - (z[1] + z[3]) / C.H;
+    return { d, c, mover: (dist) => der.clone().multiplyScalar(-nx * th * dist).addScaledVector(arr, -ny * tv * dist) };
+  }
   function orbital(s, o, d0) {
     const v = VAR_ORB[(s.variante || 0) % VAR_ORB.length];
     const fov = s.fov ?? d0.fov;
     const az = (s.angulo ?? d0.angulo) + v[0], el = clamp((s.altura ?? d0.altura) + v[1], -80, 85);
-    const d = ajuste(o.r, fov, d0.margen ?? 1.1) * (s.dist ?? 1) * v[2];
-    const q = o.q.clone().add(v3(...(s.desplaza || [0, 0, 0])));
+    const ll = s.llenar ?? ENC.llenar, F = ll ? encaje(s, o, az, el, fov, ll) : null;
+    const d = (F ? F.d : ajuste(o.r, fov, d0.margen ?? 1.1)) * (s.dist ?? 1) * v[2];
+    const q = (F ? F.c : o.q).clone().add(v3(...(s.desplaza || [0, 0, 0])));
     const orb = (s.orbita ?? d0.orbita) * v[3], emp = s.empuje ?? d0.empuje;
+    if (F) {
+      const m0 = F.mover(d), m1 = F.mover(d * (1 - emp));
+      return {
+        de: { p: orbitaP(q, az - orb / 2, el, d).add(m0), q: q.clone().add(m0), fov },
+        a: { p: orbitaP(q, az + orb / 2, el + (d0.subir || 0), d * (1 - emp)).add(m1), q: q.clone().add(m1), fov },
+        apertura: s.apertura ?? (d0.desenfoque ? d0.desenfoque / (o.r * v[2]) : 0), foco: s.foco, curva: s.curva ?? "suave",
+      };
+    }
     return {
       de: { p: orbitaP(q, az - orb / 2, el, d), q: q.clone(), fov },
       a: { p: orbitaP(q, az + orb / 2, el + (d0.subir || 0), d * (1 - emp)), q: q.clone(), fov },
@@ -319,8 +387,10 @@ export function crearPlantillas(THREE, C, X, opciones = {}) {
         const v = [[0, 0, 1], [0.26, 0.1, 0.62], [-0.24, -0.12, 0.7], [0.05, 0.22, 0.5]][(s.variante || 0) % 4];
         const fov = s.fov ?? 14, h = v3(Math.cos(az * RAD), 0, -Math.sin(az * RAD));
         const q = o.q.clone().addScaledVector(h, v[0] * o.r).add(v3(0, v[1] * o.r, 0)).add(v3(...(s.desplaza || [0, 0, 0])));
-        const d = ajuste(o.r, fov, 1.08) * (s.dist ?? 1) * v[2], dr = (s.deriva ?? 0.03) * o.r;
+        const ll = s.llenar ?? ENC.llenar, F = ll ? encaje(s, { q: o.q, r: o.r }, az, el, fov, ll) : null;
+        const d = (F ? F.d : ajuste(o.r, fov, 1.08)) * (s.dist ?? 1) * v[2], dr = (s.deriva ?? 0.03) * o.r;
         const q0 = q.clone().addScaledVector(h, -dr), q1 = q.clone().addScaledVector(h, dr);
+        if (F) { const e = s.empuje ?? 0.04, m0 = F.mover(d), m1 = F.mover(d * (1 - e)); return { de: { p: orbitaP(q0, az, el, d).add(m0), q: q0.add(m0), fov }, a: { p: orbitaP(q1, az, el, d * (1 - e)).add(m1), q: q1.add(m1), fov }, apertura: s.apertura ?? 0, foco: s.foco, curva: s.curva ?? "lineal" }; }
         return { de: { p: orbitaP(q0, az, el, d), q: q0, fov }, a: { p: orbitaP(q1, az, el, d * (1 - (s.empuje ?? 0.04))), q: q1, fov }, apertura: s.apertura ?? 0, foco: s.foco, curva: s.curva ?? "lineal" };
       },
     },
@@ -548,24 +618,32 @@ export function crearPlantillas(THREE, C, X, opciones = {}) {
   }
   // automatic rule: a framing longer than ~4 s becomes a slow camera move through 2 or more framings
   const LARGO = opciones.largo ?? 3.2;
+  // "arranque": the first shot already moves at frame 0 and its first change of framing comes before 1.5 s
+  const ARR = ESC.arranque ? (ESC.arranque === true ? {} : ESC.arranque) : null;
   const L = [];
   for (const s of ORIG) {
-    const dur = s._tb1 - s._tb0;
+    const primero = ARR && s === ORIG[0];
+    // the early change: only if the shot is long enough and the author has not already put a shot before 1.5 s
+    const cambio = primero && s.variar !== false && s._tb1 - s._tb0 > 1.5 ? s._tb0 + clamp(ARR.cambio ?? 1.2, 0.6, 1.45) : null;
+    const ini = cambio ?? s._tb0, dur = s._tb1 - ini;
     const n = s.variar === false || dur <= LARGO + 0.8 ? 1 : Math.ceil(dur / LARGO);
-    const cortes = [s._tb0];
+    const cortes = cambio !== null ? [s._tb0, cambio] : [s._tb0];
     for (let i = 1; i < n; i++) {
-      const ideal = s._tb0 + (i * dur) / n, prev = cortes[cortes.length - 1], sig = i < n - 1 ? s._tb0 + ((i + 1) * dur) / n : s._tb1;
+      const ideal = ini + (i * dur) / n, prev = cortes[cortes.length - 1], sig = i < n - 1 ? ini + ((i + 1) * dur) / n : s._tb1;
       let best = ideal, bd = 0.36;
       // snap to the start of a word, as long as no piece goes under 1.4 s or over 4 s
       for (const w of palabras) { const d = Math.abs(w - ideal); if (d < bd && w - prev > 1.4 && w - prev <= 4 && sig - w > 1.4 && sig - w <= 4) { bd = d; best = w; } }
       cortes.push(best);
     }
+    const nn = cortes.length;
     cortes.forEach((t0, i) => {
       const extra = i > 0 && s.variantes ? s.variantes[(i - 1) % s.variantes.length] : {};
-      L.push({ ...s, ...extra, variante: i > 0 && s.variantes ? 0 : i, _uid: n > 1 ? `${s._uid0}·${i + 1}` : s._uid0, _t0: t0, _t1: i < n - 1 ? cortes[i + 1] : s._tb1 });
+      const arr = !primero ? {} : i === 0 ? { curva: s.curva ?? ARR.curva ?? "lineal", empuje: s.empuje ?? ARR.empuje ?? 0.2, orbita: s.orbita ?? ARR.orbita ?? 18 }
+        : i === 1 && cambio !== null ? { transicion: ARR.transicion ?? 0.45 } : {};
+      L.push({ ...s, ...arr, ...extra, variante: i > 0 && s.variantes ? 0 : i, _uid: nn > 1 ? `${s._uid0}·${i + 1}` : s._uid0, _t0: t0, _t1: i < nn - 1 ? cortes[i + 1] : s._tb1 });
     });
   }
-  const lista = L.map((s) => { const c = TIPOS[s.tipo].camara(s); return { id: s._uid, desde: s._t0, set: s._set, de: c.de, a: c.a, apertura: c.apertura, foco: c.foco, curva: c.curva, _p: s }; });
+  const lista = L.map((s) => { const c = TIPOS[s.tipo].camara(s); return { id: s._uid, desde: s._t0, set: s._set, de: c.de, a: c.a, apertura: c.apertura, foco: c.foco, curva: c.curva, entrada: s.entrada, transicion: s.transicion, _p: s }; });
   const PLN = X.planos(lista, SETS);
 
   // ===================================== drawing =====================================
