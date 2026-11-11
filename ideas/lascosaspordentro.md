@@ -72,3 +72,14 @@ Los de mejor gancho y datos, y que comparten piezas para hacerlos más rápido:
 - [x] ~~Vídeo 4: pantalla táctil.~~ **Descartado por Javier el 2 de noviembre:** @speedy_devv ya tiene uno de ese tema con 6 millones de visitas y mucho mejor hecho (`referencias/06-pantalla-tactil-estilo-objetivo.mp4`). La regla es copiar el estilo, nunca los temas. La carpeta `videos/lascosaspordentro/04-pantalla/` se queda solo como prueba: no se publica.
 - [ ] Vídeo 5: reloj de cuarzo. Hecho el 2 de noviembre con el estilo nuevo, un gancho de 2,2 s y una pregunta abierta: el panel enseña "¿?" hasta que se dice la cifra, y al final una cascada divide 32.768 entre 2 hasta llegar a 1. `exports/render/05-reloj.mp4` (78,8 s), control sin errores. Javier lo da por bueno ("todo lo demás es perfecto") y pide solo el gancho en grande los primeros segundos: añadido el 2 de noviembre (`gancho` en la escena). Guía de subida en `publicar/lascosaspordentro.md`.
 - [x] Vídeo 6: GPS del móvil. Hecho el 2 de noviembre: `exports/render/06-gps.mp4` (73,8 s), control sin errores. Aprobado por Javier el 3 de noviembre. @speedy_devv no tiene el GPS entre sus 25 reels, pero sí "Find My" (cómo encuentra el móvil un dispositivo perdido): es otro mecanismo, aunque el tema se parece.
+
+## Orden nuevo con las 5 preguntas (11 de noviembre, sin aprobar)
+
+Reglas en el PRD, sección "Ganchos y temas". Suben los objetos que le tocan algo a quien mira (ideas 18, 17 y dos nuevas). Antes de cada uno, comprobar con Javier que @speedy_devv no lo tenga.
+
+| Tema | Gancho de partida | Puntos |
+|---|---|---|
+| Batería del móvil (idea 18) | "Tu batería se gasta aunque no la uses" | 9 |
+| Airbag (idea 17) | "Se infla antes de que parpadees" | 8 |
+| Código QR (nueva) | "Este QR funciona aunque le falte un trozo" | 8 |
+| Huella del móvil (nueva) | "Tu móvil no guarda tu huella" | 8 |

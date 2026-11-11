@@ -388,6 +388,85 @@ El dato de finanzas sale de guías de terceros: hablan de 0,80 a 1,20 $ o más p
 - **Vídeos satisfactorios animados** (idea de Javier, descartada por él el 2 de noviembre): animaciones 3D sin voz (canicas, encajes, dominó). Se descarta por el cobro a partir de 1 minuto, el riesgo de "contenido poco original" y la competencia.
 - **Tácticas de fútbol explicadas** (en lista de espera): encaja en el nicho 8. Vista desde arriba con fichas, flechas y zonas, y cada jornada da temas nuevos. Sin escudos, equipaciones reales ni imágenes de retransmisiones.
 
+## Ganchos y temas (plan del 11 de noviembre)
+
+Lo pidió Javier el 11 de noviembre: el mejor gancho posible, que es lo que falla, y temas que le interesen a cualquiera. Lo que sigue es el plan de Claude; lo que es dato medido y lo que es criterio propio va dicho en cada punto.
+
+**Qué dicen los datos (medido en TikTok Studio, 3 curvas):**
+
+- A los 2 s queda entre el 43 y el 54 % de la gente. A los 5 s, entre el 24 y el 36 %. A los 10 s, entre el 13 y el 25 %.
+- O sea, se pierden dos veces: la mitad en el primer vistazo y otra mitad entre el segundo 2 y el 10. El gancho no es solo la primera frase: es todo lo que pasa hasta el segundo 10.
+- Solo hay curva de 3 vídeos, uno por cuenta. Con eso no se puede decir qué gancho funciona mejor. Hay que leer la curva de todos.
+
+**Qué les pasa a los ganchos de ahora (criterio de Claude, mirando los 34):**
+
+1. La persona decide antes de que acabe la frase. Una frase de 2 s llega tarde: en el primer segundo solo cuenta lo que se ve.
+2. Son datos curiosos, no cosas que le toquen a quien mira. "Tu ratón hace miles de fotos por segundo" sorprende un poco, pero no le cambia nada a nadie.
+3. En El contador loco los 12 empiezan igual, con "¿Y si…?". Es una suposición, no algo que le pase a la persona, y quien ya pasó de largo una vez reconoce el formato y vuelve a pasar.
+4. El texto en pantalla repite lo que dice la voz. Se gasta dos veces el mismo mensaje.
+5. El primer fotograma de cada cuenta se parece mucho de un vídeo a otro.
+
+**Reglas nuevas del gancho:**
+
+1. **Tres capas que dicen cosas distintas.** La imagen enseña lo más fuerte del vídeo. El texto, de 5 palabras como mucho, dice lo que está en juego. La voz empieza en el segundo 0 y añade algo, no lo lee.
+2. **Empezar por el final.** El fotograma 0 es el momento más llamativo del vídeo: el objeto ya abierto, el contador ya en la cifra final, la cuenta ya hecha. Luego se vuelve atrás ("así se llega hasta aquí").
+3. **Algo que le pase a quien mira.** Dinero, salud, tiempo o seguridad, con "tú" y con una cifra concreta en las tres primeras palabras si se puede. Ejemplo: en vez de "¿Y si durmieras 6 horas cada día?", "Duermes 6 horas. Esto le pasa a tu cuerpo".
+4. **Segundo gancho entre el segundo 3 y el 5,** que es donde se va la otra mitad: una promesa concreta de lo que viene ("y lo tercero casi nadie lo sabe") con una imagen que lo adelante, no solo "te lo digo al final".
+5. **Diez ganchos por vídeo y se elige uno.** Se escriben 10, de tipos distintos, y se puntúan con la lista de abajo. El elegido y los descartados se guardan en la carpeta del vídeo (`ganchos.md`).
+6. **Nunca se promete lo que el vídeo no da.** El gancho sale de un dato de `fuentes.md`. Un gancho exagerado sube el segundo 2 y hunde el resto.
+
+**Tipos de gancho** (para no repetir siempre el mismo):
+
+| Tipo | Ejemplo |
+| --- | --- |
+| Lo que crees es falso | "Tu nevera no fabrica frío" |
+| Te cuesta algo | "Tu paga extra no es un regalo" |
+| Cifra que te toca | "12 años de tu vida mirando esto" |
+| Lo haces cada día sin saberlo | "Cada noche desgastas tu batería" |
+| Reto | "Adivina cuánto cuesta fabricar esto" |
+
+**Lista para puntuar un gancho** (un punto por cada sí; se hace con 5 o más):
+
+- Se dice en menos de 2 s (7 palabras como mucho).
+- Se entiende sin sonido, solo con la imagen y el texto.
+- Habla de quien mira ("tú", "tu").
+- Lleva una cifra concreta o contradice algo que la gente cree.
+- Deja una pregunta abierta que solo se resuelve viendo el vídeo.
+- No dice el nombre del tema de una forma que ya dé la respuesta.
+- Es verdad, con fuente.
+
+**Cómo se mide:** el gancho se juzga con el porcentaje que queda a los 2 s y a los 5 s, leído en Studio 24 horas después, y se apunta en `datos/studio.json` junto al tipo de gancho. Cada día las tres cuentas llevan tipos distintos a propósito. Con unos 10 vídeos por tipo se decide cuál se queda. Objetivo: pasar del 50 % al 65 % a los 2 s y del 30 % al 45 % a los 5 s (cifras de Claude, sin fuente oficial).
+
+**Temas: 5 preguntas antes de hacer un vídeo** (de 0 a 2 puntos cada una; se hace con 8 o más):
+
+1. ¿Lo tiene o lo hace casi todo el mundo esta semana?
+2. ¿Le toca el bolsillo, la salud, el tiempo o la seguridad?
+3. ¿Hay una sorpresa que contradiga lo que la gente cree?
+4. ¿Se lo contarías a alguien en la cena? (lo que se comparte es lo que TikTok enseña a más gente)
+5. ¿Se puede enseñar con una imagen fuerte en el primer segundo?
+
+Con esta lista, el ratón saca un 3 y el mando un 4 (puntuación de Claude): son objetos que funcionan, pero a nadie le va nada en ello. El café con tarjeta saca un 7 y fue el vídeo que más gente vio entero (7,3 %). Se añade además lo que toca por fecha: Black Friday (27 de noviembre), la paga extra y la Lotería de Navidad en diciembre, la cuesta de enero.
+
+**Temas que pasan el corte** (propuesta de Claude, sin aprobar; cifras y fuentes por comprobar al hacer cada uno):
+
+| Cuenta | Tema | Gancho de partida | Puntos |
+| --- | --- | --- | --- |
+| El contador loco | Dormir 6 horas cada noche | "Duermes 6 horas. Esto le pasa a tu cuerpo" | 9 |
+| El contador loco | Estar sentado 8 horas al día | "8 horas sentado. Tu cuerpo lo nota así" | 9 |
+| El contador loco | Dejar el azúcar 30 días | "30 días sin azúcar. Día 1" | 8 |
+| Las cosas por dentro | Batería del móvil | "Tu batería se gasta aunque no la uses" | 9 |
+| Las cosas por dentro | Airbag | "Se infla antes de que parpadees" | 8 |
+| Las cosas por dentro | Código QR | "Este QR funciona aunque le falte un trozo" | 8 |
+| Las cosas por dentro | Huella del móvil | "Tu móvil no guarda tu huella" | 8 |
+| Dinero sin lío | Paga extra | "Tu paga extra no es un regalo" | 9 |
+| Dinero sin lío | Factura de la luz | "Pagas luz aunque no enciendas nada" | 9 |
+| Dinero sin lío | Hipoteca | "Los primeros años casi no pagas tu casa" | 8 |
+| Dinero sin lío | Precios acabados en 99 | "Ese 9,99 no es casualidad" | 8 |
+
+En Las cosas por dentro, antes de cada tema se comprueba con Javier que @speedy_devv no lo tenga. En El contador loco se sigue la receta de salud: estudios y organismos oficiales, asociaciones y ningún consejo médico. En Dinero sin lío se explica, no se recomienda.
+
+**Lo que no se sabe:** si el techo de unas 800 visualizaciones es solo por el gancho. Las cuentas nuevas suelen recibir una primera tanda pequeña de público, y pasar de ahí depende también de cuánta gente ve el vídeo entero y lo comparte. El gancho es lo primero que se arregla porque es donde más gente se pierde, pero no hay garantía de que baste.
+
 ## Instagram: cómo lo hacemos y packs en la bio
 
 En Instagram, la cuenta enseña cómo funciona la fábrica, igual que hace la cuenta del vídeo de referencia, y en la bio hay una página con packs de configuración. Instagram no paga por visualizaciones en España, así que aquí el dinero sale de los packs.

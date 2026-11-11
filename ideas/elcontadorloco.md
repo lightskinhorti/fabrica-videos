@@ -87,3 +87,13 @@ En lugar de algo imposible, un hábito real que el contador va sumando durante d
 - [x] Vídeo 11: idea 22 en versión de salud (lo pidió Javier el 7 de noviembre): una lata al día durante 30 años. Recorre los dientes (OMS), el peso (Malik y otros, 2013), la diabetes tipo 2 (+18 % por cada refresco diario; Imamura y otros, BMJ 2015) y, al final, el corazón (+19 % de riesgo de morir por enfermedad cardiovascular; Malik y otros, Circulation 2019), siempre como asociaciones. 75,3 s, control sin errores. Sustituye al vídeo 10, que queda de reserva. Falta que Javier lo apruebe.
 - [x] Vídeo 12: idea 26 en versión de salud, 3 cafés al día (61,1 s). Hecho el 11 de noviembre. Recorre la cafeína (240 mg frente a los 400 mg que la EFSA ve seguros en adultos sanos), el sueño de esa noche (45 minutos menos de media en 24 estudios; Sleep Medicine Reviews 2023), el cáncer (IARC 2016: más de 1.000 estudios, sin pruebas concluyentes), la diabetes tipo 2 (21 % menos de riesgo con 3 tazas; Diabetes Care 2014) y, al final, la mortalidad (17 % menos de riesgo de morir por cualquier causa con 3 o 4 tazas; BMJ 2017), siempre como asociaciones. Es el primero con el arranque nuevo del motor (`arranque`: cámara en marcha, sello con la cifra del final borrosa y acción desde el fotograma 0). Control sin errores. Falta que Javier lo apruebe.
 - [x] Vídeo 7: idea 27, la comida que se tira en casa (64,0 s), con el informe de desperdicio del Ministerio de Agricultura de 2025. Hecho la noche del 3 de noviembre; falta que Javier lo apruebe.
+
+## Orden nuevo con las 5 preguntas (11 de noviembre, sin aprobar)
+
+Reglas en el PRD, sección "Ganchos y temas". Ya no se empieza con "¿Y si…?": el gancho dice lo que le pasa a quien mira.
+
+| Tema | Gancho de partida | Puntos |
+|---|---|---|
+| Dormir 6 horas cada noche | "Duermes 6 horas. Esto le pasa a tu cuerpo" | 9 |
+| Estar sentado 8 horas al día | "8 horas sentado. Tu cuerpo lo nota así" | 9 |
+| Dejar el azúcar 30 días | "30 días sin azúcar. Día 1" | 8 |

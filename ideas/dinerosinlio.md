@@ -28,3 +28,14 @@ Los tres siguen la receta del café, el mejor de la cuenta (288 visualizaciones 
 |---|---|---|
 | El banco solo guarda 1 € de cada 100 | "Tu dinero no está en el banco." | **En espera:** el BCE estudia subir el 1 % al 2 % este otoño. Hacerlo cuando decida |
 | La Lotería del Niño (enero) | Segunda parte del vídeo 01 | Solo si el 01 funciona |
+
+## Orden nuevo con las 5 preguntas (11 de noviembre, sin aprobar)
+
+Reglas en el PRD, sección "Ganchos y temas".
+
+| Tema | Gancho de partida | Puntos |
+|---|---|---|
+| Paga extra (diciembre) | "Tu paga extra no es un regalo" | 9 |
+| Factura de la luz | "Pagas luz aunque no enciendas nada" | 9 |
+| Hipoteca: los intereses van primero | "Los primeros años casi no pagas tu casa" | 8 |
+| Precios acabados en 99 | "Ese 9,99 no es casualidad" | 8 |
