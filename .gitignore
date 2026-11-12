@@ -28,3 +28,6 @@ lemo-opuscar/
 videos/*/*/assets/mezcla.wav
 videos/*/*/.hyperframes/
 videos/*/*/snaps/
+
+# todas las lecturas de herramientas/referentes.py (la tabla, ideas/referentes.md, sí se sube)
+datos/referentes_resultado.json

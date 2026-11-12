@@ -495,6 +495,16 @@ Javier preguntó si quedarse siempre por debajo de 900 visualizaciones es suerte
 - **Motor:** en `herramientas/pordentro/plantillas.js`, la `lectura` de un plano admite `tituloTam`, `tituloAncho`, `sub` y `subTam` para un rótulo grande (la pregunta final del QR). Objetos nuevos: `objetos/codigoqr.js` (`codigoQR` y `nivelesQR`).
 - **Pendiente:** comprobar con Javier que @speedy_devv no tiene el código QR. En el corto, "te engaña" es más fuerte que lo que dicen los estudios ("parece más bajo", y solo a veces).
 
+**Buscador de vídeos que han reventado (12 de noviembre):**
+
+Javier mandó un reel de un creador que enseña su "máquina": su Claude mira reels de su nicho, se queda con los que han hecho muchas más visualizaciones de lo normal en su creador, los desmonta (gancho, estructura y planos) y escribe guiones nuevos con esa receta. El resto de su máquina (guion, voz, animación, subtítulos y programación) ya lo hacemos. Lo que nos faltaba es partir de lo que ya ha funcionado, en vez de elegir tema y gancho con una puntuación de Claude.
+
+- **Herramienta:** `python3 herramientas/referentes.py`. Lee con `yt-dlp`, sin iniciar sesión, los últimos 60 vídeos de cada cuenta de `datos/referentes.json` y marca los que tienen al menos 3 veces la mediana de su creador, más de 20.000 visualizaciones y más de 3 días. La tabla queda en `ideas/referentes.md`. Con `--desmontar N` baja los N mejores de cada nicho a `referencias/revientan/` (fuera de git), los transcribe y apunta el gancho dicho, las palabras por segundo y una tira con los 3 primeros segundos.
+- **Solo TikTok.** Instagram no deja leer perfiles sin sesión, y hacerlo de forma automática va contra sus normas. Los hashtags de TikTok tampoco se pueden leer sin sesión, así que hace falta una lista de cuentas.
+- **Regla de siempre:** se copia la receta, nunca el tema ni el guion.
+- **Primera prueba, con 8 cuentas** puestas por Claude (las que pudo comprobar): entre los que más han reventado abundan los vídeos de 30 a 45 segundos, y casi todos los ganchos son una pregunta o una acción en marcha ("Watch what happens when we insert the wrong key"). Es poca muestra para sacar reglas. Dato curioso: @speedy_devv tiene en TikTok una mediana de 858 visualizaciones, parecida a la nuestra; lo suyo funciona en Instagram.
+- **Pendiente:** que Javier complete la lista con 20 o 30 cuentas por nicho, sobre todo en español, y usar los vídeos desmontados al escribir los guiones siguientes.
+
 **Lo que no se sabe:** si el techo de unas 800 visualizaciones es solo por el gancho. Las cuentas nuevas suelen recibir una primera tanda pequeña de público, y pasar de ahí depende también de cuánta gente ve el vídeo entero y lo comparte. El gancho es lo primero que se arregla porque es donde más gente se pierde, pero no hay garantía de que baste.
 
 ## Instagram: cómo lo hacemos y packs en la bio
