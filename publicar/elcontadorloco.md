@@ -165,7 +165,30 @@ Claude programa los Reels desde el ordenador, igual que hace con TikTok Studio, 
 8. No pregunta por la etiqueta de IA ni hay que aceptar nada más.
 9. Marcar `instagram: true` en `datos/estado.json`.
 
-Quedan sin subir a Instagram los vídeos 02 a 12. No se suben todos de golpe: como mucho uno al día, además del nuevo, y solo cuando Javier lo pida.
+**Vídeos antiguos, uno al día a las 18:00 (Javier, 12 de noviembre).** Van primero los que más tiempo se vieron en TikTok. No entran `06-pasos` ni `10-refresco`, que son las versiones de reserva de los vídeos 08 y 11.
+
+| Día | Vídeo | Hashtags de Instagram | Estado |
+|---|---|---|---|
+| 13 nov | `04-crecer` | `#quepasariasi #curiosidades #altura #edificios #espana` | Programado |
+| 14 nov | `08-pasos-salud` | `#quepasariasi #curiosidades #salud #caminar #pasos` | Programado |
+| 15 nov | `09-movil` | `#quepasariasi #curiosidades #movil #tiempodepantalla #tecnologia` | Pendiente |
+| 16 nov | `07-comida` | `#quepasariasi #curiosidades #comida #desperdicioalimentario #cocina` | Pendiente |
+| 17 nov | `03-gato` | `#quepasariasi #curiosidades #datoscuriosos #gatos #animales` | Pendiente |
+| 18 nov | `02-movil` | `#quepasariasi #curiosidades #movil #temperatura #sol` | Pendiente |
+| 19 nov | `05-ropa` | `#quepasariasi #curiosidades #ropa #exponencial #luna` | Pendiente |
+| 20 nov | `11-refresco-salud` | `#quepasariasi #curiosidades #salud #refrescos #azucar` | Pendiente |
+| 21 nov | `12-cafe` | `#quepasariasi #curiosidades #salud #cafe #cafeina` | Pendiente |
+
+Las copias de menos de 10 MB de los nueve están en `exports/subida/`.
+
+**Límite encontrado el 12 de noviembre:** después de tres subidas seguidas (sueño, crecer y pasos), la cuarta y la quinta se quedaron paradas en el 95 % ("Waiting for your video to be uploaded") con dos archivos distintos, sin mensaje de error. Parece un freno de Meta a las subidas seguidas en una cuenta nueva, no un fallo del archivo. Se programan como mucho tres por sesión y el resto otro día.
+
+Más cosas aprendidas ese día:
+
+- Para la fecha, se hace clic en el campo de fecha y luego en el día del calendario. La posición de los campos cambia unos 16 píxeles de una vez a otra: antes de pulsar **Schedule** se mira siempre que la fecha y la hora sean las buenas.
+- El botón azul de abajo se llama "Share" hasta que se elige "Schedule" arriba. Nunca se pulsa mientras ponga "Share", porque publicaría en el momento.
+- Las referencias de los botones solo valen después de buscarlos con `find` en esa misma página.
+- Si la subida se atasca, se sale de la página aceptando que se pierden los cambios; no queda nada a medias.
 
 ## Después de publicar
 

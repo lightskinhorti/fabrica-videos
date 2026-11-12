@@ -70,7 +70,9 @@
   "aprobado": true,
   "fecha": "2026-11-03",
   "hora": "20:00",
-  "programado": true
+  "programado": true,
+  "instagram": true,
+  "instagram_fecha": "2026-11-13 18:00"
  },
  "elcontadorloco/05-ropa": {
   "aprobado": true,
@@ -92,7 +94,9 @@
   "aprobado": true,
   "fecha": "2026-11-05",
   "hora": "20:00",
-  "programado": true
+  "programado": true,
+  "instagram": true,
+  "instagram_fecha": "2026-11-14 18:00"
  },
  "elcontadorloco/09-movil": {
   "aprobado": true,
@@ -187,7 +191,8 @@
   "programado": true,
   "fecha": "2026-11-12",
   "hora": "18:00",
-  "instagram": true
+  "instagram": true,
+  "instagram_fecha": "2026-11-12 18:00"
  },
  "lascosaspordentro/13-bateria": {
   "aprobado": true,
