@@ -503,7 +503,13 @@ Javier mandó un reel de un creador que enseña su "máquina": su Claude mira re
 - **Solo TikTok.** Instagram no deja leer perfiles sin sesión, y hacerlo de forma automática va contra sus normas. Los hashtags de TikTok tampoco se pueden leer sin sesión, así que hace falta una lista de cuentas.
 - **Regla de siempre:** se copia la receta, nunca el tema ni el guion.
 - **Primera prueba, con 8 cuentas** puestas por Claude (las que pudo comprobar): entre los que más han reventado abundan los vídeos de 30 a 45 segundos, y casi todos los ganchos son una pregunta o una acción en marcha ("Watch what happens when we insert the wrong key"). Es poca muestra para sacar reglas. Dato curioso: @speedy_devv tiene en TikTok una mediana de 858 visualizaciones, parecida a la nuestra; lo suyo funciona en Instagram.
-- **Pendiente:** que Javier complete la lista con 20 o 30 cuentas por nicho, sobre todo en español, y usar los vídeos desmontados al escribir los guiones siguientes.
+- **Segunda pasada, con 40 cuentas** casi todas en español, buscadas por Claude (búsquedas web de vídeos de TikTok de cada tema y comprobadas una a una): 2.048 vídeos leídos y 335 que pasan el corte.
+  - **La duración no explica quién revienta.** Corrige lo de la primera prueba: dentro de cada cuenta, los vídeos que revientan duran lo mismo que los demás (mediana de 65 s frente a 62 en curiosidades, 51 frente a 54 en dinero) y en "por dentro" incluso más (81 frente a 60). Acortar no parece la palanca, aunque la prueba del día 13 lo dirá en nuestras cuentas.
+  - **Hablan más deprisa:** de 3 a 4 palabras por segundo en los desmontados; nosotros vamos de 2,5 a 3,3.
+  - **Los ganchos son una escena o algo que ya está pasando, no un dato:** "Hola, soy Hacienda y la renta te sale a pagar 1.650 euros", "Esto no debería ser posible", "Mira lo que pasa cuando metemos la llave equivocada".
+  - **Cuentas que funcionan siempre, no solo a veces** (mediana por vídeo): @altezseraverdad 230 mil (cómo funcionan las cosas, en español), @tu_blog_fiscal 239 mil (impuestos en España) y @que_pasariasi 102 mil. Son los modelos más directos para estudiar.
+  - **Ojo con la lista:** ordenar por "veces" premia a las cuentas pequeñas (un ×300 sobre una mediana de 3.000 es menos que un ×5 sobre 200.000), y hay cuentas que no son de nuestro tipo (@historiamuycuriosas resume vídeos de otros).
+- **Pendiente:** desmontar los mejores vídeos de las tres cuentas modelo y usar su receta en los guiones siguientes. Javier puede añadir o quitar cuentas en `datos/referentes.json`.
 
 **Lo que no se sabe:** si el techo de unas 800 visualizaciones es solo por el gancho. Las cuentas nuevas suelen recibir una primera tanda pequeña de público, y pasar de ahí depende también de cuánta gente ve el vídeo entero y lo comparte. El gancho es lo primero que se arregla porque es donde más gente se pierde, pero no hay garantía de que baste.
 

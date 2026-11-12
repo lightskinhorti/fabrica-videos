@@ -1,6 +1,6 @@
 {
- "_nota": "Cuentas de TikTok de otros creadores, por nicho, para herramientas/referentes.py. Lista de arranque puesta por Claude el 12 de noviembre de 2026 con las pocas cuentas que pudo comprobar; la tiene que completar Javier (de 20 a 30 por nicho).",
- "elcontadorloco": ["elrobotdeplaton", "whatif.es"],
- "lascosaspordentro": ["animagraffs", "jaredowenanimations", "speedy_devv", "vibecodingiseasy"],
- "dinerosinlio": ["economiapersonal", "arteinversion"]
+ "_nota": "Cuentas de TikTok de otros creadores, por nicho, para herramientas/referentes.py. Buscadas por Claude el 12 de noviembre de 2026 (búsquedas web y comprobadas una a una con yt-dlp). Casi todas en español; animagraffs, jaredowenanimations y vibecodingiseasy son en inglés y sirven para el estilo. Javier puede añadir o quitar las que quiera: basta el nombre de usuario.",
+ "elcontadorloco": ["que_pasariasi", "historiamuycuriosas", "elrobotdeplaton", "whatif.es", "universo.inedito", "marta.hallo", "jasantaolalla", "lagatadeschrodinger", "doctorfision", "esqueletoamego", "cosmoteorias", "cienciasdelaciencia", "curiosidadesconmike", "elprofedegeo"],
+ "lascosaspordentro": ["altezseraverdad", "animagraffs", "jaredowenanimations", "vibecodingiseasy", "speedy_devv", "topesdegama", "xataka", "unocero", "computerhoy", "powermobile.es", "jevedel", "clipset"],
+ "dinerosinlio": ["tu_blog_fiscal", "taxingplanner", "economiapersonal", "celtiberica_abogados", "esmeralda_gl", "dianamendezfinanzas", "finanzas.emocionales", "pequenocerdocapitalista", "maestro.financiero", "rubenlopezdemiguel", "helpmycash", "gabrielgarciax", "elclubdeinversion", "bankinter"]
 }
