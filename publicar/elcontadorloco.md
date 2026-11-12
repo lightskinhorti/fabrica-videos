@@ -153,7 +153,19 @@ Claude programa los Reels desde el ordenador, igual que hace con TikTok Studio, 
 - Comprobar que la cuenta que sale es `@elcontadorloco`.
 - Crear un Reel, subir la copia de `exports/subida/` (menos de 10 MB), pegar la descripción con solo 5 hashtags, elegir la portada y programar día y hora.
 - Comprobar en la lista de contenido programado que sale con su fecha, y marcar la casilla de Instagram en el panel.
-- La primera vez se hace con un solo vídeo, paso a paso, para apuntar aquí el procedimiento exacto. Sin probar todavía: si la web deja elegir la portada y si pregunta por la etiqueta de IA.
+**Procedimiento probado el 12 de noviembre** (Javier entró ese día; primer Reel programado: `13-sueno`, para las 18:00):
+
+1. Elegir el Chrome de El contador loco y abrir `https://business.facebook.com/latest/home`. Arriba tiene que salir `@elcontadorloco`.
+2. Pulsar **Create reel**. El botón "Add Video" abre el selector de archivos del sistema, que Claude no puede manejar. Antes de pulsarlo se ejecuta en la página un pequeño script que hace que el campo de archivo se quede en la página en vez de abrir el selector; después se pulsa "Add Video" y se sube la copia de `exports/subida/` con `file_upload` en ese campo.
+3. Escribir la descripción y, en otra línea, 5 hashtags. Al acabar, un espacio y un clic fuera para cerrar las sugerencias.
+4. Portada: en "Choose suggested", la primera miniatura es el fotograma 0, que ya lleva el gancho.
+5. **Next** (paso "Edit": no se añade música ni nada) y otra vez **Next**. A la derecha tiene que salir "Your reel is safe to publish".
+6. En "Scheduling options", **Schedule**. La fecha ya viene con el día de hoy; en la hora se hace clic en las horas y se escribe `06`, clic en los minutos y se escribe `00` (formato de 12 horas, con PM).
+7. Pulsar **Schedule**. Se comprueba en Content > Posts & reels > Scheduled: tarda unos segundos en salir, primero como "Processing".
+8. No pregunta por la etiqueta de IA ni hay que aceptar nada más.
+9. Marcar `instagram: true` en `datos/estado.json`.
+
+Quedan sin subir a Instagram los vídeos 02 a 12. No se suben todos de golpe: como mucho uno al día, además del nuevo, y solo cuando Javier lo pida.
 
 ## Después de publicar
 
