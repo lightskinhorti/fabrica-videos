@@ -40,8 +40,15 @@ fi
 
 # a voice under 60 s gives a video under or just over 1 minute (voice + 1.2 s, as montar.py does), and TikTok only
 # pays videos of more than 1 minute: say so now, before the mix and the render, not only in the final check
-python3 - "$VOZ" <<'FIN'
-import math, sys, wave
+# (not for a short test: "prueba_corta": true in guion.json, 20 to 40 s, for the short-video experiment)
+python3 - "$VOZ" "$VIDEO/guion.json" <<'FIN'
+import json, math, sys, wave
+try:
+    if json.load(open(sys.argv[2], encoding="utf-8")).get("prueba_corta") is True:
+        print("Prueba corta (guion.json): sin el aviso de 60 s; el control aceptará de 20 a 40 s.")
+        sys.exit(0)
+except (OSError, ValueError):
+    pass
 with wave.open(sys.argv[1]) as w:
     voz = w.getnframes() / w.getframerate()
 video = math.ceil((voz + 1.2) * 10) / 10

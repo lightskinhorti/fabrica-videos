@@ -1,0 +1,428 @@
+[
+  {
+    "text": "Te",
+    "start": 0.16,
+    "end": 0.22,
+    "id": "w0"
+  },
+  {
+    "text": "pasa",
+    "start": 0.22,
+    "end": 0.48,
+    "id": "w1"
+  },
+  {
+    "text": "a",
+    "start": 0.48,
+    "end": 0.53,
+    "id": "w2"
+  },
+  {
+    "text": "ti",
+    "start": 0.59,
+    "end": 0.71,
+    "id": "w3"
+  },
+  {
+    "text": "también,",
+    "start": 0.71,
+    "end": 1.43,
+    "id": "w4"
+  },
+  {
+    "text": "y",
+    "start": 1.43,
+    "end": 1.49,
+    "id": "w5"
+  },
+  {
+    "text": "al",
+    "start": 1.6,
+    "end": 1.64,
+    "id": "w6"
+  },
+  {
+    "text": "final",
+    "start": 1.64,
+    "end": 1.89,
+    "id": "w7"
+  },
+  {
+    "text": "un",
+    "start": 2.04,
+    "end": 2.13,
+    "id": "w8"
+  },
+  {
+    "text": "coche",
+    "start": 2.13,
+    "end": 2.39,
+    "id": "w9"
+  },
+  {
+    "text": "lo",
+    "start": 2.46,
+    "end": 2.58,
+    "id": "w10"
+  },
+  {
+    "text": "enseña.",
+    "start": 2.58,
+    "end": 3.28,
+    "id": "w11"
+  },
+  {
+    "text": "Mira,",
+    "start": 3.5,
+    "end": 3.81,
+    "id": "w12"
+  },
+  {
+    "text": "2,99,",
+    "start": 3.87,
+    "end": 5.08,
+    "id": "w13"
+  },
+  {
+    "text": "un",
+    "start": 5.08,
+    "end": 5.17,
+    "id": "w14"
+  },
+  {
+    "text": "céntimo",
+    "start": 5.32,
+    "end": 5.63,
+    "id": "w15"
+  },
+  {
+    "text": "menos",
+    "start": 5.63,
+    "end": 5.94,
+    "id": "w16"
+  },
+  {
+    "text": "que",
+    "start": 5.95,
+    "end": 6.14,
+    "id": "w17"
+  },
+  {
+    "text": "3.",
+    "start": 6.14,
+    "end": 6.56,
+    "id": "w18"
+  },
+  {
+    "text": "Tu",
+    "start": 6.56,
+    "end": 6.78,
+    "id": "w19"
+  },
+  {
+    "text": "cabeza",
+    "start": 6.78,
+    "end": 7.21,
+    "id": "w20"
+  },
+  {
+    "text": "casi",
+    "start": 7.26,
+    "end": 7.58,
+    "id": "w21"
+  },
+  {
+    "text": "lee",
+    "start": 7.58,
+    "end": 7.63,
+    "id": "w22"
+  },
+  {
+    "text": "2.",
+    "start": 7.88,
+    "end": 8.36,
+    "id": "w23"
+  },
+  {
+    "text": "Es",
+    "start": 8.36,
+    "end": 8.58,
+    "id": "w24"
+  },
+  {
+    "text": "el",
+    "start": 8.58,
+    "end": 8.6,
+    "id": "w25"
+  },
+  {
+    "text": "dígito",
+    "start": 8.6,
+    "end": 8.96,
+    "id": "w26"
+  },
+  {
+    "text": "de",
+    "start": 8.96,
+    "end": 9.07,
+    "id": "w27"
+  },
+  {
+    "text": "la",
+    "start": 9.08,
+    "end": 9.19,
+    "id": "w28"
+  },
+  {
+    "text": "izquierda.",
+    "start": 9.19,
+    "end": 9.85,
+    "id": "w29"
+  },
+  {
+    "text": "Un",
+    "start": 9.85,
+    "end": 10.18,
+    "id": "w30"
+  },
+  {
+    "text": "estudio",
+    "start": 10.18,
+    "end": 10.57,
+    "id": "w31"
+  },
+  {
+    "text": "de",
+    "start": 10.57,
+    "end": 10.7,
+    "id": "w32"
+  },
+  {
+    "text": "2005.",
+    "start": 10.7,
+    "end": 11.76,
+    "id": "w33"
+  },
+  {
+    "text": "El",
+    "start": 11.76,
+    "end": 11.98,
+    "id": "w34"
+  },
+  {
+    "text": "9",
+    "start": 11.98,
+    "end": 12.04,
+    "id": "w35"
+  },
+  {
+    "text": "parece",
+    "start": 12.04,
+    "end": 12.38,
+    "id": "w36"
+  },
+  {
+    "text": "más",
+    "start": 12.38,
+    "end": 12.52,
+    "id": "w37"
+  },
+  {
+    "text": "barato,",
+    "start": 12.57,
+    "end": 13,
+    "id": "w38"
+  },
+  {
+    "text": "sobre",
+    "start": 13.08,
+    "end": 13.27,
+    "id": "w39"
+  },
+  {
+    "text": "todo",
+    "start": 13.36,
+    "end": 13.5,
+    "id": "w40"
+  },
+  {
+    "text": "si",
+    "start": 13.5,
+    "end": 13.61,
+    "id": "w41"
+  },
+  {
+    "text": "cambia",
+    "start": 13.61,
+    "end": 13.94,
+    "id": "w42"
+  },
+  {
+    "text": "el",
+    "start": 13.94,
+    "end": 14.05,
+    "id": "w43"
+  },
+  {
+    "text": "primer",
+    "start": 14.05,
+    "end": 14.43,
+    "id": "w44"
+  },
+  {
+    "text": "número.",
+    "start": 14.44,
+    "end": 15.18,
+    "id": "w45"
+  },
+  {
+    "text": "Ycon",
+    "start": 15.25,
+    "end": 15.5,
+    "id": "w46"
+  },
+  {
+    "text": "coches,",
+    "start": 15.5,
+    "end": 16.02,
+    "id": "w47"
+  },
+  {
+    "text": "en",
+    "start": 16.06,
+    "end": 16.15,
+    "id": "w48"
+  },
+  {
+    "text": "22",
+    "start": 16.15,
+    "end": 16.31,
+    "id": "w49"
+  },
+  {
+    "text": "millones",
+    "start": 16.56,
+    "end": 17.08,
+    "id": "w50"
+  },
+  {
+    "text": "de",
+    "start": 17.08,
+    "end": 17.13,
+    "id": "w51"
+  },
+  {
+    "text": "ventas,",
+    "start": 17.28,
+    "end": 17.8,
+    "id": "w52"
+  },
+  {
+    "text": "justo",
+    "start": 17.8,
+    "end": 18.14,
+    "id": "w53"
+  },
+  {
+    "text": "antes",
+    "start": 18.14,
+    "end": 18.27,
+    "id": "w54"
+  },
+  {
+    "text": "de",
+    "start": 18.5,
+    "end": 18.64,
+    "id": "w55"
+  },
+  {
+    "text": "80",
+    "start": 18.64,
+    "end": 18.66,
+    "id": "w56"
+  },
+  {
+    "text": "mil",
+    "start": 18.85,
+    "end": 19.11,
+    "id": "w57"
+  },
+  {
+    "text": "millas,",
+    "start": 19.34,
+    "end": 19.72,
+    "id": "w58"
+  },
+  {
+    "text": "valían",
+    "start": 19.72,
+    "end": 20.17,
+    "id": "w59"
+  },
+  {
+    "text": "unos",
+    "start": 20.18,
+    "end": 20.48,
+    "id": "w60"
+  },
+  {
+    "text": "210",
+    "start": 20.48,
+    "end": 21.17,
+    "id": "w61"
+  },
+  {
+    "text": "dólares",
+    "start": 21.17,
+    "end": 21.7,
+    "id": "w62"
+  },
+  {
+    "text": "más.¿A",
+    "start": 21.7,
+    "end": 22.32,
+    "id": "w63"
+  },
+  {
+    "text": "ti",
+    "start": 22.42,
+    "end": 22.45,
+    "id": "w64"
+  },
+  {
+    "text": "te",
+    "start": 22.45,
+    "end": 22.58,
+    "id": "w65"
+  },
+  {
+    "text": "engaña",
+    "start": 22.58,
+    "end": 22.96,
+    "id": "w66"
+  },
+  {
+    "text": "el",
+    "start": 23.02,
+    "end": 23.1,
+    "id": "w67"
+  },
+  {
+    "text": "9,99?¿Sí",
+    "start": 23.1,
+    "end": 24.6,
+    "id": "w68"
+  },
+  {
+    "text": "o",
+    "start": 24.6,
+    "end": 24.73,
+    "id": "w69"
+  },
+  {
+    "text": "no?",
+    "start": 24.78,
+    "end": 25.57,
+    "id": "w70"
+  }
+]

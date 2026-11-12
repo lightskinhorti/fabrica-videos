@@ -41,6 +41,10 @@
 //   celdaIon    anodo, catodo, separador, electrolito, cobre, aluminio, costra, iones, circuito, centro
 //               (13-bateria; mandos: carga, ciclo, vel, calor, costra, circuito)
 //   barrasCapacidad  col1, col2, col3, col4, ref, centro  (13-bateria; mandos: ver, a, b, ref, foco)
+//   codigoQR    centro, plano, esquinaTL, esquinaTR, esquinaBL, hueco, modulos, cinta, panel, razon  (14-qr, 12 nov; mandos en codigoqr.js:
+//               tapa, repara, golpe, lectura, lecturaMal, esquinas, proporcion, escaneo, bits, reparto, palabra, cinta,
+//               danadas, corregidas, giro)
+//   nivelesQR   colL, colM, colQ, colH, centro  (14-qr; mandos: ver, a, foco, usado)
 // (09-mando y 10-raton, hechos antes de registrarlos, aún los pasan a mano con crearPlantillas(..., { objetos });
 // funciona igual, porque lo que se pasa a mano manda sobre esta lista.)
 import { magnetron } from "./magnetron.js";
@@ -54,11 +58,12 @@ import { raton, mesa, superficie, fotosRaton, monitor } from "./raton.js";
 import { auriculares, ondasSonido } from "./auriculares.js";
 import { pendrive, celdaFlash, memoriaCeldas } from "./pendrive.js";
 import { movilBateria, celdaIon, barrasCapacidad } from "./bateria.js";
+import { codigoQR, nivelesQR } from "./codigoqr.js";
 
 export const OBJETOS = {
   microondas, magnetron, cuenco, plato, vaso, placa, bobina, serpentin, tubo, nevera, compresor,
   mando, tele, receptor, movilCamara, senalIR, espectro, raton, mesa, superficie, fotosRaton, monitor,
-  auriculares, ondasSonido, pendrive, celdaFlash, memoriaCeldas, movilBateria, celdaIon, barrasCapacidad,
+  auriculares, ondasSonido, pendrive, celdaFlash, memoriaCeldas, movilBateria, celdaIon, barrasCapacidad, codigoQR, nivelesQR,
 };
 export { crearMateriales } from "./materiales.js";
 export { crearBase } from "./base.js";

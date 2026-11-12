@@ -44,7 +44,9 @@
 //   macro       muy cerca de una pieza, con mucho desenfoque delante y detrás.
 //   cenital     desde arriba, girando despacio (gira: grados).
 //   cifra       una cifra grande que cambia sobre el set desenfocado. lectura: { "de", "a", "decimales", "unidad",
-//               "prefijo", "titulo", "dur", "en", "texto" (fija), "y" (px) }.
+//               "prefijo", "titulo", "dur", "en", "texto" (fija), "y" (px) }. Opcional (14-qr, 12 nov): "tituloTam" (px) pone el
+//               título en grande, sin mayúsculas forzadas y en dos líneas ("tituloAncho" px, 760 por defecto), y "sub" /
+//               "subTam" una línea ámbar debajo; sin ellas todo se ve como antes.
 //   regla       regla de medida entre dos puntos: entre: [pieza|xyz, pieza|xyz], texto ("1,8 M"), aparte ([x,y,z],
 //               la separa del objeto), color. Se dibuja creciendo.
 //   mapaCalor   mapa de calor o de frío con cifras: mapa: { centro (pieza|xyz), ancho, alto, normal ("z"|"x"|"y"),
@@ -279,12 +281,13 @@ export function crearPlantillas(THREE, C, X, opciones = {}) {
     .lectura-p .t { margin-top: 18px; font-family: "Inter", sans-serif; font-weight: 700; font-size: 26px; letter-spacing: 0.16em; color: rgba(255,255,255,0.72);
       text-shadow: 0 1px 8px rgba(0,0,0,0.9); }
     .lectura-p .l { width: 120px; height: 3px; margin: 22px auto 0; background: #ffb347; }
+    .lectura-p .s { display: none; margin: 22px auto 0; font-family: "Inter", sans-serif; font-weight: 700; color: #ffb347; text-shadow: 0 2px 14px rgba(0,0,0,0.95); }
     .leyenda { display: block; } .leyenda .fila { position: absolute; left: 0; white-space: nowrap; }`;
   document.head.appendChild(estilo);
   const lecEl = document.createElement("div"); lecEl.className = "lectura-p";
-  lecEl.innerHTML = '<div class="v"></div><div class="l"></div><div class="t"></div>';
+  lecEl.innerHTML = '<div class="v"></div><div class="l"></div><div class="t"></div><div class="s"></div>';
   document.getElementById("labels").appendChild(lecEl);
-  const lecV = lecEl.querySelector(".v"), lecT = lecEl.querySelector(".t");
+  const lecV = lecEl.querySelector(".v"), lecT = lecEl.querySelector(".t"), lecS = lecEl.querySelector(".s");
   function textoLectura(L, t, t0) {
     if (L.texto !== undefined) return L.texto;
     const a0 = L.en !== undefined ? (typeof L.en === "string" ? C.cuando(L.en) : t0 + L.en) : t0 + 0.1;
@@ -297,6 +300,13 @@ export function crearPlantillas(THREE, C, X, opciones = {}) {
     if (lecV.textContent !== tx) lecV.textContent = tx;
     if (lecT.textContent !== (L.titulo || "")) lecT.textContent = L.titulo || "";
     lecV.style.fontSize = (L.tam || (tx.length > 9 ? 120 : 150)) + "px";
+    // optional (14-qr): a big title that wraps in two lines (tituloTam px, tituloAncho px) and a line under it (sub, subTam px); off by default
+    const gr = !!L.tituloTam;
+    lecT.style.fontSize = gr ? L.tituloTam + "px" : ""; lecT.style.letterSpacing = gr ? "0.005em" : ""; lecT.style.lineHeight = gr ? "1.12" : "";
+    lecT.style.color = gr ? "#fff" : ""; lecT.style.maxWidth = gr ? (L.tituloAncho || 760) + "px" : ""; lecT.style.marginLeft = lecT.style.marginRight = gr ? "auto" : "";
+    lecT.style.textShadow = gr ? "0 3px 22px rgba(0,0,0,0.95), 0 0 6px rgba(0,0,0,0.9)" : "";
+    if (lecS.textContent !== (L.sub || "")) lecS.textContent = L.sub || "";
+    lecS.style.display = L.sub ? "block" : ""; lecS.style.fontSize = (L.subTam || 40) + "px";
     lecEl.style.top = (L.y ?? 900) + "px";
     lecEl.style.transform = `translateY(-50%) translateY(${(1 - a) * 14}px)`;
   }

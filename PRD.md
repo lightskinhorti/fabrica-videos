@@ -478,6 +478,23 @@ En Las cosas por dentro, antes de cada tema se comprueba con Javier que @speedy_
 - Pendiente de mejorar: en la paga extra y en la batería el tercio de abajo de la pantalla sigue vacío.
 - Falta comprobar con Javier que @speedy_devv no tiene la batería del móvil (sí tiene la del portátil enchufado).
 
+**Prueba de duración y cebo para comentar (preparada el 12 de noviembre para el día 13, sin aprobar ni programar):**
+
+Javier preguntó si quedarse siempre por debajo de 900 visualizaciones es suerte. No lo parece: casi todos los vídeos de las tres cuentas acaban entre 740 y 900, sea cual sea el tema, así que es un techo. Lo más probable es que reciban una primera tanda de público y no pasen a la segunda, porque solo del 2 al 7 % los ve enteros. No se puede descartar que el techo sea de las cuentas (nuevas, con menos de 10 seguidores y manejadas desde el mismo ordenador). Para salir de dudas, el día 13 sale un vídeo corto en una cuenta y uno normal en las otras dos:
+
+| Vídeo | Duración | Texto | Voz del gancho | Tipo | Cebo final |
+| --- | --- | --- | --- | --- | --- |
+| `dinerosinlio/12-precio99` | 26,0 s (prueba corta) | "Un céntimo te engaña" | "Te pasa a ti también" | Te cuesta algo | "¿A ti te engaña el 9,99? ¿Sí o no?", con botones de SÍ y NO |
+| `elcontadorloco/14-sentado` | 64,7 s | "¿Quién se libra?" | "Ocho horas sentado. Alguien se libra" | Excepción | "¿Cuántas horas llevas sentado hoy? Dime tu cifra" |
+| `lascosaspordentro/14-qr` | 66,0 s | "¿Cuánto se puede tapar?" | "Tapado, y se lee igual" | Reto | "¿Cuánto aguanta tu último QR? Dime un número" |
+
+- **Cómo se lee:** si el corto pasa claramente de 800 y los normales no, el freno es la duración. Si los tres se quedan ahí, apunta a las cuentas o a algo que aún no vemos. Es una sola prueba con un solo vídeo: sirve de pista, no de demostración.
+- **El vídeo corto no cuenta para el programa de pagos,** que pide más de 60 s. `control.py` y `producir.sh` aceptan de 20 a 40 s solo si `guion.json` lleva `prueba_corta: true`; sin eso siguen exigiendo más de 60 s.
+- **Cebo para comentar (Javier, 12 de noviembre):** los tres vídeos llevan una afirmación que pica y acaban con una pregunta que se contesta con una palabra o una cifra, dicha por la voz, escrita en el último plano y repetida al final de la descripción. Límite puesto por Claude: nunca un dato falso ni un error a propósito, porque en las cuentas de salud y de dinero quita credibilidad. Los tres lo llevan para que lo único que cambie entre el corto y los normales sea la duración.
+- **Ritmo:** el vídeo de sentado se rehízo porque la primera versión iba lenta (voz frenada con silencios y un plano cada 5,2 s). Ahora tiene 22 cambios de plano, uno cada 2,8 s. Costó una segunda voz.
+- **Motor:** en `herramientas/pordentro/plantillas.js`, la `lectura` de un plano admite `tituloTam`, `tituloAncho`, `sub` y `subTam` para un rótulo grande (la pregunta final del QR). Objetos nuevos: `objetos/codigoqr.js` (`codigoQR` y `nivelesQR`).
+- **Pendiente:** comprobar con Javier que @speedy_devv no tiene el código QR. En el corto, "te engaña" es más fuerte que lo que dicen los estudios ("parece más bajo", y solo a veces).
+
 **Lo que no se sabe:** si el techo de unas 800 visualizaciones es solo por el gancho. Las cuentas nuevas suelen recibir una primera tanda pequeña de público, y pasar de ahí depende también de cuánta gente ve el vídeo entero y lo comparte. El gancho es lo primero que se arregla porque es donde más gente se pierde, pero no hay garantía de que baste.
 
 ## Instagram: cómo lo hacemos y packs en la bio

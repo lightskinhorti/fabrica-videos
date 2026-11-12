@@ -83,3 +83,5 @@ Reglas en el PRD, sección "Ganchos y temas". Suben los objetos que le tocan alg
 | Airbag (idea 17) | "Se infla antes de que parpadees" | 8 |
 | Código QR (nueva) | "Este QR funciona aunque le falte un trozo" | 8 |
 | Huella del móvil (nueva) | "Tu móvil no guarda tu huella" | 8 |
+
+- [x] Vídeo 14: el código QR (66,0 s, 29 cambios de encuadre, 0 cortes secos), con gancho de tipo "reto" y la pregunta final en grande. Hecho el 12 de noviembre; falta que Javier lo apruebe y que confirme que @speedy_devv no tiene el tema. Objetos nuevos: `objetos/codigoqr.js` (`codigoQR` y `nivelesQR`).

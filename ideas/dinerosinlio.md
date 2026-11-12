@@ -39,3 +39,5 @@ Reglas en el PRD, sección "Ganchos y temas".
 | Factura de la luz | "Pagas luz aunque no enciendas nada" | 9 |
 | Hipoteca: los intereses van primero | "Los primeros años casi no pagas tu casa" | 8 |
 | Precios acabados en 99 | "Ese 9,99 no es casualidad" | 8 |
+
+- [x] 12: Un céntimo te engaña (precios acabados en 99; Thomas y Morwitz 2005 y Lacetera, Pope y Sydnor 2011). **Prueba corta de 26,0 s**, no cuenta para el programa de pagos. Hecho el 12 de noviembre; falta que Javier lo apruebe.

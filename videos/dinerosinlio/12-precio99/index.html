@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <link rel="stylesheet" href="comun/dinero.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+      .cifra, .fila b { font-family: "Archivo Black", sans-serif; }
+      /* this video's layout: everything big, from y = 430 to 1420 (what TikTok leaves free) */
+      .ancho { left: 0; width: 1080px; text-align: center; }
+      .cifra.g150 { font-size: 150px; }
+      .rotulo.r40 { font-size: 40px; letter-spacing: 0.08em; }
+      .chip.c58 { font-size: 58px; }
+      .chip.c50 { font-size: 50px; }
+      .chip.c44 { font-size: 44px; }
+      .sello.s62 { font-size: 62px; line-height: 1.12; text-align: center; }
+      .sello.s80 { font-size: 80px; line-height: 1.1; text-align: center; }
+      .docg .doc { width: 860px; padding: 30px 40px 20px; }
+      .docg .doc-tit { font-size: 44px; }
+      .docg .fila { font-size: 38px; padding: 20px 0; }
+      .docg .fila b { font-size: 40px; white-space: nowrap; }
+      .fila.marca { background: #f8dc7a; margin: 0 -18px; padding-left: 18px; padding-right: 18px; border-radius: 10px; }
+      .precio { width: 820px; border: 8px solid #1d2a44; border-radius: 28px; background: #fffaf0; box-shadow: 14px 14px 0 #1d2a44; text-align: center; font-family: "Archivo Black", sans-serif; color: #1d2a44; white-space: nowrap; }
+      .precio .d { background: #f2b705; border-radius: 18px; padding: 0 18px; }
+      .precio .m { color: #e5383b; }
+      .odo { width: 470px; height: 230px; border: 8px solid #1d2a44; border-radius: 22px; background: #fffaf0; box-shadow: 12px 12px 0 #1d2a44; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: "Archivo Black", sans-serif; color: #1d2a44; }
+      .odo b { font-size: 92px; font-weight: 400; line-height: 1; letter-spacing: -0.02em; }
+      .odo i { font: 800 36px Inter; letter-spacing: 0.12em; font-style: normal; margin-top: 10px; }
+      .odo .r { color: #e5383b; }
+      .odo .v { color: #2f8f6b; }
+      .btn { border: 9px solid #1d2a44; border-radius: 30px; box-shadow: 14px 14px 0 #1d2a44; text-align: center; font-family: "Archivo Black", sans-serif; font-size: 190px; color: #fff; display: flex; align-items: center; justify-content: center; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="26" data-width="1080" data-height="1920" data-fps="30">
+      <div id="fondo" class="clip" data-start="0" data-duration="26" data-track-index="0"></div>
+      <div id="escenario" class="clip" data-start="0" data-duration="26" data-track-index="1" data-layout-allow-overlap data-layout-allow-overflow>
+        <!-- A: the hook. The two prices, big, in frame 0 -->
+        <div class="pieza" id="tag3" style="left:130px; top:730px" data-dibujo="precio" data-args='["3,00 €", "", 180]'></div>
+        <div class="pieza ancho" id="chipMenos" style="top:990px"><div class="chip rojo c50">1 CÉNTIMO MENOS</div></div>
+        <div class="pieza" id="tag299" style="left:130px; top:1095px" data-dibujo="precio" data-args='["2,99 €", "d", 210]'></div>
+        <!-- second hook: the car at the end -->
+        <div class="pieza" id="carro" style="left:70px; top:470px" data-dibujo="coche" data-args="[470]"></div>
+        <div class="pieza" id="chipFin" style="left:560px; top:500px"><div class="chip blanco c44" style="white-space:normal; text-align:center; line-height:1.15">AL FINAL:<br>UN COCHE</div></div>
+        <div class="pieza ancho" id="chipCual" style="top:500px"><div class="chip c50">¿CUÁL PARECE MÁS BARATO?</div></div>
+        <div class="pieza ancho" id="chipCabeza" style="top:450px"><div class="chip blanco c50">TU CABEZA LEE...</div></div>
+        <div class="pieza ancho" id="selloDos" style="top:560px"><div class="sello s80" style="color:#e5383b; border-color:#e5383b">«2 Y PICO»</div></div>
+        <div class="pieza" id="aro" style="left:134px; top:1090px; width:170px; height:290px; border:10px solid #e5383b; border-radius:30px"></div>
+
+        <!-- B: the left digit and the study -->
+        <div class="pieza" id="gran" style="left:100px; top:450px" data-dibujo="precio" data-args='["2,99 €", "d", 210, 880]'></div>
+        <div class="pieza rotulo r40 ancho" id="rotIzq" style="top:790px">&#8592; EL DÍGITO DE LA IZQUIERDA</div>
+        <div class="pieza docg" id="estudio" style="left:110px; top:890px" data-icono="doc"
+          data-args='["ESTUDIO · 2005", [["ACABADO EN 9", "PARECE MÁS BAJO", "filaA"], ["SI CAMBIA EL 1.º DÍGITO", "SE NOTA MÁS", "filaB"], ["DE 3,00 € A 2,99 €", "EL 3 PASA A 2", "filaC"]]]'></div>
+
+        <!-- C: the cars -->
+        <div class="pieza" id="carro2" style="left:190px; top:440px" data-dibujo="coche" data-args="[700]"></div>
+        <div class="pieza cifra g150 ancho" id="c22" style="top:745px">0</div>
+        <div class="pieza rotulo r40 ancho" id="rot22" style="top:910px">MILLONES DE COCHES USADOS VENDIDOS</div>
+        <div class="pieza" id="odoA" style="left:50px; top:990px"><div class="odo"><b><span class="r">7</span>9.999</b><i>MILLAS</i></div></div>
+        <div class="pieza" id="odoB" style="left:560px; top:990px"><div class="odo"><b><span class="v">8</span>0.000</b><i>MILLAS</i></div></div>
+        <div class="pieza ancho" id="sello210" style="top:1255px"><div class="sello s80" style="color:#e5383b; border-color:#e5383b">+<span id="c210">0</span> $ MÁS</div></div>
+
+        <!-- D: the question -->
+        <div class="pieza cifra ancho" id="preg" style="top:450px; font-size:136px; line-height:1.05; white-space:normal">¿TE ENGAÑA<br>EL 9,99?</div>
+        <div class="pieza" id="tag9" style="left:160px; top:800px" data-dibujo="precio" data-args='["9,99 €", "d9", 150, 760]'></div>
+        <div class="pieza btn" id="btnSi" style="left:60px; top:1110px; width:450px; height:300px; background:#2f8f6b">SÍ</div>
+        <div class="pieza btn" id="btnNo" style="left:570px; top:1110px; width:450px; height:300px; background:#e5383b">NO</div>
+      </div>
+      <div id="gancho" class="clip" data-start="0" data-duration="26" data-track-index="2"></div>
+      <div id="note" class="clip" data-start="0" data-duration="26" data-track-index="3"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="26"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="26" data-track-index="4" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 24.72, "lines": [{"id": "l1", "s": 0.16, "e": 1.43, "words": [{"w": "Te", "s": 0.16, "e": 0.22, "key": false}, {"w": "pasa", "s": 0.22, "e": 0.48, "key": false}, {"w": "a", "s": 0.48, "e": 0.53, "key": false}, {"w": "ti", "s": 0.59, "e": 0.71, "key": false}, {"w": "también.", "s": 0.71, "e": 1.43, "key": true}]}, {"id": "l2", "s": 1.43, "e": 3.28, "words": [{"w": "Y", "s": 1.43, "e": 1.49, "key": false}, {"w": "al", "s": 1.6, "e": 1.64, "key": false}, {"w": "final,", "s": 1.64, "e": 1.89, "key": false}, {"w": "un", "s": 2.04, "e": 2.13, "key": false}, {"w": "coche", "s": 2.13, "e": 2.39, "key": true}, {"w": "lo", "s": 2.46, "e": 2.58, "key": false}, {"w": "enseña.", "s": 2.58, "e": 3.28, "key": false}]}, {"id": "l3", "s": 3.5, "e": 8.36, "words": [{"w": "Mira:", "s": 3.5, "e": 3.81, "key": false}, {"w": "2,99,", "s": 3.87, "e": 5.08, "key": false}, {"w": "un", "s": 5.08, "e": 5.17, "key": false}, {"w": "céntimo", "s": 5.32, "e": 5.63, "key": true}, {"w": "menos", "s": 5.63, "e": 5.94, "key": false}, {"w": "que", "s": 5.95, "e": 6.14, "key": false}, {"w": "3.", "s": 6.14, "e": 6.56, "key": false}, {"w": "Tu", "s": 6.56, "e": 6.78, "key": false}, {"w": "cabeza", "s": 6.78, "e": 7.21, "key": false}, {"w": "casi", "s": 7.26, "e": 7.58, "key": false}, {"w": "lee", "s": 7.58, "e": 7.63, "key": false}, {"w": "2.", "s": 7.88, "e": 8.36, "key": false}]}, {"id": "l4", "s": 8.36, "e": 9.85, "words": [{"w": "Es", "s": 8.36, "e": 8.58, "key": false}, {"w": "el", "s": 8.58, "e": 8.6, "key": false}, {"w": "dígito", "s": 8.6, "e": 8.96, "key": false}, {"w": "de", "s": 8.96, "e": 9.07, "key": false}, {"w": "la", "s": 9.08, "e": 9.19, "key": false}, {"w": "izquierda.", "s": 9.19, "e": 9.85, "key": true}]}, {"id": "l5", "s": 9.85, "e": 15.18, "words": [{"w": "Un", "s": 9.85, "e": 10.18, "key": false}, {"w": "estudio", "s": 10.18, "e": 10.57, "key": false}, {"w": "de", "s": 10.57, "e": 10.7, "key": false}, {"w": "2005:", "s": 10.7, "e": 11.76, "key": false}, {"w": "el", "s": 11.76, "e": 11.98, "key": false}, {"w": "9", "s": 11.98, "e": 12.04, "key": false}, {"w": "parece", "s": 12.04, "e": 12.38, "key": false}, {"w": "más", "s": 12.38, "e": 12.52, "key": false}, {"w": "barato", "s": 12.57, "e": 13.0, "key": true}, {"w": "sobre", "s": 13.08, "e": 13.27, "key": false}, {"w": "todo", "s": 13.36, "e": 13.5, "key": false}, {"w": "si", "s": 13.5, "e": 13.61, "key": false}, {"w": "cambia", "s": 13.61, "e": 13.94, "key": false}, {"w": "el", "s": 13.94, "e": 14.05, "key": false}, {"w": "primer", "s": 14.05, "e": 14.43, "key": false}, {"w": "número.", "s": 14.44, "e": 15.18, "key": false}]}, {"id": "l6", "s": 15.25, "e": 22.165, "words": [{"w": "Y", "s": 15.25, "e": 15.312, "key": false}, {"w": "con", "s": 15.312, "e": 15.5, "key": false}, {"w": "coches:", "s": 15.5, "e": 16.02, "key": false}, {"w": "en", "s": 16.06, "e": 16.15, "key": false}, {"w": "22", "s": 16.15, "e": 16.31, "key": false}, {"w": "millones", "s": 16.56, "e": 17.08, "key": false}, {"w": "de", "s": 17.08, "e": 17.13, "key": false}, {"w": "ventas,", "s": 17.28, "e": 17.8, "key": false}, {"w": "justo", "s": 17.8, "e": 18.14, "key": false}, {"w": "antes", "s": 18.14, "e": 18.27, "key": false}, {"w": "de", "s": 18.5, "e": 18.64, "key": false}, {"w": "80", "s": 18.64, "e": 18.66, "key": false}, {"w": "mil", "s": 18.85, "e": 19.11, "key": false}, {"w": "millas", "s": 19.34, "e": 19.72, "key": false}, {"w": "valían", "s": 19.72, "e": 20.17, "key": false}, {"w": "unos", "s": 20.18, "e": 20.48, "key": false}, {"w": "210", "s": 20.48, "e": 21.17, "key": false}, {"w": "dólares", "s": 21.17, "e": 21.7, "key": true}, {"w": "más.", "s": 21.7, "e": 22.165, "key": false}]}, {"id": "l7", "s": 22.165, "e": 25.57, "words": [{"w": "¿A", "s": 22.165, "e": 22.32, "key": false}, {"w": "ti", "s": 22.42, "e": 22.45, "key": false}, {"w": "te", "s": 22.45, "e": 22.58, "key": false}, {"w": "engaña", "s": 22.58, "e": 22.96, "key": true}, {"w": "el", "s": 23.02, "e": 23.1, "key": false}, {"w": "9,99?", "s": 23.1, "e": 24.0, "key": false}, {"w": "¿Sí", "s": 24.0, "e": 24.6, "key": false}, {"w": "o", "s": 24.6, "e": 24.73, "key": false}, {"w": "no?", "s": 24.78, "e": 25.57, "key": false}]}]}</script>
+    <script id="escena" type="application/json">
+{
+ "momentos": [
+  {
+   "id": "COCHE",
+   "clave": "coche"
+  },
+  {
+   "id": "MIRA",
+   "clave": "mira"
+  },
+  {
+   "id": "CENTIMO",
+   "clave": "céntimo"
+  },
+  {
+   "id": "CABEZA",
+   "clave": "cabeza"
+  },
+  {
+   "id": "LEE",
+   "clave": "lee"
+  },
+  {
+   "id": "DIGITO",
+   "clave": "dígito"
+  },
+  {
+   "id": "IZQ",
+   "clave": "izquierda"
+  },
+  {
+   "id": "ESTUDIO",
+   "clave": "estudio"
+  },
+  {
+   "id": "PARECE",
+   "clave": "parece"
+  },
+  {
+   "id": "BARATO",
+   "clave": "barato"
+  },
+  {
+   "id": "CAMBIA",
+   "clave": "cambia"
+  },
+  {
+   "id": "NUMERO",
+   "clave": "número"
+  },
+  {
+   "id": "COCHES",
+   "clave": "coches"
+  },
+  {
+   "id": "MILLONES",
+   "clave": "millones"
+  },
+  {
+   "id": "VENTAS",
+   "clave": "ventas"
+  },
+  {
+   "id": "JUSTO",
+   "clave": "justo"
+  },
+  {
+   "id": "MILLAS",
+   "clave": "millas"
+  },
+  {
+   "id": "UNOS",
+   "clave": "unos"
+  },
+  {
+   "id": "DOLARES",
+   "clave": "dólares"
+  },
+  {
+   "id": "MAS",
+   "clave": "más"
+  },
+  {
+   "id": "TI",
+   "clave": "ti"
+  },
+  {
+   "id": "ENGANA",
+   "clave": "engaña"
+  },
+  {
+   "id": "SI",
+   "clave": "sí"
+  },
+  {
+   "id": "NO",
+   "clave": "no"
+  }
+ ],
+ "gancho": {
+  "texto": "UN CÉNTIMO TE ENGAÑA",
+  "clave": "ENGAÑA",
+  "tam": 140,
+  "top": 480,
+  "hasta": 1.7
+ },
+ "arranque": {
+  "zoom": 1.06,
+  "centro": [
+   540,
+   900
+  ]
+ },
+ "lluvia": [
+  {
+   "icono": "moneda",
+   "args": [
+    "9",
+    96
+   ],
+   "n": 8,
+   "desde": 0,
+   "hasta": "MIRA",
+   "vel": 420,
+   "opacidad": 0.4
+  }
+ ],
+ "piezas": [
+  {
+   "id": "tag3",
+   "desde": 0,
+   "hasta": "DIGITO",
+   "viaja": {
+    "s": 1.06,
+    "dura": 1.0
+   }
+  },
+  {
+   "id": "tag299",
+   "desde": 0,
+   "hasta": "DIGITO",
+   "viaja": {
+    "s": 1.06,
+    "y": -20,
+    "dura": 1.0
+   },
+   "mueve": {
+    "tipo": "late",
+    "fuerza": 3,
+    "ritmo": 4
+   }
+  },
+  {
+   "id": "chipMenos",
+   "desde": 1.15,
+   "hasta": "DIGITO",
+   "entra": "sello"
+  },
+  {
+   "id": "carro",
+   "desde": 1.75,
+   "hasta": "MIRA",
+   "entra": "der",
+   "mueve": {
+    "tipo": "flota",
+    "fuerza": 8
+   }
+  },
+  {
+   "id": "chipFin",
+   "desde": 1.9,
+   "hasta": "MIRA",
+   "entra": "sello"
+  },
+  {
+   "id": "chipCual",
+   "desde": "MIRA",
+   "hasta": "CABEZA",
+   "entra": "sello"
+  },
+  {
+   "id": "chipCabeza",
+   "desde": "CABEZA",
+   "hasta": "DIGITO",
+   "entra": "baja"
+  },
+  {
+   "id": "selloDos",
+   "desde": "LEE",
+   "hasta": "DIGITO",
+   "entra": "sello"
+  },
+  {
+   "id": "aro",
+   "desde": "LEE",
+   "hasta": "DIGITO",
+   "entra": "escala"
+  },
+  {
+   "id": "gran",
+   "desde": "DIGITO",
+   "hasta": "COCHES",
+   "entra": "escala"
+  },
+  {
+   "id": "rotIzq",
+   "desde": "IZQ",
+   "hasta": "COCHES",
+   "entra": "baja"
+  },
+  {
+   "id": "estudio",
+   "desde": "ESTUDIO",
+   "hasta": "COCHES",
+   "entra": "baja"
+  },
+  {
+   "id": "carro2",
+   "desde": "COCHES",
+   "hasta": "TI",
+   "entra": "izq"
+  },
+  {
+   "id": "c22",
+   "desde": "MILLONES",
+   "hasta": "TI",
+   "entra": "escala"
+  },
+  {
+   "id": "rot22",
+   "desde": "MILLONES",
+   "hasta": "TI",
+   "entra": "baja"
+  },
+  {
+   "id": "odoA",
+   "desde": "JUSTO",
+   "hasta": "TI",
+   "entra": "izq"
+  },
+  {
+   "id": "odoB",
+   "desde": "MILLAS",
+   "hasta": "TI",
+   "entra": "der"
+  },
+  {
+   "id": "sello210",
+   "desde": "UNOS",
+   "hasta": "TI",
+   "entra": "sello"
+  },
+  {
+   "id": "preg",
+   "desde": "TI",
+   "entra": "escala"
+  },
+  {
+   "id": "tag9",
+   "desde": "TI",
+   "entra": "sello",
+   "mueve": {
+    "tipo": "late",
+    "fuerza": 4,
+    "ritmo": 4
+   }
+  },
+  {
+   "id": "btnSi",
+   "desde": "SI",
+   "entra": "sello"
+  },
+  {
+   "id": "btnNo",
+   "desde": "NO",
+   "entra": "sello"
+  }
+ ],
+ "cifras": [
+  {
+   "id": "c22",
+   "desde": "MILLONES",
+   "a": 22,
+   "formato": "numero",
+   "dura": 0.9,
+   "curva": "sale"
+  },
+  {
+   "id": "c210",
+   "desde": "UNOS",
+   "a": 210,
+   "formato": "numero",
+   "dura": 0.9,
+   "curva": "sale"
+  }
+ ],
+ "notas": [
+  {
+   "texto": "Ejemplo: 2,99 € frente a 3,00 €. Thomas y Morwitz, Journal of Consumer Research, 2005",
+   "desde": 2.2
+  },
+  {
+   "texto": "Thomas y Morwitz (2005): el efecto aparece a veces, no siempre",
+   "desde": "ESTUDIO"
+  },
+  {
+   "texto": "Lacetera, Pope y Sydnor: más de 22 millones de ventas de coches usados en subasta (EE. UU.)",
+   "desde": "COCHES"
+  },
+  {
+   "texto": "",
+   "desde": "TI"
+  }
+ ],
+ "fondo": "claro",
+ "sonidos": [
+  {
+   "tipo": "desliza",
+   "en": 0.0
+  },
+  {
+   "tipo": "metal",
+   "en": 0.12
+  },
+  {
+   "tipo": "toque",
+   "en": 1.2
+  },
+  {
+   "tipo": "chip",
+   "en": 1.9
+  },
+  {
+   "tipo": "pop",
+   "en": "COCHE"
+  },
+  {
+   "tipo": "desliza",
+   "en": "MIRA"
+  },
+  {
+   "tipo": "chip",
+   "en": "MIRA"
+  },
+  {
+   "tipo": "pop",
+   "en": "CABEZA"
+  },
+  {
+   "tipo": "error",
+   "en": "LEE"
+  },
+  {
+   "tipo": "brillo",
+   "en": "DIGITO"
+  },
+  {
+   "tipo": "toque",
+   "en": "IZQ",
+   "mas": 0.1
+  },
+  {
+   "tipo": "desliza",
+   "en": "ESTUDIO"
+  },
+  {
+   "tipo": "pop",
+   "en": "BARATO"
+  },
+  {
+   "tipo": "chip",
+   "en": "CAMBIA"
+  },
+  {
+   "tipo": "desliza",
+   "en": "COCHES"
+  },
+  {
+   "tipo": "sube",
+   "en": "MILLONES",
+   "mas": 0.1
+  },
+  {
+   "tipo": "pop",
+   "en": "JUSTO"
+  },
+  {
+   "tipo": "pop",
+   "en": "MILLAS"
+  },
+  {
+   "tipo": "toque",
+   "en": "UNOS",
+   "mas": 0.1
+  },
+  {
+   "tipo": "pagado",
+   "en": "DOLARES"
+  },
+  {
+   "tipo": "desliza",
+   "en": "TI"
+  },
+  {
+   "tipo": "brillo",
+   "en": "ENGANA"
+  },
+  {
+   "tipo": "pop",
+   "en": "SI"
+  },
+  {
+   "tipo": "pop",
+   "en": "NO"
+  }
+ ]
+}
+    </script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 26 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import { crearDinero, COLOR } from "./comun/dinero.js";
+      const $ = (id) => document.getElementById(id);
+      const K = COLOR;
+
+      // ---------- drawings this video needs, in the account's flat style ----------
+      const DIBUJOS = {
+        // a price tag: the first digit can be boxed in gold ("d") or the 9s ("d9"); alto = font size in px
+        precio: (texto = "2,99 €", marca = "", alto = 220, ancho = 820) => {
+          let t = texto;
+          if (marca === "d") t = `<span class="d">${texto[0]}</span>${texto.slice(1)}`;
+          if (marca === "d9") t = texto.replace(/9/g, '<span class="d">9</span>');
+          return `<div class="precio" style="width:${ancho}px; font-size:${alto}px; line-height:1.15; padding:10px 0">${t}</div>`;
+        },
+        // a flat side-view car
+        coche: (w = 480) => {
+          const h = Math.round(w * 0.42);
+          const f = (s) => `<path d="M24 118 V92 Q26 74 50 70 L104 66 L132 30 Q138 22 150 22 H258 Q272 22 280 32 L308 66 L362 72 Q388 78 388 98 V118 Z" ${s ? "" : `fill="${K.azul}" stroke="${K.tinta}" stroke-width="8" stroke-linejoin="round"`}/>`;
+          return `<svg width="${w}" height="${h}" viewBox="0 0 420 176"><g transform="translate(10 10)">${f(true).replace("<path", `<path fill="${K.tinta}"`)}${f(false)}
+            <path d="M140 38 H184 V66 H120 Z" fill="${K.blanco}" stroke="${K.tinta}" stroke-width="6" stroke-linejoin="round"/>
+            <path d="M198 38 H256 Q264 38 270 46 L288 66 H198 Z" fill="${K.blanco}" stroke="${K.tinta}" stroke-width="6" stroke-linejoin="round"/>
+            <circle cx="100" cy="122" r="34" fill="${K.tinta}"/><circle cx="100" cy="122" r="14" fill="${K.oro}"/>
+            <circle cx="310" cy="122" r="34" fill="${K.tinta}"/><circle cx="310" cy="122" r="14" fill="${K.oro}"/></g></svg>`;
+        },
+      };
+      for (const el of document.querySelectorAll("[data-dibujo]")) el.innerHTML = DIBUJOS[el.dataset.dibujo](...JSON.parse(el.dataset.args || "[]"));
+
+      const C = crearDinero();
+      const { T } = C;
+      const filaClase = (id, clase, on) => { const b = $(id); if (b) b.parentElement.classList.toggle(clase, on); };
+
+      function renderAt(t) {
+        filaClase("filaA", "marca", t >= T.BARATO && t < T.CAMBIA);
+        filaClase("filaB", "marca", t >= T.CAMBIA && t < T.NUMERO + 0.6);
+        filaClase("filaC", "marca", t >= T.NUMERO + 0.6);
+        C.pintar(t);
+      }
+
+      C.arrancar(renderAt);
+    </script>
+  </body>
+</html>

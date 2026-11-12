@@ -1,0 +1,47 @@
+# Fuentes: Estar sentado 8 horas al día (versión salud)
+
+Suposición base: una persona adulta que trabaja sentada 9:00 a 19:00 (10 horas), con un descanso corto de comida que el vídeo no enseña. Es una suposición del vídeo, no lo que haga nadie en concreto. El contador suma las horas que lleva sentado hoy y el reloj de la pared marca la hora del día (9 + horas). Cada escalón es lo que dice un estudio, con su fuente. Solo se usan revistas científicas; los riesgos se dicen como "se asoció", nunca "te pasará". Los resúmenes (abstracts) se leyeron en Europe PMC y PubMed (eutils) el 12 de noviembre de 2026.
+
+Sigue la receta de `08-pasos-salud`, `11-refresco-salud`, `12-cafe` y `13-sueno` (enfoque de salud que pidió Javier el 7 de noviembre) y las reglas de gancho del 11 de noviembre (`ganchos.md`). Cortes de "8 horas": el vídeo usa estudios cuyo corte es de verdad 8 horas al día (Zhou 2024, Patterson 2018 y Ekelund 2016). El del laboratorio (Dunstan 2012) midió unas 7 horas sentado y se cuenta tal cual (con pausas cada 20 minutos).
+
+## El contador
+
+| Escalón | Cifra del contador | Cálculo | De dónde sale el tiempo |
+|---|---|---|---|
+| Fotograma 0 (el final, adelantado) | 10 h 00 min, 19:00 | 9:00 + 10 h | Es el estado del final del vídeo, enseñado primero; luego el contador vuelve atrás hasta las 9:00 |
+| "Son las nueve de la mañana" | 0 min, 09:00 | | Una jornada de oficina que empieza a las 9 (suposición del vídeo) |
+| Laboratorio (azúcar en sangre) | 4 h | | Ilustración: "unas horas" de oficina; el estudio midió el azúcar durante las 5 horas siguientes a una bebida, tras 2 horas sentado |
+| Ocho horas (mortalidad, Zhou 2024) | 8 h, 17:00 | | El corte del estudio: más de 8 h al día frente a menos de 4 h |
+| Pasado el umbral (Patterson 2018) | 9 h, 18:00 | | Es "por encima de 8 h al día"; las 9 h son una ilustración |
+| Quién se libra (Lancet 2016) | 10 h, 19:00 | | Más de 8 h al día; las 10 h son una ilustración. En este tramo el personaje se levanta |
+
+Entre escalones el tiempo sigue corriendo (0,012 h por segundo) para que la cifra no se pare. Cálculo propio.
+
+## Lo que dice cada tarjeta
+
+| Tarjeta y frase | Cifra en pantalla | Dato exacto | Tipo de fuente | Fuente |
+|---|---|---|---|---|
+| Azúcar en sangre: "En un laboratorio, diecinueve adultos con sobrepeso se levantaron dos minutos cada veinte, tras una bebida de prueba: su azúcar tras comer fue una cuarta parte menor que sentados sin parar" | 19 adultos · −25 % | Ensayo aleatorizado cruzado de tres periodos con 19 adultos con sobrepeso u obesidad de 45 a 65 años: 1) sentados sin parar, 2) sentados con 2 minutos de paseo ligero cada 20 minutos, 3) lo mismo a ritmo moderado. Tras una bebida estándar (75 g de glucosa y 50 g de grasa), el área bajo la curva de glucosa durante 5 horas (mmol/L por hora) fue 6,9 (IC 95 % 5,5 a 8,7) sentados sin parar, 5,2 (4,1 a 6,6) con paseo ligero y 4,9 (3,8 a 6,1) con paseo moderado. Cálculo propio: 1 − 5,2/6,9 = 24,6 %, "una cuarta parte" y "−25 %" (con paseo moderado, −29 %). Efecto agudo de un día de laboratorio, en 19 personas | Ensayo experimental | Dunstan et al., *Diabetes Care* 2012;35(5):976-983 · [DOI 10.2337/dc11-1931](https://doi.org/10.2337/dc11-1931) · [PMID 22374636](https://pubmed.ncbi.nlm.nih.gov/22374636/) |
+| Riesgo de morir, más de 8 h: "en diez mil estadounidenses, seguidos hasta trece años, sentarse más de ocho horas, frente a menos de cuatro, se asoció con un cuarenta y seis por ciento más de riesgo de morir" | 10.639 adultos · +46 % · 13 años | Cohorte prospectiva de adultos de EE. UU. (NHANES 2007-2018), n = 10.639, 945 muertes, seguimiento de hasta 13 años; el tiempo sentado lo dijeron los propios participantes. Sentarse más de 8 h al día frente a menos de 4 h: riesgo de morir por cualquier causa HR 1,46 (IC 95 % 1,17 a 1,81) y por enfermedad cardiovascular HR 1,79 (1,21 a 2,66), con ajuste por otras variables. El vídeo solo dice la primera | Estudio de observación (asociación) | Zhou et al., *BMC Public Health* 2024;24:1069 · [DOI 10.1186/s12889-024-18515-9](https://doi.org/10.1186/s12889-024-18515-9) · [PMID 38632571](https://pubmed.ncbi.nlm.nih.gov/38632571/) |
+| Cada hora extra: "en treinta y cuatro estudios, cada hora extra se asoció con un cuatro por ciento más de riesgo" | 34 estudios · 1,3 millones · +4 % · hasta las 8 h, +1 % | Revisión sistemática y metaanálisis dosis-respuesta de 34 estudios prospectivos (1.331.468 personas), con ajuste por la actividad física. Para el tiempo total sentado y la mortalidad por cualquier causa, la relación no es lineal: riesgo relativo por cada hora al día de 1,01 (IC 95 % 1,00 a 1,01) hasta 8 h al día y de 1,04 (1,03 a 1,05) por encima de 8 h al día. Los autores concluyen que hay un umbral de 6 a 8 h al día a partir del cual el riesgo sube | Metaanálisis de cohortes (asociación) | Patterson et al., *Eur J Epidemiol* 2018;33(9):811-829 · [DOI 10.1007/s10654-018-0380-1](https://doi.org/10.1007/s10654-018-0380-1) · [PMID 29589226](https://pubmed.ncbi.nlm.nih.gov/29589226/) |
+| Quién se libra: "En un millón de personas, sentarse más de ocho horas y moverse poco se asoció con un cincuenta y nueve por ciento más de riesgo. Quien se sentaba igual, pero hacía una hora de actividad moderada al día, ningún riesgo extra" | 1 millón · 13 estudios · 2 a 18 años · +59 % · SIN MÁS · 60 a 75 min | Metaanálisis armonizado de datos individuales (16 estudios; 13 con tiempo sentado y mortalidad: 1.005.791 personas, 84.609 muertes, seguimiento de 2 a 18,1 años). Referencia: menos de 4 h sentado al día y el cuarto más activo (más de 35,5 MET-h por semana). Más de 8 h sentado y el cuarto menos activo (menos de 2,5 MET-h por semana): HR 1,59 (IC 95 % 1,52 a 1,66), es decir, un 59 % más de riesgo de morir. Más de 8 h sentado pero con más de 35,5 MET-h por semana: HR 1,04 (0,99 a 1,10), sin aumento significativo del riesgo. Los autores dicen que unos 60 a 75 minutos al día de actividad de intensidad moderada parecen eliminar el riesgo asociado al tiempo sentado (no así para ver la tele 5 h o más al día, que el vídeo no cuenta). La voz dice "una hora" por 60 a 75 minutos | Metaanálisis de cohortes (asociación) | Ekelund et al., *Lancet* 2016;388(10051):1302-1310 · [DOI 10.1016/S0140-6736(16)30370-1](https://doi.org/10.1016/S0140-6736(16)30370-1) · [PMID 27475271](https://pubmed.ncbi.nlm.nih.gov/27475271/) |
+| Sello del arranque ("AL FINAL · ¿QUIÉN? · se libra") | ¿QUIÉN?, borroso | Es la pregunta del final (Ekelund 2016: quién no tiene riesgo extra), adelantada y borrosa durante el primer segundo y medio, y otra vez cuando la voz dice "libra" | | La de arriba |
+
+## Cifras de los subtítulos y de la pantalla
+
+Whisper escribe en cifras los números que la voz dice en palabras. Todas salen de las tablas de arriba: 8 horas, 9 de la mañana (9:00, suposición), 19 adultos, 20 minutos, 2 minutos, 10.000 (10.639), 13 años, 4 horas, 46 %, 34 estudios, 4 %, 59 %, un millón. El marcador y el reloj de pared (hasta 10 h 03 min, 19:03) son ilustración del contador. Pregunta final en pantalla: "¿Cuántas horas llevas sentado hoy?" (la voz la dice también).
+
+## Cuidado
+
+- **Asociación, no promesa.** Los tres estudios de mortalidad son de observación: pueden influir otras cosas (salud previa, trabajo, nivel de ingresos...). El guion dice "se asoció" y termina con "Son asociaciones, no un diagnóstico". Las tarjetas llevan la etiqueta "ASOCIACIÓN" o "ESTUDIO".
+- **El tiempo sentado es lo que dijeron los participantes** en Zhou 2024 y casi todos los estudios de los metaanálisis (no se midió con aparato): hay error de medida.
+- **Zhou 2024:** el 1,46 es un riesgo relativo de un grupo frente a otro; la cifra es de adultos de EE. UU. y no dice nada de una persona en concreto. Se dejó fuera el HR 1,79 de enfermedad cardiovascular para no pasar de 66 segundos.
+- **Dunstan 2012:** es un día de laboratorio con 19 adultos con sobrepeso; no mide el riesgo de nada a largo plazo, solo el azúcar en sangre las 5 horas siguientes a una bebida de prueba. El guion no dice "te baja el azúcar", dice lo que pasó en ese experimento. El vídeo no recomienda levantarse (solo cuenta lo que se midió).
+- **Patterson 2018:** el +4 % es por cada hora al día por encima de 8 h, con ajuste por actividad física, y es un resultado de población (modesto), no una predicción. Se dice "cada hora extra", no "cada hora que te sientas".
+- **Ekelund 2016:** la comparación del 59 % y la del 4 % usan la misma referencia (menos de 4 h sentado y el cuarto más activo). "Una hora de actividad moderada al día" es el resumen de los autores de 60 a 75 minutos; el vídeo no dice "haz ejercicio" ni "te salva": cuenta lo que se vio en ese grupo ("ningún riesgo extra" = HR 1,04 con IC 0,99 a 1,10). No dice que el ejercicio de la tele elimine el riesgo (no lo elimina en el estudio).
+- **Cebo (Javier, 12 de noviembre):** "Ocho horas sentado. Alguien se libra." y la pregunta final. Es verdad: en Ekelund 2016 el grupo más activo no tuvo más riesgo. No hay dato falso ni error a propósito, ni consejo médico.
+- **Las 10 horas** (jornada 9:00-19:00) son una ilustración; el dibujo del personaje (ojeras, postura) también: cada cuerpo es distinto. La pantalla lo dice en la nota.
+- **Se dejó fuera:** la diabetes tipo 2 y el cáncer de las revisiones, el riesgo cardiovascular, la espalda y la tele (la tele se mide aparte), para no pasar de 66 segundos ni agrupar demasiadas cifras.
+- **Sin marcas.**
+
+Nota para la pantalla: "Ilustración: cada cuerpo es distinto".

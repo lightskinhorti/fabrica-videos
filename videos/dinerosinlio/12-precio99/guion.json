@@ -1,0 +1,33 @@
+{
+  "titulo": "Ese 9,99 no es casualidad",
+  "prueba_corta": true,
+  "lines": [
+    "Te pasa a ti también.",
+    "Y al final, un coche lo enseña.",
+    "Mira: dos noventa y nueve, un céntimo menos que tres. Tu cabeza casi lee dos.",
+    "Es el dígito de la izquierda.",
+    "Un estudio de dos mil cinco: el nueve parece más barato sobre todo si cambia el primer número.",
+    "Y con coches: en veintidós millones de ventas, justo antes de ochenta mil millas valían unos doscientos diez dólares más.",
+    "¿A ti te engaña el nueve noventa y nueve? ¿Sí o no?"
+  ],
+  "claves": [
+    "también",
+    "coche",
+    "céntimo",
+    "izquierda",
+    "barato",
+    "dólares",
+    "engaña"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "Ese 9,99 no es casualidad: el cerebro se fija primero en el dígito de la izquierda, así que 2,99 tiende a verse como \"dos y pico\" aunque solo sea un céntimo menos que 3. Un estudio de 2005 (Thomas y Morwitz, Journal of Consumer Research) vio que un precio acabado en 9 parece más bajo sobre todo cuando cambia el primer número, y en más de 22 millones de ventas de coches usados en subastas de EE. UU. el precio cae de 150 a 200 dólares cada 10.000 millas. ¿A ti te engaña el 9,99? Sí o no, en los comentarios.",
+    "hashtags": [
+      "#precios",
+      "#psicologia",
+      "#consumo"
+    ],
+    "portada_en": "también"
+  },
+  "voz_dice": "La voz se generó con los números en palabras (dos noventa y nueve, dos mil cinco, veintidós millones, ochenta mil, doscientos diez, nueve noventa y nueve); Whisper los oye en cifras y los subtítulos salen en cifras. Voz original de 24,8 s sin acelerar."
+}

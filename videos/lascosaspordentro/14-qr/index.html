@@ -1,0 +1,1729 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <script type="importmap">
+      { "imports": { "three": "./lib/three.module.js", "three/addons/": "./lib/addons/" } }
+    </script>
+    <link rel="stylesheet" href="comun/pordentro.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+      .mono { font-family: "JetBrains Mono", monospace; position: absolute; left: -2000px; top: 0; }
+      .lectura-p .v, .panel .cifra { font-family: "JetBrains Mono", monospace; font-weight: 700; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="66" data-width="1080" data-height="1920" data-fps="30">
+      <canvas id="gl" class="clip" data-start="0" data-duration="66" data-track-index="0" width="1080" height="1920"></canvas>
+      <div id="shade" class="clip" data-start="0" data-duration="66" data-track-index="1"></div>
+      <svg id="leaders" class="clip" data-start="0" data-duration="66" data-track-index="2" width="1080" height="1920" data-layout-allow-overlap></svg>
+      <div id="labels" class="clip" data-start="0" data-duration="66" data-track-index="3" data-layout-allow-overlap><span class="mono">0123456789</span></div>
+      <div id="note" class="clip" data-start="0" data-duration="66" data-track-index="4"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="66"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="66" data-track-index="5" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 64.776, "lines": [{"id": "l1", "s": 0.03, "e": 1.94, "words": [{"w": "Tapado,", "s": 0.03, "e": 0.4, "key": true}, {"w": "y", "s": 0.4, "e": 0.7, "key": false}, {"w": "se", "s": 0.7, "e": 0.86, "key": false}, {"w": "lee", "s": 0.9, "e": 1.15, "key": false}, {"w": "igual.", "s": 1.15, "e": 1.94, "key": false}]}, {"id": "l2", "s": 1.97, "e": 5.205, "words": [{"w": "Tres", "s": 1.97, "e": 2.18, "key": false}, {"w": "trucos", "s": 2.18, "e": 2.55, "key": true}, {"w": "lo", "s": 2.64, "e": 2.67, "key": false}, {"w": "hacen", "s": 2.67, "e": 2.98, "key": false}, {"w": "posible,", "s": 2.98, "e": 3.31, "key": false}, {"w": "y", "s": 3.31, "e": 3.61, "key": false}, {"w": "el", "s": 3.61, "e": 3.91, "key": false}, {"w": "último", "s": 3.91, "e": 3.97, "key": false}, {"w": "es", "s": 3.97, "e": 4.06, "key": false}, {"w": "matemáticas", "s": 4.16, "e": 4.73, "key": false}, {"w": "puras.", "s": 4.76, "e": 5.205, "key": false}]}, {"id": "l3", "s": 5.205, "e": 8.23, "words": [{"w": "¿Cuánto", "s": 5.205, "e": 5.74, "key": true}, {"w": "se", "s": 5.74, "e": 6.04, "key": false}, {"w": "puede", "s": 6.04, "e": 6.25, "key": false}, {"w": "tapar?", "s": 6.25, "e": 6.73, "key": false}, {"w": "Lo", "s": 6.85, "e": 7.0, "key": false}, {"w": "verás", "s": 7, "e": 7.45, "key": false}, {"w": "al", "s": 7.52, "e": 7.63, "key": false}, {"w": "final.", "s": 7.63, "e": 8.23, "key": false}]}, {"id": "l4", "s": 8.41, "e": 12.42, "words": [{"w": "Primer", "s": 8.41, "e": 8.78, "key": true}, {"w": "truco:", "s": 9.06, "e": 9.54, "key": false}, {"w": "tres", "s": 9.57, "e": 9.76, "key": false}, {"w": "cuadrados", "s": 9.76, "e": 10.28, "key": false}, {"w": "en", "s": 10.28, "e": 10.36, "key": false}, {"w": "las", "s": 10.44, "e": 10.56, "key": false}, {"w": "esquinas,", "s": 10.56, "e": 10.95, "key": false}, {"w": "que", "s": 10.95, "e": 11.19, "key": false}, {"w": "no", "s": 11.19, "e": 11.3, "key": false}, {"w": "guardan", "s": 11.51, "e": 11.66, "key": false}, {"w": "ni", "s": 11.76, "e": 11.81, "key": false}, {"w": "un", "s": 11.81, "e": 11.92, "key": false}, {"w": "dato.", "s": 11.92, "e": 12.42, "key": false}]}, {"id": "l5", "s": 12.45, "e": 16.97, "words": [{"w": "Su", "s": 12.45, "e": 12.52, "key": false}, {"w": "proporción,", "s": 12.58, "e": 13.57, "key": false}, {"w": "uno,", "s": 13.57, "e": 13.902, "key": false}, {"w": "uno,", "s": 13.902, "e": 14.234, "key": false}, {"w": "tres,", "s": 14.234, "e": 14.676, "key": false}, {"w": "uno,", "s": 14.676, "e": 15.008, "key": false}, {"w": "uno,", "s": 15.008, "e": 15.34, "key": false}, {"w": "casi", "s": 15.34, "e": 15.56, "key": false}, {"w": "no", "s": 15.57, "e": 15.67, "key": false}, {"w": "aparece", "s": 15.68, "e": 16.06, "key": false}, {"w": "en", "s": 16.11, "e": 16.19, "key": false}, {"w": "nada", "s": 16.19, "e": 16.42, "key": false}, {"w": "impreso.", "s": 16.42, "e": 16.97, "key": false}]}, {"id": "l6", "s": 17.05, "e": 19.71, "words": [{"w": "Así", "s": 17.05, "e": 17.21, "key": false}, {"w": "el", "s": 17.21, "e": 17.33, "key": false}, {"w": "móvil", "s": 17.33, "e": 17.63, "key": false}, {"w": "los", "s": 17.72, "e": 17.82, "key": false}, {"w": "encuentra,", "s": 17.82, "e": 18.43, "key": false}, {"w": "aunque", "s": 18.43, "e": 18.99, "key": false}, {"w": "esté", "s": 18.99, "e": 19.12, "key": false}, {"w": "girado.", "s": 19.12, "e": 19.71, "key": false}]}, {"id": "l7", "s": 19.77, "e": 22.78, "words": [{"w": "Segundo", "s": 19.77, "e": 20.14, "key": false}, {"w": "truco:", "s": 20.39, "e": 20.86, "key": false}, {"w": "todo", "s": 20.89, "e": 21.11, "key": false}, {"w": "lo", "s": 21.14, "e": 21.26, "key": false}, {"w": "demás", "s": 21.56, "e": 21.63, "key": false}, {"w": "son", "s": 21.63, "e": 21.83, "key": false}, {"w": "unos", "s": 21.83, "e": 22.12, "key": false}, {"w": "y", "s": 22.12, "e": 22.18, "key": false}, {"w": "ceros.", "s": 22.18, "e": 22.78, "key": false}]}, {"id": "l8", "s": 22.81, "e": 28.1, "words": [{"w": "Oscuro,", "s": 22.81, "e": 23.39, "key": false}, {"w": "un", "s": 23.48, "e": 23.748, "key": false}, {"w": "uno.", "s": 23.748, "e": 24.15, "key": false}, {"w": "Claro,", "s": 24.21, "e": 24.86, "key": false}, {"w": "un", "s": 24.88, "e": 25.12, "key": false}, {"w": "cero.", "s": 25.12, "e": 25.6, "key": false}, {"w": "Ocho", "s": 25.89, "e": 26.11, "key": false}, {"w": "cuadraditos", "s": 26.11, "e": 26.82, "key": false}, {"w": "forman", "s": 26.82, "e": 27.21, "key": false}, {"w": "una", "s": 27.21, "e": 27.27, "key": false}, {"w": "palabra.", "s": 27.83, "e": 28.1, "key": false}]}, {"id": "l9", "s": 28.26, "e": 33.06, "words": [{"w": "Este", "s": 28.26, "e": 28.47, "key": false}, {"w": "código", "s": 28.47, "e": 28.85, "key": false}, {"w": "tiene", "s": 28.85, "e": 29.17, "key": false}, {"w": "70: 26", "s": 29.17, "e": 30.18, "key": false}, {"w": "de", "s": 30.48, "e": 30.52, "key": false}, {"w": "mensaje", "s": 30.52, "e": 31.14, "key": false}, {"w": "y", "s": 31.16, "e": 31.19, "key": false}, {"w": "44", "s": 31.75, "e": 31.82, "key": false}, {"w": "de", "s": 31.82, "e": 31.9, "key": false}, {"w": "repuesto.", "s": 32, "e": 33.06, "key": false}]}, {"id": "l10", "s": 33.09, "e": 38.34, "words": [{"w": "Tercer", "s": 33.09, "e": 33.46, "key": false}, {"w": "truco:", "s": 33.73, "e": 34.25, "key": false}, {"w": "esas", "s": 34.29, "e": 34.48, "key": false}, {"w": "de", "s": 34.48, "e": 34.59, "key": false}, {"w": "repuesto", "s": 34.59, "e": 35.05, "key": false}, {"w": "las", "s": 35.05, "e": 35.22, "key": false}, {"w": "calcula", "s": 35.22, "e": 35.61, "key": false}, {"w": "un", "s": 35.61, "e": 35.67, "key": false}, {"w": "código", "s": 35.67, "e": 35.95, "key": false}, {"w": "de", "s": 35.95, "e": 36.23, "key": false}, {"w": "matemáticas,", "s": 36.23, "e": 37.05, "key": false}, {"w": "el", "s": 37.09, "e": 37.23, "key": false}, {"w": "Reed-Solomon.", "s": 37.23, "e": 38.34, "key": false}]}, {"id": "l11", "s": 38.37, "e": 41.3, "words": [{"w": "Si", "s": 38.37, "e": 38.44, "key": false}, {"w": "falta", "s": 38.5, "e": 38.74, "key": false}, {"w": "un", "s": 38.74, "e": 39.04, "key": false}, {"w": "trozo,", "s": 39.04, "e": 39.37, "key": false}, {"w": "el", "s": 39.37, "e": 39.5, "key": false}, {"w": "móvil", "s": 39.5, "e": 39.75, "key": false}, {"w": "las", "s": 39.75, "e": 40.03, "key": false}, {"w": "usa", "s": 40.03, "e": 40.31, "key": false}, {"w": "para", "s": 40.31, "e": 40.46, "key": false}, {"w": "rehacerlo.", "s": 40.46, "e": 41.3, "key": false}]}, {"id": "l12", "s": 41.33, "e": 44.93, "words": [{"w": "Hay", "s": 41.33, "e": 41.5, "key": false}, {"w": "cuatro", "s": 41.5, "e": 41.7, "key": false}, {"w": "niveles:", "s": 42, "e": 42.61, "key": false}, {"w": "ele,", "s": 42.65, "e": 43.139, "key": false}, {"w": "eme,", "s": 43.139, "e": 43.627, "key": false}, {"w": "cu", "s": 43.627, "e": 43.953, "key": false}, {"w": "y", "s": 43.953, "e": 44.116, "key": false}, {"w": "hache.", "s": 44.116, "e": 44.93, "key": false}]}, {"id": "l13", "s": 44.97, "e": 49.22, "words": [{"w": "Recuperan", "s": 44.97, "e": 45.5, "key": false}, {"w": "hasta", "s": 45.5, "e": 45.81, "key": false}, {"w": "el", "s": 45.81, "e": 45.93, "key": false}, {"w": "7, 15, 25", "s": 45.93, "e": 47.1, "key": false}, {"w": "y", "s": 47.26, "e": 47.41, "key": false}, {"w": "treinta", "s": 47.95, "e": 47.989, "key": false}, {"w": "por", "s": 47.989, "e": 48.006, "key": false}, {"w": "ciento", "s": 48.006, "e": 48.04, "key": false}, {"w": "de", "s": 48.04, "e": 48.22, "key": false}, {"w": "los", "s": 48.22, "e": 48.49, "key": false}, {"w": "datos.", "s": 48.49, "e": 49.22, "key": false}]}, {"id": "l14", "s": 49.25, "e": 53.06, "words": [{"w": "De", "s": 49.25, "e": 49.32, "key": false}, {"w": "los", "s": 49.38, "e": 49.54, "key": false}, {"w": "datos,", "s": 49.54, "e": 50.0, "key": false}, {"w": "no", "s": 50, "e": 50.13, "key": false}, {"w": "del", "s": 50.13, "e": 50.32, "key": false}, {"w": "dibujo:", "s": 50.32, "e": 50.94, "key": false}, {"w": "depende", "s": 50.97, "e": 51.34, "key": false}, {"w": "de", "s": 51.34, "e": 51.64, "key": false}, {"w": "dónde", "s": 51.64, "e": 51.94, "key": false}, {"w": "caiga", "s": 51.94, "e": 52.29, "key": false}, {"w": "el", "s": 52.29, "e": 52.35, "key": false}, {"w": "golpe.", "s": 52.79, "e": 53.06, "key": false}]}, {"id": "l15", "s": 53.09, "e": 56.847, "words": [{"w": "Lo", "s": 53.09, "e": 53.16, "key": false}, {"w": "prometido:", "s": 53.22, "e": 54.06, "key": false}, {"w": "el", "s": 54.09, "e": 54.16, "key": false}, {"w": "nivel", "s": 54.22, "e": 54.46, "key": false}, {"w": "más", "s": 54.46, "e": 54.76, "key": false}, {"w": "alto", "s": 54.76, "e": 55.0, "key": false}, {"w": "aguanta", "s": 55, "e": 55.43, "key": false}, {"w": "hasta", "s": 55.43, "e": 55.5, "key": false}, {"w": "el", "s": 55.5, "e": 56.03, "key": false}, {"w": "30", "s": 56.03, "e": 56.62, "key": false}, {"w": "por", "s": 56.69, "e": 56.742, "key": false}, {"w": "ciento.", "s": 56.742, "e": 56.847, "key": false}]}, {"id": "l16", "s": 56.847, "e": 60.18, "words": [{"w": "Y", "s": 56.847, "e": 56.865, "key": false}, {"w": "lo", "s": 56.865, "e": 56.9, "key": false}, {"w": "curioso:", "s": 56.9, "e": 57.59, "key": false}, {"w": "el", "s": 57.59, "e": 57.75, "key": false}, {"w": "más", "s": 57.75, "e": 57.98, "key": false}, {"w": "usado", "s": 57.98, "e": 58.38, "key": false}, {"w": "es", "s": 58.38, "e": 58.63, "key": false}, {"w": "el", "s": 58.63, "e": 58.7, "key": false}, {"w": "15,", "s": 58.7, "e": 59.32, "key": false}, {"w": "la", "s": 59.32, "e": 59.47, "key": false}, {"w": "mitad.", "s": 59.53, "e": 60.18, "key": false}]}, {"id": "l17", "s": 60.21, "e": 65.78, "words": [{"w": "Ahora", "s": 60.21, "e": 60.51, "key": false}, {"w": "tú:", "s": 60.51, "e": 60.685, "key": false}, {"w": "¿cuánto", "s": 60.685, "e": 61.21, "key": false}, {"w": "aguantaría", "s": 61.21, "e": 61.62, "key": false}, {"w": "el", "s": 61.85, "e": 61.99, "key": false}, {"w": "último", "s": 62.15, "e": 62.31, "key": false}, {"w": "QR", "s": 62.4, "e": 62.48, "key": false}, {"w": "que", "s": 62.53, "e": 62.74, "key": false}, {"w": "escaneaste?", "s": 62.79, "e": 63.9, "key": false}, {"w": "Dime", "s": 63.93, "e": 64.3, "key": false}, {"w": "un", "s": 64.6, "e": 64.64, "key": false}, {"w": "número.", "s": 64.64, "e": 65.78, "key": false}]}]}</script>
+    <script id="escena" type="application/json">
+{
+ "momentos": [
+  {
+   "id": "TAPADO",
+   "clave": "tapado"
+  },
+  {
+   "id": "LEE",
+   "clave": "lee"
+  },
+  {
+   "id": "IGUAL",
+   "clave": "igual"
+  },
+  {
+   "id": "TRUCOS",
+   "clave": "trucos"
+  },
+  {
+   "id": "POSIBLE",
+   "clave": "posible"
+  },
+  {
+   "id": "ULTIMO",
+   "clave": "último"
+  },
+  {
+   "id": "MATES",
+   "clave": "matemáticas"
+  },
+  {
+   "id": "CUANTO",
+   "clave": "cuánto"
+  },
+  {
+   "id": "TAPAR",
+   "clave": "tapar"
+  },
+  {
+   "id": "FINAL",
+   "clave": "final"
+  },
+  {
+   "id": "PRIMER",
+   "clave": "primer"
+  },
+  {
+   "id": "CUADRADOS",
+   "clave": "cuadrados"
+  },
+  {
+   "id": "ESQUINAS",
+   "clave": "esquinas"
+  },
+  {
+   "id": "GUARDAN",
+   "clave": "guardan"
+  },
+  {
+   "id": "DATO",
+   "clave": "dato"
+  },
+  {
+   "id": "PROPORCION",
+   "clave": "proporción"
+  },
+  {
+   "id": "CASI",
+   "clave": "casi"
+  },
+  {
+   "id": "IMPRESO",
+   "clave": "impreso"
+  },
+  {
+   "id": "MOVIL",
+   "clave": "móvil"
+  },
+  {
+   "id": "ENCUENTRA",
+   "clave": "encuentra"
+  },
+  {
+   "id": "GIRADO",
+   "clave": "girado"
+  },
+  {
+   "id": "SEGUNDO",
+   "clave": "segundo"
+  },
+  {
+   "id": "UNOS",
+   "clave": "unos"
+  },
+  {
+   "id": "CEROS",
+   "clave": "ceros"
+  },
+  {
+   "id": "OSCURO",
+   "clave": "oscuro"
+  },
+  {
+   "id": "CLARO",
+   "clave": "claro"
+  },
+  {
+   "id": "OCHO",
+   "clave": "ocho"
+  },
+  {
+   "id": "PALABRA",
+   "clave": "palabra"
+  },
+  {
+   "id": "SETENTA",
+   "clave": "70"
+  },
+  {
+   "id": "MENSAJE",
+   "clave": "mensaje"
+  },
+  {
+   "id": "CUARENTA",
+   "clave": "44"
+  },
+  {
+   "id": "REPUESTO",
+   "clave": "repuesto"
+  },
+  {
+   "id": "TERCER",
+   "clave": "tercer"
+  },
+  {
+   "id": "REPUESTO2",
+   "clave": "repuesto"
+  },
+  {
+   "id": "CODIGO",
+   "clave": "código"
+  },
+  {
+   "id": "MATES2",
+   "clave": "matemáticas"
+  },
+  {
+   "id": "REED",
+   "clave": "reed"
+  },
+  {
+   "id": "FALTA",
+   "clave": "falta"
+  },
+  {
+   "id": "TROZO",
+   "clave": "trozo"
+  },
+  {
+   "id": "USA",
+   "clave": "usa"
+  },
+  {
+   "id": "REHACERLO",
+   "clave": "rehacerlo"
+  },
+  {
+   "id": "CUATRO",
+   "clave": "cuatro"
+  },
+  {
+   "id": "NIVELES",
+   "clave": "niveles"
+  },
+  {
+   "id": "ELE",
+   "clave": "ele"
+  },
+  {
+   "id": "EME",
+   "clave": "eme"
+  },
+  {
+   "id": "CU",
+   "clave": "cu"
+  },
+  {
+   "id": "HACHE",
+   "clave": "hache"
+  },
+  {
+   "id": "RECUPERAN",
+   "clave": "recuperan"
+  },
+  {
+   "id": "SIETE",
+   "clave": "7"
+  },
+  {
+   "id": "TREINTA",
+   "clave": "treinta"
+  },
+  {
+   "id": "DATOS",
+   "clave": "datos"
+  },
+  {
+   "id": "DATOS2",
+   "clave": "datos"
+  },
+  {
+   "id": "DIBUJO",
+   "clave": "dibujo"
+  },
+  {
+   "id": "DONDE",
+   "clave": "dónde"
+  },
+  {
+   "id": "GOLPE",
+   "clave": "golpe"
+  },
+  {
+   "id": "PROMETIDO",
+   "clave": "prometido"
+  },
+  {
+   "id": "ALTO",
+   "clave": "alto"
+  },
+  {
+   "id": "TREINTA2",
+   "clave": "30"
+  },
+  {
+   "id": "CURIOSO",
+   "clave": "curioso"
+  },
+  {
+   "id": "USADO",
+   "clave": "usado"
+  },
+  {
+   "id": "QUINCE2",
+   "clave": "15"
+  },
+  {
+   "id": "MITAD",
+   "clave": "mitad"
+  },
+  {
+   "id": "AHORA",
+   "clave": "ahora"
+  },
+  {
+   "id": "CUANTO2",
+   "clave": "cuánto"
+  },
+  {
+   "id": "ULTIMO2",
+   "clave": "último"
+  },
+  {
+   "id": "ESCANEASTE",
+   "clave": "escaneaste"
+  },
+  {
+   "id": "DIME",
+   "clave": "dime"
+  },
+  {
+   "id": "NUMERO",
+   "clave": "número"
+  }
+ ],
+ "gancho": {
+  "texto": "¿Cuánto se puede tapar?",
+  "clave": "igual",
+  "y": 420,
+  "tam": 100
+ },
+ "arranque": {
+  "cambio": 1.15,
+  "transicion": 0.35
+ },
+ "encuadre": {
+  "llenar": 0.94
+ },
+ "estilo": "rejilla",
+ "desenfoque": {
+  "apertura": 0,
+  "max": 0.012
+ },
+ "iconos": {},
+ "etiquetas": [
+  {
+   "texto": "PEGATINA",
+   "pieza": "qr.hueco",
+   "desde": 0.6,
+   "hasta": "TRUCOS",
+   "dx": -40,
+   "dy": -250
+  },
+  {
+   "texto": "CUADRADO DE POSICIÓN",
+   "pieza": "qr.esquinaTL",
+   "desde": "CUADRADOS",
+   "hasta": "ESQUINAS",
+   "dx": 60,
+   "dy": -150
+  },
+  {
+   "texto": "CUADRADO DE POSICIÓN",
+   "pieza": "qr.esquinaTR",
+   "desde": "ESQUINAS",
+   "hasta": "GUARDAN",
+   "dx": -60,
+   "dy": 170
+  },
+  {
+   "texto": "NO GUARDA DATOS",
+   "pieza": "qr.esquinaBL",
+   "desde": "GUARDAN",
+   "hasta": "PROPORCION",
+   "dx": 60,
+   "dy": -170
+  },
+  {
+   "texto": "UNO · UNO · TRES · UNO · UNO",
+   "pieza": "qr.esquinaTL",
+   "desde": "PROPORCION",
+   "hasta": "MOVIL",
+   "dx": 40,
+   "dy": 200
+  },
+  {
+   "texto": "UNA PALABRA DE CÓDIGO",
+   "pieza": "qr.modulos",
+   "desde": "OCHO",
+   "hasta": "PALABRA",
+   "dx": -50,
+   "dy": -200
+  },
+  {
+   "texto": "REED-SOLOMON",
+   "pieza": "qr.cinta",
+   "desde": "REED",
+   "hasta": "FALTA",
+   "dx": 0,
+   "dy": -190
+  },
+  {
+   "texto": "NIVEL L",
+   "pieza": "niv.colL",
+   "desde": "ELE",
+   "hasta": "EME",
+   "dx": 40,
+   "dy": -190
+  },
+  {
+   "texto": "NIVEL M",
+   "pieza": "niv.colM",
+   "desde": "EME",
+   "hasta": "CU",
+   "dx": 40,
+   "dy": -210
+  },
+  {
+   "texto": "NIVEL H",
+   "pieza": "niv.colH",
+   "desde": "HACHE",
+   "hasta": "RECUPERAN",
+   "dx": -40,
+   "dy": -230
+  },
+  {
+   "texto": "NIVEL H",
+   "pieza": "niv.colH",
+   "desde": "TREINTA",
+   "hasta": "DATOS",
+   "dx": -40,
+   "dy": -230
+  },
+  {
+   "texto": "SIN LECTURA",
+   "pieza": "qr.esquinaTL",
+   "desde": "GOLPE",
+   "hasta": "PROMETIDO",
+   "dx": 60,
+   "dy": 220
+  }
+ ],
+ "notas": [
+  {
+   "texto": "Código de ejemplo inventado: no lleva a ninguna web",
+   "desde": 0
+  },
+  {
+   "texto": "Ilustración ampliada, no a escala",
+   "desde": "CUADRADOS"
+  },
+  {
+   "texto": "Oscuro = 1, claro = 0",
+   "desde": "OSCURO"
+  },
+  {
+   "texto": "Ejemplo: versión 3, nivel H · 26 + 44 palabras",
+   "desde": "SETENTA"
+  },
+  {
+   "texto": "",
+   "desde": "TERCER"
+  },
+  {
+   "texto": "Ilustración simplificada",
+   "desde": "FALTA"
+  },
+  {
+   "texto": "Porcentajes de palabras de código recuperables (Denso Wave)",
+   "desde": "CUATRO"
+  },
+  {
+   "texto": "El porcentaje es de palabras de código, no de superficie",
+   "desde": "DATOS2"
+  },
+  {
+   "texto": "En esta prueba, con un cuadrado tapado no se lee",
+   "desde": "DONDE"
+  },
+  {
+   "texto": "Porcentajes de palabras de código recuperables (Denso Wave)",
+   "desde": "PROMETIDO"
+  },
+  {
+   "texto": "",
+   "desde": "AHORA"
+  }
+ ],
+ "leyenda": [
+  {
+   "color": "#3fbfe6",
+   "forma": "punto",
+   "texto": "mensaje",
+   "desde": "MENSAJE",
+   "hasta": "TERCER"
+  },
+  {
+   "color": "#e89a22",
+   "forma": "punto",
+   "texto": "repuesto",
+   "desde": "MENSAJE",
+   "hasta": "TERCER"
+  },
+  {
+   "color": "#ff4d3d",
+   "forma": "punto",
+   "texto": "palabras tapadas",
+   "desde": "TROZO",
+   "hasta": "USA"
+  },
+  {
+   "color": "#44e08f",
+   "forma": "punto",
+   "texto": "rehechas con el repuesto",
+   "desde": "REHACERLO",
+   "hasta": "CUATRO"
+  }
+ ],
+ "sonidos": [
+  {
+   "tipo": "zumbido",
+   "desde": 0.1,
+   "hasta": "TRUCOS",
+   "volumen": 0.4
+  },
+  {
+   "tipo": "brillo",
+   "en": "LEE",
+   "volumen": 0.7
+  },
+  {
+   "tipo": "pop",
+   "en": "TRUCOS"
+  },
+  {
+   "tipo": "desliza",
+   "en": "CUANTO"
+  },
+  {
+   "tipo": "desliza",
+   "en": "PRIMER"
+  },
+  {
+   "tipo": "brillo",
+   "en": "CUADRADOS"
+  },
+  {
+   "tipo": "brillo",
+   "en": "ESQUINAS"
+  },
+  {
+   "tipo": "toque",
+   "en": "GUARDAN"
+  },
+  {
+   "tipo": "sube",
+   "en": "PROPORCION"
+  },
+  {
+   "tipo": "desliza",
+   "en": "MOVIL"
+  },
+  {
+   "tipo": "desliza",
+   "en": "SEGUNDO"
+  },
+  {
+   "tipo": "chip",
+   "en": "UNOS"
+  },
+  {
+   "tipo": "toque",
+   "en": "OSCURO"
+  },
+  {
+   "tipo": "toque",
+   "en": "CLARO"
+  },
+  {
+   "tipo": "pop",
+   "en": "OCHO"
+  },
+  {
+   "tipo": "sube",
+   "en": "SETENTA"
+  },
+  {
+   "tipo": "brillo",
+   "en": "MENSAJE"
+  },
+  {
+   "tipo": "brillo",
+   "en": "CUARENTA"
+  },
+  {
+   "tipo": "desliza",
+   "en": "TERCER"
+  },
+  {
+   "tipo": "error",
+   "en": "FALTA",
+   "volumen": 0.4
+  },
+  {
+   "tipo": "brillo",
+   "en": "REHACERLO",
+   "volumen": 0.7
+  },
+  {
+   "tipo": "desliza",
+   "en": "CUATRO"
+  },
+  {
+   "tipo": "pop",
+   "en": "ELE"
+  },
+  {
+   "tipo": "pop",
+   "en": "EME"
+  },
+  {
+   "tipo": "pop",
+   "en": "HACHE"
+  },
+  {
+   "tipo": "desliza",
+   "en": "DATOS2"
+  },
+  {
+   "tipo": "error",
+   "en": "GOLPE",
+   "volumen": 0.5
+  },
+  {
+   "tipo": "sube",
+   "en": "TREINTA2"
+  },
+  {
+   "tipo": "brillo",
+   "en": "QUINCE2"
+  },
+  {
+   "tipo": "desliza",
+   "en": "AHORA"
+  },
+  {
+   "tipo": "toque",
+   "en": "NUMERO"
+  }
+ ],
+ "sets": {
+  "qr": {
+   "objetos": [
+    {
+     "tipo": "codigoQR",
+     "id": "qr"
+    }
+   ],
+   "luz": "anuncio"
+  },
+  "niv": {
+   "objetos": [
+    {
+     "tipo": "nivelesQR",
+     "id": "niv"
+    }
+   ],
+   "luz": "estudio"
+  }
+ },
+ "planos": [
+  {
+   "tipo": "anuncio",
+   "set": "qr",
+   "desde": 0,
+   "estado": {
+    "tapa": 1,
+    "repara": 0,
+    "golpe": 0,
+    "lectura": 1,
+    "lecturaMal": 0,
+    "esquinas": 0,
+    "proporcion": 0,
+    "escaneo": {
+     "de": 0.08,
+     "a": 1,
+     "en": 0,
+     "dur": 1.7
+    },
+    "bits": 0,
+    "reparto": 0,
+    "palabra": 0,
+    "cinta": 1,
+    "danadas": 0,
+    "corregidas": 0,
+    "giro": 0
+   },
+   "pieza": "qr",
+   "angulo": 18,
+   "altura": 10,
+   "orbita": 14,
+   "empuje": 0.1,
+   "llenar": 1.0,
+   "zona": [
+    30,
+    540,
+    1050,
+    1500
+   ],
+   "variantes": [
+    {
+     "pieza": "qr.hueco",
+     "radio": 9,
+     "angulo": -26,
+     "altura": 18,
+     "llenar": 0,
+     "zona": [
+      50,
+      600,
+      950,
+      1440
+     ]
+    }
+   ]
+  },
+  {
+   "tipo": "cifra",
+   "set": "qr",
+   "desde": "TRUCOS",
+   "estado": {
+    "tapa": 1,
+    "repara": 0,
+    "golpe": 0,
+    "lectura": 1,
+    "lecturaMal": 0,
+    "esquinas": 0,
+    "proporcion": 0,
+    "escaneo": 0,
+    "bits": 0,
+    "reparto": 0,
+    "palabra": 0,
+    "cinta": 1,
+    "danadas": 0,
+    "corregidas": 0,
+    "giro": 0
+   },
+   "pieza": "qr",
+   "angulo": -10,
+   "altura": 8,
+   "lectura": {
+    "texto": "3",
+    "titulo": "TRES TRUCOS",
+    "y": 860,
+    "tam": 280
+   }
+  },
+  {
+   "tipo": "macro",
+   "set": "qr",
+   "desde": "CUANTO",
+   "estado": {
+    "tapa": 1,
+    "repara": 0,
+    "golpe": 0,
+    "lectura": 1,
+    "lecturaMal": 0,
+    "esquinas": 0,
+    "proporcion": 0,
+    "escaneo": 0,
+    "bits": 0,
+    "reparto": 0,
+    "palabra": 0,
+    "cinta": 1,
+    "danadas": 0,
+    "corregidas": 0,
+    "giro": 0
+   },
+   "pieza": "qr.hueco",
+   "radio": 8.5,
+   "angulo": -20,
+   "altura": 14,
+   "apertura": 0.003
+  },
+  {
+   "tipo": "anuncio",
+   "set": "qr",
+   "desde": "TAPAR",
+   "estado": {
+    "tapa": 1,
+    "repara": 0,
+    "golpe": 0,
+    "lectura": 1,
+    "lecturaMal": 0,
+    "esquinas": 0,
+    "proporcion": 0,
+    "escaneo": 0,
+    "bits": 0,
+    "reparto": 0,
+    "palabra": 0,
+    "cinta": 1,
+    "danadas": 0,
+    "corregidas": 0,
+    "giro": 0
+   },
+   "pieza": "qr",
+   "angulo": -16,
+   "altura": 20,
+   "orbita": 10,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "anuncio",
+   "set": "qr",
+   "desde": "PRIMER",
+   "estado": {
+    "tapa": {
+     "de": 1,
+     "a": 0,
+     "en": "PRIMER",
+     "dur": 0.9
+    },
+    "repara": 0,
+    "golpe": 0,
+    "lectura": 1,
+    "lecturaMal": 0,
+    "esquinas": {
+     "de": 0,
+     "a": 1,
+     "en": "PRIMER",
+     "dur": 0.8
+    },
+    "proporcion": 0,
+    "escaneo": 0,
+    "bits": 0,
+    "reparto": 0,
+    "palabra": 0,
+    "cinta": 1,
+    "danadas": 0,
+    "corregidas": 0,
+    "giro": 0
+   },
+   "pieza": "qr",
+   "angulo": 14,
+   "altura": 10,
+   "orbita": -8,
+   "empuje": 0.06
+  },
+  {
+   "tipo": "macro",
+   "set": "qr",
+   "desde": "CUADRADOS",
+   "estado": {
+    "tapa": 0,
+    "repara": 0,
+    "golpe": 0,
+    "lectura": 1,
+    "lecturaMal": 0,
+    "esquinas": 1,
+    "proporcion": 0,
+    "escaneo": 0,
+    "bits": 0,
+    "reparto": 0,
+    "palabra": 0,
+    "cinta": 1,
+    "danadas": 0,
+    "corregidas": 0,
+    "giro": 0
+   },
+   "pieza": "qr.esquinaTL",
+   "radio": 5.6,
+   "angulo": -18,
+   "altura": 12,
+   "apertura": 0.003
+  },
+  {
+   "tipo": "macro",
+   "set": "qr",
+   "desde": "ESQUINAS",
+   "estado": {
+    "tapa": 0,
+    "repara": 0,
+    "golpe": 0,
+    "lectura": 1,
+    "lecturaMal": 0,
+    "esquinas": 1,
+    "proporcion": 0,
+    "escaneo": 0,
+    "bits": 0,
+    "reparto": 0,
+    "palabra": 0,
+    "cinta": 1,
+    "danadas": 0,
+    "corregidas": 0,
+    "giro": 0
+   },
+   "pieza": "qr.esquinaTR",
+   "radio": 5.6,
+   "angulo": 20,
+   "altura": 10,
+   "apertura": 0.003
+  },
+  {
+   "tipo": "macro",
+   "set": "qr",
+   "desde": "PROPORCION",
+   "estado": {
+    "tapa": 0,
+    "repara": 0,
+    "golpe": 0,
+    "lectura": 1,
+    "lecturaMal": 0,
+    "esquinas": 1,
+    "proporcion": {
+     "de": 0,
+     "a": 1,
+     "en": "PROPORCION",
+     "dur": 0.7
+    },
+    "escaneo": {
+     "de": 0,
+     "a": 0.45,
+     "en": "PROPORCION",
+     "dur": 2.4
+    },
+    "bits": 0,
+    "reparto": 0,
+    "palabra": 0,
+    "cinta": 1,
+    "danadas": 0,
+    "corregidas": 0,
+    "giro": 0
+   },
+   "pieza": "qr.esquinaTL",
+   "radio": 7.5,
+   "angulo": -10,
+   "altura": 16,
+   "desplaza": [
+    2,
+    3,
+    0
+   ]
+  },
+  {
+   "tipo": "anuncio",
+   "set": "qr",
+   "desde": "MOVIL",
+   "estado": {
+    "tapa": 0,
+    "repara": 0,
+    "golpe": 0,
+    "lectura": 1,
+    "lecturaMal": 0,
+    "esquinas": 1,
+    "proporcion": {
+     "de": 1,
+     "a": 0,
+     "en": "MOVIL",
+     "dur": 0.5
+    },
+    "escaneo": {
+     "de": 0,
+     "a": 1,
+     "en": "MOVIL",
+     "dur": 1.6
+    },
+    "bits": 0,
+    "reparto": 0,
+    "palabra": 0,
+    "cinta": 1,
+    "danadas": 0,
+    "corregidas": 0,
+    "giro": {
+     "de": 0,
+     "a": 90,
+     "en": "ENCUENTRA",
+     "dur": 2.2
+    }
+   },
+   "pieza": "qr",
+   "angulo": 12,
+   "altura": 12,
+   "orbita": 8,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "anuncio",
+   "set": "qr",
+   "desde": "GIRADO",
+   "estado": {
+    "tapa": 0,
+    "repara": 0,
+    "golpe": 0,
+    "lectura": 1,
+    "lecturaMal": 0,
+    "esquinas": 1,
+    "proporcion": 0,
+    "escaneo": 0,
+    "bits": 0,
+    "reparto": 0,
+    "palabra": 0,
+    "cinta": 1,
+    "danadas": 0,
+    "corregidas": 0,
+    "giro": {
+     "de": 90,
+     "a": 200,
+     "en": "GIRADO",
+     "dur": 2.2
+    }
+   },
+   "pieza": "qr",
+   "angulo": -14,
+   "altura": 16,
+   "orbita": -8,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "anuncio",
+   "set": "qr",
+   "desde": "SEGUNDO",
+   "estado": {
+    "tapa": 0,
+    "repara": 0,
+    "golpe": 0,
+    "lectura": 1,
+    "lecturaMal": 0,
+    "esquinas": {
+     "de": 1,
+     "a": 0,
+     "en": "SEGUNDO",
+     "dur": 0.6
+    },
+    "proporcion": 0,
+    "escaneo": 0,
+    "bits": {
+     "de": 0,
+     "a": 1,
+     "en": "UNOS",
+     "dur": 1.0
+    },
+    "reparto": 0,
+    "palabra": 0,
+    "cinta": 1,
+    "danadas": 0,
+    "corregidas": 0,
+    "giro": {
+     "de": 200,
+     "a": 360,
+     "en": "SEGUNDO",
+     "dur": 0.8
+    }
+   },
+   "pieza": "qr",
+   "angulo": 16,
+   "altura": 12,
+   "orbita": 8,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "macro",
+   "set": "qr",
+   "desde": "UNOS",
+   "estado": {
+    "tapa": 0,
+    "repara": 0,
+    "golpe": 0,
+    "lectura": 1,
+    "lecturaMal": 0,
+    "esquinas": 0,
+    "proporcion": 0,
+    "escaneo": 0,
+    "bits": 1,
+    "reparto": 0,
+    "palabra": 0,
+    "cinta": 1,
+    "danadas": 0,
+    "corregidas": 0,
+    "giro": 360
+   },
+   "pieza": "qr.modulos",
+   "radio": 6.5,
+   "angulo": -14,
+   "altura": 14,
+   "apertura": 0.003
+  },
+  {
+   "tipo": "macro",
+   "set": "qr",
+   "desde": "OCHO",
+   "estado": {
+    "tapa": 0,
+    "repara": 0,
+    "golpe": 0,
+    "lectura": 1,
+    "lecturaMal": 0,
+    "esquinas": 0,
+    "proporcion": 0,
+    "escaneo": 0,
+    "bits": 1,
+    "reparto": 0,
+    "palabra": {
+     "de": 14,
+     "a": 17,
+     "en": "OCHO",
+     "dur": 2.2
+    },
+    "cinta": 1,
+    "danadas": 0,
+    "corregidas": 0,
+    "giro": 360
+   },
+   "pieza": "qr.modulos",
+   "radio": 5.0,
+   "angulo": -12,
+   "altura": 12,
+   "apertura": 0.002
+  },
+  {
+   "tipo": "cifra",
+   "set": "qr",
+   "desde": "SETENTA",
+   "estado": {
+    "tapa": 0,
+    "repara": 0,
+    "golpe": 0,
+    "lectura": 1,
+    "lecturaMal": 0,
+    "esquinas": 0,
+    "proporcion": 0,
+    "escaneo": 0,
+    "bits": {
+     "de": 1,
+     "a": 0,
+     "en": "SETENTA",
+     "dur": 0.6
+    },
+    "reparto": 0,
+    "palabra": 0,
+    "cinta": 1,
+    "danadas": 0,
+    "corregidas": 0,
+    "giro": 360
+   },
+   "pieza": "qr",
+   "angulo": 10,
+   "altura": 8,
+   "lectura": {
+    "texto": "70",
+    "titulo": "PALABRAS DE CÓDIGO",
+    "y": 860,
+    "tam": 270
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "set": "qr",
+   "desde": "MENSAJE",
+   "estado": {
+    "tapa": 0,
+    "repara": 0,
+    "golpe": 0,
+    "lectura": 1,
+    "lecturaMal": 0,
+    "esquinas": 0,
+    "proporcion": 0,
+    "escaneo": 0,
+    "bits": 0,
+    "reparto": {
+     "de": 0,
+     "a": 1,
+     "en": "MENSAJE",
+     "dur": 0.9
+    },
+    "palabra": 0,
+    "cinta": 1,
+    "danadas": 0,
+    "corregidas": 0,
+    "giro": 360
+   },
+   "pieza": "qr",
+   "angulo": 20,
+   "altura": 16,
+   "orbita": -10,
+   "empuje": 0.06
+  },
+  {
+   "tipo": "macro",
+   "set": "qr",
+   "desde": "CUARENTA",
+   "estado": {
+    "tapa": 0,
+    "repara": 0,
+    "golpe": 0,
+    "lectura": 1,
+    "lecturaMal": 0,
+    "esquinas": 0,
+    "proporcion": 0,
+    "escaneo": 0,
+    "bits": 0,
+    "reparto": 1,
+    "palabra": 0,
+    "cinta": 1,
+    "danadas": 0,
+    "corregidas": 0,
+    "giro": 360
+   },
+   "pieza": "qr.cinta",
+   "radio": 10,
+   "angulo": 12,
+   "altura": 10,
+   "apertura": 0.002,
+   "desplaza": [
+    6,
+    0,
+    0
+   ]
+  },
+  {
+   "tipo": "anuncio",
+   "set": "qr",
+   "desde": "TERCER",
+   "estado": {
+    "tapa": 0,
+    "repara": 0,
+    "golpe": 0,
+    "lectura": 1,
+    "lecturaMal": 0,
+    "esquinas": 0,
+    "proporcion": 0,
+    "escaneo": 0,
+    "bits": 0,
+    "reparto": 1,
+    "palabra": 0,
+    "cinta": 1,
+    "danadas": 0,
+    "corregidas": 0,
+    "giro": 360
+   },
+   "pieza": "qr",
+   "angulo": -16,
+   "altura": 14,
+   "orbita": 10,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "anuncio",
+   "set": "qr",
+   "desde": "FALTA",
+   "estado": {
+    "tapa": {
+     "de": 0,
+     "a": 1,
+     "en": "FALTA",
+     "dur": 1.2
+    },
+    "repara": 0,
+    "golpe": 0,
+    "lectura": 1,
+    "lecturaMal": 0,
+    "esquinas": 0,
+    "proporcion": 0,
+    "escaneo": 0,
+    "bits": 0,
+    "reparto": {
+     "de": 1,
+     "a": 0.35,
+     "en": "FALTA",
+     "dur": 0.8
+    },
+    "palabra": 0,
+    "cinta": 1,
+    "danadas": {
+     "de": 0,
+     "a": 1,
+     "en": "TROZO",
+     "dur": 0.8
+    },
+    "corregidas": 0,
+    "giro": 360
+   },
+   "pieza": "qr",
+   "angulo": 12,
+   "altura": 12,
+   "orbita": -8,
+   "empuje": 0.06
+  },
+  {
+   "tipo": "macro",
+   "set": "qr",
+   "desde": "TROZO",
+   "estado": {
+    "tapa": 1,
+    "repara": 0,
+    "golpe": 0,
+    "lectura": 1,
+    "lecturaMal": 0,
+    "esquinas": 0,
+    "proporcion": 0,
+    "escaneo": 0,
+    "bits": 0,
+    "reparto": 0.35,
+    "palabra": 0,
+    "cinta": 1,
+    "danadas": 1,
+    "corregidas": 0,
+    "giro": 360
+   },
+   "pieza": "qr.cinta",
+   "radio": 11,
+   "angulo": -8,
+   "altura": 8,
+   "apertura": 0.002
+  },
+  {
+   "tipo": "anuncio",
+   "set": "qr",
+   "desde": "USA",
+   "estado": {
+    "tapa": 1,
+    "repara": {
+     "de": 0,
+     "a": 1,
+     "en": "USA",
+     "dur": 1.4
+    },
+    "golpe": 0,
+    "lectura": 1,
+    "lecturaMal": 0,
+    "esquinas": 0,
+    "proporcion": 0,
+    "escaneo": 0,
+    "bits": 0,
+    "reparto": {
+     "de": 0.35,
+     "a": 0,
+     "en": "USA",
+     "dur": 0.6
+    },
+    "palabra": 0,
+    "cinta": 1,
+    "danadas": 1,
+    "corregidas": {
+     "de": 0,
+     "a": 1,
+     "en": "REHACERLO",
+     "dur": 0.8
+    },
+    "giro": 360
+   },
+   "pieza": "qr",
+   "angulo": -18,
+   "altura": 18,
+   "orbita": 8,
+   "empuje": 0.06
+  },
+  {
+   "tipo": "macro",
+   "set": "qr",
+   "desde": "REHACERLO",
+   "estado": {
+    "tapa": 1,
+    "repara": 1,
+    "golpe": 0,
+    "lectura": 1,
+    "lecturaMal": 0,
+    "esquinas": 0,
+    "proporcion": 0,
+    "escaneo": 0,
+    "bits": 0,
+    "reparto": 0,
+    "palabra": 0,
+    "cinta": 1,
+    "danadas": 1,
+    "corregidas": 1,
+    "giro": 360
+   },
+   "pieza": "qr.hueco",
+   "radio": 9,
+   "angulo": 18,
+   "altura": 12,
+   "apertura": 0.003
+  },
+  {
+   "tipo": "anuncio",
+   "set": "niv",
+   "desde": "CUATRO",
+   "estado": {
+    "ver": 1,
+    "a": {
+     "de": 0,
+     "a": 1,
+     "en": "CUATRO",
+     "dur": 1.3
+    },
+    "foco": 0,
+    "usado": 0
+   },
+   "pieza": "niv",
+   "angulo": 14,
+   "altura": 8,
+   "orbita": -8,
+   "empuje": 0.06
+  },
+  {
+   "tipo": "macro",
+   "set": "niv",
+   "desde": "EME",
+   "estado": {
+    "ver": 1,
+    "a": 1,
+    "foco": 2,
+    "usado": 0
+   },
+   "pieza": "niv.colM",
+   "radio": 8,
+   "angulo": 16,
+   "altura": 8,
+   "apertura": 0.003
+  },
+  {
+   "tipo": "anuncio",
+   "set": "niv",
+   "desde": "RECUPERAN",
+   "estado": {
+    "ver": 1,
+    "a": 1,
+    "foco": 0,
+    "usado": 0
+   },
+   "pieza": "niv",
+   "angulo": -12,
+   "altura": 10,
+   "orbita": 10,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "macro",
+   "set": "niv",
+   "desde": "SIETE",
+   "estado": {
+    "ver": 1,
+    "a": 1,
+    "foco": 2,
+    "usado": 0
+   },
+   "pieza": "niv.colM",
+   "radio": 9,
+   "angulo": 14,
+   "altura": 8,
+   "apertura": 0.003
+  },
+  {
+   "tipo": "macro",
+   "set": "niv",
+   "desde": "TREINTA",
+   "estado": {
+    "ver": 1,
+    "a": 1,
+    "foco": 4,
+    "usado": 0
+   },
+   "pieza": "niv.colH",
+   "radio": 9,
+   "angulo": -18,
+   "altura": 10,
+   "apertura": 0.003
+  },
+  {
+   "tipo": "anuncio",
+   "set": "qr",
+   "desde": "DATOS2",
+   "estado": {
+    "tapa": {
+     "de": 1,
+     "a": 0,
+     "en": "DATOS2",
+     "dur": 0.8
+    },
+    "repara": {
+     "de": 1,
+     "a": 0,
+     "en": "DATOS2",
+     "dur": 0.6
+    },
+    "golpe": 0,
+    "lectura": 1,
+    "lecturaMal": 0,
+    "esquinas": 0,
+    "proporcion": 0,
+    "escaneo": 0,
+    "bits": 0,
+    "reparto": 0,
+    "palabra": 0,
+    "cinta": 1,
+    "danadas": {
+     "de": 1,
+     "a": 0,
+     "en": "DATOS2",
+     "dur": 0.6
+    },
+    "corregidas": {
+     "de": 1,
+     "a": 0,
+     "en": "DATOS2",
+     "dur": 0.6
+    },
+    "giro": 360
+   },
+   "pieza": "qr",
+   "angulo": 16,
+   "altura": 12,
+   "orbita": -8,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "anuncio",
+   "set": "qr",
+   "desde": "DONDE",
+   "estado": {
+    "tapa": 0,
+    "repara": 0,
+    "golpe": {
+     "de": 0,
+     "a": 1,
+     "en": "DONDE",
+     "dur": 0.9
+    },
+    "lectura": 1,
+    "lecturaMal": 1,
+    "esquinas": 0,
+    "proporcion": 0,
+    "escaneo": 0,
+    "bits": 0,
+    "reparto": 0,
+    "palabra": 0,
+    "cinta": 1,
+    "danadas": 0,
+    "corregidas": 0,
+    "giro": 360
+   },
+   "pieza": "qr",
+   "angulo": -16,
+   "altura": 14,
+   "orbita": 10,
+   "empuje": 0.06
+  },
+  {
+   "tipo": "macro",
+   "set": "qr",
+   "desde": "GOLPE",
+   "estado": {
+    "tapa": 0,
+    "repara": 0,
+    "golpe": 1,
+    "lectura": 1,
+    "lecturaMal": 1,
+    "esquinas": 0,
+    "proporcion": 0,
+    "escaneo": 0,
+    "bits": 0,
+    "reparto": 0,
+    "palabra": 0,
+    "cinta": 1,
+    "danadas": 0,
+    "corregidas": 0,
+    "giro": 360
+   },
+   "pieza": "qr.esquinaTL",
+   "radio": 9,
+   "angulo": 12,
+   "altura": 12,
+   "apertura": 0.003
+  },
+  {
+   "tipo": "cifra",
+   "set": "qr",
+   "desde": "PROMETIDO",
+   "estado": {
+    "tapa": {
+     "de": 0,
+     "a": 1,
+     "en": "PROMETIDO",
+     "dur": 0.8
+    },
+    "repara": 1,
+    "golpe": {
+     "de": 1,
+     "a": 0,
+     "en": "PROMETIDO",
+     "dur": 0.6
+    },
+    "lectura": 1,
+    "lecturaMal": 0,
+    "esquinas": 0,
+    "proporcion": 0,
+    "escaneo": 0,
+    "bits": 0,
+    "reparto": 0,
+    "palabra": 0,
+    "cinta": 1,
+    "danadas": 1,
+    "corregidas": 1,
+    "giro": 360
+   },
+   "pieza": "qr",
+   "angulo": 8,
+   "altura": 8,
+   "lectura": {
+    "de": 0,
+    "a": 30,
+    "decimales": 0,
+    "unidad": "%",
+    "titulo": "NIVEL H · LO QUE RECUPERA",
+    "en": "TREINTA2",
+    "dur": 1.4,
+    "y": 860,
+    "tam": 270
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "set": "niv",
+   "desde": "CURIOSO",
+   "estado": {
+    "ver": 1,
+    "a": 1,
+    "foco": 2,
+    "usado": {
+     "de": 0,
+     "a": 1,
+     "en": "USADO",
+     "dur": 0.6
+    }
+   },
+   "pieza": "niv",
+   "angulo": 12,
+   "altura": 8,
+   "orbita": -8,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "macro",
+   "set": "niv",
+   "desde": "QUINCE2",
+   "estado": {
+    "ver": 1,
+    "a": 1,
+    "foco": 2,
+    "usado": 1
+   },
+   "pieza": "niv.colM",
+   "radio": 9,
+   "angulo": -14,
+   "altura": 10,
+   "apertura": 0.003
+  },
+  {
+   "tipo": "anuncio",
+   "set": "qr",
+   "desde": "AHORA",
+   "estado": {
+    "tapa": 1,
+    "repara": 0,
+    "golpe": 0,
+    "lectura": 1,
+    "lecturaMal": 0,
+    "esquinas": 0,
+    "proporcion": 0,
+    "escaneo": 0,
+    "bits": 0,
+    "reparto": 0,
+    "palabra": 0,
+    "cinta": 1,
+    "danadas": 0,
+    "corregidas": 0,
+    "giro": 360
+   },
+   "pieza": "qr",
+   "angulo": 14,
+   "altura": 12,
+   "orbita": -10,
+   "empuje": 0.06
+  },
+  {
+   "tipo": "cifra",
+   "set": "qr",
+   "desde": "ULTIMO2",
+   "estado": {
+    "tapa": 1,
+    "repara": 0,
+    "golpe": 0,
+    "lectura": 1,
+    "lecturaMal": 0,
+    "esquinas": 0,
+    "proporcion": 0,
+    "escaneo": 0,
+    "bits": 0,
+    "reparto": 0,
+    "palabra": 0,
+    "cinta": 1,
+    "danadas": 0,
+    "corregidas": 0,
+    "giro": 360
+   },
+   "pieza": "qr",
+   "angulo": -8,
+   "altura": 8,
+   "lectura": {
+    "texto": "?",
+    "titulo": "¿Cuánto aguanta tu último QR?",
+    "y": 900,
+    "tam": 230,
+    "tituloTam": 92,
+    "tituloAncho": 780,
+    "sub": "Dime un número en los comentarios",
+    "subTam": 42
+   }
+  }
+ ]
+}
+</script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 66 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      // 14-qr: the scene is the JSON above (sets and shots), built by the shot templates. The QR code and the level columns
+      // are library objects (objetos/codigoqr.js, registered in objetos/index.js).
+      // Uses the new start ("arranque", "encuadre" and gancho.y: see the headers of the engine).
+      import * as THREE from "three";
+      import { crearPorDentro } from "./comun/pordentro.js";
+      import { crearDetalle } from "./comun/detalle.js";
+      import { crearPlantillas } from "./comun/plantillas.js";
+      await Promise.all(['700 50px "Inter"', '400 50px "Inter"', '700 50px "JetBrains Mono"', '400 50px "JetBrains Mono"'].map((f) => document.fonts.load(f)));
+      const C = crearPorDentro(THREE);
+      const X = crearDetalle(THREE, C);
+      const P = crearPlantillas(THREE, C, X, { cerca: 0.5 });
+      C.camera.far = 3000; C.camera.updateProjectionMatrix();
+      P.arrancar();
+    </script>
+  </body>
+</html>

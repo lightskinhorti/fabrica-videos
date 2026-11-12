@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <script type="importmap">
+      { "imports": { "three": "./lib/three.module.js", "three/addons/": "./lib/addons/" } }
+    </script>
+    <link rel="stylesheet" href="comun/contador.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Nunito", sans-serif; }
+      #alt, #clock { font-family: "Archivo Black", sans-serif; }
+      /* health cards: one per landmark, on the right, with a leader line to the object or part of the body (as in 12-cafe) */
+      .card {
+        position: absolute; left: 556px; top: 646px; width: 384px; padding: 20px 22px 18px; border-radius: 30px;
+        background: rgba(13, 22, 48, 0.9); border: 5px solid #0b1a3a; color: #fff; opacity: 0; transform-origin: 0 30%;
+      }
+      .card .top { display: flex; align-items: center; gap: 14px; }
+      .card .ic { width: 78px; height: 78px; flex: none; border-radius: 50%; background: #ffcf2e; display: flex; align-items: center; justify-content: center; }
+      .card .ic svg { width: 54px; height: 54px; overflow: visible; }
+      .card .tt { font-weight: 900; font-size: 30px; line-height: 1.04; letter-spacing: 0.04em; color: #ffcf2e; }
+      .card .big { font-family: "Archivo Black", sans-serif; font-size: 72px; line-height: 1; margin-top: 16px; white-space: nowrap; }
+      .card .big small { font-size: 0.42em; margin-left: 0.14em; }
+      .card .big.mid { font-size: 60px; }
+      .card .big.txt { font-size: 50px; }
+      .card .sub { font-weight: 800; font-size: 27px; line-height: 1.16; margin-top: 10px; color: rgba(255, 255, 255, 0.94); }
+      .card .pie { margin-top: 12px; }
+      .card .src { display: block; margin-top: 6px; font-weight: 700; font-size: 20px; line-height: 1.15; color: rgba(255, 255, 255, 0.66); }
+      .card .chip {
+        display: inline-block; font-weight: 900; font-size: 17px; letter-spacing: 0.08em; padding: 3px 9px 2px; border-radius: 9px;
+        border: 2px solid rgba(255, 207, 46, 0.75); color: #ffcf2e;
+      }
+      .card svg.chart { display: block; width: 330px; height: 96px; margin-top: 14px; overflow: visible; }
+      .card svg.chart text { font-family: "Nunito", sans-serif; font-weight: 900; font-size: 21px; letter-spacing: 0.04em; }
+      #pregunta {
+        position: absolute; left: 70px; right: 70px; top: 700px; text-align: center; opacity: 0;
+        font-weight: 900; font-size: 74px; line-height: 1.06; color: #1d1f3a;
+      }
+      #pregunta span { display: inline-block; padding: 16px 30px 18px; border-radius: 26px; background: #ffcf2e; border: 6px solid #0b1a3a; box-shadow: 0 10px 0 rgba(11, 26, 58, 0.45); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="64.7" data-width="1080" data-height="1920" data-fps="30">
+      <div id="sky" class="clip" data-start="0" data-duration="64.7" data-track-index="0"></div>
+      <canvas id="gl" class="clip" data-start="0" data-duration="64.7" data-track-index="1" width="1080" height="1920"></canvas>
+      <svg id="leaders" class="clip" data-start="0" data-duration="64.7" data-track-index="2" width="1080" height="1920" data-layout-allow-overlap></svg>
+      <div id="labels" class="clip" data-start="0" data-duration="64.7" data-track-index="3" data-layout-allow-overlap>
+        <div class="card" id="c-lab">
+          <div class="top"><div class="ic"><svg viewBox="0 0 48 48"><g class="gota" style="transform-origin: 24px 30px" fill="none" stroke="#1d1f3a" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"><path d="M24 6 C24 6 12 20 12 29 A12 12 0 0 0 36 29 C36 20 24 6 24 6 Z"/><path d="M18 30 A6 6 0 0 0 24 36"/></g></svg></div><div class="tt">AZÚCAR EN SANGRE</div></div>
+          <div class="big"></div>
+          <div class="sub"></div>
+          <div class="pie"><span class="chip">ESTUDIO</span><span class="src">Diabetes Care, 2012 · laboratorio</span></div>
+        </div>
+        <div class="card" id="c-ocho">
+          <div class="top"><div class="ic"><svg viewBox="0 0 48 48"><path class="pulso" d="M3 26 H13 L18 11 L25 38 L30 21 L33 26 H45" fill="none" stroke="#1d1f3a" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="100" /></svg></div><div class="tt">RIESGO DE MORIR</div></div>
+          <div class="big"></div>
+          <div class="sub"></div>
+          <div class="pie"><span class="chip">ASOCIACIÓN</span><span class="src">BMC Public Health, 2024 · adultos de EE. UU.</span></div>
+        </div>
+        <div class="card" id="c-umbral">
+          <div class="top"><div class="ic"><svg viewBox="0 0 48 48"><g class="reloj" style="transform-origin: 24px 24px" fill="none" stroke="#1d1f3a" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"><circle cx="24" cy="24" r="16"/><path d="M24 14 V24 L31 28"/></g></svg></div><div class="tt">CADA HORA EXTRA</div></div>
+          <div class="big"></div>
+          <div class="sub"></div>
+          <div class="pie"><span class="chip">ASOCIACIÓN</span><span class="src">Eur J Epidemiol, 2018 · revisión de estudios</span></div>
+        </div>
+        <div class="card" id="c-millon">
+          <div class="top"><div class="ic"><svg viewBox="0 0 48 48"><g class="pers" style="transform-origin: 24px 40px" fill="none" stroke="#1d1f3a" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"><circle cx="24" cy="15" r="7"/><path d="M9 41 A15 15 0 0 1 39 41"/></g></svg></div><div class="tt">¿QUIÉN SE LIBRA?</div></div>
+          <div class="big"></div>
+          <div class="sub"></div>
+          <div class="pie"><span class="chip">ASOCIACIÓN</span><span class="src">The Lancet, 2016 · 13 estudios</span></div>
+        </div>
+      </div>
+      <div id="hud" class="clip" data-start="0" data-duration="64.7" data-track-index="4">
+        <div id="alt">0<small>h</small></div>
+        <div id="since"></div>
+        <div id="clock">09:00</div>
+        <div id="extra"></div>
+        <div id="note"></div>
+      </div>
+      <div id="pregunta" class="clip" data-start="0" data-duration="64.7" data-track-index="5"><span>¿Cuántas horas llevas sentado hoy?</span></div>
+      <div id="title" class="clip" data-start="0" data-duration="64.7" data-track-index="6"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="64.7"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="64.7" data-track-index="7" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 63.402, "lines": [{"id": "l1", "s": 0.1, "e": 2.48, "words": [{"w": "8", "s": 0.1, "e": 0.23, "key": false}, {"w": "horas", "s": 0.32, "e": 0.74, "key": true}, {"w": "sentado.", "s": 0.74, "e": 1.58, "key": false}, {"w": "Alguien", "s": 1.58, "e": 1.97, "key": false}, {"w": "se", "s": 2, "e": 2.12, "key": false}, {"w": "libra.", "s": 2.12, "e": 2.48, "key": false}]}, {"id": "l2", "s": 2.48, "e": 5.4, "words": [{"w": "Te", "s": 2.48, "e": 2.66, "key": false}, {"w": "digo", "s": 2.66, "e": 2.83, "key": false}, {"w": "quién", "s": 2.83, "e": 3.1, "key": false}, {"w": "al", "s": 3.1, "e": 3.2, "key": false}, {"w": "final.", "s": 3.2, "e": 3.66, "key": false}, {"w": "Primero,", "s": 3.96, "e": 4.22, "key": false}, {"w": "lo", "s": 4.22, "e": 4.4, "key": false}, {"w": "que", "s": 4.4, "e": 4.55, "key": false}, {"w": "pasa", "s": 4.58, "e": 4.72, "key": false}, {"w": "en", "s": 4.72, "e": 4.77, "key": false}, {"w": "tu", "s": 4.77, "e": 4.92, "key": false}, {"w": "cuerpo.", "s": 4.92, "e": 5.4, "key": true}]}, {"id": "l3", "s": 5.4, "e": 11.04, "words": [{"w": "Son", "s": 5.4, "e": 5.58, "key": false}, {"w": "las", "s": 5.61, "e": 5.83, "key": false}, {"w": "9", "s": 5.84, "e": 6.06, "key": true}, {"w": "de", "s": 6.06, "e": 6.16, "key": false}, {"w": "la", "s": 6.16, "e": 6.37, "key": false}, {"w": "mañana", "s": 6.37, "e": 6.79, "key": false}, {"w": "y", "s": 6.82, "e": 6.88, "key": false}, {"w": "te", "s": 6.88, "e": 7.03, "key": false}, {"w": "sientas:", "s": 7.03, "e": 7.78, "key": false}, {"w": "un", "s": 7.83, "e": 7.99, "key": false}, {"w": "café,", "s": 7.99, "e": 8.5, "key": false}, {"w": "el", "s": 8.5, "e": 8.66, "key": false}, {"w": "correo,", "s": 8.78, "e": 9.34, "key": false}, {"w": "la", "s": 9.35, "e": 9.52, "key": false}, {"w": "primera", "s": 9.52, "e": 10.0, "key": false}, {"w": "reunión.", "s": 10.4, "e": 11.04, "key": false}]}, {"id": "l4", "s": 11.14, "e": 21.96, "words": [{"w": "En", "s": 11.14, "e": 11.15, "key": false}, {"w": "un", "s": 11.15, "e": 11.26, "key": false}, {"w": "laboratorio,", "s": 11.26, "e": 11.99, "key": false}, {"w": "19", "s": 11.99, "e": 12.32, "key": false}, {"w": "adultos", "s": 12.33, "e": 12.72, "key": false}, {"w": "con", "s": 12.72, "e": 12.88, "key": false}, {"w": "sobrepeso", "s": 12.89, "e": 13.5, "key": false}, {"w": "se", "s": 13.5, "e": 13.7, "key": false}, {"w": "levantaron", "s": 13.7, "e": 14.16, "key": false}, {"w": "2", "s": 14.17, "e": 14.27, "key": false}, {"w": "minutos", "s": 14.33, "e": 14.74, "key": false}, {"w": "cada", "s": 14.74, "e": 15.0, "key": false}, {"w": "20,", "s": 15, "e": 15.41, "key": false}, {"w": "tras", "s": 15.41, "e": 15.63, "key": false}, {"w": "una", "s": 15.63, "e": 15.89, "key": false}, {"w": "bebida", "s": 15.94, "e": 16.25, "key": false}, {"w": "de", "s": 16.36, "e": 16.4, "key": false}, {"w": "prueba:", "s": 16.4, "e": 17.02, "key": false}, {"w": "su", "s": 17.03, "e": 17.18, "key": false}, {"w": "azúcar", "s": 17.18, "e": 17.6, "key": true}, {"w": "tras", "s": 17.81, "e": 17.9, "key": false}, {"w": "comer", "s": 17.9, "e": 18.23, "key": false}, {"w": "fue", "s": 18.26, "e": 18.47, "key": false}, {"w": "una", "s": 18.48, "e": 18.58, "key": false}, {"w": "cuarta", "s": 18.84, "e": 19.13, "key": false}, {"w": "parte", "s": 19.13, "e": 19.49, "key": false}, {"w": "menor", "s": 19.55, "e": 20.02, "key": false}, {"w": "que", "s": 20.22, "e": 20.29, "key": false}, {"w": "sentados", "s": 20.29, "e": 20.92, "key": false}, {"w": "sin", "s": 20.92, "e": 21.11, "key": false}, {"w": "parar.", "s": 21.18, "e": 21.96, "key": false}]}, {"id": "l5", "s": 21.96, "e": 33.52, "words": [{"w": "Pasan", "s": 21.96, "e": 22.02, "key": false}, {"w": "las", "s": 22.02, "e": 22.14, "key": false}, {"w": "horas,", "s": 22.24, "e": 22.37, "key": false}, {"w": "y", "s": 22.46, "e": 22.5, "key": false}, {"w": "a", "s": 22.52, "e": 22.58, "key": false}, {"w": "las", "s": 22.58, "e": 22.77, "key": false}, {"w": "8:", "s": 22.77, "e": 23.08, "key": false}, {"w": "en", "s": 23.08, "e": 23.2, "key": false}, {"w": "10.000", "s": 23.2, "e": 24.34, "key": false}, {"w": "estadounidenses,", "s": 24.34, "e": 25.37, "key": false}, {"w": "seguidos", "s": 25.44, "e": 25.91, "key": false}, {"w": "hasta", "s": 26.1, "e": 26.23, "key": false}, {"w": "13", "s": 26.23, "e": 26.57, "key": false}, {"w": "años,", "s": 26.61, "e": 26.98, "key": false}, {"w": "sentarse", "s": 26.98, "e": 27.47, "key": false}, {"w": "más", "s": 27.47, "e": 27.62, "key": false}, {"w": "de", "s": 27.74, "e": 27.92, "key": false}, {"w": "8", "s": 28.02, "e": 28.15, "key": false}, {"w": "horas,", "s": 28.24, "e": 28.68, "key": false}, {"w": "frente", "s": 28.69, "e": 29.16, "key": false}, {"w": "a", "s": 29.17, "e": 29.25, "key": false}, {"w": "menos", "s": 29.25, "e": 29.64, "key": false}, {"w": "de", "s": 29.64, "e": 29.8, "key": false}, {"w": "4,", "s": 29.8, "e": 30.19, "key": false}, {"w": "se", "s": 30.19, "e": 30.24, "key": false}, {"w": "asoció", "s": 30.51, "e": 30.81, "key": false}, {"w": "con", "s": 30.81, "e": 31.04, "key": false}, {"w": "un", "s": 31.05, "e": 31.15, "key": false}, {"w": "cuarenta", "s": 31.21, "e": 31.406, "key": false}, {"w": "y", "s": 31.406, "e": 31.431, "key": false}, {"w": "seis", "s": 31.431, "e": 31.529, "key": false}, {"w": "por", "s": 31.529, "e": 31.603, "key": false}, {"w": "ciento", "s": 31.603, "e": 31.75, "key": false}, {"w": "más", "s": 31.88, "e": 31.99, "key": false}, {"w": "de", "s": 31.99, "e": 32.15, "key": false}, {"w": "riesgo", "s": 32.15, "e": 32.62, "key": true}, {"w": "de", "s": 32.62, "e": 32.77, "key": false}, {"w": "morir.", "s": 32.77, "e": 33.52, "key": false}]}, {"id": "l6", "s": 33.54, "e": 42.0, "words": [{"w": "Pasado", "s": 33.54, "e": 34.52, "key": false}, {"w": "ese", "s": 34.52, "e": 34.68, "key": false}, {"w": "umbral,", "s": 34.78, "e": 35.17, "key": true}, {"w": "el", "s": 35.17, "e": 35.29, "key": false}, {"w": "riesgo", "s": 35.29, "e": 35.66, "key": false}, {"w": "no", "s": 35.66, "e": 35.74, "key": false}, {"w": "se", "s": 35.8, "e": 35.9, "key": false}, {"w": "queda", "s": 35.9, "e": 36.02, "key": false}, {"w": "quieto:", "s": 36.23, "e": 36.79, "key": false}, {"w": "en", "s": 36.79, "e": 36.9, "key": false}, {"w": "34", "s": 36.91, "e": 36.99, "key": false}, {"w": "estudios,", "s": 37.34, "e": 37.91, "key": false}, {"w": "cada", "s": 37.92, "e": 38.17, "key": false}, {"w": "hora", "s": 38.17, "e": 38.42, "key": false}, {"w": "extra", "s": 38.64, "e": 38.86, "key": false}, {"w": "se", "s": 38.86, "e": 38.94, "key": false}, {"w": "asoció", "s": 39.01, "e": 39.52, "key": false}, {"w": "con", "s": 39.52, "e": 39.68, "key": false}, {"w": "un", "s": 39.78, "e": 39.91, "key": false}, {"w": "cuatro", "s": 40, "e": 40.168, "key": false}, {"w": "por", "s": 40.168, "e": 40.252, "key": false}, {"w": "ciento", "s": 40.252, "e": 40.42, "key": false}, {"w": "más", "s": 40.42, "e": 40.74, "key": false}, {"w": "de", "s": 40.8, "e": 41.02, "key": false}, {"w": "riesgo.", "s": 41.23, "e": 42.0, "key": false}]}, {"id": "l7", "s": 42.27, "e": 58.12, "words": [{"w": "Y", "s": 42.27, "e": 42.327, "key": false}, {"w": "quién", "s": 42.327, "e": 42.61, "key": false}, {"w": "se", "s": 42.61, "e": 42.74, "key": false}, {"w": "libra:", "s": 42.74, "e": 43.24, "key": true}, {"w": "en", "s": 43.26, "e": 43.4, "key": false}, {"w": "un", "s": 43.4, "e": 43.52, "key": false}, {"w": "millón", "s": 43.64, "e": 43.93, "key": false}, {"w": "de", "s": 43.93, "e": 44.06, "key": false}, {"w": "personas,", "s": 44.06, "e": 44.84, "key": false}, {"w": "sentarse", "s": 44.84, "e": 45.16, "key": false}, {"w": "más", "s": 45.28, "e": 45.36, "key": false}, {"w": "de", "s": 45.36, "e": 45.48, "key": false}, {"w": "8", "s": 45.48, "e": 45.84, "key": false}, {"w": "horas", "s": 45.94, "e": 46.3, "key": false}, {"w": "y", "s": 46.3, "e": 46.39, "key": false}, {"w": "moverse", "s": 46.39, "e": 47.02, "key": false}, {"w": "poco", "s": 47.02, "e": 47.56, "key": false}, {"w": "se", "s": 47.56, "e": 47.74, "key": false}, {"w": "asoció", "s": 47.74, "e": 48.15, "key": false}, {"w": "con", "s": 48.49, "e": 48.55, "key": false}, {"w": "un", "s": 48.55, "e": 48.73, "key": false}, {"w": "cincuenta", "s": 48.73, "e": 48.97, "key": false}, {"w": "y", "s": 48.97, "e": 48.997, "key": false}, {"w": "nueve", "s": 48.997, "e": 49.13, "key": false}, {"w": "por", "s": 49.13, "e": 49.21, "key": false}, {"w": "ciento", "s": 49.21, "e": 49.37, "key": false}, {"w": "más", "s": 49.37, "e": 49.64, "key": false}, {"w": "de", "s": 49.8, "e": 49.82, "key": false}, {"w": "riesgo.", "s": 49.82, "e": 50.69, "key": false}, {"w": "Quien", "s": 50.74, "e": 50.88, "key": false}, {"w": "se", "s": 50.95, "e": 51.0, "key": false}, {"w": "sentaba", "s": 51, "e": 51.28, "key": false}, {"w": "igual,", "s": 51.44, "e": 51.68, "key": false}, {"w": "pero", "s": 51.68, "e": 51.72, "key": false}, {"w": "hacía", "s": 51.82, "e": 51.95, "key": false}, {"w": "una", "s": 52.04, "e": 52.21, "key": false}, {"w": "hora", "s": 52.21, "e": 52.46, "key": false}, {"w": "de", "s": 52.46, "e": 52.5, "key": false}, {"w": "actividad", "s": 52.57, "e": 53.06, "key": false}, {"w": "moderada", "s": 53.27, "e": 53.63, "key": false}, {"w": "al", "s": 53.63, "e": 53.75, "key": false}, {"w": "día,", "s": 53.75, "e": 54.02, "key": false}, {"w": "ningún", "s": 54.37, "e": 54.44, "key": false}, {"w": "riesgo", "s": 54.44, "e": 54.81, "key": false}, {"w": "extra.", "s": 54.81, "e": 55.4, "key": false}, {"w": "No", "s": 55.4, "e": 55.52, "key": false}, {"w": "es", "s": 55.52, "e": 55.68, "key": false}, {"w": "un", "s": 55.68, "e": 55.76, "key": false}, {"w": "truco:", "s": 55.76, "e": 56.24, "key": false}, {"w": "es", "s": 56.24, "e": 56.32, "key": false}, {"w": "lo", "s": 56.32, "e": 56.44, "key": false}, {"w": "que", "s": 56.54, "e": 56.65, "key": false}, {"w": "midieron", "s": 56.65, "e": 57.2, "key": false}, {"w": "los", "s": 57.2, "e": 57.42, "key": false}, {"w": "autores.", "s": 57.42, "e": 58.12, "key": false}]}, {"id": "l8", "s": 58.12, "e": 63.08, "words": [{"w": "Son", "s": 58.12, "e": 58.33, "key": false}, {"w": "asociaciones,", "s": 58.33, "e": 59.31, "key": false}, {"w": "no", "s": 59.31, "e": 59.4, "key": false}, {"w": "un", "s": 59.45, "e": 59.59, "key": false}, {"w": "diagnóstico.", "s": 59.59, "e": 60.6, "key": false}, {"w": "¿Cuántas", "s": 60.6, "e": 60.95, "key": false}, {"w": "horas", "s": 60.95, "e": 61.2, "key": false}, {"w": "llevas", "s": 61.2, "e": 61.56, "key": false}, {"w": "sentado", "s": 61.66, "e": 62.05, "key": false}, {"w": "hoy?", "s": 62.05, "e": 62.48, "key": false}, {"w": "Dime", "s": 62.48, "e": 62.62, "key": false}, {"w": "tu", "s": 62.68, "e": 62.79, "key": false}, {"w": "cifra.", "s": 62.79, "e": 63.08, "key": true}]}]}</script>
+    <script id="escena" type="application/json">
+      {
+        "titulo": "¿Quién se libra?",
+        "nota": "Ilustración: cada cuerpo es distinto",
+        "formato": "peso",
+        "desde": "SENTADO HOY",
+        "inicio": 0,
+        "ritmo": 0.0000347222222222,
+        "etiquetas_bajo_marcador": true,
+        "arranque": { "adelanto": { "rotulo": "AL FINAL", "cifra": "¿QUIÉN?", "pie": "se libra", "vuelve": ["final"], "dur_vuelve": 1.0 } },
+        "hitos": [
+          { "clave": "9", "v": 0.1 },
+          { "clave": "laboratorio", "v": 4 },
+          { "clave": "8", "v": 8 },
+          { "clave": "umbral", "v": 9 },
+          { "clave": "millon", "v": 10 }
+        ],
+        "sonido": { "viento": true }
+      }
+    </script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 64.7 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import * as THREE from "three";
+      import { crearContador } from "./comun/contador.js";
+
+      // Sitting 8 hours a day, health version (the recipe of 08-pasos-salud, 12-cafe and 13-sueno). The counter is the
+      // hours he has been sitting today; the clock, the time of day (he sits down at 09:00). Each landmark is a study,
+      // as a card on the right with a leader line to an object or his body: a laboratory trial of blood sugar
+      // (Dunstan 2012), more than 8 h against less than 4 h (Zhou 2024), each extra hour over 8 (Patterson 2018) and,
+      // last, who gets away with it: the million-person meta-analysis (Ekelund 2016). See fuentes.md.
+      //
+      // The start (plan of 11 November): it starts by the END. Frame 0 already shows him ten hours in: slumped
+      // forward, dark rings, a yawn with his hand on his face, 19:00 on the clock. Then the counter runs back to the
+      // first hour and the story is told from 09:00. The bait: "Alguien se libra" and, in the last shot, the question.
+      // The scene asks the engine for "peso" because control.py does not know "horas"; the HUD is written here.
+      // Everything is in metres; the character is 1.75 m tall.
+      const C = crearContador(THREE);
+      const { VOZ, D, words, anchors, scene, camera, mat, glow, box, at, v3, hash, clamp, lerp, ease, smooth, ramp, norm, miles, Y, V, W, H } = C;
+      const RAD = Math.PI / 180;
+      const cyl = (rt, rb, h, m, seg = 10) => new THREE.Mesh(new THREE.CylinderGeometry(rt, rb, h, seg), m);
+      const L = VOZ.lines;
+      const lin = (i, k, def) => (L[i] ? L[i][k] : def);
+      const tW = (claves, desde, def) => { const w = words.find((x) => x.s >= desde && claves.some((c) => norm(x.w).startsWith(c))); return w ? w.s : def; };
+      const A = Object.fromEntries(anchors.map((a) => [a.hito.clave, a]));
+      const tA = (c, def) => (A[c] ? A[c].t : def);
+
+      // ---------- times from the voice ----------
+      const tNueve = tA("9", 7.5), tLab = tA("laboratorio", 11), tOcho = tA("8", 19.5), tUmbral = tA("umbral", 36), tMil = tA("millon", 47);
+      const tCuarta = tW(["cuarta"], tLab, tLab + 8), tCuarenta = tW(["cuarenta", "46"], tOcho + 2, tOcho + 8);
+      const tTreinta = tW(["treinta", "34"], tUmbral, tUmbral + 3), tExtra = tW(["extra"], tUmbral, tUmbral + 5), tCuatro = tW(["cuatro", "4"], tExtra + 0.3, tExtra + 3);
+      const tCin = tW(["cincuenta", "59"], tMil, tMil + 6), tNingun = tW(["ningun"], tCin + 2, tCin + 12), tHacia = tW(["hacia"], tCin + 2, tCin + 9);
+      const tLibra = tW(["libra"], lin(6, "s", 45), lin(6, "s", 45) + 3), tPreg = tW(["cuantas"], lin(7, "s", D - 6), D - 5);
+      const tL1 = lin(0, "e", 2.5);
+
+      // ---------- the counter: hours sitting today. It starts at the end (10 h), runs back to 0, then climbs ----------
+      const FIN = 10, T_REW = [0.2, 1.65];
+      const KF = [[tNueve, 0, 0], [tLab, 4, 0], [tOcho, 8, 0], [tUmbral, 9, 0], [tMil, 10, 0]].map(([t, v], i) => ({ t, v, fin: lin(i === 0 ? 2 : i === 1 ? 3 : i === 2 ? 4 : i === 3 ? 5 : 6, "e", t + 3) }));
+      const sube = (i) => { const a = KF[i], b = KF[i + 1]; return Math.max(a.t + 0.25, b.t - 3.2, Math.min(a.fin, b.t - 1.5)); };
+      function horasAt(t) {
+        if (t < T_REW[1]) return lerp(FIN, 0, smooth(clamp((t - T_REW[0]) / (T_REW[1] - T_REW[0]))));
+        if (t <= KF[0].t) return 0;
+        let i = 0;
+        while (i + 1 < KF.length && t >= KF[i + 1].t) i++;
+        const a = KF[i], b = KF[i + 1];
+        const ritmo = i === 0 ? 0 : 0.012;
+        if (!b) return a.v + 0.003 * (t - a.t);
+        const st = sube(i), k = smooth(clamp((t - st) / (b.t - st)));
+        return lerp(a.v + ritmo * (Math.min(t, st) - a.t), b.v, k);
+      }
+      const hhmm = (h) => { const m = Math.floor((9 + h) * 60 + 1e-6); return `${String(Math.floor(m / 60) % 24).padStart(2, "0")}:${String(m % 60).padStart(2, "0")}`; };
+      function marcador(h) {
+        const m = Math.floor(h * 60 + 1e-6), hh = Math.floor(m / 60), mm = m % 60;
+        return hh < 1 ? `${mm}<small>min</small>` : `${hh}<small>h</small> ${String(mm).padStart(2, "0")}<small>min</small>`;
+      }
+
+      // ---------- the room: an office corner (no walls on the sides: a 60 m wide back wall and floor) ----------
+      scene.add(at(box(60, 7, 0.2, mat(0xb7d3ea)), 0, 3.5, -2.7));
+      scene.add(at(box(60, 0.18, 0.12, mat(0xf4efe2)), 0, 0.09, -2.58));
+      scene.add(at(box(60, 0.12, 40, mat(0xc79a6a)), 0, -0.07, 12));
+      {
+        const LIN = mat(0xa9804f);
+        for (let i = -12; i <= 12; i++) scene.add(at(box(0.025, 0.002, 12, LIN), i * 0.55, -0.005, 3.2));
+        scene.add(at(cyl(1.3, 1.3, 0.012, mat(0x6f8fb8, { roughness: 0.95 }), 40), -0.3, 0.006, -0.1));
+      }
+      // window on the left; its colour follows the day
+      const VENT = new THREE.MeshBasicMaterial({ color: 0x8fd3ff, toneMapped: false });
+      scene.add(at(box(1.9, 1.9, 0.05, VENT), -2.7, 2.35, -2.58));
+      for (const [w, h, x, y] of [[2.1, 0.1, -2.7, 3.35], [2.1, 0.1, -2.7, 1.35], [0.1, 2.1, -3.7, 2.35], [0.1, 2.1, -1.7, 2.35], [0.06, 1.9, -2.7, 2.35], [1.9, 0.06, -2.7, 2.35]]) scene.add(at(box(w, h, 0.09, mat(0xffffff)), x, y, -2.55));
+      // wall clock: the hands follow the counter
+      const PARED_RELOJ = new THREE.Group(); PARED_RELOJ.position.set(0.55, 2.55, -2.52); scene.add(PARED_RELOJ);
+      {
+        const aro = cyl(0.36, 0.36, 0.05, mat(0x1d1f3a), 28); aro.rotation.x = Math.PI / 2; PARED_RELOJ.add(aro);
+        const cara = cyl(0.32, 0.32, 0.02, mat(0xffffff, { roughness: 0.3 }), 28); cara.rotation.x = Math.PI / 2; cara.position.z = 0.03; PARED_RELOJ.add(cara);
+        for (let i = 0; i < 12; i++) { const a = (i / 12) * Math.PI * 2; PARED_RELOJ.add(at(box(0.016, i % 3 ? 0.03 : 0.055, 0.01, mat(0x1d1f3a)), Math.sin(a) * 0.27, Math.cos(a) * 0.27, 0.045)).rotation.z = -a; }
+      }
+      const MANECILLA_H = new THREE.Group(), MANECILLA_M = new THREE.Group();
+      MANECILLA_H.position.z = 0.056; MANECILLA_M.position.z = 0.066; PARED_RELOJ.add(MANECILLA_H, MANECILLA_M);
+      MANECILLA_H.add(at(box(0.03, 0.17, 0.012, mat(0x1d1f3a)), 0, 0.075, 0));
+      MANECILLA_M.add(at(box(0.02, 0.26, 0.012, mat(0xe0443a)), 0, 0.115, 0));
+      // a poster and a plant
+      scene.add(at(box(0.9, 1.2, 0.05, mat(0xffffff)), 2.3, 2.3, -2.57));
+      scene.add(at(box(0.78, 1.08, 0.06, mat(0xffcf2e)), 2.3, 2.3, -2.56));
+      for (let i = 0; i < 4; i++) scene.add(at(box(0.5 - 0.06 * (i % 2), 0.1, 0.07, mat(0x2b3a6b)), 2.3, 2.62 - i * 0.24, -2.53));
+      scene.add(at(cyl(0.22, 0.17, 0.4, mat(0xc4552e), 10), -4.6, 0.2, -2.0));
+      scene.add(at(new THREE.Mesh(new THREE.IcosahedronGeometry(0.42, 0), mat(0x4f9e4a)), -4.6, 0.75, -2.0));
+      scene.add(at(new THREE.Mesh(new THREE.IcosahedronGeometry(0.3, 0), mat(0x5fb35a)), -4.45, 1.05, -1.95));
+
+      // ---------- the seat: chair, desk and laptop in one group turned like the character in 13-sueno ----------
+      const KX = -0.55, KZ = -0.95;
+      const SET = new THREE.Group(); SET.position.set(KX, 0, KZ); SET.rotation.y = 1.0; scene.add(SET);
+      const SILLA = new THREE.Group(); SET.add(SILLA);
+      {
+        const NARANJA = mat(0xc4552e, { roughness: 0.7 }), OSCURO = mat(0x2b3a6b);
+        SILLA.add(at(box(0.52, 0.07, 0.52, NARANJA), 0, 0.405, 0.12));
+        SILLA.add(at(box(0.5, 0.5, 0.07, NARANJA), 0, 0.72, -0.2));
+        SILLA.add(at(cyl(0.03, 0.03, 0.4, OSCURO, 8), 0, 0.2, 0.1));
+        SILLA.add(at(cyl(0.3, 0.3, 0.04, OSCURO, 5), 0, 0.03, 0.1));
+      }
+      {
+        const MADERA = mat(0xb9793f, { roughness: 0.6 }), PATA = mat(0x2b3a6b);
+        SET.add(at(box(1.25, 0.05, 0.72, MADERA), 0, 0.745, 0.72));
+        for (const sx of [-1, 1]) for (const sz of [0.42, 1.02]) SET.add(at(box(0.05, 0.72, 0.05, PATA), sx * 0.58, 0.36, sz));
+      }
+      const PORTATIL = new THREE.Group(); PORTATIL.position.set(0, 0.77, 0.58); SET.add(PORTATIL);
+      {
+        PORTATIL.add(at(box(0.36, 0.016, 0.25, mat(0xd8dde6, { metalness: 0.3, roughness: 0.4 })), 0, 0.008, 0));
+        const pant = new THREE.Group(); pant.position.set(0, 0.016, 0.12); pant.rotation.x = 0.28; PORTATIL.add(pant);
+        pant.add(at(box(0.36, 0.23, 0.012, mat(0xd8dde6, { metalness: 0.3, roughness: 0.4 })), 0, 0.115, 0));
+        pant.add(at(box(0.33, 0.2, 0.004, glow(0x9bd1ff)), 0, 0.115, -0.008));
+      }
+      {
+        const taza = cyl(0.04, 0.035, 0.09, mat(0xe0443a), 14); taza.position.set(0.42, 0.79, 0.6); SET.add(taza);
+        const cafe = cyl(0.034, 0.034, 0.004, mat(0x3a2418), 14); cafe.position.set(0.42, 0.836, 0.6); SET.add(cafe);
+      }
+
+      // ---------- our character, sitting ----------
+      const P = C.personaje(), { kid, head, body, arms } = P;
+      kid.scale.setScalar(0.246); SET.add(kid);
+      const PIES = kid.children.slice(0, 4); // the standing legs and shoes
+      const SENTADO = new THREE.Group(); kid.add(SENTADO);
+      for (const sx of [-1, 1]) {
+        SENTADO.add(at(box(0.62, 0.5, 1.45, mat(0x2b3a6b)), sx * 0.36, 1.35, 0.72));
+        SENTADO.add(at(box(0.62, 1.47, 0.7, mat(0x2b3a6b)), sx * 0.36, 0.365, 1.1));
+        SENTADO.add(at(box(0.72, 0.32, 1.05, mat(0xf4efe2)), sx * 0.36, -0.53, 1.25));
+      }
+      // dark rings under his eyes that grow with the hours, and sweat/tiredness marks
+      const OJERAS = mat(0x7d5a8c, { roughness: 0.9 });
+      const ojeras = [-1, 1].map((sx) => { const o = at(box(0.7, 0.2, 0.06, OJERAS), sx * 0.52, -0.3, 1.13); head.add(o); return o; });
+
+      // ---------- cards ----------
+      const card = (id) => document.getElementById(id);
+      const CARDS = [
+        { el: card("c-lab"), t: tLab - 0.1, hasta: tOcho - 0.9, punto: () => [PORTATIL, v3(0, 0.15, 0.1)],
+          fases: [{ t: tLab - 0.1, n: 19, fija: true, u: "adultos", sub: "con sobrepeso, en un laboratorio: sentados sin parar, o con 2 min de paseo cada 20" },
+                  { t: tCuarta - 0.3, pre: "−", n: 25, u: "%", sub: "de azúcar en sangre tras comer con las pausas, frente a sentados sin parar" }] },
+        { el: card("c-ocho"), t: tOcho - 0.1, hasta: tUmbral - 0.9, punto: () => [body, v3(0.35, 1.5, 0.85)],
+          fases: [{ t: tOcho - 0.1, n: 10639, fija: true, u: "", sub: "adultos de EE. UU., seguidos hasta 13 años" },
+                  { t: tCuarenta - 0.3, n: 46, pre: "+", u: "%", sub: "de riesgo de morir con más de 8 h sentado, frente a menos de 4 h" }] },
+        { el: card("c-umbral"), t: tUmbral - 0.1, hasta: tMil - 0.9, punto: () => [PARED_RELOJ, v3(0.3, 0.2, 0.05)],
+          fases: [{ t: tUmbral - 0.1, n: 34, fija: true, u: "estudios", sub: "con 1,3 millones de personas, ajustados por la actividad física" },
+                  { t: tCuatro - 0.3, n: 4, pre: "+", u: "%", sub: "de riesgo de morir por cada hora sobre las 8 h (hasta las 8 h, +1 %)" }] },
+        { el: card("c-millon"), t: tMil - 0.1, hasta: tPreg - 0.35, punto: () => [head, v3(0, 0.1, 1.2)],
+          fases: [{ t: tMil - 0.1, big: "1", u: "millón", sub: "de personas en 13 estudios, seguidas entre 2 y 18 años" },
+                  { t: tCin - 0.3, n: 59, pre: "+", u: "%", sub: "de riesgo con más de 8 h sentado y muy poca actividad, frente a menos de 4 h y mucha" },
+                  { t: tNingun - 0.3, big: "SIN MÁS", cls: "txt", sub: "riesgo con más de 8 h sentado y unos 60 a 75 min de actividad moderada al día" }] },
+      ];
+      const svgNS = "http://www.w3.org/2000/svg", leaders = document.getElementById("leaders");
+      for (const c of CARDS) {
+        c.ln = document.createElementNS(svgNS, "line"); c.ln.setAttribute("stroke", "rgba(255,255,255,0.9)"); c.ln.setAttribute("stroke-width", "4"); leaders.appendChild(c.ln);
+        c.dot = document.createElementNS(svgNS, "circle"); c.dot.setAttribute("r", "9"); c.dot.setAttribute("fill", "#ffcf2e"); c.dot.setAttribute("stroke", "#0b1a3a"); c.dot.setAttribute("stroke-width", "4"); leaders.appendChild(c.dot);
+        c.big = c.el.querySelector(".big"); c.sub = c.el.querySelector(".sub");
+      }
+      const toScreen = (p) => { const q = p.clone().project(camera); return { x: (q.x + 1) * 0.5 * W, y: (1 - q.y) * 0.5 * H }; };
+      const hudEl = document.getElementById("hud");
+      function fase(c, t) {
+        let i = 0;
+        while (i + 1 < c.fases.length && t >= c.fases[i + 1].t) i++;
+        const f = c.fases[i], d = t - f.t;
+        let txt = f.big;
+        if (f.n !== undefined) txt = (f.pre || "") + miles(f.n >= 10 && !f.fija ? lerp(0.6 * f.n, f.n, ease(clamp((t - f.t) / 0.7))) : f.n);
+        const html = `${txt}${f.u ? `<small>${f.u}</small>` : ""}`;
+        if (c.big.innerHTML !== html) c.big.innerHTML = html;
+        c.big.className = "big" + (f.cls ? " " + f.cls : "");
+        if (c.sub.textContent !== f.sub) c.sub.textContent = f.sub;
+        c.big.style.transformOrigin = "0 50%";
+        c.big.style.transform = `scale(${1 + (i > 0 && d > 0 && d < 0.45 ? 0.1 * Math.sin((Math.PI * d) / 0.45) : 0)})`;
+      }
+      const q = (id, sel) => card(id).querySelector(sel);
+      function tarjetas(t) {
+        const top = Math.max(646, hudEl.offsetTop + hudEl.offsetHeight + 18);
+        for (const c of CARDS) {
+          const kin = clamp((t - (c.t - 0.12)) / 0.35), kout = clamp((t - c.hasta) / 0.3), vis = ease(kin) * (1 - kout);
+          c.el.style.top = top + "px";
+          c.el.style.opacity = vis;
+          c.el.style.transform = `translateY(${(1 - ease(kin)) * 26}px) scale(${0.94 + 0.06 * ease(kin)})`;
+          const on = vis > 0.01;
+          [c.ln, c.dot].forEach((e) => e.setAttribute("opacity", on ? vis : 0));
+          if (!on) continue;
+          fase(c, t);
+          const [obj, local] = c.punto(), p = toScreen(obj.localToWorld(local.clone()));
+          const cy = clamp(p.y, top + 50, top + c.el.offsetHeight - 50);
+          c.ln.setAttribute("x1", p.x); c.ln.setAttribute("y1", p.y); c.ln.setAttribute("x2", 556); c.ln.setAttribute("y2", cy);
+          c.dot.setAttribute("cx", p.x); c.dot.setAttribute("cy", p.y);
+        }
+        q("c-lab", ".gota").style.transform = `scale(${1 + 0.06 * Math.sin((t - tLab) * 3)})`;
+        q("c-ocho", ".pulso").setAttribute("stroke-dashoffset", 100 * (1 - clamp(((t - tOcho) * 0.8) % 1.25)));
+        q("c-umbral", ".reloj").style.transform = `rotate(${6 * Math.sin((t - tUmbral) * 2.2)}deg)`;
+        q("c-millon", ".pers").style.transform = `translateY(${-3 * Math.abs(Math.sin((t - tMil) * 2.4))}px)`;
+      }
+
+      // ---------- the camera: a new framing every 2 or 3 s, travelling smoothly from one to the next ----------
+      const pt = (obj, x, y, z) => () => obj.localToWorld(v3(x, y, z));
+      const F = {
+        cara: (d, az, el) => ({ mira: pt(head, 0, -0.5, 0.5), dist: d, az, el }),
+        torso: (d, az, el) => ({ mira: pt(body, 0, 1.6, 0.4), dist: d, az, el }),
+        entero: (d, az, el) => ({ mira: pt(body, 0, 0.2, 0.4), dist: d, az, el }),
+        portatil: (d, az, el) => ({ mira: pt(PORTATIL, 0, 0.12, 0), dist: d, az, el }),
+        reloj: (d, az, el) => ({ mira: () => v3(-0.35, 1.2, -1.4), dist: d + 0.6, az, el }),
+        silla: (d, az, el) => ({ mira: pt(SILLA, 0, 0.45, 0.1), dist: d, az, el }),
+        manos: (d, az, el) => ({ mira: pt(PORTATIL, 0, 0.1, -0.2), dist: d, az, el }),
+      };
+      // a new framing every ~2.4 s, alternating close and wide shots (so each change is big and visible), plus beats tied to the voice
+      const FORZADAS = [
+        [-1, F.cara(4.6, 14, 3)], [0.85, F.cara(3.6, 8, 3), 1.0],
+        [tNueve - 0.6, F.reloj(5.2, 22, 6), 1.1],
+        [tLab - 0.6, F.portatil(3.4, 36, 14), 1.1], [tOcho - 0.7, F.torso(5.6, 22, 5), 1.1],
+        [tUmbral - 0.7, F.reloj(4.6, 20, 6), 1.1], [tMil - 0.6, F.cara(5.0, 14, 4), 1.1],
+        [tCin - 0.6, F.entero(8.6, 26, 8), 1.1], [tHacia - 0.5, F.entero(7.4, 20, 5), 1.0],
+        [tLibra - 0.5, F.torso(6.4, 18, 5), 1.1], [tPreg - 0.7, F.entero(9.4, 22, 9), 1.2],
+      ];
+      const CERCA = [F.cara(3.7, -8, 3), F.portatil(3.3, 30, 12), F.manos(3.2, 14, 10), F.silla(3.8, 40, 4), F.cara(3.9, 24, 2), F.torso(4.2, 6, 4)];
+      const LEJOS = [F.entero(8.6, 30, 7), F.reloj(5.0, 26, 7), F.torso(7.0, 12, 6), F.entero(9.2, 8, 10), F.reloj(5.2, 10, 8), F.entero(8.0, -14, 6)];
+      const ENC0 = FORZADAS.map(([t, e, dur]) => ({ t, ...e, dur }));
+      for (let t = 2.2, k = 0; t < D - 3.2; t += 2.4, k++) if (!FORZADAS.some(([ft]) => Math.abs(ft - t) < 1.1)) ENC0.push({ t, ...(k % 2 ? LEJOS : CERCA)[(k >> 1) % 6], dur: 1.1 });
+      ENC0.sort((a, b) => a.t - b.t);
+      const ENCUADRES = [];
+      ENC0.forEach((e, i) => ENCUADRES.push(i > 1 ? { ...e, t: Math.max(e.t, ENCUADRES[i - 1].t + 1.5) } : e));
+      function encuadre(t) {
+        let i = 0;
+        while (i + 1 < ENCUADRES.length && t >= ENCUADRES[i + 1].t) i++;
+        const b = ENCUADRES[i], a = ENCUADRES[Math.max(0, i - 1)];
+        const k = i === 0 ? 1 : smooth(clamp((t - b.t) / (b.dur || 1.5)));
+        const mira = a.mira().lerp(b.mira(), k);
+        let dist = lerp(a.dist, b.dist, k), az = lerp(a.az, b.az, k), el = lerp(a.el, b.el, k);
+        dist *= 1 + 0.05 * Math.sin(t * 0.37) + 0.3 * ramp(t, D - 3.2, D - 0.6);
+        az += 2 * Math.sin(t * 0.23) + 20 * C.impulso(t);
+        return { mira, dist, az, el };
+      }
+
+      // ---------- light and window by the hours ----------
+      const altEl = document.getElementById("alt"), sinceEl = document.getElementById("since"), clockEl = document.getElementById("clock");
+      const pregEl = document.getElementById("pregunta");
+      const tMiradas = [...CARDS.map((c) => c.t), tLibra];
+      const C_MANANA = new THREE.Color(0xffd9a3), C_DIA = new THREE.Color(0x8fd3ff), C_ORO = new THREE.Color(0xffc27a);
+      const SOL = new THREE.Color(0xfff1dc);
+
+      function renderAt(t) {
+        const h = horasAt(t), y = Y(h * 3 + 0.1);
+        const fat = smooth(clamp(h / 10));
+        const de = ramp(t, tHacia - 0.3, tHacia + 0.9); // stands up when the voice says "hacía" (an hour of activity)
+        // ---- the character: alive (blinks and reacts to each card) ----
+        P.animar(t);
+        ojeras.forEach((o) => { o.scale.set(1, 0.7 + 0.9 * fat, 1); });
+        const mira = tMiradas.reduce((s, tc) => { const d = t - tc; return d > -0.2 && d < 2.6 ? Math.max(s, d < 0.25 ? ease((d + 0.2) / 0.45) : Math.exp(-(d - 0.25) / 0.9)) : s; }, 0) * 0.7;
+        const bostezo = Math.max(1 - ramp(t, 0.9, 1.8), 0) * (1 - de);
+        const [lids, brows, pupils] = [[head.children[7], head.children[12]], [head.children[8], head.children[13]], [head.children[6], head.children[11]]];
+        const boca = head.children[15], [labios, dientes, esq1, esq2] = boca.children;
+        const kb = (t + 0.7) % 3.4, blink = kb < 0.14 ? Math.sin((Math.PI * kb) / 0.14) : 0;
+        // lid scale = how much of the eye is covered: little when awake, more with the hours, shut on a blink, open on a yawn
+        const cierre = Math.min(1, (0.2 + 0.3 * fat - 0.15 * mira) * (1 - 0.9 * bostezo) + 0.8 * blink);
+        lids.forEach((l) => (l.scale.y = Math.max(0.001, cierre)));
+        brows.forEach((b, i) => { b.position.y = 0.5 + 0.1 * mira - 0.05 * fat + 0.08 * de; b.rotation.z = (i ? -1 : 1) * (0.08 * mira + 0.1 * fat * (1 - mira)); });
+        pupils.forEach((pu, i) => { pu.position.x = (i ? 1 : -1) * 0.5; pu.scale.setScalar(1 + 0.1 * mira); });
+        const sonrisa = de;
+        const wO = Math.max(mira * 0.8, bostezo);
+        labios.scale.set(1 - 0.2 * wO + 0.3 * sonrisa, 0.16 + 0.55 * wO, 1);
+        labios.position.y = -0.08 * wO - 0.12 * bostezo;
+        dientes.visible = sonrisa > 0.5; dientes.scale.set(1.25, 1, 1); dientes.position.y = labios.position.y + 0.25 * labios.scale.y - 0.055;
+        [esq1, esq2].forEach((c, i) => { c.visible = wO < 0.4 && sonrisa < 0.5; c.position.x = (i ? 1 : -1) * 0.3; });
+        // ---- posture: upright at 09:00, slumped forward with the hours; on his feet at the end ----
+        const lean = 0.34 * fat * (1 - de);
+        body.rotation.x = lean;
+        head.position.set(0, 5.1 - 3.5 * (1 - Math.cos(lean)), 0.1 + 3.5 * Math.sin(lean));
+        head.rotation.x = 0.1 + 0.35 * fat * (1 - de) + 0.04 * Math.sin(t * 0.8) - 0.1 * bostezo;
+        head.rotation.y = -0.45 + 0.08 * Math.sin(t * 0.5) + 0.1 * mira;
+        // seated legs and chair, or standing legs: swapped half way up
+        SENTADO.visible = de < 0.5; PIES.forEach((m) => (m.visible = de >= 0.5));
+        kid.position.set(0, de < 0.5 ? 0.17 + 0.05 * de : 0.1 * (1 - de) * 2 * 0.5, 0.0 + 0.0);
+        kid.position.x = -0.95 * ease(de); kid.position.z = 0;
+        SILLA.position.z = -0.35 * ease(de);
+        // ---- arms: typing on the laptop, the right one to his face when he yawns; a stretch when he stands ----
+        const teclea = 0.04 * Math.sin(t * 9) * (1 - de);
+        const estira = de * (0.5 + 0.5 * Math.sin((t - tHacia) * 2.2));
+        arms.forEach((a, i) => {
+          const sx = i ? 1 : -1;
+          a.rotation.x = lerp(-0.9 - lean + teclea * sx, -2.9 + 0.4 * estira, de);
+          a.rotation.z = lerp(sx * 0.08, sx * (0.35 + 0.25 * estira), de);
+        });
+        arms[0].rotation.x = lerp(arms[0].rotation.x, -2.0, bostezo);
+        arms[0].rotation.z = lerp(arms[0].rotation.z, 0.62, bostezo);
+        body.scale.y = 1 + 0.012 * Math.sin(t * 2.2);
+        // ---- the wall clock follows the counter ----
+        const hd = 9 + h;
+        MANECILLA_H.rotation.z = -((hd % 12) / 12) * Math.PI * 2;
+        MANECILLA_M.rotation.z = -((hd * 60) % 60 / 60) * Math.PI * 2;
+        // ---- light: morning, day, golden evening; the window follows ----
+        const dorado = ramp(t, tUmbral - 1, tUmbral + 2) * 0 + smooth(clamp((h - 7.5) / 2.5));
+        const ven = new THREE.Color().copy(C_MANANA).lerp(C_DIA, smooth(clamp(h / 3))).lerp(C_ORO, dorado);
+        VENT.color.copy(ven);
+        C.hemi.intensity = 1.35 - 0.2 * dorado; C.key.intensity = 2.3 - 0.4 * dorado; C.key.color.copy(SOL).lerp(C_ORO, dorado * 0.5);
+
+        // ---- camera ----
+        scene.updateMatrixWorld();
+        const E = encuadre(t);
+        const dir = v3(Math.sin(E.az * RAD) * Math.cos(E.el * RAD), Math.sin(E.el * RAD), Math.cos(E.az * RAD) * Math.cos(E.el * RAD));
+        const right = v3(Math.cos(E.az * RAD), 0, -Math.sin(E.az * RAD));
+        const target = E.mira.clone().addScaledVector(right, 0.075 * E.dist); target.y += 0.09 * E.dist;
+        camera.position.copy(target).addScaledVector(dir, E.dist);
+        camera.lookAt(target);
+        camera.updateMatrixWorld(); C.escala(target, E.dist);
+        const top = "#" + new THREE.Color(0x2b3a6b).lerp(ven, 0.3).getHexString(), bot = "#" + new THREE.Color(0xb7d3ea).getHexString();
+        C.fondo([[0, top, bot], [1, top, bot]], 0);
+        scene.updateMatrixWorld();
+        C.pintar(t, y);
+        altEl.innerHTML = marcador(h);
+        sinceEl.textContent = C.ESC.desde;
+        clockEl.textContent = hhmm(h);
+        // the question, in the last shot (bait): it comes in when the voice asks it
+        const kq = ramp(t, tPreg - 0.3, tPreg + 0.25);
+        pregEl.style.opacity = kq; pregEl.style.transform = `scale(${0.92 + 0.08 * kq})`;
+        tarjetas(t);
+      }
+      await C.arrancar(renderAt);
+    </script>
+  </body>
+</html>

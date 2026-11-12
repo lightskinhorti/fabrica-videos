@@ -1,0 +1,52 @@
+{
+  "titulo": "Este QR funciona aunque le falte un trozo",
+  "lines": [
+    "Tapado, y se lee igual.",
+    "Tres trucos lo hacen posible, y el último es matemáticas puras.",
+    "¿Cuánto se puede tapar? Lo verás al final.",
+    "Primer truco: tres cuadrados en las esquinas, que no guardan ni un dato.",
+    "Su proporción, uno, uno, tres, uno, uno, casi no aparece en nada impreso.",
+    "Así el móvil los encuentra, aunque esté girado.",
+    "Segundo truco: todo lo demás son unos y ceros.",
+    "Oscuro, un uno. Claro, un cero. Ocho cuadraditos forman una palabra.",
+    "Este código tiene setenta: veintiséis de mensaje y cuarenta y cuatro de repuesto.",
+    "Tercer truco: esas de repuesto las calcula un código de matemáticas, el Reed-Solomon.",
+    "Si falta un trozo, el móvil las usa para rehacerlo.",
+    "Hay cuatro niveles: ele, eme, cu y hache.",
+    "Recuperan hasta el siete, quince, veinticinco y treinta por ciento de los datos.",
+    "De los datos, no del dibujo: depende de dónde caiga el golpe.",
+    "Lo prometido: el nivel más alto aguanta hasta el treinta por ciento.",
+    "Y lo curioso: el más usado es el quince, la mitad.",
+    "Ahora tú: ¿cuánto aguantaría el último QR que escaneaste? Dime un número."
+  ],
+  "claves": [
+    "tapado",
+    "trucos",
+    "cuánto",
+    "primer",
+    "cuadrados",
+    "proporción",
+    "móvil",
+    "segundo",
+    "oscuro",
+    "setenta",
+    "tercer",
+    "falta",
+    "niveles",
+    "recuperan",
+    "datos",
+    "prometido",
+    "curioso",
+    "ahora"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "Un código QR se lee aunque le falte un trozo: tres cuadrados lo encuentran, unos y ceros guardan el mensaje y un código de matemáticas, el Reed-Solomon, añade palabras de repuesto para rehacer lo que falta. Los niveles L, M, Q y H recuperan hasta el 7, 15, 25 y 30 % de las palabras de código. Código de ejemplo inventado, sin marca. ¿Cuánto crees que aguantaría el último QR que escaneaste? Dime un número.",
+    "hashtags": [
+      "#qr",
+      "#matematicas",
+      "#tecnologia"
+    ],
+    "portada_en": "tapado"
+  }
+}

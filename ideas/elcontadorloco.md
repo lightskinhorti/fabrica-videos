@@ -97,3 +97,5 @@ Reglas en el PRD, sección "Ganchos y temas". Ya no se empieza con "¿Y si…?":
 | Dormir 6 horas cada noche | "Duermes 6 horas. Esto le pasa a tu cuerpo" | 9 |
 | Estar sentado 8 horas al día | "8 horas sentado. Tu cuerpo lo nota así" | 9 |
 | Dejar el azúcar 30 días | "30 días sin azúcar. Día 1" | 8 |
+
+- [x] Vídeo 14: 8 horas sentado (64,7 s, 22 cambios de plano), con gancho de tipo "excepción" y cebo final. Hecho el 12 de noviembre con dos voces (la primera versión iba lenta); falta que Javier lo apruebe.

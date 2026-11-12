@@ -1,0 +1,33 @@
+{
+  "titulo": "¿Quién se libra?",
+  "lines": [
+    "Ocho horas sentado. Alguien se libra.",
+    "Te digo quién al final. Primero, lo que pasa en tu cuerpo.",
+    "Son las nueve de la mañana y te sientas: un café, el correo, la primera reunión.",
+    "En un laboratorio, diecinueve adultos con sobrepeso se levantaron dos minutos cada veinte, tras una bebida de prueba: su azúcar tras comer fue una cuarta parte menor que sentados sin parar.",
+    "Pasan las horas, y a las ocho: en diez mil estadounidenses, seguidos hasta trece años, sentarse más de ocho horas, frente a menos de cuatro, se asoció con un cuarenta y seis por ciento más de riesgo de morir.",
+    "Pasado ese umbral, el riesgo no se queda quieto: en treinta y cuatro estudios, cada hora extra se asoció con un cuatro por ciento más de riesgo.",
+    "Y quién se libra: en un millón de personas, sentarse más de ocho horas y moverse poco se asoció con un cincuenta y nueve por ciento más de riesgo. Quien se sentaba igual, pero hacía una hora de actividad moderada al día, ningún riesgo extra. No es un truco: es lo que midieron los autores.",
+    "Son asociaciones, no un diagnóstico. ¿Cuántas horas llevas sentado hoy? Dime tu cifra."
+  ],
+  "claves": [
+    "horas",
+    "cuerpo",
+    "nueve",
+    "azúcar",
+    "riesgo",
+    "umbral",
+    "libra",
+    "cifra"
+  ],
+  "pausa_segundos": 0.3,
+  "publicacion": {
+    "descripcion": "Estar sentado 8 horas al día: qué dicen los estudios del azúcar en sangre, del riesgo de morir y de quién se libra. Fuentes: Diabetes Care 2012 (19 adultos con sobrepeso en un laboratorio), BMC Public Health 2024 (10.639 adultos de EE. UU.), Eur J Epidemiol 2018 (34 estudios) y The Lancet 2016 (más de un millón de personas). Son asociaciones, no una causa ni una predicción para cada persona. No es un consejo médico. ¿Cuántas horas llevas sentado hoy? Dime tu cifra.",
+    "hashtags": [
+      "#salud",
+      "#sedentarismo",
+      "#curiosidades"
+    ],
+    "portada_en": 0
+  }
+}

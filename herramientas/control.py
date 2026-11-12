@@ -5,7 +5,9 @@ Uso (con el Python de voces/.venv, que tiene Pillow para medir el texto):
 
 Sabe de qué cuenta es por la escena: con "hitos" es El contador loco; con "momentos", Las cosas por dentro.
 Comprueba:
-- Duración: más de 60 s, lo que pide TikTok para cobrar.
+- Duración: más de 60 s, lo que pide TikTok para cobrar. Excepción apagada por defecto: con "prueba_corta": true
+  en guion.json (experimento de vídeos cortos, vale para las tres cuentas) se aceptan de 20 a 40 s y se avisa
+  de que no es un vídeo de cobro; todo lo demás se comprueba igual.
 - Volumen del MP4: -14 LUFS, con un margen de 1.
 - Subtítulos: cada grupo cabe en 2 líneas dentro de su caja, así que no se mete en la escena ni se sale
   por los lados. En El contador loco, además, el título del principio cabe en 3 líneas.
@@ -77,7 +79,15 @@ if mp4:
     objetivo = -20 if VOZ.get("modo") == "texto" else -14
     if abs(lufs - objetivo) > 1:
         errores.append(f"volumen {lufs:.1f} LUFS (tiene que estar cerca de {objetivo})")
-if dur <= 60:
+try:
+    PRUEBA_CORTA = json.load(open(os.path.join(carpeta, "guion.json"), encoding="utf-8")).get("prueba_corta") is True
+except (OSError, ValueError):
+    PRUEBA_CORTA = False
+if PRUEBA_CORTA:
+    avisos.append(f"prueba corta (guion.json): se acepta de 20 a 40 s; este vídeo no cuenta para cobrar (dura {dur:.1f} s)")
+    if not 20 <= dur <= 40:
+        errores.append(f"dura {dur:.1f} s: una prueba corta tiene que durar de 20 a 40 s")
+elif dur <= 60:
     errores.append(f"dura {dur:.1f} s: TikTok solo paga vídeos de más de 1 minuto")
 # the hook (first sentence) has to land in the first 2 or 3 seconds
 if VOZ.get("modo") != "texto" and VOZ["lines"] and VOZ["lines"][0]["e"] > 2.6:
