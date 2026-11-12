@@ -103,3 +103,37 @@ Animaciones 3D hipnóticas sin explicación: piezas que encajan perfectas, canic
 - Dominó en espiral que dibuja una figura al caer.
 - Ordenar 500 bloques por colores, de caos a degradado.
 - La prensa contra objetos de bloques (sin marcas reales).
+
+## 5. Formas de ganar dinero invirtiendo poco, en internet o fuera
+
+Idea de Javier del 12 de noviembre: "formas de ganar dinero en internet invirtiendo poco y en internet o no, eso sí que va a enganchar a la gente". Apuntada, sin decidir ni empezar.
+
+Cada vídeo coge una forma concreta de ganar dinero (vender en Wallapop o Vinted, hacer encuestas, alquilar el trastero, afiliación, vender fotos, dar clases, reparto, revender…) y cuenta con cifras qué hace falta para empezar, cuánto se gana de verdad y cuánto tiempo lleva.
+
+**Por qué encaja:**
+- Pasa las 5 preguntas del PRD ("Ganchos y temas") con nota alta: le toca el bolsillo a todo el mundo, sorprende y se comenta.
+- Invita a comentar sin forzarlo: mucha gente ya lo ha probado y tiene opinión ("eso no da ni para un café").
+- El gancho sale solo: una cifra y una promesa ("30 € al mes sin salir de casa").
+- Se puede hacer con el motor plano de Dinero sin lío, que es el más rápido de producir.
+- Es el nicho que mejor enlaza con los packs de la fábrica: la propia fábrica de vídeos es una de esas formas.
+- Suele estar entre los temas mejor pagados por los anunciantes (dato general, sin cifra comprobada).
+
+**Cuidado:**
+- **Choca con la regla de Dinero sin lío** ("explicar, nunca recomendar"). O es una cuenta nueva, o hay que cambiar esa regla. En la misma cuenta no caben las dos cosas.
+- **Es el nicho con más humo y más estafas.** Para distinguirse: solo cifras reales y con fuente (o probadas por nosotros), contar también lo que no funciona y nunca prometer ingresos. Un formato posible: "lo probé 7 días y gané esto".
+- **Nada de inversiones, criptomonedas, trading ni apuestas.** En España, recomendar inversiones al público está regulado por la CNMV, y TikTok limita ese contenido. Solo trabajo, venta y servicios.
+- **Publicidad encubierta:** si un vídeo habla de una aplicación o una plataforma concreta, no se cobra por ello sin decirlo, y mejor no nombrar marcas.
+- **Impuestos:** lo que se gane con estas formas también se declara. Decirlo en los vídeos da credibilidad.
+- **Competencia:** es un nicho enorme en español. El toque propio serían las cifras medidas y el enfoque de España (Wallapop, autónomos, Hacienda).
+- **Sin comprobar todavía:** qué exige TikTok a este tipo de contenido y si lo deja entrar en su programa de pagos.
+
+**Ideas de episodios:**
+- Vendí todo lo que no uso en una semana: cuánto saqué.
+- Cuánto pagan de verdad las encuestas de pago, por hora.
+- Lo que deja alquilar una plaza de garaje o un trastero.
+- Cuánto gana un repartidor por hora, quitando gastos.
+- Vender fotos del móvil en bancos de imágenes: cuántas hacen falta para ganar 10 €.
+- Cuánto cuesta y cuánto deja poner una máquina expendedora.
+- La afiliación de Amazon con nuestras propias cifras.
+
+**Cómo probarlo sin abrir cuenta:** un par de vídeos de este tipo en Dinero sin lío, contados como explicación ("cuánto se gana de verdad con…") y sin recomendar, para ver si retienen más que los de ahora.
