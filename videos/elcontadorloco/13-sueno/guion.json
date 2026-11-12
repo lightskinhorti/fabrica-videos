@@ -1,0 +1,39 @@
+{
+  "titulo": "Tu cuerpo lo nota. ¿Tú?",
+  "lines": [
+    "Duermes seis horas cada noche.",
+    "Esto es lo que pasa por dentro de tu cuerpo, noche tras noche. Y lo más raro llega al final.",
+    "Primera noche: seis horas. Dos sociedades de medicina del sueño recomiendan siete o más para un adulto.",
+    "Una semana después, el resfriado. En un experimento con un virus del catarro, dormir entre cinco y seis horas se asoció con cuatro veces más probabilidades de resfriarse.",
+    "Con los años, la vida entera: en una gran revisión de estudios, por cada hora por debajo de siete, el riesgo de morir se asoció con un seis por ciento más.",
+    "Es una asociación modesta: el riesgo más bajo aparece en torno a las siete horas, y dormir mucho más también se asocia con más riesgo.",
+    "Y lo más fuerte: un laboratorio dejó a voluntarios sanos solo seis horas en la cama, catorce noches seguidas.",
+    "Su rendimiento mental cayó, tarea tras tarea, como tras hasta dos noches en vela.",
+    "¿Y ellos lo notaban? Apenas: casi no se sentían más cansados.",
+    "Tu cuerpo lo nota. Tú, casi nunca. Son asociaciones, no un diagnóstico.",
+    "¿Y tú, cuántas horas duermes? Te leo en los comentarios."
+  ],
+  "claves": [
+    "horas",
+    "raro",
+    "recomiendan",
+    "resfriarse",
+    "riesgo",
+    "modesta",
+    "fuerte",
+    "noches",
+    "cansados",
+    "nunca",
+    "comentarios"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "Dormir 6 horas cada noche: qué dicen los estudios del resfriado, del riesgo de morir y de la atención. Fuentes: AASM y SRS 2015 (consenso: 7 horas o más en adultos), Sleep 2015 (164 adultos y un virus del catarro), J Am Heart Assoc 2017 (revisión de estudios de cohortes) y Sleep 2003 (14 noches en laboratorio con 6 horas en la cama). Los estudios muestran asociaciones, no causa ni una predicción para cada persona. No es un consejo médico.",
+    "hashtags": [
+      "#salud",
+      "#sueno",
+      "#dormir"
+    ],
+    "portada_en": 0
+  }
+}

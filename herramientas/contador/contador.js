@@ -34,7 +34,7 @@
 //          - adelanto: { cifra, rotulo?, pie?, dur?, top?, vuelve?, dur_vuelve? }  un sello amarillo a la derecha,
 //            bajo el marcador, con la cifra del final borrosa (se adivina, no se lee), para abrir la pregunta.
 //            rotulo: "AL FINAL"; pie: "¿?"; dur: 1.6 s en pantalla; top: 700 px. Está ya en el fotograma 0.
-//            vuelve: comienzo de una palabra de la voz con la que el sello sale otra vez, dur_vuelve segundos (2.2):
+//            vuelve: comienzo de una palabra de la voz (o lista de palabras) con la que el sello sale otra vez, dur_vuelve segundos (2.2):
 //            para cuando el guion dice "y el final no es el que esperas". La cifra tiene que estar en fuentes.md.
 //          - Lo que el motor no puede hacer solo: que el personaje ya esté haciendo la acción del vídeo en el
 //            fotograma 0 (en 12-cafe, a medio sorbo y con las tazas cayendo a la mesa). Eso va en cada vídeo.
@@ -347,8 +347,10 @@ export function crearContador(THREE) {
   // it shows from frame 0 for `dur` seconds and, with `vuelve`, again from that word of the voice
   const ventanas = [];
   if (adelEl) {
-    const a = ARR.adelanto, w = a.vuelve ? words.find((x) => norm(x.w).startsWith(a.vuelve)) : null;
-    ventanas.push([0, a.dur ?? 1.6]); if (w) ventanas.push([w.s - 0.1, a.dur_vuelve ?? 2.2]);
+    const a = ARR.adelanto;
+    ventanas.push([0, a.dur ?? 1.6]);
+    // vuelve: one word or a list of words (13-sueno: one at 3 s and one at "al final")
+    for (const clave of [].concat(a.vuelve || [])) { const w = words.find((x) => norm(x.w).startsWith(clave)); if (w) ventanas.push([w.s - 0.1, a.dur_vuelve ?? 2.2]); }
   }
   function drawAdelanto(t) {
     const v = ventanas.find(([t0, d]) => t >= t0 && t <= t0 + d + 0.3);

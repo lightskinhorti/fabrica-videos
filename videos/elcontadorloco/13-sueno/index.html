@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <script type="importmap">
+      { "imports": { "three": "./lib/three.module.js", "three/addons/": "./lib/addons/" } }
+    </script>
+    <link rel="stylesheet" href="comun/contador.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Nunito", sans-serif; }
+      #alt, #clock { font-family: "Archivo Black", sans-serif; }
+      /* health cards: one per landmark, on the right, with a leader line to the object or part of the body (as in 12-cafe) */
+      .card {
+        position: absolute; left: 556px; top: 646px; width: 384px; padding: 20px 22px 18px; border-radius: 30px;
+        background: rgba(13, 22, 48, 0.9); border: 5px solid #0b1a3a; color: #fff; opacity: 0; transform-origin: 0 30%;
+      }
+      .card .top { display: flex; align-items: center; gap: 14px; }
+      .card .ic { width: 78px; height: 78px; flex: none; border-radius: 50%; background: #ffcf2e; display: flex; align-items: center; justify-content: center; }
+      .card .ic svg { width: 54px; height: 54px; overflow: visible; }
+      .card .tt { font-weight: 900; font-size: 30px; line-height: 1.04; letter-spacing: 0.04em; color: #ffcf2e; }
+      .card .big { font-family: "Archivo Black", sans-serif; font-size: 72px; line-height: 1; margin-top: 16px; white-space: nowrap; }
+      .card .big small { font-size: 0.42em; margin-left: 0.14em; }
+      .card .big.mid { font-size: 60px; }
+      .card .big.txt { font-size: 50px; }
+      .card .sub { font-weight: 800; font-size: 27px; line-height: 1.16; margin-top: 10px; color: rgba(255, 255, 255, 0.94); }
+      .card .pie { margin-top: 12px; }
+      .card .src { display: block; margin-top: 6px; font-weight: 700; font-size: 20px; line-height: 1.15; color: rgba(255, 255, 255, 0.66); }
+      .card .chip {
+        display: inline-block; font-weight: 900; font-size: 17px; letter-spacing: 0.08em; padding: 3px 9px 2px; border-radius: 9px;
+        border: 2px solid rgba(255, 207, 46, 0.75); color: #ffcf2e;
+      }
+      .card svg.chart { display: block; width: 330px; height: 96px; margin-top: 14px; overflow: visible; }
+      .card svg.chart text { font-family: "Nunito", sans-serif; font-weight: 900; font-size: 21px; letter-spacing: 0.04em; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="68.1" data-width="1080" data-height="1920" data-fps="30">
+      <div id="sky" class="clip" data-start="0" data-duration="68.1" data-track-index="0"></div>
+      <canvas id="gl" class="clip" data-start="0" data-duration="68.1" data-track-index="1" width="1080" height="1920"></canvas>
+      <svg id="leaders" class="clip" data-start="0" data-duration="68.1" data-track-index="2" width="1080" height="1920" data-layout-allow-overlap></svg>
+      <div id="labels" class="clip" data-start="0" data-duration="68.1" data-track-index="3" data-layout-allow-overlap>
+        <div class="card" id="c-sueno">
+          <div class="top"><div class="ic"><svg viewBox="0 0 48 48"><path class="luna" style="transform-origin: 24px 24px" d="M33 30 A14 14 0 1 1 20 8 A11 11 0 0 0 33 30 Z" fill="none" stroke="#1d1f3a" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"/><g class="zz" fill="#1d1f3a"><circle cx="35" cy="11" r="2.4"/><circle cx="40" cy="18" r="1.7"/></g></svg></div><div class="tt">SUEÑO</div></div>
+          <div class="big"></div>
+          <div class="sub"></div>
+          <svg class="chart" viewBox="0 0 330 96">
+            <rect class="b1" x="0" y="4" width="280" height="36" rx="9" fill="#ffcf2e"/>
+            <text x="13" y="30" fill="#1d1f3a">TU NOCHE · 6 h</text>
+            <g class="tope"><rect x="2" y="56" width="326" height="36" rx="9" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="4" stroke-dasharray="10 7"/>
+            <text x="13" y="82" fill="#ffffff">LO QUE SE RECOMIENDA · 7 h o más</text></g>
+          </svg>
+          <div class="pie"><span class="chip">CONSENSO</span><span class="src">AASM y SRS, 2015 · adultos</span></div>
+        </div>
+        <div class="card" id="c-catarro">
+          <div class="top"><div class="ic"><svg viewBox="0 0 48 48"><g class="gota" style="transform-origin: 24px 30px" fill="none" stroke="#1d1f3a" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"><path d="M24 6 C24 6 12 20 12 29 A12 12 0 0 0 36 29 C36 20 24 6 24 6 Z"/><path d="M18 30 A6 6 0 0 0 24 36"/></g></svg></div><div class="tt">RESFRIADO</div></div>
+          <div class="big"></div>
+          <div class="sub"></div>
+          <div class="pie"><span class="chip">ESTUDIO</span><span class="src">Sleep, 2015 · con un virus del catarro</span></div>
+        </div>
+        <div class="card" id="c-vida">
+          <div class="top"><div class="ic"><svg viewBox="0 0 48 48"><path class="pulso" d="M3 26 H13 L18 11 L25 38 L30 21 L33 26 H45" fill="none" stroke="#1d1f3a" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="100" /></svg></div><div class="tt">RIESGO DE MORIR</div></div>
+          <div class="big"></div>
+          <div class="sub"></div>
+          <div class="pie"><span class="chip">ASOCIACIÓN</span><span class="src">J Am Heart Assoc, 2017 · revisión de cohortes</span></div>
+        </div>
+        <div class="card" id="c-lab">
+          <div class="top"><div class="ic"><svg viewBox="0 0 48 48"><g class="lupa" style="transform-origin: 24px 24px" fill="none" stroke="#1d1f3a" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"><circle cx="24" cy="24" r="16"/><path d="M24 14 V24 L31 28"/></g></svg></div><div class="tt">ATENCIÓN</div></div>
+          <div class="big"></div>
+          <div class="sub"></div>
+          <div class="pie"><span class="chip">EXPERIMENTO</span><span class="src">Sleep, 2003 · 48 adultos sanos</span></div>
+        </div>
+      </div>
+      <div id="hud" class="clip" data-start="0" data-duration="68.1" data-track-index="4">
+        <div id="alt">0<small>noches</small></div>
+        <div id="since"></div>
+        <div id="clock">1 noche</div>
+        <div id="extra"></div>
+        <div id="note"></div>
+      </div>
+      <div id="title" class="clip" data-start="0" data-duration="68.1" data-track-index="6"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="68.1"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="68.1" data-track-index="7" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 66.88, "lines": [{"id": "l1", "s": 0.16, "e": 2.14, "words": [{"w": "Duermes", "s": 0.16, "e": 0.49, "key": false}, {"w": "seis", "s": 0.49, "e": 0.82, "key": false}, {"w": "horas", "s": 0.82, "e": 1.23, "key": true}, {"w": "cada", "s": 1.23, "e": 1.55, "key": false}, {"w": "noche.", "s": 1.55, "e": 2.14, "key": false}]}, {"id": "l2", "s": 2.3, "e": 7.95, "words": [{"w": "Esto", "s": 2.3, "e": 2.42, "key": false}, {"w": "es", "s": 2.42, "e": 2.44, "key": false}, {"w": "lo", "s": 2.56, "e": 2.7, "key": false}, {"w": "que", "s": 2.7, "e": 2.85, "key": false}, {"w": "pasa", "s": 2.9, "e": 3.2, "key": false}, {"w": "por", "s": 3.2, "e": 3.38, "key": false}, {"w": "dentro", "s": 3.38, "e": 3.75, "key": false}, {"w": "de", "s": 3.75, "e": 3.87, "key": false}, {"w": "tu", "s": 3.87, "e": 3.99, "key": false}, {"w": "cuerpo,", "s": 3.99, "e": 4.26, "key": false}, {"w": "noche", "s": 4.51, "e": 4.9, "key": false}, {"w": "tras", "s": 4.9, "e": 5.16, "key": false}, {"w": "noche.", "s": 5.16, "e": 5.94, "key": false}, {"w": "Y", "s": 5.95, "e": 6.02, "key": false}, {"w": "lo", "s": 6.02, "e": 6.23, "key": false}, {"w": "más", "s": 6.23, "e": 6.42, "key": false}, {"w": "raro", "s": 6.42, "e": 6.74, "key": true}, {"w": "llega", "s": 6.74, "e": 7.12, "key": false}, {"w": "al", "s": 7.14, "e": 7.3, "key": false}, {"w": "final.", "s": 7.3, "e": 7.95, "key": false}]}, {"id": "l3", "s": 8.24, "e": 14.6, "words": [{"w": "Primera", "s": 8.24, "e": 8.38, "key": false}, {"w": "noche:", "s": 8.5, "e": 9.04, "key": false}, {"w": "seis", "s": 9.04, "e": 9.35, "key": false}, {"w": "horas.", "s": 9.35, "e": 10.02, "key": false}, {"w": "Dos", "s": 10.02, "e": 10.18, "key": false}, {"w": "sociedades", "s": 10.18, "e": 10.67, "key": false}, {"w": "de", "s": 10.74, "e": 10.84, "key": false}, {"w": "medicina", "s": 10.84, "e": 11.24, "key": false}, {"w": "del", "s": 11.24, "e": 11.4, "key": false}, {"w": "sueño", "s": 11.64, "e": 11.79, "key": false}, {"w": "recomiendan", "s": 11.79, "e": 12.63, "key": true}, {"w": "siete", "s": 12.68, "e": 13.0, "key": false}, {"w": "o", "s": 13.05, "e": 13.13, "key": false}, {"w": "más", "s": 13.13, "e": 13.36, "key": false}, {"w": "para", "s": 13.36, "e": 13.7, "key": false}, {"w": "un", "s": 13.7, "e": 13.85, "key": false}, {"w": "adulto.", "s": 13.96, "e": 14.6, "key": false}]}, {"id": "l4", "s": 14.6, "e": 25.16, "words": [{"w": "Una", "s": 14.6, "e": 14.86, "key": false}, {"w": "semana", "s": 14.86, "e": 15.39, "key": false}, {"w": "después,", "s": 15.39, "e": 16.13, "key": false}, {"w": "el", "s": 16.2, "e": 16.32, "key": false}, {"w": "resfriado.", "s": 16.42, "e": 17.44, "key": false}, {"w": "En", "s": 17.44, "e": 17.5, "key": false}, {"w": "un", "s": 17.5, "e": 17.56, "key": false}, {"w": "experimento", "s": 17.56, "e": 18.12, "key": false}, {"w": "con", "s": 18.12, "e": 18.39, "key": false}, {"w": "un", "s": 18.39, "e": 18.43, "key": false}, {"w": "virus", "s": 18.43, "e": 18.74, "key": false}, {"w": "del", "s": 18.74, "e": 18.93, "key": false}, {"w": "catarro,", "s": 18.93, "e": 19.48, "key": false}, {"w": "dormir", "s": 19.48, "e": 19.86, "key": false}, {"w": "entre", "s": 19.86, "e": 20.16, "key": false}, {"w": "cinco", "s": 20.42, "e": 20.48, "key": false}, {"w": "y", "s": 20.48, "e": 20.54, "key": false}, {"w": "seis", "s": 20.54, "e": 20.79, "key": false}, {"w": "horas", "s": 20.79, "e": 21.08, "key": false}, {"w": "se", "s": 21.14, "e": 21.22, "key": false}, {"w": "asoció", "s": 21.22, "e": 21.58, "key": false}, {"w": "con", "s": 21.58, "e": 21.77, "key": false}, {"w": "cuatro", "s": 21.77, "e": 22.15, "key": false}, {"w": "veces", "s": 22.15, "e": 22.38, "key": false}, {"w": "más", "s": 22.63, "e": 22.76, "key": false}, {"w": "probabilidades", "s": 23.03, "e": 23.91, "key": false}, {"w": "de", "s": 23.91, "e": 24.07, "key": false}, {"w": "resfriarse.", "s": 24.07, "e": 25.16, "key": true}]}, {"id": "l5", "s": 25.16, "e": 33.44, "words": [{"w": "Con", "s": 25.16, "e": 25.4, "key": false}, {"w": "los", "s": 25.4, "e": 25.61, "key": false}, {"w": "años,", "s": 25.66, "e": 26.12, "key": false}, {"w": "la", "s": 26.12, "e": 26.28, "key": false}, {"w": "vida", "s": 26.28, "e": 26.6, "key": false}, {"w": "entera:", "s": 26.6, "e": 27.36, "key": false}, {"w": "en", "s": 27.36, "e": 27.48, "key": false}, {"w": "una", "s": 27.48, "e": 27.66, "key": false}, {"w": "gran", "s": 27.66, "e": 27.9, "key": false}, {"w": "revisión", "s": 27.9, "e": 28.33, "key": false}, {"w": "de", "s": 28.33, "e": 28.72, "key": false}, {"w": "estudios,", "s": 28.72, "e": 29.16, "key": false}, {"w": "por", "s": 29.16, "e": 29.47, "key": false}, {"w": "cada", "s": 29.47, "e": 29.64, "key": false}, {"w": "hora", "s": 29.64, "e": 29.87, "key": false}, {"w": "por", "s": 29.87, "e": 30.08, "key": false}, {"w": "debajo", "s": 30.08, "e": 30.43, "key": false}, {"w": "de", "s": 30.48, "e": 30.57, "key": false}, {"w": "siete,", "s": 30.57, "e": 30.98, "key": false}, {"w": "el", "s": 30.99, "e": 31.11, "key": false}, {"w": "riesgo", "s": 31.11, "e": 31.49, "key": true}, {"w": "de", "s": 31.5, "e": 31.61, "key": false}, {"w": "morir", "s": 31.61, "e": 31.92, "key": false}, {"w": "se", "s": 31.92, "e": 32.04, "key": false}, {"w": "asoció", "s": 32.04, "e": 32.4, "key": false}, {"w": "con", "s": 32.4, "e": 32.59, "key": false}, {"w": "un", "s": 32.59, "e": 32.71, "key": false}, {"w": "seis", "s": 32.71, "e": 32.787, "key": false}, {"w": "por", "s": 32.787, "e": 32.845, "key": false}, {"w": "ciento", "s": 32.845, "e": 32.96, "key": false}, {"w": "más.", "s": 32.96, "e": 33.44, "key": false}]}, {"id": "l6", "s": 33.44, "e": 41.4, "words": [{"w": "Es", "s": 33.44, "e": 33.79, "key": false}, {"w": "una", "s": 33.79, "e": 34.31, "key": false}, {"w": "asociación", "s": 34.31, "e": 34.72, "key": false}, {"w": "modesta:", "s": 34.99, "e": 35.44, "key": true}, {"w": "el", "s": 35.44, "e": 35.55, "key": false}, {"w": "riesgo", "s": 35.57, "e": 35.96, "key": false}, {"w": "más", "s": 35.96, "e": 36.15, "key": false}, {"w": "bajo", "s": 36.15, "e": 36.4, "key": false}, {"w": "aparece", "s": 36.4, "e": 36.83, "key": false}, {"w": "en", "s": 36.83, "e": 36.99, "key": false}, {"w": "torno", "s": 37.1, "e": 37.24, "key": false}, {"w": "a", "s": 37.36, "e": 37.37, "key": false}, {"w": "las", "s": 37.37, "e": 37.56, "key": false}, {"w": "siete", "s": 37.56, "e": 37.88, "key": false}, {"w": "horas,", "s": 37.88, "e": 38.32, "key": false}, {"w": "y", "s": 38.36, "e": 38.39, "key": false}, {"w": "dormir", "s": 38.39, "e": 38.78, "key": false}, {"w": "mucho", "s": 38.78, "e": 39.06, "key": false}, {"w": "más", "s": 39.06, "e": 39.31, "key": false}, {"w": "también", "s": 39.31, "e": 39.84, "key": false}, {"w": "se", "s": 39.84, "e": 39.94, "key": false}, {"w": "asocia", "s": 40.01, "e": 40.36, "key": false}, {"w": "con", "s": 40.36, "e": 40.57, "key": false}, {"w": "más", "s": 40.57, "e": 40.78, "key": false}, {"w": "riesgo.", "s": 40.78, "e": 41.4, "key": false}]}, {"id": "l7", "s": 41.41, "e": 48.04, "words": [{"w": "Y", "s": 41.41, "e": 41.48, "key": false}, {"w": "lo", "s": 41.48, "e": 41.62, "key": false}, {"w": "más", "s": 41.62, "e": 41.79, "key": false}, {"w": "fuerte:", "s": 42.24, "e": 42.39, "key": true}, {"w": "un", "s": 42.5, "e": 42.53, "key": false}, {"w": "laboratorio", "s": 42.53, "e": 43.3, "key": false}, {"w": "dejó", "s": 43.3, "e": 43.58, "key": false}, {"w": "a", "s": 43.58, "e": 43.65, "key": false}, {"w": "voluntarios", "s": 43.65, "e": 44.2, "key": false}, {"w": "sanos", "s": 44.45, "e": 44.77, "key": false}, {"w": "solo", "s": 44.8, "e": 45.36, "key": false}, {"w": "seis", "s": 45.36, "e": 45.51, "key": false}, {"w": "horas", "s": 45.87, "e": 45.93, "key": false}, {"w": "en", "s": 45.93, "e": 46.06, "key": false}, {"w": "la", "s": 46.06, "e": 46.19, "key": false}, {"w": "cama,", "s": 46.19, "e": 46.57, "key": false}, {"w": "14", "s": 46.58, "e": 46.99, "key": false}, {"w": "noches", "s": 46.99, "e": 47.38, "key": false}, {"w": "seguidas.", "s": 47.38, "e": 48.04, "key": false}]}, {"id": "l8", "s": 48.16, "e": 53.4, "words": [{"w": "Su", "s": 48.16, "e": 48.25, "key": false}, {"w": "rendimiento", "s": 48.25, "e": 48.99, "key": false}, {"w": "mental", "s": 48.99, "e": 49.37, "key": false}, {"w": "cayó,", "s": 49.43, "e": 49.65, "key": false}, {"w": "tarea", "s": 49.65, "e": 49.86, "key": false}, {"w": "tras", "s": 50.11, "e": 50.24, "key": false}, {"w": "tarea,", "s": 50.24, "e": 50.77, "key": false}, {"w": "como", "s": 50.79, "e": 51.12, "key": false}, {"w": "tras", "s": 51.56, "e": 51.76, "key": false}, {"w": "hasta", "s": 51.76, "e": 52.0, "key": false}, {"w": "dos", "s": 52, "e": 52.32, "key": false}, {"w": "noches", "s": 52.32, "e": 52.76, "key": true}, {"w": "en", "s": 52.76, "e": 52.92, "key": false}, {"w": "vela.", "s": 52.92, "e": 53.4, "key": false}]}, {"id": "l9", "s": 53.4, "e": 57.61, "words": [{"w": "¿Y", "s": 53.4, "e": 53.48, "key": false}, {"w": "ellos", "s": 53.48, "e": 53.82, "key": false}, {"w": "lo", "s": 53.89, "e": 54.04, "key": false}, {"w": "notaban?", "s": 54.28, "e": 54.76, "key": false}, {"w": "Apenas:", "s": 54.76, "e": 55.4, "key": false}, {"w": "casi", "s": 55.4, "e": 55.72, "key": false}, {"w": "no", "s": 55.72, "e": 55.88, "key": false}, {"w": "se", "s": 55.88, "e": 56.04, "key": false}, {"w": "sentían", "s": 56.04, "e": 56.6, "key": false}, {"w": "más", "s": 56.6, "e": 56.77, "key": false}, {"w": "cansados.", "s": 56.84, "e": 57.61, "key": true}]}, {"id": "l10", "s": 57.61, "e": 63.054, "words": [{"w": "Tu", "s": 57.61, "e": 58.0, "key": false}, {"w": "cuerpo", "s": 58, "e": 58.71, "key": false}, {"w": "lo", "s": 58.72, "e": 58.83, "key": false}, {"w": "nota.", "s": 58.83, "e": 59.08, "key": false}, {"w": "Tú,", "s": 59.08, "e": 59.35, "key": false}, {"w": "casi", "s": 59.35, "e": 59.56, "key": false}, {"w": "nunca.", "s": 59.56, "e": 60.2, "key": true}, {"w": "Son", "s": 60.2, "e": 60.44, "key": false}, {"w": "asociaciones,", "s": 60.44, "e": 61.52, "key": false}, {"w": "no", "s": 61.64, "e": 61.73, "key": false}, {"w": "un", "s": 61.73, "e": 61.89, "key": false}, {"w": "diagnóstico.", "s": 61.89, "e": 63.054, "key": false}]}, {"id": "l11", "s": 63.054, "e": 66.52, "words": [{"w": "¿Y", "s": 63.054, "e": 63.16, "key": false}, {"w": "tú,", "s": 63.24, "e": 63.34, "key": false}, {"w": "cuántas", "s": 63.59, "e": 63.9, "key": false}, {"w": "horas", "s": 63.9, "e": 64.25, "key": false}, {"w": "duermes?", "s": 64.27, "e": 65.08, "key": false}, {"w": "Te", "s": 65.08, "e": 65.33, "key": false}, {"w": "leo", "s": 65.33, "e": 65.7, "key": false}, {"w": "en", "s": 65.7, "e": 65.87, "key": false}, {"w": "los", "s": 65.94, "e": 66.08, "key": false}, {"w": "comentarios.", "s": 66.08, "e": 66.52, "key": true}]}]}</script>
+    <script id="escena" type="application/json">
+      {
+        "titulo": "Tu cuerpo lo nota. ¿Tú?",
+        "nota": "Ilustración: cada cuerpo es distinto",
+        "formato": "peso",
+        "desde": "LLEVAS",
+        "inicio": 0,
+        "ritmo": 0.0000347222222222,
+        "etiquetas_bajo_marcador": true,
+        "arranque": { "adelanto": { "rotulo": "AL FINAL", "cifra": "2 noches", "pie": "en vela", "vuelve": ["pasa", "final"], "dur_vuelve": 1.0 } },
+        "hitos": [
+          { "clave": "primera", "v": 1 },
+          { "clave": "semana", "v": 7 },
+          { "clave": "anos", "v": 3652.5 },
+          { "clave": "fuerte", "v": 3652.5, "solo_etiqueta": true }
+        ],
+        "sonido": { "viento": true }
+      }
+    </script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 68.1 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import * as THREE from "three";
+      import { crearContador } from "./comun/contador.js";
+
+      // Sleeping 6 hours a night, health version (the recipe of 08-pasos-salud and 12-cafe). The counter is the
+      // nights slept; the clock, how long he has been doing it. Each landmark is what a study says, shown as a card
+      // on the right with a leader line to an object or a part of his body: the recommendation (consensus of two
+      // sleep societies), a cold (Prather 2015), mortality (Yin 2017) and, last and strongest, the 14-night
+      // laboratory experiment on attention (Van Dongen 2003). See fuentes.md.
+      //
+      // The start (plan of 11 November): it starts by the END. Frame 0 already shows him ten years in: long beard, dark
+      // rings under his eyes, a yawn with his hand on his face, the alarm clock ringing and the counter at 3,653
+      // nights. Then the counter, the clock and the beard run back to the first night while the camera moves in on
+      // his face (first change of framing before 1.5 s), and the story is told from there.
+      //
+      // The scene asks the engine for "peso" because control.py only knows altura, pila, estatura, temperatura and
+      // peso; the HUD is written here, in nights. Everything is in metres; the character is 1.75 m tall.
+      const C = crearContador(THREE);
+      const { VOZ, D, words, anchors, scene, camera, mat, glow, box, at, v3, hash, clamp, lerp, ease, smooth, ramp, norm, miles, Y, V, W, H } = C;
+      const RAD = Math.PI / 180;
+      const cyl = (rt, rb, h, m, seg = 10) => new THREE.Mesh(new THREE.CylinderGeometry(rt, rb, h, seg), m);
+      const L = VOZ.lines;
+      const A = Object.fromEntries(anchors.map((a) => [a.hito.clave, a]));
+      const tA = (c, def) => (A[c] ? A[c].t : def);
+      const lin = (i, k, def) => (L[i] ? L[i][k] : def);
+      // the first word after `desde` that starts with any of these (Whisper may write a number in figures)
+      const tW = (claves, desde, def) => { const w = words.find((x) => x.s >= desde && claves.some((c) => norm(x.w).startsWith(c))); return w ? w.s : def; };
+
+      // ---------- times from the voice ----------
+      const tPrim = tA("primera", 10), tSem = tA("semana", 18), tAnos = tA("anos", 30), tFue = tA("fuerte", 52);
+      const tFinal = tW(["final"], 2, 5.5), tL6 = lin(5, "s", tAnos + 11), tL10 = lin(9, "s", D - 8);
+      const tSiete = tW(["siete", "7"], tPrim, tPrim + 4);
+      const tRes = tW(["resfriarse"], tSem, tSem + 8), tCuatro = tW(["cuatro", "4"], tSem + 2, tSem + 6);
+      const tSeis = tW(["seis", "6"], tAnos + 3, tAnos + 8), tCat = tW(["catorce", "14"], tFue, tFue + 6);
+      const tDos = tW(["dos", "2"], tCat + 1, tCat + 6), tVela = tW(["vela"], tDos, tDos + 4), tApenas = tW(["apenas"], tVela, tVela + 5);
+      const tNunca = tW(["nunca"], tL10 - 0.5, tL10 + 2);
+
+      // ---------- the counter: nights. It starts at the end (10 years), runs back to the first night, then climbs ----------
+      const DIA = 365.25, FIN = 3652.5, T_REW = [0.2, 1.65];
+      const KF = anchors.filter((a) => !a.hito.solo_etiqueta && a.v > 0).map((a) => ({ t: a.t, v: a.v, fin: a.fin }));
+      const sube = (i) => { const a = KF[i], b = KF[i + 1]; return Math.max(a.t + 0.25, b.t - 3.2, Math.min(a.fin, b.t - 1.5)); };
+      function nochesAt(t) {
+        if (t < T_REW[1]) return V(lerp(Y(FIN), Y(1), smooth(clamp((t - T_REW[0]) / (T_REW[1] - T_REW[0])))));
+        const a0 = KF[0];
+        if (!a0 || t <= a0.t) return 1;
+        let i = 0;
+        while (i + 1 < KF.length && t >= KF[i + 1].t) i++;
+        const a = KF[i], b = KF[i + 1];
+        // the first night stays at 1; then a few per cent a second, so the figure never stops
+        const ritmo = i === 0 ? 0 : b ? 0.03 * a.v : 0.004 * a.v;
+        if (!b) return a.v + ritmo * (t - a.t);
+        const st = sube(i), k = smooth(clamp((t - st) / (b.t - st)));
+        return V(lerp(Y(a.v + ritmo * (Math.min(t, st) - a.t)), Y(b.v), k));
+      }
+      const plural = (n, a, b) => `${n} ${n === 1 ? a : b}`;
+      function reloj(dias) {
+        const d = dias + 0.02;
+        if (d < 2) return "1 noche";
+        if (d < 7) return plural(Math.floor(d), "noche", "noches");
+        if (d < 28) return plural(Math.floor(d / 7), "semana", "semanas");
+        if (d < DIA) return plural(Math.min(11, Math.max(1, Math.floor(d / 30.4375))), "mes", "meses");
+        const y = d / DIA, a = Math.floor(y), m = Math.floor((y - a) * 12);
+        return plural(a, "año", "años") + (m ? " y " + plural(m, "mes", "meses") : "");
+      }
+
+      // ---------- how far into the habit he is (years), smoothed over 2.5 s, for his beard ----------
+      const DTF = 1 / 30, AT = [];
+      const anosCrudo = (t) => nochesAt(Math.max(0, t)) / DIA;
+      for (let t = 0; t <= D + 1; t += DTF) { let s = 0; for (let k = 0; k < 16; k++) s += anosCrudo(t - k * 0.08); AT.push(s / 16); }
+      const tabla = (T, dt, t) => { const u = clamp(t / dt, 0, T.length - 1), i = Math.floor(u), k = u - i; return lerp(T[i], T[Math.min(i + 1, T.length - 1)], k); };
+      const anos = (t) => tabla(AT, DTF, t);
+
+      // ---------- the room (no walls on the sides: a 60 m wide back wall and floor, so the camera never sees an edge) ----------
+      const PARED = mat(0x9fc4e8), RODAPIE = mat(0xf4efe2);
+      scene.add(at(box(60, 7, 0.2, PARED), 0, 3.5, -2.7));
+      scene.add(at(box(60, 0.18, 0.12, RODAPIE), 0, 0.09, -2.58));
+      scene.add(at(box(60, 0.12, 40, mat(0xc79a6a)), 0, -0.07, 12));
+      {
+        // floorboards: thin dark lines
+        const LIN = mat(0xa9804f);
+        for (let i = -12; i <= 12; i++) scene.add(at(box(0.025, 0.002, 12, LIN), i * 0.55, -0.005, 3.2));
+        const RUG = mat(0xf4e3c1, { roughness: 0.95 });
+        scene.add(at(cyl(1.25, 1.25, 0.012, RUG, 40), -0.15, 0.006, -0.55));
+        scene.add(at(cyl(0.95, 0.95, 0.014, mat(0xe8b25a, { roughness: 0.95 }), 40), -0.15, 0.007, -0.55));
+      }
+      // the window on the left, over a curtain rod; its colour changes with the story (night, day, golden)
+      const VENT = new THREE.MeshBasicMaterial({ color: 0x0d1b45, toneMapped: false });
+      scene.add(at(box(1.9, 1.9, 0.05, VENT), -2.7, 2.35, -2.58));
+      for (const [w, h, x, y] of [[2.1, 0.1, -2.7, 3.35], [2.1, 0.1, -2.7, 1.35], [0.1, 2.1, -3.7, 2.35], [0.1, 2.1, -1.7, 2.35], [0.06, 1.9, -2.7, 2.35], [1.9, 0.06, -2.7, 2.35]]) scene.add(at(box(w, h, 0.09, mat(0xffffff)), x, y, -2.55));
+      for (const sx of [-1, 1]) scene.add(at(box(0.55, 2.2, 0.12, mat(0xff9a4d)), -2.7 + sx * 1.3, 2.3, -2.45));
+      // bed against the back wall, behind and to the right of him
+      const BX = 1.75, BZ = -1.5;
+      scene.add(at(box(1.9, 0.3, 2.15, mat(0x8c5a33)), BX, 0.2, BZ));
+      scene.add(at(box(2.0, 1.15, 0.12, mat(0x8c5a33)), BX, 0.75, -2.5));
+      scene.add(at(box(1.78, 0.26, 2.0, mat(0xf4efe2, { roughness: 0.9 })), BX, 0.48, BZ));
+      scene.add(at(box(1.82, 0.2, 1.3, mat(0xff9a4d, { roughness: 0.9 })), BX, 0.66, BZ + 0.4));
+      scene.add(at(box(1.84, 0.05, 1.32, mat(0xffcf2e, { roughness: 0.9 })), BX, 0.78, BZ + 0.4));
+      for (const sx of [-1, 1]) scene.add(at(box(0.68, 0.16, 0.42, mat(0xffffff, { roughness: 0.9 })), BX + sx * 0.44, 0.65, BZ - 0.78));
+      // a picture over the bed and a plant by the window
+      scene.add(at(box(1.1, 0.75, 0.05, mat(0xffffff)), BX, 2.2, -2.57));
+      scene.add(at(box(0.98, 0.63, 0.06, mat(0xffd9a3)), BX, 2.2, -2.56));
+      scene.add(at(new THREE.Mesh(new THREE.IcosahedronGeometry(0.2, 0), glow(0xfff2c6)), BX + 0.3, 2.32, -2.52));
+      scene.add(at(cyl(0.22, 0.17, 0.4, mat(0xc4552e), 10), -4.6, 0.2, -2.0));
+      scene.add(at(new THREE.Mesh(new THREE.IcosahedronGeometry(0.42, 0), mat(0x4f9e4a)), -4.6, 0.75, -2.0));
+
+      // ---------- the night table, his alarm clock (frame 0: ringing) and a lamp ----------
+      const TX = 0.52, TZ = -0.5, TOP = 0.66;
+      {
+        const MADERA = mat(0xb9793f, { roughness: 0.6 }), PATA = mat(0x2b3a6b);
+        scene.add(at(cyl(0.36, 0.36, 0.04, MADERA, 22), TX, TOP - 0.02, TZ));
+        scene.add(at(cyl(0.035, 0.045, TOP - 0.06, PATA, 10), TX, (TOP - 0.06) / 2 + 0.02, TZ));
+        scene.add(at(cyl(0.2, 0.23, 0.03, PATA, 16), TX, 0.015, TZ));
+      }
+      const RELOJ = new THREE.Group(); RELOJ.position.set(TX - 0.05, TOP + 0.15, TZ + 0.02); scene.add(RELOJ);
+      RELOJ.scale.setScalar(1.9);
+      {
+        const ROJO = mat(0xe0443a, { roughness: 0.4 }), CARA = mat(0xffffff, { roughness: 0.3 }), NEG = mat(0x1d1f3a), BRONCE = mat(0xd9a441, { metalness: 0.3, roughness: 0.4 });
+        const cuerpo = cyl(0.075, 0.075, 0.05, ROJO, 20); cuerpo.rotation.x = Math.PI / 2; RELOJ.add(cuerpo);
+        const cara = cyl(0.062, 0.062, 0.006, CARA, 20); cara.rotation.x = Math.PI / 2; cara.position.z = 0.026; RELOJ.add(cara);
+        // 6:00: the long hand up, the short one down
+        RELOJ.add(at(box(0.008, 0.05, 0.004, NEG), 0, 0.022, 0.031));
+        RELOJ.add(at(box(0.01, 0.034, 0.004, NEG), 0, -0.016, 0.031));
+        for (let i = 0; i < 12; i++) { const a = (i / 12) * Math.PI * 2; RELOJ.add(at(box(0.005, i % 3 ? 0.006 : 0.011, 0.003), Math.sin(a) * 0.052, Math.cos(a) * 0.052, 0.03)).rotation.z = -a; }
+        for (const sx of [-1, 1]) {
+          const camp = new THREE.Mesh(new THREE.SphereGeometry(0.03, 8, 6, 0, Math.PI * 2, 0, Math.PI / 2), BRONCE); camp.position.set(sx * 0.052, 0.062, 0); camp.rotation.z = -sx * 0.5; RELOJ.add(camp);
+          RELOJ.add(at(box(0.012, 0.03, 0.012, NEG), sx * 0.05, -0.08, 0));
+        }
+        RELOJ.add(at(box(0.008, 0.03, 0.008, NEG), 0, 0.087, 0));
+        RELOJ.add(at(box(0.04, 0.012, 0.012, BRONCE), 0, 0.102, 0));
+      }
+      // the ring: two little marks that flicker on each side of it
+      const ONDAS = [-1, 1].flatMap((sx) => [0, 1].map((j) => { const m = box(0.012, 0.075 - 0.02 * j, 0.012, glow(0xffcf2e)); m.rotation.z = sx * (0.45 + 0.35 * j); scene.add(m); return { m, sx, j }; }));
+      const RINGS = [[0, 1.75], [tPrim + 3.2, tPrim + 4.6], [tL10 + 3.4, D]];
+      const suena = (t) => RINGS.reduce((s, [a, b]) => Math.max(s, t >= a && t <= b ? 1 - ramp(t, b - 0.25, b) : 0), 0);
+      // the lamp: on at night
+      const LAMP = new THREE.MeshBasicMaterial({ color: 0xffe7a6, toneMapped: false });
+      scene.add(at(cyl(0.07, 0.09, 0.03, mat(0x2b3a6b), 12), TX + 0.2, TOP + 0.015, TZ - 0.12));
+      scene.add(at(cyl(0.012, 0.012, 0.2, mat(0x2b3a6b), 6), TX + 0.2, TOP + 0.12, TZ - 0.12));
+      scene.add(at(cyl(0.07, 0.12, 0.13, LAMP, 14), TX + 0.2, TOP + 0.26, TZ - 0.12));
+
+      // ---------- our character (as in his profile picture) ----------
+      const P = C.personaje(), { kid, head, body, arms } = P;
+      const KX = -0.55, KZ = -0.95, FRENTE = 0.775;
+      kid.scale.setScalar(0.246); kid.position.set(KX, 0, KZ); kid.rotation.y = 1.0; scene.add(kid);
+      // a beard that grows with the years (from 12-cafe), long at frame 0
+      const BARBA = mat(0x5a3a22);
+      const barba = new THREE.Group(); head.add(barba);
+      barba.add(at(box(1.8, 0.36, 0.24, BARBA), 0, -1.08, 1.06));
+      barba.add(at(box(0.8, 0.15, 0.1, BARBA), 0, -0.45, 1.16));
+      for (const sx of [-1, 1]) { barba.add(at(box(0.16, 0.8, 0.55, BARBA), sx * 1.2, -0.62, 0.72)); barba.add(at(box(0.4, 0.4, 0.2, BARBA), sx * 0.8, -0.98, 1.06)); }
+      for (const sx of [-1, 1]) head.add(at(box(0.18, 0.42, 1.2, BARBA), sx * 1.22, 0.55, -0.2));
+      head.add(at(box(2.3, 0.42, 0.16, BARBA), 0, 0.6, -1.14));
+      // dark rings under his eyes (always there: he sleeps 6 hours) and a red nose for the cold
+      const OJERAS = mat(0x7d5a8c, { roughness: 0.9 });
+      const ojeras = [-1, 1].map((sx) => { const o = at(box(0.7, 0.2, 0.06, OJERAS), sx * 0.52, -0.3, 1.13); head.add(o); return o; });
+      const nariz = at(box(0.42, 0.4, 0.34, mat(0xe0503a, { roughness: 0.6 })), 0, -0.22, 1.3); head.add(nariz);
+      // sneeze droplets
+      const GOTAS = Array.from({ length: 9 }, (_, j) => { const m = box(0.09, 0.09, 0.09, glow(0xdff4ff, 0.9)); head.add(m); return { m, j }; });
+
+      // ---------- health cards ----------
+      const card = (id) => document.getElementById(id);
+      const enReloj = () => [RELOJ, v3(0, 0, 0)];
+      const CARDS = [
+        { el: card("c-sueno"), t: tPrim - 0.1, hasta: tSem - 0.9, punto: enReloj,
+          fases: [{ t: tPrim - 0.1, big: "6", u: "h", sub: "es tu noche: seis horas de sueño" },
+                  { t: tSiete - 0.3, big: "7", u: "h o más", sub: "recomiendan dos sociedades de medicina del sueño a un adulto" }] },
+        { el: card("c-catarro"), t: tSem - 0.1, hasta: tAnos - 0.9, punto: () => [head, v3(0, -0.2, 1.3)],
+          fases: [{ t: tSem - 0.1, n: 164, fija: true, u: "adultos", sub: "medidos una semana y expuestos a un virus del catarro" },
+                  { t: tCuatro - 0.3, big: "4,2", u: "veces", sub: "más probabilidad de resfriarse con 5 a 6 h que con más de 7 h" }] },
+        { el: card("c-vida"), t: tAnos - 0.1, hasta: tFue - 0.5, punto: () => [body, v3(0.35, 1.5, FRENTE + 0.05)],
+          fases: [{ t: tAnos - 0.1, big: "−1", u: "h", sub: "de sueño por debajo de 7 h, durante años" },
+                  { t: tSeis - 0.3, n: 6, pre: "+", u: "%", sub: "de riesgo de morir por cualquier causa, por cada hora menos" },
+                  { t: tL6 + 0.3, big: "FORMA DE U", cls: "txt", sub: "el riesgo más bajo, en torno a 7 h; dormir mucho más también lo sube" }] },
+        { el: card("c-lab"), t: tFue - 0.1, hasta: Infinity, punto: () => [head, v3(0, 0.1, 1.2)],
+          fases: [{ t: tFue - 0.1, n: 14, fija: true, u: "noches", sub: "con solo 6 h en la cama: 48 voluntarios sanos, en un laboratorio" },
+                  { t: tDos - 0.3, big: "2", u: "noches en vela", cls: "mid", sub: "como máximo, el rendimiento perdido en las pruebas de atención" },
+                  { t: tApenas - 0.3, big: "APENAS", cls: "txt", sub: "lo notaban: casi no se sentían más cansados" }] },
+      ];
+      const svgNS = "http://www.w3.org/2000/svg", leaders = document.getElementById("leaders");
+      for (const c of CARDS) {
+        c.ln = document.createElementNS(svgNS, "line"); c.ln.setAttribute("stroke", "rgba(255,255,255,0.9)"); c.ln.setAttribute("stroke-width", "4"); leaders.appendChild(c.ln);
+        c.dot = document.createElementNS(svgNS, "circle"); c.dot.setAttribute("r", "9"); c.dot.setAttribute("fill", "#ffcf2e"); c.dot.setAttribute("stroke", "#0b1a3a"); c.dot.setAttribute("stroke-width", "4"); leaders.appendChild(c.dot);
+        c.big = c.el.querySelector(".big"); c.sub = c.el.querySelector(".sub");
+      }
+      const toScreen = (p) => { const q = p.clone().project(camera); return { x: (q.x + 1) * 0.5 * W, y: (1 - q.y) * 0.5 * H }; };
+      const hudEl = document.getElementById("hud");
+      function fase(c, t) {
+        let i = 0;
+        while (i + 1 < c.fases.length && t >= c.fases[i + 1].t) i++;
+        const f = c.fases[i], d = t - f.t;
+        // numbers count up over 0.7 s from 60 %; every new phase pops a little
+        let txt = f.big;
+        if (f.n !== undefined) txt = (f.pre || "") + miles(f.n >= 10 && !f.fija ? lerp(0.6 * f.n, f.n, ease(clamp((t - f.t) / 0.7))) : f.n);
+        const html = `${txt}${f.u ? `<small>${f.u}</small>` : ""}`;
+        if (c.big.innerHTML !== html) c.big.innerHTML = html;
+        c.big.className = "big" + (f.cls ? " " + f.cls : "");
+        if (c.sub.textContent !== f.sub) c.sub.textContent = f.sub;
+        c.big.style.transformOrigin = "0 50%";
+        c.big.style.transform = `scale(${1 + (i > 0 && d > 0 && d < 0.45 ? 0.1 * Math.sin((Math.PI * d) / 0.45) : 0)})`;
+      }
+      const q = (id, sel) => card(id).querySelector(sel);
+      function tarjetas(t) {
+        // cards sit 18 px under the HUD, measured every frame
+        const top = Math.max(646, hudEl.offsetTop + hudEl.offsetHeight + 18);
+        for (const c of CARDS) {
+          const kin = clamp((t - (c.t - 0.12)) / 0.35), kout = clamp((t - c.hasta) / 0.3), vis = ease(kin) * (1 - kout);
+          c.el.style.top = top + "px";
+          c.el.style.opacity = vis;
+          c.el.style.transform = `translateY(${(1 - ease(kin)) * 26}px) scale(${0.94 + 0.06 * ease(kin)})`;
+          const on = vis > 0.01;
+          [c.ln, c.dot].forEach((e) => e.setAttribute("opacity", on ? vis : 0));
+          if (!on) continue;
+          fase(c, t);
+          const [obj, local] = c.punto(), p = toScreen(obj.localToWorld(local.clone()));
+          // the line meets the card at the height of the spot (inside the card), so it never crosses his face
+          const cy = clamp(p.y, top + 50, top + c.el.offsetHeight - 50);
+          c.ln.setAttribute("x1", p.x); c.ln.setAttribute("y1", p.y); c.ln.setAttribute("x2", 556); c.ln.setAttribute("y2", cy);
+          c.dot.setAttribute("cx", p.x); c.dot.setAttribute("cy", p.y);
+        }
+        // icon and chart details
+        q("c-sueno", ".b1").setAttribute("width", 280 * ease(clamp((t - tPrim - 0.1) / 0.9)));
+        q("c-sueno", ".tope").setAttribute("opacity", ease(clamp((t - tSiete + 0.4) / 0.4)));
+        q("c-sueno", ".luna").style.transform = `rotate(${7 * Math.sin((t - tPrim) * 1.8)}deg)`;
+        q("c-sueno", ".zz").setAttribute("opacity", 0.3 + 0.7 * Math.abs(Math.sin((t - tPrim) * 2.4)));
+        q("c-catarro", ".gota").style.transform = `scale(${1 + 0.06 * Math.sin((t - tSem) * 3)})`;
+        q("c-vida", ".pulso").setAttribute("stroke-dashoffset", 100 * (1 - clamp(((t - tAnos) * 0.8) % 1.25)));
+        q("c-lab", ".lupa").style.transform = `rotate(${6 * Math.sin((t - tFue) * 2.2)}deg)`;
+      }
+
+      // ---------- the camera: one framing per beat, travelling smoothly from one to the next ----------
+      // each framing looks at a point of the character with its distance; he sits left of centre, turned towards
+      // the cards, so they never cover him. The first change of framing is before 1.5 s (the face, as the counter
+      // runs back) and then it changes every 2 or 3 s in the first ten seconds
+      const pt = (obj, x, y, z) => () => obj.localToWorld(v3(x, y, z));
+      const ENC0 = [
+        { t: -1, mira: pt(head, 0, -0.5, 0.5), dist: 4.6, az: 14, el: 3 },
+        { t: 0.85, mira: pt(head, 0, -0.5, 0.5), dist: 4.1, az: 8, el: 3, dur: 1.1 },
+        { t: lin(1, "s", 2.8) + 0.5, mira: pt(body, 0, 1.6, 0.4), dist: 7.4, az: 28, el: 8, dur: 1.5 },
+        { t: lin(1, "s", 2.8) + 3.2, mira: pt(RELOJ, 0, 0.2, 0), dist: 4.2, az: 30, el: 10, dur: 1.5 },
+        { t: tPrim - 0.9, mira: pt(body, 0, 2.0, 0.4), dist: 6.6, az: 22, el: 6, dur: 1.4 },
+        { t: tPrim + 3.0, mira: pt(RELOJ, 0, 0.2, 0), dist: 4.2, az: 28, el: 9, dur: 1.4 },
+        { t: tSem - 0.6, mira: pt(head, 0, -0.5, 0.6), dist: 4.2, az: 8, el: 3 },
+        { t: tAnos - 0.9, mira: pt(body, 0, 1.4, 0.4), dist: 6.8, az: 24, el: 6 },
+        { t: tL6 - 0.2, mira: pt(body, 0, 1.0, 0.4), dist: 8.4, az: 24, el: 7 },
+        { t: tFue - 0.4, mira: pt(head, 0, -0.5, 0.6), dist: 5.0, az: 12, el: 4 },
+        { t: tDos - 0.5, mira: pt(head, 0, -0.4, 0.6), dist: 3.9, az: 8, el: 3 },
+        { t: tApenas - 0.6, mira: pt(body, 0, 1.8, 0.4), dist: 6.2, az: 18, el: 5 },
+        { t: tNunca - 0.4, mira: pt(body, 0, 1.6, 0.4), dist: 7.6, az: 26, el: 8 },
+      ];
+      // times strictly increasing, whatever the voice does
+      const ENCUADRES = [];
+      ENC0.forEach((e, i) => ENCUADRES.push(i > 1 ? { ...e, t: Math.max(e.t, ENCUADRES[i - 1].t + 1.2) } : e));
+      function encuadre(t) {
+        let i = 0;
+        while (i + 1 < ENCUADRES.length && t >= ENCUADRES[i + 1].t) i++;
+        const b = ENCUADRES[i], a = ENCUADRES[Math.max(0, i - 1)];
+        const k = i === 0 ? 1 : smooth(clamp((t - b.t) / (b.dur || 1.8)));
+        const mira = a.mira().lerp(b.mira(), k);
+        let dist = lerp(a.dist, b.dist, k), az = lerp(a.az, b.az, k), el = lerp(a.el, b.el, k);
+        // a slow drift so the shot is never still, a last pull back, and the swing of the start around him
+        dist *= 1 + 0.05 * Math.sin(t * 0.37) + 0.5 * ramp(t, D - 4.2, D - 0.6);
+        az += 2 * Math.sin(t * 0.23) + 20 * C.impulso(t);
+        return { mira, dist, az, el };
+      }
+
+      // ---------- light and window by story: night (first night), day, golden (years), cold laboratory light ----------
+      const altEl = document.getElementById("alt"), sinceEl = document.getElementById("since"), clockEl = document.getElementById("clock");
+      const tMiradas = [...CARDS.map((c) => c.t), tFinal];
+      const C_NOCHE = new THREE.Color(0x0d1b45), C_DIA = new THREE.Color(0x8fd3ff), C_ORO = new THREE.Color(0xffc27a), C_ALBA = new THREE.Color(0xffa45c);
+      const SOL = new THREE.Color(0xfff1dc), LUNA = new THREE.Color(0x9fb8ff);
+      const bell = (t, a, b, c, d) => ramp(t, a, b) * (1 - ramp(t, c, d));
+      const noche = (t) => bell(t, tPrim - 0.6, tPrim + 0.2, tPrim + 3.0, tPrim + 3.8);
+
+      function renderAt(t) {
+        const m = nochesAt(t), y = Y(m), an = anos(t), n = noche(t), ring = suena(t);
+        // ---- the character: alive (blinks and reacts to each card), a beard with the years ----
+        P.animar(t);
+        const kB = smooth(clamp((an - 1) / 5));
+        barba.visible = kB > 0.02; barba.scale.set(1, Math.max(0.02, kB), Math.max(0.3, kB));
+        const cansado = 0.45 + 0.55 * smooth(clamp(an / 4));
+        ojeras.forEach((o) => { o.scale.set(1, 0.85 + 0.5 * cansado, 1); });
+        // a red nose while he has the cold
+        const cat = bell(t, tSem + 0.3, tSem + 1.2, tAnos - 1.4, tAnos - 0.4);
+        nariz.visible = cat > 0.02; nariz.scale.setScalar(Math.max(0.01, cat));
+        // the reaction to each card is a curious look (brows up, a small "o"), never a scare
+        const mira = tMiradas.reduce((s, tc) => { const d = t - tc; return d > -0.2 && d < 2.6 ? Math.max(s, d < 0.25 ? ease((d + 0.2) / 0.45) : Math.exp(-(d - 0.25) / 0.9)) : s; }, 0) * 0.7;
+        // yawn at frame 0 (hand on his face), a second one on the last line
+        const bostezo = Math.max(1 - ramp(t, 0.9, 1.8), bell(t, tL10 + 2.6, tL10 + 3.2, tL10 + 4.6, tL10 + 5.2));
+        // micro-sleep on "en vela": head drops, eyes shut, then he wakes up with a jerk
+        const cabeceo = bell(t, tVela - 0.2, tVela + 0.35, tVela + 1.0, tVela + 1.35);
+        const [lids, brows, pupils] = [[head.children[7], head.children[12]], [head.children[8], head.children[13]], [head.children[6], head.children[11]]];
+        const boca = head.children[15], [labios, dientes, esq1, esq2] = boca.children;
+        const kb = (t + 0.7) % 3.4, blink = kb < 0.14 ? Math.sin((Math.PI * kb) / 0.14) : 0;
+        // heavy lids all the time, wide open for a moment when something surprises him
+        const abierto = (0.55 + 0.3 * mira) * (1 - 0.9 * Math.max(bostezo, cabeceo)) * (1 - 0.6 * blink);
+        lids.forEach((l) => (l.scale.y = Math.max(0.001, abierto)));
+        brows.forEach((b, i) => { b.position.y = 0.5 + 0.1 * mira - 0.05 * cansado; b.rotation.z = (i ? -1 : 1) * (0.08 * mira + 0.1 * cansado * (1 - mira)); });
+        pupils.forEach((pu, i) => { pu.position.x = (i ? 1 : -1) * 0.5; pu.scale.setScalar(1 + 0.1 * mira); });
+        const wO = Math.max(mira * 0.8, bostezo);
+        labios.scale.set(1 - 0.2 * wO, 0.16 + 0.55 * wO, 1);
+        labios.position.y = -0.08 * wO - 0.12 * bostezo;
+        dientes.visible = false;
+        [esq1, esq2].forEach((c, i) => { c.visible = wO < 0.4; c.position.x = (i ? 1 : -1) * 0.3; });
+        // ---- arms: the right one goes to his face when he yawns ----
+        const brazo = arms[0], bob = 0.03 * Math.sin(t * 1.3);
+        brazo.rotation.set(lerp(-0.05 + bob, -2.0, bostezo), 0, lerp(0.12, 0.62, bostezo));
+        brazo.scale.y = lerp(1, 1.27, bostezo);
+        arms[1].rotation.x = -0.1 * mira; arms[1].rotation.z = 0.1 + 0.3 * mira + 0.03 * Math.sin(t * 1.1);
+        // ---- head: tired sway, the sneeze, the nod ----
+        const ds = t - tRes;
+        const estornudo = ds < -0.35 || ds > 1.2 ? 0 : ds < 0 ? -0.32 * ease((ds + 0.35) / 0.35) : ds < 0.14 ? lerp(-0.32, 0.5, ds / 0.14) : 0.5 * Math.exp(-(ds - 0.14) * 3.3);
+        head.rotation.x = 0.1 + 0.04 * Math.sin(t * 0.8) + 0.1 * bostezo * -1 + estornudo + 0.75 * cabeceo;
+        head.rotation.y = -0.12 + 0.1 * Math.sin(t * 0.5) + 0.1 * mira;
+        GOTAS.forEach(({ m: g, j }) => {
+          const u = (t - tRes - 0.12) / 0.55;
+          g.visible = u > 0 && u < 1;
+          if (!g.visible) return;
+          const a = j * 2.4;
+          g.position.set(0.5 * Math.sin(a) * u, -0.35 - 0.5 * u * u + 0.2 * Math.cos(a) * u, 1.35 + 3.6 * u * (0.6 + 0.4 * (j % 3) / 2));
+          g.scale.setScalar(1 - 0.5 * u); g.material.opacity = 0.9 * (1 - u);
+        });
+        // ---- the alarm clock rings: it shakes and the marks flicker ----
+        RELOJ.rotation.z = ring * 0.09 * Math.sin(t * 70); RELOJ.position.y = TOP + 0.15 + ring * 0.006 * Math.abs(Math.sin(t * 35));
+        ONDAS.forEach(({ m: o, sx, j }) => {
+          const on = ring > 0.05 && Math.sin(t * 30 + j * 2) > -0.3;
+          o.visible = on; o.position.copy(RELOJ.position).add(v3(sx * (0.2 + 0.06 * j), 0.13 + 0.03 * j, 0.0));
+        });
+
+        // ---- light: the first night is dark and bluish, a golden room with the years, cold light in the laboratory ----
+        const dorado = bell(t, tAnos + 1.5, tAnos + 3, tFue - 1, tFue + 0.5);
+        const lab = ramp(t, tFue, tFue + 1.2);
+        const ven = new THREE.Color().copy(C_ALBA).lerp(C_DIA, ramp(t, 0.8, 2.5)).lerp(C_NOCHE, n).lerp(C_ORO, dorado).lerp(C_DIA, lab * 0.7);
+        VENT.color.copy(ven);
+        LAMP.color.setHex(n > 0.3 ? 0xffe7a6 : 0xb5a98a);
+        C.hemi.intensity = lerp(1.35, 0.85, n); C.key.intensity = lerp(2.3, 0.9, n); C.key.color.copy(SOL).lerp(LUNA, n).lerp(C_ORO, dorado * 0.5);
+
+        // ---- camera ----
+        scene.updateMatrixWorld();
+        const E = encuadre(t);
+        const dir = v3(Math.sin(E.az * RAD) * Math.cos(E.el * RAD), Math.sin(E.el * RAD), Math.cos(E.az * RAD) * Math.cos(E.el * RAD));
+        const right = v3(Math.cos(E.az * RAD), 0, -Math.sin(E.az * RAD));
+        const target = E.mira.clone().addScaledVector(right, 0.075 * E.dist);
+        camera.position.copy(target).addScaledVector(dir, E.dist);
+        camera.lookAt(target);
+        camera.updateMatrixWorld(); C.escala(target, E.dist);
+        const top = "#" + new THREE.Color(0x2b3a6b).lerp(ven, 0.3).getHexString(), bot = "#" + new THREE.Color(0x9fc4e8).getHexString();
+        C.fondo([[0, top, bot], [1, top, bot]], 0);
+        scene.updateMatrixWorld();
+        C.pintar(t, y);
+        // counter: nights; the clock, how long he has slept 6 hours a night
+        const cuantas = Math.round(m + 0.01);
+        altEl.innerHTML = `${miles(cuantas)}<small>${cuantas === 1 ? "noche" : "noches"}</small>`;
+        sinceEl.textContent = C.ESC.desde;
+        clockEl.textContent = reloj(m);
+        tarjetas(t);
+      }
+      await C.arrancar(renderAt);
+    </script>
+  </body>
+</html>

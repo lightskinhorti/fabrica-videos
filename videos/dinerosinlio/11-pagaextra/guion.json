@@ -1,0 +1,48 @@
+{
+  "titulo": "Tu paga extra no es un regalo",
+  "lines": [
+    "Ya la llevas ganada.",
+    "Mira cómo se parte tu sueldo. ¿Qué cambia entre doce pagas y catorce? Al final lo verás.",
+    "Imagina que ganas veintiún mil euros brutos al año.",
+    "En 14 pagas, 1.500 cada vez. En 12, 1.750.",
+    "Cambia el reparto, no el año.",
+    "Según el artículo treinta y uno del Estatuto de los Trabajadores, tienes dos gratificaciones extraordinarias al año, una en Navidad.",
+    "Son parte de tu salario, no un premio.",
+    "El convenio puede prorratearlas: repartirlas en las doce nóminas.",
+    "El IRPF funciona igual: la retención se calcula con lo que cobrarás en el año entero.",
+    "Sale un solo porcentaje, que se aplica a cada pago. En la extra te retienen más euros, pero el mismo porcentaje.",
+    "En la Seguridad Social, la ley prorratea esos pagos en los doce meses.",
+    "Por eso, aquí, cotizas por mil setecientos cincuenta euros al mes, en doce pagas o en catorce.",
+    "¿Y qué cambia, entonces? Cuándo lo cobras, no cuánto.",
+    "Veintiún mil euros al año, de las dos maneras. La paga extra no es dinero nuevo: es tu sueldo de siempre, cobrado en otro momento.",
+    "¿Cobras doce pagas o catorce? Te leo en los comentarios."
+  ],
+  "claves": [
+    "ganada",
+    "parte",
+    "veintiún",
+    "quinientos",
+    "reparto",
+    "Navidad",
+    "salario",
+    "prorratearlas",
+    "retención",
+    "porcentaje",
+    "prorratean",
+    "cotizas",
+    "cuánto",
+    "momento",
+    "comentarios"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "Tu paga extra no es un regalo: el Estatuto de los Trabajadores (art. 31) da dos gratificaciones extraordinarias al año, y son parte de tu salario. Con 14 pagas o con 12 prorrateadas, el sueldo del año es el mismo; la retención del IRPF se calcula sobre el año entero y la Seguridad Social prorratea esos pagos en 12 meses. Ejemplo simplificado de 21.000 € brutos al año.",
+    "hashtags": [
+      "#pagaextra",
+      "#nomina",
+      "#sueldo"
+    ],
+    "portada_en": "ganada"
+  },
+  "voz_dice": "La voz se generó con los números en palabras (catorce, mil quinientos, doce, mil setecientos cincuenta); aquí van en cifras para que los subtítulos coincidan con lo que oye Whisper. La voz se acelera un 10 % (ffmpeg atempo 1,10) porque salió a 71,8 s; el original está en exports/voces/11-pagaextra.original.wav."
+}

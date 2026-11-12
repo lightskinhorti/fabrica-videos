@@ -465,6 +465,19 @@ Con esta lista, el ratón saca un 3 y el mando un 4 (puntuación de Claude): son
 
 En Las cosas por dentro, antes de cada tema se comprueba con Javier que @speedy_devv no lo tenga. En El contador loco se sigue la receta de salud: estudios y organismos oficiales, asociaciones y ningún consejo médico. En Dinero sin lío se explica, no se recomienda.
 
+**Primera tanda con estas reglas (hecha la noche del 11 de noviembre, sin aprobar ni programar):**
+
+| Vídeo | Texto | Voz del gancho | Fotograma 0 | Tipo | Duración |
+| --- | --- | --- | --- | --- | --- |
+| `elcontadorloco/13-sueno` | "Tu cuerpo lo nota. ¿Tú?" | "Duermes seis horas cada noche" | El personaje ya agotado y el contador en 3.653 noches; luego retrocede | Cifra que te toca | 68,1 s |
+| `lascosaspordentro/13-bateria` | "Quieta, pierde capacidad" | "Tu batería envejece mientras duermes" | El móvil abierto con la batería a la vista; la capacidad baja de 100 a 80 % | Lo haces cada día sin saberlo | 61,7 s |
+| `dinerosinlio/11-pagaextra` | "No es un regalo" | "Ya la llevas ganada" | El sueldo del año en 14 fichas, las dos extras en oro | Lo que crees es falso | 66,6 s |
+
+- Cada carpeta lleva `ganchos.md` con los 10 ganchos y su puntuación. Una voz pagada por vídeo.
+- La voz no va siempre a 2,7 palabras por segundo: salió a 2,5 en la paga extra (hubo que acelerarla un 10 %), a 2,9 en la batería y a 3 en el sueño. Para calcular la duración hay que contar con ese margen.
+- Pendiente de mejorar: en la paga extra y en la batería el tercio de abajo de la pantalla sigue vacío.
+- Falta comprobar con Javier que @speedy_devv no tiene la batería del móvil (sí tiene la del portátil enchufado).
+
 **Lo que no se sabe:** si el techo de unas 800 visualizaciones es solo por el gancho. Las cuentas nuevas suelen recibir una primera tanda pequeña de público, y pasar de ahí depende también de cuánta gente ve el vídeo entero y lo comparte. El gancho es lo primero que se arregla porque es donde más gente se pierde, pero no hay garantía de que baste.
 
 ## Instagram: cómo lo hacemos y packs en la bio

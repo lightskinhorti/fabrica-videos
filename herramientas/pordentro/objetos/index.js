@@ -37,6 +37,10 @@
 //   celdaFlash  puerta, flotante, oxido, aislante, sustrato, fuente, drenador, canal, reserva, defectos, lado, centro
 //               (12-usb; mandos: carga, volt, signo, lee, bombeo, desgaste, fuga, rebote)
 //   memoriaCeldas  centro, bloque, sol, agua  (12-usb; mandos: ver, rellena, foto, bloque, borra, olvida)
+//   movilBateria  bateria, placa, chip, conector, carcasa, marco, centro (13-bateria, 11 nov; mandos: capacidad, calor)
+//   celdaIon    anodo, catodo, separador, electrolito, cobre, aluminio, costra, iones, circuito, centro
+//               (13-bateria; mandos: carga, ciclo, vel, calor, costra, circuito)
+//   barrasCapacidad  col1, col2, col3, col4, ref, centro  (13-bateria; mandos: ver, a, b, ref, foco)
 // (09-mando y 10-raton, hechos antes de registrarlos, aún los pasan a mano con crearPlantillas(..., { objetos });
 // funciona igual, porque lo que se pasa a mano manda sobre esta lista.)
 import { magnetron } from "./magnetron.js";
@@ -49,11 +53,12 @@ import { senalIR, espectro } from "./senales.js";
 import { raton, mesa, superficie, fotosRaton, monitor } from "./raton.js";
 import { auriculares, ondasSonido } from "./auriculares.js";
 import { pendrive, celdaFlash, memoriaCeldas } from "./pendrive.js";
+import { movilBateria, celdaIon, barrasCapacidad } from "./bateria.js";
 
 export const OBJETOS = {
   microondas, magnetron, cuenco, plato, vaso, placa, bobina, serpentin, tubo, nevera, compresor,
   mando, tele, receptor, movilCamara, senalIR, espectro, raton, mesa, superficie, fotosRaton, monitor,
-  auriculares, ondasSonido, pendrive, celdaFlash, memoriaCeldas,
+  auriculares, ondasSonido, pendrive, celdaFlash, memoriaCeldas, movilBateria, celdaIon, barrasCapacidad,
 };
 export { crearMateriales } from "./materiales.js";
 export { crearBase } from "./base.js";

@@ -1,0 +1,1058 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <link rel="stylesheet" href="comun/dinero.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+      .cifra, .fila b { font-family: "Archivo Black", sans-serif; }
+      /* this video's layout: everything big, from y = 430 to 1420 (what TikTok leaves free) */
+      .ancho { left: 0; width: 1080px; text-align: center; }
+      .cifra.g150 { font-size: 150px; }
+      .rotulo.r44 { font-size: 44px; line-height: 1.3; letter-spacing: 0.06em; }
+      .rotulo.r40 { font-size: 40px; letter-spacing: 0.08em; }
+      .chip.c58 { font-size: 58px; }
+      .chip.c50 { font-size: 50px; }
+      .chip.c44 { font-size: 44px; }
+      .sello.s62 { font-size: 62px; line-height: 1.12; text-align: center; }
+      .sello.s54 { font-size: 54px; }
+      .docg .doc { width: 820px; padding: 30px 40px 20px; }
+      .docg .doc-tit { font-size: 40px; }
+      .docg .fila { font-size: 40px; padding: 16px 0; }
+      .docg .fila b { font-size: 46px; white-space: nowrap; }
+      .fila.marca { background: #f8dc7a; margin: 0 -18px; padding-left: 18px; padding-right: 18px; border-radius: 10px; }
+      .barra.alta { height: 150px; }
+      .barra.alta .seg { font-size: 40px; }
+      .seg.v { flex: 1; background: #fffaf0; }
+      .seg.o { flex: 1; background: #f2b705; }
+      .seg.v + .seg.v, .seg.v + .seg.o, .seg.o + .seg.o { border-left-width: 5px; }
+      .col {
+        border: 7px solid #1d2a44; border-bottom-width: 0; border-radius: 20px 20px 0 0; box-shadow: 12px 0 0 #1d2a44;
+        overflow: hidden; text-align: center; color: #fff; font-weight: 800; font-size: 34px; letter-spacing: 0.06em; background: #4a78c2;
+        display: flex; flex-direction: column;
+      }
+      .col .r { background: #e5383b; display: flex; align-items: center; justify-content: center; font-size: 26px; border-bottom: 6px solid #1d2a44; }
+      .col .b { flex: 1; display: flex; align-items: center; justify-content: center; }
+      #sueloF { height: 10px; background: #1d2a44; border-radius: 5px; }
+      .rejilla > div { position: absolute; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="66.6" data-width="1080" data-height="1920" data-fps="30">
+      <div id="fondo" class="clip" data-start="0" data-duration="66.6" data-track-index="0"></div>
+      <div id="escenario" class="clip" data-start="0" data-duration="66.6" data-track-index="1" data-layout-allow-overlap data-layout-allow-overflow>
+        <!-- A: the hook. The year's pay in 14 tiles, two of them gold ("PAGA EXTRA"), in frame 0 -->
+        <div class="pieza" id="g14" style="left:60px; top:700px; width:960px; height:490px"></div>
+        <div class="pieza" id="oroA" style="left:750px; top:950px" data-dibujo="ficha" data-args='[128, 240, "PAGA<br>EXTRA", "1.500", true]'></div>
+        <div class="pieza" id="oroB" style="left:888px; top:950px" data-dibujo="ficha" data-args='[128, 240, "PAGA<br>EXTRA", "1.500", true]'></div>
+        <div class="pieza ancho" id="chipTotal" style="top:1250px"><div class="chip blanco c44">14 × 1.500 € = 21.000 € AL AÑO</div></div>
+        <div class="pieza ancho" id="chipPreg" style="top:450px"><div class="chip c58">¿12 O 14 PAGAS?</div></div>
+
+        <!-- B: the example salary -->
+        <div class="pieza rotulo r44 ancho" id="rotB" style="top:470px">TU SUELDO BRUTO AL AÑO</div>
+        <div class="pieza cifra g150 ancho" id="c21" style="top:540px">0 €</div>
+        <div class="pieza" id="ofi" style="left:80px; top:830px" data-icono="oficina" data-args='["TU EMPRESA", 360]'></div>
+        <div class="pieza" id="flB" style="left:470px; top:1010px" data-dibujo="flecha" data-args="[180]"></div>
+        <div class="pieza" id="pers" style="left:720px; top:900px" data-icono="persona" data-args='["#4a78c2", 260]'></div>
+
+        <!-- C: 14 payments of 1.500 or 12 of 1.750: same bar -->
+        <div class="pieza rotulo r44 ancho" id="rot14" style="top:470px">14 PAGAS · 1.500 € CADA UNA</div>
+        <div class="pieza" id="barra14" style="left:90px; top:540px; width:900px"><div class="barra alta" id="b14"></div></div>
+        <div class="pieza rotulo r44 ancho" id="rot12" style="top:770px">12 PAGAS · 1.750 € CADA UNA</div>
+        <div class="pieza" id="barra12" style="left:90px; top:840px; width:900px"><div class="barra alta" id="b12"></div></div>
+        <div class="pieza ancho" id="chipIgual" style="top:1090px"><div class="chip blanco c50">21.000 € AL AÑO, LOS DOS</div></div>
+        <div class="pieza ancho" id="selloMismo" style="top:1230px"><div class="sello s62" style="color:#2f8f6b; border-color:#2f8f6b">MISMO SUELDO</div></div>
+
+        <!-- D: article 31 and salary -->
+        <div class="pieza docg" id="docET" style="left:130px; top:470px" data-icono="doc"
+          data-args='["ESTATUTO · ARTÍCULO 31", [["GRATIFICACIONES", "2 AL AÑO", "filaG"], ["UNA", "NAVIDAD", "filaN"], ["LA OTRA", "SEGÚN CONVENIO", "filaO"]]]'></div>
+        <div class="pieza" id="tileNav" style="left:70px; top:940px" data-dibujo="fichaG" data-args='[440, 380, "PAGA EXTRA", "NAVIDAD", ""]'></div>
+        <div class="pieza" id="tileOtro" style="left:570px; top:940px" data-dibujo="fichaG" data-args='[440, 380, "PAGA EXTRA", "OTRO MES", "SEGÚN CONVENIO"]'></div>
+        <div class="pieza ancho" id="selloSal" style="top:520px"><div class="sello s54" style="color:#2f8f6b; border-color:#2f8f6b">PARTE DE TU SALARIO</div></div>
+        <div class="pieza ancho" id="selloPre" style="top:720px"><div class="sello s62" style="color:#e5383b; border-color:#e5383b">NO ES UN PREMIO</div></div>
+
+        <!-- E: the pro rata: the two extra payments spread over 12 months -->
+        <div class="pieza ancho" id="chipPror" style="top:450px"><div class="chip c58">PRORRATEO</div></div>
+        <div class="pieza" id="g12" style="left:60px; top:590px; width:960px; height:552px"></div>
+        <div class="pieza ancho" id="chipFor" style="top:1210px"><div class="chip blanco c44">3.000 € ÷ 12 = 250 € AL MES</div></div>
+        <div class="pieza ancho" id="chipSum" style="top:1315px"><div class="chip verde c50">1.500 + 250 = 1.750 €</div></div>
+
+        <!-- F: income tax withholding -->
+        <div class="pieza ancho" id="chipIRPF" style="top:440px"><div class="chip blanco c58">IRPF</div></div>
+        <div class="pieza rotulo r40 ancho" id="rotAnio" style="top:545px">SE CALCULA CON EL AÑO ENTERO</div>
+        <div class="pieza" id="barraAnio" style="left:90px; top:610px; width:900px"><div class="barra alta"><div class="seg" style="width:100%; background:#f2b705">LO QUE COBRARÁS: 21.000 €</div></div></div>
+        <div class="pieza cifra media verde ancho" id="cPct" style="top:800px">UN SOLO %</div>
+        <div class="pieza col" id="colN" style="left:200px; top:1170px; width:300px; height:250px"><div class="r" style="height:72px">RETENCIÓN</div><div class="b">NÓMINA</div></div>
+        <div class="pieza col" id="colE" style="left:580px; top:1030px; width:300px; height:390px"><div class="r" style="height:112px">RETENCIÓN</div><div class="b">EXTRA</div></div>
+        <div class="pieza ancho" id="chipMismo" style="top:920px"><div class="chip rojo c44">EL MISMO PORCENTAJE</div></div>
+        <div class="pieza" id="sueloF" style="left:110px; top:1420px; width:860px"></div>
+
+        <!-- G: Social Security -->
+        <div class="pieza ancho" id="chipSS" style="top:440px"><div class="chip blanco c50">SEGURIDAD SOCIAL</div></div>
+        <div class="pieza" id="edif" style="left:338px; top:540px" data-icono="edificio" data-args='["SEG. SOCIAL", "#fffaf0", 380]'></div>
+        <div class="pieza rotulo r40 ancho" id="rotSS" style="top:925px">SE PRORRATEA EN LOS 12 MESES</div>
+        <div class="pieza cifra g150 verde ancho" id="cBase" style="top:985px">0 €</div>
+        <div class="pieza rotulo r40 ancho" id="rotBase" style="top:1160px">BASE DE COTIZACIÓN AL MES</div>
+        <div class="pieza" id="cp12" style="left:110px; top:1255px"><div class="chip c50">12 PAGAS</div></div>
+        <div class="pieza cifra pequena" id="eq" style="left:495px; top:1262px">=</div>
+        <div class="pieza" id="cp14" style="left:610px; top:1255px"><div class="chip c50">14 PAGAS</div></div>
+
+        <!-- H: what changes, and the end -->
+        <div class="pieza ancho" id="chipQue" style="top:480px"><div class="chip blanco c58">¿QUÉ CAMBIA?</div></div>
+        <div class="pieza ancho" id="chipCuando" style="top:760px"><div class="chip verde c58">CUÁNDO LO COBRAS</div></div>
+        <div class="pieza ancho" id="chipCuanto" style="top:1010px"><div class="chip rojo c58">CUÁNTO COBRAS</div></div>
+        <div class="pieza" id="tacha" style="left:190px; top:1070px; width:700px; height:14px; background:#1d2a44; border-radius:7px"></div>
+        <div class="pieza cifra g150 verde ancho" id="cFin" style="top:520px">0 €</div>
+        <div class="pieza rotulo r44 ancho" id="rotFin" style="top:700px">AL AÑO, DE LAS DOS MANERAS</div>
+        <div class="pieza ancho" id="selloNuevo" style="top:850px"><div class="sello s62" style="color:#e5383b; border-color:#e5383b">NO ES DINERO NUEVO</div></div>
+        <div class="pieza ancho" id="selloSueldo" style="top:1030px"><div class="sello s62" style="color:#2f8f6b; border-color:#2f8f6b">ES TU SUELDO</div></div>
+        <div class="pieza ancho" id="chipOtro" style="top:1190px"><div class="chip blanco c44">COBRADO EN OTRO MOMENTO</div></div>
+        <div class="pieza ancho" id="chipFin" style="top:1300px"><div class="chip c58">¿12 PAGAS O 14?</div></div>
+      </div>
+      <div id="gancho" class="clip" data-start="0" data-duration="66.6" data-track-index="2"></div>
+      <div id="note" class="clip" data-start="0" data-duration="66.6" data-track-index="3"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="66.6"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="66.6" data-track-index="4" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 65.301, "lines": [{"id": "l1", "s": 0, "e": 1.72, "words": [{"w": "Ya", "s": 0, "e": 0.25, "key": false}, {"w": "la", "s": 0.25, "e": 0.42, "key": false}, {"w": "llevas", "s": 0.42, "e": 0.92, "key": false}, {"w": "ganada.", "s": 0.92, "e": 1.72, "key": true}]}, {"id": "l2", "s": 1.72, "e": 7.71, "words": [{"w": "Mira", "s": 1.72, "e": 1.91, "key": false}, {"w": "cómo", "s": 1.91, "e": 2.1, "key": false}, {"w": "se", "s": 2.1, "e": 2.17, "key": false}, {"w": "parte", "s": 2.21, "e": 2.42, "key": true}, {"w": "tu", "s": 2.42, "e": 2.52, "key": false}, {"w": "sueldo.", "s": 2.52, "e": 3.4, "key": false}, {"w": "¿Qué", "s": 3.4, "e": 3.84, "key": false}, {"w": "cambia", "s": 3.84, "e": 4.09, "key": false}, {"w": "entre", "s": 4.2, "e": 4.52, "key": false}, {"w": "12", "s": 4.52, "e": 4.95, "key": false}, {"w": "pagas", "s": 4.95, "e": 5.18, "key": false}, {"w": "y", "s": 5.34, "e": 5.4, "key": false}, {"w": "14?", "s": 5.64, "e": 6.39, "key": false}, {"w": "Al", "s": 6.4, "e": 6.5, "key": false}, {"w": "final", "s": 6.9, "e": 6.93, "key": false}, {"w": "lo", "s": 6.93, "e": 7.08, "key": false}, {"w": "verás.", "s": 7.08, "e": 7.71, "key": false}]}, {"id": "l3", "s": 7.72, "e": 10.95, "words": [{"w": "Imagina", "s": 7.72, "e": 8.05, "key": false}, {"w": "que", "s": 8.05, "e": 8.19, "key": false}, {"w": "ganas", "s": 8.19, "e": 8.42, "key": false}, {"w": "21.000", "s": 8.44, "e": 9.36, "key": true}, {"w": "euros", "s": 9.36, "e": 9.74, "key": false}, {"w": "brutos", "s": 9.8, "e": 10.2, "key": false}, {"w": "al", "s": 10.27, "e": 10.43, "key": false}, {"w": "año.", "s": 10.43, "e": 10.95, "key": false}]}, {"id": "l4", "s": 10.99, "e": 15.29, "words": [{"w": "En", "s": 10.99, "e": 11.05, "key": false}, {"w": "14", "s": 11.05, "e": 11.28, "key": false}, {"w": "pagas,", "s": 11.48, "e": 11.6, "key": false}, {"w": "1.500", "s": 11.76, "e": 12.4, "key": false}, {"w": "cada", "s": 12.68, "e": 12.77, "key": false}, {"w": "vez.", "s": 12.77, "e": 13.27, "key": false}, {"w": "En", "s": 13.27, "e": 13.42, "key": false}, {"w": "12,", "s": 13.42, "e": 13.53, "key": false}, {"w": "1.750.", "s": 13.94, "e": 15.29, "key": false}]}, {"id": "l5", "s": 15.48, "e": 17.61, "words": [{"w": "Cambia", "s": 15.48, "e": 15.88, "key": false}, {"w": "el", "s": 16.06, "e": 16.08, "key": false}, {"w": "reparto,", "s": 16.08, "e": 16.78, "key": true}, {"w": "no", "s": 16.84, "e": 16.97, "key": false}, {"w": "el", "s": 16.98, "e": 17.11, "key": false}, {"w": "año.", "s": 17.2, "e": 17.61, "key": false}]}, {"id": "l6", "s": 17.78, "e": 24.76, "words": [{"w": "Según", "s": 17.78, "e": 17.98, "key": false}, {"w": "el", "s": 17.98, "e": 18.09, "key": false}, {"w": "artículo", "s": 18.09, "e": 18.34, "key": false}, {"w": "31", "s": 18.34, "e": 18.85, "key": false}, {"w": "del", "s": 18.85, "e": 18.95, "key": false}, {"w": "Estatuto", "s": 19.02, "e": 19.39, "key": false}, {"w": "de", "s": 19.41, "e": 19.43, "key": false}, {"w": "los", "s": 19.64, "e": 19.7, "key": false}, {"w": "Trabajadores,", "s": 19.7, "e": 20.5, "key": false}, {"w": "tienes", "s": 20.5, "e": 20.9, "key": false}, {"w": "dos", "s": 20.9, "e": 21.08, "key": false}, {"w": "gratificaciones", "s": 21.08, "e": 21.93, "key": false}, {"w": "extraordinarias", "s": 21.93, "e": 22.82, "key": false}, {"w": "al", "s": 22.82, "e": 23.02, "key": false}, {"w": "año,", "s": 23.02, "e": 23.4, "key": false}, {"w": "una", "s": 23.4, "e": 23.69, "key": false}, {"w": "en", "s": 23.69, "e": 23.88, "key": false}, {"w": "Navidad.", "s": 23.88, "e": 24.76, "key": true}]}, {"id": "l7", "s": 24.76, "e": 26.54, "words": [{"w": "Son", "s": 24.76, "e": 25.0, "key": false}, {"w": "parte", "s": 25, "e": 25.06, "key": false}, {"w": "de", "s": 25.09, "e": 25.18, "key": false}, {"w": "tu", "s": 25.18, "e": 25.29, "key": false}, {"w": "salario,", "s": 25.32, "e": 25.82, "key": true}, {"w": "no", "s": 25.82, "e": 25.86, "key": false}, {"w": "un", "s": 25.86, "e": 26.26, "key": false}, {"w": "premio.", "s": 26.26, "e": 26.54, "key": false}]}, {"id": "l8", "s": 26.61, "e": 30.44, "words": [{"w": "El", "s": 26.61, "e": 26.7, "key": false}, {"w": "convenio", "s": 26.7, "e": 27.17, "key": false}, {"w": "puede", "s": 27.17, "e": 27.47, "key": false}, {"w": "prorratearlas:", "s": 27.47, "e": 28.32, "key": true}, {"w": "repartirlas", "s": 28.38, "e": 29.08, "key": false}, {"w": "en", "s": 29.08, "e": 29.19, "key": false}, {"w": "las", "s": 29.19, "e": 29.36, "key": false}, {"w": "doce", "s": 29.36, "e": 29.56, "key": false}, {"w": "nóminas.", "s": 29.84, "e": 30.44, "key": false}]}, {"id": "l9", "s": 30.44, "e": 35.64, "words": [{"w": "El", "s": 30.44, "e": 30.58, "key": false}, {"w": "IRPF", "s": 30.58, "e": 30.86, "key": false}, {"w": "funciona", "s": 31.1, "e": 31.39, "key": false}, {"w": "igual:", "s": 31.45, "e": 31.98, "key": false}, {"w": "la", "s": 31.98, "e": 32.12, "key": false}, {"w": "retención", "s": 32.12, "e": 32.75, "key": true}, {"w": "se", "s": 32.75, "e": 32.89, "key": false}, {"w": "calcula", "s": 33.22, "e": 33.38, "key": false}, {"w": "con", "s": 33.38, "e": 33.59, "key": false}, {"w": "lo", "s": 33.59, "e": 33.69, "key": false}, {"w": "que", "s": 33.8, "e": 33.93, "key": false}, {"w": "cobrarás", "s": 33.94, "e": 34.56, "key": false}, {"w": "en", "s": 34.56, "e": 34.69, "key": false}, {"w": "el", "s": 34.69, "e": 34.78, "key": false}, {"w": "año", "s": 34.94, "e": 35.03, "key": false}, {"w": "entero.", "s": 35.24, "e": 35.64, "key": false}]}, {"id": "l10", "s": 35.64, "e": 42.12, "words": [{"w": "Sale", "s": 35.64, "e": 35.91, "key": false}, {"w": "un", "s": 35.91, "e": 36.03, "key": false}, {"w": "solo", "s": 36.03, "e": 36.14, "key": false}, {"w": "porcentaje,", "s": 36.51, "e": 37.09, "key": true}, {"w": "que", "s": 37.1, "e": 37.31, "key": false}, {"w": "se", "s": 37.31, "e": 37.44, "key": false}, {"w": "aplica", "s": 37.44, "e": 37.84, "key": false}, {"w": "a", "s": 37.84, "e": 37.89, "key": false}, {"w": "cada", "s": 37.89, "e": 38.09, "key": false}, {"w": "pago.", "s": 38.14, "e": 38.63, "key": false}, {"w": "En", "s": 38.66, "e": 38.73, "key": false}, {"w": "la", "s": 38.79, "e": 38.89, "key": false}, {"w": "extra", "s": 38.89, "e": 39.13, "key": false}, {"w": "te", "s": 39.24, "e": 39.36, "key": false}, {"w": "retienen", "s": 39.36, "e": 40.04, "key": false}, {"w": "más", "s": 40.04, "e": 40.21, "key": false}, {"w": "euros,", "s": 40.46, "e": 40.65, "key": false}, {"w": "pero", "s": 40.65, "e": 40.9, "key": false}, {"w": "el", "s": 40.9, "e": 40.99, "key": false}, {"w": "mismo", "s": 41.02, "e": 41.31, "key": false}, {"w": "porcentaje.", "s": 41.31, "e": 42.12, "key": false}]}, {"id": "l11", "s": 42.12, "e": 46.3, "words": [{"w": "En", "s": 42.12, "e": 42.24, "key": false}, {"w": "la", "s": 42.24, "e": 42.36, "key": false}, {"w": "Seguridad", "s": 42.36, "e": 42.91, "key": false}, {"w": "Social,", "s": 42.91, "e": 43.4, "key": false}, {"w": "la", "s": 43.4, "e": 43.52, "key": false}, {"w": "ley", "s": 43.52, "e": 43.65, "key": false}, {"w": "prorratea", "s": 43.82, "e": 44.25, "key": false}, {"w": "esos", "s": 44.25, "e": 44.64, "key": false}, {"w": "pagos", "s": 44.64, "e": 45.02, "key": false}, {"w": "en", "s": 45.02, "e": 45.16, "key": false}, {"w": "los", "s": 45.16, "e": 45.28, "key": false}, {"w": "12", "s": 45.52, "e": 45.72, "key": false}, {"w": "meses.", "s": 45.72, "e": 46.3, "key": false}]}, {"id": "l12", "s": 46.3, "e": 51.597, "words": [{"w": "Por", "s": 46.3, "e": 46.38, "key": false}, {"w": "eso,", "s": 46.75, "e": 46.89, "key": false}, {"w": "aquí,", "s": 46.89, "e": 47.18, "key": false}, {"w": "cotizas", "s": 47.18, "e": 47.68, "key": true}, {"w": "por", "s": 47.68, "e": 47.87, "key": false}, {"w": "1.750", "s": 47.9, "e": 48.98, "key": false}, {"w": "euros", "s": 49.03, "e": 49.37, "key": false}, {"w": "al", "s": 49.37, "e": 49.51, "key": false}, {"w": "mes,", "s": 49.51, "e": 49.86, "key": false}, {"w": "en", "s": 49.87, "e": 49.95, "key": false}, {"w": "12", "s": 50.04, "e": 50.44, "key": false}, {"w": "pagas", "s": 50.44, "e": 50.81, "key": false}, {"w": "o", "s": 50.81, "e": 50.88, "key": false}, {"w": "en", "s": 50.88, "e": 50.98, "key": false}, {"w": "14.", "s": 51.07, "e": 51.597, "key": false}]}, {"id": "l13", "s": 51.597, "e": 54.66, "words": [{"w": "¿Y", "s": 51.597, "e": 51.86, "key": false}, {"w": "qué", "s": 51.86, "e": 51.96, "key": false}, {"w": "cambia,", "s": 52.2, "e": 52.32, "key": false}, {"w": "entonces?", "s": 52.32, "e": 52.937, "key": false}, {"w": "Cuándo", "s": 52.937, "e": 53.4, "key": false}, {"w": "lo", "s": 53.46, "e": 53.52, "key": false}, {"w": "cobras,", "s": 53.52, "e": 54.06, "key": false}, {"w": "no", "s": 54.06, "e": 54.18, "key": false}, {"w": "cuánto.", "s": 54.18, "e": 54.66, "key": true}]}, {"id": "l14", "s": 54.66, "e": 62.065, "words": [{"w": "21.000", "s": 54.66, "e": 55.74, "key": false}, {"w": "euros", "s": 55.74, "e": 56.04, "key": false}, {"w": "al", "s": 56.04, "e": 56.05, "key": false}, {"w": "año,", "s": 56.16, "e": 56.3, "key": false}, {"w": "de", "s": 56.36, "e": 56.46, "key": false}, {"w": "las", "s": 56.46, "e": 56.63, "key": false}, {"w": "dos", "s": 56.72, "e": 56.88, "key": false}, {"w": "maneras.", "s": 56.88, "e": 57.85, "key": false}, {"w": "La", "s": 57.96, "e": 58.07, "key": false}, {"w": "paga", "s": 58.12, "e": 58.28, "key": false}, {"w": "extra", "s": 58.29, "e": 58.55, "key": false}, {"w": "no", "s": 58.55, "e": 58.66, "key": false}, {"w": "es", "s": 58.66, "e": 58.72, "key": false}, {"w": "dinero", "s": 58.76, "e": 59.05, "key": false}, {"w": "nuevo:", "s": 59.37, "e": 59.48, "key": false}, {"w": "es", "s": 59.48, "e": 59.59, "key": false}, {"w": "tu", "s": 59.59, "e": 59.7, "key": false}, {"w": "sueldo", "s": 59.7, "e": 60.01, "key": false}, {"w": "de", "s": 60.03, "e": 60.13, "key": false}, {"w": "siempre,", "s": 60.13, "e": 60.63, "key": false}, {"w": "cobrado", "s": 60.63, "e": 61.01, "key": false}, {"w": "en", "s": 61.01, "e": 61.12, "key": false}, {"w": "otro", "s": 61.12, "e": 61.34, "key": false}, {"w": "momento.", "s": 61.58, "e": 62.065, "key": true}]}, {"id": "l15", "s": 62.065, "e": 65.0, "words": [{"w": "¿Cobras", "s": 62.065, "e": 62.48, "key": false}, {"w": "12", "s": 62.72, "e": 62.98, "key": false}, {"w": "pagas", "s": 62.98, "e": 63.39, "key": false}, {"w": "o", "s": 63.39, "e": 63.47, "key": false}, {"w": "14?", "s": 63.47, "e": 64.24, "key": false}, {"w": "Te", "s": 64.24, "e": 64.26, "key": false}, {"w": "leo", "s": 64.33, "e": 64.39, "key": false}, {"w": "en", "s": 64.39, "e": 64.45, "key": false}, {"w": "los", "s": 64.45, "e": 64.53, "key": false}, {"w": "comentarios.", "s": 64.54, "e": 65.0, "key": true}]}]}</script>
+    <script id="escena" type="application/json">
+{
+  "momentos": [
+    {
+      "id": "GFIN",
+      "clave": "ganada",
+      "fin": true,
+      "mas": 0.35
+    },
+    {
+      "id": "MIRA",
+      "clave": "mira"
+    },
+    {
+      "id": "SUELDO",
+      "clave": "sueldo"
+    },
+    {
+      "id": "CAMBIA",
+      "clave": "cambia"
+    },
+    {
+      "id": "DOCE",
+      "clave": "pagas"
+    },
+    {
+      "id": "VERAS",
+      "clave": "verás"
+    },
+    {
+      "id": "IMAGINA",
+      "clave": "imagina"
+    },
+    {
+      "id": "EUROS3",
+      "clave": "euros"
+    },
+    {
+      "id": "BRUTOS",
+      "clave": "brutos"
+    },
+    {
+      "id": "ANO3",
+      "clave": "año"
+    },
+    {
+      "id": "PAGAS4",
+      "clave": "pagas"
+    },
+    {
+      "id": "CADA",
+      "clave": "cada"
+    },
+    {
+      "id": "VEZ",
+      "clave": "vez"
+    },
+    {
+      "id": "EN4",
+      "clave": "en"
+    },
+    {
+      "id": "CAMBIA5",
+      "clave": "cambia"
+    },
+    {
+      "id": "REPARTO",
+      "clave": "reparto"
+    },
+    {
+      "id": "ANO5",
+      "clave": "año"
+    },
+    {
+      "id": "SEGUN",
+      "clave": "según"
+    },
+    {
+      "id": "ARTICULO",
+      "clave": "artículo"
+    },
+    {
+      "id": "ESTATUTO",
+      "clave": "estatuto"
+    },
+    {
+      "id": "GRATI",
+      "clave": "gratificaciones"
+    },
+    {
+      "id": "NAVIDAD",
+      "clave": "navidad"
+    },
+    {
+      "id": "PARTE",
+      "clave": "parte"
+    },
+    {
+      "id": "SALARIO",
+      "clave": "salario"
+    },
+    {
+      "id": "PREMIO",
+      "clave": "premio"
+    },
+    {
+      "id": "CONVENIO",
+      "clave": "convenio"
+    },
+    {
+      "id": "PRORRATEO",
+      "clave": "prorratearlas"
+    },
+    {
+      "id": "REPARTIRLAS",
+      "clave": "repartirlas"
+    },
+    {
+      "id": "NOMINAS",
+      "clave": "nóminas"
+    },
+    {
+      "id": "IRPF",
+      "clave": "irpf"
+    },
+    {
+      "id": "RETENCION",
+      "clave": "retención"
+    },
+    {
+      "id": "COBRARAS",
+      "clave": "cobrarás"
+    },
+    {
+      "id": "ENTERO",
+      "clave": "entero"
+    },
+    {
+      "id": "PORCENTAJE",
+      "clave": "porcentaje"
+    },
+    {
+      "id": "PAGO",
+      "clave": "pago"
+    },
+    {
+      "id": "EXTRA10",
+      "clave": "extra"
+    },
+    {
+      "id": "RETIENEN",
+      "clave": "retienen"
+    },
+    {
+      "id": "MISMO",
+      "clave": "mismo"
+    },
+    {
+      "id": "SEGURIDAD",
+      "clave": "seguridad"
+    },
+    {
+      "id": "PRORRATEA",
+      "clave": "prorratea"
+    },
+    {
+      "id": "MESES",
+      "clave": "meses"
+    },
+    {
+      "id": "COTIZAS",
+      "clave": "cotizas"
+    },
+    {
+      "id": "EUROS12",
+      "clave": "euros"
+    },
+    {
+      "id": "PAGAS12",
+      "clave": "pagas"
+    },
+    {
+      "id": "CAMBIA13",
+      "clave": "cambia"
+    },
+    {
+      "id": "CUANDO",
+      "clave": "cuándo"
+    },
+    {
+      "id": "CUANTO",
+      "clave": "cuánto"
+    },
+    {
+      "id": "EUROS14",
+      "clave": "euros"
+    },
+    {
+      "id": "MANERAS",
+      "clave": "maneras"
+    },
+    {
+      "id": "PAGA14",
+      "clave": "paga"
+    },
+    {
+      "id": "NUEVO",
+      "clave": "nuevo"
+    },
+    {
+      "id": "SIEMPRE",
+      "clave": "siempre"
+    },
+    {
+      "id": "MOMENTO",
+      "clave": "momento"
+    },
+    {
+      "id": "COBRAS",
+      "clave": "cobras"
+    },
+    {
+      "id": "COMENT",
+      "clave": "comentarios"
+    }
+  ],
+  "gancho": {
+    "texto": "NO ES UN REGALO",
+    "clave": "regalo",
+    "tam": 150,
+    "top": 480,
+    "hasta": "GFIN"
+  },
+  "arranque": {
+    "zoom": 1.06,
+    "centro": [
+      540,
+      900
+    ]
+  },
+  "lluvia": [
+    {
+      "icono": "moneda",
+      "args": [
+        "€",
+        96
+      ],
+      "n": 9,
+      "desde": 0,
+      "hasta": "IMAGINA",
+      "vel": 420,
+      "opacidad": 0.4
+    }
+  ],
+  "piezas": [
+    {
+      "id": "g14",
+      "desde": 0,
+      "hasta": "IMAGINA",
+      "viaja": {
+        "s": 1.05,
+        "dura": 1.0
+      }
+    },
+    {
+      "id": "oroA",
+      "desde": 0,
+      "hasta": "IMAGINA",
+      "viaja": {
+        "s": 1.2,
+ "y": -30,
+ "r": -9,
+        "dura": 1.0
+      },
+      "mueve": {
+        "tipo": "late",
+        "fuerza": 7,
+        "ritmo": 5
+      }
+    },
+    {
+      "id": "oroB",
+      "desde": 0,
+      "hasta": "IMAGINA",
+      "viaja": {
+        "s": 1.2,
+ "y": -30,
+ "r": 9,
+        "dura": 1.0
+      },
+      "mueve": {
+        "tipo": "late",
+        "fuerza": 7,
+        "ritmo": 5.6
+      }
+    },
+    {
+      "id": "chipTotal",
+      "desde": 1.15,
+      "hasta": "IMAGINA",
+      "entra": "sello"
+    },
+    {
+      "id": "chipPreg",
+      "desde": "CAMBIA",
+      "hasta": "IMAGINA",
+      "entra": "sello"
+    },
+    {
+      "id": "rotB",
+      "desde": "IMAGINA",
+      "hasta": "PAGAS4",
+      "entra": "baja"
+    },
+    {
+      "id": "c21",
+      "desde": "IMAGINA",
+      "hasta": "PAGAS4",
+      "entra": "escala"
+    },
+    {
+      "id": "ofi",
+      "desde": "BRUTOS",
+      "hasta": "PAGAS4",
+      "entra": "izq"
+    },
+    {
+      "id": "flB",
+      "desde": "BRUTOS",
+      "hasta": "PAGAS4",
+      "entra": "izq"
+    },
+    {
+      "id": "pers",
+      "desde": "BRUTOS",
+      "hasta": "PAGAS4",
+      "entra": "der"
+    },
+    {
+      "id": "rot14",
+      "desde": "PAGAS4",
+      "hasta": "SEGUN",
+      "entra": "baja"
+    },
+    {
+      "id": "barra14",
+      "desde": "PAGAS4",
+      "hasta": "SEGUN",
+      "entra": "izq"
+    },
+    {
+      "id": "rot12",
+      "desde": "EN4",
+      "hasta": "SEGUN",
+      "entra": "baja"
+    },
+    {
+      "id": "barra12",
+      "desde": "EN4",
+      "hasta": "SEGUN",
+      "entra": "izq"
+    },
+    {
+      "id": "chipIgual",
+      "desde": "CAMBIA5",
+      "hasta": "SEGUN",
+      "entra": "sello"
+    },
+    {
+      "id": "selloMismo",
+      "desde": "REPARTO",
+      "hasta": "SEGUN",
+      "entra": "sello"
+    },
+    {
+      "id": "docET",
+      "desde": "SEGUN",
+      "hasta": "PARTE",
+      "entra": "baja"
+    },
+    {
+      "id": "tileNav",
+      "desde": "GRATI",
+      "hasta": "CONVENIO",
+      "entra": "izq",
+      "mueve": "flota"
+    },
+    {
+      "id": "tileOtro",
+      "desde": "GRATI",
+      "hasta": "CONVENIO",
+      "entra": "der",
+      "mueve": "flota"
+    },
+    {
+      "id": "selloSal",
+      "desde": "PARTE",
+      "hasta": "CONVENIO",
+      "entra": "sello"
+    },
+    {
+      "id": "selloPre",
+      "desde": "PREMIO",
+      "hasta": "CONVENIO",
+      "entra": "sello"
+    },
+    {
+      "id": "chipPror",
+      "desde": "CONVENIO",
+      "hasta": "IRPF",
+      "entra": "sello"
+    },
+    {
+      "id": "g12",
+      "desde": "PRORRATEO",
+      "hasta": "IRPF",
+      "entra": "fundido"
+    },
+    {
+      "id": "chipFor",
+      "desde": "REPARTIRLAS",
+      "hasta": "IRPF",
+      "entra": "baja"
+    },
+    {
+      "id": "chipSum",
+      "desde": "NOMINAS",
+      "hasta": "IRPF",
+      "entra": "sello"
+    },
+    {
+      "id": "chipIRPF",
+      "desde": "IRPF",
+      "hasta": "SEGURIDAD",
+      "entra": "sello"
+    },
+    {
+      "id": "barraAnio",
+      "desde": "RETENCION",
+      "hasta": "SEGURIDAD",
+      "entra": "izq"
+    },
+    {
+      "id": "rotAnio",
+      "desde": "RETENCION",
+      "hasta": "SEGURIDAD",
+      "entra": "baja"
+    },
+    {
+      "id": "cPct",
+      "desde": "PORCENTAJE",
+      "hasta": "SEGURIDAD",
+      "entra": "escala",
+      "mueve": {
+        "tipo": "late",
+        "fuerza": 6,
+        "ritmo": 5
+      }
+    },
+    {
+      "id": "colN",
+      "desde": "PAGO",
+      "hasta": "SEGURIDAD",
+      "entra": "crece"
+    },
+    {
+      "id": "colE",
+      "desde": "EXTRA10",
+      "hasta": "SEGURIDAD",
+      "entra": "crece",
+      "dura": 1.0
+    },
+    {
+      "id": "chipMismo",
+      "desde": "MISMO",
+      "hasta": "SEGURIDAD",
+      "entra": "sello"
+    },
+    {
+      "id": "sueloF",
+      "desde": "PAGO",
+      "hasta": "SEGURIDAD",
+      "entra": "fundido"
+    },
+    {
+      "id": "chipSS",
+      "desde": "SEGURIDAD",
+      "hasta": "CAMBIA13",
+      "entra": "sello"
+    },
+    {
+      "id": "edif",
+      "desde": "SEGURIDAD",
+      "hasta": "CAMBIA13",
+      "entra": "escala"
+    },
+    {
+      "id": "rotSS",
+      "desde": "PRORRATEA",
+      "hasta": "CAMBIA13",
+      "entra": "baja"
+    },
+    {
+      "id": "cBase",
+      "desde": "COTIZAS",
+      "hasta": "CAMBIA13",
+      "entra": "escala"
+    },
+    {
+      "id": "rotBase",
+      "desde": "COTIZAS",
+      "hasta": "CAMBIA13",
+      "entra": "baja"
+    },
+    {
+      "id": "cp12",
+      "desde": "EUROS12",
+      "hasta": "CAMBIA13",
+      "entra": "izq"
+    },
+    {
+      "id": "eq",
+      "desde": "PAGAS12",
+      "hasta": "CAMBIA13",
+      "entra": "escala"
+    },
+    {
+      "id": "cp14",
+      "desde": "PAGAS12",
+      "hasta": "CAMBIA13",
+      "entra": "der"
+    },
+    {
+      "id": "chipQue",
+      "desde": "CAMBIA13",
+      "hasta": "EUROS14",
+      "entra": "sello"
+    },
+    {
+      "id": "chipCuando",
+      "desde": "CUANDO",
+      "hasta": "EUROS14",
+      "entra": "sello"
+    },
+    {
+      "id": "chipCuanto",
+      "desde": "CUANTO",
+      "hasta": "EUROS14",
+      "entra": "sello"
+    },
+    {
+      "id": "tacha",
+      "desde": "CUANTO",
+      "hasta": "EUROS14",
+      "entra": "sello"
+    },
+    {
+      "id": "cFin",
+      "desde": "EUROS14",
+      "entra": "escala"
+    },
+    {
+      "id": "rotFin",
+      "desde": "EUROS14",
+      "entra": "baja"
+    },
+    {
+      "id": "selloNuevo",
+      "desde": "PAGA14",
+      "hasta": "MOMENTO",
+      "entra": "sello"
+    },
+    {
+      "id": "selloSueldo",
+      "desde": "SIEMPRE",
+      "entra": "sello"
+    },
+    {
+      "id": "chipOtro",
+      "desde": "MOMENTO",
+      "entra": "sello"
+    },
+    {
+      "id": "chipFin",
+      "desde": "COBRAS",
+      "entra": "sello",
+      "mueve": {
+        "tipo": "late",
+        "fuerza": 4,
+        "ritmo": 5
+      }
+    }
+  ],
+  "cifras": [
+    {
+      "id": "c21",
+      "desde": "IMAGINA",
+      "a": 21000,
+      "formato": "euros",
+      "dura": 1.5,
+      "curva": "sale"
+    },
+    {
+      "id": "cBase",
+      "desde": "COTIZAS",
+      "a": 1750,
+      "formato": "euros",
+      "dura": 1.3,
+      "curva": "sale"
+    },
+    {
+      "id": "cFin",
+      "desde": "EUROS14",
+      "a": 21000,
+      "formato": "euros",
+      "dura": 1.5,
+      "curva": "sale"
+    }
+  ],
+  "notas": [
+    {
+      "texto": "Ejemplo inventado: 21.000 € brutos al año, sin otros conceptos. Estatuto de los Trabajadores, arts. 26 y 31",
+      "desde": 1.2
+    },
+    {
+      "texto": "",
+      "desde": "IMAGINA"
+    },
+    {
+      "texto": "Ejemplo: 21.000 ÷ 14 = 1.500 y 21.000 ÷ 12 = 1.750 (cálculo propio)",
+      "desde": "PAGAS4"
+    },
+    {
+      "texto": "Estatuto de los Trabajadores, artículo 31 (BOE)",
+      "desde": "SEGUN"
+    },
+    {
+      "texto": "Estatuto de los Trabajadores, artículo 26.1: salario es la totalidad de las percepciones por el trabajo",
+      "desde": "PARTE"
+    },
+    {
+      "texto": "Artículo 31: el convenio puede acordar el prorrateo en doce mensualidades. 3.000 ÷ 12 = 250 (cálculo propio)",
+      "desde": "CONVENIO"
+    },
+    {
+      "texto": "Reglamento del IRPF, artículos 82, 83.2 y 86",
+      "desde": "IRPF"
+    },
+    {
+      "texto": "Ley General de la Seguridad Social, art. 147.1. Ejemplo simplificado: sin otros conceptos ni topes",
+      "desde": "SEGURIDAD"
+    },
+    {
+      "texto": "",
+      "desde": "CAMBIA13"
+    }
+  ],
+  "fondo": "claro",
+  "sonidos": [
+    {
+      "tipo": "desliza",
+      "en": 0.0
+    },
+    {
+      "tipo": "metal",
+      "en": 0.12
+    },
+    {
+      "tipo": "toque",
+      "en": 1.2
+    },
+    {
+      "tipo": "pop",
+      "en": "MIRA"
+    },
+    {
+      "tipo": "brillo",
+      "en": "CAMBIA"
+    },
+    {
+      "tipo": "toque",
+      "en": "DOCE",
+      "mas": 0.1
+    },
+    {
+      "tipo": "desliza",
+      "en": "IMAGINA"
+    },
+    {
+      "tipo": "sube",
+      "en": "IMAGINA",
+      "mas": 0.1
+    },
+    {
+      "tipo": "pop",
+      "en": "BRUTOS"
+    },
+    {
+      "tipo": "desliza",
+      "en": "PAGAS4"
+    },
+    {
+      "tipo": "teclas",
+      "en": "PAGAS4",
+      "n": 6,
+      "cada": 0.09,
+      "volumen": 0.6
+    },
+    {
+      "tipo": "desliza",
+      "en": "EN4"
+    },
+    {
+      "tipo": "teclas",
+      "en": "EN4",
+      "n": 6,
+      "cada": 0.1,
+      "volumen": 0.6
+    },
+    {
+      "tipo": "chip",
+      "en": "CAMBIA5"
+    },
+    {
+      "tipo": "toque",
+      "en": "REPARTO",
+      "mas": 0.1
+    },
+    {
+      "tipo": "desliza",
+      "en": "SEGUN"
+    },
+    {
+      "tipo": "pop",
+      "en": "GRATI"
+    },
+    {
+      "tipo": "metal",
+      "en": "NAVIDAD"
+    },
+    {
+      "tipo": "toque",
+      "en": "PARTE",
+      "mas": 0.1
+    },
+    {
+      "tipo": "brillo",
+      "en": "PARTE"
+    },
+    {
+      "tipo": "error",
+      "en": "PREMIO"
+    },
+    {
+      "tipo": "chip",
+      "en": "CONVENIO"
+    },
+    {
+      "tipo": "desliza",
+      "en": "PRORRATEO"
+    },
+    {
+      "tipo": "teclas",
+      "en": "REPARTIRLAS",
+      "n": 6,
+      "cada": 0.1,
+      "volumen": 0.6
+    },
+    {
+      "tipo": "pagado",
+      "en": "NOMINAS",
+      "mas": 0.1
+    },
+    {
+      "tipo": "chip",
+      "en": "IRPF"
+    },
+    {
+      "tipo": "desliza",
+      "en": "RETENCION"
+    },
+    {
+      "tipo": "toque",
+      "en": "PORCENTAJE",
+      "mas": 0.1
+    },
+    {
+      "tipo": "pop",
+      "en": "PAGO"
+    },
+    {
+      "tipo": "sube",
+      "en": "EXTRA10"
+    },
+    {
+      "tipo": "chip",
+      "en": "MISMO"
+    },
+    {
+      "tipo": "chip",
+      "en": "SEGURIDAD"
+    },
+    {
+      "tipo": "toque",
+      "en": "PRORRATEA",
+      "mas": 0.1
+    },
+    {
+      "tipo": "sube",
+      "en": "COTIZAS"
+    },
+    {
+      "tipo": "pop",
+      "en": "EUROS12"
+    },
+    {
+      "tipo": "pop",
+      "en": "PAGAS12"
+    },
+    {
+      "tipo": "chip",
+      "en": "CAMBIA13"
+    },
+    {
+      "tipo": "pop",
+      "en": "CUANDO"
+    },
+    {
+      "tipo": "error",
+      "en": "CUANTO"
+    },
+    {
+      "tipo": "sube",
+      "en": "EUROS14"
+    },
+    {
+      "tipo": "toque",
+      "en": "PAGA14",
+      "mas": 0.1
+    },
+    {
+      "tipo": "brillo",
+      "en": "SIEMPRE"
+    },
+    {
+      "tipo": "pop",
+      "en": "MOMENTO"
+    },
+    {
+      "tipo": "pagado",
+      "en": "COBRAS"
+    }
+  ]
+}
+    </script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 66.6 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import { crearDinero, COLOR } from "./comun/dinero.js";
+      const $ = (id) => document.getElementById(id);
+      const K = COLOR;
+      const MESES = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
+
+      // ---------- drawings this video needs, in the account's flat style (navy outline, solid offset shadow) ----------
+      const DIBUJOS = {
+        flecha: (w = 160) => `<svg width="${w}" height="${Math.round(w / 2)}" viewBox="0 0 170 85">
+          <path d="M14 42 H134" stroke="${K.tinta}" stroke-width="16" stroke-linecap="round"/>
+          <path d="M108 14 L152 42 L108 70" fill="none" stroke="${K.tinta}" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+        // a pay tile: label on top, amount in the middle, euro sign at the bottom; gold = the extra payment
+        ficha: (w = 128, h = 240, arriba = "ENE", medio = "1.500", oro = false) => `<div style="width:${w}px;height:${h}px;border:6px solid ${K.tinta};border-radius:16px;background:${oro ? K.oro : K.blanco};box-shadow:8px 8px 0 ${K.tinta};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;color:${K.tinta}">
+          <div style="font:800 24px/1.15 Inter;letter-spacing:.05em">${arriba}</div>
+          <div style="font-family:'Archivo Black';font-size:36px">${medio}</div>
+          <div style="font:800 30px Inter">€</div></div>`,
+        // the same tile, big, for the two extra payments of article 31
+        fichaG: (w = 440, h = 380, arriba = "PAGA EXTRA", medio = "NAVIDAD", pie = "") => `<div style="width:${w}px;height:${h}px;border:8px solid ${K.tinta};border-radius:22px;background:${K.oro};box-shadow:12px 12px 0 ${K.tinta};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center;color:${K.tinta}">
+          <div style="font:800 40px/1.15 Inter;letter-spacing:.08em">${arriba}</div>
+          <div style="font-family:'Archivo Black';font-size:64px">${medio}</div>
+          <div style="font:800 32px Inter;letter-spacing:.06em;min-height:38px">${pie}</div></div>`,
+        // one of the twelve months once the extras are spread: 1.500 in white plus a gold slice of 250
+        ficha12: (mes = "ENE") => `<div style="width:150px;height:270px;border:6px solid ${K.tinta};border-radius:16px;background:${K.blanco};box-shadow:8px 8px 0 ${K.tinta};overflow:hidden;text-align:center;color:${K.tinta};display:flex;flex-direction:column">
+          <div style="background:${K.oro};border-bottom:6px solid ${K.tinta};height:105px;display:flex;flex-direction:column;align-items:center;justify-content:center"><div style="font:800 22px Inter">EXTRA</div><div style="font-family:'Archivo Black';font-size:36px">+250</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px"><div style="font:800 22px Inter;letter-spacing:.05em">${mes}</div><div style="font-family:'Archivo Black';font-size:36px">1.500</div></div></div>`,
+      };
+      for (const el of document.querySelectorAll("[data-dibujo]")) el.innerHTML = DIBUJOS[el.dataset.dibujo](...JSON.parse(el.dataset.args || "[]"));
+
+      // the twelve normal tiles of the hook (the two gold ones are pieces of their own, so they can pulse)
+      const g14 = $("g14");
+      for (let i = 0; i < 12; i++) {
+        const d = document.createElement("div");
+        d.style.position = "absolute"; d.style.left = (i % 7) * 138 + "px"; d.style.top = Math.floor(i / 7) * 250 + "px";
+        d.innerHTML = DIBUJOS.ficha(128, 240, MESES[i], "1.500");
+        g14.appendChild(d);
+      }
+      const g12 = $("g12");
+      const t12 = MESES.map((m, i) => {
+        const d = document.createElement("div");
+        d.style.position = "absolute"; d.style.left = (i % 6) * 162 + "px"; d.style.top = Math.floor(i / 6) * 282 + "px";
+        d.innerHTML = DIBUJOS.ficha12(m); g12.appendChild(d); return d;
+      });
+      // the two bars: 14 segments (the last two gold) and 12
+      const segs = (id, n, oro) => { const b = $(id); return Array.from({ length: n }, (_, i) => { const s = document.createElement("div"); s.className = "seg " + (i >= n - oro ? "o" : "v"); b.appendChild(s); return s; }); };
+      const s14 = segs("b14", 14, 2), s12 = segs("b12", 12, 0);
+
+      // ---------- the engine ----------
+      const C = crearDinero();
+      const { T, clamp, backOut } = C;
+      const filaClase = (id, clase, on) => { const b = $(id); if (b) b.parentElement.classList.toggle(clase, on); };
+      // shows the children of a group one after another from t0, each with a little pop
+      const revela = (els, t, t0, paso) => els.forEach((el, i) => {
+        const k = clamp((t - t0 - i * paso) / 0.22);
+        el.style.opacity = clamp(k * 3);
+        el.style.transform = `scale(${k ? backOut(k) : 0})`;
+      });
+
+      function renderAt(t) {
+        revela(s14, t, T.PAGAS4, 0.07);
+        revela(s12, t, T.EN4, 0.08);
+        // D: the rows of the document light up as the voice names them
+        filaClase("filaG", "marca", t >= T.GRATI && t < T.NAVIDAD);
+        filaClase("filaN", "marca", t >= T.NAVIDAD);
+        revela(t12, t, T.REPARTIRLAS, 0.1);
+        C.pintar(t);
+      }
+
+      C.arrancar(renderAt);
+    </script>
+  </body>
+</html>

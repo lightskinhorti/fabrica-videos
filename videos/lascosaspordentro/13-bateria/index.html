@@ -1,0 +1,1502 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <script type="importmap">
+      { "imports": { "three": "./lib/three.module.js", "three/addons/": "./lib/addons/" } }
+    </script>
+    <link rel="stylesheet" href="comun/pordentro.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+      .mono { font-family: "JetBrains Mono", monospace; position: absolute; left: -2000px; top: 0; }
+      .lectura-p .v, .panel .cifra { font-family: "JetBrains Mono", monospace; font-weight: 700; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="61.7" data-width="1080" data-height="1920" data-fps="30">
+      <canvas id="gl" class="clip" data-start="0" data-duration="61.7" data-track-index="0" width="1080" height="1920"></canvas>
+      <div id="shade" class="clip" data-start="0" data-duration="61.7" data-track-index="1"></div>
+      <svg id="leaders" class="clip" data-start="0" data-duration="61.7" data-track-index="2" width="1080" height="1920" data-layout-allow-overlap></svg>
+      <div id="labels" class="clip" data-start="0" data-duration="61.7" data-track-index="3" data-layout-allow-overlap><span class="mono">0123456789</span></div>
+      <div id="note" class="clip" data-start="0" data-duration="61.7" data-track-index="4"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="61.7"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="61.7" data-track-index="5" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 60.48, "lines": [{"id": "l1", "s": 0.09, "e": 2.13, "words": [{"w": "Tu", "s": 0.09, "e": 0.12, "key": false}, {"w": "batería", "s": 0.12, "e": 0.55, "key": false}, {"w": "envejece", "s": 0.55, "e": 1.03, "key": true}, {"w": "mientras", "s": 1.03, "e": 1.51, "key": false}, {"w": "duermes.", "s": 1.52, "e": 2.13, "key": false}]}, {"id": "l2", "s": 2.13, "e": 5.92, "words": [{"w": "Tres", "s": 2.13, "e": 2.29, "key": false}, {"w": "cosas", "s": 2.39, "e": 2.72, "key": false}, {"w": "la", "s": 2.72, "e": 2.85, "key": false}, {"w": "gastan,", "s": 2.85, "e": 3.17, "key": false}, {"w": "y", "s": 3.37, "e": 3.43, "key": false}, {"w": "una", "s": 3.43, "e": 3.78, "key": false}, {"w": "pasa", "s": 3.94, "e": 4.22, "key": false}, {"w": "aunque", "s": 4.33, "e": 4.59, "key": false}, {"w": "no", "s": 4.6, "e": 4.72, "key": false}, {"w": "la", "s": 4.72, "e": 4.85, "key": false}, {"w": "toques.", "s": 4.85, "e": 5.92, "key": true}]}, {"id": "l3", "s": 6.01, "e": 9.44, "words": [{"w": "¿Por", "s": 6.01, "e": 6.18, "key": false}, {"w": "qué", "s": 6.18, "e": 6.35, "key": false}, {"w": "se", "s": 6.35, "e": 6.49, "key": false}, {"w": "gasta", "s": 6.49, "e": 6.76, "key": false}, {"w": "más", "s": 6.84, "e": 7.05, "key": false}, {"w": "cuanto", "s": 7.05, "e": 7.47, "key": false}, {"w": "más", "s": 7.47, "e": 7.67, "key": false}, {"w": "cargada?", "s": 7.67, "e": 8.18, "key": true}, {"w": "Lo", "s": 8.18, "e": 8.32, "key": false}, {"w": "verás", "s": 8.32, "e": 8.67, "key": false}, {"w": "al", "s": 8.67, "e": 8.81, "key": false}, {"w": "final.", "s": 8.81, "e": 9.44, "key": false}]}, {"id": "l4", "s": 9.53, "e": 11.56, "words": [{"w": "Dentro,", "s": 9.53, "e": 9.95, "key": false}, {"w": "un", "s": 9.95, "e": 10.12, "key": false}, {"w": "sándwich", "s": 10.12, "e": 10.78, "key": true}, {"w": "de", "s": 10.8, "e": 10.95, "key": false}, {"w": "capas.", "s": 10.97, "e": 11.56, "key": false}]}, {"id": "l5", "s": 11.56, "e": 15.16, "words": [{"w": "Grafito,", "s": 11.56, "e": 12.3, "key": true}, {"w": "óxido", "s": 12.3, "e": 12.61, "key": false}, {"w": "de", "s": 12.81, "e": 12.89, "key": false}, {"w": "litio", "s": 12.89, "e": 13.22, "key": false}, {"w": "y,", "s": 13.38, "e": 13.39, "key": false}, {"w": "en", "s": 13.39, "e": 13.56, "key": false}, {"w": "medio,", "s": 13.56, "e": 13.96, "key": false}, {"w": "un", "s": 14.01, "e": 14.15, "key": false}, {"w": "separador.", "s": 14.15, "e": 15.16, "key": false}]}, {"id": "l6", "s": 15.17, "e": 18.39, "words": [{"w": "Un", "s": 15.17, "e": 15.24, "key": false}, {"w": "líquido", "s": 15.24, "e": 15.52, "key": false}, {"w": "las", "s": 15.61, "e": 15.77, "key": false}, {"w": "baña,", "s": 15.77, "e": 16.09, "key": false}, {"w": "y", "s": 16.09, "e": 16.16, "key": false}, {"w": "por", "s": 16.17, "e": 16.36, "key": false}, {"w": "él", "s": 16.44, "e": 16.57, "key": false}, {"w": "viajan", "s": 16.58, "e": 16.962, "key": false}, {"w": "iones", "s": 16.962, "e": 17.28, "key": true}, {"w": "de", "s": 17.62, "e": 17.66, "key": false}, {"w": "litio.", "s": 17.66, "e": 18.39, "key": false}]}, {"id": "l7", "s": 18.49, "e": 21.76, "words": [{"w": "Al", "s": 18.49, "e": 18.53, "key": false}, {"w": "cargar,", "s": 18.53, "e": 18.93, "key": false}, {"w": "los", "s": 18.93, "e": 19.125, "key": false}, {"w": "iones", "s": 19.125, "e": 19.45, "key": false}, {"w": "se", "s": 19.46, "e": 19.58, "key": false}, {"w": "cuelan", "s": 19.58, "e": 19.96, "key": true}, {"w": "entre", "s": 19.98, "e": 20.16, "key": false}, {"w": "las", "s": 20.5, "e": 20.51, "key": false}, {"w": "láminas", "s": 20.51, "e": 20.97, "key": false}, {"w": "del", "s": 20.97, "e": 21.17, "key": false}, {"w": "grafito.", "s": 21.17, "e": 21.76, "key": false}]}, {"id": "l8", "s": 21.78, "e": 25.55, "words": [{"w": "Al", "s": 21.78, "e": 21.89, "key": false}, {"w": "usarlo,", "s": 21.89, "e": 22.18, "key": false}, {"w": "vuelven,", "s": 22.34, "e": 22.76, "key": true}, {"w": "y", "s": 22.76, "e": 22.82, "key": false}, {"w": "los", "s": 22.82, "e": 23.02, "key": false}, {"w": "electrones", "s": 23.02, "e": 23.77, "key": false}, {"w": "recorren", "s": 23.89, "e": 24.47, "key": false}, {"w": "el", "s": 24.47, "e": 24.64, "key": false}, {"w": "circuito.", "s": 24.64, "e": 25.55, "key": false}]}, {"id": "l9", "s": 25.69, "e": 28.77, "words": [{"w": "Primer", "s": 25.69, "e": 25.98, "key": false}, {"w": "culpable:", "s": 26, "e": 26.64, "key": false}, {"w": "los", "s": 26.64, "e": 26.78, "key": false}, {"w": "ciclos.", "s": 26.82, "e": 27.34, "key": true}, {"w": "Cada", "s": 27.34, "e": 27.37, "key": false}, {"w": "vaivén", "s": 27.7, "e": 27.88, "key": false}, {"w": "gasta", "s": 27.99, "e": 28.31, "key": false}, {"w": "un", "s": 28.31, "e": 28.43, "key": false}, {"w": "poquito.", "s": 28.43, "e": 28.77, "key": false}]}, {"id": "l10", "s": 28.77, "e": 31.47, "words": [{"w": "Y", "s": 28.77, "e": 28.98, "key": false}, {"w": "en", "s": 28.98, "e": 29.09, "key": false}, {"w": "el", "s": 29.09, "e": 29.22, "key": false}, {"w": "grafito", "s": 29.22, "e": 29.66, "key": false}, {"w": "crece", "s": 29.66, "e": 29.98, "key": false}, {"w": "una", "s": 29.98, "e": 30.32, "key": false}, {"w": "costra", "s": 30.41, "e": 30.75, "key": true}, {"w": "finísima.", "s": 30.75, "e": 31.47, "key": false}]}, {"id": "l11", "s": 31.47, "e": 34.84, "words": [{"w": "Cada", "s": 31.47, "e": 31.76, "key": false}, {"w": "trozo", "s": 31.76, "e": 32.09, "key": false}, {"w": "de", "s": 32.13, "e": 32.14, "key": false}, {"w": "costra", "s": 32.42, "e": 32.57, "key": false}, {"w": "encierra", "s": 32.71, "e": 33.26, "key": true}, {"w": "litio", "s": 33.26, "e": 33.49, "key": false}, {"w": "que", "s": 33.7, "e": 33.84, "key": false}, {"w": "ya", "s": 33.84, "e": 33.98, "key": false}, {"w": "no", "s": 33.98, "e": 34.1, "key": false}, {"w": "vuelve.", "s": 34.26, "e": 34.84, "key": false}]}, {"id": "l12", "s": 34.97, "e": 38.52, "words": [{"w": "Segundo", "s": 34.97, "e": 35.36, "key": false}, {"w": "culpable:", "s": 35.36, "e": 36.04, "key": false}, {"w": "el", "s": 36.04, "e": 36.18, "key": false}, {"w": "calor.", "s": 36.18, "e": 36.64, "key": true}, {"w": "La", "s": 36.64, "e": 36.7, "key": false}, {"w": "costra", "s": 36.98, "e": 37.16, "key": false}, {"w": "crece", "s": 37.27, "e": 37.51, "key": false}, {"w": "más", "s": 37.54, "e": 37.75, "key": false}, {"w": "deprisa.", "s": 37.75, "e": 38.52, "key": false}]}, {"id": "l13", "s": 38.61, "e": 43.2, "words": [{"w": "Tercero:", "s": 38.61, "e": 39.2, "key": false}, {"w": "el", "s": 39.2, "e": 39.35, "key": false}, {"w": "tiempo.", "s": 39.35, "e": 39.96, "key": true}, {"w": "Parada", "s": 39.96, "e": 40.34, "key": false}, {"w": "en", "s": 40.34, "e": 40.62, "key": false}, {"w": "un", "s": 40.62, "e": 40.72, "key": false}, {"w": "cajón,", "s": 40.72, "e": 41.24, "key": false}, {"w": "la", "s": 41.24, "e": 41.38, "key": false}, {"w": "costra", "s": 41.38, "e": 41.85, "key": false}, {"w": "sigue", "s": 41.9, "e": 42.24, "key": false}, {"w": "creciendo.", "s": 42.24, "e": 43.2, "key": false}]}, {"id": "l14", "s": 43.2, "e": 48.45, "words": [{"w": "Lo", "s": 43.2, "e": 43.31, "key": false}, {"w": "prometido:", "s": 43.31, "e": 43.93, "key": false}, {"w": "cargada", "s": 43.93, "e": 44.36, "key": false}, {"w": "al", "s": 44.45, "e": 44.5, "key": false}, {"w": "máximo,", "s": 44.5, "e": 44.94, "key": true}, {"w": "el", "s": 44.94, "e": 45.07, "key": false}, {"w": "líquido", "s": 45.14, "e": 45.54, "key": false}, {"w": "es", "s": 45.58, "e": 45.7, "key": false}, {"w": "menos", "s": 45.71, "e": 46.09, "key": false}, {"w": "estable", "s": 46.09, "e": 46.6, "key": false}, {"w": "y", "s": 46.6, "e": 46.62, "key": false}, {"w": "la", "s": 46.75, "e": 46.81, "key": false}, {"w": "costra", "s": 46.81, "e": 47.23, "key": false}, {"w": "crece", "s": 47.23, "e": 47.54, "key": false}, {"w": "más", "s": 47.73, "e": 47.82, "key": false}, {"w": "deprisa.", "s": 47.82, "e": 48.45, "key": false}]}, {"id": "l15", "s": 48.47, "e": 54.011, "words": [{"w": "Por", "s": 48.47, "e": 48.58, "key": false}, {"w": "eso,", "s": 48.69, "e": 48.88, "key": false}, {"w": "parada", "s": 48.93, "e": 49.44, "key": false}, {"w": "un", "s": 49.57, "e": 49.68, "key": false}, {"w": "año,", "s": 49.68, "e": 49.98, "key": false}, {"w": "al", "s": 49.98, "e": 50.18, "key": false}, {"w": "cien", "s": 50.18, "e": 50.547, "key": false}, {"w": "por", "s": 50.547, "e": 50.823, "key": false}, {"w": "cien", "s": 50.823, "e": 51.19, "key": false}, {"w": "y", "s": 51.19, "e": 51.25, "key": false}, {"w": "a", "s": 51.29, "e": 51.3, "key": false}, {"w": "25", "s": 51.58, "e": 52.0, "key": false}, {"w": "grados:", "s": 52, "e": 52.59, "key": false}, {"w": "el", "s": 52.6, "e": 52.65, "key": false}, {"w": "80", "s": 52.85, "e": 53.88, "key": true}, {"w": "por", "s": 53.97, "e": 53.984, "key": false}, {"w": "ciento.", "s": 53.984, "e": 54.011, "key": false}]}, {"id": "l16", "s": 54.011, "e": 56.75, "words": [{"w": "Al", "s": 54.011, "e": 54.02, "key": false}, {"w": "cuarenta", "s": 54.02, "e": 54.056, "key": false}, {"w": "por", "s": 54.056, "e": 54.07, "key": false}, {"w": "40", "s": 54.07, "e": 54.72, "key": false}, {"w": "de", "s": 54.8, "e": 54.92, "key": false}, {"w": "carga,", "s": 54.92, "e": 55.59, "key": false}, {"w": "el", "s": 55.59, "e": 55.7, "key": false}, {"w": "96.", "s": 55.98, "e": 56.75, "key": true}]}, {"id": "l17", "s": 56.8, "e": 58.64, "words": [{"w": "Mándaselo", "s": 56.8, "e": 57.17, "key": false}, {"w": "a", "s": 57.17, "e": 57.21, "key": false}, {"w": "quien", "s": 57.21, "e": 57.44, "key": false}, {"w": "duerme", "s": 57.44, "e": 57.71, "key": false}, {"w": "con", "s": 57.71, "e": 57.85, "key": false}, {"w": "el", "s": 57.85, "e": 57.94, "key": false}, {"w": "móvil", "s": 57.94, "e": 58.12, "key": true}, {"w": "enchufado.", "s": 58.17, "e": 58.64, "key": false}]}]}</script>
+    <script id="escena" type="application/json">
+{
+ "momentos": [
+  {
+   "id": "TU",
+   "clave": "tu"
+  },
+  {
+   "id": "BATERIA",
+   "clave": "bateria"
+  },
+  {
+   "id": "ENVEJECE",
+   "clave": "envejece"
+  },
+  {
+   "id": "DUERMES",
+   "clave": "duermes"
+  },
+  {
+   "id": "TRES",
+   "clave": "tres"
+  },
+  {
+   "id": "GASTAN",
+   "clave": "gastan"
+  },
+  {
+   "id": "UNA",
+   "clave": "una"
+  },
+  {
+   "id": "TOQUES",
+   "clave": "toques"
+  },
+  {
+   "id": "POR",
+   "clave": "por"
+  },
+  {
+   "id": "GASTA",
+   "clave": "gasta"
+  },
+  {
+   "id": "CARGADA",
+   "clave": "cargada"
+  },
+  {
+   "id": "VERAS",
+   "clave": "veras"
+  },
+  {
+   "id": "FINAL",
+   "clave": "final"
+  },
+  {
+   "id": "DENTRO",
+   "clave": "dentro"
+  },
+  {
+   "id": "SANDWICH",
+   "clave": "sandwich"
+  },
+  {
+   "id": "CAPAS",
+   "clave": "capas"
+  },
+  {
+   "id": "GRAFITO",
+   "clave": "grafito"
+  },
+  {
+   "id": "OXIDO",
+   "clave": "oxido"
+  },
+  {
+   "id": "MEDIO",
+   "clave": "medio"
+  },
+  {
+   "id": "SEPARADOR",
+   "clave": "separador"
+  },
+  {
+   "id": "LIQUIDO",
+   "clave": "liquido"
+  },
+  {
+   "id": "VIAJAN",
+   "clave": "viajan"
+  },
+  {
+   "id": "IONES",
+   "clave": "iones"
+  },
+  {
+   "id": "CARGAR",
+   "clave": "cargar"
+  },
+  {
+   "id": "CUELAN",
+   "clave": "cuelan"
+  },
+  {
+   "id": "LAMINAS",
+   "clave": "laminas"
+  },
+  {
+   "id": "USARLO",
+   "clave": "usarlo"
+  },
+  {
+   "id": "VUELVEN",
+   "clave": "vuelven"
+  },
+  {
+   "id": "ELECTRONES",
+   "clave": "electrones"
+  },
+  {
+   "id": "CIRCUITO",
+   "clave": "circuito"
+  },
+  {
+   "id": "PRIMER",
+   "clave": "primer"
+  },
+  {
+   "id": "CICLOS",
+   "clave": "ciclos"
+  },
+  {
+   "id": "VAIVEN",
+   "clave": "vaiven"
+  },
+  {
+   "id": "POQUITO",
+   "clave": "poquito"
+  },
+  {
+   "id": "GRAFITO3",
+   "clave": "grafito"
+  },
+  {
+   "id": "COSTRA",
+   "clave": "costra"
+  },
+  {
+   "id": "COSTRA2",
+   "clave": "costra"
+  },
+  {
+   "id": "ENCIERRA",
+   "clave": "encierra"
+  },
+  {
+   "id": "VUELVE",
+   "clave": "vuelve"
+  },
+  {
+   "id": "SEGUNDO",
+   "clave": "segundo"
+  },
+  {
+   "id": "CALOR",
+   "clave": "calor"
+  },
+  {
+   "id": "COSTRA3",
+   "clave": "costra"
+  },
+  {
+   "id": "DEPRISA",
+   "clave": "deprisa"
+  },
+  {
+   "id": "TERCERO",
+   "clave": "tercero"
+  },
+  {
+   "id": "TIEMPO",
+   "clave": "tiempo"
+  },
+  {
+   "id": "PARADA",
+   "clave": "parada"
+  },
+  {
+   "id": "CAJON",
+   "clave": "cajon"
+  },
+  {
+   "id": "COSTRA4",
+   "clave": "costra"
+  },
+  {
+   "id": "CRECIENDO",
+   "clave": "creciendo"
+  },
+  {
+   "id": "PROMETIDO",
+   "clave": "prometido"
+  },
+  {
+   "id": "MAXIMO",
+   "clave": "maximo"
+  },
+  {
+   "id": "LIQUIDO2",
+   "clave": "liquido"
+  },
+  {
+   "id": "ESTABLE",
+   "clave": "estable"
+  },
+  {
+   "id": "COSTRA5",
+   "clave": "costra"
+  },
+  {
+   "id": "DEPRISA2",
+   "clave": "deprisa"
+  },
+  {
+   "id": "PORESO",
+   "clave": "por"
+  },
+  {
+   "id": "ANO",
+   "clave": "ano"
+  },
+  {
+   "id": "CIEN",
+   "clave": "cien"
+  },
+  {
+   "id": "GRADOS",
+   "clave": "grados"
+  },
+  {
+   "id": "OCHENTA",
+   "clave": "80"
+  },
+  {
+   "id": "CUARENTA",
+   "clave": "cuarenta"
+  },
+  {
+   "id": "NOVENTA",
+   "clave": "96"
+  },
+  {
+   "id": "MANDA",
+   "clave": "mandaselo"
+  },
+  {
+   "id": "QUIEN",
+   "clave": "quien"
+  },
+  {
+   "id": "MOVIL",
+   "clave": "movil"
+  },
+  {
+   "id": "ENCHUFADO",
+   "clave": "enchufado"
+  }
+ ],
+ "gancho": {
+  "texto": "Quieta, pierde capacidad",
+  "clave": "envejece",
+  "y": 420,
+  "tam": 100
+ },
+ "arranque": {
+  "cambio": 1.15,
+  "transicion": 0.35
+ },
+ "encuadre": {
+  "llenar": 0.94
+ },
+ "estilo": "rejilla",
+ "desenfoque": {
+  "apertura": 0,
+  "max": 0.012
+ },
+ "iconos": {},
+ "etiquetas": [
+  {
+   "texto": "BATERÍA",
+   "pieza": "mv.bateria",
+   "desde": 0.5,
+   "hasta": "TRES",
+   "dx": 40,
+   "dy": -260
+  },
+  {
+   "texto": "BATERÍA",
+   "pieza": "mv.bateria",
+   "desde": "UNA",
+   "hasta": "POR",
+   "dx": 40,
+   "dy": -260
+  },
+  {
+   "texto": "BATERÍA",
+   "pieza": "mv.bateria",
+   "desde": "CARGADA",
+   "hasta": "DENTRO",
+   "dx": 40,
+   "dy": -260
+  },
+  {
+   "texto": "GRAFITO · ÁNODO",
+   "pieza": "ion.anodo",
+   "desde": "GRAFITO",
+   "hasta": "OXIDO",
+   "dx": -30,
+   "dy": 250
+  },
+  {
+   "texto": "ÓXIDO · CÁTODO",
+   "pieza": "ion.catodo",
+   "desde": "OXIDO",
+   "hasta": "MEDIO",
+   "dx": -30,
+   "dy": -250
+  },
+  {
+   "texto": "SEPARADOR",
+   "pieza": "ion.separador",
+   "desde": "MEDIO",
+   "hasta": "LIQUIDO",
+   "dx": -40,
+   "dy": 220
+  },
+  {
+   "texto": "LÍQUIDO",
+   "pieza": "ion.electrolito",
+   "desde": "LIQUIDO",
+   "hasta": "IONES",
+   "dx": -40,
+   "dy": -220
+  },
+  {
+   "texto": "IONES DE LITIO",
+   "pieza": "ion.iones",
+   "desde": "IONES",
+   "hasta": "CARGAR",
+   "dx": -40,
+   "dy": -260
+  },
+  {
+   "texto": "ELECTRONES",
+   "pieza": "ion.circuito",
+   "desde": "ELECTRONES",
+   "hasta": "PRIMER",
+   "dx": -40,
+   "dy": 300
+  },
+  {
+   "texto": "COSTRA",
+   "pieza": "ion.costra",
+   "desde": "COSTRA",
+   "hasta": "ENCIERRA",
+   "dx": -40,
+   "dy": -280
+  },
+  {
+   "texto": "LITIO ATRAPADO",
+   "pieza": "ion.costra",
+   "desde": "ENCIERRA",
+   "hasta": "VUELVE",
+   "dx": -40,
+   "dy": -280
+  }
+ ],
+ "notas": [
+  {
+   "texto": "",
+   "desde": 0
+  },
+  {
+   "texto": "Un año parada, al 100 % de carga y a 25 °C",
+   "desde": 0.6
+  },
+  {
+   "texto": "",
+   "desde": "TRES"
+  },
+  {
+   "texto": "Ilustración simplificada, sin marca",
+   "desde": "UNA"
+  },
+  {
+   "texto": "Ilustración ampliada, no a escala",
+   "desde": "DENTRO"
+  },
+  {
+   "texto": "Iones y electrones dibujados",
+   "desde": "CARGAR"
+  },
+  {
+   "texto": "Ilustración ampliada, no a escala",
+   "desde": "PRIMER"
+  },
+  {
+   "texto": "Costra (SEI) dibujada, ampliada",
+   "desde": "GRAFITO3"
+  },
+  {
+   "texto": "Ilustración simplificada, sin marca",
+   "desde": "COSTRA3"
+  },
+  {
+   "texto": "Costra (SEI) dibujada, ampliada",
+   "desde": "TERCERO"
+  },
+  {
+   "texto": "Tabla de ensayos de litio-cobalto; cada móvil es distinto",
+   "desde": "PORESO"
+  },
+  {
+   "texto": "",
+   "desde": "MANDA"
+  }
+ ],
+ "leyenda": [
+  {
+   "color": "#ffb22e",
+   "forma": "punto",
+   "texto": "iones de litio",
+   "desde": "IONES",
+   "hasta": "PORESO"
+  },
+  {
+   "color": "#6fdcff",
+   "forma": "punto",
+   "texto": "electrones",
+   "desde": "CARGAR",
+   "hasta": "TERCERO"
+  },
+  {
+   "color": "#9a6a44",
+   "forma": "punto",
+   "texto": "costra (SEI)",
+   "desde": "GRAFITO3",
+   "hasta": "PROMETIDO"
+  }
+ ],
+ "sonidos": [
+  {
+   "tipo": "zumbido",
+   "desde": 0.1,
+   "hasta": "TRES",
+   "volumen": 0.45
+  },
+  {
+   "tipo": "error",
+   "en": "ENVEJECE",
+   "volumen": 0.3
+  },
+  {
+   "tipo": "pop",
+   "en": "TRES"
+  },
+  {
+   "tipo": "desliza",
+   "en": "POR"
+  },
+  {
+   "tipo": "desliza",
+   "en": "CARGADA"
+  },
+  {
+   "tipo": "abre",
+   "en": "DENTRO"
+  },
+  {
+   "tipo": "desliza",
+   "en": "CAPAS"
+  },
+  {
+   "tipo": "brillo",
+   "en": "GRAFITO"
+  },
+  {
+   "tipo": "brillo",
+   "en": "OXIDO"
+  },
+  {
+   "tipo": "desliza",
+   "en": "MEDIO"
+  },
+  {
+   "tipo": "pop",
+   "en": "IONES"
+  },
+  {
+   "tipo": "sube",
+   "en": "CARGAR"
+  },
+  {
+   "tipo": "desliza",
+   "en": "CUELAN"
+  },
+  {
+   "tipo": "desliza",
+   "en": "USARLO"
+  },
+  {
+   "tipo": "chip",
+   "en": "ELECTRONES"
+  },
+  {
+   "tipo": "pop",
+   "en": "PRIMER"
+  },
+  {
+   "tipo": "desliza",
+   "en": "VAIVEN"
+  },
+  {
+   "tipo": "error",
+   "en": "COSTRA",
+   "volumen": 0.4
+  },
+  {
+   "tipo": "toque",
+   "en": "ENCIERRA"
+  },
+  {
+   "tipo": "desliza",
+   "en": "SEGUNDO"
+  },
+  {
+   "tipo": "sube",
+   "en": "CALOR"
+  },
+  {
+   "tipo": "desliza",
+   "en": "TERCERO"
+  },
+  {
+   "tipo": "tictac",
+   "desde": "TIEMPO",
+   "hasta": "CRECIENDO",
+   "volumen": 0.3
+  },
+  {
+   "tipo": "pop",
+   "en": "PROMETIDO"
+  },
+  {
+   "tipo": "desliza",
+   "en": "PORESO"
+  },
+  {
+   "tipo": "sube",
+   "en": "OCHENTA"
+  },
+  {
+   "tipo": "desliza",
+   "en": "CUARENTA"
+  },
+  {
+   "tipo": "brillo",
+   "en": "NOVENTA"
+  },
+  {
+   "tipo": "desliza",
+   "en": "MANDA"
+  },
+  {
+   "tipo": "toque",
+   "en": "ENCHUFADO"
+  }
+ ],
+ "sets": {
+  "mv": {
+   "objetos": [
+    {
+     "tipo": "movilBateria",
+     "id": "mv",
+     "rot": [
+      0,
+      0,
+      55
+     ]
+    }
+   ],
+   "luz": "anuncio"
+  },
+  "ion": {
+   "objetos": [
+    {
+     "tipo": "celdaIon",
+     "id": "ion",
+     "rot": [
+      0,
+      0,
+      90
+     ]
+    }
+   ],
+   "luz": "estudio"
+  },
+  "bar": {
+   "objetos": [
+    {
+     "tipo": "barrasCapacidad",
+     "id": "bar"
+    }
+   ],
+   "luz": "suave"
+  }
+ },
+ "planos": [
+  {
+   "tipo": "rayosX",
+   "set": "mv",
+   "pieza": "mv",
+   "desde": 0,
+   "estado": {
+    "rayosX": 1,
+    "capacidad": {
+     "de": 1,
+     "a": 0.8,
+     "en": 0,
+     "dur": 1.9
+    }
+   },
+   "de": 0.9,
+   "a": 0.9,
+   "dur": 0.1,
+   "angulo": 26,
+   "altura": 14,
+   "orbita": 16,
+   "empuje": 0.1,
+   "llenar": 1.0,
+   "dist": 0.68,
+   "zona": [
+    50,
+    560,
+    950,
+    1330
+   ],
+   "lectura": {
+    "de": 100,
+    "a": 80,
+    "decimales": 0,
+    "unidad": "%",
+    "titulo": "CAPACIDAD DE LA BATERÍA",
+    "en": 0,
+    "dur": 1.9,
+    "y": 1200
+   },
+   "variantes": [
+    {
+     "pieza": "mv.bateria",
+     "radio": 6.4,
+     "angulo": -30,
+     "altura": 22,
+     "llenar": 0,
+     "zona": [
+      50,
+      600,
+      950,
+      1440
+     ]
+    }
+   ]
+  },
+  {
+   "tipo": "cifra",
+   "set": "mv",
+   "pieza": "mv",
+   "desde": "TRES",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": 0.8,
+    "calor": 0.0
+   },
+   "angulo": 8,
+   "altura": 6,
+   "zona": [
+    50,
+    430,
+    950,
+    1370
+   ],
+   "lectura": {
+    "texto": "3",
+    "titulo": "CICLOS  ·  CALOR  ·  TIEMPO",
+    "y": 930,
+    "tam": 260
+   }
+  },
+  {
+   "tipo": "macro",
+   "set": "mv",
+   "pieza": "mv.bateria",
+   "desde": "UNA",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": 0.8
+   },
+   "radio": 7.0,
+   "angulo": -16,
+   "altura": 10,
+   "apertura": 0.004,
+   "resaltar": [
+    "mv.bateria"
+   ],
+   "fuerzaResalte": 0.25
+  },
+  {
+   "tipo": "anuncio",
+   "set": "mv",
+   "pieza": "mv",
+   "desde": "POR",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": {
+     "de": 0.8,
+     "a": 0.55,
+     "en": "GASTA",
+     "dur": 1.6
+    }
+   },
+   "angulo": 18,
+   "altura": 12,
+   "orbita": -10,
+   "empuje": 0.06
+  },
+  {
+   "tipo": "macro",
+   "set": "mv",
+   "pieza": "mv.bateria",
+   "desde": "CARGADA",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": {
+     "de": 0.3,
+     "a": 1.0,
+     "en": "CARGADA",
+     "dur": 2.2
+    }
+   },
+   "radio": 7.2,
+   "angulo": 14,
+   "altura": 8,
+   "apertura": 0.004
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ion",
+   "pieza": "ion",
+   "desde": "DENTRO",
+   "estado": {
+    "circuito": 0,
+    "carga": 0
+   },
+   "angulo": -6,
+   "altura": 6,
+   "orbita": 10,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "macro",
+   "set": "ion",
+   "pieza": "ion.separador",
+   "desde": "CAPAS",
+   "estado": {
+    "circuito": 0,
+    "carga": 0
+   },
+   "radio": 8.5,
+   "angulo": 20,
+   "altura": 6,
+   "apertura": 0
+  },
+  {
+   "tipo": "macro",
+   "set": "ion",
+   "pieza": "ion.anodo",
+   "desde": "GRAFITO",
+   "estado": {
+    "circuito": 0,
+    "carga": 0
+   },
+   "radio": 6.6,
+   "angulo": -14,
+   "altura": 7,
+   "apertura": 0,
+   "resaltar": [
+    "ion.anodo"
+   ],
+   "fuerzaResalte": 0.3
+  },
+  {
+   "tipo": "macro",
+   "set": "ion",
+   "pieza": "ion.catodo",
+   "desde": "OXIDO",
+   "estado": {
+    "circuito": 0,
+    "carga": 0
+   },
+   "radio": 6.6,
+   "angulo": 14,
+   "altura": 6,
+   "apertura": 0,
+   "resaltar": [
+    "ion.catodo"
+   ],
+   "colorResalte": "120,200,255",
+   "fuerzaResalte": 0.3
+  },
+  {
+   "tipo": "macro",
+   "set": "ion",
+   "pieza": "ion.separador",
+   "desde": "MEDIO",
+   "estado": {
+    "circuito": 0,
+    "carga": 0
+   },
+   "radio": 5.2,
+   "angulo": -20,
+   "altura": 5,
+   "apertura": 0,
+   "resaltar": [
+    "ion.separador"
+   ],
+   "colorResalte": "230,230,240",
+   "fuerzaResalte": 0.3
+  },
+  {
+   "tipo": "macro",
+   "set": "ion",
+   "pieza": "ion.electrolito",
+   "desde": "LIQUIDO",
+   "estado": {
+    "circuito": 0,
+    "carga": 0
+   },
+   "radio": 5.2,
+   "angulo": 10,
+   "altura": 6,
+   "apertura": 0,
+   "resaltar": [
+    "ion.electrolito"
+   ],
+   "colorResalte": "120,200,255",
+   "fuerzaResalte": 0.3
+  },
+  {
+   "tipo": "macro",
+   "set": "ion",
+   "pieza": "ion.catodo",
+   "desde": "IONES",
+   "estado": {
+    "circuito": 0,
+    "carga": 0
+   },
+   "radio": 5.0,
+   "angulo": -12,
+   "altura": 4,
+   "apertura": 0,
+   "empuje": 0.1,
+   "resaltar": [
+    "ion.iones"
+   ],
+   "fuerzaResalte": 0.35
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ion",
+   "pieza": "ion",
+   "desde": "CARGAR",
+   "estado": {
+    "circuito": 1,
+    "carga": {
+     "de": 0,
+     "a": 1,
+     "en": "CARGAR",
+     "dur": 3.6
+    }
+   },
+   "angulo": 10,
+   "altura": 5,
+   "orbita": -8,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "macro",
+   "set": "ion",
+   "pieza": "ion.anodo",
+   "desde": "CUELAN",
+   "estado": {
+    "circuito": 1,
+    "carga": {
+     "de": 0,
+     "a": 1,
+     "en": "CARGAR",
+     "dur": 3.6
+    }
+   },
+   "radio": 5.4,
+   "angulo": -16,
+   "altura": 5,
+   "apertura": 0
+  },
+  {
+   "tipo": "macro",
+   "set": "ion",
+   "pieza": "ion.anodo",
+   "desde": "LAMINAS",
+   "estado": {
+    "circuito": 1,
+    "carga": {
+     "de": 0,
+     "a": 1,
+     "en": "CARGAR",
+     "dur": 3.6
+    }
+   },
+   "radio": 3.6,
+   "angulo": 14,
+   "altura": 3,
+   "apertura": 0.003,
+   "empuje": 0.12,
+   "resaltar": [
+    "ion.anodo"
+   ],
+   "fuerzaResalte": 0.2
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ion",
+   "pieza": "ion",
+   "desde": "USARLO",
+   "estado": {
+    "circuito": 1,
+    "carga": {
+     "de": 1,
+     "a": 0,
+     "en": "USARLO",
+     "dur": 3.4
+    }
+   },
+   "angulo": -12,
+   "altura": 6,
+   "orbita": 8,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "macro",
+   "set": "ion",
+   "pieza": "ion.circuito",
+   "desde": "ELECTRONES",
+   "estado": {
+    "circuito": 1,
+    "carga": {
+     "de": 1,
+     "a": 0,
+     "en": "USARLO",
+     "dur": 3.4
+    }
+   },
+   "radio": 6.5,
+   "angulo": 16,
+   "altura": 6,
+   "apertura": 0,
+   "resaltar": [
+    "ion.circuito"
+   ],
+   "colorResalte": "120,200,255",
+   "fuerzaResalte": 0.3
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ion",
+   "pieza": "ion",
+   "desde": "PRIMER",
+   "estado": {
+    "circuito": 1,
+    "ciclo": 1,
+    "vel": 1.9
+   },
+   "angulo": 8,
+   "altura": 4,
+   "orbita": 10,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "macro",
+   "set": "ion",
+   "pieza": "ion.iones",
+   "desde": "VAIVEN",
+   "estado": {
+    "circuito": 1,
+    "ciclo": 1,
+    "vel": 1.9
+   },
+   "radio": 8.5,
+   "angulo": -18,
+   "altura": 5,
+   "apertura": 0
+  },
+  {
+   "tipo": "macro",
+   "set": "ion",
+   "pieza": "ion.anodo",
+   "desde": "GRAFITO3",
+   "estado": {
+    "circuito": 1,
+    "ciclo": 1,
+    "vel": 1.7,
+    "costra": {
+     "de": 0,
+     "a": 0.3,
+     "en": "COSTRA",
+     "dur": 1.8
+    }
+   },
+   "radio": 6.4,
+   "angulo": 14,
+   "altura": 5,
+   "apertura": 0
+  },
+  {
+   "tipo": "macro",
+   "set": "ion",
+   "pieza": "ion.costra",
+   "desde": "COSTRA",
+   "estado": {
+    "circuito": 1,
+    "ciclo": 1,
+    "vel": 1.7,
+    "costra": {
+     "de": 0,
+     "a": 0.3,
+     "en": "COSTRA",
+     "dur": 1.8
+    }
+   },
+   "radio": 4.4,
+   "angulo": -16,
+   "altura": 4,
+   "apertura": 0,
+   "resaltar": [
+    "ion.costra"
+   ],
+   "colorResalte": "214,140,80",
+   "fuerzaResalte": 0.35
+  },
+  {
+   "tipo": "macro",
+   "set": "ion",
+   "pieza": "ion.costra",
+   "desde": "COSTRA2",
+   "estado": {
+    "circuito": 1,
+    "ciclo": 1,
+    "vel": 1.7,
+    "costra": {
+     "de": 0,
+     "a": 0.3,
+     "en": "COSTRA",
+     "dur": 1.8
+    }
+   },
+   "radio": 3.4,
+   "angulo": 18,
+   "altura": 3,
+   "apertura": 0.003,
+   "empuje": 0.1,
+   "resaltar": [
+    "ion.costra"
+   ],
+   "colorResalte": "214,140,80",
+   "fuerzaResalte": 0.3
+  },
+  {
+   "tipo": "macro",
+   "set": "ion",
+   "pieza": "ion.costra",
+   "desde": "ENCIERRA",
+   "estado": {
+    "circuito": 1,
+    "ciclo": 1,
+    "vel": 1.7,
+    "costra": {
+     "de": 0.3,
+     "a": 0.62,
+     "en": "ENCIERRA",
+     "dur": 2.6
+    }
+   },
+   "radio": 5.2,
+   "angulo": -10,
+   "altura": 6,
+   "apertura": 0,
+   "resaltar": [
+    "ion.costra"
+   ],
+   "colorResalte": "214,140,80",
+   "fuerzaResalte": 0.3
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ion",
+   "pieza": "ion",
+   "desde": "VUELVE",
+   "estado": {
+    "circuito": 1,
+    "ciclo": 1,
+    "vel": 1.7,
+    "costra": {
+     "de": 0.3,
+     "a": 0.62,
+     "en": "ENCIERRA",
+     "dur": 2.6
+    }
+   },
+   "angulo": 12,
+   "altura": 4,
+   "orbita": -10,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ion",
+   "pieza": "ion",
+   "desde": "SEGUNDO",
+   "estado": {
+    "circuito": 1,
+    "ciclo": 1,
+    "vel": 1.7,
+    "costra": {
+     "de": 0.62,
+     "a": 0.8,
+     "en": "CALOR",
+     "dur": 3.0
+    },
+    "calor": {
+     "de": 0,
+     "a": 1,
+     "en": "CALOR",
+     "dur": 1.2
+    }
+   },
+   "angulo": -8,
+   "altura": 5,
+   "orbita": 10,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "anuncio",
+   "set": "mv",
+   "pieza": "mv",
+   "desde": "COSTRA3",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": 0.8,
+    "calor": {
+     "de": 0,
+     "a": 1,
+     "en": "CALOR",
+     "dur": 1.2
+    }
+   },
+   "angulo": -14,
+   "altura": 10,
+   "orbita": 10,
+   "empuje": 0.06,
+   "zona": [
+    50,
+    430,
+    950,
+    1370
+   ]
+  },
+  {
+   "tipo": "macro",
+   "set": "ion",
+   "pieza": "ion.costra",
+   "desde": "DEPRISA",
+   "estado": {
+    "circuito": 1,
+    "ciclo": 1,
+    "vel": 1.7,
+    "costra": {
+     "de": 0.62,
+     "a": 0.8,
+     "en": "CALOR",
+     "dur": 3.0
+    },
+    "calor": 1
+   },
+   "radio": 5.2,
+   "angulo": 16,
+   "altura": 4,
+   "apertura": 0,
+   "resaltar": [
+    "ion.costra"
+   ],
+   "colorResalte": "255,110,70",
+   "fuerzaResalte": 0.25
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ion",
+   "pieza": "ion",
+   "desde": "TERCERO",
+   "estado": {
+    "circuito": 0,
+    "carga": 1,
+    "costra": {
+     "de": 0.8,
+     "a": 0.93,
+     "en": "TIEMPO",
+     "dur": 3.5
+    }
+   },
+   "angulo": 10,
+   "altura": 5,
+   "orbita": -10,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "macro",
+   "set": "ion",
+   "pieza": "ion.costra",
+   "desde": "TIEMPO",
+   "estado": {
+    "circuito": 0,
+    "carga": 1,
+    "costra": {
+     "de": 0.8,
+     "a": 0.93,
+     "en": "TIEMPO",
+     "dur": 3.5
+    }
+   },
+   "radio": 5.6,
+   "angulo": -14,
+   "altura": 4,
+   "apertura": 0,
+   "resaltar": [
+    "ion.costra"
+   ],
+   "colorResalte": "214,140,80",
+   "fuerzaResalte": 0.25
+  },
+  {
+   "tipo": "anuncio",
+   "set": "mv",
+   "pieza": "mv",
+   "desde": "PARADA",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": {
+     "de": 0.95,
+     "a": 0.8,
+     "en": "PARADA",
+     "dur": 3.4
+    }
+   },
+   "angulo": 20,
+   "altura": 12,
+   "orbita": -10,
+   "empuje": 0.06,
+   "zona": [
+    50,
+    430,
+    950,
+    1370
+   ]
+  },
+  {
+   "tipo": "macro",
+   "set": "ion",
+   "pieza": "ion.costra",
+   "desde": "CRECIENDO",
+   "estado": {
+    "circuito": 0,
+    "carga": 1,
+    "costra": {
+     "de": 0.8,
+     "a": 0.93,
+     "en": "TIEMPO",
+     "dur": 3.5
+    }
+   },
+   "radio": 4.6,
+   "angulo": 12,
+   "altura": 3,
+   "apertura": 0.003,
+   "empuje": 0.1,
+   "resaltar": [
+    "ion.costra"
+   ],
+   "colorResalte": "214,140,80",
+   "fuerzaResalte": 0.25
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ion",
+   "pieza": "ion",
+   "desde": "PROMETIDO",
+   "estado": {
+    "circuito": 0,
+    "carga": 1,
+    "costra": {
+     "de": 0.93,
+     "a": 1.0,
+     "en": "ESTABLE",
+     "dur": 2.5
+    }
+   },
+   "angulo": -10,
+   "altura": 5,
+   "orbita": 10,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "macro",
+   "set": "ion",
+   "pieza": "ion.electrolito",
+   "desde": "ESTABLE",
+   "estado": {
+    "circuito": 0,
+    "carga": 1,
+    "costra": {
+     "de": 0.93,
+     "a": 1.0,
+     "en": "ESTABLE",
+     "dur": 2.5
+    }
+   },
+   "radio": 5.0,
+   "angulo": 14,
+   "altura": 5,
+   "apertura": 0,
+   "resaltar": [
+    "ion.electrolito"
+   ],
+   "colorResalte": "255,110,70",
+   "fuerzaResalte": 0.2
+  },
+  {
+   "tipo": "anuncio",
+   "set": "bar",
+   "pieza": "bar",
+   "desde": "PORESO",
+   "estado": {
+    "ver": 1,
+    "a": {
+     "de": 0,
+     "a": 1,
+     "en": "PORESO",
+     "dur": 2.4
+    },
+    "ref": {
+     "de": 0,
+     "a": 1,
+     "en": "CIEN",
+     "dur": 0.6
+    }
+   },
+   "angulo": 10,
+   "altura": 10,
+   "orbita": -8,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "macro",
+   "set": "bar",
+   "pieza": "bar.col2",
+   "desde": "OCHENTA",
+   "estado": {
+    "ver": 1,
+    "a": 1,
+    "ref": 1,
+    "foco": {
+     "de": 0,
+     "a": 1,
+     "en": "OCHENTA",
+     "dur": 0.5
+    }
+   },
+   "radio": 9.5,
+   "angulo": -14,
+   "altura": 8,
+   "apertura": 0.004
+  },
+  {
+   "tipo": "macro",
+   "set": "bar",
+   "pieza": "bar.col1",
+   "desde": "CUARENTA",
+   "estado": {
+    "ver": 1,
+    "a": 1,
+    "ref": 1,
+    "foco": 0
+   },
+   "radio": 9.5,
+   "angulo": 14,
+   "altura": 8,
+   "apertura": 0.004
+  },
+  {
+   "tipo": "anuncio",
+   "set": "bar",
+   "pieza": "bar",
+   "desde": "NOVENTA",
+   "estado": {
+    "ver": 1,
+    "a": 1,
+    "b": {
+     "de": 0,
+     "a": 1,
+     "en": "NOVENTA",
+     "dur": 1.4
+    },
+    "ref": 1
+   },
+   "angulo": -8,
+   "altura": 10,
+   "orbita": 8,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "compartir",
+   "desde": "MANDA",
+   "elegir": "QUIEN",
+   "enviar": "ENCHUFADO"
+  }
+ ]
+}
+</script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 61.7 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      // 13-bateria: the scene is the JSON above (sets and shots), built by the shot templates. The phone, the battery cell and the capacity
+      // bars are library objects (objetos/bateria.js, registered in objetos/index.js).
+      // Uses the new start ("arranque", "encuadre" and gancho.y: see the headers of the engine).
+      import * as THREE from "three";
+      import { crearPorDentro } from "./comun/pordentro.js";
+      import { crearDetalle } from "./comun/detalle.js";
+      import { crearPlantillas } from "./comun/plantillas.js";
+      await Promise.all(['700 50px "Inter"', '400 50px "Inter"', '700 50px "JetBrains Mono"', '400 50px "JetBrains Mono"'].map((f) => document.fonts.load(f)));
+      const C = crearPorDentro(THREE);
+      const X = crearDetalle(THREE, C);
+      const P = crearPlantillas(THREE, C, X, { cerca: 0.5 });
+      C.camera.far = 3000; C.camera.updateProjectionMatrix();
+      P.arrancar();
+    </script>
+  </body>
+</html>

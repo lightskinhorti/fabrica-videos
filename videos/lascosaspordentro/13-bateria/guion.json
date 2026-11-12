@@ -1,0 +1,51 @@
+{
+  "titulo": "Tu batería envejece mientras duermes",
+  "lines": [
+    "Tu batería envejece mientras duermes.",
+    "Tres cosas la gastan, y una pasa aunque no la toques.",
+    "¿Por qué se gasta más cuanto más cargada? Lo verás al final.",
+    "Dentro, un sándwich de capas.",
+    "Grafito, óxido de litio y, en medio, un separador.",
+    "Un líquido las baña, y por él viajan iones de litio.",
+    "Al cargar, los iones se cuelan entre las láminas del grafito.",
+    "Al usarlo, vuelven, y los electrones recorren el circuito.",
+    "Primer culpable: los ciclos. Cada vaivén gasta un poquito.",
+    "Y en el grafito crece una costra finísima.",
+    "Cada trozo de costra encierra litio que ya no vuelve.",
+    "Segundo culpable: el calor. La costra crece más deprisa.",
+    "Tercero: el tiempo. Parada en un cajón, la costra sigue creciendo.",
+    "Lo prometido: cargada al máximo, el líquido es menos estable y la costra crece más deprisa.",
+    "Por eso, parada un año, al cien por cien y a veinticinco grados: el ochenta por ciento.",
+    "Al cuarenta por ciento de carga, el noventa y seis.",
+    "Mándaselo a quien duerme con el móvil enchufado."
+  ],
+  "claves": [
+    "envejece",
+    "toques",
+    "cargada",
+    "sándwich",
+    "grafito",
+    "iones",
+    "cuelan",
+    "vuelven",
+    "ciclos",
+    "costra",
+    "encierra",
+    "calor",
+    "tiempo",
+    "máximo",
+    "ochenta",
+    "noventa",
+    "móvil"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "Una batería de móvil se gasta aunque no la uses: por dentro, una costra finísima crece sobre el grafito y se queda con litio que ya no vuelve. Los ciclos, el calor y el tiempo la hacen crecer, y más deprisa con la carga al máximo. Ilustración simplificada, sin marca.",
+    "hashtags": [
+      "#bateria",
+      "#movil",
+      "#ciencia"
+    ],
+    "portada_en": "envejece"
+  }
+}
