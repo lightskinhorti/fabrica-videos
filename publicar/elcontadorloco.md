@@ -138,6 +138,23 @@ cambia la línea de hashtags por esta:
 
 Instagram no paga por visualizaciones en España: aquí los vídeos sirven para ganar seguidores, no para cobrar.
 
+## Instagram automático con Meta Business Suite (decidido por Javier el 11 de noviembre)
+
+Claude programa los Reels desde el ordenador, igual que hace con TikTok Studio, en el perfil de Chrome de El contador loco. Hasta ahora en Instagram solo está `01-ascensor`.
+
+**Lo que tiene que hacer Javier, una sola vez** (Claude no crea cuentas ni inicia sesión):
+
+1. En la app de Instagram, pasar `@elcontadorloco` a cuenta profesional de **Creador** (paso 1 de arriba), si no lo está ya.
+2. Abrir el perfil de Chrome de El contador loco, entrar en `business.facebook.com` y pulsar **"Continue with Instagram"** con la cuenta `@elcontadorloco`. El 12 de noviembre esa página ofrecía entrar con Instagram, sin Facebook. Si aun así pide una página de Facebook, se crea una gratis con el nombre de la cuenta y se enlaza.
+3. Rechazar las cookies opcionales y dejar la sesión abierta. Avisar a Claude.
+
+**Lo que hace Claude después, cuando Javier lo pida:**
+
+- Comprobar que la cuenta que sale es `@elcontadorloco`.
+- Crear un Reel, subir la copia de `exports/subida/` (menos de 10 MB), pegar la descripción con solo 5 hashtags, elegir la portada y programar día y hora.
+- Comprobar en la lista de contenido programado que sale con su fecha, y marcar la casilla de Instagram en el panel.
+- La primera vez se hace con un solo vídeo, paso a paso, para apuntar aquí el procedimiento exacto. Sin probar todavía: si la web deja elegir la portada y si pregunta por la etiqueta de IA.
+
 ## Después de publicar
 
 - Las primeras 2 horas, contesta a algunos comentarios: a TikTok le cuenta y anima a que comente más gente.
