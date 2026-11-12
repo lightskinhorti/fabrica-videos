@@ -205,5 +205,23 @@
   "programado": true,
   "fecha": "2026-11-12",
   "hora": "18:00"
+ },
+ "elcontadorloco/14-sentado": {
+  "aprobado": true,
+  "programado": true,
+  "fecha": "2026-11-13",
+  "hora": "18:00"
+ },
+ "lascosaspordentro/14-qr": {
+  "aprobado": true,
+  "programado": true,
+  "fecha": "2026-11-13",
+  "hora": "18:00"
+ },
+ "dinerosinlio/12-precio99": {
+  "aprobado": true,
+  "programado": true,
+  "fecha": "2026-11-13",
+  "hora": "18:00"
  }
 }
