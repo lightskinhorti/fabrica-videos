@@ -223,5 +223,23 @@
   "programado": true,
   "fecha": "2026-11-13",
   "hora": "18:00"
+ },
+ "elcontadorloco/15-fosa": {
+  "aprobado": true,
+  "programado": true,
+  "fecha": "2026-11-16",
+  "hora": "20:00"
+ },
+ "lascosaspordentro/15-arroz": {
+  "aprobado": true,
+  "programado": true,
+  "fecha": "2026-11-16",
+  "hora": "20:00"
+ },
+ "dinerosinlio/13-bonosocial": {
+  "aprobado": true,
+  "programado": true,
+  "fecha": "2026-11-16",
+  "hora": "20:00"
  }
 }
