@@ -99,3 +99,5 @@ Reglas en el PRD, sección "Ganchos y temas". Ya no se empieza con "¿Y si…?":
 | Dejar el azúcar 30 días | "30 días sin azúcar. Día 1" | 8 |
 
 - [x] Vídeo 14: 8 horas sentado (64,7 s, 22 cambios de plano), con gancho de tipo "excepción" y cebo final. Hecho el 12 de noviembre con dos voces (la primera versión iba lenta); falta que Javier lo apruebe.
+
+- [x] Vídeo 15: la Fosa de las Marianas (63,4 s, 27 cambios de plano), el primero con la receta de misión en segunda persona (`ideas/recetas.md`). Hecho el 16 de noviembre; falta que Javier lo apruebe. El gancho hablado acaba a los 3,0 s, más de lo pedido.

@@ -85,3 +85,5 @@ Reglas en el PRD, sección "Ganchos y temas". Suben los objetos que le tocan alg
 | Huella del móvil (nueva) | "Tu móvil no guarda tu huella" | 8 |
 
 - [x] Vídeo 14: el código QR (66,0 s, 29 cambios de encuadre, 0 cortes secos), con gancho de tipo "reto" y la pregunta final en grande. Hecho el 12 de noviembre; falta que Javier lo apruebe y que confirme que @speedy_devv no tiene el tema. Objetos nuevos: `objetos/codigoqr.js` (`codigoQR` y `nivelesQR`).
+
+- [x] Vídeo 15: el arroz y el móvil mojado (65,2 s, 28 planos, 0 cortes secos), el primero con la receta de mito, duda y veredicto al final (`ideas/recetas.md`). Hecho el 16 de noviembre; falta que Javier lo apruebe y que confirme que @speedy_devv no tiene el tema. Objetos nuevos: `objetos/arroz.js` (`movilMojado`, `tarroArroz`, `rankingSecado`).

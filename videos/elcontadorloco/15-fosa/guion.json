@@ -1,0 +1,43 @@
+{
+  "titulo": "¿Llegas al fondo?",
+  "lines": [
+    "Tu misión: bajar once kilómetros.",
+    "Y volver, si puedes. Primero, se va el sol.",
+    "A doscientos metros, casi no llega luz. Enciendes la linterna, y tu cápsula cruje, pero aguanta.",
+    "Trescientos treinta y dos: aquí acaba el récord del buceador con botella. Tú sigues.",
+    "Mil metros: la zona de medianoche. Cada diez metros, una atmósfera más, y aquí ya son unas cien.",
+    "Casi tres mil: una ballena de Cuvier, el mamífero con la inmersión más honda registrada. Aguanta más de dos horas sin respirar.",
+    "Tres mil ochocientos: el Titanic, a oscuras y en silencio. Aquí, casi cuatrocientas atmósferas.",
+    "Seis mil: empieza la zona hadal, de lo menos explorado del planeta.",
+    "Ocho mil trescientos treinta y seis: un pez diminuto, el más hondo que se ha grabado.",
+    "Fondo. Diez mil novecientos treinta y cinco metros, más o menos: según cómo se mida, varía unas decenas. Aquí la presión es mil veces la de la superficie.",
+    "El Everest entero cabría aquí, y aún le sobrarían dos kilómetros de agua.",
+    "Misión cumplida, a medias. Ahora toca volver. Pero subir es otra historia.",
+    "¿Hasta cuántos metros habrías bajado tú? Dime tu cifra."
+  ],
+  "claves": [
+    "kilometros",
+    "sol",
+    "linterna",
+    "buceador",
+    "medianoche",
+    "ballena",
+    "titanic",
+    "hadal",
+    "pez",
+    "fondo",
+    "everest",
+    "historia",
+    "cifra"
+  ],
+  "pausa_segundos": 0.3,
+  "publicacion": {
+    "descripcion": "Tu misión: bajar hasta el fondo de la fosa de las Marianas, a unos 10.935 metros (la cifra exacta cambia unas decenas de metros según la medición), y volver. Qué hay en cada tramo: la luz del sol, el récord de buceo con botella, la zona de medianoche, la ballena de Cuvier, el Titanic, la zona hadal y el pez más hondo grabado. Fuentes: NOAA, Greenaway et al. 2021 (Deep Sea Research I), Schorr et al. 2014 (PLoS ONE), Guinness World Records y el Museo de Historia Natural de Londres. Es una ilustración: el descenso real depende de cada sumergible. ¿Hasta cuántos metros habrías bajado tú? Dime tu cifra.",
+    "hashtags": [
+      "#oceano",
+      "#fosadelasmarianas",
+      "#curiosidades"
+    ],
+    "portada_en": 0
+  }
+}

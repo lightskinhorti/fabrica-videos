@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <script type="importmap">
+      { "imports": { "three": "./lib/three.module.js", "three/addons/": "./lib/addons/" } }
+    </script>
+    <link rel="stylesheet" href="comun/contador.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Nunito", sans-serif; }
+      #alt, #clock { font-family: "Archivo Black", sans-serif; }
+      /* one card per step of the dive, on the right, with a leader line to the object (as in 14-sentado) */
+      .card {
+        position: absolute; left: 556px; top: 646px; width: 384px; padding: 20px 22px 18px; border-radius: 30px;
+        background: rgba(13, 22, 48, 0.9); border: 5px solid #0b1a3a; color: #fff; opacity: 0; transform-origin: 0 30%;
+      }
+      .card .top { display: flex; align-items: center; gap: 14px; }
+      .card .ic { width: 78px; height: 78px; flex: none; border-radius: 50%; background: #ffcf2e; display: flex; align-items: center; justify-content: center; }
+      .card .ic svg { width: 54px; height: 54px; overflow: visible; }
+      .card .tt { font-weight: 900; font-size: 30px; line-height: 1.04; letter-spacing: 0.04em; color: #ffcf2e; }
+      .card .big { font-family: "Archivo Black", sans-serif; font-size: 72px; line-height: 1; margin-top: 16px; white-space: nowrap; }
+      .card .big small { font-size: 0.42em; margin-left: 0.14em; }
+      .card .sub { font-weight: 800; font-size: 27px; line-height: 1.16; margin-top: 10px; color: rgba(255, 255, 255, 0.94); }
+      .card .pie { margin-top: 12px; }
+      .card .src { display: block; margin-top: 6px; font-weight: 700; font-size: 20px; line-height: 1.15; color: rgba(255, 255, 255, 0.66); }
+      .card .chip {
+        display: inline-block; font-weight: 900; font-size: 17px; letter-spacing: 0.08em; padding: 3px 9px 2px; border-radius: 9px;
+        border: 2px solid rgba(255, 207, 46, 0.75); color: #ffcf2e;
+      }
+      #pregunta {
+        position: absolute; left: 70px; right: 70px; top: 700px; text-align: center; opacity: 0;
+        font-weight: 900; font-size: 74px; line-height: 1.06; color: #1d1f3a;
+      }
+      #pregunta span { display: inline-block; padding: 16px 30px 18px; border-radius: 26px; background: #ffcf2e; border: 6px solid #0b1a3a; box-shadow: 0 10px 0 rgba(11, 26, 58, 0.45); }
+      .adelanto .cifra { font-size: 100px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="63.4" data-width="1080" data-height="1920" data-fps="30">
+      <div id="sky" class="clip" data-start="0" data-duration="63.4" data-track-index="0"></div>
+      <canvas id="gl" class="clip" data-start="0" data-duration="63.4" data-track-index="1" width="1080" height="1920"></canvas>
+      <svg id="leaders" class="clip" data-start="0" data-duration="63.4" data-track-index="2" width="1080" height="1920" data-layout-allow-overlap></svg>
+      <div id="labels" class="clip" data-start="0" data-duration="63.4" data-track-index="3" data-layout-allow-overlap></div>
+      <div id="hud" class="clip" data-start="0" data-duration="63.4" data-track-index="4">
+        <div id="alt">0<small>m</small></div>
+        <div id="since"></div>
+        <div id="clock">0 s</div>
+        <div id="extra"></div>
+        <div id="note"></div>
+      </div>
+      <div id="pregunta" class="clip" data-start="0" data-duration="63.4" data-track-index="5"><span>¿Hasta cuántos metros habrías bajado tú?</span></div>
+      <div id="title" class="clip" data-start="0" data-duration="63.4" data-track-index="6"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="63.4"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="63.4" data-track-index="7" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 62.185, "lines": [{"id": "l1", "s": 0.25, "e": 2.97, "words": [{"w": "Tu", "s": 0.25, "e": 0.25, "key": false}, {"w": "misión:", "s": 0.25, "e": 1.22, "key": false}, {"w": "bajar", "s": 1.22, "e": 1.57, "key": false}, {"w": "11", "s": 1.57, "e": 2.02, "key": false}, {"w": "kilómetros.", "s": 2.02, "e": 2.97, "key": true}]}, {"id": "l2", "s": 2.97, "e": 5.39, "words": [{"w": "Y", "s": 2.97, "e": 3.043, "key": false}, {"w": "volver,", "s": 3.043, "e": 3.48, "key": false}, {"w": "si", "s": 3.48, "e": 3.59, "key": false}, {"w": "puedes.", "s": 3.59, "e": 4.16, "key": false}, {"w": "Primero,", "s": 4.41, "e": 4.61, "key": false}, {"w": "se", "s": 4.61, "e": 4.74, "key": false}, {"w": "va", "s": 4.74, "e": 4.84, "key": false}, {"w": "el", "s": 4.84, "e": 4.88, "key": false}, {"w": "sol.", "s": 5.11, "e": 5.39, "key": true}]}, {"id": "l3", "s": 5.4, "e": 10.53, "words": [{"w": "A", "s": 5.4, "e": 5.45, "key": false}, {"w": "200", "s": 5.67, "e": 6.05, "key": false}, {"w": "metros,", "s": 6.05, "e": 6.44, "key": false}, {"w": "casi", "s": 6.44, "e": 6.68, "key": false}, {"w": "no", "s": 6.68, "e": 6.95, "key": false}, {"w": "llega", "s": 6.95, "e": 7.16, "key": false}, {"w": "luz.", "s": 7.16, "e": 7.6, "key": false}, {"w": "Enciendes", "s": 7.6, "e": 7.89, "key": false}, {"w": "la", "s": 7.9, "e": 8.0, "key": false}, {"w": "linterna,", "s": 8, "e": 8.56, "key": true}, {"w": "y", "s": 8.56, "e": 8.63, "key": false}, {"w": "tu", "s": 8.82, "e": 8.84, "key": false}, {"w": "cápsula", "s": 8.84, "e": 9.23, "key": false}, {"w": "cruje,", "s": 9.44, "e": 9.7, "key": false}, {"w": "pero", "s": 9.7, "e": 9.92, "key": false}, {"w": "aguanta.", "s": 10.17, "e": 10.53, "key": false}]}, {"id": "l4", "s": 10.75, "e": 14.89, "words": [{"w": "332:", "s": 10.75, "e": 12.12, "key": false}, {"w": "aquí", "s": 12.12, "e": 12.3, "key": false}, {"w": "acaba", "s": 12.3, "e": 12.4, "key": false}, {"w": "el", "s": 12.4, "e": 12.64, "key": false}, {"w": "récord", "s": 12.64, "e": 12.89, "key": false}, {"w": "del", "s": 12.89, "e": 12.99, "key": false}, {"w": "buceador", "s": 13.03, "e": 13.44, "key": true}, {"w": "con", "s": 13.44, "e": 13.6, "key": false}, {"w": "botella.", "s": 13.6, "e": 14.27, "key": false}, {"w": "Tú", "s": 14.27, "e": 14.37, "key": false}, {"w": "sigues.", "s": 14.37, "e": 14.89, "key": false}]}, {"id": "l5", "s": 15.21, "e": 20.83, "words": [{"w": "1.000", "s": 15.21, "e": 15.58, "key": false}, {"w": "metros:", "s": 15.59, "e": 16.05, "key": false}, {"w": "la", "s": 16.05, "e": 16.15, "key": false}, {"w": "zona", "s": 16.15, "e": 16.25, "key": false}, {"w": "de", "s": 16.25, "e": 16.47, "key": false}, {"w": "medianoche.", "s": 16.47, "e": 17.11, "key": true}, {"w": "Cada", "s": 17.12, "e": 17.33, "key": false}, {"w": "10", "s": 17.33, "e": 17.48, "key": false}, {"w": "metros,", "s": 17.75, "e": 18.05, "key": false}, {"w": "una", "s": 18.05, "e": 18.12, "key": false}, {"w": "atmósfera", "s": 18.35, "e": 18.66, "key": false}, {"w": "más,", "s": 18.66, "e": 18.81, "key": false}, {"w": "y", "s": 19.11, "e": 19.174, "key": false}, {"w": "aquí", "s": 19.174, "e": 19.43, "key": false}, {"w": "ya", "s": 19.43, "e": 19.62, "key": false}, {"w": "son", "s": 19.62, "e": 19.82, "key": false}, {"w": "unas", "s": 19.82, "e": 20.07, "key": false}, {"w": "100.", "s": 20.07, "e": 20.83, "key": false}]}, {"id": "l6", "s": 20.83, "e": 28.18, "words": [{"w": "Casi", "s": 20.83, "e": 21.08, "key": false}, {"w": "3.000:", "s": 21.08, "e": 22.03, "key": false}, {"w": "una", "s": 22.03, "e": 22.2, "key": false}, {"w": "ballena", "s": 22.2, "e": 22.58, "key": true}, {"w": "de", "s": 22.61, "e": 22.69, "key": false}, {"w": "Cuvier,", "s": 22.69, "e": 23.2, "key": false}, {"w": "el", "s": 23.22, "e": 23.31, "key": false}, {"w": "mamífero", "s": 23.31, "e": 23.73, "key": false}, {"w": "con", "s": 23.73, "e": 23.97, "key": false}, {"w": "la", "s": 23.97, "e": 24.04, "key": false}, {"w": "inmersión", "s": 24.04, "e": 24.58, "key": false}, {"w": "más", "s": 24.58, "e": 24.76, "key": false}, {"w": "honda", "s": 24.76, "e": 24.99, "key": false}, {"w": "registrada.", "s": 25.28, "e": 25.95, "key": false}, {"w": "Aguanta", "s": 25.97, "e": 26.42, "key": false}, {"w": "más", "s": 26.42, "e": 26.61, "key": false}, {"w": "de", "s": 26.62, "e": 26.66, "key": false}, {"w": "dos", "s": 26.91, "e": 26.95, "key": false}, {"w": "horas", "s": 26.95, "e": 27.25, "key": false}, {"w": "sin", "s": 27.47, "e": 27.49, "key": false}, {"w": "respirar.", "s": 27.49, "e": 28.18, "key": false}]}, {"id": "l7", "s": 28.23, "e": 33.49, "words": [{"w": "3.800:", "s": 28.23, "e": 29.12, "key": false}, {"w": "el", "s": 29.34, "e": 29.38, "key": false}, {"w": "Titanic,", "s": 29.39, "e": 30.06, "key": true}, {"w": "a", "s": 30.06, "e": 30.16, "key": false}, {"w": "oscuras", "s": 30.11, "e": 30.43, "key": false}, {"w": "y", "s": 30.43, "e": 30.62, "key": false}, {"w": "en", "s": 30.62, "e": 30.72, "key": false}, {"w": "silencio.", "s": 30.72, "e": 31.61, "key": false}, {"w": "Aquí,", "s": 31.68, "e": 31.96, "key": false}, {"w": "casi", "s": 31.96, "e": 32.18, "key": false}, {"w": "400", "s": 32.45, "e": 32.78, "key": false}, {"w": "atmósferas.", "s": 32.78, "e": 33.49, "key": false}]}, {"id": "l8", "s": 33.71, "e": 37.68, "words": [{"w": "6.000:", "s": 33.71, "e": 34.55, "key": false}, {"w": "empieza", "s": 34.55, "e": 34.99, "key": false}, {"w": "la", "s": 34.99, "e": 35.12, "key": false}, {"w": "zona", "s": 35.12, "e": 35.36, "key": false}, {"w": "hadal,", "s": 35.51, "e": 35.84, "key": true}, {"w": "de", "s": 35.84, "e": 35.95, "key": false}, {"w": "lo", "s": 35.95, "e": 36.05, "key": false}, {"w": "menos", "s": 36.34, "e": 36.35, "key": false}, {"w": "explorado", "s": 36.35, "e": 36.87, "key": false}, {"w": "del", "s": 36.87, "e": 37.04, "key": false}, {"w": "planeta.", "s": 37.04, "e": 37.68, "key": false}]}, {"id": "l9", "s": 37.68, "e": 42.36, "words": [{"w": "8.336:", "s": 37.68, "e": 39.41, "key": false}, {"w": "un", "s": 39.72, "e": 39.83, "key": false}, {"w": "pez", "s": 39.85, "e": 40.03, "key": true}, {"w": "diminuto,", "s": 40.09, "e": 40.77, "key": false}, {"w": "el", "s": 40.8, "e": 40.9, "key": false}, {"w": "más", "s": 40.9, "e": 41.1, "key": false}, {"w": "hondo", "s": 41.1, "e": 41.43, "key": false}, {"w": "que", "s": 41.43, "e": 41.54, "key": false}, {"w": "se", "s": 41.68, "e": 41.74, "key": false}, {"w": "ha", "s": 41.78, "e": 41.88, "key": false}, {"w": "grabado.", "s": 41.88, "e": 42.36, "key": false}]}, {"id": "l10", "s": 42.62, "e": 50.49, "words": [{"w": "Fondo.", "s": 42.62, "e": 43.0, "key": true}, {"w": "10.935", "s": 43.25, "e": 44.11, "key": false}, {"w": "metros,", "s": 44.11, "e": 44.72, "key": false}, {"w": "más", "s": 44.72, "e": 44.91, "key": false}, {"w": "o", "s": 44.91, "e": 44.97, "key": false}, {"w": "menos:", "s": 44.97, "e": 45.49, "key": false}, {"w": "según", "s": 45.56, "e": 46.02, "key": false}, {"w": "cómo", "s": 46.02, "e": 46.27, "key": false}, {"w": "se", "s": 46.27, "e": 46.39, "key": false}, {"w": "mida,", "s": 46.39, "e": 46.7, "key": false}, {"w": "varía", "s": 46.95, "e": 47.07, "key": false}, {"w": "unas", "s": 47.07, "e": 47.31, "key": false}, {"w": "decenas.", "s": 47.51, "e": 47.91, "key": false}, {"w": "Aquí", "s": 47.96, "e": 48.19, "key": false}, {"w": "la", "s": 48.2, "e": 48.31, "key": false}, {"w": "presión", "s": 48.31, "e": 48.76, "key": false}, {"w": "es", "s": 48.81, "e": 48.88, "key": false}, {"w": "mil", "s": 48.88, "e": 49.07, "key": false}, {"w": "veces", "s": 49.07, "e": 49.18, "key": false}, {"w": "la", "s": 49.42, "e": 49.5, "key": false}, {"w": "de", "s": 49.5, "e": 49.62, "key": false}, {"w": "la", "s": 49.62, "e": 49.74, "key": false}, {"w": "superficie.", "s": 49.74, "e": 50.49, "key": false}]}, {"id": "l11", "s": 50.68, "e": 54.32, "words": [{"w": "El", "s": 50.68, "e": 50.79, "key": false}, {"w": "Everest", "s": 50.93, "e": 51.2, "key": true}, {"w": "entero", "s": 51.2, "e": 51.4, "key": false}, {"w": "cabría", "s": 51.63, "e": 51.88, "key": false}, {"w": "aquí,", "s": 51.88, "e": 51.97, "key": false}, {"w": "y", "s": 51.97, "e": 52.19, "key": false}, {"w": "aún", "s": 52.19, "e": 52.33, "key": false}, {"w": "le", "s": 52.33, "e": 52.38, "key": false}, {"w": "sobrarían", "s": 52.52, "e": 52.9, "key": false}, {"w": "2", "s": 52.95, "e": 53.12, "key": false}, {"w": "kilómetros", "s": 53.12, "e": 53.69, "key": false}, {"w": "de", "s": 53.69, "e": 53.8, "key": false}, {"w": "agua.", "s": 53.8, "e": 54.32, "key": false}]}, {"id": "l12", "s": 54.32, "e": 59.0, "words": [{"w": "Misión", "s": 54.32, "e": 54.53, "key": false}, {"w": "cumplida,", "s": 54.83, "e": 55.32, "key": false}, {"w": "a", "s": 55.32, "e": 55.38, "key": false}, {"w": "medias.", "s": 55.57, "e": 55.97, "key": false}, {"w": "Ahora", "s": 55.98, "e": 56.32, "key": false}, {"w": "toca", "s": 56.32, "e": 56.59, "key": false}, {"w": "volver.", "s": 56.59, "e": 57.19, "key": false}, {"w": "Pero", "s": 57.19, "e": 57.45, "key": false}, {"w": "subir", "s": 57.47, "e": 57.8, "key": false}, {"w": "es", "s": 57.8, "e": 57.84, "key": false}, {"w": "otra", "s": 58.11, "e": 58.2, "key": false}, {"w": "historia.", "s": 58.2, "e": 59.0, "key": true}]}, {"id": "l13", "s": 59, "e": 61.96, "words": [{"w": "¿Hasta", "s": 59, "e": 59.17, "key": false}, {"w": "cuántos", "s": 59.4, "e": 59.68, "key": false}, {"w": "metros", "s": 59.68, "e": 60.03, "key": false}, {"w": "habrías", "s": 60.03, "e": 60.45, "key": false}, {"w": "bajado", "s": 60.65, "e": 60.84, "key": false}, {"w": "tú?", "s": 60.84, "e": 61.14, "key": false}, {"w": "Dime", "s": 61.15, "e": 61.4, "key": false}, {"w": "tu", "s": 61.42, "e": 61.52, "key": false}, {"w": "cifra.", "s": 61.52, "e": 61.96, "key": true}]}]}</script>
+    <script id="escena" type="application/json">
+      {
+        "titulo": "¿Llegas al fondo?",
+        "nota": "Ilustración · descenso a 1 m/s",
+        "formato": "altura",
+        "desde": "BAJANDO DESDE HACE",
+        "inicio": 0,
+        "ritmo": 1,
+        "etiquetas_bajo_marcador": true,
+        "arranque": { "adelanto": { "rotulo": "EL FONDO", "cifra": "10.935", "pie": "metros", "dur": 1.7 } },
+        "hitos": [
+          { "clave": "mision", "v": 0 },
+          { "clave": "primero", "v": 15 },
+          { "clave": "200", "v": 200 },
+          { "clave": "buceador", "v": 332 },
+          { "clave": "medianoche", "v": 1000 },
+          { "clave": "ballena", "v": 2992 },
+          { "clave": "titanic", "v": 3800 },
+          { "clave": "hadal", "v": 6000 },
+          { "clave": "pez", "v": 8336 },
+          { "clave": "fondo", "v": 10935 }
+        ],
+        "sonido": { "motor": true }
+      }
+    </script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 63.4 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import * as THREE from "three";
+      import { crearContador } from "./comun/contador.js";
+
+      // A mission in the second person (recipe of @que_pasariasi, see ideas/recetas.md): you go down to the bottom of
+      // the Mariana Trench in your own capsule, with a counter that does not stop (metres of depth). Every step of the
+      // dive is a card on the right with a leader line to the thing you pass (as in 14-sentado). The depth is on a log
+      // scale, as in 01-ascensor (but downwards: the scene height of a depth is -Y(depth)), so every step is one or
+      // two scene units from the next. Sources of every figure: fuentes.md.
+      const C = crearContador(THREE);
+      const { VOZ, D, words, anchors, scene, camera, mat, glow, box, at, v3, hash, clamp, lerp, ease, smooth, ramp, norm, miles, Y, V, W, H } = C;
+      const RAD = Math.PI / 180;
+      const cyl = (rt, rb, h, m, seg = 10) => new THREE.Mesh(new THREE.CylinderGeometry(rt, rb, h, seg), m);
+      const ico = (r, m, d = 0) => new THREE.Mesh(new THREE.IcosahedronGeometry(r, d), m);
+      const S = (d) => -Y(d); // scene height of a depth in metres
+      const L = VOZ.lines;
+      const lin = (i, k, def) => (L[i] ? L[i][k] : def);
+      const tW = (claves, desde, def) => { const w = words.find((x) => x.s >= desde && claves.some((c) => norm(x.w).startsWith(c))); return w ? w.s : def; };
+      const A = Object.fromEntries(anchors.map((a) => [a.hito.clave, a]));
+      const tA = (c, def) => (A[c] ? A[c].t : def);
+
+      const tDos = tA("200", 8), tBuc = tA("buceador", 14), tMed = tA("medianoche", 20), tBal = tA("ballena", 27), tTit = tA("titanic", 36);
+      const tHad = tA("hadal", 40), tPez = tA("pez", 45), tFon = tA("fondo", 52);
+      const tPres = tW(["presion"], tFon, tFon + 6), tEv = tW(["everest"], tFon + 3, tFon + 9), tPreg = tW(["cuantos"], lin(L.length - 1, "s", D - 6) - 0.2, D - 5);
+      const tVolver = tW(["volver"], tEv + 2, tEv + 6), tHist = tW(["historia"], tVolver, tVolver + 4);
+
+      // ---------- the capsule: a glass sphere with our character inside, a frame, lamps and thrusters ----------
+      const cap = new THREE.Group(); scene.add(cap);
+      const NARANJA = mat(0xff6a2b), OSCURO = mat(0x1d2540), GRIS = mat(0x56607a, { metalness: 0.4, roughness: 0.5 });
+      const VIDRIO = new THREE.MeshStandardMaterial({ color: 0xbfe8ff, transparent: true, opacity: 0.16, roughness: 0.1, depthWrite: false, flatShading: true });
+      cap.add(new THREE.Mesh(new THREE.IcosahedronGeometry(1.3, 2), VIDRIO));
+      for (const rot of [[Math.PI / 2, 0, 0], [0, 0, 0], [0, Math.PI / 2, 0]]) {
+        const aro = new THREE.Mesh(new THREE.TorusGeometry(1.3, 0.055, 6, 28), NARANJA); aro.rotation.set(...rot); cap.add(aro);
+      }
+      cap.add(at(cyl(1.0, 0.9, 0.2, OSCURO, 16), 0, -1.05, 0));
+      cap.add(at(cyl(0.7, 0.9, 0.3, GRIS, 12), 0, -1.3, 0));
+      for (const sx of [-1, 1]) {
+        const th = at(cyl(0.2, 0.26, 0.9, GRIS, 8), sx * 1.55, -0.25, 0); th.rotation.z = Math.PI / 2; cap.add(th);
+        cap.add(at(box(0.08, 0.34, 0.34, glow(0x7fe9ff)), sx * 2.02, -0.25, 0));
+        cap.add(at(box(0.5, 0.18, 0.18, GRIS), sx * 1.2, -0.25, 0));
+      }
+      const lamparas = [-1, 1].map((sx) => { const l = at(box(0.5, 0.22, 0.3, GRIS), sx * 0.62, 1.22, 0.55); cap.add(l); cap.add(at(box(0.36, 0.14, 0.04, glow(0xfff2c4)), sx * 0.62, 1.22, 0.71)); return l; });
+      cap.add(at(box(0.05, 0.7, 0.05, GRIS), 0.5, 1.6, -0.2));
+      const P = C.personaje(), { kid, head, body, arms } = P;
+      kid.scale.setScalar(0.235); kid.position.set(0, -0.93, 0); cap.add(kid);
+      const lampara = new THREE.PointLight(0xfff0d0, 0, 0, 2); lampara.position.set(0, 0.5, 1.8); cap.add(lampara);
+      const lamparaBase = new THREE.PointLight(0x9fe4ff, 0, 0, 2); lamparaBase.position.set(0, -1.6, 0.6); cap.add(lamparaBase);
+
+      // ---------- the surface: waves, a sun, a support boat, and light shafts ----------
+      const mar = new THREE.Mesh(new THREE.PlaneGeometry(90, 90, 36, 36), new THREE.MeshStandardMaterial({ color: 0x2aa9e8, emissive: 0x145f96, emissiveIntensity: 0.8, transparent: true, opacity: 0.72, flatShading: true, side: THREE.DoubleSide, depthWrite: false }));
+      mar.rotation.x = -Math.PI / 2; scene.add(mar);
+      const marPos = mar.geometry.attributes.position, marBase = Float32Array.from(marPos.array);
+      const sol = at(ico(2.4, glow(0xfff6d0), 1), 9, 20, -34); scene.add(sol);
+      const barco = new THREE.Group(); barco.position.set(-6.2, 0.15, -7); barco.rotation.y = 0.5; scene.add(barco);
+      barco.add(at(box(5.2, 0.9, 1.7, mat(0xf4efe2)), 0, 0.1, 0));
+      barco.add(at(box(5.2, 0.28, 1.74, mat(0xff6a2b)), 0, -0.2, 0));
+      barco.add(at(box(1.5, 1.0, 1.3, mat(0xffffff)), -1.2, 1.0, 0));
+      barco.add(at(box(1.3, 0.28, 1.34, mat(0x2b3a6b)), -1.2, 1.15, 0));
+      barco.add(at(box(0.18, 2.0, 0.18, GRIS), 1.5, 1.4, 0));
+      barco.add(at(box(1.8, 0.14, 0.14, GRIS), 2.3, 2.3, 0));
+      const rayos = [];
+      for (let i = 0; i < 8; i++) {
+        const m = new THREE.MeshBasicMaterial({ color: 0xd9f6ff, transparent: true, opacity: 0.1, depthWrite: false, side: THREE.DoubleSide });
+        const r = at(box(0.5 + hash(i + 3) * 0.9, 26, 0.04, m), -9 + i * 2.6 + hash(i) * 1.5, -13, -2.5 - hash(i + 5) * 6); r.rotation.z = 0.22; scene.add(r); rayos.push(r);
+      }
+      // a shoal of fish between 10 and 60 m
+      const pez = new THREE.Group(); scene.add(pez);
+      const peces = [];
+      for (let i = 0; i < 20; i++) {
+        const c = [0xffcf2e, 0xff8a3d, 0xffe27a][i % 3], f = new THREE.Group();
+        f.add(at(box(0.5, 0.2, 0.1, mat(c)), 0, 0, 0)); f.add(at(box(0.18, 0.22, 0.05, mat(c)), -0.32, 0, 0).rotateZ(0.5)); f.add(at(box(0.07, 0.07, 0.12, mat(0x1d1f3a)), 0.17, 0.04, 0));
+        f.userData = { x0: (hash(i + 70) - 0.5) * 18, y: S(25) + (hash(i + 80) - 0.5) * 3.2, z: -1.5 - hash(i + 90) * 5, v: 0.9 + hash(i + 100) * 0.7, ph: hash(i + 110) * 6 };
+        pez.add(f); peces.push(f);
+      }
+
+      // ---------- the things you pass, on the left of the capsule, each at its real depth ----------
+      // 332 m: the scuba record diver
+      const buzo = new THREE.Group(); buzo.position.set(-3.4, S(332), -0.4); buzo.rotation.set(0, 0.5, 0.95); buzo.scale.setScalar(1.15); scene.add(buzo);
+      {
+        const NEO = mat(0x1d3b6b), PIEL = mat(0xf2b98d);
+        buzo.add(at(box(0.5, 0.95, 0.3, NEO), 0, 0, 0));
+        buzo.add(at(box(0.36, 0.36, 0.34, PIEL), 0, 0.68, 0));
+        buzo.add(at(box(0.38, 0.14, 0.05, glow(0x9bd1ff)), 0, 0.72, 0.19));
+        buzo.add(at(cyl(0.13, 0.13, 0.85, mat(0xffcf2e), 8), 0, 0.05, -0.28));
+        for (const sx of [-1, 1]) { buzo.add(at(box(0.16, 0.8, 0.18, NEO), sx * 0.17, -0.82, 0)); buzo.add(at(box(0.2, 0.5, 0.05, mat(0xff6a2b)), sx * 0.17, -1.4, 0.04)); buzo.add(at(box(0.14, 0.7, 0.16, NEO), sx * 0.34, 0.1, 0.14).rotateX(-0.5)); }
+        buzo.add(at(box(0.1, 0.1, 0.34, glow(0xfff2c4)), 0.34, 0.2, 0.42));
+      }
+      // 1,000 m: an anglerfish with a glowing lure and drifting glowing jellies
+      const rape = new THREE.Group(); rape.position.set(-3.2, S(1000) + 0.2, -0.8); rape.rotation.y = 0.7; rape.scale.setScalar(1.25); scene.add(rape);
+      let lure;
+      {
+        const MARR = mat(0x4a3140, { roughness: 0.9 });
+        const cuerpo = ico(0.62, MARR, 1); cuerpo.scale.set(1.2, 0.95, 0.9); rape.add(cuerpo);
+        rape.add(at(box(0.5, 0.1, 0.5, mat(0x1a0f18)), 0.62, -0.08, 0));
+        for (let i = 0; i < 5; i++) rape.add(at(box(0.05, 0.2, 0.05, mat(0xf4efe2)), 0.78, 0.02 - 0.0, -0.2 + i * 0.1).rotateZ(0.2));
+        rape.add(at(box(0.1, 0.1, 0.06, glow(0xffffff)), 0.52, 0.28, 0.4)); rape.add(at(box(0.04, 0.04, 0.05, mat(0x000000)), 0.54, 0.28, 0.44));
+        rape.add(at(box(0.04, 0.6, 0.04, MARR), 0.3, 0.78, 0).rotateZ(-0.7));
+        lure = at(ico(0.13, glow(0x9fffd4), 1), 0.82, 1.08, 0); rape.add(lure);
+        const cola = at(box(0.1, 0.7, 0.1, MARR), -0.8, 0, 0); cola.rotation.z = 1.2; rape.add(cola);
+        rape.add(at(box(0.5, 0.05, 0.4, MARR), -0.9, 0.1, 0));
+      }
+      const aguas = [];
+      for (let i = 0; i < 7; i++) {
+        const j = new THREE.Group();
+        j.add(ico(0.18 + hash(i) * 0.1, glow([0xff7ad9, 0x7affd9, 0x7ac4ff][i % 3], 0.8), 1));
+        for (let k = 0; k < 3; k++) j.add(at(box(0.015, 0.4, 0.015, glow(0xffffff, 0.5)), (k - 1) * 0.06, -0.3, 0));
+        j.userData = { x: -5.5 + hash(i + 20) * 3, y: S(1000) + (hash(i + 30) - 0.5) * 2.2, z: -1.5 - hash(i + 40) * 3, ph: hash(i + 50) * 6 };
+        scene.add(j); aguas.push(j);
+      }
+      // 2,992 m: a Cuvier's beaked whale
+      const ballena = new THREE.Group(); ballena.position.set(-3.6, S(2992) + 0.1, -1.4); ballena.rotation.y = 0.55; scene.add(ballena);
+      const colaB = new THREE.Group();
+      {
+        const AZ = mat(0x73849a, { roughness: 0.8 }), CL = mat(0xc9d3dc);
+        const cuerpo = ico(1, AZ, 1); cuerpo.scale.set(2.0, 0.78, 0.82); ballena.add(cuerpo);
+        const vientre = ico(1, CL, 1); vientre.scale.set(1.8, 0.4, 0.72); vientre.position.y = -0.34; ballena.add(vientre);
+        const cab = ico(1, AZ, 1); cab.scale.set(0.8, 0.6, 0.6); cab.position.set(1.85, 0.05, 0); ballena.add(cab);
+        const pico = new THREE.Mesh(new THREE.ConeGeometry(0.2, 0.7, 6), CL); pico.rotation.z = -Math.PI / 2; pico.position.set(2.55, -0.03, 0); ballena.add(pico);
+        ballena.add(at(box(0.09, 0.09, 0.05, mat(0x1d1f3a)), 2.1, 0.12, 0.38)); ballena.add(at(box(0.09, 0.09, 0.05, mat(0x1d1f3a)), 2.1, 0.12, -0.38));
+        ballena.add(at(box(0.5, 0.06, 0.6, AZ), 0.6, -0.45, 0.62).rotateY(0.4)); ballena.add(at(box(0.5, 0.06, 0.6, AZ), 0.6, -0.45, -0.62).rotateY(-0.4));
+        ballena.add(at(box(0.18, 0.4, 0.06, AZ), -0.1, 0.78, 0).rotateZ(-0.4));
+        colaB.position.set(-1.9, 0, 0); ballena.add(colaB);
+        colaB.add(at(ico(0.5, AZ, 0), -0.4, 0, 0)); colaB.children[0].scale.set(1.4, 0.5, 0.5);
+        colaB.add(at(box(0.18, 0.12, 1.3, AZ), -1.0, 0, 0)); colaB.children[1].rotation.y = 0;
+      }
+      // 3,800 m: the Titanic, dark and still
+      const titanic = new THREE.Group(); titanic.position.set(-3.7, S(3800) - 0.1, -2.6); titanic.rotation.set(0.04, 0.5, 0.1); scene.add(titanic);
+      {
+        const NEGRO = mat(0x2b2f3d), ROJO = mat(0x6b2b27), CREMA = mat(0x9a948a), OX = mat(0x5a3a28);
+        titanic.add(at(box(4.6, 0.75, 1.0, NEGRO), 0, 0, 0));
+        titanic.add(at(box(4.62, 0.14, 1.02, ROJO), 0, -0.3, 0));
+        const proa = at(box(0.9, 0.75, 0.7, NEGRO), 2.55, 0.0, 0); proa.rotation.y = 0; titanic.add(proa);
+        titanic.add(at(box(0.9, 0.75, 0.5, NEGRO), 3.1, 0, 0));
+        titanic.add(at(box(3.6, 0.42, 0.86, CREMA), -0.1, 0.55, 0));
+        titanic.add(at(box(2.4, 0.34, 0.72, CREMA), -0.2, 0.94, 0));
+        for (let i = 0; i < 4; i++) { titanic.add(at(cyl(0.13, 0.15, 0.7, OX, 8), -0.9 + i * 0.6, 1.4, 0)); titanic.add(at(cyl(0.135, 0.135, 0.1, mat(0x1a1a1f), 8), -0.9 + i * 0.6, 1.78, 0)); }
+        titanic.add(at(box(0.05, 1.5, 0.05, OX), 1.5, 1.2, 0)); titanic.add(at(box(0.05, 1.3, 0.05, OX), -2.0, 1.1, 0));
+      }
+      // 6,000 m onwards: the walls of the trench close in on both sides
+      const paredes = new THREE.Group(); scene.add(paredes);
+      for (let i = 0; i < 16; i++) {
+        const lado = i % 2 ? 1 : -1, j = (i >> 1);
+        const r = at(ico(1.3 + hash(i + 200) * 1.3, mat(0x3b3f4d, { roughness: 1 }), 0), lado * (5.2 + hash(i + 210) * 2.2), S(6000) + 0.9 - j * 0.7 - hash(i + 220) * 0.6, -1.5 - hash(i + 230) * 3.5);
+        r.scale.set(1, 1.4 + hash(i + 240), 1); r.rotation.y = hash(i + 250) * 3; paredes.add(r);
+      }
+      // 8,336 m: a tiny snailfish
+      const babosa = new THREE.Group(); babosa.position.set(-2.7, S(8336), -0.6); babosa.rotation.y = 0.6; babosa.scale.setScalar(1.7); scene.add(babosa);
+      const colaP = new THREE.Group();
+      {
+        const ROSA = mat(0xf0a9bd, { roughness: 0.6 });
+        const cuerpo = ico(0.4, ROSA, 1); cuerpo.scale.set(1.3, 0.85, 0.85); babosa.add(cuerpo);
+        babosa.add(at(box(0.08, 0.08, 0.04, mat(0x1d1f3a)), 0.42, 0.1, 0.27)); babosa.add(at(box(0.08, 0.08, 0.04, mat(0x1d1f3a)), 0.42, 0.1, -0.27));
+        babosa.add(at(box(0.7, 0.06, 0.34, mat(0xf7c9d6, { transparent: true, opacity: 0.8 })), 0, 0.38, 0));
+        colaP.position.set(-0.5, 0, 0); babosa.add(colaP); colaP.add(at(box(0.75, 0.2, 0.08, ROSA), -0.3, 0, 0)); colaP.add(at(box(0.3, 0.32, 0.05, mat(0xf7c9d6)), -0.75, 0, 0));
+      }
+      // 10,935 m: the seabed, a few rocks, little amphipods, and Everest drawn as a hologram next to it
+      const FONDO_Y = S(10935) - 1.55;
+      const suelo = new THREE.Group(); scene.add(suelo);
+      suelo.add(at(box(70, 3, 40, mat(0x5f5953, { roughness: 1 })), 0, FONDO_Y - 1.5, -8));
+      for (let i = 0; i < 16; i++) {
+        const r = ico(0.3 + hash(i + 300) * 0.7, mat([0x6f6862, 0x4d4944, 0x7a7068][i % 3], { roughness: 1 }), 0);
+        r.scale.set(1.3, 0.55, 1); r.position.set(-9 + hash(i + 310) * 18, FONDO_Y + 0.1, -4 + hash(i + 320) * 5 - (hash(i + 330) > 0.5 ? 0 : 2)); r.rotation.y = hash(i + 340) * 3; suelo.add(r);
+      }
+      const anfipodos = [];
+      for (let i = 0; i < 9; i++) {
+        const a = new THREE.Group(); a.add(box(0.26, 0.1, 0.1, mat(0xf4efe2))); a.add(at(box(0.12, 0.1, 0.08, mat(0xf4efe2)), -0.2, -0.02, 0)); a.add(at(box(0.04, 0.04, 0.04, mat(0x1d1f3a)), 0.1, 0.05, 0.06));
+        a.userData = { x: -4.5 + hash(i + 400) * 5, z: -0.5 - hash(i + 410) * 3.2, ph: hash(i + 420) * 6 }; a.scale.setScalar(1.3);
+        scene.add(a); anfipodos.push(a);
+      }
+      const evTop = S(10935 - 8849), evAlt = evTop - FONDO_Y;
+      const everest = new THREE.Group(); everest.position.set(-5.5, FONDO_Y, -7); scene.add(everest);
+      {
+        const g = new THREE.ConeGeometry(4.6, evAlt, 7, 1);
+        const holo = new THREE.Mesh(g, new THREE.MeshBasicMaterial({ color: 0x4fb8ff, transparent: true, opacity: 0.22, depthWrite: false, fog: false }));
+        holo.position.y = evAlt / 2; everest.add(holo);
+        const edges = new THREE.LineSegments(new THREE.EdgesGeometry(g), new THREE.LineBasicMaterial({ color: 0x9fe4ff, transparent: true, opacity: 0.9, fog: false }));
+        edges.position.y = evAlt / 2; everest.add(edges);
+        const nieve = new THREE.Mesh(new THREE.ConeGeometry(4.6 * 0.3, evAlt * 0.3, 7, 1), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.5, depthWrite: false, fog: false }));
+        nieve.position.y = evAlt - evAlt * 0.15; everest.add(nieve);
+      }
+      everest.visible = false;
+      // marine snow around the camera
+      const nieveGeo = new THREE.BufferGeometry(), NN = 320, nPos = new Float32Array(NN * 3);
+      nieveGeo.setAttribute("position", new THREE.BufferAttribute(nPos, 3));
+      const nieveMat = new THREE.PointsMaterial({ color: 0xdff2ff, size: 3, sizeAttenuation: false, transparent: true, opacity: 0.55, depthWrite: false });
+      const nieveP = new THREE.Points(nieveGeo, nieveMat); nieveP.frustumCulled = false; scene.add(nieveP);
+
+      // ---------- cards ----------
+      const IC = {
+        sol: '<circle cx="24" cy="24" r="8"/><path d="M24 5 V11 M24 37 V43 M5 24 H11 M37 24 H43 M10.5 10.5 L14.5 14.5 M33.5 33.5 L37.5 37.5 M10.5 37.5 L14.5 33.5 M33.5 14.5 L37.5 10.5"/>',
+        buzo: '<rect x="15" y="9" width="18" height="30" rx="8"/><path d="M20 5 H28 M24 5 V9 M19 20 H29"/>',
+        luna: '<path d="M32 8 A17 17 0 1 0 40 32 A14 14 0 0 1 32 8 Z"/>',
+        ballena: '<path d="M5 30 C5 18 18 12 30 16 C36 18 40 22 44 20 C43 28 38 32 30 34 C20 38 8 38 5 30 Z"/><circle cx="14" cy="26" r="1.5"/>',
+        barco: '<path d="M6 30 H42 L36 40 H12 Z M14 30 V20 H34 V30 M20 20 V12 H28 V20"/>',
+        hadal: '<path d="M10 14 L24 26 L38 14 M10 26 L24 38 L38 26"/>',
+        pez: '<path d="M6 24 C12 14 26 12 34 24 C26 36 12 34 6 24 Z M34 24 L44 15 V33 Z"/><circle cx="14" cy="22" r="1.5"/>',
+        fondo: '<path d="M6 38 H42 M24 8 V30 M15 22 L24 31 L33 22"/>',
+        presion: '<circle cx="24" cy="24" r="16"/><path d="M24 24 L33 15 M12 24 H15 M24 12 V15 M33 24 H36"/>',
+        monte: '<path d="M4 38 L18 12 L26 26 L31 18 L44 38 Z"/>',
+      };
+      const CARDS = [
+        { icon: "sol", tit: "SE ACABA LA LUZ", t: tDos - 0.1, hasta: tBuc - 0.9, punto: () => [lamparas[1], v3(0, 0, 0.2)],
+          fases: [{ n: 200, u: "m", sub: "hasta aquí llega la luz del sol; más abajo casi no llega" }], chip: "NOAA", src: "NOAA Ocean Service" },
+        { icon: "buzo", tit: "RÉCORD CON BOTELLA", t: tBuc - 0.1, hasta: tMed - 0.9, punto: () => [buzo, v3(0, 0.2, 0)],
+          fases: [{ n: 332, u: "m", sub: "el buceador con botella más hondo: 332,35 m, en el mar Rojo" }], chip: "RÉCORD", src: "Guinness World Records, 2014" },
+        { icon: "luna", tit: "ZONA DE MEDIANOCHE", t: tMed - 0.1, hasta: tBal - 0.9, punto: () => [lure, v3(0, 0, 0)],
+          fases: [{ n: 1000, u: "m", sub: "empieza la zona de medianoche · cada 10 m, 1 atmósfera más (unas 100)" }], chip: "NOAA", src: "NOAA Ocean Service y Ocean Exploration" },
+        { icon: "ballena", tit: "MAMÍFERO MÁS HONDO", t: tBal - 0.1, hasta: tTit - 0.9, punto: () => [ballena, v3(1.9, 0.1, 0)],
+          fases: [{ n: 2992, u: "m", sub: "ballena de Cuvier: 137 min sin respirar en la inmersión más larga" }], chip: "ESTUDIO", src: "Schorr et al., PLoS ONE, 2014" },
+        { icon: "barco", tit: "EL TITANIC", t: tTit - 0.1, hasta: tHad - 0.9, punto: () => [titanic, v3(0, 0.6, 0)],
+          fases: [{ n: 3800, u: "m", sub: "casi 400 atmósferas de presión" }], chip: "NOAA", src: "NOAA Ocean Exploration" },
+        { icon: "hadal", tit: "ZONA HADAL", t: tHad - 0.1, hasta: tPez - 0.9, punto: () => [paredes.children[0], v3(0, 0, 0)],
+          fases: [{ n: 6000, u: "m", sub: "de aquí al fondo: de lo menos explorado del planeta" }], chip: "NOAA", src: "NOAA Ocean Exploration" },
+        { icon: "pez", tit: "PEZ MÁS HONDO", t: tPez - 0.1, hasta: tFon - 0.9, punto: () => [babosa, v3(0, 0, 0)],
+          fases: [{ n: 8336, u: "m", sub: "un pez joven (Pseudoliparis), filmado en Japón en 2022" }], chip: "FILMADO", src: "Univ. de Australia Occidental · Museo de Historia Natural" },
+        { icon: "fondo", tit: "EL FONDO", t: tFon - 0.1, hasta: tEv - 0.9, punto: () => [cap, v3(0, -1.4, 0)],
+          fases: [{ n: 10935, u: "m", sub: "aproximado: según la medición, varía unas decenas de metros" },
+                  { t: tPres - 0.3, big: "1.000", u: "veces", sub: "la presión de la superficie (8 toneladas por pulgada cuadrada)" }], chip: "ESTUDIO", src: "Greenaway et al., 2021 · NOAA" },
+        { icon: "monte", tit: "EL EVEREST", t: tEv - 0.1, hasta: tHist - 0.2, punto: () => [everest, v3(0, evAlt, 0)],
+          fases: [{ n: 8849, u: "m", sub: "cabría entero y aún sobrarían unos 2.000 m de agua" }], chip: "CÁLCULO", src: "10.935 − 8.849 = 2.086 m" },
+      ];
+      const labelsEl = document.getElementById("labels");
+      for (const c of CARDS) {
+        c.el = document.createElement("div"); c.el.className = "card";
+        c.el.innerHTML = `<div class="top"><div class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="#1d1f3a" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round">${IC[c.icon]}</svg></div><div class="tt">${c.tit}</div></div><div class="big"></div><div class="sub"></div><div class="pie"><span class="chip">${c.chip}</span><span class="src">${c.src}</span></div>`;
+        labelsEl.appendChild(c.el);
+        c.fases.forEach((f, i) => { if (f.t === undefined) f.t = c.t; });
+        c.big = c.el.querySelector(".big"); c.sub = c.el.querySelector(".sub");
+      }
+      const svgNS = "http://www.w3.org/2000/svg", leaders = document.getElementById("leaders");
+      for (const c of CARDS) {
+        c.ln = document.createElementNS(svgNS, "line"); c.ln.setAttribute("stroke", "rgba(255,255,255,0.9)"); c.ln.setAttribute("stroke-width", "4"); leaders.appendChild(c.ln);
+        c.dot = document.createElementNS(svgNS, "circle"); c.dot.setAttribute("r", "9"); c.dot.setAttribute("fill", "#ffcf2e"); c.dot.setAttribute("stroke", "#0b1a3a"); c.dot.setAttribute("stroke-width", "4"); leaders.appendChild(c.dot);
+      }
+      const toScreen = (p) => { const q = p.clone().project(camera); return { x: (q.x + 1) * 0.5 * W, y: (1 - q.y) * 0.5 * H, z: q.z }; };
+      const hudEl = document.getElementById("hud");
+      function fase(c, t) {
+        let i = 0;
+        while (i + 1 < c.fases.length && t >= c.fases[i + 1].t) i++;
+        const f = c.fases[i], d = t - f.t;
+        let txt = f.big;
+        if (f.n !== undefined) txt = miles(!f.fija ? lerp(0.6 * f.n, f.n, ease(clamp((t - f.t) / 0.7))) : f.n);
+        const html = `${txt}${f.u ? `<small>${f.u}</small>` : ""}`;
+        if (c.big.innerHTML !== html) c.big.innerHTML = html;
+        if (c.sub.textContent !== f.sub) c.sub.textContent = f.sub;
+        c.big.style.transformOrigin = "0 50%";
+        c.big.style.transform = `scale(${1 + (i > 0 && d > 0 && d < 0.45 ? 0.1 * Math.sin((Math.PI * d) / 0.45) : 0)})`;
+      }
+      function tarjetas(t) {
+        const top = Math.max(646, hudEl.offsetTop + hudEl.offsetHeight + 18);
+        for (const c of CARDS) {
+          const kin = clamp((t - (c.t - 0.12)) / 0.35), kout = clamp((t - c.hasta) / 0.3), vis = ease(kin) * (1 - kout);
+          c.el.style.top = top + "px";
+          c.el.style.opacity = vis;
+          c.el.style.transform = `translateY(${(1 - ease(kin)) * 26}px) scale(${0.94 + 0.06 * ease(kin)})`;
+          const [obj, local] = c.punto(), p = toScreen(obj.localToWorld(local.clone()));
+          const on = vis > 0.01 && p.z < 1;
+          [c.ln, c.dot].forEach((e) => e.setAttribute("opacity", on ? vis : 0));
+          if (vis > 0.01) fase(c, t);
+          if (!on) continue;
+          const cy = clamp(p.y, top + 50, top + c.el.offsetHeight - 50);
+          c.ln.setAttribute("x1", p.x); c.ln.setAttribute("y1", p.y); c.ln.setAttribute("x2", 556); c.ln.setAttribute("y2", cy);
+          c.dot.setAttribute("cx", p.x); c.dot.setAttribute("cy", p.y);
+        }
+      }
+
+      // ---------- the camera: a new framing every 2 or 3 s, travelling smoothly from one to the next ----------
+      const tmpA = v3(0, 0, 0), tmpB = v3(0, 0, 0);
+      const pt = (obj, x, y, z) => () => obj.localToWorld(v3(x, y, z));
+      const entre = (obj, k, y = 0) => () => cap.getWorldPosition(tmpA).clone().lerp(obj.getWorldPosition(tmpB), k).add(v3(0, y, 0));
+      const F = {
+        cara: (d, az, el) => ({ mira: pt(head, 0, -0.3, 0.5), dist: d, az, el }),
+        cap: (d, az, el) => ({ mira: pt(cap, 0, 0, 0), dist: d, az, el }),
+        lampara: (d, az, el) => ({ mira: pt(lamparas[0], 0.4, 0, 0.3), dist: d, az, el }),
+        base: (d, az, el) => ({ mira: pt(cap, 0, -1.1, 0), dist: d, az, el }),
+        motor: (d, az, el) => ({ mira: pt(cap, 1.6, -0.25, 0), dist: d, az, el }),
+        obj: (o, k, d, az, el, y = 0) => ({ mira: entre(o, k, y), dist: d * 1.3, az, el }),
+      };
+      // a new framing every ~2.4 s, alternating close and wide, plus beats tied to the voice (each object, as its card comes in)
+      const FORZADAS = [
+        [-1, F.cap(9.4, 14, 5)], [0.85, F.cara(4.0, 8, 3), 0.9],
+        [2.6, F.cap(10.5, 24, -6), 1.1],
+        [tDos - 0.9, F.lampara(5.0, 18, 6), 1.1], [tBuc - 1.0, F.obj(buzo, 0.8, 7.0, 22, 4), 1.1],
+        [tMed - 1.0, F.obj(rape, 0.8, 7.0, 20, 3), 1.1], [tBal - 1.0, F.obj(ballena, 0.8, 9.5, 18, 3), 1.1],
+        [tTit - 1.0, F.obj(titanic, 0.85, 10.5, 16, 5), 1.1], [tHad - 1.0, F.obj(paredes.children[0], 0.7, 9.5, 20, 2), 1.1],
+        [tPez - 1.0, F.obj(babosa, 0.8, 6.6, 22, 3), 1.1], [tFon - 0.9, F.base(6.5, 20, 12), 1.1],
+        [tPres - 0.7, F.cara(4.6, 10, 2), 1.0], [tEv - 0.8, F.obj(everest, 0.45, 15.5, 16, 5, 2.5), 1.3],
+        [tVolver - 0.5, F.cap(11.0, 8, -34), 1.2], [tPreg - 0.7, F.cap(10.0, 18, -28), 1.2],
+      ];
+      const CERCA = [F.cara(3.9, -8, 3), F.lampara(4.6, 24, 7), F.motor(5.0, 30, 8), F.base(6.0, 14, 14), F.cara(4.2, 22, 2), F.cap(6.2, 6, 4)];
+      const LEJOS = [F.cap(10.2, 30, 8), F.cap(9.0, -18, 10), F.cap(11.0, 12, -10), F.cap(8.6, 36, 3), F.cap(10.0, -8, 14), F.cap(9.4, 24, -4)];
+      const ENC0 = FORZADAS.map(([t, e, dur]) => ({ t, ...e, dur }));
+      for (let t = 4.8, k = 0; t < D - 3.2; t += 1.8, k++) if (!FORZADAS.some(([ft]) => t > ft - 0.9 && t < ft + 1.3)) ENC0.push({ t, ...(k % 2 ? LEJOS : CERCA)[(k >> 1) % 6], dur: 0.9 });
+      ENC0.sort((a, b) => a.t - b.t);
+      const ENCUADRES = [];
+      ENC0.forEach((e, i) => ENCUADRES.push(i > 1 ? { ...e, t: Math.max(e.t, ENCUADRES[i - 1].t + 1.3) } : e));
+      function encuadre(t) {
+        let i = 0;
+        while (i + 1 < ENCUADRES.length && t >= ENCUADRES[i + 1].t) i++;
+        const b = ENCUADRES[i], a = ENCUADRES[Math.max(0, i - 1)];
+        const k = i === 0 ? 1 : smooth(clamp((t - b.t) / (b.dur || 1.5)));
+        const mira = a.mira().lerp(b.mira(), k);
+        let dist = lerp(a.dist, b.dist, k), az = lerp(a.az, b.az, k), el = lerp(a.el, b.el, k);
+        dist *= 1 + 0.04 * Math.sin(t * 0.37);
+        az += 2 * Math.sin(t * 0.23) + 25 * C.impulso(t);
+        return { mira, dist, az, el };
+      }
+
+      // ---------- depth: light, colour, fog ----------
+      const SKY = [[0, "#4fc3f7", "#d6f2ff"], [0.9, "#1ea0e6", "#4fd0f5"], [8, "#1488d4", "#2aa6e8"], [16, "#0b5f9e", "#1280c0"], [23, "#073a6e", "#0a4f8a"], [27, "#041a38", "#052a52"], [30, "#020c1c", "#031428"], [34, "#010610", "#02101f"], [41, "#000308", "#010a14"]];
+      const clamp01 = (x) => clamp(x, 0, 1);
+      const altEl = document.getElementById("alt");
+      const pregEl = document.getElementById("pregunta");
+      const tmpC = new THREE.Color();
+      scene.fog = new THREE.Fog(0x0a4f8a, 30, 80);
+
+      function renderAt(t) {
+        const y = C.yAt(t), vy = (C.yAt(t + 1 / 30) - C.yAt(t - 1 / 30)) * 15; // y: depth on the log scale; vy: speed
+        const enSuperficie = 1 - clamp01(y / 0.9);
+        const oleaje = Math.sin(t * 1.6) * 0.1 * enSuperficie;
+        cap.position.set(0, -y + oleaje, 0); cap.rotation.z = 0.05 * Math.sin(t * 1.1) * (0.4 + enSuperficie); cap.rotation.x = 0.03 * Math.sin(t * 0.8);
+        // ---- the character: alive (blinks and reacts at each landmark), looks around, then down ----
+        P.animar(t);
+        head.rotation.y = Math.sin(t * 0.9) * 0.3; head.rotation.x = 0.1 + 0.2 * clamp01((y - 28) / 10);
+        // ---- light by depth ----
+        const sol01 = 1 - clamp01((y - 10) / 18);
+        C.hemi.intensity = 1.3 * (0.05 + 0.95 * sol01 * sol01);
+        C.key.intensity = 2.4 * sol01 * sol01 * sol01;
+        lampara.intensity = 15 * clamp01((y - 14) / 14); lampara.distance = 0;
+        lamparaBase.intensity = 10 * clamp01((y - 30) / 8);
+        const [, bot] = C.fondo(SKY, y);
+        scene.fog.color.set(bot);
+        scene.fog.near = lerp(30, 4, clamp01((y - 22) / 8)); scene.fog.far = lerp(80, 24, clamp01((y - 22) / 10));
+        rayos.forEach((r, i) => { r.material.opacity = (0.11 + 0.04 * Math.sin(t * 0.8 + i)) * (1 - clamp01(y / 22)); r.position.x += 0; });
+        // ---- the surface: waves, and the sky parts below the camera ----
+        for (let i = 0; i < marPos.count; i++) marPos.setZ(i, marBase[i * 3 + 2] + 0.16 * Math.sin(marBase[i * 3] * 0.6 + t * 1.5) * Math.cos(marBase[i * 3 + 1] * 0.5 + t * 1.1));
+        marPos.needsUpdate = true; mar.geometry.computeVertexNormals();
+        barco.position.y = 0.15 + 0.07 * Math.sin(t * 1.3); barco.rotation.z = 0.04 * Math.sin(t * 1.1);
+        sol.visible = y < 1.5;
+        // ---- creatures ----
+        peces.forEach((f) => { const u = f.userData; f.position.set(((u.x0 + t * u.v + 9) % 18) - 9 - 2, u.y + 0.2 * Math.sin(t * 2 + u.ph), u.z); f.rotation.y = 0; f.children[1].rotation.y = 0.5 * Math.sin(t * 9 + u.ph); });
+        pez.visible = y < 22;
+        buzo.position.y = S(332) + 0.12 * Math.sin(t * 1.4); buzo.children[3].rotation.z = 0;
+        lure.scale.setScalar(1 + 0.25 * Math.sin(t * 5)); rape.position.y = S(1000) + 0.2 + 0.08 * Math.sin(t * 1.1);
+        aguas.forEach((j) => { const u = j.userData; j.position.set(u.x + 0.3 * Math.sin(t * 0.7 + u.ph), u.y + 0.25 * Math.sin(t * 1.1 + u.ph), u.z); });
+        colaB.rotation.y = 0.35 * Math.sin(t * 1.7); ballena.position.y = S(2992) + 0.1 + 0.1 * Math.sin(t * 0.9);
+        titanic.rotation.z = 0.1 + 0.01 * Math.sin(t * 0.5);
+        colaP.rotation.y = 0.5 * Math.sin(t * 4); babosa.position.y = S(8336) + 0.08 * Math.sin(t * 1.3);
+        anfipodos.forEach((a) => { const u = a.userData; a.position.set(u.x + 0.3 * Math.sin(t * 0.6 + u.ph), FONDO_Y + 0.08, u.z); a.rotation.y = 0.8 * Math.sin(t * 0.5 + u.ph); });
+        everest.visible = t > tEv - 1.2;
+        // ---- marine snow: a fixed lattice around the capsule, so it streams by as you sink ----
+        for (let i = 0; i < NN; i++) {
+          nPos[i * 3] = (hash(i + 600) - 0.5) * 16;
+          nPos[i * 3 + 1] = -y + (((hash(i + 700) * 22 + y + 11 + 0.15 * t * (0.5 + hash(i))) % 22) - 11);
+          nPos[i * 3 + 2] = -5 + hash(i + 800) * 10;
+        }
+        nieveGeo.attributes.position.needsUpdate = true; nieveMat.opacity = 0.55 * clamp01(0.3 + y / 8);
+        // ---- camera ----
+        scene.updateMatrixWorld();
+        const E = encuadre(t);
+        const dir = v3(Math.sin(E.az * RAD) * Math.cos(E.el * RAD), Math.sin(E.el * RAD), Math.cos(E.az * RAD) * Math.cos(E.el * RAD));
+        const right = v3(Math.cos(E.az * RAD), 0, -Math.sin(E.az * RAD));
+        const target = E.mira.clone().addScaledVector(right, 0.075 * E.dist); target.y += 0.09 * E.dist;
+        camera.position.copy(target).addScaledVector(dir, E.dist);
+        // the camera never goes below the seabed
+        camera.position.y = Math.max(camera.position.y, FONDO_Y + 0.35);
+        camera.lookAt(target);
+        camera.updateMatrixWorld(); C.escala(target, E.dist);
+        scene.updateMatrixWorld();
+        C.pintar(t, y);
+        const kq = ramp(t, tPreg - 0.3, tPreg + 0.25);
+        pregEl.style.opacity = kq; pregEl.style.transform = `scale(${0.92 + 0.08 * kq})`;
+        tarjetas(t);
+      }
+      await C.arrancar(renderAt);
+    </script>
+  </body>
+</html>

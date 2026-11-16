@@ -1,0 +1,1330 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <script type="importmap">
+      { "imports": { "three": "./lib/three.module.js", "three/addons/": "./lib/addons/" } }
+    </script>
+    <link rel="stylesheet" href="comun/pordentro.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+      .mono { font-family: "JetBrains Mono", monospace; position: absolute; left: -2000px; top: 0; }
+      .lectura-p .v, .panel .cifra { font-family: "JetBrains Mono", monospace; font-weight: 700; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="65.2" data-width="1080" data-height="1920" data-fps="30">
+      <canvas id="gl" class="clip" data-start="0" data-duration="65.2" data-track-index="0" width="1080" height="1920"></canvas>
+      <div id="shade" class="clip" data-start="0" data-duration="65.2" data-track-index="1"></div>
+      <svg id="leaders" class="clip" data-start="0" data-duration="65.2" data-track-index="2" width="1080" height="1920" data-layout-allow-overlap></svg>
+      <div id="labels" class="clip" data-start="0" data-duration="65.2" data-track-index="3" data-layout-allow-overlap><span class="mono">0123456789</span></div>
+      <div id="note" class="clip" data-start="0" data-duration="65.2" data-track-index="4"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="65.2"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="65.2" data-track-index="5" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 63.92, "lines": [{"id": "l1", "s": 0.23, "e": 1.86, "words": [{"w": "Tu", "s": 0.23, "e": 0.23, "key": false}, {"w": "móvil,", "s": 0.23, "e": 0.76, "key": false}, {"w": "mojado.", "s": 0.84, "e": 1.396, "key": true}, {"w": "¿Arroz?", "s": 1.396, "e": 1.86, "key": false}]}, {"id": "l2", "s": 2, "e": 5.44, "words": [{"w": "Dicen", "s": 2, "e": 2.42, "key": false}, {"w": "que", "s": 2.59, "e": 2.72, "key": false}, {"w": "el", "s": 2.72, "e": 2.9, "key": false}, {"w": "arroz", "s": 2.9, "e": 3.35, "key": false}, {"w": "se", "s": 3.43, "e": 3.46, "key": false}, {"w": "bebe", "s": 3.46, "e": 3.66, "key": true}, {"w": "el", "s": 3.66, "e": 3.76, "key": false}, {"w": "agua.", "s": 3.76, "e": 4.432, "key": false}, {"w": "¿Seguro?", "s": 4.432, "e": 5.44, "key": false}]}, {"id": "l3", "s": 5.45, "e": 9.16, "words": [{"w": "Tres", "s": 5.45, "e": 5.68, "key": false}, {"w": "pasos", "s": 5.68, "e": 5.98, "key": false}, {"w": "por", "s": 5.98, "e": 6.16, "key": false}, {"w": "dentro,", "s": 6.16, "e": 6.53, "key": false}, {"w": "y", "s": 6.7, "e": 6.77, "key": false}, {"w": "el", "s": 6.77, "e": 6.91, "key": false}, {"w": "último", "s": 7.01, "e": 7.22, "key": true}, {"w": "es", "s": 7.22, "e": 7.51, "key": false}, {"w": "el", "s": 7.51, "e": 7.56, "key": false}, {"w": "que", "s": 7.59, "e": 7.78, "key": false}, {"w": "de", "s": 7.78, "e": 7.91, "key": false}, {"w": "verdad", "s": 8.03, "e": 8.32, "key": false}, {"w": "lo", "s": 8.32, "e": 8.41, "key": false}, {"w": "estropea.", "s": 8.45, "e": 9.16, "key": false}]}, {"id": "l4", "s": 9.39, "e": 13.15, "words": [{"w": "Primero:", "s": 9.39, "e": 9.74, "key": false}, {"w": "el", "s": 9.74, "e": 9.87, "key": false}, {"w": "agua", "s": 9.87, "e": 10.13, "key": false}, {"w": "entra,", "s": 10.13, "e": 10.23, "key": true}, {"w": "por", "s": 10.23, "e": 10.73, "key": false}, {"w": "el", "s": 10.73, "e": 10.79, "key": false}, {"w": "conector", "s": 10.79, "e": 11.02, "key": false}, {"w": "y", "s": 11.32, "e": 11.38, "key": false}, {"w": "por", "s": 11.38, "e": 11.57, "key": false}, {"w": "los", "s": 11.75, "e": 11.78, "key": false}, {"w": "huecos", "s": 11.78, "e": 12.13, "key": false}, {"w": "de", "s": 12.17, "e": 12.3, "key": false}, {"w": "la", "s": 12.3, "e": 12.43, "key": false}, {"w": "carcasa.", "s": 12.43, "e": 13.15, "key": false}]}, {"id": "l5", "s": 13.39, "e": 17.04, "words": [{"w": "Dentro", "s": 13.39, "e": 13.6, "key": false}, {"w": "todo", "s": 13.62, "e": 13.92, "key": false}, {"w": "está", "s": 13.92, "e": 14.22, "key": false}, {"w": "pegado:", "s": 14.23, "e": 14.93, "key": true}, {"w": "placas,", "s": 14.93, "e": 15.53, "key": false}, {"w": "chips", "s": 15.75, "e": 15.91, "key": false}, {"w": "y", "s": 15.91, "e": 15.96, "key": false}, {"w": "una", "s": 16.01, "e": 16.21, "key": false}, {"w": "batería.", "s": 16.21, "e": 17.04, "key": false}]}, {"id": "l6", "s": 17.04, "e": 20.0, "words": [{"w": "El", "s": 17.04, "e": 17.27, "key": false}, {"w": "agua", "s": 17.27, "e": 17.43, "key": false}, {"w": "se", "s": 17.43, "e": 17.56, "key": false}, {"w": "reparte", "s": 17.56, "e": 18.02, "key": false}, {"w": "entre", "s": 18.02, "e": 18.11, "key": false}, {"w": "ellos,", "s": 18.61, "e": 18.68, "key": false}, {"w": "en", "s": 18.68, "e": 18.81, "key": false}, {"w": "capas", "s": 18.81, "e": 19.11, "key": true}, {"w": "finísimas.", "s": 19.19, "e": 20.0, "key": false}]}, {"id": "l7", "s": 20.22, "e": 23.28, "words": [{"w": "Segundo:", "s": 20.22, "e": 20.65, "key": false}, {"w": "el", "s": 20.65, "e": 20.77, "key": false}, {"w": "arroz", "s": 20.84, "e": 21.07, "key": false}, {"w": "está", "s": 21.07, "e": 21.57, "key": false}, {"w": "fuera.", "s": 21.57, "e": 22.08, "key": true}, {"w": "El", "s": 22.15, "e": 22.24, "key": false}, {"w": "agua,", "s": 22.24, "e": 22.35, "key": false}, {"w": "dentro.", "s": 22.6, "e": 23.28, "key": false}]}, {"id": "l8", "s": 23.28, "e": 25.88, "words": [{"w": "Los", "s": 23.28, "e": 23.51, "key": false}, {"w": "granos", "s": 23.51, "e": 23.85, "key": true}, {"w": "solo", "s": 23.85, "e": 24.05, "key": false}, {"w": "tocan", "s": 24.12, "e": 24.35, "key": false}, {"w": "la", "s": 24.35, "e": 24.75, "key": false}, {"w": "carcasa,", "s": 24.75, "e": 25.05, "key": false}, {"w": "no", "s": 25.05, "e": 25.43, "key": false}, {"w": "las", "s": 25.43, "e": 25.44, "key": false}, {"w": "placas.", "s": 25.44, "e": 25.88, "key": false}]}, {"id": "l9", "s": 25.89, "e": 28.21, "words": [{"w": "Y", "s": 25.89, "e": 25.96, "key": false}, {"w": "alguno", "s": 25.96, "e": 26.38, "key": false}, {"w": "puede", "s": 26.38, "e": 26.74, "key": false}, {"w": "colarse", "s": 26.74, "e": 26.97, "key": true}, {"w": "por", "s": 26.97, "e": 27.45, "key": false}, {"w": "el", "s": 27.45, "e": 27.59, "key": false}, {"w": "conector.", "s": 27.59, "e": 28.21, "key": false}]}, {"id": "l10", "s": 28.67, "e": 33.14, "words": [{"w": "Tercero:", "s": 28.67, "e": 29.11, "key": false}, {"w": "la", "s": 29.11, "e": 29.21, "key": false}, {"w": "corriente.", "s": 29.26, "e": 30.21, "key": true}, {"w": "Con", "s": 30.21, "e": 30.59, "key": false}, {"w": "agua", "s": 30.59, "e": 30.62, "key": false}, {"w": "entre", "s": 30.62, "e": 30.86, "key": false}, {"w": "los", "s": 31.03, "e": 31.05, "key": false}, {"w": "contactos,", "s": 31.05, "e": 31.65, "key": false}, {"w": "el", "s": 31.67, "e": 31.76, "key": false}, {"w": "metal", "s": 31.76, "e": 32.04, "key": false}, {"w": "se", "s": 32.04, "e": 32.2, "key": false}, {"w": "disuelve", "s": 32.2, "e": 32.55, "key": false}, {"w": "y", "s": 32.69, "e": 32.71, "key": false}, {"w": "viaja.", "s": 32.89, "e": 33.14, "key": false}]}, {"id": "l11", "s": 33.14, "e": 37.45, "words": [{"w": "Eso", "s": 33.14, "e": 33.63, "key": false}, {"w": "es", "s": 33.63, "e": 33.75, "key": false}, {"w": "corrosión,", "s": 33.75, "e": 34.47, "key": true}, {"w": "y", "s": 34.64, "e": 34.7, "key": false}, {"w": "puede", "s": 34.7, "e": 35.0, "key": false}, {"w": "unir", "s": 35, "e": 35.17, "key": false}, {"w": "dos", "s": 35.25, "e": 35.26, "key": false}, {"w": "contactos", "s": 35.58, "e": 36.06, "key": false}, {"w": "que", "s": 36.06, "e": 36.26, "key": false}, {"w": "no", "s": 36.26, "e": 36.37, "key": false}, {"w": "deben", "s": 36.41, "e": 36.73, "key": false}, {"w": "tocarse.", "s": 36.73, "e": 37.45, "key": false}]}, {"id": "l12", "s": 37.45, "e": 42.18, "words": [{"w": "Un", "s": 37.45, "e": 37.71, "key": false}, {"w": "fabricante", "s": 37.71, "e": 38.23, "key": false}, {"w": "avisa:", "s": 38.23, "e": 38.57, "key": false}, {"w": "cargarlo", "s": 38.76, "e": 39.21, "key": false}, {"w": "con", "s": 39.21, "e": 39.25, "key": false}, {"w": "el", "s": 39.25, "e": 39.63, "key": false}, {"w": "conector", "s": 39.63, "e": 39.94, "key": false}, {"w": "mojado", "s": 40.05, "e": 40.28, "key": false}, {"w": "puede", "s": 40.33, "e": 40.58, "key": false}, {"w": "corroer", "s": 40.58, "e": 40.95, "key": false}, {"w": "sus", "s": 40.98, "e": 41.27, "key": false}, {"w": "patillas.", "s": 41.27, "e": 42.18, "key": true}]}, {"id": "l13", "s": 42.45, "e": 47.76, "words": [{"w": "Y", "s": 42.45, "e": 42.527, "key": false}, {"w": "ahora,", "s": 42.527, "e": 42.91, "key": false}, {"w": "la", "s": 42.91, "e": 43.07, "key": false}, {"w": "prueba.", "s": 43.07, "e": 43.8, "key": true}, {"w": "En", "s": 43.8, "e": 44.01, "key": false}, {"w": "2014,", "s": 44.01, "e": 44.69, "key": false}, {"w": "esponjas", "s": 44.69, "e": 45.13, "key": false}, {"w": "mojadas", "s": 45.13, "e": 45.51, "key": false}, {"w": "en", "s": 45.51, "e": 45.62, "key": false}, {"w": "siete", "s": 45.62, "e": 45.79, "key": false}, {"w": "materiales,", "s": 45.89, "e": 46.52, "key": false}, {"w": "y", "s": 46.52, "e": 46.55, "key": false}, {"w": "una", "s": 46.87, "e": 46.9, "key": false}, {"w": "al", "s": 46.9, "e": 47.09, "key": false}, {"w": "aire.", "s": 47.09, "e": 47.76, "key": false}]}, {"id": "l14", "s": 47.76, "e": 52.5, "words": [{"w": "Lo", "s": 47.76, "e": 48.03, "key": false}, {"w": "prometido:", "s": 48.03, "e": 48.86, "key": true}, {"w": "el", "s": 48.87, "e": 48.89, "key": false}, {"w": "arroz", "s": 49, "e": 49.34, "key": false}, {"w": "quedó", "s": 49.37, "e": 49.67, "key": false}, {"w": "el", "s": 49.67, "e": 49.95, "key": false}, {"w": "último", "s": 49.95, "e": 50.2, "key": false}, {"w": "de", "s": 50.2, "e": 50.39, "key": false}, {"w": "los", "s": 50.39, "e": 50.53, "key": false}, {"w": "siete,", "s": 50.53, "e": 51.12, "key": false}, {"w": "y", "s": 51.12, "e": 51.21, "key": false}, {"w": "el", "s": 51.21, "e": 51.39, "key": false}, {"w": "aire", "s": 51.39, "e": 51.73, "key": false}, {"w": "secó", "s": 51.75, "e": 51.9, "key": false}, {"w": "más.", "s": 52.22, "e": 52.5, "key": false}]}, {"id": "l15", "s": 52.5, "e": 57.32, "words": [{"w": "Por", "s": 52.5, "e": 52.95, "key": false}, {"w": "eso", "s": 52.95, "e": 53.17, "key": false}, {"w": "un", "s": 53.18, "e": 53.33, "key": false}, {"w": "fabricante", "s": 53.33, "e": 53.81, "key": false}, {"w": "dice:", "s": 54.29, "e": 54.49, "key": false}, {"w": "sin", "s": 54.49, "e": 54.87, "key": false}, {"w": "arroz,", "s": 54.87, "e": 55.32, "key": false}, {"w": "en", "s": 55.32, "e": 55.47, "key": false}, {"w": "un", "s": 55.47, "e": 55.62, "key": false}, {"w": "sitio", "s": 55.62, "e": 56.0, "key": false}, {"w": "seco,", "s": 56, "e": 56.45, "key": false}, {"w": "con", "s": 56.45, "e": 56.65, "key": false}, {"w": "aire.", "s": 56.67, "e": 57.32, "key": true}]}, {"id": "l16", "s": 57.55, "e": 61.316, "words": [{"w": "Veredicto:", "s": 57.55, "e": 58.32, "key": false}, {"w": "mito.", "s": 58.32, "e": 59.0, "key": true}, {"w": "El", "s": 59, "e": 59.09, "key": false}, {"w": "arroz", "s": 59.26, "e": 59.45, "key": false}, {"w": "seca", "s": 59.47, "e": 59.71, "key": false}, {"w": "menos", "s": 59.91, "e": 60.04, "key": false}, {"w": "que", "s": 60.04, "e": 60.23, "key": false}, {"w": "dejarlo", "s": 60.23, "e": 60.67, "key": false}, {"w": "al", "s": 60.76, "e": 60.82, "key": false}, {"w": "aire.", "s": 60.82, "e": 61.316, "key": false}]}, {"id": "l17", "s": 61.316, "e": 63.74, "words": [{"w": "¿Y", "s": 61.316, "e": 61.44, "key": false}, {"w": "tú?", "s": 61.55, "e": 61.75, "key": false}, {"w": "¿Lo", "s": 61.75, "e": 61.95, "key": false}, {"w": "has", "s": 61.95, "e": 62.09, "key": false}, {"w": "hecho", "s": 62.14, "e": 62.38, "key": false}, {"w": "alguna", "s": 62.38, "e": 62.89, "key": true}, {"w": "vez?", "s": 62.89, "e": 63.22, "key": false}, {"w": "Sí", "s": 63.22, "e": 63.44, "key": false}, {"w": "o", "s": 63.47, "e": 63.49, "key": false}, {"w": "no.", "s": 63.49, "e": 63.74, "key": false}]}]}</script>
+    <script id="escena" type="application/json">
+{
+ "momentos": [
+  {
+   "id": "DICEN",
+   "clave": "dicen"
+  },
+  {
+   "id": "BEBE",
+   "clave": "bebe"
+  },
+  {
+   "id": "TRES",
+   "clave": "tres"
+  },
+  {
+   "id": "ULTIMO",
+   "clave": "ultimo"
+  },
+  {
+   "id": "PRIMERO",
+   "clave": "primero"
+  },
+  {
+   "id": "ENTRA",
+   "clave": "entra"
+  },
+  {
+   "id": "HUECOS",
+   "clave": "huecos"
+  },
+  {
+   "id": "DENTRO",
+   "clave": "dentro"
+  },
+  {
+   "id": "PLACAS",
+   "clave": "placas"
+  },
+  {
+   "id": "BATERIA",
+   "clave": "bateria"
+  },
+  {
+   "id": "REPARTE",
+   "clave": "reparte"
+  },
+  {
+   "id": "CAPAS",
+   "clave": "capas"
+  },
+  {
+   "id": "SEGUNDO",
+   "clave": "segundo"
+  },
+  {
+   "id": "FUERA",
+   "clave": "fuera"
+  },
+  {
+   "id": "DENTRO2",
+   "clave": "dentro"
+  },
+  {
+   "id": "GRANOS",
+   "clave": "granos"
+  },
+  {
+   "id": "PLACAS2",
+   "clave": "placas"
+  },
+  {
+   "id": "ALGUNO",
+   "clave": "alguno"
+  },
+  {
+   "id": "COLARSE",
+   "clave": "colarse"
+  },
+  {
+   "id": "TERCERO",
+   "clave": "tercero"
+  },
+  {
+   "id": "CORRIENTE",
+   "clave": "corriente"
+  },
+  {
+   "id": "CONTACTOS",
+   "clave": "contactos"
+  },
+  {
+   "id": "METAL",
+   "clave": "metal"
+  },
+  {
+   "id": "CORROSION",
+   "clave": "corrosion"
+  },
+  {
+   "id": "UNIR",
+   "clave": "unir"
+  },
+  {
+   "id": "FABRICANTE",
+   "clave": "fabricante"
+  },
+  {
+   "id": "PATILLAS",
+   "clave": "patillas"
+  },
+  {
+   "id": "PRUEBA",
+   "clave": "prueba"
+  },
+  {
+   "id": "SIETE",
+   "clave": "siete"
+  },
+  {
+   "id": "PROMETIDO",
+   "clave": "prometido"
+  },
+  {
+   "id": "ARROZ3",
+   "clave": "arroz"
+  },
+  {
+   "id": "ULTIMO2",
+   "clave": "ultimo"
+  },
+  {
+   "id": "AIRE2",
+   "clave": "aire"
+  },
+  {
+   "id": "ESO",
+   "clave": "eso"
+  },
+  {
+   "id": "SINARROZ",
+   "clave": "arroz"
+  },
+  {
+   "id": "SECO",
+   "clave": "seco"
+  },
+  {
+   "id": "VEREDICTO",
+   "clave": "veredicto"
+  },
+  {
+   "id": "MITO",
+   "clave": "mito"
+  },
+  {
+   "id": "TU",
+   "clave": "tu"
+  },
+  {
+   "id": "VEZ",
+   "clave": "vez"
+  }
+ ],
+ "gancho": {
+  "texto": "¿Lo salva o lo estropea?",
+  "clave": "mojado",
+  "y": 420,
+  "tam": 100
+ },
+ "arranque": {
+  "cambio": 1.15,
+  "transicion": 0.35
+ },
+ "encuadre": {
+  "llenar": 0.94
+ },
+ "estilo": "rejilla",
+ "desenfoque": {
+  "apertura": 0,
+  "max": 0.012
+ },
+ "iconos": {},
+ "etiquetas": [
+  {
+   "texto": "MÓVIL EN ARROZ",
+   "pieza": "ar.movil",
+   "desde": 0.4,
+   "hasta": "DICEN",
+   "dx": 30,
+   "dy": -300
+  },
+  {
+   "texto": "CONTACTOS",
+   "pieza": "mv.pines",
+   "desde": "ULTIMO",
+   "hasta": "PRIMERO",
+   "dx": -40,
+   "dy": -230
+  },
+  {
+   "texto": "CONECTOR",
+   "pieza": "mv.conector",
+   "desde": "ENTRA",
+   "hasta": "HUECOS",
+   "dx": -40,
+   "dy": -240
+  },
+  {
+   "texto": "PLACA",
+   "pieza": "mv.placa",
+   "desde": "PLACAS",
+   "hasta": "BATERIA",
+   "dx": -40,
+   "dy": -230
+  },
+  {
+   "texto": "BATERÍA",
+   "pieza": "mv.bateria",
+   "desde": "BATERIA",
+   "hasta": "REPARTE",
+   "dx": 40,
+   "dy": -260
+  },
+  {
+   "texto": "AGUA EN CAPA FINA",
+   "pieza": "mv.bateria",
+   "desde": "CAPAS",
+   "hasta": "SEGUNDO",
+   "dx": 40,
+   "dy": -260
+  },
+  {
+   "texto": "ARROZ",
+   "pieza": "ar.granos",
+   "desde": "FUERA",
+   "hasta": "DENTRO2",
+   "dx": 40,
+   "dy": -250
+  },
+  {
+   "texto": "AGUA DENTRO",
+   "pieza": "ar.bateria",
+   "desde": "DENTRO2",
+   "hasta": "GRANOS",
+   "dx": -40,
+   "dy": -250
+  },
+  {
+   "texto": "GRANO DE ARROZ",
+   "pieza": "mv.conector",
+   "desde": "ALGUNO",
+   "hasta": "TERCERO",
+   "dx": 40,
+   "dy": -240
+  },
+  {
+   "texto": "PISTAS CON CORRIENTE",
+   "pieza": "mv.placa",
+   "desde": "CORRIENTE",
+   "hasta": "CONTACTOS",
+   "dx": -40,
+   "dy": -260
+  },
+  {
+   "texto": "CONTACTOS",
+   "pieza": "mv.pines",
+   "desde": "CONTACTOS",
+   "hasta": "METAL",
+   "dx": -40,
+   "dy": -230
+  },
+  {
+   "texto": "COSTRA VERDOSA",
+   "pieza": "mv.costra",
+   "desde": "CORROSION",
+   "hasta": "UNIR",
+   "dx": 40,
+   "dy": -230
+  },
+  {
+   "texto": "CORTOCIRCUITO",
+   "pieza": "mv.pines",
+   "desde": "UNIR",
+   "hasta": "FABRICANTE",
+   "dx": 40,
+   "dy": -230
+  },
+  {
+   "texto": "PATILLAS",
+   "pieza": "mv.pines",
+   "desde": "PATILLAS",
+   "hasta": "PRUEBA",
+   "dx": -40,
+   "dy": -230
+  },
+  {
+   "texto": "AIRE",
+   "pieza": "bar.colAire",
+   "desde": "AIRE2",
+   "hasta": "ESO",
+   "dx": 40,
+   "dy": -240
+  },
+  {
+   "texto": "ARROZ",
+   "pieza": "bar.colArroz",
+   "desde": "ARROZ3",
+   "hasta": "AIRE2",
+   "dx": -40,
+   "dy": -240
+  }
+ ],
+ "notas": [
+  {
+   "texto": "Ilustración ampliada, no a escala",
+   "desde": 0
+  },
+  {
+   "texto": "",
+   "desde": "TRES"
+  },
+  {
+   "texto": "Ilustración simplificada, sin marca",
+   "desde": "PRIMERO"
+  },
+  {
+   "texto": "Gotas dibujadas, ampliadas",
+   "desde": "REPARTE"
+  },
+  {
+   "texto": "Granos de arroz ampliados",
+   "desde": "SEGUNDO"
+  },
+  {
+   "texto": "Ilustración ampliada, no a escala",
+   "desde": "TERCERO"
+  },
+  {
+   "texto": "Costra y cortocircuito dibujados",
+   "desde": "CORROSION"
+  },
+  {
+   "texto": "Fuente: soporte de un fabricante de móviles",
+   "desde": "FABRICANTE"
+  },
+  {
+   "texto": "Prueba de 2014 con esponjas, no con móviles",
+   "desde": "PRUEBA"
+  },
+  {
+   "texto": "Orden de la prueba, no cantidades",
+   "desde": "SIETE"
+  },
+  {
+   "texto": "Recomendación del fabricante, no de esta cuenta",
+   "desde": "ESO"
+  },
+  {
+   "texto": "Prueba de 2014 con esponjas, no con móviles",
+   "desde": "VEREDICTO"
+  },
+  {
+   "texto": "",
+   "desde": "TU"
+  }
+ ],
+ "leyenda": [
+  {
+   "color": "#7cc4ff",
+   "forma": "punto",
+   "texto": "agua",
+   "desde": "PRIMERO",
+   "hasta": "PRUEBA"
+  },
+  {
+   "color": "#ffb22e",
+   "forma": "punto",
+   "texto": "corriente",
+   "desde": "TERCERO",
+   "hasta": "FABRICANTE"
+  },
+  {
+   "color": "#39b394",
+   "forma": "punto",
+   "texto": "corrosión",
+   "desde": "METAL",
+   "hasta": "PRUEBA"
+  }
+ ],
+ "sonidos": [
+  {
+   "tipo": "zumbido",
+   "desde": 0.1,
+   "hasta": "DICEN",
+   "volumen": 0.4
+  },
+  {
+   "tipo": "pop",
+   "en": "TRES"
+  },
+  {
+   "tipo": "error",
+   "en": "ULTIMO",
+   "volumen": 0.35
+  },
+  {
+   "tipo": "desliza",
+   "en": "PRIMERO"
+  },
+  {
+   "tipo": "toque",
+   "en": "ENTRA"
+  },
+  {
+   "tipo": "desliza",
+   "en": "HUECOS"
+  },
+  {
+   "tipo": "abre",
+   "en": "DENTRO"
+  },
+  {
+   "tipo": "brillo",
+   "en": "PLACAS"
+  },
+  {
+   "tipo": "brillo",
+   "en": "BATERIA"
+  },
+  {
+   "tipo": "desliza",
+   "en": "REPARTE"
+  },
+  {
+   "tipo": "pop",
+   "en": "CAPAS"
+  },
+  {
+   "tipo": "pop",
+   "en": "SEGUNDO"
+  },
+  {
+   "tipo": "toque",
+   "en": "FUERA"
+  },
+  {
+   "tipo": "desliza",
+   "en": "DENTRO2"
+  },
+  {
+   "tipo": "toque",
+   "en": "ALGUNO"
+  },
+  {
+   "tipo": "pop",
+   "en": "TERCERO"
+  },
+  {
+   "tipo": "chip",
+   "en": "CORRIENTE"
+  },
+  {
+   "tipo": "sube",
+   "en": "METAL"
+  },
+  {
+   "tipo": "error",
+   "en": "CORROSION",
+   "volumen": 0.4
+  },
+  {
+   "tipo": "error",
+   "en": "UNIR",
+   "volumen": 0.45
+  },
+  {
+   "tipo": "tictac",
+   "desde": "PRUEBA",
+   "hasta": "PROMETIDO",
+   "volumen": 0.3
+  },
+  {
+   "tipo": "sube",
+   "en": "SIETE"
+  },
+  {
+   "tipo": "pop",
+   "en": "PROMETIDO"
+  },
+  {
+   "tipo": "toque",
+   "en": "ARROZ3"
+  },
+  {
+   "tipo": "brillo",
+   "en": "AIRE2"
+  },
+  {
+   "tipo": "desliza",
+   "en": "ESO"
+  },
+  {
+   "tipo": "sube",
+   "en": "VEREDICTO"
+  },
+  {
+   "tipo": "brillo",
+   "en": "MITO"
+  },
+  {
+   "tipo": "toque",
+   "en": "VEZ"
+  }
+ ],
+ "sets": {
+  "ar": {
+   "objetos": [
+    {
+     "tipo": "tarroArroz",
+     "id": "ar"
+    }
+   ],
+   "luz": "anuncio"
+  },
+  "mv": {
+   "objetos": [
+    {
+     "tipo": "movilMojado",
+     "id": "mv",
+     "rot": [
+      0,
+      0,
+      12
+     ]
+    }
+   ],
+   "luz": "anuncio"
+  },
+  "bar": {
+   "objetos": [
+    {
+     "tipo": "rankingSecado",
+     "id": "bar"
+    }
+   ],
+   "luz": "suave"
+  }
+ },
+ "planos": [
+  {
+   "tipo": "anuncio",
+   "set": "ar",
+   "pieza": "ar.movil",
+   "desde": 0,
+   "estado": {
+    "vierte": 1,
+    "rayosX": 1,
+    "agua": {
+     "de": 0.45,
+     "a": 0.95,
+     "en": 0,
+     "dur": 2.2
+    }
+   },
+   "radio": 8.5,
+   "angulo": 14,
+   "altura": 68,
+   "orbita": 14,
+   "empuje": 0.08,
+   "llenar": 1.0,
+   "zona": [
+    50,
+    560,
+    950,
+    1360
+   ],
+   "variantes": [
+    {
+     "pieza": "ar.bateria",
+     "radio": 6.6,
+     "angulo": -28,
+     "altura": 60,
+     "llenar": 0,
+     "zona": [
+      50,
+      600,
+      950,
+      1440
+     ]
+    }
+   ]
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ar",
+   "pieza": "ar.movil",
+   "desde": "DICEN",
+   "estado": {
+    "vierte": 1,
+    "rayosX": 0,
+    "agua": 0.9
+   },
+   "radio": 9,
+   "angulo": -22,
+   "altura": 56,
+   "orbita": -12,
+   "empuje": 0.06
+  },
+  {
+   "tipo": "macro",
+   "set": "ar",
+   "pieza": "ar.granos",
+   "desde": "BEBE",
+   "estado": {
+    "vierte": 1,
+    "rayosX": 0,
+    "agua": 0.9
+   },
+   "radio": 6.5,
+   "angulo": 12,
+   "altura": 24,
+   "apertura": 0.004,
+   "empuje": 0.1
+  },
+  {
+   "tipo": "cifra",
+   "set": "mv",
+   "pieza": "mv",
+   "desde": "TRES",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": 0,
+    "agua": 1
+   },
+   "angulo": 8,
+   "altura": 6,
+   "zona": [
+    50,
+    430,
+    950,
+    1370
+   ],
+   "lectura": {
+    "texto": "3",
+    "titulo": "TRES PASOS POR DENTRO",
+    "y": 930,
+    "tam": 260
+   }
+  },
+  {
+   "tipo": "macro",
+   "set": "mv",
+   "pieza": "mv.pines",
+   "desde": "ULTIMO",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": 0,
+    "agua": 1,
+    "corrosion": 1
+   },
+   "radio": 2.4,
+   "angulo": -12,
+   "altura": 20,
+   "apertura": 0.006,
+   "empuje": 0.08
+  },
+  {
+   "tipo": "anuncio",
+   "set": "mv",
+   "pieza": "mv",
+   "desde": "PRIMERO",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": 0,
+    "agua": 0
+   },
+   "angulo": 8,
+   "altura": 8,
+   "orbita": 12,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "macro",
+   "set": "mv",
+   "pieza": "mv.conector",
+   "desde": "ENTRA",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": 0,
+    "agua": {
+     "de": 0.01,
+     "a": 0.35,
+     "en": "ENTRA",
+     "dur": 2.2
+    }
+   },
+   "radio": 3.6,
+   "angulo": 18,
+   "altura": 14,
+   "apertura": 0.003,
+   "empuje": 0.08
+  },
+  {
+   "tipo": "anuncio",
+   "set": "mv",
+   "pieza": "mv",
+   "desde": "HUECOS",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": 0,
+    "agua": {
+     "de": 0.35,
+     "a": 0.7,
+     "en": "HUECOS",
+     "dur": 2.4
+    }
+   },
+   "angulo": -6,
+   "altura": 6,
+   "orbita": -14,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "anuncio",
+   "set": "mv",
+   "pieza": "mv",
+   "desde": "DENTRO",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": 0,
+    "agua": 0.7
+   },
+   "angulo": 16,
+   "altura": 16,
+   "orbita": 10,
+   "empuje": 0.1
+  },
+  {
+   "tipo": "macro",
+   "set": "mv",
+   "pieza": "mv.placa",
+   "desde": "PLACAS",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": 0,
+    "agua": 0.7
+   },
+   "radio": 5.0,
+   "angulo": -16,
+   "altura": 14,
+   "apertura": 0.003,
+   "resaltar": [
+    "mv.placa"
+   ],
+   "fuerzaResalte": 0.25
+  },
+  {
+   "tipo": "macro",
+   "set": "mv",
+   "pieza": "mv.bateria",
+   "desde": "BATERIA",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": 0,
+    "agua": 0.7
+   },
+   "radio": 6.0,
+   "angulo": 14,
+   "altura": 10,
+   "apertura": 0.003,
+   "resaltar": [
+    "mv.bateria"
+   ],
+   "fuerzaResalte": 0.25
+  },
+  {
+   "tipo": "anuncio",
+   "set": "mv",
+   "pieza": "mv",
+   "desde": "REPARTE",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": 0,
+    "agua": {
+     "de": 0.7,
+     "a": 1,
+     "en": "REPARTE",
+     "dur": 2.4
+    }
+   },
+   "angulo": 20,
+   "altura": 12,
+   "orbita": 10,
+   "empuje": 0.06
+  },
+  {
+   "tipo": "macro",
+   "set": "mv",
+   "pieza": "mv.bateria",
+   "desde": "CAPAS",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": 0,
+    "agua": 1
+   },
+   "radio": 4.6,
+   "angulo": -20,
+   "altura": 18,
+   "apertura": 0.003,
+   "empuje": 0.1,
+   "resaltar": [
+    "mv.bateria"
+   ],
+   "colorResalte": "120,200,255",
+   "fuerzaResalte": 0.3
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ar",
+   "pieza": "ar.movil",
+   "desde": "SEGUNDO",
+   "estado": {
+    "vierte": {
+     "de": 0,
+     "a": 1,
+     "en": "SEGUNDO",
+     "dur": 2.0
+    },
+    "rayosX": 1,
+    "agua": 1
+   },
+   "radio": 9,
+   "angulo": -12,
+   "altura": 62,
+   "orbita": -12,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "macro",
+   "set": "ar",
+   "pieza": "ar.granos",
+   "desde": "FUERA",
+   "estado": {
+    "vierte": 1,
+    "rayosX": 0,
+    "agua": 1
+   },
+   "radio": 6.0,
+   "angulo": 20,
+   "altura": 26,
+   "apertura": 0.004
+  },
+  {
+   "tipo": "macro",
+   "set": "ar",
+   "pieza": "ar.bateria",
+   "desde": "DENTRO2",
+   "estado": {
+    "vierte": 1,
+    "rayosX": 1,
+    "agua": 1
+   },
+   "radio": 6.2,
+   "angulo": -20,
+   "altura": 52,
+   "apertura": 0.003,
+   "resaltar": [
+    "ar.bateria"
+   ],
+   "colorResalte": "120,200,255",
+   "fuerzaResalte": 0.3
+  },
+  {
+   "tipo": "macro",
+   "set": "ar",
+   "pieza": "ar.movil",
+   "desde": "GRANOS",
+   "estado": {
+    "vierte": 1,
+    "rayosX": 0,
+    "agua": 1
+   },
+   "radio": 8.5,
+   "angulo": 38,
+   "altura": 16,
+   "apertura": 0.004,
+   "empuje": 0.08
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ar",
+   "pieza": "ar.movil",
+   "desde": "PLACAS2",
+   "estado": {
+    "vierte": 1,
+    "rayosX": 1,
+    "agua": 1
+   },
+   "radio": 8,
+   "angulo": 0,
+   "altura": 76,
+   "orbita": 10,
+   "empuje": 0.06
+  },
+  {
+   "tipo": "macro",
+   "set": "mv",
+   "pieza": "mv.conector",
+   "desde": "ALGUNO",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": 0,
+    "agua": 1,
+    "grano": {
+     "de": 0,
+     "a": 1,
+     "en": "COLARSE",
+     "dur": 1.4
+    }
+   },
+   "radio": 2.8,
+   "angulo": 22,
+   "altura": 10,
+   "apertura": 0.003,
+   "empuje": 0.1
+  },
+  {
+   "tipo": "anuncio",
+   "set": "mv",
+   "pieza": "mv",
+   "desde": "TERCERO",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": 0,
+    "agua": 1,
+    "corriente": {
+     "de": 0,
+     "a": 1,
+     "en": "TERCERO",
+     "dur": 0.8
+    }
+   },
+   "angulo": -10,
+   "altura": 10,
+   "orbita": 12,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "macro",
+   "set": "mv",
+   "pieza": "mv.placa",
+   "desde": "CORRIENTE",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": 0,
+    "agua": 1,
+    "corriente": 1
+   },
+   "radio": 5.5,
+   "angulo": 18,
+   "altura": 14,
+   "apertura": 0.003,
+   "empuje": 0.1
+  },
+  {
+   "tipo": "macro",
+   "set": "mv",
+   "pieza": "mv.pines",
+   "desde": "CONTACTOS",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": 0,
+    "agua": 1,
+    "corriente": 1
+   },
+   "radio": 2.6,
+   "angulo": -16,
+   "altura": 20,
+   "apertura": 0.004
+  },
+  {
+   "tipo": "macro",
+   "set": "mv",
+   "pieza": "mv.pines",
+   "desde": "METAL",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": 0,
+    "agua": 1,
+    "corriente": 1,
+    "corrosion": {
+     "de": 0,
+     "a": 0.6,
+     "en": "METAL",
+     "dur": 2.6
+    }
+   },
+   "radio": 2.0,
+   "angulo": 14,
+   "altura": 28,
+   "apertura": 0.006,
+   "empuje": 0.08
+  },
+  {
+   "tipo": "macro",
+   "set": "mv",
+   "pieza": "mv.costra",
+   "desde": "CORROSION",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": 0,
+    "agua": 1,
+    "corriente": 1,
+    "corrosion": {
+     "de": 0.6,
+     "a": 1,
+     "en": "CORROSION",
+     "dur": 1.2
+    }
+   },
+   "radio": 3.2,
+   "angulo": -22,
+   "altura": 22,
+   "apertura": 0.004
+  },
+  {
+   "tipo": "macro",
+   "set": "mv",
+   "pieza": "mv.pines",
+   "desde": "UNIR",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": 0,
+    "agua": 1,
+    "corriente": 1,
+    "corrosion": 1,
+    "puente": {
+     "de": 0,
+     "a": 1,
+     "en": "UNIR",
+     "dur": 2.0
+    }
+   },
+   "radio": 1.7,
+   "angulo": 6,
+   "altura": 34,
+   "apertura": 0.004,
+   "empuje": 0.08
+  },
+  {
+   "tipo": "macro",
+   "set": "mv",
+   "pieza": "mv.conector",
+   "desde": "FABRICANTE",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": 0,
+    "agua": 1,
+    "corrosion": 0.8
+   },
+   "radio": 3.4,
+   "angulo": -14,
+   "altura": 16,
+   "apertura": 0.003,
+   "empuje": 0.1
+  },
+  {
+   "tipo": "macro",
+   "set": "mv",
+   "pieza": "mv.pines",
+   "desde": "PATILLAS",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": 0,
+    "agua": 1,
+    "corrosion": 1
+   },
+   "radio": 2.0,
+   "angulo": -10,
+   "altura": 30,
+   "apertura": 0.005,
+   "empuje": 0.06
+  },
+  {
+   "tipo": "cifra",
+   "set": "bar",
+   "pieza": "bar",
+   "desde": "PRUEBA",
+   "estado": {
+    "ver": 1,
+    "a": 0,
+    "foco": 0
+   },
+   "angulo": 8,
+   "altura": 10,
+   "lectura": {
+    "texto": "2014",
+    "titulo": "ESPONJAS MOJADAS",
+    "y": 930,
+    "tam": 260
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "set": "bar",
+   "pieza": "bar",
+   "desde": "SIETE",
+   "estado": {
+    "ver": 1,
+    "a": {
+     "de": 0,
+     "a": 1,
+     "en": "SIETE",
+     "dur": 3.4
+    },
+    "foco": 0
+   },
+   "angulo": 8,
+   "altura": 12,
+   "orbita": -8,
+   "dist": 0.8,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "anuncio",
+   "set": "bar",
+   "pieza": "bar",
+   "desde": "PROMETIDO",
+   "estado": {
+    "ver": 1,
+    "a": 1,
+    "foco": {
+     "de": 0,
+     "a": 1,
+     "en": "PROMETIDO",
+     "dur": 1.2
+    }
+   },
+   "angulo": -12,
+   "altura": 10,
+   "orbita": 10,
+   "dist": 0.8,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "macro",
+   "set": "bar",
+   "pieza": "bar.colArroz",
+   "desde": "ARROZ3",
+   "estado": {
+    "ver": 1,
+    "a": 1,
+    "foco": 1
+   },
+   "radio": 5.2,
+   "angulo": 14,
+   "altura": 8,
+   "apertura": 0.004
+  },
+  {
+   "tipo": "macro",
+   "set": "bar",
+   "pieza": "bar.colAire",
+   "desde": "AIRE2",
+   "estado": {
+    "ver": 1,
+    "a": 1,
+    "foco": 1
+   },
+   "radio": 6.0,
+   "angulo": -14,
+   "altura": 8,
+   "apertura": 0.004
+  },
+  {
+   "tipo": "anuncio",
+   "set": "mv",
+   "pieza": "mv",
+   "desde": "ESO",
+   "estado": {
+    "rayosX": 0,
+    "capacidad": 0
+   },
+   "angulo": 8,
+   "altura": 6,
+   "orbita": 12,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ar",
+   "pieza": "ar.movil",
+   "desde": "SINARROZ",
+   "estado": {
+    "vierte": {
+     "de": 1,
+     "a": 0,
+     "en": "SINARROZ",
+     "dur": 1.4
+    },
+    "rayosX": 0
+   },
+   "radio": 9,
+   "angulo": 14,
+   "altura": 60,
+   "orbita": -12,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "anuncio",
+   "set": "bar",
+   "pieza": "bar",
+   "desde": "VEREDICTO",
+   "estado": {
+    "ver": 1,
+    "a": 1,
+    "foco": 1
+   },
+   "angulo": -6,
+   "altura": 14,
+   "orbita": 8,
+   "dist": 0.8,
+   "empuje": 0.04
+  },
+  {
+   "tipo": "cifra",
+   "set": "bar",
+   "pieza": "bar",
+   "desde": "MITO",
+   "estado": {
+    "ver": 1,
+    "a": 1,
+    "foco": 1
+   },
+   "angulo": 8,
+   "altura": 12,
+   "lectura": {
+    "texto": "MITO",
+    "titulo": "EL ARROZ SECA MENOS QUE EL AIRE",
+    "y": 900,
+    "tam": 250,
+    "tituloTam": 66,
+    "tituloAncho": 800
+   }
+  },
+  {
+   "tipo": "cifra",
+   "set": "ar",
+   "pieza": "ar.movil",
+   "desde": "TU",
+   "estado": {
+    "vierte": 1,
+    "rayosX": 1,
+    "agua": 1
+   },
+   "radio": 9,
+   "angulo": 14,
+   "altura": 56,
+   "lectura": {
+    "texto": "¿SÍ O NO?",
+    "titulo": "¿Lo has hecho alguna vez?",
+    "y": 880,
+    "tam": 165,
+    "tituloTam": 92,
+    "tituloAncho": 780,
+    "sub": "Dímelo en los comentarios",
+    "subTam": 42
+   }
+  }
+ ]
+}
+</script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 65.2 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      // 15-arroz: the scene is the JSON above (sets and shots), built by the shot templates. The wet phone, the bowl of rice and the
+      // drying ranking are library objects (objetos/arroz.js, registered in objetos/index.js).
+      // Uses the new start ("arranque", "encuadre" and gancho.y: see the headers of the engine).
+      import * as THREE from "three";
+      import { crearPorDentro } from "./comun/pordentro.js";
+      import { crearDetalle } from "./comun/detalle.js";
+      import { crearPlantillas } from "./comun/plantillas.js";
+      await Promise.all(['700 50px "Inter"', '400 50px "Inter"', '700 50px "JetBrains Mono"', '400 50px "JetBrains Mono"'].map((f) => document.fonts.load(f)));
+      const C = crearPorDentro(THREE);
+      const X = crearDetalle(THREE, C);
+      const P = crearPlantillas(THREE, C, X, { cerca: 0.5 });
+      C.camera.far = 3000; C.camera.updateProjectionMatrix();
+      P.arrancar();
+    </script>
+  </body>
+</html>

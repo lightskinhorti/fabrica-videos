@@ -1,0 +1,1046 @@
+[
+  {
+    "text": "Tu",
+    "start": 0.23,
+    "end": 0.23,
+    "id": "w0"
+  },
+  {
+    "text": "móvil",
+    "start": 0.23,
+    "end": 0.76,
+    "id": "w1"
+  },
+  {
+    "text": "mojado.¿Arroz?",
+    "start": 0.84,
+    "end": 1.86,
+    "id": "w2"
+  },
+  {
+    "text": "Dicen",
+    "start": 2,
+    "end": 2.42,
+    "id": "w3"
+  },
+  {
+    "text": "que",
+    "start": 2.59,
+    "end": 2.72,
+    "id": "w4"
+  },
+  {
+    "text": "el",
+    "start": 2.72,
+    "end": 2.9,
+    "id": "w5"
+  },
+  {
+    "text": "arroz",
+    "start": 2.9,
+    "end": 3.35,
+    "id": "w6"
+  },
+  {
+    "text": "se",
+    "start": 3.43,
+    "end": 3.46,
+    "id": "w7"
+  },
+  {
+    "text": "bebe",
+    "start": 3.46,
+    "end": 3.66,
+    "id": "w8"
+  },
+  {
+    "text": "el",
+    "start": 3.66,
+    "end": 3.76,
+    "id": "w9"
+  },
+  {
+    "text": "agua.¿Seguro?",
+    "start": 3.76,
+    "end": 5.44,
+    "id": "w10"
+  },
+  {
+    "text": "Tres",
+    "start": 5.45,
+    "end": 5.68,
+    "id": "w11"
+  },
+  {
+    "text": "pasos",
+    "start": 5.68,
+    "end": 5.98,
+    "id": "w12"
+  },
+  {
+    "text": "por",
+    "start": 5.98,
+    "end": 6.16,
+    "id": "w13"
+  },
+  {
+    "text": "dentro.",
+    "start": 6.16,
+    "end": 6.53,
+    "id": "w14"
+  },
+  {
+    "text": "Yel",
+    "start": 6.7,
+    "end": 6.91,
+    "id": "w15"
+  },
+  {
+    "text": "último",
+    "start": 7.01,
+    "end": 7.22,
+    "id": "w16"
+  },
+  {
+    "text": "es",
+    "start": 7.22,
+    "end": 7.51,
+    "id": "w17"
+  },
+  {
+    "text": "el",
+    "start": 7.51,
+    "end": 7.56,
+    "id": "w18"
+  },
+  {
+    "text": "que",
+    "start": 7.59,
+    "end": 7.78,
+    "id": "w19"
+  },
+  {
+    "text": "de",
+    "start": 7.78,
+    "end": 7.91,
+    "id": "w20"
+  },
+  {
+    "text": "verdad",
+    "start": 8.03,
+    "end": 8.32,
+    "id": "w21"
+  },
+  {
+    "text": "lo",
+    "start": 8.32,
+    "end": 8.41,
+    "id": "w22"
+  },
+  {
+    "text": "estropea.",
+    "start": 8.45,
+    "end": 9.16,
+    "id": "w23"
+  },
+  {
+    "text": "Primero,",
+    "start": 9.39,
+    "end": 9.74,
+    "id": "w24"
+  },
+  {
+    "text": "el",
+    "start": 9.74,
+    "end": 9.87,
+    "id": "w25"
+  },
+  {
+    "text": "agua",
+    "start": 9.87,
+    "end": 10.13,
+    "id": "w26"
+  },
+  {
+    "text": "entra",
+    "start": 10.13,
+    "end": 10.23,
+    "id": "w27"
+  },
+  {
+    "text": "por",
+    "start": 10.23,
+    "end": 10.73,
+    "id": "w28"
+  },
+  {
+    "text": "el",
+    "start": 10.73,
+    "end": 10.79,
+    "id": "w29"
+  },
+  {
+    "text": "conector",
+    "start": 10.79,
+    "end": 11.02,
+    "id": "w30"
+  },
+  {
+    "text": "y",
+    "start": 11.32,
+    "end": 11.38,
+    "id": "w31"
+  },
+  {
+    "text": "por",
+    "start": 11.38,
+    "end": 11.57,
+    "id": "w32"
+  },
+  {
+    "text": "los",
+    "start": 11.75,
+    "end": 11.78,
+    "id": "w33"
+  },
+  {
+    "text": "huecos",
+    "start": 11.78,
+    "end": 12.13,
+    "id": "w34"
+  },
+  {
+    "text": "de",
+    "start": 12.17,
+    "end": 12.3,
+    "id": "w35"
+  },
+  {
+    "text": "la",
+    "start": 12.3,
+    "end": 12.43,
+    "id": "w36"
+  },
+  {
+    "text": "carcasa.",
+    "start": 12.43,
+    "end": 13.15,
+    "id": "w37"
+  },
+  {
+    "text": "Dentro",
+    "start": 13.39,
+    "end": 13.6,
+    "id": "w38"
+  },
+  {
+    "text": "todo",
+    "start": 13.62,
+    "end": 13.92,
+    "id": "w39"
+  },
+  {
+    "text": "está",
+    "start": 13.92,
+    "end": 14.22,
+    "id": "w40"
+  },
+  {
+    "text": "pegado.",
+    "start": 14.23,
+    "end": 14.93,
+    "id": "w41"
+  },
+  {
+    "text": "Placas,",
+    "start": 14.93,
+    "end": 15.53,
+    "id": "w42"
+  },
+  {
+    "text": "chips",
+    "start": 15.75,
+    "end": 15.91,
+    "id": "w43"
+  },
+  {
+    "text": "y",
+    "start": 15.91,
+    "end": 15.96,
+    "id": "w44"
+  },
+  {
+    "text": "una",
+    "start": 16.01,
+    "end": 16.21,
+    "id": "w45"
+  },
+  {
+    "text": "batería.",
+    "start": 16.21,
+    "end": 17.04,
+    "id": "w46"
+  },
+  {
+    "text": "El",
+    "start": 17.04,
+    "end": 17.27,
+    "id": "w47"
+  },
+  {
+    "text": "agua",
+    "start": 17.27,
+    "end": 17.43,
+    "id": "w48"
+  },
+  {
+    "text": "se",
+    "start": 17.43,
+    "end": 17.56,
+    "id": "w49"
+  },
+  {
+    "text": "reparte",
+    "start": 17.56,
+    "end": 18.02,
+    "id": "w50"
+  },
+  {
+    "text": "entre",
+    "start": 18.02,
+    "end": 18.11,
+    "id": "w51"
+  },
+  {
+    "text": "ellos",
+    "start": 18.61,
+    "end": 18.68,
+    "id": "w52"
+  },
+  {
+    "text": "en",
+    "start": 18.68,
+    "end": 18.81,
+    "id": "w53"
+  },
+  {
+    "text": "capas",
+    "start": 18.81,
+    "end": 19.11,
+    "id": "w54"
+  },
+  {
+    "text": "finísimas.",
+    "start": 19.19,
+    "end": 20,
+    "id": "w55"
+  },
+  {
+    "text": "Segundo,",
+    "start": 20.22,
+    "end": 20.65,
+    "id": "w56"
+  },
+  {
+    "text": "el",
+    "start": 20.65,
+    "end": 20.77,
+    "id": "w57"
+  },
+  {
+    "text": "arroz",
+    "start": 20.84,
+    "end": 21.07,
+    "id": "w58"
+  },
+  {
+    "text": "está",
+    "start": 21.07,
+    "end": 21.57,
+    "id": "w59"
+  },
+  {
+    "text": "fuera.",
+    "start": 21.57,
+    "end": 22.08,
+    "id": "w60"
+  },
+  {
+    "text": "El",
+    "start": 22.15,
+    "end": 22.24,
+    "id": "w61"
+  },
+  {
+    "text": "agua",
+    "start": 22.24,
+    "end": 22.35,
+    "id": "w62"
+  },
+  {
+    "text": "dentro.",
+    "start": 22.6,
+    "end": 23.28,
+    "id": "w63"
+  },
+  {
+    "text": "Los",
+    "start": 23.28,
+    "end": 23.51,
+    "id": "w64"
+  },
+  {
+    "text": "granos",
+    "start": 23.51,
+    "end": 23.85,
+    "id": "w65"
+  },
+  {
+    "text": "solo",
+    "start": 23.85,
+    "end": 24.05,
+    "id": "w66"
+  },
+  {
+    "text": "tocan",
+    "start": 24.12,
+    "end": 24.35,
+    "id": "w67"
+  },
+  {
+    "text": "la",
+    "start": 24.35,
+    "end": 24.75,
+    "id": "w68"
+  },
+  {
+    "text": "carcasa,",
+    "start": 24.75,
+    "end": 25.05,
+    "id": "w69"
+  },
+  {
+    "text": "no",
+    "start": 25.05,
+    "end": 25.43,
+    "id": "w70"
+  },
+  {
+    "text": "las",
+    "start": 25.43,
+    "end": 25.44,
+    "id": "w71"
+  },
+  {
+    "text": "placas.",
+    "start": 25.44,
+    "end": 25.88,
+    "id": "w72"
+  },
+  {
+    "text": "Yalguno",
+    "start": 25.89,
+    "end": 26.38,
+    "id": "w73"
+  },
+  {
+    "text": "puede",
+    "start": 26.38,
+    "end": 26.74,
+    "id": "w74"
+  },
+  {
+    "text": "colarse",
+    "start": 26.74,
+    "end": 26.97,
+    "id": "w75"
+  },
+  {
+    "text": "por",
+    "start": 26.97,
+    "end": 27.45,
+    "id": "w76"
+  },
+  {
+    "text": "el",
+    "start": 27.45,
+    "end": 27.59,
+    "id": "w77"
+  },
+  {
+    "text": "conector.",
+    "start": 27.59,
+    "end": 28.21,
+    "id": "w78"
+  },
+  {
+    "text": "Tercero,",
+    "start": 28.67,
+    "end": 29.11,
+    "id": "w79"
+  },
+  {
+    "text": "la",
+    "start": 29.11,
+    "end": 29.21,
+    "id": "w80"
+  },
+  {
+    "text": "corriente.",
+    "start": 29.26,
+    "end": 30.21,
+    "id": "w81"
+  },
+  {
+    "text": "Con",
+    "start": 30.21,
+    "end": 30.59,
+    "id": "w82"
+  },
+  {
+    "text": "agua",
+    "start": 30.59,
+    "end": 30.62,
+    "id": "w83"
+  },
+  {
+    "text": "entre",
+    "start": 30.62,
+    "end": 30.86,
+    "id": "w84"
+  },
+  {
+    "text": "los",
+    "start": 31.03,
+    "end": 31.05,
+    "id": "w85"
+  },
+  {
+    "text": "contactos,",
+    "start": 31.05,
+    "end": 31.65,
+    "id": "w86"
+  },
+  {
+    "text": "el",
+    "start": 31.67,
+    "end": 31.76,
+    "id": "w87"
+  },
+  {
+    "text": "metal",
+    "start": 31.76,
+    "end": 32.04,
+    "id": "w88"
+  },
+  {
+    "text": "se",
+    "start": 32.04,
+    "end": 32.2,
+    "id": "w89"
+  },
+  {
+    "text": "disuelve",
+    "start": 32.2,
+    "end": 32.55,
+    "id": "w90"
+  },
+  {
+    "text": "y",
+    "start": 32.69,
+    "end": 32.71,
+    "id": "w91"
+  },
+  {
+    "text": "viaja.",
+    "start": 32.89,
+    "end": 33.14,
+    "id": "w92"
+  },
+  {
+    "text": "Eso",
+    "start": 33.14,
+    "end": 33.63,
+    "id": "w93"
+  },
+  {
+    "text": "es",
+    "start": 33.63,
+    "end": 33.75,
+    "id": "w94"
+  },
+  {
+    "text": "corrosión.",
+    "start": 33.75,
+    "end": 34.47,
+    "id": "w95"
+  },
+  {
+    "text": "Ypuede",
+    "start": 34.64,
+    "end": 35,
+    "id": "w96"
+  },
+  {
+    "text": "unir",
+    "start": 35,
+    "end": 35.17,
+    "id": "w97"
+  },
+  {
+    "text": "dos",
+    "start": 35.25,
+    "end": 35.26,
+    "id": "w98"
+  },
+  {
+    "text": "contactos",
+    "start": 35.58,
+    "end": 36.06,
+    "id": "w99"
+  },
+  {
+    "text": "que",
+    "start": 36.06,
+    "end": 36.26,
+    "id": "w100"
+  },
+  {
+    "text": "no",
+    "start": 36.26,
+    "end": 36.37,
+    "id": "w101"
+  },
+  {
+    "text": "deben",
+    "start": 36.41,
+    "end": 36.73,
+    "id": "w102"
+  },
+  {
+    "text": "tocarse.",
+    "start": 36.73,
+    "end": 37.45,
+    "id": "w103"
+  },
+  {
+    "text": "Un",
+    "start": 37.45,
+    "end": 37.71,
+    "id": "w104"
+  },
+  {
+    "text": "fabricante",
+    "start": 37.71,
+    "end": 38.23,
+    "id": "w105"
+  },
+  {
+    "text": "avisa.",
+    "start": 38.23,
+    "end": 38.57,
+    "id": "w106"
+  },
+  {
+    "text": "Cargarlo",
+    "start": 38.76,
+    "end": 39.21,
+    "id": "w107"
+  },
+  {
+    "text": "con",
+    "start": 39.21,
+    "end": 39.25,
+    "id": "w108"
+  },
+  {
+    "text": "el",
+    "start": 39.25,
+    "end": 39.63,
+    "id": "w109"
+  },
+  {
+    "text": "conector",
+    "start": 39.63,
+    "end": 39.94,
+    "id": "w110"
+  },
+  {
+    "text": "mojado",
+    "start": 40.05,
+    "end": 40.28,
+    "id": "w111"
+  },
+  {
+    "text": "puede",
+    "start": 40.33,
+    "end": 40.58,
+    "id": "w112"
+  },
+  {
+    "text": "corroer",
+    "start": 40.58,
+    "end": 40.95,
+    "id": "w113"
+  },
+  {
+    "text": "sus",
+    "start": 40.98,
+    "end": 41.27,
+    "id": "w114"
+  },
+  {
+    "text": "patillas.",
+    "start": 41.27,
+    "end": 42.18,
+    "id": "w115"
+  },
+  {
+    "text": "Yahora",
+    "start": 42.45,
+    "end": 42.91,
+    "id": "w116"
+  },
+  {
+    "text": "la",
+    "start": 42.91,
+    "end": 43.07,
+    "id": "w117"
+  },
+  {
+    "text": "prueba.",
+    "start": 43.07,
+    "end": 43.8,
+    "id": "w118"
+  },
+  {
+    "text": "En",
+    "start": 43.8,
+    "end": 44.01,
+    "id": "w119"
+  },
+  {
+    "text": "2014,",
+    "start": 44.01,
+    "end": 44.69,
+    "id": "w120"
+  },
+  {
+    "text": "esponjas",
+    "start": 44.69,
+    "end": 45.13,
+    "id": "w121"
+  },
+  {
+    "text": "mojadas",
+    "start": 45.13,
+    "end": 45.51,
+    "id": "w122"
+  },
+  {
+    "text": "en",
+    "start": 45.51,
+    "end": 45.62,
+    "id": "w123"
+  },
+  {
+    "text": "siete",
+    "start": 45.62,
+    "end": 45.79,
+    "id": "w124"
+  },
+  {
+    "text": "materiales",
+    "start": 45.89,
+    "end": 46.52,
+    "id": "w125"
+  },
+  {
+    "text": "y",
+    "start": 46.52,
+    "end": 46.55,
+    "id": "w126"
+  },
+  {
+    "text": "una",
+    "start": 46.87,
+    "end": 46.9,
+    "id": "w127"
+  },
+  {
+    "text": "al",
+    "start": 46.9,
+    "end": 47.09,
+    "id": "w128"
+  },
+  {
+    "text": "aire.",
+    "start": 47.09,
+    "end": 47.76,
+    "id": "w129"
+  },
+  {
+    "text": "Lo",
+    "start": 47.76,
+    "end": 48.03,
+    "id": "w130"
+  },
+  {
+    "text": "prometido.",
+    "start": 48.03,
+    "end": 48.86,
+    "id": "w131"
+  },
+  {
+    "text": "El",
+    "start": 48.87,
+    "end": 48.89,
+    "id": "w132"
+  },
+  {
+    "text": "arroz",
+    "start": 49,
+    "end": 49.34,
+    "id": "w133"
+  },
+  {
+    "text": "quedó",
+    "start": 49.37,
+    "end": 49.67,
+    "id": "w134"
+  },
+  {
+    "text": "el",
+    "start": 49.67,
+    "end": 49.95,
+    "id": "w135"
+  },
+  {
+    "text": "último",
+    "start": 49.95,
+    "end": 50.2,
+    "id": "w136"
+  },
+  {
+    "text": "de",
+    "start": 50.2,
+    "end": 50.39,
+    "id": "w137"
+  },
+  {
+    "text": "los",
+    "start": 50.39,
+    "end": 50.53,
+    "id": "w138"
+  },
+  {
+    "text": "siete.",
+    "start": 50.53,
+    "end": 51.12,
+    "id": "w139"
+  },
+  {
+    "text": "Yel",
+    "start": 51.12,
+    "end": 51.39,
+    "id": "w140"
+  },
+  {
+    "text": "aire",
+    "start": 51.39,
+    "end": 51.73,
+    "id": "w141"
+  },
+  {
+    "text": "se",
+    "start": 51.75,
+    "end": 51.9,
+    "id": "w142"
+  },
+  {
+    "text": "comas.",
+    "start": 52.22,
+    "end": 52.5,
+    "id": "w143"
+  },
+  {
+    "text": "Por",
+    "start": 52.5,
+    "end": 52.95,
+    "id": "w144"
+  },
+  {
+    "text": "eso",
+    "start": 52.95,
+    "end": 53.17,
+    "id": "w145"
+  },
+  {
+    "text": "un",
+    "start": 53.18,
+    "end": 53.33,
+    "id": "w146"
+  },
+  {
+    "text": "fabricante",
+    "start": 53.33,
+    "end": 53.81,
+    "id": "w147"
+  },
+  {
+    "text": "dice,",
+    "start": 54.29,
+    "end": 54.49,
+    "id": "w148"
+  },
+  {
+    "text": "sin",
+    "start": 54.49,
+    "end": 54.87,
+    "id": "w149"
+  },
+  {
+    "text": "arroz,",
+    "start": 54.87,
+    "end": 55.32,
+    "id": "w150"
+  },
+  {
+    "text": "en",
+    "start": 55.32,
+    "end": 55.47,
+    "id": "w151"
+  },
+  {
+    "text": "un",
+    "start": 55.47,
+    "end": 55.62,
+    "id": "w152"
+  },
+  {
+    "text": "sitio",
+    "start": 55.62,
+    "end": 56,
+    "id": "w153"
+  },
+  {
+    "text": "seco,",
+    "start": 56,
+    "end": 56.45,
+    "id": "w154"
+  },
+  {
+    "text": "con",
+    "start": 56.45,
+    "end": 56.65,
+    "id": "w155"
+  },
+  {
+    "text": "aire.",
+    "start": 56.67,
+    "end": 57.32,
+    "id": "w156"
+  },
+  {
+    "text": "Veredicto,",
+    "start": 57.55,
+    "end": 58.32,
+    "id": "w157"
+  },
+  {
+    "text": "mito.",
+    "start": 58.32,
+    "end": 59,
+    "id": "w158"
+  },
+  {
+    "text": "El",
+    "start": 59,
+    "end": 59.09,
+    "id": "w159"
+  },
+  {
+    "text": "arroz",
+    "start": 59.26,
+    "end": 59.45,
+    "id": "w160"
+  },
+  {
+    "text": "seca",
+    "start": 59.47,
+    "end": 59.71,
+    "id": "w161"
+  },
+  {
+    "text": "menos",
+    "start": 59.91,
+    "end": 60.04,
+    "id": "w162"
+  },
+  {
+    "text": "que",
+    "start": 60.04,
+    "end": 60.23,
+    "id": "w163"
+  },
+  {
+    "text": "dejarlo",
+    "start": 60.23,
+    "end": 60.67,
+    "id": "w164"
+  },
+  {
+    "text": "al",
+    "start": 60.76,
+    "end": 60.82,
+    "id": "w165"
+  },
+  {
+    "text": "aire.¿Y",
+    "start": 60.82,
+    "end": 61.44,
+    "id": "w166"
+  },
+  {
+    "text": "tú?¿Lo",
+    "start": 61.55,
+    "end": 61.95,
+    "id": "w167"
+  },
+  {
+    "text": "has",
+    "start": 61.95,
+    "end": 62.09,
+    "id": "w168"
+  },
+  {
+    "text": "hecho",
+    "start": 62.14,
+    "end": 62.38,
+    "id": "w169"
+  },
+  {
+    "text": "alguna",
+    "start": 62.38,
+    "end": 62.89,
+    "id": "w170"
+  },
+  {
+    "text": "vez?¿Sí",
+    "start": 62.89,
+    "end": 63.44,
+    "id": "w171"
+  },
+  {
+    "text": "o",
+    "start": 63.47,
+    "end": 63.49,
+    "id": "w172"
+  },
+  {
+    "text": "no?",
+    "start": 63.49,
+    "end": 63.74,
+    "id": "w173"
+  }
+]

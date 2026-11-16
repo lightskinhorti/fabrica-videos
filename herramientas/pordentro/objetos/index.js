@@ -45,6 +45,9 @@
 //               tapa, repara, golpe, lectura, lecturaMal, esquinas, proporcion, escaneo, bits, reparto, palabra, cinta,
 //               danadas, corregidas, giro)
 //   nivelesQR   colL, colM, colQ, colH, centro  (14-qr; mandos: ver, a, foco, usado)
+//   movilMojado  los de movilBateria más pines, costra  (15-arroz, 16 nov; mandos en arroz.js: agua, corrosion, puente, corriente, grano)
+//   tarroArroz  movil, bateria, placa, chip, conector, tarro, granos, centro  (15-arroz; mandos: los del móvil más vierte)
+//   rankingSecado  colAire, colArroz, medio, centro  (15-arroz; mandos: ver, a, foco; son posiciones, no cantidades)
 // (09-mando y 10-raton, hechos antes de registrarlos, aún los pasan a mano con crearPlantillas(..., { objetos });
 // funciona igual, porque lo que se pasa a mano manda sobre esta lista.)
 import { magnetron } from "./magnetron.js";
@@ -59,11 +62,13 @@ import { auriculares, ondasSonido } from "./auriculares.js";
 import { pendrive, celdaFlash, memoriaCeldas } from "./pendrive.js";
 import { movilBateria, celdaIon, barrasCapacidad } from "./bateria.js";
 import { codigoQR, nivelesQR } from "./codigoqr.js";
+import { movilMojado, tarroArroz, rankingSecado } from "./arroz.js";
 
 export const OBJETOS = {
   microondas, magnetron, cuenco, plato, vaso, placa, bobina, serpentin, tubo, nevera, compresor,
   mando, tele, receptor, movilCamara, senalIR, espectro, raton, mesa, superficie, fotosRaton, monitor,
   auriculares, ondasSonido, pendrive, celdaFlash, memoriaCeldas, movilBateria, celdaIon, barrasCapacidad, codigoQR, nivelesQR,
+  movilMojado, tarroArroz, rankingSecado,
 };
 export { crearMateriales } from "./materiales.js";
 export { crearBase } from "./base.js";
