@@ -241,5 +241,23 @@
   "programado": true,
   "fecha": "2026-11-16",
   "hora": "20:00"
+ },
+ "elcontadorloco/16-luna": {
+  "aprobado": true,
+  "programado": true,
+  "fecha": "2026-11-17",
+  "hora": "20:00"
+ },
+ "lascosaspordentro/16-cargador-enchufado": {
+  "aprobado": true,
+  "programado": true,
+  "fecha": "2026-11-17",
+  "hora": "20:00"
+ },
+ "dinerosinlio/14-cercanias": {
+  "aprobado": true,
+  "programado": true,
+  "fecha": "2026-11-17",
+  "hora": "20:00"
  }
 }
