@@ -26,13 +26,15 @@
 //   desenfoque: { apertura, max }  (profundidad de campo: enfoca a la distancia del punto que mira la cámara)
 // Título fijo (16 de noviembre, opcional: sin `titulo` todo se ve como antes). Las cuentas con 100 mil visitas o más
 // dejan en pantalla durante todo el vídeo la pregunta entera y concreta, legible ya en el fotograma 0:
-//   titulo: { texto, clave?, hasta?, tam? }  banner fijo arriba (y 140 a 290 px, bajo las pestañas de TikTok), en un
-//             rótulo oscuro con filete de cobre, sin fundido de entrada. Dos líneas como máximo (si no caben, la letra
-//             baja sola hasta 50 px). texto = la pregunta; clave = palabra en cobre; hasta = segundos o id de un
-//             momento en el que se va (por defecto, todo el vídeo); tam = letra en px (por defecto 62).
-//             Con `titulo`, los subtítulos bajan a y 332 (dos líneas llegan a 490) y el gancho grande pasa a ser
-//             opcional: si se deja, que lleve gancho.y por debajo (por ejemplo 700). En los planos de la escena
-//             conviene una zona libre que empiece en 500: "encuadre": { "zona": [50, 500, 950, 1440] }.
+//   titulo: { texto, clave?, hasta?, tam? }  rótulo fijo arriba (desde y 190, bajo las pestañas de TikTok): caja de
+//             cobre con letra oscura muy gruesa, el texto más grande de la pantalla, sin fundido de entrada. Dos
+//             líneas como máximo (si no caben, la letra baja sola hasta 64 px). texto = la pregunta; clave = palabra
+//             en una pastilla oscura; hasta = segundos o id de un momento en el que se va (por defecto, todo el
+//             vídeo); tam = letra en px (por defecto 86).
+//             Con `titulo`, los subtítulos van justo debajo del rótulo (con dos líneas de título empiezan en y 450
+//             y llegan a 610) y el gancho grande pasa a ser opcional: si se deja, que lleve gancho.y por debajo
+//             (por ejemplo 800). En los planos de la escena conviene una zona libre que empiece en 620:
+//             "encuadre": { "zona": [50, 620, 950, 1440] }.
 //   y en la cámara, una clave con corte: true empieza un plano nuevo de golpe, sin movimiento desde el anterior
 
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
@@ -424,11 +426,12 @@ export function crearPorDentro(THREE) {
   if (TIT) {
     tituloEl.innerHTML = `<div class="caja">${TIT.texto.split(" ").map((w) => (TIT.clave && norm(w) === norm(TIT.clave) ? `<span class="cu">${w}</span>` : w)).join(" ")}</div>`;
     const caja = tituloEl.firstChild;
-    let tam = TIT.tam ?? 62;
+    let tam = TIT.tam ?? 86;
     caja.style.fontSize = tam + "px";
-    // at most two lines: shrink the letters until it fits (never below 50 px)
-    while (tam > 50 && caja.getBoundingClientRect().height > tam * 1.14 * 2 + 40) { tam -= 2; caja.style.fontSize = tam + "px"; }
-    capsEl.style.top = "332px";
+    // at most two lines: shrink the letters until it fits (never below 64 px)
+    while (tam > 64 && caja.offsetHeight > tam * 1.1 * 2 + 60) { tam -= 2; caja.style.fontSize = tam + "px"; }
+    // captions sit right under the banner (its hard shadow is 10 px)
+    capsEl.style.top = (tituloEl.offsetTop + caja.offsetHeight + 34) + "px";
   }
   const tituloFin = TIT && TIT.hasta !== undefined ? cuando(TIT.hasta) : Infinity;
   function drawTitulo(t) {

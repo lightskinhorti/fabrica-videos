@@ -66,9 +66,9 @@ html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--
   color: rgba(255, 255, 255, 0.6); letter-spacing: 0.01em; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9);
 }
 /* fixed title banner (optional `titulo`): the whole question, from frame 0 to the end; clear of TikTok's top bar */
-.titulo-fijo { position: absolute; left: 60px; right: 60px; top: 140px; opacity: 0; }
+.titulo-fijo { position: absolute; left: 44px; right: 44px; top: 190px; opacity: 0; }
 .titulo-fijo .caja {
-  padding: 14px 28px 16px; text-align: center; font-size: 62px; font-weight: 700; line-height: 1.14; letter-spacing: -0.02em; color: #fff;
-  background: rgba(10, 8, 6, 0.9); border: 2px solid rgba(255, 255, 255, 0.1); border-left: 8px solid #c8793a; border-radius: 14px;
+  padding: 20px 26px 24px; text-align: center; font-size: 86px; font-weight: 800; line-height: 1.1; letter-spacing: -0.025em; color: #140e08;
+  background: #e39a5c; border: 5px solid #140e08; border-radius: 18px; box-shadow: 0 10px 0 #140e08;
 }
-.titulo-fijo .cu { color: #e39a5c; }
+.titulo-fijo .cu { background: #140e08; color: #f4b47c; padding: 0 0.16em 0.04em; border-radius: 10px; }
