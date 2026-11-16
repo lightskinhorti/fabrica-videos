@@ -43,3 +43,5 @@ Reglas en el PRD, sección "Ganchos y temas".
 - [x] 12: Un céntimo te engaña (precios acabados en 99; Thomas y Morwitz 2005 y Lacetera, Pope y Sydnor 2011). **Prueba corta de 26,0 s**, no cuenta para el programa de pagos. Hecho el 12 de noviembre; falta que Javier lo apruebe.
 
 - [x] 13: Hasta 57,5 % menos (bono social de la luz; Real Decreto-ley 7/2026 y Real Decreto 897/2017). 64,9 s. El primero con la receta de "dinero que te toca" (`ideas/recetas.md`). Hecho el 16 de noviembre; falta que Javier lo apruebe. **Los porcentajes valen hasta el 31 de diciembre de 2026.**
+
+- [x] 14: Cercanías a 10 € al mes para nacidos de 2000 a 2011 (Real Decreto-ley 17/2025, art. 3). 61,5 s, con título fijo y el arranque nuevo. Hecho el 16 de noviembre con dos voces; falta que Javier lo apruebe. **Los precios valen hasta el 31 de diciembre de 2026.** Las cifras las leyó el agente en el BOE; la web de Renfe no cargó.

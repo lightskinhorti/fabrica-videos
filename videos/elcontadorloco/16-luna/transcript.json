@@ -1,0 +1,914 @@
+[
+  {
+    "text": "Conduces",
+    "start": 0.23,
+    "end": 0.66,
+    "id": "w0"
+  },
+  {
+    "text": "hasta",
+    "start": 0.66,
+    "end": 1.08,
+    "id": "w1"
+  },
+  {
+    "text": "la",
+    "start": 1.08,
+    "end": 1.23,
+    "id": "w2"
+  },
+  {
+    "text": "Luna.",
+    "start": 1.23,
+    "end": 1.79,
+    "id": "w3"
+  },
+  {
+    "text": "Tu",
+    "start": 1.79,
+    "end": 1.92,
+    "id": "w4"
+  },
+  {
+    "text": "misión",
+    "start": 1.92,
+    "end": 2.16,
+    "id": "w5"
+  },
+  {
+    "text": "no",
+    "start": 2.38,
+    "end": 2.43,
+    "id": "w6"
+  },
+  {
+    "text": "parar",
+    "start": 2.43,
+    "end": 2.75,
+    "id": "w7"
+  },
+  {
+    "text": "a",
+    "start": 2.75,
+    "end": 2.81,
+    "id": "w8"
+  },
+  {
+    "text": "100",
+    "start": 2.81,
+    "end": 3.39,
+    "id": "w9"
+  },
+  {
+    "text": "por",
+    "start": 3.39,
+    "end": 3.58,
+    "id": "w10"
+  },
+  {
+    "text": "hora.",
+    "start": 3.58,
+    "end": 4.2,
+    "id": "w11"
+  },
+  {
+    "text": "En",
+    "start": 4.2,
+    "end": 4.43,
+    "id": "w12"
+  },
+  {
+    "text": "una",
+    "start": 4.43,
+    "end": 4.6,
+    "id": "w13"
+  },
+  {
+    "text": "hora",
+    "start": 4.6,
+    "end": 4.91,
+    "id": "w14"
+  },
+  {
+    "text": "ya",
+    "start": 4.91,
+    "end": 5.07,
+    "id": "w15"
+  },
+  {
+    "text": "estás",
+    "start": 5.07,
+    "end": 5.43,
+    "id": "w16"
+  },
+  {
+    "text": "en",
+    "start": 5.43,
+    "end": 5.51,
+    "id": "w17"
+  },
+  {
+    "text": "el",
+    "start": 5.61,
+    "end": 5.77,
+    "id": "w18"
+  },
+  {
+    "text": "espacio.",
+    "start": 5.94,
+    "end": 6.6,
+    "id": "w19"
+  },
+  {
+    "text": "Cuatro",
+    "start": 6.78,
+    "end": 7.11,
+    "id": "w20"
+  },
+  {
+    "text": "horas,",
+    "start": 7.18,
+    "end": 7.79,
+    "id": "w21"
+  },
+  {
+    "text": "la",
+    "start": 7.79,
+    "end": 7.88,
+    "id": "w22"
+  },
+  {
+    "text": "estación",
+    "start": 7.91,
+    "end": 8.4,
+    "id": "w23"
+  },
+  {
+    "text": "espacial,",
+    "start": 8.4,
+    "end": 9.04,
+    "id": "w24"
+  },
+  {
+    "text": "a",
+    "start": 9.04,
+    "end": 9.11,
+    "id": "w25"
+  },
+  {
+    "text": "unos",
+    "start": 9.11,
+    "end": 9.39,
+    "id": "w26"
+  },
+  {
+    "text": "400",
+    "start": 9.4,
+    "end": 10.05,
+    "id": "w27"
+  },
+  {
+    "text": "kilómetros.",
+    "start": 10.05,
+    "end": 10.8,
+    "id": "w28"
+  },
+  {
+    "text": "Pasas",
+    "start": 11.03,
+    "end": 11.3,
+    "id": "w29"
+  },
+  {
+    "text": "de",
+    "start": 11.38,
+    "end": 11.56,
+    "id": "w30"
+  },
+  {
+    "text": "largo.",
+    "start": 11.63,
+    "end": 12.2,
+    "id": "w31"
+  },
+  {
+    "text": "15",
+    "start": 12.43,
+    "end": 12.63,
+    "id": "w32"
+  },
+  {
+    "text": "días,",
+    "start": 12.63,
+    "end": 13.05,
+    "id": "w33"
+  },
+  {
+    "text": "casi",
+    "start": 13.05,
+    "end": 13.33,
+    "id": "w34"
+  },
+  {
+    "text": "36.000",
+    "start": 13.33,
+    "end": 14.62,
+    "id": "w35"
+  },
+  {
+    "text": "kilómetros.",
+    "start": 14.62,
+    "end": 15.6,
+    "id": "w36"
+  },
+  {
+    "text": "Aquí",
+    "start": 15.83,
+    "end": 15.89,
+    "id": "w37"
+  },
+  {
+    "text": "los",
+    "start": 15.89,
+    "end": 16.1,
+    "id": "w38"
+  },
+  {
+    "text": "satélites",
+    "start": 16.1,
+    "end": 16.76,
+    "id": "w39"
+  },
+  {
+    "text": "parecen",
+    "start": 16.76,
+    "end": 17.26,
+    "id": "w40"
+  },
+  {
+    "text": "quietos",
+    "start": 17.34,
+    "end": 17.76,
+    "id": "w41"
+  },
+  {
+    "text": "sobre",
+    "start": 17.98,
+    "end": 18.09,
+    "id": "w42"
+  },
+  {
+    "text": "un",
+    "start": 18.09,
+    "end": 18.19,
+    "id": "w43"
+  },
+  {
+    "text": "mismo",
+    "start": 18.25,
+    "end": 18.44,
+    "id": "w44"
+  },
+  {
+    "text": "punto",
+    "start": 18.77,
+    "end": 18.79,
+    "id": "w45"
+  },
+  {
+    "text": "de",
+    "start": 18.79,
+    "end": 18.87,
+    "id": "w46"
+  },
+  {
+    "text": "la",
+    "start": 18.94,
+    "end": 19.03,
+    "id": "w47"
+  },
+  {
+    "text": "tierra.",
+    "start": 19.03,
+    "end": 19.44,
+    "id": "w48"
+  },
+  {
+    "text": "17",
+    "start": 19.83,
+    "end": 20.34,
+    "id": "w49"
+  },
+  {
+    "text": "días,",
+    "start": 20.34,
+    "end": 20.91,
+    "id": "w50"
+  },
+  {
+    "text": "una",
+    "start": 20.91,
+    "end": 21.34,
+    "id": "w51"
+  },
+  {
+    "text": "vuelta",
+    "start": 21.34,
+    "end": 21.6,
+    "id": "w52"
+  },
+  {
+    "text": "entera",
+    "start": 21.6,
+    "end": 21.78,
+    "id": "w53"
+  },
+  {
+    "text": "al",
+    "start": 21.98,
+    "end": 22.04,
+    "id": "w54"
+  },
+  {
+    "text": "mundo,",
+    "start": 22.05,
+    "end": 22.44,
+    "id": "w55"
+  },
+  {
+    "text": "unos",
+    "start": 22.44,
+    "end": 22.55,
+    "id": "w56"
+  },
+  {
+    "text": "40.000",
+    "start": 22.77,
+    "end": 23.43,
+    "id": "w57"
+  },
+  {
+    "text": "kilómetros.",
+    "start": 23.7,
+    "end": 24.56,
+    "id": "w58"
+  },
+  {
+    "text": "La",
+    "start": 24.56,
+    "end": 24.83,
+    "id": "w59"
+  },
+  {
+    "text": "estación",
+    "start": 24.83,
+    "end": 25.35,
+    "id": "w60"
+  },
+  {
+    "text": "la",
+    "start": 25.35,
+    "end": 25.49,
+    "id": "w61"
+  },
+  {
+    "text": "da",
+    "start": 25.5,
+    "end": 25.65,
+    "id": "w62"
+  },
+  {
+    "text": "cada",
+    "start": 25.65,
+    "end": 25.87,
+    "id": "w63"
+  },
+  {
+    "text": "90",
+    "start": 26.33,
+    "end": 26.4,
+    "id": "w64"
+  },
+  {
+    "text": "minutos.",
+    "start": 26.4,
+    "end": 27.19,
+    "id": "w65"
+  },
+  {
+    "text": "80",
+    "start": 27.43,
+    "end": 27.7,
+    "id": "w66"
+  },
+  {
+    "text": "días,",
+    "start": 27.7,
+    "end": 28.19,
+    "id": "w67"
+  },
+  {
+    "text": "la",
+    "start": 28.19,
+    "end": 28.35,
+    "id": "w68"
+  },
+  {
+    "text": "mitad",
+    "start": 28.35,
+    "end": 28.49,
+    "id": "w69"
+  },
+  {
+    "text": "del",
+    "start": 28.93,
+    "end": 29.01,
+    "id": "w70"
+  },
+  {
+    "text": "camino.",
+    "start": 29.01,
+    "end": 29.79,
+    "id": "w71"
+  },
+  {
+    "text": "192.000",
+    "start": 29.79,
+    "end": 30.94,
+    "id": "w72"
+  },
+  {
+    "text": "kilómetros.",
+    "start": 30.94,
+    "end": 31.8,
+    "id": "w73"
+  },
+  {
+    "text": "160",
+    "start": 32.03,
+    "end": 32.69,
+    "id": "w74"
+  },
+  {
+    "text": "días,",
+    "start": 32.69,
+    "end": 33.11,
+    "id": "w75"
+  },
+  {
+    "text": "y",
+    "start": 33.29,
+    "end": 33.38,
+    "id": "w76"
+  },
+  {
+    "text": "por",
+    "start": 33.53,
+    "end": 33.68,
+    "id": "w77"
+  },
+  {
+    "text": "fin,",
+    "start": 33.68,
+    "end": 33.98,
+    "id": "w78"
+  },
+  {
+    "text": "384.400",
+    "start": 34.18,
+    "end": 35.61,
+    "id": "w79"
+  },
+  {
+    "text": "kilómetros.",
+    "start": 36.25,
+    "end": 37.6,
+    "id": "w80"
+  },
+  {
+    "text": "Llegaste",
+    "start": 37.61,
+    "end": 38.21,
+    "id": "w81"
+  },
+  {
+    "text": "a",
+    "start": 38.21,
+    "end": 38.28,
+    "id": "w82"
+  },
+  {
+    "text": "la",
+    "start": 38.28,
+    "end": 38.36,
+    "id": "w83"
+  },
+  {
+    "text": "Luna.",
+    "start": 38.44,
+    "end": 38.88,
+    "id": "w84"
+  },
+  {
+    "text": "Son",
+    "start": 39.04,
+    "end": 39.17,
+    "id": "w85"
+  },
+  {
+    "text": "casi",
+    "start": 39.33,
+    "end": 39.47,
+    "id": "w86"
+  },
+  {
+    "text": "10",
+    "start": 39.47,
+    "end": 39.76,
+    "id": "w87"
+  },
+  {
+    "text": "vueltas",
+    "start": 39.98,
+    "end": 40.31,
+    "id": "w88"
+  },
+  {
+    "text": "al",
+    "start": 40.34,
+    "end": 40.44,
+    "id": "w89"
+  },
+  {
+    "text": "mundo,",
+    "start": 40.48,
+    "end": 41,
+    "id": "w90"
+  },
+  {
+    "text": "sin",
+    "start": 41,
+    "end": 41.25,
+    "id": "w91"
+  },
+  {
+    "text": "una",
+    "start": 41.25,
+    "end": 41.42,
+    "id": "w92"
+  },
+  {
+    "text": "sola",
+    "start": 41.42,
+    "end": 42.05,
+    "id": "w93"
+  },
+  {
+    "text": "parada.",
+    "start": 42.05,
+    "end": 42.56,
+    "id": "w94"
+  },
+  {
+    "text": "Si",
+    "start": 42.56,
+    "end": 42.83,
+    "id": "w95"
+  },
+  {
+    "text": "solo",
+    "start": 42.83,
+    "end": 43.08,
+    "id": "w96"
+  },
+  {
+    "text": "conduces",
+    "start": 43.08,
+    "end": 43.71,
+    "id": "w97"
+  },
+  {
+    "text": "8",
+    "start": 43.71,
+    "end": 43.88,
+    "id": "w98"
+  },
+  {
+    "text": "horas",
+    "start": 44.33,
+    "end": 44.35,
+    "id": "w99"
+  },
+  {
+    "text": "al",
+    "start": 44.35,
+    "end": 44.5,
+    "id": "w100"
+  },
+  {
+    "text": "día,",
+    "start": 44.51,
+    "end": 44.77,
+    "id": "w101"
+  },
+  {
+    "text": "tardas",
+    "start": 44.98,
+    "end": 45.36,
+    "id": "w102"
+  },
+  {
+    "text": "480",
+    "start": 45.36,
+    "end": 46.08,
+    "id": "w103"
+  },
+  {
+    "text": "días,",
+    "start": 46.08,
+    "end": 46.44,
+    "id": "w104"
+  },
+  {
+    "text": "más",
+    "start": 46.6,
+    "end": 46.9,
+    "id": "w105"
+  },
+  {
+    "text": "de",
+    "start": 47.05,
+    "end": 47.12,
+    "id": "w106"
+  },
+  {
+    "text": "un",
+    "start": 47.12,
+    "end": 47.33,
+    "id": "w107"
+  },
+  {
+    "text": "año",
+    "start": 47.33,
+    "end": 47.56,
+    "id": "w108"
+  },
+  {
+    "text": "entero.",
+    "start": 47.72,
+    "end": 48.6,
+    "id": "w109"
+  },
+  {
+    "text": "La",
+    "start": 48.6,
+    "end": 48.83,
+    "id": "w110"
+  },
+  {
+    "text": "luz",
+    "start": 48.83,
+    "end": 48.91,
+    "id": "w111"
+  },
+  {
+    "text": "hace",
+    "start": 48.91,
+    "end": 49.1,
+    "id": "w112"
+  },
+  {
+    "text": "ese",
+    "start": 49.18,
+    "end": 49.35,
+    "id": "w113"
+  },
+  {
+    "text": "camino",
+    "start": 49.35,
+    "end": 49.73,
+    "id": "w114"
+  },
+  {
+    "text": "en",
+    "start": 49.73,
+    "end": 49.83,
+    "id": "w115"
+  },
+  {
+    "text": "poco",
+    "start": 49.83,
+    "end": 49.91,
+    "id": "w116"
+  },
+  {
+    "text": "más",
+    "start": 49.91,
+    "end": 50.34,
+    "id": "w117"
+  },
+  {
+    "text": "de",
+    "start": 50.34,
+    "end": 50.41,
+    "id": "w118"
+  },
+  {
+    "text": "un",
+    "start": 50.41,
+    "end": 50.52,
+    "id": "w119"
+  },
+  {
+    "text": "segundo.",
+    "start": 50.52,
+    "end": 51.19,
+    "id": "w120"
+  },
+  {
+    "text": "Tú,",
+    "start": 51.2,
+    "end": 51.55,
+    "id": "w121"
+  },
+  {
+    "text": "no.",
+    "start": 51.77,
+    "end": 52.2,
+    "id": "w122"
+  },
+  {
+    "text": "Una",
+    "start": 52.2,
+    "end": 52.43,
+    "id": "w123"
+  },
+  {
+    "text": "misión",
+    "start": 52.43,
+    "end": 52.86,
+    "id": "w124"
+  },
+  {
+    "text": "de",
+    "start": 52.86,
+    "end": 52.96,
+    "id": "w125"
+  },
+  {
+    "text": "la",
+    "start": 53.04,
+    "end": 53.14,
+    "id": "w126"
+  },
+  {
+    "text": "NASA",
+    "start": 53.14,
+    "end": 53.42,
+    "id": "w127"
+  },
+  {
+    "text": "llegó",
+    "start": 53.42,
+    "end": 53.51,
+    "id": "w128"
+  },
+  {
+    "text": "a",
+    "start": 53.51,
+    "end": 53.93,
+    "id": "w129"
+  },
+  {
+    "text": "la",
+    "start": 53.93,
+    "end": 54.01,
+    "id": "w130"
+  },
+  {
+    "text": "órbita",
+    "start": 54.01,
+    "end": 54.36,
+    "id": "w131"
+  },
+  {
+    "text": "de",
+    "start": 54.36,
+    "end": 54.58,
+    "id": "w132"
+  },
+  {
+    "text": "la",
+    "start": 54.58,
+    "end": 54.72,
+    "id": "w133"
+  },
+  {
+    "text": "Luna",
+    "start": 54.72,
+    "end": 55,
+    "id": "w134"
+  },
+  {
+    "text": "en",
+    "start": 55,
+    "end": 55.12,
+    "id": "w135"
+  },
+  {
+    "text": "unas",
+    "start": 55.37,
+    "end": 55.44,
+    "id": "w136"
+  },
+  {
+    "text": "76",
+    "start": 55.44,
+    "end": 55.87,
+    "id": "w137"
+  },
+  {
+    "text": "horas.",
+    "start": 55.87,
+    "end": 56.6,
+    "id": "w138"
+  },
+  {
+    "text": "3",
+    "start": 56.83,
+    "end": 56.95,
+    "id": "w139"
+  },
+  {
+    "text": "días,",
+    "start": 56.95,
+    "end": 57.65,
+    "id": "w140"
+  },
+  {
+    "text": "tú",
+    "start": 57.65,
+    "end": 57.83,
+    "id": "w141"
+  },
+  {
+    "text": "160",
+    "start": 57.88,
+    "end": 58.79,
+    "id": "w142"
+  },
+  {
+    "text": "días.¿Cuántas",
+    "start": 58.98,
+    "end": 60.3,
+    "id": "w143"
+  },
+  {
+    "text": "horas",
+    "start": 60.38,
+    "end": 60.65,
+    "id": "w144"
+  },
+  {
+    "text": "al",
+    "start": 60.65,
+    "end": 60.78,
+    "id": "w145"
+  },
+  {
+    "text": "día",
+    "start": 60.78,
+    "end": 60.97,
+    "id": "w146"
+  },
+  {
+    "text": "conducirías",
+    "start": 60.97,
+    "end": 61.7,
+    "id": "w147"
+  },
+  {
+    "text": "tú?",
+    "start": 61.71,
+    "end": 61.97,
+    "id": "w148"
+  },
+  {
+    "text": "Dime",
+    "start": 62.18,
+    "end": 62.58,
+    "id": "w149"
+  },
+  {
+    "text": "tu",
+    "start": 62.58,
+    "end": 62.68,
+    "id": "w150"
+  },
+  {
+    "text": "cifra.",
+    "start": 62.94,
+    "end": 63.63,
+    "id": "w151"
+  }
+]

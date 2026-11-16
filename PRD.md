@@ -549,6 +549,8 @@ Qué cambia en los vídeos nuevos (los ya programados no se tocan):
 
 Si esto tampoco mueve las visualizaciones, lo siguiente es abrir con imagen real gratuita (NASA, NOAA, bancos libres). Lo decide Javier.
 
+**Primera tanda con título fijo (hecha el 16 de noviembre para el 17, sin aprobar ni programar):** `elcontadorloco/16-luna` ("¿Y si condujeras hasta la Luna a 100 km/h?", 64,6 s), `lascosaspordentro/16-cargador-enchufado` ("¿Un cargador enchufado sin móvil gasta luz?", 62,3 s) y `dinerosinlio/14-cercanias` ("Nacidos 2000-2011: Cercanías a 10 €/mes", 61,5 s). En Las cosas por dentro el título va más grande (86 px, en caja de cobre, desde y 190) porque a Javier el primero le pareció pequeño y demasiado arriba. Se compara con los del 16 (sin título fijo) a las 24 horas: visualizaciones y, sobre todo, cuánta gente sigue a los 2 s y a los 5 s.
+
 **Lo que no se sabe:** si el techo de unas 800 visualizaciones es solo por el gancho. Las cuentas nuevas suelen recibir una primera tanda pequeña de público, y pasar de ahí depende también de cuánta gente ve el vídeo entero y lo comparte. El gancho es lo primero que se arregla porque es donde más gente se pierde, pero no hay garantía de que baste.
 
 ## Instagram: cómo lo hacemos y packs en la bio

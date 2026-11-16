@@ -1,0 +1,50 @@
+{
+  "titulo": "¿Un cargador enchufado sin móvil gasta luz?",
+  "lines": [
+    "Tu cargador vacío. ¿Gasta?",
+    "Dicen que gasta luz. ¿Será verdad?",
+    "Tres cosas por dentro, y la última es la cifra.",
+    "Primera: la corriente de casa entra por las clavijas, y un transformador la convierte en baja tensión, separada de la red.",
+    "Segunda: un chip abre y cierra esa corriente miles de veces por segundo.",
+    "Con el móvil conectado, el chip no para. Sin móvil, nadie pide energía.",
+    "Y el chip lo nota: casi deja de conectar, y solo da ráfagas cortas.",
+    "Tercera: aun así, algo gasta. El propio chip, y unas resistencias que descargan un condensador.",
+    "¿Cuánto? Desde abril de dos mil veinte, la ley europea limita el cargador vacío a una décima de vatio.",
+    "Una décima de vatio, todo el año enchufado, son menos de un kilovatio hora.",
+    "Ochocientos setenta y seis vatios hora, en realidad.",
+    "Lo que un hervidor de dos mil vatios gasta en veintiséis minutos.",
+    "Lo prometido: sí gasta, pero casi nada.",
+    "Veredicto: es verdad, pero desenchufarlo apenas te ahorra nada.",
+    "¿Y tú? ¿Lo desenchufas siempre? Sí o no."
+  ],
+  "claves": [
+    "cargador",
+    "será",
+    "última",
+    "transformador",
+    "chip",
+    "móvil",
+    "ráfagas",
+    "resistencias",
+    "europea",
+    "kilovatio",
+    "setenta",
+    "hervidor",
+    "prometido",
+    "veredicto",
+    "desenchufas"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "¿Gasta luz un cargador enchufado sin móvil? Por dentro, un chip lo abre y lo cierra miles de veces por segundo, y sin nada conectado casi deja de hacerlo: solo da ráfagas. Aun así algo gasta: el propio chip y unas resistencias. Desde abril de 2020 la ley europea limita ese gasto a 0,10 vatios en los cargadores externos de hasta 49 W: menos de 1 kWh al año. Ilustración simplificada, sin marca. ¿Y tú? ¿Lo desenchufas siempre? Sí o no.",
+    "hashtags": [
+      "#comofunciona",
+      "#tecnologia",
+      "#curiosidades",
+      "#parati",
+      "#mitos",
+      "#ahorro"
+    ],
+    "portada_en": "cargador"
+  }
+}

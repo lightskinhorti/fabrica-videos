@@ -1,0 +1,1176 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <script type="importmap">
+      { "imports": { "three": "./lib/three.module.js", "three/addons/": "./lib/addons/" } }
+    </script>
+    <link rel="stylesheet" href="comun/pordentro.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+      .mono { font-family: "JetBrains Mono", monospace; position: absolute; left: -2000px; top: 0; }
+      .lectura-p .v, .panel .cifra { font-family: "JetBrains Mono", monospace; font-weight: 700; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="62.3" data-width="1080" data-height="1920" data-fps="30">
+      <canvas id="gl" class="clip" data-start="0" data-duration="62.3" data-track-index="0" width="1080" height="1920"></canvas>
+      <div id="shade" class="clip" data-start="0" data-duration="62.3" data-track-index="1"></div>
+      <svg id="leaders" class="clip" data-start="0" data-duration="62.3" data-track-index="2" width="1080" height="1920" data-layout-allow-overlap></svg>
+      <div id="labels" class="clip" data-start="0" data-duration="62.3" data-track-index="3" data-layout-allow-overlap><span class="mono">0123456789</span></div>
+      <div id="note" class="clip" data-start="0" data-duration="62.3" data-track-index="4"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="62.3"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="62.3" data-track-index="5" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 61.03, "lines": [{"id": "l1", "s": 0.03, "e": 1.943, "words": [{"w": "Tu", "s": 0.03, "e": 0.15, "key": false}, {"w": "cargador", "s": 0.17, "e": 0.86, "key": true}, {"w": "vacío.", "s": 0.95, "e": 1.447, "key": false}, {"w": "¿Gasta?", "s": 1.447, "e": 1.943, "key": false}]}, {"id": "l2", "s": 1.943, "e": 5.0, "words": [{"w": "Dicen", "s": 1.943, "e": 2.44, "key": false}, {"w": "que", "s": 2.65, "e": 2.67, "key": false}, {"w": "gasta", "s": 2.67, "e": 3.04, "key": false}, {"w": "luz.", "s": 3.04, "e": 3.417, "key": false}, {"w": "¿Será", "s": 3.417, "e": 3.92, "key": true}, {"w": "verdad?", "s": 3.92, "e": 5.0, "key": false}]}, {"id": "l3", "s": 5.03, "e": 7.8, "words": [{"w": "Tres", "s": 5.03, "e": 5.28, "key": false}, {"w": "cosas", "s": 5.28, "e": 5.55, "key": false}, {"w": "por", "s": 5.75, "e": 5.84, "key": false}, {"w": "dentro,", "s": 5.84, "e": 6.15, "key": false}, {"w": "y", "s": 6.15, "e": 6.34, "key": false}, {"w": "la", "s": 6.34, "e": 6.47, "key": false}, {"w": "última", "s": 6.6, "e": 6.91, "key": true}, {"w": "es", "s": 6.91, "e": 7.0, "key": false}, {"w": "la", "s": 7, "e": 7.19, "key": false}, {"w": "cifra.", "s": 7.19, "e": 7.8, "key": false}]}, {"id": "l4", "s": 7.8, "e": 15.04, "words": [{"w": "Primera:", "s": 7.8, "e": 8.43, "key": false}, {"w": "la", "s": 8.43, "e": 8.75, "key": false}, {"w": "corriente", "s": 8.75, "e": 9.13, "key": false}, {"w": "de", "s": 9.13, "e": 9.22, "key": false}, {"w": "casa", "s": 9.22, "e": 9.46, "key": false}, {"w": "entra", "s": 9.46, "e": 9.76, "key": false}, {"w": "por", "s": 9.76, "e": 9.96, "key": false}, {"w": "las", "s": 9.96, "e": 10.04, "key": false}, {"w": "clavijas,", "s": 10.07, "e": 10.59, "key": false}, {"w": "y", "s": 10.59, "e": 10.6, "key": false}, {"w": "un", "s": 10.79, "e": 10.81, "key": false}, {"w": "transformador", "s": 10.81, "e": 11.76, "key": true}, {"w": "la", "s": 11.76, "e": 11.84, "key": false}, {"w": "convierte", "s": 11.94, "e": 12.54, "key": false}, {"w": "en", "s": 12.54, "e": 12.69, "key": false}, {"w": "baja", "s": 12.69, "e": 12.98, "key": false}, {"w": "tensión,", "s": 12.98, "e": 13.63, "key": false}, {"w": "separada", "s": 13.79, "e": 14.21, "key": false}, {"w": "de", "s": 14.21, "e": 14.26, "key": false}, {"w": "la", "s": 14.26, "e": 14.49, "key": false}, {"w": "red.", "s": 14.49, "e": 15.04, "key": false}]}, {"id": "l5", "s": 15.04, "e": 19.45, "words": [{"w": "Segunda:", "s": 15.04, "e": 16.16, "key": false}, {"w": "un", "s": 16.19, "e": 16.27, "key": false}, {"w": "chip", "s": 16.3, "e": 16.53, "key": true}, {"w": "abre", "s": 16.53, "e": 16.72, "key": false}, {"w": "y", "s": 16.72, "e": 16.9, "key": false}, {"w": "cierra", "s": 16.9, "e": 17.21, "key": false}, {"w": "esa", "s": 17.21, "e": 17.31, "key": false}, {"w": "corriente", "s": 17.71, "e": 17.96, "key": false}, {"w": "miles", "s": 17.96, "e": 18.16, "key": false}, {"w": "de", "s": 18.16, "e": 18.55, "key": false}, {"w": "veces", "s": 18.55, "e": 18.64, "key": false}, {"w": "por", "s": 18.81, "e": 18.89, "key": false}, {"w": "segundo.", "s": 18.89, "e": 19.45, "key": false}]}, {"id": "l6", "s": 19.45, "e": 23.89, "words": [{"w": "Con", "s": 19.45, "e": 19.59, "key": false}, {"w": "el", "s": 19.59, "e": 19.87, "key": false}, {"w": "móvil", "s": 19.87, "e": 20.06, "key": true}, {"w": "conectado,", "s": 20.06, "e": 20.84, "key": false}, {"w": "el", "s": 20.87, "e": 20.99, "key": false}, {"w": "chip", "s": 21.01, "e": 21.31, "key": false}, {"w": "no", "s": 21.31, "e": 21.39, "key": false}, {"w": "para.", "s": 21.6, "e": 21.99, "key": false}, {"w": "Sin", "s": 22, "e": 22.01, "key": false}, {"w": "móvil,", "s": 22.41, "e": 22.64, "key": false}, {"w": "nadie", "s": 22.64, "e": 22.84, "key": false}, {"w": "pide", "s": 23.01, "e": 23.33, "key": false}, {"w": "energía.", "s": 23.49, "e": 23.89, "key": false}]}, {"id": "l7", "s": 23.89, "e": 28.18, "words": [{"w": "Y", "s": 23.89, "e": 23.97, "key": false}, {"w": "el", "s": 23.97, "e": 24.13, "key": false}, {"w": "chip", "s": 24.13, "e": 24.27, "key": false}, {"w": "lo", "s": 24.55, "e": 24.6, "key": false}, {"w": "nota:", "s": 24.63, "e": 25.06, "key": false}, {"w": "casi", "s": 25.06, "e": 25.39, "key": false}, {"w": "deja", "s": 25.39, "e": 25.62, "key": false}, {"w": "de", "s": 25.62, "e": 25.79, "key": false}, {"w": "conectar,", "s": 25.79, "e": 26.2, "key": false}, {"w": "y", "s": 26.2, "e": 26.23, "key": false}, {"w": "solo", "s": 26.23, "e": 26.56, "key": false}, {"w": "da", "s": 26.56, "e": 26.72, "key": false}, {"w": "ráfagas", "s": 26.74, "e": 27.35, "key": true}, {"w": "cortas.", "s": 27.37, "e": 28.18, "key": false}]}, {"id": "l8", "s": 28.18, "e": 34.285, "words": [{"w": "Tercera:", "s": 28.18, "e": 28.99, "key": false}, {"w": "aun", "s": 28.99, "e": 29.26, "key": false}, {"w": "así,", "s": 29.26, "e": 29.53, "key": false}, {"w": "algo", "s": 29.53, "e": 29.64, "key": false}, {"w": "gasta.", "s": 29.94, "e": 30.42, "key": false}, {"w": "El", "s": 30.6, "e": 30.79, "key": false}, {"w": "propio", "s": 31.15, "e": 31.32, "key": false}, {"w": "chip,", "s": 31.37, "e": 31.72, "key": false}, {"w": "y", "s": 31.72, "e": 31.77, "key": false}, {"w": "unas", "s": 31.77, "e": 31.98, "key": false}, {"w": "resistencias", "s": 31.98, "e": 32.64, "key": true}, {"w": "que", "s": 32.64, "e": 32.8, "key": false}, {"w": "descargan", "s": 32.83, "e": 33.25, "key": false}, {"w": "un", "s": 33.25, "e": 33.34, "key": false}, {"w": "condensador.", "s": 33.34, "e": 34.285, "key": false}]}, {"id": "l9", "s": 34.285, "e": 40.28, "words": [{"w": "¿Cuánto?", "s": 34.285, "e": 34.8, "key": false}, {"w": "Desde", "s": 34.99, "e": 35.3, "key": false}, {"w": "abril", "s": 35.44, "e": 35.62, "key": false}, {"w": "de", "s": 35.69, "e": 35.75, "key": false}, {"w": "2020,", "s": 35.75, "e": 36.68, "key": false}, {"w": "la", "s": 36.68, "e": 36.82, "key": false}, {"w": "ley", "s": 36.82, "e": 37.01, "key": false}, {"w": "europea", "s": 37.01, "e": 37.54, "key": true}, {"w": "limita", "s": 37.75, "e": 37.92, "key": false}, {"w": "el", "s": 37.97, "e": 38.04, "key": false}, {"w": "cargador", "s": 38.04, "e": 38.44, "key": false}, {"w": "vacío", "s": 38.44, "e": 38.68, "key": false}, {"w": "a", "s": 38.79, "e": 38.83, "key": false}, {"w": "una", "s": 38.83, "e": 39.05, "key": false}, {"w": "décima", "s": 39.06, "e": 39.32, "key": false}, {"w": "de", "s": 39.52, "e": 39.737, "key": false}, {"w": "vatio.", "s": 39.737, "e": 40.28, "key": false}]}, {"id": "l10", "s": 40.36, "e": 44.92, "words": [{"w": "Una", "s": 40.36, "e": 40.51, "key": false}, {"w": "décima", "s": 40.51, "e": 40.76, "key": false}, {"w": "de", "s": 40.96, "e": 41.114, "key": false}, {"w": "vatio,", "s": 41.114, "e": 41.5, "key": false}, {"w": "todo", "s": 41.51, "e": 41.81, "key": false}, {"w": "el", "s": 41.81, "e": 41.95, "key": false}, {"w": "año", "s": 42.02, "e": 42.19, "key": false}, {"w": "enchufado,", "s": 42.19, "e": 42.88, "key": false}, {"w": "son", "s": 42.88, "e": 42.98, "key": false}, {"w": "menos", "s": 43.21, "e": 43.35, "key": false}, {"w": "de", "s": 43.35, "e": 43.71, "key": false}, {"w": "un", "s": 43.71, "e": 43.8, "key": false}, {"w": "kilovatio", "s": 43.8, "e": 44.64, "key": true}, {"w": "hora.", "s": 44.73, "e": 44.92, "key": false}]}, {"id": "l11", "s": 44.95, "e": 47.11, "words": [{"w": "876", "s": 44.95, "e": 45.48, "key": true}, {"w": "vatios", "s": 45.63, "e": 45.98, "key": false}, {"w": "hora,", "s": 45.98, "e": 46.07, "key": false}, {"w": "en", "s": 46.26, "e": 46.39, "key": false}, {"w": "realidad.", "s": 46.51, "e": 47.11, "key": false}]}, {"id": "l12", "s": 47.11, "e": 51.2, "words": [{"w": "Lo", "s": 47.11, "e": 47.25, "key": false}, {"w": "que", "s": 47.31, "e": 47.4, "key": false}, {"w": "un", "s": 47.57, "e": 47.6, "key": false}, {"w": "hervidor", "s": 47.6, "e": 48.1, "key": true}, {"w": "de", "s": 48.18, "e": 48.3, "key": false}, {"w": "2.000", "s": 48.3, "e": 49.14, "key": false}, {"w": "vatios", "s": 49.35, "e": 49.78, "key": false}, {"w": "gasta", "s": 49.85, "e": 50.13, "key": false}, {"w": "en", "s": 50.13, "e": 50.27, "key": false}, {"w": "26", "s": 50.27, "e": 50.8, "key": false}, {"w": "minutos.", "s": 50.89, "e": 51.2, "key": false}]}, {"id": "l13", "s": 51.2, "e": 54.47, "words": [{"w": "Lo", "s": 51.2, "e": 51.43, "key": false}, {"w": "prometido:", "s": 51.43, "e": 52.48, "key": true}, {"w": "sí", "s": 52.51, "e": 52.65, "key": false}, {"w": "gasta,", "s": 52.65, "e": 53.24, "key": false}, {"w": "pero", "s": 53.24, "e": 53.58, "key": false}, {"w": "casi", "s": 53.58, "e": 53.63, "key": false}, {"w": "nada.", "s": 54.07, "e": 54.47, "key": false}]}, {"id": "l14", "s": 54.78, "e": 58.16, "words": [{"w": "Veredicto:", "s": 54.78, "e": 55.46, "key": true}, {"w": "es", "s": 55.46, "e": 55.63, "key": false}, {"w": "verdad,", "s": 55.63, "e": 56.4, "key": false}, {"w": "pero", "s": 56.4, "e": 56.6, "key": false}, {"w": "desenchufarlo", "s": 56.6, "e": 57.25, "key": false}, {"w": "apenas", "s": 57.43, "e": 57.6, "key": false}, {"w": "te", "s": 57.6, "e": 57.69, "key": false}, {"w": "ahorra", "s": 57.69, "e": 57.96, "key": false}, {"w": "nada.", "s": 57.96, "e": 58.16, "key": false}]}, {"id": "l15", "s": 58.16, "e": 60.68, "words": [{"w": "¿Y", "s": 58.16, "e": 58.413, "key": false}, {"w": "tú?", "s": 58.413, "e": 58.92, "key": false}, {"w": "¿Lo", "s": 58.95, "e": 59.02, "key": false}, {"w": "desenchufas", "s": 59.03, "e": 59.65, "key": true}, {"w": "siempre?", "s": 59.67, "e": 60.07, "key": false}, {"w": "Sí", "s": 60.07, "e": 60.27, "key": false}, {"w": "o", "s": 60.27, "e": 60.33, "key": false}, {"w": "no.", "s": 60.44, "e": 60.68, "key": false}]}]}</script>
+    <script id="escena" type="application/json">
+{
+ "momentos": [
+  {
+   "id": "DICEN",
+   "clave": "dicen"
+  },
+  {
+   "id": "SERA",
+   "clave": "sera"
+  },
+  {
+   "id": "TRES",
+   "clave": "tres"
+  },
+  {
+   "id": "ULTIMA",
+   "clave": "ultima"
+  },
+  {
+   "id": "PRIMERA",
+   "clave": "primera"
+  },
+  {
+   "id": "CORRIENTE",
+   "clave": "corriente"
+  },
+  {
+   "id": "ENTRA",
+   "clave": "entra"
+  },
+  {
+   "id": "CLAVIJAS",
+   "clave": "clavijas"
+  },
+  {
+   "id": "TRANSF",
+   "clave": "transformador"
+  },
+  {
+   "id": "BAJA",
+   "clave": "baja"
+  },
+  {
+   "id": "SEPARADA",
+   "clave": "separada"
+  },
+  {
+   "id": "SEGUNDA",
+   "clave": "segunda"
+  },
+  {
+   "id": "CHIP",
+   "clave": "chip"
+  },
+  {
+   "id": "ABRE",
+   "clave": "abre"
+  },
+  {
+   "id": "MILES",
+   "clave": "miles"
+  },
+  {
+   "id": "CON",
+   "clave": "con"
+  },
+  {
+   "id": "NOPARA",
+   "clave": "no"
+  },
+  {
+   "id": "SIN",
+   "clave": "sin"
+  },
+  {
+   "id": "LONOTA",
+   "clave": "nota"
+  },
+  {
+   "id": "CASI",
+   "clave": "casi"
+  },
+  {
+   "id": "RAFAGAS",
+   "clave": "rafagas"
+  },
+  {
+   "id": "TERCERA",
+   "clave": "tercera"
+  },
+  {
+   "id": "ALGO",
+   "clave": "algo"
+  },
+  {
+   "id": "PROPIO",
+   "clave": "propio"
+  },
+  {
+   "id": "RESIST",
+   "clave": "resistencias"
+  },
+  {
+   "id": "CONDENS",
+   "clave": "condensador"
+  },
+  {
+   "id": "CUANTO",
+   "clave": "cuanto"
+  },
+  {
+   "id": "ABRIL",
+   "clave": "abril"
+  },
+  {
+   "id": "EUROPEA",
+   "clave": "europea"
+  },
+  {
+   "id": "DECIMA",
+   "clave": "decima"
+  },
+  {
+   "id": "UNA2",
+   "clave": "una"
+  },
+  {
+   "id": "ANO",
+   "clave": "ano"
+  },
+  {
+   "id": "MENOS",
+   "clave": "menos"
+  },
+  {
+   "id": "KILO",
+   "clave": "kilovatio"
+  },
+  {
+   "id": "OCHO",
+   "clave": "876"
+  },
+  {
+   "id": "HERV",
+   "clave": "hervidor"
+  },
+  {
+   "id": "VEINTISEIS",
+   "clave": "26"
+  },
+  {
+   "id": "LO2",
+   "clave": "lo"
+  },
+  {
+   "id": "GASTA2",
+   "clave": "gasta"
+  },
+  {
+   "id": "CASINADA",
+   "clave": "casi"
+  },
+  {
+   "id": "VEREDICTO",
+   "clave": "veredicto"
+  },
+  {
+   "id": "DESENCHUFARLO",
+   "clave": "desenchufarlo"
+  },
+  {
+   "id": "AHORRA",
+   "clave": "ahorra"
+  },
+  {
+   "id": "Y",
+   "clave": "y"
+  },
+  {
+   "id": "DESENCHUFAS",
+   "clave": "desenchufas"
+  }
+ ],
+ "titulo": {
+  "texto": "¿Un cargador enchufado sin móvil gasta luz?",
+  "clave": "cargador"
+ },
+ "arranque": {
+  "cambio": 1.15,
+  "transicion": 0.35
+ },
+ "encuadre": {
+  "llenar": 1.3,
+  "zona": [
+   50,
+   620,
+   950,
+   1440
+  ]
+ },
+ "estilo": "rejilla",
+ "desenfoque": {
+  "apertura": 0,
+  "max": 0.012
+ },
+ "iconos": {},
+ "etiquetas": [
+  {
+   "texto": "CLAVIJAS",
+   "pieza": "ch.pines",
+   "desde": "ENTRA",
+   "hasta": "TRANSF",
+   "dx": -40,
+   "dy": -230
+  },
+  {
+   "texto": "TRANSFORMADOR",
+   "pieza": "ch.transformador",
+   "desde": "TRANSF",
+   "hasta": "BAJA",
+   "dx": 40,
+   "dy": -250
+  },
+  {
+   "texto": "AISLADO DE LA RED",
+   "pieza": "ch.transformador",
+   "desde": "SEPARADA",
+   "hasta": "SEGUNDA",
+   "dx": -40,
+   "dy": -250
+  },
+  {
+   "texto": "CHIP DE CONTROL",
+   "pieza": "ch.chip",
+   "desde": "CHIP",
+   "hasta": "MILES",
+   "dx": -40,
+   "dy": -230
+  },
+  {
+   "texto": "PUERTO USB",
+   "pieza": "ch.puerto",
+   "desde": "CON",
+   "hasta": "NOPARA",
+   "dx": 40,
+   "dy": -220
+  },
+  {
+   "texto": "CHIP",
+   "pieza": "ch.chip",
+   "desde": "LONOTA",
+   "hasta": "CASI",
+   "dx": 40,
+   "dy": -230
+  },
+  {
+   "texto": "CHIP",
+   "pieza": "ch.chip",
+   "desde": "PROPIO",
+   "hasta": "RESIST",
+   "dx": -40,
+   "dy": -230
+  },
+  {
+   "texto": "RESISTENCIAS DE DESCARGA",
+   "pieza": "ch.resistencias",
+   "desde": "RESIST",
+   "hasta": "CUANTO",
+   "dx": 40,
+   "dy": -240
+  }
+ ],
+ "notas": [
+  {
+   "texto": "Ilustración ampliada, no a escala",
+   "desde": 0
+  },
+  {
+   "texto": "Ilustración simplificada, sin marca",
+   "desde": "PRIMERA"
+  },
+  {
+   "texto": "Señal del chip dibujada, sin escala de tiempo",
+   "desde": "MILES"
+  },
+  {
+   "texto": "Ilustración ampliada, no a escala",
+   "desde": "TERCERA"
+  },
+  {
+   "texto": "Límite legal, no una medición",
+   "desde": "CUANTO"
+  },
+  {
+   "texto": "Reglamento (UE) 2019/1782: cargadores de hasta 49 W",
+   "desde": "ABRIL"
+  },
+  {
+   "texto": "Cálculo: 0,10 W × 24 h × 365 días",
+   "desde": "ANO"
+  },
+  {
+   "texto": "Ejemplo de cálculo: 2.000 W durante 26 min ≈ 0,87 kWh",
+   "desde": "HERV"
+  },
+  {
+   "texto": "Ilustración simplificada, sin marca",
+   "desde": "LO2"
+  },
+  {
+   "texto": "",
+   "desde": "Y"
+  }
+ ],
+ "leyenda": [
+  {
+   "color": "#ffb22e",
+   "forma": "punto",
+   "texto": "corriente",
+   "desde": "PRIMERA",
+   "hasta": "SEGUNDA"
+  },
+  {
+   "color": "#6fdcff",
+   "forma": "punto",
+   "texto": "señal del chip",
+   "desde": "MILES",
+   "hasta": "TERCERA"
+  }
+ ],
+ "sonidos": [
+  {
+   "tipo": "zumbido",
+   "desde": 0.1,
+   "hasta": "DICEN",
+   "volumen": 0.35
+  },
+  {
+   "tipo": "pop",
+   "en": "TRES"
+  },
+  {
+   "tipo": "brillo",
+   "en": "ULTIMA"
+  },
+  {
+   "tipo": "desliza",
+   "en": "PRIMERA"
+  },
+  {
+   "tipo": "toque",
+   "en": "ENTRA"
+  },
+  {
+   "tipo": "chip",
+   "en": "TRANSF"
+  },
+  {
+   "tipo": "abre",
+   "en": "BAJA"
+  },
+  {
+   "tipo": "pop",
+   "en": "SEGUNDA"
+  },
+  {
+   "tipo": "chip",
+   "en": "CHIP"
+  },
+  {
+   "tipo": "tictac",
+   "desde": "MILES",
+   "hasta": "SIN",
+   "volumen": 0.3
+  },
+  {
+   "tipo": "desliza",
+   "en": "SIN"
+  },
+  {
+   "tipo": "brillo",
+   "en": "CASI"
+  },
+  {
+   "tipo": "pop",
+   "en": "TERCERA"
+  },
+  {
+   "tipo": "error",
+   "en": "PROPIO",
+   "volumen": 0.3
+  },
+  {
+   "tipo": "error",
+   "en": "RESIST",
+   "volumen": 0.3
+  },
+  {
+   "tipo": "pop",
+   "en": "CUANTO"
+  },
+  {
+   "tipo": "sube",
+   "en": "DECIMA"
+  },
+  {
+   "tipo": "brillo",
+   "en": "UNA2"
+  },
+  {
+   "tipo": "sube",
+   "en": "OCHO"
+  },
+  {
+   "tipo": "sube",
+   "en": "VEINTISEIS"
+  },
+  {
+   "tipo": "pop",
+   "en": "VEREDICTO"
+  },
+  {
+   "tipo": "toque",
+   "en": "Y"
+  }
+ ],
+ "sets": {
+  "ch": {
+   "objetos": [
+    {
+     "tipo": "cargadorPared",
+     "id": "ch"
+    }
+   ],
+   "luz": "anuncio"
+  },
+  "ml": {
+   "objetos": [
+    {
+     "tipo": "medidorLimite",
+     "id": "ml"
+    }
+   ],
+   "luz": "anuncio"
+  }
+ },
+ "flujos": {
+  "entrada": {
+   "set": "ch",
+   "ruta": [
+    {
+     "curva": "ch.entrada"
+    }
+   ],
+   "color": "#ffb22e",
+   "hebras": 2,
+   "ancho": 0.14,
+   "separa": 0.1,
+   "puntos": 300,
+   "intensidad": 0.9
+  },
+  "salida": {
+   "set": "ch",
+   "ruta": [
+    {
+     "curva": "ch.salida"
+    }
+   ],
+   "color": "#6fdcff",
+   "hebras": 2,
+   "ancho": 0.12,
+   "separa": 0.1,
+   "puntos": 300,
+   "intensidad": 0.9
+  }
+ },
+ "planos": [
+  {
+   "tipo": "anuncio",
+   "set": "ch",
+   "pieza": "ch",
+   "desde": 0,
+   "estado": {
+    "rayosX": 1,
+    "modo": 0,
+    "latido": 1,
+    "traza": 1,
+    "salida": 0
+   },
+   "angulo": 8,
+   "altura": 6,
+   "orbita": 14,
+   "empuje": 0.06,
+   "variantes": [
+    {
+     "pieza": "ch.transformador",
+     "radio": 3.4,
+     "angulo": -26,
+     "altura": 14
+    }
+   ]
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ch",
+   "pieza": "ch",
+   "desde": "DICEN",
+   "estado": {
+    "rayosX": 0,
+    "modo": 0,
+    "latido": 1,
+    "traza": 0,
+    "salida": 0
+   },
+   "angulo": -32,
+   "altura": 14,
+   "orbita": -12,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ch",
+   "pieza": "ch",
+   "desde": "SERA",
+   "estado": {
+    "rayosX": {
+     "de": 0,
+     "a": 1,
+     "en": "SERA",
+     "dur": 1.2
+    },
+    "modo": 0,
+    "latido": 1,
+    "traza": 0,
+    "salida": 0
+   },
+   "angulo": 16,
+   "altura": 5,
+   "orbita": 10,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "cifra",
+   "set": "ch",
+   "pieza": "ch",
+   "desde": "TRES",
+   "estado": {
+    "rayosX": 1,
+    "modo": 0,
+    "latido": 1,
+    "traza": 0,
+    "salida": 0
+   },
+   "angulo": 8,
+   "altura": 6,
+   "lectura": {
+    "texto": "3",
+    "titulo": "TRES COSAS POR DENTRO",
+    "y": 960,
+    "tam": 260
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ml",
+   "pieza": "ml.pantalla",
+   "desde": "ULTIMA",
+   "estado": {
+    "texto": "MÁX ?,?? W",
+    "sub": "LA CIFRA"
+   },
+   "radio": 4.8,
+   "angulo": 10,
+   "altura": 4,
+   "empuje": 0.08
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ch",
+   "pieza": "ch",
+   "desde": "PRIMERA",
+   "estado": {
+    "rayosX": 1,
+    "modo": 0,
+    "latido": 1,
+    "traza": 0,
+    "salida": 0
+   },
+   "angulo": -8,
+   "altura": 6,
+   "orbita": 12,
+   "flujos": [
+    "entrada"
+   ],
+   "crece": true
+  },
+  {
+   "tipo": "macro",
+   "set": "ch",
+   "pieza": "ch.pines",
+   "desde": "ENTRA",
+   "estado": {
+    "rayosX": 1,
+    "modo": 0,
+    "latido": 1,
+    "traza": 0,
+    "salida": 0
+   },
+   "radio": 3.8,
+   "angulo": -44,
+   "altura": 10,
+   "apertura": 0.003,
+   "empuje": 0.08,
+   "flujos": [
+    "entrada"
+   ],
+   "crece": true
+  },
+  {
+   "tipo": "macro",
+   "set": "ch",
+   "pieza": "ch.transformador",
+   "desde": "TRANSF",
+   "estado": {
+    "rayosX": 1,
+    "modo": 1,
+    "latido": 1,
+    "traza": 0,
+    "salida": 0
+   },
+   "radio": 3.0,
+   "angulo": 16,
+   "altura": 12,
+   "apertura": 0.003,
+   "resaltar": [
+    "ch.transformador"
+   ],
+   "fuerzaResalte": 0.25
+  },
+  {
+   "tipo": "corte",
+   "set": "ch",
+   "pieza": "ch",
+   "desde": "BAJA",
+   "estado": {
+    "rayosX": 1,
+    "modo": 1,
+    "latido": 1,
+    "traza": 0,
+    "salida": 0
+   },
+   "eje": "x",
+   "radio": 4.6,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "macro",
+   "set": "ch",
+   "pieza": "ch.transformador",
+   "desde": "SEPARADA",
+   "estado": {
+    "rayosX": 1,
+    "modo": 1,
+    "latido": 1,
+    "traza": 0,
+    "salida": 0
+   },
+   "radio": 3.2,
+   "angulo": -32,
+   "altura": 22,
+   "apertura": 0.003,
+   "flujos": [
+    "salida"
+   ],
+   "crece": true,
+   "orbita": -12
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ch",
+   "pieza": "ch",
+   "desde": "SEGUNDA",
+   "estado": {
+    "rayosX": 1,
+    "modo": 1,
+    "latido": 1,
+    "traza": 0,
+    "salida": 0
+   },
+   "angulo": 6,
+   "altura": 4,
+   "orbita": -10,
+   "empuje": 0.06
+  },
+  {
+   "tipo": "macro",
+   "set": "ch",
+   "pieza": "ch.chip",
+   "desde": "CHIP",
+   "estado": {
+    "rayosX": 1,
+    "modo": 1,
+    "latido": 1,
+    "traza": 0,
+    "salida": 0
+   },
+   "radio": 2.5,
+   "angulo": -18,
+   "altura": 14,
+   "apertura": 0.003,
+   "empuje": 0.1,
+   "resaltar": [
+    "ch.chip"
+   ],
+   "fuerzaResalte": 0.3
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ch",
+   "pieza": "ch.traza",
+   "desde": "MILES",
+   "estado": {
+    "rayosX": 1,
+    "modo": 1,
+    "latido": 1,
+    "traza": 1,
+    "salida": 0
+   },
+   "radio": 5.8,
+   "angulo": 0,
+   "altura": 3,
+   "empuje": 0.06
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ch",
+   "pieza": "ch",
+   "desde": "CON",
+   "estado": {
+    "rayosX": 1,
+    "modo": 1,
+    "latido": 1,
+    "traza": 1,
+    "salida": 1
+   },
+   "angulo": -14,
+   "altura": 10,
+   "orbita": 12,
+   "empuje": 0.04,
+   "variar": false
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ch",
+   "pieza": "ch.traza",
+   "desde": "SIN",
+   "estado": {
+    "rayosX": 1,
+    "modo": {
+     "de": 1,
+     "a": 0,
+     "en": "SIN",
+     "dur": 0.9
+    },
+    "latido": 1,
+    "traza": 1,
+    "salida": {
+     "de": 1,
+     "a": 0,
+     "en": "SIN",
+     "dur": 0.6
+    }
+   },
+   "radio": 6.0,
+   "angulo": 4,
+   "altura": 3,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "macro",
+   "set": "ch",
+   "pieza": "ch.chip",
+   "desde": "LONOTA",
+   "estado": {
+    "rayosX": 1,
+    "modo": 0,
+    "latido": 1,
+    "traza": 0,
+    "salida": 0
+   },
+   "radio": 2.6,
+   "angulo": 16,
+   "altura": 8,
+   "apertura": 0.003,
+   "resaltar": [
+    "ch.chip"
+   ],
+   "fuerzaResalte": 0.3
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ch",
+   "pieza": "ch",
+   "desde": "CASI",
+   "estado": {
+    "rayosX": 1,
+    "modo": 0,
+    "latido": 1,
+    "traza": 1,
+    "salida": 0
+   },
+   "angulo": 10,
+   "altura": 6,
+   "orbita": -12,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "macro",
+   "set": "ch",
+   "pieza": "ch.traza",
+   "desde": "RAFAGAS",
+   "estado": {
+    "rayosX": 1,
+    "modo": 0,
+    "latido": 1,
+    "traza": 1,
+    "salida": 0
+   },
+   "radio": 4.8,
+   "angulo": 0,
+   "altura": 0,
+   "empuje": 0.1
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ch",
+   "pieza": "ch",
+   "desde": "TERCERA",
+   "estado": {
+    "rayosX": 1,
+    "modo": 0,
+    "latido": 1,
+    "traza": 0,
+    "salida": 0
+   },
+   "angulo": -22,
+   "altura": 10,
+   "orbita": 14,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "macro",
+   "set": "ch",
+   "pieza": "ch.chip",
+   "desde": "PROPIO",
+   "estado": {
+    "rayosX": 1,
+    "modo": 0,
+    "latido": 1,
+    "traza": 0,
+    "salida": 0
+   },
+   "radio": 2.4,
+   "angulo": 14,
+   "altura": 12,
+   "apertura": 0.003,
+   "resaltar": [
+    "ch.chip"
+   ],
+   "colorResalte": "255,120,70",
+   "fuerzaResalte": 0.3
+  },
+  {
+   "tipo": "macro",
+   "set": "ch",
+   "pieza": "ch.resistencias",
+   "desde": "RESIST",
+   "estado": {
+    "rayosX": 1,
+    "modo": 0,
+    "latido": 1,
+    "traza": 0,
+    "salida": 0
+   },
+   "radio": 2.0,
+   "angulo": -12,
+   "altura": 22,
+   "apertura": 0.003,
+   "empuje": 0.08,
+   "resaltar": [
+    "ch.resistencias"
+   ],
+   "colorResalte": "255,120,70",
+   "fuerzaResalte": 0.35
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ml",
+   "pieza": "ml",
+   "desde": "CUANTO",
+   "estado": {
+    "texto": "MÁX ?,?? W",
+    "sub": "¿CUÁNTO?"
+   },
+   "angulo": 14,
+   "altura": 8,
+   "orbita": 10,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "macro",
+   "set": "ml",
+   "pieza": "ml.mini",
+   "desde": "EUROPEA",
+   "estado": {
+    "texto": "MÁX ?,?? W",
+    "sub": "LEY EUROPEA"
+   },
+   "radio": 3.6,
+   "angulo": -30,
+   "altura": 14,
+   "apertura": 0.003,
+   "empuje": 0.08
+  },
+  {
+   "tipo": "macro",
+   "set": "ml",
+   "pieza": "ml.pantalla",
+   "desde": "DECIMA",
+   "estado": {
+    "texto": "MÁX 0,10 W",
+    "sub": "LÍMITE LEGAL"
+   },
+   "radio": 4.4,
+   "angulo": -8,
+   "altura": 3,
+   "apertura": 0.002,
+   "empuje": 0.08
+  },
+  {
+   "tipo": "cifra",
+   "set": "ml",
+   "pieza": "ml",
+   "desde": "UNA2",
+   "estado": {
+    "texto": "MÁX 0,10 W",
+    "sub": "LÍMITE LEGAL",
+    "luz": 0.5
+   },
+   "angulo": 10,
+   "altura": 6,
+   "lectura": {
+    "texto": "0,10 W",
+    "titulo": "CARGADOR VACÍO · LÍMITE",
+    "y": 960,
+    "tam": 230,
+    "tituloTam": 64
+   }
+  },
+  {
+   "tipo": "cifra",
+   "set": "ml",
+   "pieza": "ml",
+   "desde": "ANO",
+   "estado": {
+    "texto": "MÁX 0,10 W",
+    "sub": "LÍMITE LEGAL",
+    "luz": 0.5
+   },
+   "angulo": -10,
+   "altura": 6,
+   "lectura": {
+    "texto": "8.760 h",
+    "titulo": "UN AÑO ENCHUFADO",
+    "y": 960,
+    "tam": 210,
+    "tituloTam": 64
+   }
+  },
+  {
+   "tipo": "cifra",
+   "set": "ml",
+   "pieza": "ml",
+   "desde": "MENOS",
+   "estado": {
+    "texto": "MÁX 0,10 W",
+    "sub": "LÍMITE LEGAL",
+    "luz": 0.5
+   },
+   "angulo": 8,
+   "altura": 8,
+   "lectura": {
+    "texto": "< 1 kWh",
+    "titulo": "ENERGÍA EN UN AÑO",
+    "y": 960,
+    "tam": 210,
+    "tituloTam": 64
+   }
+  },
+  {
+   "tipo": "cifra",
+   "set": "ml",
+   "pieza": "ml",
+   "desde": "OCHO",
+   "estado": {
+    "texto": "MÁX 0,10 W",
+    "sub": "LÍMITE LEGAL",
+    "luz": 0.5
+   },
+   "angulo": -8,
+   "altura": 6,
+   "lectura": {
+    "de": 0,
+    "a": 876,
+    "decimales": 0,
+    "unidad": " Wh",
+    "titulo": "0,10 W × 8.760 h",
+    "en": "OCHO",
+    "dur": 1.4,
+    "y": 960,
+    "tam": 230,
+    "tituloTam": 64
+   }
+  },
+  {
+   "tipo": "cifra",
+   "set": "ml",
+   "pieza": "ml",
+   "desde": "HERV",
+   "estado": {
+    "texto": "MÁX 0,10 W",
+    "sub": "LÍMITE LEGAL",
+    "luz": 0.5
+   },
+   "angulo": 10,
+   "altura": 6,
+   "lectura": {
+    "de": 0,
+    "a": 26,
+    "decimales": 0,
+    "unidad": " min",
+    "titulo": "HERVIDOR DE 2.000 W",
+    "en": "VEINTISEIS",
+    "dur": 0.8,
+    "y": 960,
+    "tam": 230,
+    "tituloTam": 64
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ch",
+   "pieza": "ch",
+   "desde": "LO2",
+   "estado": {
+    "rayosX": 1,
+    "modo": 0,
+    "latido": 1,
+    "traza": 1,
+    "salida": 0
+   },
+   "angulo": 10,
+   "altura": 6,
+   "orbita": -14,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "cifra",
+   "set": "ch",
+   "pieza": "ch",
+   "desde": "VEREDICTO",
+   "estado": {
+    "rayosX": 0,
+    "modo": 0,
+    "latido": 1,
+    "traza": 0,
+    "salida": 0
+   },
+   "angulo": -12,
+   "altura": 8,
+   "lectura": {
+    "texto": "VERDAD",
+    "titulo": "VEREDICTO",
+    "sub": "pero casi nada",
+    "y": 950,
+    "tam": 190,
+    "tituloTam": 64,
+    "subTam": 58
+   }
+  },
+  {
+   "tipo": "cifra",
+   "set": "ch",
+   "pieza": "ch",
+   "desde": "Y",
+   "estado": {
+    "rayosX": 0,
+    "modo": 0,
+    "latido": 1,
+    "traza": 0,
+    "salida": 0
+   },
+   "angulo": 12,
+   "altura": 8,
+   "lectura": {
+    "texto": "?",
+    "titulo": "¿Lo desenchufas siempre?",
+    "y": 950,
+    "tam": 230,
+    "tituloTam": 84,
+    "tituloAncho": 780,
+    "sub": "Sí o no, en los comentarios",
+    "subTam": 44
+   }
+  }
+ ]
+}
+</script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 62.3 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      // 16-cargador-enchufado: the scene is the JSON above (sets and shots), built by the shot templates. The wall charger and the
+      // limit meter are library objects (objetos/cargador.js, registered in objetos/index.js).
+      // Uses the fixed title ("titulo"), "arranque" and "encuadre": see the headers of the engine.
+      import * as THREE from "three";
+      import { crearPorDentro } from "./comun/pordentro.js";
+      import { crearDetalle } from "./comun/detalle.js";
+      import { crearPlantillas } from "./comun/plantillas.js";
+      await Promise.all(['700 50px "Inter"', '400 50px "Inter"', '700 50px "JetBrains Mono"', '400 50px "JetBrains Mono"'].map((f) => document.fonts.load(f)));
+      const C = crearPorDentro(THREE);
+      const X = crearDetalle(THREE, C);
+      const P = crearPlantillas(THREE, C, X, { cerca: 0.5 });
+      C.camera.far = 3000; C.camera.updateProjectionMatrix();
+      P.arrancar();
+    </script>
+  </body>
+</html>

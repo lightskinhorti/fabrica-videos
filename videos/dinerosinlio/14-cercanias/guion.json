@@ -1,0 +1,41 @@
+{
+  "titulo": "Nacidos 2000-2011: Cercanías a 10 €/mes",
+  "lines": [
+    "Joven, Cercanías a diez euros.",
+    "¿Naciste de dos mil hasta dos mil once? Mira el BOE. Y al final, una fecha que caduca.",
+    "Real Decreto-ley diecisiete de dos mil veinticinco, artículo tres: abono mensual de Cercanías, tarifa única, veinte euros.",
+    "Para jóvenes nacidos entre el uno de enero de dos mil y el treinta y uno de diciembre de dos mil once, españoles o con residencia legal: diez euros.",
+    "Y los niños nacidos desde dos mil doce: sin coste.",
+    "Ojo: es nominativo, va a tu nombre, dura un mes y vale en todas las zonas de un núcleo.",
+    "En Media Distancia: cuarenta por ciento menos en el abono mensual, y esos jóvenes pagan la mitad de eso.",
+    "Hay fecha: todo esto vale hasta el treinta y uno de diciembre de dos mil veintiséis. Quedan menos de siete semanas.",
+    "El decreto solo llega hasta ahí: lo que ocurra después dependerá de una norma nueva.",
+    "Pásaselo a quien haya nacido de dos mil hasta dos mil once y coja Cercanías. ¿Conocías este abono? Sí o no."
+  ],
+  "claves": [
+    "diez",
+    "caduca",
+    "única",
+    "jóvenes",
+    "coste",
+    "nominativo",
+    "mitad",
+    "fecha",
+    "norma",
+    "conocías"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "Cercanías, según el Real Decreto-ley 17/2025 (art. 3), del 1 de enero al 31 de diciembre de 2026: abono mensual nominativo de tarifa única de 20 euros, con validez de un mes y válido en todas las zonas de cada núcleo; de 10 euros para jóvenes nacidos entre el 1 de enero de 2000 y el 31 de diciembre de 2011 con nacionalidad española o residencia legal en España; sin coste para los niños nacidos entre el 1 de enero de 2012 y el 31 de diciembre de 2026. En Media Distancia, el mismo artículo fija un 40 % de descuento en el abono mensual y un 50 % de descuento adicional para esos jóvenes. Las medidas valen hasta el 31 de diciembre de 2026 y lo que ocurra después dependerá de una norma nueva. Cuenta de ejemplo simplificada: precio 100, con el 40 % de descuento 60, y para el joven 30. ¿Conocías este abono? Sí o no, en los comentarios.",
+    "hashtags": [
+      "#dinero",
+      "#cercanias",
+      "#renfe",
+      "#transportepublico",
+      "#abonomensual",
+      "#parati"
+    ],
+    "portada_en": "naciste"
+  },
+  "voz_dice": "La voz se generó con los números en palabras (diez, dos mil once, diecisiete de dos mil veinticinco, veinte, uno de enero de dos mil, treinta y uno de diciembre, cuarenta por ciento, siete semanas); Whisper los oye en cifras y los subtítulos salen en cifras. Los años van tras de/desde/hasta para que salgan sin punto de millar. Ritmo: la primera frase se aceleró y el resto se frenó con atempo (ver fuentes/notas); original en exports/voces/14-cercanias.original.wav."
+}

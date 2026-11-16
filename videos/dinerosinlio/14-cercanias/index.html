@@ -1,0 +1,907 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <link rel="stylesheet" href="comun/dinero.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+      .cifra, .fila b, .grande { font-family: "Archivo Black", sans-serif; }
+      .ancho { left: 0; width: 1080px; text-align: center; }
+      .cifra.g150 { font-size: 150px; }
+      .cifra.g200 { font-size: 200px; }
+      .rotulo.r44 { font-size: 44px; line-height: 1.3; letter-spacing: 0.06em; }
+      .chip.c72 { font-size: 72px; }
+      .chip.c64 { font-size: 64px; }
+      .chip.c58 { font-size: 58px; }
+      .chip.c50 { font-size: 50px; }
+      .chip.c46 { font-size: 46px; }
+      .sello.s62 { font-size: 62px; line-height: 1.12; text-align: center; }
+      .sello.s54 { font-size: 54px; line-height: 1.1; text-align: center; }
+      .sello.s130 { font-size: 120px; line-height: 1.05; border-width: 14px; border-radius: 26px; padding: 12px 44px; }
+      .docg .doc { width: 840px; padding: 30px 40px 20px; }
+      .docg .doc-tit { font-size: 36px; }
+      .docg .fila { font-size: 38px; padding: 16px 0; }
+      .docg .fila b { font-size: 46px; white-space: nowrap; }
+      .docg.gr .doc { width: 900px; padding: 34px 44px 26px; }
+      .docg.gr .doc-tit { font-size: 38px; }
+      .docg.gr .fila { font-size: 42px; padding: 20px 0; }
+      .docg.gr .fila b { font-size: 54px; }
+      .fila.marca { background: #f8dc7a; margin: 0 -18px; padding-left: 18px; padding-right: 18px; border-radius: 10px; }
+      .fila.verdef { background: #cfe9dc; margin: 0 -18px; padding-left: 18px; padding-right: 18px; border-radius: 10px; }
+      #mk svg { display: block; overflow: visible; }
+      .barra.alta { height: 170px; }
+      .barra.alta .seg { font-size: 46px; }
+      .seg.d { background: #f2b705; }
+      .seg.p { background: #fffaf0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="61.5" data-width="1080" data-height="1920" data-fps="30">
+      <div id="fondo" class="clip" data-start="0" data-duration="61.5" data-track-index="0"></div>
+      <div id="escenario" class="clip" data-start="0" data-duration="61.5" data-track-index="1" data-layout-allow-overlap data-layout-allow-overflow>
+        <!-- A: frame 0. The paper (article 3), a train arriving, a marker round the 10 EUR that is counting down -->
+        <div class="pieza docg gr" id="fact" style="left:90px; top:500px" data-icono="doc"
+          data-args='["RD-LEY 17/2025 · ART. 3", [["ABONO MENSUAL", "20 €", "filaA"], ["NACIDOS 2000–2011", "20 €", "filaJ", "verde fuerte"], ["NACIDOS DESDE 2012", "0 €", "filaN"]]]'></div>
+        <div class="pieza" id="mk" style="left:0px; top:0px"></div>
+        <div class="pieza" id="tren" style="left:30px; top:1010px" data-dibujo="tren" data-args="[540]"></div>
+        <div class="pieza ancho" id="chipCerc" style="top:1300px"><div class="chip c50">CERCANÍAS · 1 MES</div></div>
+        <div class="pieza" id="selloMit" style="left:600px; top:1060px"><div class="sello s54" style="color:#e5383b; border-color:#e5383b">MITAD<br>DE PRECIO</div></div>
+        <div class="pieza ancho" id="chipNac" style="top:1300px"><div class="chip rojo c50">¿NACISTE ENTRE 2000 Y 2011?</div></div>
+        <div class="pieza" id="mon10" style="left:660px; top:1010px" data-icono="moneda" data-args='["10", 250]'></div>
+        <div class="pieza" id="edif" style="left:620px; top:1010px" data-icono="edificio" data-args='["BOE", "#fffaf0", 340]'></div>
+        <div class="pieza" id="calP" style="left:590px; top:1000px" data-dibujo="calendario" data-args="[400]"></div>
+
+        <!-- B: the rule, article 3: the 20 EUR monthly pass -->
+        <div class="pieza" id="tren4" style="left:260px; top:1070px" data-dibujo="tren" data-args="[560]"></div>
+        <div class="pieza" id="calM" style="left:330px; top:820px" data-dibujo="calendario" data-args="[420]"></div>
+        <div class="pieza ancho" id="chipRD" style="top:990px"><div class="chip c46">REAL DECRETO-LEY 17/2025</div></div>
+        <div class="pieza rotulo r44 ancho" id="rotMes" style="top:1110px">ABONO MENSUAL · TARIFA ÚNICA</div>
+        <div class="pieza cifra g200 verde ancho" id="c20" style="top:1180px">0 €</div>
+
+        <!-- C: the young -->
+        <div class="pieza" id="pj" style="left:90px; top:970px"><div style="display:flex; gap:20px; align-items:flex-end">
+          <div data-icono="persona" data-args='["#4a78c2", 160]'></div><div data-icono="persona" data-args='["#e5383b", 135]'></div></div></div>
+        <div class="pieza cifra g200 verde" id="c10" style="left:520px; top:990px; width:480px; text-align:center">20 €</div>
+        <div class="pieza ancho" id="chipEne" style="top:1180px"><div class="chip c46">DESDE EL 1 ENE 2000</div></div>
+        <div class="pieza ancho" id="chipDic" style="top:1270px"><div class="chip c46">HASTA EL 31 DIC 2011</div></div>
+        <div class="pieza ancho" id="chipEsp" style="top:1270px"><div class="chip blanco c46">ESPAÑOLES O RESIDENTES LEGALES</div></div>
+
+        <!-- D: the children -->
+        <div class="pieza ancho" id="chipNin" style="top:990px"><div class="chip c58">NACIDOS DESDE 2012</div></div>
+        <div class="pieza cifra g200 verde ancho" id="c0" style="top:1100px">20 €</div>
+        <div class="pieza" id="kids" style="left:300px; top:1290px"><div style="display:flex; gap:26px; align-items:flex-end">
+          <div data-icono="persona" data-args='["#2f8f6b", 100]'></div><div data-icono="persona" data-args='["#f2b705", 110]'></div><div data-icono="persona" data-args='["#8e6bbf", 100]'></div></div></div>
+
+        <!-- E: heads up -->
+        <div class="pieza ancho" id="selloOjo" style="top:500px"><div class="sello s62" style="color:#e5383b; border-color:#e5383b; font-size:150px">OJO</div></div>
+        <div class="pieza ancho" id="chipNom" style="top:770px"><div class="chip blanco c58">NOMINATIVO: A TU NOMBRE</div></div>
+        <div class="pieza ancho" id="chipMes" style="top:920px"><div class="chip blanco c58">VALE UN MES</div></div>
+        <div class="pieza ancho" id="chipZon" style="top:1070px"><div class="chip blanco c50">TODAS LAS ZONAS DEL NÚCLEO</div></div>
+        <div class="pieza" id="tren2" style="left:270px; top:1230px" data-dibujo="tren" data-args="[480]"></div>
+
+        <!-- F: Media Distancia -->
+        <div class="pieza ancho" id="chipMD" style="top:490px"><div class="chip c58">MEDIA DISTANCIA</div></div>
+        <div class="pieza rotulo r44 ancho" id="rotT2" style="top:600px">PRECIO EXPRÉS (T2) = 100</div>
+        <div class="pieza" id="barT2" style="left:90px; top:660px; width:900px"><div class="barra alta"><div class="seg p" style="width:100%">100</div></div></div>
+        <div class="pieza rotulo r44 ancho" id="rot40" style="top:880px">CON EL 40 % MENOS</div>
+        <div class="pieza" id="bar40" style="left:90px; top:940px; width:900px"><div class="barra alta"><div class="seg d" style="width:40%">−40</div><div class="seg p" style="width:60%">PAGAS 60</div></div></div>
+        <div class="pieza rotulo r44 ancho" id="rotJ" style="top:1160px">JOVEN: LA MITAD DE ESO</div>
+        <div class="pieza" id="barJ" style="left:90px; top:1220px; width:900px"><div class="barra alta"><div class="seg d" style="width:70%">−70</div><div class="seg p" style="width:30%">30</div></div></div>
+
+        <!-- G: the date -->
+        <div class="pieza" id="calG" style="left:150px; top:500px" data-dibujo="calendario" data-args="[780]"></div>
+        <div class="pieza ancho" id="chipHasta" style="top:1290px"><div class="chip c58">VALE HASTA AQUÍ</div></div>
+        <div class="pieza ancho" id="chipSem" style="top:1290px"><div class="chip rojo c58">MENOS DE 7 SEMANAS</div></div>
+
+        <!-- H: after the date -->
+        <div class="pieza docg gr" id="docF" style="left:90px; top:510px" data-icono="doc"
+          data-args='["RD-LEY 17/2025 · ART. 3", [["ÚLTIMO DÍA", "31 DIC 2026"]]]'></div>
+        <div class="pieza ancho" id="chipDesp" style="top:800px"><div class="chip blanco c58">¿Y DESPUÉS DEL 31 DIC?</div></div>
+        <div class="pieza ancho" id="selloNorma" style="top:1020px"><div class="sello s62" style="color:#e5383b; border-color:#e5383b; font-size:110px">NORMA<br>NUEVA</div></div>
+
+        <!-- I: pass it on -->
+        <div class="pieza" id="fam" style="left:100px; top:500px"><div style="display:flex; gap:20px">
+          <div data-icono="persona" data-args='["#4a78c2", 200]'></div><div data-icono="persona" data-args='["#e5383b", 200]'></div><div data-icono="persona" data-args='["#2f8f6b", 200]'></div><div data-icono="persona" data-args='["#8e6bbf", 200]'></div></div></div>
+        <div class="pieza ancho" id="selloPas" style="top:805px"><div class="sello s62" style="color:#e5383b; border-color:#e5383b">PÁSASELO</div></div>
+        <div class="pieza ancho" id="chipFam" style="top:815px"><div class="chip c58">NACIDOS 2000–2011</div></div>
+        <div class="pieza" id="tren3" style="left:220px; top:950px" data-dibujo="tren" data-args="[640]"></div>
+        <div class="pieza ancho grande" id="qBig" style="top:930px; font-size:130px; line-height:1.06; color:#1d2a44">¿CONOCÍAS<br>ESTE ABONO?</div>
+        <div class="pieza ancho" id="selloSN" style="top:1260px"><div class="sello s130" style="color:#e5383b; border-color:#e5383b">SÍ O NO</div></div>
+      </div>
+      <div id="gancho" class="clip" data-start="0" data-duration="61.5" data-track-index="2"></div>
+      <div id="note" class="clip" data-start="0" data-duration="61.5" data-track-index="3"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="61.5"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="61.5" data-track-index="4" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 60.246, "lines": [{"id": "l1", "s": 0.07, "e": 2.1, "words": [{"w": "Joven,", "s": 0.07, "e": 0.35, "key": false}, {"w": "Cercanías", "s": 0.58, "e": 1.06, "key": false}, {"w": "a", "s": 1.06, "e": 1.19, "key": false}, {"w": "10", "s": 1.19, "e": 1.6, "key": true}, {"w": "euros.", "s": 1.6, "e": 2.1, "key": false}]}, {"id": "l2", "s": 2.15, "e": 7.64, "words": [{"w": "¿Naciste", "s": 2.15, "e": 2.47, "key": false}, {"w": "de", "s": 2.47, "e": 2.51, "key": false}, {"w": "2000", "s": 2.58, "e": 3.24, "key": false}, {"w": "hasta", "s": 3.24, "e": 3.58, "key": false}, {"w": "2011?", "s": 3.58, "e": 4.62, "key": false}, {"w": "Mira", "s": 4.62, "e": 4.77, "key": false}, {"w": "el", "s": 4.77, "e": 4.84, "key": false}, {"w": "BOE.", "s": 4.84, "e": 5.06, "key": false}, {"w": "Y", "s": 5.42, "e": 5.5, "key": false}, {"w": "al", "s": 5.5, "e": 5.7, "key": false}, {"w": "final,", "s": 5.7, "e": 5.93, "key": false}, {"w": "una", "s": 6.26, "e": 6.4, "key": false}, {"w": "fecha", "s": 6.4, "e": 6.64, "key": false}, {"w": "que", "s": 6.71, "e": 6.88, "key": false}, {"w": "caduca.", "s": 6.88, "e": 7.64, "key": true}]}, {"id": "l3", "s": 7.64, "e": 15.37, "words": [{"w": "Real", "s": 7.64, "e": 8.0, "key": false}, {"w": "Decreto-ley", "s": 8, "e": 8.9, "key": false}, {"w": "17", "s": 8.9, "e": 9.43, "key": false}, {"w": "de", "s": 9.47, "e": 9.62, "key": false}, {"w": "2025,", "s": 9.62, "e": 10.73, "key": false}, {"w": "artículo", "s": 11.16, "e": 11.61, "key": false}, {"w": "3:", "s": 11.61, "e": 12.04, "key": false}, {"w": "abono", "s": 12.06, "e": 12.37, "key": false}, {"w": "mensual", "s": 12.37, "e": 12.84, "key": false}, {"w": "de", "s": 12.89, "e": 12.97, "key": false}, {"w": "Cercanías,", "s": 12.97, "e": 13.74, "key": false}, {"w": "tarifa", "s": 13.75, "e": 14.12, "key": false}, {"w": "única,", "s": 14.42, "e": 14.44, "key": true}, {"w": "20", "s": 14.49, "e": 14.75, "key": false}, {"w": "euros.", "s": 15.02, "e": 15.37, "key": false}]}, {"id": "l4", "s": 15.37, "e": 25.16, "words": [{"w": "Para", "s": 15.37, "e": 15.66, "key": false}, {"w": "jóvenes", "s": 15.66, "e": 16.16, "key": true}, {"w": "nacidos", "s": 16.16, "e": 16.66, "key": false}, {"w": "entre", "s": 16.66, "e": 17.02, "key": false}, {"w": "el", "s": 17.02, "e": 17.16, "key": false}, {"w": "1", "s": 17.16, "e": 17.36, "key": false}, {"w": "de", "s": 17.41, "e": 17.51, "key": false}, {"w": "enero", "s": 17.51, "e": 17.86, "key": false}, {"w": "de", "s": 17.86, "e": 18.0, "key": false}, {"w": "2000", "s": 18, "e": 18.52, "key": false}, {"w": "y", "s": 18.52, "e": 19.04, "key": false}, {"w": "el", "s": 19.04, "e": 19.08, "key": false}, {"w": "31", "s": 19.08, "e": 19.49, "key": false}, {"w": "de", "s": 19.49, "e": 19.85, "key": false}, {"w": "diciembre", "s": 19.85, "e": 20.29, "key": false}, {"w": "de", "s": 20.29, "e": 20.38, "key": false}, {"w": "2011,", "s": 20.69, "e": 21.57, "key": false}, {"w": "españoles", "s": 21.77, "e": 22.44, "key": false}, {"w": "o", "s": 22.44, "e": 22.52, "key": false}, {"w": "con", "s": 22.52, "e": 22.76, "key": false}, {"w": "residencia", "s": 22.76, "e": 23.56, "key": false}, {"w": "legal:", "s": 23.56, "e": 24.12, "key": false}, {"w": "10", "s": 24.12, "e": 24.6, "key": false}, {"w": "euros.", "s": 24.6, "e": 25.16, "key": false}]}, {"id": "l5", "s": 25.16, "e": 28.71, "words": [{"w": "Y", "s": 25.16, "e": 25.24, "key": false}, {"w": "los", "s": 25.24, "e": 25.48, "key": false}, {"w": "niños", "s": 25.48, "e": 25.79, "key": false}, {"w": "nacidos", "s": 25.87, "e": 26.44, "key": false}, {"w": "desde", "s": 26.44, "e": 26.77, "key": false}, {"w": "2012:", "s": 27.14, "e": 27.66, "key": false}, {"w": "sin", "s": 27.97, "e": 28.05, "key": false}, {"w": "coste.", "s": 28.05, "e": 28.71, "key": true}]}, {"id": "l6", "s": 28.83, "e": 33.82, "words": [{"w": "Ojo:", "s": 28.83, "e": 29.05, "key": false}, {"w": "es", "s": 29.05, "e": 29.34, "key": false}, {"w": "nominativo,", "s": 29.34, "e": 30.1, "key": true}, {"w": "va", "s": 30.1, "e": 30.2, "key": false}, {"w": "a", "s": 30.2, "e": 30.3, "key": false}, {"w": "tu", "s": 30.26, "e": 30.38, "key": false}, {"w": "nombre,", "s": 30.38, "e": 30.95, "key": false}, {"w": "dura", "s": 30.95, "e": 31.23, "key": false}, {"w": "un", "s": 31.23, "e": 31.37, "key": false}, {"w": "mes", "s": 31.37, "e": 31.55, "key": false}, {"w": "y", "s": 31.59, "e": 31.65, "key": false}, {"w": "vale", "s": 31.65, "e": 31.93, "key": false}, {"w": "en", "s": 31.93, "e": 32.07, "key": false}, {"w": "todas", "s": 32.07, "e": 32.43, "key": false}, {"w": "las", "s": 32.43, "e": 32.64, "key": false}, {"w": "zonas", "s": 32.64, "e": 32.84, "key": false}, {"w": "de", "s": 32.98, "e": 33.13, "key": false}, {"w": "un", "s": 33.13, "e": 33.36, "key": false}, {"w": "núcleo.", "s": 33.36, "e": 33.82, "key": false}]}, {"id": "l7", "s": 34.18, "e": 40.68, "words": [{"w": "En", "s": 34.18, "e": 34.7, "key": false}, {"w": "Media", "s": 35.01, "e": 35.19, "key": false}, {"w": "Distancia:", "s": 35.27, "e": 35.86, "key": false}, {"w": "cuarenta", "s": 35.9, "e": 36.154, "key": false}, {"w": "por", "s": 36.154, "e": 36.249, "key": false}, {"w": "ciento", "s": 36.249, "e": 36.44, "key": false}, {"w": "menos", "s": 36.44, "e": 36.82, "key": false}, {"w": "en", "s": 36.83, "e": 36.98, "key": false}, {"w": "el", "s": 36.98, "e": 37.05, "key": false}, {"w": "abono", "s": 37.28, "e": 37.51, "key": false}, {"w": "mensual,", "s": 37.51, "e": 38.05, "key": false}, {"w": "y", "s": 38.05, "e": 38.12, "key": false}, {"w": "esos", "s": 38.17, "e": 38.44, "key": false}, {"w": "jóvenes", "s": 38.44, "e": 38.99, "key": false}, {"w": "pagan", "s": 38.99, "e": 39.27, "key": false}, {"w": "la", "s": 39.27, "e": 39.8, "key": false}, {"w": "mitad", "s": 39.8, "e": 39.92, "key": true}, {"w": "de", "s": 39.92, "e": 40.07, "key": false}, {"w": "eso.", "s": 40.07, "e": 40.68, "key": false}]}, {"id": "l8", "s": 40.68, "e": 47.6, "words": [{"w": "Hay", "s": 40.68, "e": 41.02, "key": false}, {"w": "fecha:", "s": 41.02, "e": 41.84, "key": true}, {"w": "todo", "s": 41.91, "e": 42.13, "key": false}, {"w": "esto", "s": 42.13, "e": 42.15, "key": false}, {"w": "vale", "s": 42.42, "e": 42.71, "key": false}, {"w": "hasta", "s": 42.71, "e": 43.07, "key": false}, {"w": "el", "s": 43.07, "e": 43.21, "key": false}, {"w": "31", "s": 43.21, "e": 43.65, "key": false}, {"w": "de", "s": 43.65, "e": 43.69, "key": false}, {"w": "diciembre", "s": 43.99, "e": 44.45, "key": false}, {"w": "de", "s": 44.45, "e": 44.59, "key": false}, {"w": "2026.", "s": 44.59, "e": 45.61, "key": false}, {"w": "Quedan", "s": 45.61, "e": 45.92, "key": false}, {"w": "menos", "s": 45.92, "e": 46.44, "key": false}, {"w": "de", "s": 46.44, "e": 46.54, "key": false}, {"w": "7", "s": 46.54, "e": 46.74, "key": false}, {"w": "semanas.", "s": 46.75, "e": 47.6, "key": false}]}, {"id": "l9", "s": 47.6, "e": 53.31, "words": [{"w": "El", "s": 47.6, "e": 47.77, "key": false}, {"w": "decreto", "s": 48.09, "e": 48.62, "key": false}, {"w": "solo", "s": 48.71, "e": 48.93, "key": false}, {"w": "llega", "s": 48.93, "e": 49.3, "key": false}, {"w": "hasta", "s": 49.3, "e": 49.67, "key": false}, {"w": "ahí:", "s": 49.67, "e": 50.03, "key": false}, {"w": "lo", "s": 50.03, "e": 50.17, "key": false}, {"w": "que", "s": 50.17, "e": 50.37, "key": false}, {"w": "ocurra", "s": 50.38, "e": 50.82, "key": false}, {"w": "después", "s": 50.82, "e": 51.34, "key": false}, {"w": "dependerá", "s": 51.34, "e": 51.96, "key": false}, {"w": "de", "s": 52.03, "e": 52.13, "key": false}, {"w": "una", "s": 52.14, "e": 52.36, "key": false}, {"w": "norma", "s": 52.36, "e": 52.72, "key": true}, {"w": "nueva.", "s": 52.72, "e": 53.31, "key": false}]}, {"id": "l10", "s": 53.31, "e": 60.0, "words": [{"w": "Pásaselo", "s": 53.31, "e": 53.7, "key": false}, {"w": "a", "s": 54.06, "e": 54.24, "key": false}, {"w": "quien", "s": 54.31, "e": 54.47, "key": false}, {"w": "haya", "s": 54.48, "e": 54.54, "key": false}, {"w": "nacido", "s": 54.82, "e": 55.08, "key": false}, {"w": "de", "s": 55.08, "e": 55.2, "key": false}, {"w": "2000", "s": 55.2, "e": 55.89, "key": false}, {"w": "hasta", "s": 55.91, "e": 56.09, "key": false}, {"w": "2011", "s": 56.39, "e": 56.94, "key": false}, {"w": "y", "s": 56.94, "e": 57.0, "key": false}, {"w": "coja", "s": 57, "e": 57.24, "key": false}, {"w": "Cercanías.", "s": 57.24, "e": 57.817, "key": false}, {"w": "¿Conocías", "s": 57.817, "e": 58.33, "key": true}, {"w": "este", "s": 58.33, "e": 58.84, "key": false}, {"w": "abono?", "s": 58.84, "e": 59.24, "key": false}, {"w": "Sí", "s": 59.24, "e": 59.3, "key": false}, {"w": "o", "s": 59.66, "e": 59.69, "key": false}, {"w": "no.", "s": 59.69, "e": 60.0, "key": false}]}]}</script>
+    <script id="escena" type="application/json">
+{
+ "momentos": [
+  {
+   "id": "NACISTE",
+   "clave": "naciste"
+  },
+  {
+   "id": "HASTA",
+   "clave": "hasta"
+  },
+  {
+   "id": "BOE",
+   "clave": "boe"
+  },
+  {
+   "id": "CADUCA",
+   "clave": "caduca"
+  },
+  {
+   "id": "REAL",
+   "clave": "real"
+  },
+  {
+   "id": "ARTICULO",
+   "clave": "artículo"
+  },
+  {
+   "id": "MENSUAL",
+   "clave": "mensual"
+  },
+  {
+   "id": "UNICA",
+   "clave": "única"
+  },
+  {
+   "id": "JOVENES",
+   "clave": "jóvenes"
+  },
+  {
+   "id": "ENERO",
+   "clave": "enero"
+  },
+  {
+   "id": "DICIEMBRE",
+   "clave": "diciembre"
+  },
+  {
+   "id": "ESPANOLES",
+   "clave": "españoles"
+  },
+  {
+   "id": "LEGAL",
+   "clave": "legal"
+  },
+  {
+   "id": "NINOS",
+   "clave": "niños"
+  },
+  {
+   "id": "COSTE",
+   "clave": "coste"
+  },
+  {
+   "id": "OJO",
+   "clave": "ojo"
+  },
+  {
+   "id": "NOMINATIVO",
+   "clave": "nominativo"
+  },
+  {
+   "id": "NOMBRE",
+   "clave": "nombre"
+  },
+  {
+   "id": "MES",
+   "clave": "mes"
+  },
+  {
+   "id": "ZONAS",
+   "clave": "zonas"
+  },
+  {
+   "id": "MEDIA",
+   "clave": "media"
+  },
+  {
+   "id": "MENOS",
+   "clave": "menos"
+  },
+  {
+   "id": "ESOS",
+   "clave": "esos"
+  },
+  {
+   "id": "MITAD",
+   "clave": "mitad"
+  },
+  {
+   "id": "FECHA",
+   "clave": "fecha"
+  },
+  {
+   "id": "DIC2",
+   "clave": "diciembre"
+  },
+  {
+   "id": "SEMANAS",
+   "clave": "semanas"
+  },
+  {
+   "id": "DECRETO",
+   "clave": "decreto"
+  },
+  {
+   "id": "DESPUES",
+   "clave": "después"
+  },
+  {
+   "id": "NORMA",
+   "clave": "norma"
+  },
+  {
+   "id": "PASASELO",
+   "clave": "pásaselo"
+  },
+  {
+   "id": "NACIDO2",
+   "clave": "nacido"
+  },
+  {
+   "id": "CERCA2",
+   "clave": "cercanías"
+  },
+  {
+   "id": "CONOCIAS",
+   "clave": "conocías"
+  },
+  {
+   "id": "SI",
+   "clave": "sí"
+  }
+ ],
+ "arranque": {
+  "zoom": 1.06,
+  "dura": 3.0,
+  "centro": [
+   540,
+   900
+  ]
+ },
+ "lluvia": [
+  {
+   "icono": "moneda",
+   "args": [
+    "€",
+    96
+   ],
+   "n": 9,
+   "desde": 0,
+   "hasta": "REAL",
+   "vel": 420,
+   "opacidad": 0.4
+  }
+ ],
+ "piezas": [
+  {
+   "id": "fact",
+   "desde": 0,
+   "hasta": "OJO",
+   "viaja": {
+    "s": 1.05,
+    "dura": 1.0
+   }
+  },
+  {
+   "id": "mk",
+   "desde": 0,
+   "hasta": "REAL"
+  },
+  {
+   "id": "tren",
+   "desde": 0,
+   "hasta": "REAL",
+   "viaja": {
+    "x": -220,
+    "dura": 1.2
+   },
+   "mueve": {
+    "tipo": "balancea",
+    "fuerza": 0.8,
+    "ritmo": 7
+   }
+  },
+  {
+   "id": "chipCerc",
+   "desde": 1.2,
+   "hasta": "NACISTE",
+   "entra": "sello"
+  },
+  {
+   "id": "selloMit",
+   "desde": 2.0,
+   "hasta": "HASTA",
+   "entra": "sello"
+  },
+  {
+   "id": "mon10",
+   "desde": "HASTA",
+   "hasta": "BOE",
+   "entra": "escala",
+   "viaja": {
+    "r": -40,
+    "x": 200,
+    "dura": 0.9
+   },
+   "mueve": "late"
+  },
+  {
+   "id": "chipNac",
+   "desde": "NACISTE",
+   "hasta": "REAL",
+   "entra": "escala"
+  },
+  {
+   "id": "edif",
+   "desde": "BOE",
+   "hasta": "CADUCA",
+   "entra": "escala"
+  },
+  {
+   "id": "calP",
+   "desde": "CADUCA",
+   "hasta": "REAL",
+   "entra": "escala",
+   "mueve": "late"
+  },
+  {
+   "id": "chipRD",
+   "desde": "REAL",
+   "hasta": "JOVENES",
+   "entra": "baja"
+  },
+  {
+   "id": "tren4",
+   "desde": "REAL",
+   "hasta": "MENSUAL",
+   "viaja": {
+    "x": -420,
+    "dura": 1.2
+   },
+   "mueve": {
+    "tipo": "balancea",
+    "fuerza": 0.8,
+    "ritmo": 7
+   }
+  },
+  {
+   "id": "rotMes",
+   "desde": "MENSUAL",
+   "hasta": "JOVENES"
+  },
+  {
+   "id": "c20",
+   "desde": "UNICA",
+   "hasta": "JOVENES",
+   "entra": "escala"
+  },
+  {
+   "id": "pj",
+   "desde": "JOVENES",
+   "hasta": "NINOS",
+   "entra": "escala",
+   "mueve": "flota"
+  },
+  {
+   "id": "chipEne",
+   "desde": "ENERO",
+   "hasta": "NINOS",
+   "entra": "sube"
+  },
+  {
+   "id": "chipDic",
+   "desde": "DICIEMBRE",
+   "hasta": "ESPANOLES",
+   "entra": "sube"
+  },
+  {
+   "id": "chipEsp",
+   "desde": "ESPANOLES",
+   "hasta": "NINOS",
+   "entra": "sube"
+  },
+  {
+   "id": "c10",
+   "desde": "LEGAL",
+   "hasta": "NINOS",
+   "entra": "escala"
+  },
+  {
+   "id": "chipNin",
+   "desde": "NINOS",
+   "hasta": "OJO",
+   "entra": "baja"
+  },
+  {
+   "id": "c0",
+   "desde": "COSTE",
+   "hasta": "OJO",
+   "entra": "escala"
+  },
+  {
+   "id": "kids",
+   "desde": "NINOS",
+   "hasta": "OJO",
+   "entra": "sube",
+   "mueve": "flota"
+  },
+  {
+   "id": "selloOjo",
+   "desde": "OJO",
+   "hasta": "MEDIA",
+   "entra": "sello"
+  },
+  {
+   "id": "chipNom",
+   "desde": "NOMINATIVO",
+   "hasta": "MEDIA",
+   "entra": "der"
+  },
+  {
+   "id": "chipMes",
+   "desde": "MES",
+   "hasta": "MEDIA",
+   "entra": "izq"
+  },
+  {
+   "id": "chipZon",
+   "desde": "ZONAS",
+   "hasta": "MEDIA",
+   "entra": "der"
+  },
+  {
+   "id": "tren2",
+   "desde": "OJO",
+   "hasta": "MEDIA",
+   "viaja": {
+    "x": -360,
+    "dura": 1.3
+   },
+   "mueve": {
+    "tipo": "balancea",
+    "fuerza": 0.8,
+    "ritmo": 7
+   }
+  },
+  {
+   "id": "chipMD",
+   "desde": "MEDIA",
+   "hasta": "FECHA",
+   "entra": "baja"
+  },
+  {
+   "id": "rotT2",
+   "desde": "MEDIA",
+   "hasta": "FECHA"
+  },
+  {
+   "id": "barT2",
+   "desde": "MEDIA",
+   "hasta": "FECHA",
+   "entra": "izq"
+  },
+  {
+   "id": "rot40",
+   "desde": "MENOS",
+   "hasta": "FECHA"
+  },
+  {
+   "id": "bar40",
+   "desde": "MENOS",
+   "hasta": "FECHA",
+   "entra": "izq"
+  },
+  {
+   "id": "rotJ",
+   "desde": "ESOS",
+   "hasta": "FECHA"
+  },
+  {
+   "id": "barJ",
+   "desde": "MITAD",
+   "hasta": "FECHA",
+   "entra": "izq"
+  },
+  {
+   "id": "calG",
+   "desde": "FECHA",
+   "hasta": "DECRETO",
+   "entra": "escala",
+   "viaja": {
+    "s": 1.08,
+    "dura": 1.2
+   },
+   "mueve": "late"
+  },
+  {
+   "id": "chipHasta",
+   "desde": "DIC2",
+   "hasta": "SEMANAS",
+   "entra": "sello"
+  },
+  {
+   "id": "chipSem",
+   "desde": "SEMANAS",
+   "hasta": "DECRETO",
+   "entra": "sello"
+  },
+  {
+   "id": "docF",
+   "desde": "DECRETO",
+   "hasta": "PASASELO",
+   "entra": "sube"
+  },
+  {
+   "id": "calM",
+   "desde": "DECRETO",
+   "hasta": "DESPUES",
+   "entra": "escala",
+   "mueve": "late"
+  },
+  {
+   "id": "chipDesp",
+   "desde": "DESPUES",
+   "hasta": "PASASELO",
+   "entra": "der"
+  },
+  {
+   "id": "selloNorma",
+   "desde": "NORMA",
+   "hasta": "PASASELO",
+   "entra": "sello"
+  },
+  {
+   "id": "fam",
+   "desde": "PASASELO",
+   "entra": "escala",
+   "mueve": "flota"
+  },
+  {
+   "id": "selloPas",
+   "desde": "PASASELO",
+   "hasta": "NACIDO2",
+   "entra": "sello"
+  },
+  {
+   "id": "chipFam",
+   "desde": "NACIDO2",
+   "entra": "baja"
+  },
+  {
+   "id": "tren3",
+   "desde": "NACIDO2",
+   "hasta": "CONOCIAS",
+   "viaja": {
+    "x": -420,
+    "dura": 1.2
+   },
+   "mueve": {
+    "tipo": "balancea",
+    "fuerza": 0.8,
+    "ritmo": 7
+   }
+  },
+  {
+   "id": "qBig",
+   "desde": "CONOCIAS",
+   "entra": "escala"
+  },
+  {
+   "id": "selloSN",
+   "desde": "SI",
+   "entra": "sello"
+  }
+ ],
+ "cifras": [
+  {
+   "id": "filaJ",
+   "desde": 0,
+   "de": 20,
+   "a": 10,
+   "formato": "euros",
+   "dura": 1.8,
+   "curva": "lineal"
+  },
+  {
+   "id": "c20",
+   "desde": "UNICA",
+   "a": 20,
+   "formato": "euros",
+   "dura": 0.8,
+   "curva": "sale"
+  },
+  {
+   "id": "c10",
+   "desde": "LEGAL",
+   "de": 20,
+   "a": 10,
+   "formato": "euros",
+   "dura": 0.9,
+   "curva": "sale"
+  },
+  {
+   "id": "c0",
+   "desde": "COSTE",
+   "de": 20,
+   "a": 0,
+   "formato": "euros",
+   "dura": 0.9,
+   "curva": "sale"
+  }
+ ],
+ "notas": [
+  {
+   "texto": "Real Decreto-ley 17/2025, de 23 de diciembre, art. 3.2.a (BOE del 24/12/2025): Cercanías, del 1 de enero al 31 de diciembre de 2026",
+   "desde": 0.6
+  },
+  {
+   "texto": "",
+   "desde": "REAL"
+  },
+  {
+   "texto": "Art. 3.2.a.2.º, 3.º y 4.º: abono mensual de 20 €, de 10 € para nacidos de 2000 a 2011, sin coste desde 2012",
+   "desde": "MENSUAL"
+  },
+  {
+   "texto": "",
+   "desde": "OJO"
+  },
+  {
+   "texto": "Art. 3.2.b: Media Distancia, sobre la tarifa Exprés (T2). Cuenta de ejemplo: 100 × 0,6 × 0,5 = 30 (cálculo propio)",
+   "desde": "MEDIA"
+  },
+  {
+   "texto": "Art. 3.2: «desde el 1 de enero de 2026 hasta el 31 de diciembre de 2026»",
+   "desde": "FECHA"
+  },
+  {
+   "texto": "",
+   "desde": "PASASELO"
+  }
+ ],
+ "fondo": "claro",
+ "sonidos": [
+  {
+   "tipo": "desliza",
+   "en": 0.0
+  },
+  {
+   "tipo": "metal",
+   "en": 0.12
+  },
+  {
+   "tipo": "toque",
+   "en": 1.2
+  },
+  {
+   "tipo": "toque",
+   "en": 2.0
+  },
+  {
+   "tipo": "pop",
+   "en": "NACISTE"
+  },
+  {
+   "tipo": "pop",
+   "en": "HASTA"
+  },
+  {
+   "tipo": "pop",
+   "en": "DICIEMBRE"
+  },
+  {
+   "tipo": "pop",
+   "en": "DIC2"
+  },
+  {
+   "tipo": "toque",
+   "en": "NACIDO2"
+  },
+  {
+   "tipo": "toque",
+   "en": "BOE"
+  },
+  {
+   "tipo": "pop",
+   "en": "CADUCA"
+  },
+  {
+   "tipo": "desliza",
+   "en": "REAL"
+  },
+  {
+   "tipo": "pop",
+   "en": "MENSUAL"
+  },
+  {
+   "tipo": "pop",
+   "en": "UNICA"
+  },
+  {
+   "tipo": "desliza",
+   "en": "JOVENES"
+  },
+  {
+   "tipo": "pop",
+   "en": "ENERO"
+  },
+  {
+   "tipo": "pop",
+   "en": "ESPANOLES"
+  },
+  {
+   "tipo": "pagado",
+   "en": "LEGAL"
+  },
+  {
+   "tipo": "desliza",
+   "en": "NINOS"
+  },
+  {
+   "tipo": "toque",
+   "en": "COSTE"
+  },
+  {
+   "tipo": "error",
+   "en": "OJO"
+  },
+  {
+   "tipo": "pop",
+   "en": "NOMINATIVO"
+  },
+  {
+   "tipo": "pop",
+   "en": "MES"
+  },
+  {
+   "tipo": "pop",
+   "en": "ZONAS"
+  },
+  {
+   "tipo": "desliza",
+   "en": "MEDIA"
+  },
+  {
+   "tipo": "pop",
+   "en": "MENOS"
+  },
+  {
+   "tipo": "pop",
+   "en": "ESOS"
+  },
+  {
+   "tipo": "toque",
+   "en": "MITAD"
+  },
+  {
+   "tipo": "desliza",
+   "en": "FECHA"
+  },
+  {
+   "tipo": "toque",
+   "en": "SEMANAS"
+  },
+  {
+   "tipo": "desliza",
+   "en": "DECRETO"
+  },
+  {
+   "tipo": "pop",
+   "en": "DESPUES"
+  },
+  {
+   "tipo": "error",
+   "en": "NORMA"
+  },
+  {
+   "tipo": "desliza",
+   "en": "PASASELO"
+  },
+  {
+   "tipo": "pop",
+   "en": "CERCA2"
+  },
+  {
+   "tipo": "pop",
+   "en": "CONOCIAS"
+  },
+  {
+   "tipo": "pagado",
+   "en": "SI"
+  },
+  {
+   "tipo": "brillo",
+   "en": "LEGAL"
+  },
+  {
+   "tipo": "brillo",
+   "en": "CONOCIAS",
+   "mas": 0.2
+  }
+ ],
+ "titulo": {
+  "texto": "Nacidos 2000-2011: Cercanías a 10 €/mes",
+  "clave": "10"
+ }
+}</script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 61.5 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import { crearDinero, COLOR } from "./comun/dinero.js";
+      const $ = (id) => document.getElementById(id);
+      const K = COLOR;
+
+      // ---------- drawings this video needs, in the account's flat style (navy outline, solid offset shadow) ----------
+      const DIBUJOS = {
+        // a commuter train, side view: generic (no operator logo), three windows, a gold stripe, two bogies
+        tren: (w = 540) => { const h = Math.round(w * 0.43); return `<svg width="${w}" height="${h}" viewBox="0 0 540 232">
+          <g transform="translate(12 12)" fill="${K.tinta}"><path d="M20 30 H430 C490 30 520 90 520 150 V190 H20 Z"/></g>
+          <path d="M20 30 H430 C490 30 520 90 520 150 V190 H20 Z" fill="${K.blanco}" stroke="${K.tinta}" stroke-width="9" stroke-linejoin="round"/>
+          <rect x="20" y="132" width="500" height="26" fill="${K.oro}" stroke="${K.tinta}" stroke-width="7"/>
+          <rect x="50" y="56" width="90" height="56" rx="10" fill="${K.azul}" stroke="${K.tinta}" stroke-width="7"/>
+          <rect x="170" y="56" width="90" height="56" rx="10" fill="${K.azul}" stroke="${K.tinta}" stroke-width="7"/>
+          <rect x="290" y="56" width="90" height="56" rx="10" fill="${K.azul}" stroke="${K.tinta}" stroke-width="7"/>
+          <path d="M420 56 H440 C468 56 486 84 492 112 H420 Z" fill="${K.azul}" stroke="${K.tinta}" stroke-width="7" stroke-linejoin="round"/>
+          <circle cx="110" cy="196" r="22" fill="${K.tinta}"/><circle cx="110" cy="196" r="9" fill="${K.blanco}"/>
+          <circle cx="420" cy="196" r="22" fill="${K.tinta}"/><circle cx="420" cy="196" r="9" fill="${K.blanco}"/>
+          <rect x="0" y="212" width="540" height="12" rx="6" fill="${K.tinta}"/></svg>`; },
+        // a wall calendar: red header, DIC 2026 and a big 31
+        calendario: (w = 640) => { const h = Math.round(w * 0.9); return `<div style="width:${w}px;height:${h}px;border:9px solid ${K.tinta};border-radius:26px;background:${K.blanco};box-shadow:14px 14px 0 ${K.tinta};overflow:hidden;text-align:center;color:${K.tinta}">
+          <div style="background:${K.rojo};height:${Math.round(h * 0.26)}px;border-bottom:9px solid ${K.tinta};color:#fff;font:800 ${Math.round(w * 0.082)}px/${Math.round(h * 0.26)}px Inter;letter-spacing:.1em">DIC 2026</div>
+          <div style="font-family:'Archivo Black';font-size:${Math.round(w * 0.46)}px;line-height:${Math.round(h * 0.74)}px">31</div></div>`; },
+      };
+      for (const el of document.querySelectorAll("[data-dibujo]")) el.innerHTML = DIBUJOS[el.dataset.dibujo](...JSON.parse(el.dataset.args || "[]"));
+
+      // ---------- the engine ----------
+      const C = crearDinero();
+      const { T } = C;
+      const filaClase = (id, clase, on) => { const b = $(id); if (b) b.parentElement.classList.toggle(clase, on); };
+
+      // a red marker stroke that draws itself round the value of the young row (the first seconds)
+      let mkPath = null;
+      function montaMarcador() {
+        const b = $("filaJ"), f = $("fact"), m = $("mk");
+        const x0 = f.offsetLeft + (b.offsetParent === f ? b.offsetLeft : 0), y0 = f.offsetTop + (b.offsetParent === f ? b.offsetTop : 0);
+        const w = b.offsetWidth + 56, h = b.offsetHeight + 26, cx = x0 + b.offsetWidth / 2 + 4, cy = y0 + b.offsetHeight / 2 + 4;
+        m.style.left = "0px"; m.style.top = "0px";
+        m.innerHTML = `<svg width="1080" height="1920" viewBox="0 0 1080 1920"><path id="mkp" pathLength="1" d="M ${cx - w / 2 + 40} ${cy - h / 2 + 6} C ${cx - w / 2 - 20} ${cy - h / 2 + 10}, ${cx - w / 2 - 30} ${cy + h / 2 - 6}, ${cx - 20} ${cy + h / 2 + 6} C ${cx + w / 2 - 80} ${cy + h / 2 + 12}, ${cx + w / 2 + 34} ${cy + h / 2 - 8}, ${cx + w / 2 + 22} ${cy - 6} C ${cx + w / 2 + 12} ${cy - h / 2 - 14}, ${cx + 120} ${cy - h / 2 - 8}, ${cx - w / 2 + 70} ${cy - h / 2 - 2}" fill="none" stroke="${K.rojo}" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 1.05" stroke-dashoffset="1"/></svg>`;
+        mkPath = $("mkp");
+      }
+
+      function renderAt(t) {
+        if (!mkPath) montaMarcador();
+        const k = Math.min(1, Math.max(0, (t - 0.4) / 0.7)), ke = 1 - Math.pow(1 - k, 2);
+        mkPath.style.strokeDashoffset = 1 - ke;
+        mkPath.style.opacity = k > 0 && t < T.REAL ? 1 : 0;
+        filaClase("filaJ", "verdef", t >= 1.7 && t < T.MENSUAL);
+        filaClase("filaA", "marca", t >= T.MENSUAL && t < T.JOVENES);
+        filaClase("filaJ", "marca", t >= T.JOVENES && t < T.NINOS);
+        filaClase("filaN", "marca", t >= T.NINOS && t < T.OJO);
+        C.pintar(t);
+      }
+
+      C.arrancar(renderAt);
+    </script>
+  </body>
+</html>

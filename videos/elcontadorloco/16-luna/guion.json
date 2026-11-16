@@ -1,0 +1,41 @@
+{
+  "titulo": "¿Y si condujeras hasta la Luna a 100 km/h?",
+  "lines": [
+    "Conduces hasta la Luna.",
+    "Tu misión: no parar, a cien por hora. En una hora, ya estás en el espacio.",
+    "Cuatro horas: la Estación Espacial, a unos cuatrocientos kilómetros. Pasas de largo.",
+    "Quince días: casi treinta y seis mil kilómetros. Aquí los satélites parecen quietos sobre un mismo punto de la Tierra.",
+    "Diecisiete días: una vuelta entera al mundo, unos cuarenta mil kilómetros. La Estación la da cada noventa minutos.",
+    "Ochenta días: la mitad del camino. Ciento noventa y dos mil kilómetros.",
+    "Ciento sesenta días, y por fin: trescientos ochenta y cuatro mil cuatrocientos kilómetros. Llegaste a la Luna.",
+    "Son casi diez vueltas al mundo, sin una sola parada.",
+    "Si solo conduces ocho horas al día, tardas cuatrocientos ochenta días: más de un año entero.",
+    "La luz hace ese camino en poco más de un segundo. Tú, no.",
+    "Una misión de la NASA llegó a la órbita de la Luna en unas setenta y seis horas: tres días. Tú, ciento sesenta días.",
+    "¿Cuántas horas al día conducirías tú? Dime tu cifra."
+  ],
+  "claves": [
+    "luna",
+    "espacio",
+    "estación",
+    "satélites",
+    "vuelta",
+    "mitad",
+    "llegaste",
+    "vueltas",
+    "año",
+    "luz",
+    "nasa",
+    "cifra"
+  ],
+  "pausa_segundos": 0.3,
+  "publicacion": {
+    "descripcion": "Tu misión: conducir hasta la Luna, sin parar, a 100 km/h. La Luna está a 384.400 km de media (NASA): son 160 días al volante, casi diez vueltas al mundo. Por el camino: el borde del espacio (100 km, convenio de la FAI), la Estación Espacial (a unos 400 km), la órbita geoestacionaria (35.786 km, ESA) y la vuelta al mundo (unos 40.000 km). Una misión de la NASA llegó a la órbita lunar en 75 h 50 min; la luz tarda unos 1,3 s. Los tiempos son un cálculo a velocidad constante: es una ilustración, un coche no puede hacer este viaje. ¿Cuántas horas al día conducirías tú? Dime tu cifra.",
+    "hashtags": [
+      "#luna",
+      "#espacio",
+      "#curiosidades"
+    ],
+    "portada_en": 0
+  }
+}
