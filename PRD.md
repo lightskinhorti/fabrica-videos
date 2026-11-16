@@ -511,6 +511,26 @@ Javier mandó un reel de un creador que enseña su "máquina": su Claude mira re
   - **Ojo con la lista:** ordenar por "veces" premia a las cuentas pequeñas (un ×300 sobre una mediana de 3.000 es menos que un ×5 sobre 200.000), y hay cuentas que no son de nuestro tipo (@historiamuycuriosas resume vídeos de otros).
 - **Pendiente:** desmontar los mejores vídeos de las tres cuentas modelo y usar su receta en los guiones siguientes. Javier puede añadir o quitar cuentas en `datos/referentes.json`.
 
+**Resultado de la prueba del 12 y el 13 de noviembre (leído en Studio el 16):**
+
+| Vídeo | Qué cambiaba | Visualizaciones | Segundos vistos | Lo ve entero | Seguidores |
+| --- | --- | --- | --- | --- | --- |
+| `13-sueno` | Gancho nuevo | 763 | 13,2 | 1,8 % | 0 |
+| `13-bateria` | Gancho nuevo | 755 | 12,6 | 2,6 % | 1 |
+| `11-pagaextra` | Gancho nuevo | 767 | 14,9 | 5,9 % | 5 |
+| `14-sentado` | Gancho nuevo y cebo | 764 | 7,7 | 0,9 % | 0 |
+| `14-qr` | Gancho nuevo y cebo | 736 | 12,8 | 2,9 % | 0 |
+| `12-precio99` | Corto (26 s) y cebo | 763 | 6,9 | 8,5 % | 1 |
+
+- **Nada movió las visualizaciones.** Gancho nuevo, cebo o vídeo corto: los seis acaban entre 736 y 767, igual que los de antes. Tres de ellos dan 763, 764 y 763.
+- **El cebo no trajo comentarios:** 1 en total entre los tres vídeos.
+- **El gancho nuevo tampoco retiene más:** se ven de 7 a 15 segundos de media, como antes, y Studio sigue diciendo que la mayoría se va en el segundo 1. El de sentado es el peor de la cuenta.
+- **Lo único que destaca:** la paga extra ganó 5 seguidores (el mejor dato de todas las cuentas) y el corto lo vio entero el 8,5 %.
+- **Lectura de Claude:** con cifras tan iguales, el techo no depende del vídeo. TikTok enseña cada vídeo a unas 760 personas y ahí lo deja, haga lo que haga el vídeo. Encaja con un límite de las cuentas (nuevas, con 5 a 13 seguidores, sin uso normal de la aplicación, y las tres manejadas y subidas desde el mismo ordenador con TikTok Studio). No está demostrado: es la explicación que mejor casa con los datos.
+- **Cómo comprobarlo** (solo lo puede hacer Javier, con el móvil): publicar un vídeo desde la aplicación del móvil en vez de programarlo desde el ordenador, y usar cada cuenta unos minutos al día como una persona normal (ver vídeos del nicho, dar me gusta, seguir cuentas). Si ese vídeo pasa de 800, el freno era la forma de subir o la cuenta.
+
+**Recetas de las cuentas que funcionan (16 de noviembre):** se desmontaron 16 vídeos de @tu_blog_fiscal, @altezseraverdad y @que_pasariasi. El detalle está en `ideas/recetas.md`. En corto: en dinero funciona "dinero que te toca a ti ahora" con la condición y la cifra en el gancho; en cosas, partir de un mito y dudar ("¿será verdad?") con el veredicto al final; en qué pasaría si, misiones extremas en segunda persona, no hábitos de salud. Los vídeos siguientes se hacen con estas recetas.
+
 **Lo que no se sabe:** si el techo de unas 800 visualizaciones es solo por el gancho. Las cuentas nuevas suelen recibir una primera tanda pequeña de público, y pasar de ahí depende también de cuánta gente ve el vídeo entero y lo comparte. El gancho es lo primero que se arregla porque es donde más gente se pierde, pero no hay garantía de que baste.
 
 ## Instagram: cómo lo hacemos y packs en la bio
