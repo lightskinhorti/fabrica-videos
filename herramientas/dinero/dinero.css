@@ -47,6 +47,14 @@ html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--
 }
 #gancho .sel { background: var(--oro); border-radius: 12px; padding: 0 16px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
 
+/* fixed title banner (escena.titulo): navy plate, light text, the key word on a yellow marker; y 140 to about 290 */
+#titulo {
+  position: absolute; left: 50px; right: 50px; top: 140px; padding: 16px 28px 18px; border-radius: 20px;
+  background: var(--tinta); color: var(--papel); text-align: center;
+  font-size: 60px; font-weight: 800; line-height: 1.14; letter-spacing: -0.02em;
+}
+#titulo .sel { background: var(--oro); color: var(--tinta); border-radius: 10px; padding: 0 12px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+
 /* big figures */
 .cifra { font-family: "Archivo Black", sans-serif; font-size: 132px; line-height: 1; letter-spacing: -0.02em; color: var(--tinta); white-space: nowrap; text-align: center; }
 .cifra.roja { color: var(--rojo); }

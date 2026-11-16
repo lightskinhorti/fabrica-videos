@@ -8,6 +8,16 @@
 //             voz, buscada en orden; sin palabras de números, que Whisper escribe en cifras)
 //   gancho: { texto, clave, tam? }  (el gancho en grande durante los primeros segundos; los subtítulos esperan.
 //           tam: tamaño de la letra en px, 104 si no se dice; un gancho largo en dos líneas va mejor a 90)
+//   titulo: { texto, clave?, hasta? }  (OPCIONAL, 16 de noviembre) rótulo fijo que dice de qué va el vídeo y a quién toca,
+//           entero y legible desde el fotograma 0 (sin fundido de entrada) y durante todo el vídeo, o hasta `hasta`
+//           (segundos o momento; se va con un fundido de 0,35 s). Hasta 2 líneas, Inter 800 a 60 px (un % o € va pegado a su número), en una placa
+//           azul marino con el texto crema y `clave` (una palabra del texto) sobre marcador amarillo. No se mueve con
+//           el zoom de `arranque`. Sitio: y 140 a unos 290 (una línea mide 100 px, dos 164), por debajo de la franja
+//           de TikTok (130) y por encima de los subtítulos. Con titulo, los subtítulos bajan a y 320 (de 320 a unos
+//           486 en dos líneas) y a las piezas les quedan de y 490 a 1440 (unos 950 px; con subtítulos de una línea,
+//           desde 410). El gancho grande sigue siendo opcional: con titulo se puede quitar o reducir (tam 90 y
+//           top 700, por ejemplo). Sin titulo, nada cambia: ni subtítulos ni piezas se mueven.
+//           Texto que no repita al gancho; explicar, nunca recomendar ("pídelo" no).
 //   piezas: [{ id, desde, hasta?, entra?, sale?, dura?, alto? }]  (id de un elemento del HTML; desde y hasta =
 //           momento o segundos; entra y sale: "sube", "baja", "izq", "der", "escala", "sello", "fundido" o "crece";
 //           las que entran antes del segundo 1 ya están en el fotograma 0, que es la portada de TikTok)
@@ -216,6 +226,21 @@ export function crearDinero() {
   if (G && ganchoEl && G.top !== undefined) ganchoEl.style.top = G.top + "px";
   const ganchoFin = G ? (G.hasta !== undefined ? cuando(G.hasta) : Math.max(2.4, VOZ.lines[0] ? VOZ.lines[0].e + 0.3 : 0)) : 0;
 
+  // ---------- the fixed title: a banner that is there from frame 0 and stays (no fade-in) ----------
+  const TI = ESC.titulo;
+  let tituloEl = null;
+  const tituloFin = TI && TI.hasta !== undefined ? cuando(TI.hasta) : Infinity;
+  if (TI) {
+    tituloEl = document.createElement("div");
+    tituloEl.id = "titulo";
+    tituloEl.innerHTML = TI.texto.split(" ").map((w) => (TI.clave && norm(w) === norm(TI.clave) ? `<span class="sel">${w}</span>` : w)).join(" ").replace(/ ([%€])/g, "&nbsp;$1");
+    document.getElementById("root").appendChild(tituloEl);
+    capsEl.style.top = "320px"; // the captions make room for the banner
+  }
+  function drawTitulo(t) {
+    if (tituloEl) tituloEl.style.opacity = 1 - ramp(t, tituloFin - 0.35, tituloFin);
+  }
+
   // ---------- the opening: a slow zoom of the whole stage and the hook, moving from frame 0 ----------
   const AR = ESC.arranque;
   const escEl = document.getElementById("escenario");
@@ -368,6 +393,7 @@ export function crearDinero() {
   // draws every layer for time t (call mover() before, for this frame's extra movement)
   function pintar(t) {
     drawArranque(t);
+    drawTitulo(t);
     capsEl.style.opacity = 1 - drawGancho(t);
     drawCaps(t);
     drawLluvia(t);

@@ -65,3 +65,10 @@ html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--
   position: absolute; left: 64px; right: 64px; top: 1440px; font-size: 26px; font-weight: 400;
   color: rgba(255, 255, 255, 0.6); letter-spacing: 0.01em; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9);
 }
+/* fixed title banner (optional `titulo`): the whole question, from frame 0 to the end; clear of TikTok's top bar */
+.titulo-fijo { position: absolute; left: 60px; right: 60px; top: 140px; opacity: 0; }
+.titulo-fijo .caja {
+  padding: 14px 28px 16px; text-align: center; font-size: 62px; font-weight: 700; line-height: 1.14; letter-spacing: -0.02em; color: #fff;
+  background: rgba(10, 8, 6, 0.9); border: 2px solid rgba(255, 255, 255, 0.1); border-left: 8px solid #c8793a; border-radius: 14px;
+}
+.titulo-fijo .cu { color: #e39a5c; }

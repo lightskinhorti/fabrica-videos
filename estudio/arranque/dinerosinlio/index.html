@@ -1,0 +1,994 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <link rel="stylesheet" href="comun/dinero.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+      .cifra, .fila b, .caso .num, .grande { font-family: "Archivo Black", sans-serif; }
+      /* everything big, from y = 430 to 1420 (what TikTok leaves free) */
+      .ancho { left: 0; width: 1080px; text-align: center; }
+      .cifra.g150 { font-size: 150px; }
+      .rotulo.r44 { font-size: 44px; line-height: 1.3; letter-spacing: 0.06em; }
+      .chip.c64 { font-size: 64px; }
+      .chip.c58 { font-size: 58px; }
+      .chip.c50 { font-size: 50px; }
+      .chip.c44 { font-size: 44px; }
+      .sello.s62 { font-size: 62px; line-height: 1.12; text-align: center; }
+      .sello.s54 { font-size: 54px; }
+      .sello.s130 { font-size: 130px; line-height: 1.05; border-width: 14px; border-radius: 26px; padding: 14px 44px; }
+      .docg .doc { width: 840px; padding: 30px 40px 20px; }
+      .docg .doc-tit { font-size: 36px; }
+      .docg .fila { font-size: 38px; padding: 16px 0; }
+      .docg .fila b { font-size: 46px; white-space: nowrap; }
+      .fila.marca { background: #f8dc7a; margin: 0 -18px; padding-left: 18px; padding-right: 18px; border-radius: 10px; }
+      .barra.alta { height: 190px; }
+      .barra.alta .seg { font-size: 46px; }
+      .docg.gr .doc { width: 900px; padding: 34px 44px 26px; }
+      .docg.gr .doc-tit { font-size: 40px; }
+      .docg.gr .fila { font-size: 44px; padding: 20px 0; }
+      .docg.gr .fila b { font-size: 54px; }
+      .chip.c72 { font-size: 72px; }
+      .docg.gg .doc { width: 840px; padding: 30px 36px 24px; }
+      .docg.gg .doc-tit { font-size: 38px; }
+      .docg.gg .fila { font-size: 42px; padding: 22px 0; }
+      .docg.gg .fila b { font-size: 56px; white-space: nowrap; }
+      .fila.verdef { background: #cfe9dc; margin: 0 -18px; border-radius: 10px; }
+      .docg.gg .fila.verdef { padding-left: 18px; padding-right: 18px; }
+      #mk svg { display: block; overflow: visible; }
+      .cifra.g200 { font-size: 210px; }
+      .seg.d { background: #f2b705; }
+      .seg.p { background: #fffaf0; }
+      /* the four cases */
+      .caso { width: 450px; height: 340px; border: 8px solid #1d2a44; border-radius: 22px; box-shadow: 12px 12px 0 #1d2a44; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center; }
+      .caso.oro { background: #f2b705; }
+      .caso.blanco { background: #fffaf0; }
+      .caso .num { font-size: 120px; line-height: 1; }
+      .caso .tx { font-size: 44px; font-weight: 800; line-height: 1.12; letter-spacing: 0.02em; }
+      /* the big card of each case */
+      .tg { width: 900px; height: 740px; border: 8px solid #1d2a44; border-radius: 26px; box-shadow: 14px 14px 0 #1d2a44; background: #fffaf0; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 28px; text-align: center; }
+      .tg .num { width: 110px; height: 110px; border-radius: 55px; background: #f2b705; border: 7px solid #1d2a44; font-size: 66px; line-height: 96px; font-family: "Archivo Black"; }
+      .tg .t1 { font-family: "Archivo Black"; font-size: 78px; line-height: 1.05; margin-top: 18px; }
+      .tg .t2 { font-size: 38px; font-weight: 800; letter-spacing: 0.04em; line-height: 1.2; margin-top: 12px; padding: 0 30px; }
+      .tg .fila-p { display: flex; gap: 12px; margin-top: 22px; }
+      #sueloF { height: 10px; background: #1d2a44; border-radius: 5px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="64.9" data-width="1080" data-height="1920" data-fps="30">
+      <div id="fondo" class="clip" data-start="0" data-duration="64.9" data-track-index="0"></div>
+      <div id="escenario" class="clip" data-start="0" data-duration="64.9" data-track-index="1" data-layout-allow-overlap data-layout-allow-overflow>
+        <!-- A: the hook. A light bill with the discount already taken off (an example), in frame 0 -->
+        <div class="pieza docg gg" id="fact" style="left:50px; top:500px" data-icono="doc"
+          data-args='["FACTURA DE EJEMPLO", [["TARIFA REGULADA", "100,00 €"], ["BONO SOCIAL", "−57,50 €", "filaBS", "roja"], ["TOTAL", "42,50 €", "filaTot", "verde fuerte"]]]'></div>
+        <div class="pieza" id="bomb" style="left:690px; top:1130px" data-dibujo="bombilla" data-args="[220]"></div>
+        <div class="pieza" id="mk" style="left:0px; top:0px"></div>
+        <div class="pieza ancho" id="chipDto" style="top:1020px"><div class="chip c50">−57,5 % DE DESCUENTO</div></div>
+        <div class="pieza ancho" id="chipBono" style="top:1020px"><div class="chip c50">BONO SOCIAL DE LA LUZ</div></div>
+        <div class="pieza" id="c1" style="left:60px; top:540px"><div class="caso oro"><div class="num">1</div><div class="tx">FAMILIA<br>NUMEROSA</div></div></div>
+        <div class="pieza" id="c2" style="left:570px; top:540px"><div class="caso blanco"><div class="num">2</div><div class="tx">PENSIÓN<br>MÍNIMA</div></div></div>
+        <div class="pieza" id="c3" style="left:60px; top:930px"><div class="caso blanco"><div class="num">3</div><div class="tx">INGRESO MÍNIMO<br>VITAL</div></div></div>
+        <div class="pieza" id="c4" style="left:570px; top:930px"><div class="caso oro"><div class="num">4</div><div class="tx">RENTA<br>BAJA</div></div></div>
+        <div class="pieza ancho" id="chipQ" style="top:1320px"><div class="chip rojo c58">¿ESTÁS EN ALGUNO?</div></div>
+
+        <!-- B: the paper -->
+        <div class="pieza" id="edif" style="left:130px; top:540px" data-icono="edificio" data-args='["BOE", "#fffaf0", 820]'></div>
+        <div class="pieza ancho" id="chipPapel" style="top:1240px"><div class="chip c72">EL PAPEL</div></div>
+        <div class="pieza docg gr" id="docRD" style="left:90px; top:470px" data-icono="doc"
+          data-args='["RD-LEY 7/2026 · ART. 1", [["CONSUMIDOR VULNERABLE", "42,5 %", "filaV"], ["VULNERABLE SEVERO", "57,5 %", "filaSv"], ["DEL 1 ENE AL 31 DIC", "2026"]]]'></div>
+        <div class="pieza rotulo r44 ancho" id="rotDesc" style="top:1000px">DESCUENTO EN LA FACTURA</div>
+        <div class="pieza cifra g150 verde ancho" id="cDesc" style="top:1070px">0 %</div>
+        <div class="pieza ancho" id="selloCaso" style="top:1300px"><div class="sello s54" style="color:#e5383b; border-color:#e5383b">SEGÚN TU CASO</div></div>
+
+        <!-- C: round-number example -->
+        <div class="pieza ancho" id="chipEj2" style="top:450px"><div class="chip c58">EJEMPLO REDONDO</div></div>
+        <div class="pieza" id="bar100" style="left:90px; top:590px; width:900px"><div class="barra alta"><div class="seg" style="width:100%">100 € DE TARIFA</div></div></div>
+        <div class="pieza rotulo r44 ancho" id="rotA" style="top:830px">CON EL 42,5 %</div>
+        <div class="pieza" id="barA" style="left:90px; top:900px; width:900px"><div class="barra alta"><div class="seg d" style="width:42.5%">−42,50 €</div><div class="seg p" style="width:57.5%">PAGAS 57,50 €</div></div></div>
+        <div class="pieza rotulo r44 ancho" id="rotB" style="top:1160px">CON EL 57,5 %</div>
+        <div class="pieza" id="barB" style="left:90px; top:1230px; width:900px"><div class="barra alta"><div class="seg d" style="width:57.5%">−57,50 €</div><div class="seg p" style="width:42.5%">PAGAS 42,50 €</div></div></div>
+
+        <!-- D: heads up -->
+        <div class="pieza ancho" id="selloOjo" style="top:470px"><div class="sello s62" style="color:#e5383b; border-color:#e5383b; font-size:150px">OJO</div></div>
+        <div class="pieza ancho" id="chipTar" style="top:790px"><div class="chip blanco c72">TARIFA REGULADA</div></div>
+        <div class="pieza ancho" id="chipViv" style="top:1010px"><div class="chip blanco c72">VIVIENDA HABITUAL</div></div>
+        <div class="pieza ancho" id="chipTope" style="top:1230px"><div class="chip blanco c72">TOPE DE CONSUMO</div></div>
+
+        <!-- E: the four cases -->
+        <div class="pieza ancho" id="chipCasos" style="top:450px"><div class="chip blanco c50">LOS 4 CASOS · ART. 3</div></div>
+        <div class="pieza" id="card1" style="left:90px; top:580px"><div class="tg">
+          <div class="num">1</div><div class="t1">FAMILIA<br>NUMEROSA</div>
+          <div class="fila-p"><div data-icono="persona" data-args='["#4a78c2", 150]'></div><div data-icono="persona" data-args='["#e5383b", 150]'></div><div data-icono="persona" data-args='["#2f8f6b", 150]'></div><div data-icono="persona" data-args='["#8e6bbf", 150]'></div></div>
+          <div class="t2">ESTAR EN POSESIÓN DEL TÍTULO</div></div></div>
+        <div class="pieza" id="card2" style="left:90px; top:580px"><div class="tg">
+          <div class="num">2</div><div class="t1">PENSIÓN MÍNIMA</div>
+          <div class="t2">JUBILACIÓN O INCAPACIDAD PERMANENTE</div>
+          <div class="fila-p" style="align-items:center; gap:40px"><div data-icono="persona" data-args='["#f2b705", 190]'></div><div class="cifra" id="c500" style="font-size:130px">0 €</div></div>
+          <div class="t2" style="margin-top:6px">SIN OTROS INGRESOS DE MÁS DE ESO AL AÑO</div></div></div>
+        <div class="pieza" id="card3" style="left:90px; top:580px"><div class="tg">
+          <div class="num">3</div><div class="t1">INGRESO MÍNIMO VITAL</div>
+          <div style="margin-top:20px" data-icono="moneda" data-args='["€", 320]'></div>
+          <div class="t2">ALGUIEN DE LA CASA LO COBRA</div></div></div>
+        <div class="pieza" id="card4" style="left:90px; top:580px"><div class="tg">
+          <div class="num">4</div><div class="t1">RENTA BAJA</div>
+          <div class="grande" style="font-size:96px; margin-top:20px; line-height:1.1">1,5 × IPREM</div>
+          <div class="t2" style="margin-top:6px">IPREM: ÍNDICE PÚBLICO DE RENTA</div></div></div>
+        <div class="pieza ancho" id="chipAd" style="top:1090px"><div class="chip verde c50">+0,3 POR ADULTO MÁS</div></div>
+        <div class="pieza ancho" id="chipMe" style="top:1200px"><div class="chip verde c50">+0,5 POR MENOR</div></div>
+
+        <!-- F: the date and the base rule -->
+        <div class="pieza" id="cal" style="left:140px; top:520px" data-dibujo="calendario" data-args="[800]"></div>
+        <div class="pieza ancho" id="chipHasta" style="top:1340px"><div class="chip verde c50">42,5 % Y 57,5 % VALEN HASTA AQUÍ</div></div>
+        <div class="pieza rotulo r44 ancho" id="rotV" style="top:470px">VULNERABLE</div>
+        <div class="pieza cifra g200 roja ancho" id="cV" style="top:540px">35 %</div>
+        <div class="pieza rotulo r44 ancho" id="rotS" style="top:860px">VULNERABLE SEVERO</div>
+        <div class="pieza cifra g200 roja ancho" id="cS" style="top:920px">50 %</div>
+        <div class="pieza ancho" id="selloSalvo" style="top:1160px"><div class="sello s62" style="color:#e5383b; border-color:#e5383b">SALVO NORMA NUEVA</div></div>
+        <div class="pieza ancho" id="chipBase" style="top:1330px"><div class="chip blanco c44">NORMA DE BASE · ART. 6.3</div></div>
+
+        <!-- G: it has to be proved -->
+        <div class="pieza ancho" id="selloAcr" style="top:540px"><div class="sello s62" style="color:#e5383b; border-color:#e5383b; font-size:110px">HAY QUE<br>ACREDITARLO</div></div>
+        <div class="pieza docg gr" id="docAp" style="left:90px; top:1050px" data-icono="doc"
+          data-args='["REAL DECRETO 897/2017", [["ARTÍCULO 3", "APARTADO 5"]]]'></div>
+
+        <!-- H: pass it on, and the question -->
+        <div class="pieza" id="fam" style="left:100px; top:500px"><div style="display:flex; gap:20px">
+          <div data-icono="persona" data-args='["#4a78c2", 200]'></div><div data-icono="persona" data-args='["#e5383b", 200]'></div><div data-icono="persona" data-args='["#2f8f6b", 200]'></div><div data-icono="persona" data-args='["#8e6bbf", 200]'></div></div></div>
+        <div class="pieza ancho" id="chipFam" style="top:850px"><div class="chip c64">FAMILIA NUMEROSA</div></div>
+        <div class="pieza" id="pad" style="left:250px; top:980px"><div style="display:flex; gap:40px">
+          <div data-icono="persona" data-args='["#a0a6b4", 260]'></div><div data-icono="persona" data-args='["#c9b8e8", 260]'></div></div></div>
+        <div class="pieza ancho" id="chipPad" style="top:1340px"><div class="chip blanco c64">PADRES PENSIONISTAS</div></div>
+        <div class="pieza ancho grande" id="qBig" style="top:480px; font-size:150px; line-height:1.06; color:#1d2a44">¿CONOCÍAS<br>EL BONO<br>SOCIAL?</div>
+        <div class="pieza ancho" id="selloSN" style="top:1020px"><div class="sello s130" style="color:#e5383b; border-color:#e5383b">SÍ O NO</div></div>
+        <div class="pieza" id="bombF" style="left:440px; top:1250px" data-dibujo="bombilla" data-args="[170]"></div>
+      </div>
+      <div id="gancho" class="clip" data-start="0" data-duration="64.9" data-track-index="2"></div>
+      <div id="note" class="clip" data-start="0" data-duration="64.9" data-track-index="3"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="64.9"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="64.9" data-track-index="4" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 63.674, "lines": [{"id": "l1", "s": 0.26, "e": 2.32, "words": [{"w": "Familia", "s": 0.26, "e": 0.46, "key": false}, {"w": "numerosa:", "s": 0.46, "e": 1.48, "key": false}, {"w": "esto", "s": 1.48, "e": 1.65, "key": false}, {"w": "puede", "s": 1.65, "e": 1.83, "key": false}, {"w": "tocarte.", "s": 1.86, "e": 2.32, "key": true}]}, {"id": "l2", "s": 2.43, "e": 8.55, "words": [{"w": "Bono", "s": 2.43, "e": 2.56, "key": false}, {"w": "social", "s": 2.56, "e": 2.93, "key": false}, {"w": "de", "s": 2.93, "e": 3.05, "key": false}, {"w": "la", "s": 3.05, "e": 3.17, "key": false}, {"w": "luz:", "s": 3.17, "e": 3.52, "key": false}, {"w": "hasta", "s": 3.57, "e": 4.08, "key": false}, {"w": "cincuenta", "s": 4.11, "e": 4.481, "key": false}, {"w": "y", "s": 4.481, "e": 4.522, "key": false}, {"w": "siete", "s": 4.522, "e": 4.728, "key": false}, {"w": "coma", "s": 4.728, "e": 4.893, "key": false}, {"w": "cinco", "s": 4.893, "e": 5.099, "key": false}, {"w": "por", "s": 5.099, "e": 5.223, "key": false}, {"w": "ciento", "s": 5.223, "e": 5.47, "key": false}, {"w": "menos.", "s": 5.49, "e": 6.035, "key": false}, {"w": "¿Estás", "s": 6.035, "e": 6.58, "key": false}, {"w": "en", "s": 6.58, "e": 6.84, "key": false}, {"w": "alguno", "s": 6.84, "e": 7.17, "key": false}, {"w": "de", "s": 7.17, "e": 7.32, "key": false}, {"w": "los", "s": 7.32, "e": 7.52, "key": false}, {"w": "cuatro", "s": 7.54, "e": 7.97, "key": false}, {"w": "casos?", "s": 8.03, "e": 8.55, "key": true}]}, {"id": "l3", "s": 8.6, "e": 17.04, "words": [{"w": "Primero,", "s": 8.6, "e": 8.93, "key": false}, {"w": "el", "s": 9.01, "e": 9.02, "key": false}, {"w": "papel.", "s": 9.02, "e": 9.41, "key": true}, {"w": "Real", "s": 9.47, "e": 9.69, "key": false}, {"w": "Decreto-ley", "s": 9.69, "e": 10.36, "key": false}, {"w": "7", "s": 10.36, "e": 10.56, "key": false}, {"w": "de", "s": 10.56, "e": 10.74, "key": false}, {"w": "dos", "s": 10.74, "e": 10.933, "key": false}, {"w": "mil", "s": 10.933, "e": 11.126, "key": false}, {"w": "veintiséis:", "s": 11.126, "e": 11.77, "key": false}, {"w": "cuarenta", "s": 11.77, "e": 12.284, "key": false}, {"w": "y", "s": 12.284, "e": 12.349, "key": false}, {"w": "dos", "s": 12.349, "e": 12.542, "key": false}, {"w": "coma", "s": 12.542, "e": 12.799, "key": false}, {"w": "cinco", "s": 12.799, "e": 13.121, "key": false}, {"w": "por", "s": 13.121, "e": 13.314, "key": false}, {"w": "ciento,", "s": 13.314, "e": 13.7, "key": false}, {"w": "vulnerable;", "s": 13.8, "e": 14.25, "key": false}, {"w": "cincuenta", "s": 14.66, "e": 15.121, "key": false}, {"w": "y", "s": 15.121, "e": 15.172, "key": false}, {"w": "siete", "s": 15.172, "e": 15.429, "key": false}, {"w": "coma", "s": 15.429, "e": 15.634, "key": false}, {"w": "cinco,", "s": 15.634, "e": 15.89, "key": false}, {"w": "severo.", "s": 15.89, "e": 17.04, "key": false}]}, {"id": "l4", "s": 17.04, "e": 23.08, "words": [{"w": "Ejemplo", "s": 17.04, "e": 17.33, "key": true}, {"w": "redondo:", "s": 17.33, "e": 17.71, "key": false}, {"w": "sobre", "s": 17.91, "e": 18.09, "key": false}, {"w": "100", "s": 18.16, "e": 18.8, "key": false}, {"w": "euros", "s": 18.81, "e": 19.19, "key": false}, {"w": "de", "s": 19.19, "e": 19.34, "key": false}, {"w": "tarifa,", "s": 19.34, "e": 19.79, "key": false}, {"w": "pagarías", "s": 19.79, "e": 20.39, "key": false}, {"w": "cincuenta", "s": 20.73, "e": 20.966, "key": false}, {"w": "y", "s": 20.966, "e": 20.992, "key": false}, {"w": "siete", "s": 20.992, "e": 21.124, "key": false}, {"w": "coma", "s": 21.124, "e": 21.229, "key": false}, {"w": "cinco,", "s": 21.229, "e": 21.36, "key": false}, {"w": "o", "s": 21.36, "e": 21.46, "key": false}, {"w": "cuarenta", "s": 21.46, "e": 22.077, "key": false}, {"w": "y", "s": 22.077, "e": 22.154, "key": false}, {"w": "dos", "s": 22.154, "e": 22.386, "key": false}, {"w": "coma", "s": 22.386, "e": 22.694, "key": false}, {"w": "cinco.", "s": 22.694, "e": 23.08, "key": false}]}, {"id": "l5", "s": 23.08, "e": 27.68, "words": [{"w": "Ojo:", "s": 23.08, "e": 24.04, "key": false}, {"w": "tarifa", "s": 24.26, "e": 24.48, "key": false}, {"w": "regulada,", "s": 24.48, "e": 25.21, "key": false}, {"w": "vivienda", "s": 25.31, "e": 25.79, "key": false}, {"w": "habitual", "s": 25.79, "e": 26.13, "key": false}, {"w": "y", "s": 26.13, "e": 26.47, "key": false}, {"w": "tope", "s": 26.47, "e": 26.74, "key": true}, {"w": "de", "s": 26.74, "e": 26.87, "key": false}, {"w": "consumo.", "s": 26.92, "e": 27.68, "key": false}]}, {"id": "l6", "s": 27.68, "e": 31.05, "words": [{"w": "Los", "s": 27.68, "e": 27.82, "key": false}, {"w": "cuatro", "s": 27.82, "e": 28.08, "key": false}, {"w": "casos,", "s": 28.15, "e": 28.29, "key": false}, {"w": "según", "s": 28.34, "e": 28.58, "key": false}, {"w": "el", "s": 28.58, "e": 28.67, "key": false}, {"w": "artículo", "s": 28.67, "e": 29.07, "key": false}, {"w": "3. 1:", "s": 29.28, "e": 29.86, "key": false}, {"w": "familia", "s": 29.86, "e": 30.32, "key": false}, {"w": "numerosa.", "s": 30.35, "e": 31.05, "key": true}]}, {"id": "l7", "s": 31.1, "e": 36.37, "words": [{"w": "2:", "s": 31.1, "e": 31.54, "key": false}, {"w": "pensionista", "s": 31.54, "e": 32.37, "key": false}, {"w": "con", "s": 32.37, "e": 32.39, "key": false}, {"w": "pensión", "s": 32.65, "e": 33.12, "key": true}, {"w": "mínima", "s": 33.19, "e": 33.64, "key": false}, {"w": "y", "s": 33.64, "e": 33.7, "key": false}, {"w": "sin", "s": 33.7, "e": 33.87, "key": false}, {"w": "otros", "s": 33.87, "e": 34.1, "key": false}, {"w": "ingresos", "s": 34.11, "e": 34.48, "key": false}, {"w": "de", "s": 34.48, "e": 34.64, "key": false}, {"w": "más", "s": 34.64, "e": 34.9, "key": false}, {"w": "de", "s": 34.9, "e": 34.96, "key": false}, {"w": "500", "s": 34.96, "e": 35.54, "key": false}, {"w": "euros", "s": 35.54, "e": 35.6, "key": false}, {"w": "al", "s": 35.91, "e": 35.99, "key": false}, {"w": "año.", "s": 35.99, "e": 36.37, "key": false}]}, {"id": "l8", "s": 36.37, "e": 38.56, "words": [{"w": "3:", "s": 36.37, "e": 36.74, "key": false}, {"w": "ingreso", "s": 36.74, "e": 37.2, "key": false}, {"w": "mínimo", "s": 37.2, "e": 37.59, "key": false}, {"w": "vital", "s": 37.59, "e": 37.91, "key": true}, {"w": "en", "s": 37.91, "e": 37.95, "key": false}, {"w": "casa.", "s": 38.21, "e": 38.56, "key": false}]}, {"id": "l9", "s": 38.56, "e": 46.84, "words": [{"w": "4:", "s": 38.56, "e": 39.3, "key": false}, {"w": "renta", "s": 39.3, "e": 39.91, "key": true}, {"w": "baja,", "s": 39.98, "e": 40.49, "key": false}, {"w": "hasta", "s": 40.96, "e": 40.99, "key": false}, {"w": "uno", "s": 41, "e": 41.16, "key": false}, {"w": "coma", "s": 41.16, "e": 41.373, "key": false}, {"w": "cinco", "s": 41.373, "e": 41.64, "key": false}, {"w": "veces", "s": 41.64, "e": 41.76, "key": false}, {"w": "el", "s": 41.86, "e": 41.957, "key": false}, {"w": "IPREM,", "s": 41.957, "e": 42.2, "key": false}, {"w": "y", "s": 42.21, "e": 42.27, "key": false}, {"w": "sube", "s": 42.42, "e": 42.57, "key": false}, {"w": "con", "s": 42.57, "e": 42.8, "key": false}, {"w": "cada", "s": 42.8, "e": 43.11, "key": false}, {"w": "adulto", "s": 43.11, "e": 43.57, "key": false}, {"w": "o", "s": 43.57, "e": 43.58, "key": false}, {"w": "menor", "s": 43.65, "e": 44.03, "key": false}, {"w": "más.", "s": 44.03, "e": 44.3, "key": false}, {"w": "El", "s": 44.62, "e": 44.64, "key": false}, {"w": "severo", "s": 44.64, "e": 45.1, "key": false}, {"w": "exige", "s": 45.1, "e": 45.48, "key": false}, {"w": "aún", "s": 45.48, "e": 45.51, "key": false}, {"w": "menos", "s": 45.77, "e": 46.05, "key": false}, {"w": "renta.", "s": 46.11, "e": 46.84, "key": false}]}, {"id": "l10", "s": 46.84, "e": 54.02, "words": [{"w": "Hay", "s": 46.84, "e": 47.05, "key": false}, {"w": "fecha:", "s": 47.05, "e": 47.636, "key": true}, {"w": "estos", "s": 47.88, "e": 48.2, "key": false}, {"w": "porcentajes", "s": 48.41, "e": 48.97, "key": false}, {"w": "valen", "s": 48.97, "e": 49.32, "key": false}, {"w": "hasta", "s": 49.47, "e": 49.68, "key": false}, {"w": "el", "s": 49.68, "e": 49.82, "key": false}, {"w": "31", "s": 49.82, "e": 50.25, "key": false}, {"w": "de", "s": 50.25, "e": 50.3, "key": false}, {"w": "diciembre.", "s": 50.6, "e": 51.17, "key": false}, {"w": "Después,", "s": 51.17, "e": 51.5, "key": false}, {"w": "35", "s": 51.77, "e": 52.05, "key": false}, {"w": "y", "s": 52.1, "e": 52.17, "key": false}, {"w": "50,", "s": 52.17, "e": 52.74, "key": false}, {"w": "salvo", "s": 52.74, "e": 53.06, "key": false}, {"w": "norma", "s": 53.14, "e": 53.44, "key": false}, {"w": "nueva.", "s": 53.44, "e": 54.02, "key": false}]}, {"id": "l11", "s": 54.12, "e": 58.18, "words": [{"w": "Y", "s": 54.12, "e": 54.33, "key": false}, {"w": "hay", "s": 54.33, "e": 54.96, "key": false}, {"w": "que", "s": 54.96, "e": 55.22, "key": false}, {"w": "acreditarlo:", "s": 55.22, "e": 55.92, "key": true}, {"w": "lo", "s": 55.92, "e": 56.23, "key": false}, {"w": "dice", "s": 56.23, "e": 56.35, "key": false}, {"w": "el", "s": 56.41, "e": 56.47, "key": false}, {"w": "apartado", "s": 56.56, "e": 56.93, "key": false}, {"w": "5", "s": 56.98, "e": 57.06, "key": false}, {"w": "del", "s": 57.06, "e": 57.39, "key": false}, {"w": "artículo", "s": 57.39, "e": 57.79, "key": false}, {"w": "3.", "s": 57.85, "e": 58.18, "key": false}]}, {"id": "l12", "s": 58.18, "e": 63.36, "words": [{"w": "Pásaselo", "s": 58.18, "e": 58.65, "key": false}, {"w": "a", "s": 58.65, "e": 58.72, "key": false}, {"w": "esa", "s": 58.72, "e": 58.9, "key": false}, {"w": "familia", "s": 58.9, "e": 59.33, "key": false}, {"w": "numerosa", "s": 59.33, "e": 59.96, "key": false}, {"w": "o", "s": 59.96, "e": 60.03, "key": false}, {"w": "a", "s": 60.04, "e": 60.09, "key": false}, {"w": "tus", "s": 60.13, "e": 60.32, "key": false}, {"w": "padres", "s": 60.32, "e": 60.56, "key": false}, {"w": "pensionistas.", "s": 60.82, "e": 61.48, "key": false}, {"w": "¿Conocías", "s": 61.48, "e": 61.92, "key": true}, {"w": "el", "s": 61.92, "e": 62.03, "key": false}, {"w": "bono", "s": 62.03, "e": 62.31, "key": false}, {"w": "social?", "s": 62.34, "e": 62.68, "key": false}, {"w": "Sí", "s": 62.68, "e": 62.99, "key": false}, {"w": "o", "s": 62.99, "e": 63.0, "key": false}, {"w": "no.", "s": 63, "e": 63.36, "key": false}]}]}</script>
+    <script id="escena" type="application/json">
+{
+ "momentos": [
+  {
+   "id": "GFIN",
+   "clave": "tocarte",
+   "fin": true,
+   "mas": 0.35
+  },
+  {
+   "id": "BONO",
+   "clave": "bono"
+  },
+  {
+   "id": "MENOS",
+   "clave": "menos"
+  },
+  {
+   "id": "ESTAS",
+   "clave": "estás"
+  },
+  {
+   "id": "ALGUNO",
+   "clave": "alguno"
+  },
+  {
+   "id": "LOS",
+   "clave": "los"
+  },
+  {
+   "id": "CASOS",
+   "clave": "casos"
+  },
+  {
+   "id": "PRIMERO",
+   "clave": "primero"
+  },
+  {
+   "id": "PAPEL",
+   "clave": "papel"
+  },
+  {
+   "id": "REAL",
+   "clave": "real"
+  },
+  {
+   "id": "VULNERABLE",
+   "clave": "vulnerable"
+  },
+  {
+   "id": "SEVERO",
+   "clave": "severo"
+  },
+  {
+   "id": "EJEMPLO",
+   "clave": "ejemplo"
+  },
+  {
+   "id": "SOBRE",
+   "clave": "sobre"
+  },
+  {
+   "id": "PAGARIAS",
+   "clave": "pagarías"
+  },
+  {
+   "id": "O2",
+   "clave": "o"
+  },
+  {
+   "id": "OJO",
+   "clave": "ojo"
+  },
+  {
+   "id": "REGULADA",
+   "clave": "regulada"
+  },
+  {
+   "id": "VIVIENDA",
+   "clave": "vivienda"
+  },
+  {
+   "id": "TOPE",
+   "clave": "tope"
+  },
+  {
+   "id": "CASOS6",
+   "clave": "casos"
+  },
+  {
+   "id": "ARTICULO",
+   "clave": "artículo"
+  },
+  {
+   "id": "FAMILIA",
+   "clave": "familia"
+  },
+  {
+   "id": "PENSIONISTA",
+   "clave": "pensionista"
+  },
+  {
+   "id": "MINIMA",
+   "clave": "mínima"
+  },
+  {
+   "id": "INGRESOS",
+   "clave": "ingresos"
+  },
+  {
+   "id": "INGRESO",
+   "clave": "ingreso"
+  },
+  {
+   "id": "VITAL",
+   "clave": "vital"
+  },
+  {
+   "id": "RENTA",
+   "clave": "renta"
+  },
+  {
+   "id": "ADULTO",
+   "clave": "adulto"
+  },
+  {
+   "id": "MENOR",
+   "clave": "menor"
+  },
+  {
+   "id": "FECHA",
+   "clave": "fecha"
+  },
+  {
+   "id": "DICIEMBRE",
+   "clave": "diciembre"
+  },
+  {
+   "id": "DESPUES",
+   "clave": "después"
+  },
+  {
+   "id": "NORMA",
+   "clave": "norma"
+  },
+  {
+   "id": "ACREDITARLO",
+   "clave": "acreditarlo"
+  },
+  {
+   "id": "APARTADO",
+   "clave": "apartado"
+  },
+  {
+   "id": "PASASELO",
+   "clave": "pásaselo"
+  },
+  {
+   "id": "PADRES",
+   "clave": "padres"
+  },
+  {
+   "id": "CONOCIAS",
+   "clave": "conocías"
+  },
+  {
+   "id": "SI",
+   "clave": "sí"
+  }
+ ],
+ "arranque": {
+  "zoom": 1.06,
+  "dura": 3.0,
+  "centro": [
+   540,
+   900
+  ]
+ },
+ "lluvia": [
+  {
+   "icono": "moneda",
+   "args": [
+    "€",
+    96
+   ],
+   "n": 9,
+   "desde": 0,
+   "hasta": "ESTAS",
+   "vel": 420,
+   "opacidad": 0.4
+  }
+ ],
+ "piezas": [
+  {
+   "id": "mk",
+   "desde": 0,
+   "hasta": "ESTAS"
+  },
+  {
+   "id": "fact",
+   "desde": 0,
+   "hasta": "ESTAS",
+   "viaja": {
+    "s": 1.04,
+    "dura": 1.0
+   }
+  },
+  {
+   "id": "bomb",
+   "desde": 0,
+   "hasta": "ESTAS",
+   "viaja": {
+    "s": 1.2,
+    "y": -30,
+    "r": -9,
+    "dura": 1.0
+   },
+   "mueve": {
+    "tipo": "balancea",
+    "fuerza": 6,
+    "ritmo": 3
+   }
+  },
+  {
+   "id": "chipDto",
+   "desde": 1.2,
+   "hasta": 2.6,
+   "entra": "sello"
+  },
+  {
+   "id": "chipBono",
+   "desde": "BONO",
+   "hasta": "ESTAS",
+   "entra": "baja"
+  },
+  {
+   "id": "c1",
+   "desde": "ESTAS",
+   "hasta": "PRIMERO",
+   "entra": "escala"
+  },
+  {
+   "id": "c2",
+   "desde": "ALGUNO",
+   "hasta": "PRIMERO",
+   "entra": "escala"
+  },
+  {
+   "id": "c3",
+   "desde": "LOS",
+   "hasta": "PRIMERO",
+   "entra": "escala"
+  },
+  {
+   "id": "c4",
+   "desde": "CASOS",
+   "hasta": "PRIMERO",
+   "entra": "escala"
+  },
+  {
+   "id": "chipQ",
+   "desde": "ESTAS",
+   "hasta": "PRIMERO",
+   "entra": "sello",
+   "mueve": {
+    "tipo": "late",
+    "fuerza": 4,
+    "ritmo": 5
+   }
+  },
+  {
+   "id": "edif",
+   "desde": "PRIMERO",
+   "hasta": "REAL",
+   "entra": "escala"
+  },
+  {
+   "id": "chipPapel",
+   "desde": "PAPEL",
+   "hasta": "REAL",
+   "entra": "sello"
+  },
+  {
+   "id": "docRD",
+   "desde": "REAL",
+   "hasta": "EJEMPLO",
+   "entra": "sube"
+  },
+  {
+   "id": "cDesc",
+   "desde": "VULNERABLE",
+   "hasta": "EJEMPLO",
+   "entra": "escala"
+  },
+  {
+   "id": "rotDesc",
+   "desde": "VULNERABLE",
+   "hasta": "EJEMPLO",
+   "entra": "baja"
+  },
+  {
+   "id": "selloCaso",
+   "desde": "SEVERO",
+   "hasta": "EJEMPLO",
+   "entra": "sello"
+  },
+  {
+   "id": "chipEj2",
+   "desde": "EJEMPLO",
+   "hasta": "OJO",
+   "entra": "sello"
+  },
+  {
+   "id": "bar100",
+   "desde": "SOBRE",
+   "hasta": "OJO",
+   "entra": "izq"
+  },
+  {
+   "id": "rotA",
+   "desde": "PAGARIAS",
+   "hasta": "OJO",
+   "entra": "baja"
+  },
+  {
+   "id": "barA",
+   "desde": "PAGARIAS",
+   "hasta": "OJO",
+   "entra": "der"
+  },
+  {
+   "id": "rotB",
+   "desde": "O2",
+   "hasta": "OJO",
+   "entra": "baja"
+  },
+  {
+   "id": "barB",
+   "desde": "O2",
+   "hasta": "OJO",
+   "entra": "izq"
+  },
+  {
+   "id": "selloOjo",
+   "desde": "OJO",
+   "hasta": "CASOS6",
+   "entra": "sello"
+  },
+  {
+   "id": "chipTar",
+   "desde": "REGULADA",
+   "hasta": "CASOS6",
+   "entra": "der"
+  },
+  {
+   "id": "chipViv",
+   "desde": "VIVIENDA",
+   "hasta": "CASOS6",
+   "entra": "izq"
+  },
+  {
+   "id": "chipTope",
+   "desde": "TOPE",
+   "hasta": "CASOS6",
+   "entra": "der"
+  },
+  {
+   "id": "chipCasos",
+   "desde": "CASOS6",
+   "hasta": "FECHA",
+   "entra": "baja"
+  },
+  {
+   "id": "card1",
+   "desde": "ARTICULO",
+   "hasta": "PENSIONISTA",
+   "entra": "izq"
+  },
+  {
+   "id": "card2",
+   "desde": "PENSIONISTA",
+   "hasta": "INGRESO",
+   "entra": "der"
+  },
+  {
+   "id": "card3",
+   "desde": "INGRESO",
+   "hasta": "RENTA",
+   "entra": "izq"
+  },
+  {
+   "id": "card4",
+   "desde": "RENTA",
+   "hasta": "FECHA",
+   "entra": "der"
+  },
+  {
+   "id": "chipAd",
+   "desde": "ADULTO",
+   "hasta": "FECHA",
+   "entra": "sello"
+  },
+  {
+   "id": "chipMe",
+   "desde": "MENOR",
+   "hasta": "FECHA",
+   "entra": "sello"
+  },
+  {
+   "id": "cal",
+   "desde": "FECHA",
+   "hasta": "DESPUES",
+   "entra": "escala"
+  },
+  {
+   "id": "chipHasta",
+   "desde": "DICIEMBRE",
+   "hasta": "DESPUES",
+   "entra": "sello"
+  },
+  {
+   "id": "rotV",
+   "desde": "DESPUES",
+   "hasta": "ACREDITARLO",
+   "entra": "baja"
+  },
+  {
+   "id": "cV",
+   "desde": "DESPUES",
+   "hasta": "ACREDITARLO",
+   "entra": "escala"
+  },
+  {
+   "id": "rotS",
+   "desde": "DESPUES",
+   "hasta": "ACREDITARLO",
+   "entra": "baja"
+  },
+  {
+   "id": "cS",
+   "desde": "DESPUES",
+   "hasta": "ACREDITARLO",
+   "entra": "escala"
+  },
+  {
+   "id": "selloSalvo",
+   "desde": "NORMA",
+   "hasta": "ACREDITARLO",
+   "entra": "sello"
+  },
+  {
+   "id": "chipBase",
+   "desde": "NORMA",
+   "hasta": "ACREDITARLO",
+   "entra": "sube"
+  },
+  {
+   "id": "selloAcr",
+   "desde": "ACREDITARLO",
+   "hasta": "PASASELO",
+   "entra": "sello"
+  },
+  {
+   "id": "docAp",
+   "desde": "APARTADO",
+   "hasta": "PASASELO",
+   "entra": "sube"
+  },
+  {
+   "id": "fam",
+   "desde": "PASASELO",
+   "hasta": "CONOCIAS",
+   "entra": "izq"
+  },
+  {
+   "id": "chipFam",
+   "desde": "PASASELO",
+   "hasta": "CONOCIAS",
+   "entra": "sello"
+  },
+  {
+   "id": "pad",
+   "desde": "PADRES",
+   "hasta": "CONOCIAS",
+   "entra": "der"
+  },
+  {
+   "id": "chipPad",
+   "desde": "PADRES",
+   "hasta": "CONOCIAS",
+   "entra": "sello"
+  },
+  {
+   "id": "qBig",
+   "desde": "CONOCIAS",
+   "entra": "escala"
+  },
+  {
+   "id": "selloSN",
+   "desde": "SI",
+   "entra": "sello",
+   "mueve": {
+    "tipo": "late",
+    "fuerza": 4,
+    "ritmo": 5
+   }
+  },
+  {
+   "id": "bombF",
+   "desde": "CONOCIAS",
+   "entra": "sube",
+   "mueve": {
+    "tipo": "balancea",
+    "fuerza": 6,
+    "ritmo": 3
+   }
+  }
+ ],
+ "cifras": [
+  {
+   "id": "filaTot",
+   "desde": 0,
+   "de": 100,
+   "a": 42.5,
+   "dec": 2,
+   "formato": "euros",
+   "dura": 2.4,
+   "curva": "lineal"
+  },
+  {
+   "id": "cDesc",
+   "desde": "VULNERABLE",
+   "a": 42.5,
+   "dec": 1,
+   "formato": "pct",
+   "dura": 0.8,
+   "curva": "sale"
+  },
+  {
+   "id": "cDesc",
+   "desde": "SEVERO",
+   "de": 42.5,
+   "a": 57.5,
+   "dec": 1,
+   "formato": "pct",
+   "dura": 0.8,
+   "curva": "sale"
+  },
+  {
+   "id": "c500",
+   "desde": "INGRESOS",
+   "a": 500,
+   "formato": "euros",
+   "dura": 1.0,
+   "curva": "sale"
+  }
+ ],
+ "notas": [
+  {
+   "texto": "Ejemplo inventado y simplificado: 100 € de tarifa regulada. Real Decreto-ley 7/2026, art. 1 (BOE)",
+   "desde": 1.2
+  },
+  {
+   "texto": "",
+   "desde": "ESTAS"
+  },
+  {
+   "texto": "Real Decreto-ley 7/2026, art. 1, en vigor del 22 de marzo de 2026 (BOE)",
+   "desde": "REAL"
+  },
+  {
+   "texto": "Ejemplo: 100 × (1 − 0,425) = 57,50 y 100 × (1 − 0,575) = 42,50 (cálculo propio)",
+   "desde": "EJEMPLO"
+  },
+  {
+   "texto": "Real Decreto 897/2017, art. 6.3: el descuento tiene un límite de energía (anexo I)",
+   "desde": "OJO"
+  },
+  {
+   "texto": "Real Decreto 897/2017, art. 3.2 (consolidado en el BOE)",
+   "desde": "CASOS6"
+  },
+  {
+   "texto": "Art. 3.2.a: renta de la unidad de convivencia hasta 1,5 veces el IPREM de 14 pagas; +0,3 por adulto y +0,5 por menor",
+   "desde": "RENTA"
+  },
+  {
+   "texto": "Real Decreto-ley 7/2026, art. 1: del 1 de enero al 31 de diciembre de 2026",
+   "desde": "FECHA"
+  },
+  {
+   "texto": "Real Decreto 897/2017, art. 6.3: 35 % y 50 % (texto consolidado)",
+   "desde": "DESPUES"
+  },
+  {
+   "texto": "Real Decreto 897/2017, art. 3.5",
+   "desde": "ACREDITARLO"
+  },
+  {
+   "texto": "",
+   "desde": "CONOCIAS"
+  }
+ ],
+ "fondo": "claro",
+ "sonidos": [
+  {
+   "tipo": "desliza",
+   "en": 0.0
+  },
+  {
+   "tipo": "metal",
+   "en": 0.12
+  },
+  {
+   "tipo": "toque",
+   "en": 1.2
+  },
+  {
+   "tipo": "pop",
+   "en": "BONO"
+  },
+  {
+   "tipo": "pop",
+   "en": "ESTAS"
+  },
+  {
+   "tipo": "pop",
+   "en": "ALGUNO"
+  },
+  {
+   "tipo": "pop",
+   "en": "LOS"
+  },
+  {
+   "tipo": "pop",
+   "en": "CASOS"
+  },
+  {
+   "tipo": "pop",
+   "en": "PRIMERO"
+  },
+  {
+   "tipo": "pop",
+   "en": "PAPEL"
+  },
+  {
+   "tipo": "desliza",
+   "en": "REAL"
+  },
+  {
+   "tipo": "toque",
+   "en": "SEVERO"
+  },
+  {
+   "tipo": "pop",
+   "en": "EJEMPLO"
+  },
+  {
+   "tipo": "desliza",
+   "en": "SOBRE"
+  },
+  {
+   "tipo": "desliza",
+   "en": "PAGARIAS"
+  },
+  {
+   "tipo": "desliza",
+   "en": "O2"
+  },
+  {
+   "tipo": "error",
+   "en": "OJO"
+  },
+  {
+   "tipo": "pop",
+   "en": "REGULADA"
+  },
+  {
+   "tipo": "pop",
+   "en": "VIVIENDA"
+  },
+  {
+   "tipo": "pop",
+   "en": "TOPE"
+  },
+  {
+   "tipo": "pop",
+   "en": "CASOS6"
+  },
+  {
+   "tipo": "desliza",
+   "en": "ARTICULO"
+  },
+  {
+   "tipo": "desliza",
+   "en": "PENSIONISTA"
+  },
+  {
+   "tipo": "desliza",
+   "en": "INGRESO"
+  },
+  {
+   "tipo": "desliza",
+   "en": "RENTA"
+  },
+  {
+   "tipo": "pop",
+   "en": "ADULTO"
+  },
+  {
+   "tipo": "pop",
+   "en": "MENOR"
+  },
+  {
+   "tipo": "pop",
+   "en": "FECHA"
+  },
+  {
+   "tipo": "toque",
+   "en": "DICIEMBRE"
+  },
+  {
+   "tipo": "desliza",
+   "en": "DESPUES"
+  },
+  {
+   "tipo": "error",
+   "en": "NORMA"
+  },
+  {
+   "tipo": "toque",
+   "en": "ACREDITARLO"
+  },
+  {
+   "tipo": "desliza",
+   "en": "APARTADO"
+  },
+  {
+   "tipo": "desliza",
+   "en": "PASASELO"
+  },
+  {
+   "tipo": "desliza",
+   "en": "PADRES"
+  },
+  {
+   "tipo": "pop",
+   "en": "CONOCIAS"
+  },
+  {
+   "tipo": "pagado",
+   "en": "SI"
+  },
+  {
+   "tipo": "teclas",
+   "en": "INGRESOS",
+   "n": 5,
+   "cada": 0.09,
+   "volumen": 0.6
+  },
+  {
+   "tipo": "brillo",
+   "en": "SEVERO"
+  },
+  {
+   "tipo": "brillo",
+   "en": "CONOCIAS",
+   "mas": 0.2
+  }
+ ],
+ "titulo": {
+  "texto": "Bono social: hasta 57,5 % menos de luz",
+  "clave": "57,5"
+ }
+}
+</script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 64.9 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import { crearDinero, COLOR } from "./comun/dinero.js";
+      const $ = (id) => document.getElementById(id);
+      const K = COLOR;
+
+      // ---------- drawings this video needs, in the account's flat style (navy outline, solid offset shadow) ----------
+      const DIBUJOS = {
+        // a light bulb: glass, screw base and three rays
+        bombilla: (w = 240) => `<svg width="${w}" height="${Math.round(w * 1.2)}" viewBox="0 0 200 240">
+          <g transform="translate(10 10)" fill="${K.tinta}"><path d="M100 14 C52 14 22 50 22 92 C22 122 40 140 54 158 C62 168 64 176 64 186 H136 C136 176 138 168 146 158 C160 140 178 122 178 92 C178 50 148 14 100 14 Z"/><rect x="62" y="190" width="76" height="34" rx="10"/></g>
+          <path d="M100 14 C52 14 22 50 22 92 C22 122 40 140 54 158 C62 168 64 176 64 186 H136 C136 176 138 168 146 158 C160 140 178 122 178 92 C178 50 148 14 100 14 Z" fill="${K.oro}" stroke="${K.tinta}" stroke-width="9" stroke-linejoin="round"/>
+          <rect x="62" y="190" width="76" height="34" rx="10" fill="${K.blanco}" stroke="${K.tinta}" stroke-width="9"/>
+          <path d="M80 100 L100 130 L120 100" fill="none" stroke="${K.tinta}" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="100" y1="130" x2="100" y2="186" stroke="${K.tinta}" stroke-width="9" stroke-linecap="round"/></svg>`,
+        // a wall calendar: red header, DIC 2026 and a big 31
+        calendario: (w = 640) => { const h = Math.round(w * 0.9); return `<div style="width:${w}px;height:${h}px;border:9px solid ${K.tinta};border-radius:26px;background:${K.blanco};box-shadow:14px 14px 0 ${K.tinta};overflow:hidden;text-align:center;color:${K.tinta}">
+          <div style="background:${K.rojo};height:${Math.round(h * 0.26)}px;border-bottom:9px solid ${K.tinta};color:#fff;font:800 ${Math.round(w * 0.085)}px/${Math.round(h * 0.26)}px Inter;letter-spacing:.14em">DICIEMBRE 2026</div>
+          <div style="font-family:'Archivo Black';font-size:${Math.round(w * 0.46)}px;line-height:${Math.round(h * 0.74)}px">31</div></div>`; },
+      };
+      for (const el of document.querySelectorAll("[data-dibujo]")) el.innerHTML = DIBUJOS[el.dataset.dibujo](...JSON.parse(el.dataset.args || "[]"));
+
+      // ---------- the engine ----------
+      const C = crearDinero();
+      const { T } = C;
+      const filaClase = (id, clase, on) => { const b = $(id); if (b) b.parentElement.classList.toggle(clase, on); };
+
+      // a red marker stroke that draws itself around the discount value (demo of the first seconds)
+      let mkPath = null;
+      function montaMarcador() {
+        const b = $("filaBS"), f = $("fact"), m = $("mk");
+        const x0 = f.offsetLeft + (b.offsetParent === f ? b.offsetLeft : 0), y0 = f.offsetTop + (b.offsetParent === f ? b.offsetTop : 0);
+        const w = b.offsetWidth + 56, h = b.offsetHeight + 26, cx = x0 + b.offsetWidth / 2 + 4, cy = y0 + b.offsetHeight / 2 + 4;
+        m.style.left = "0px"; m.style.top = "0px";
+        m.innerHTML = `<svg width="1080" height="1920" viewBox="0 0 1080 1920"><path id="mkp" pathLength="1" d="M ${cx - w / 2 + 40} ${cy - h / 2 + 6} C ${cx - w / 2 - 20} ${cy - h / 2 + 10}, ${cx - w / 2 - 30} ${cy + h / 2 - 6}, ${cx - 20} ${cy + h / 2 + 6} C ${cx + w / 2 - 80} ${cy + h / 2 + 12}, ${cx + w / 2 + 34} ${cy + h / 2 - 8}, ${cx + w / 2 + 22} ${cy - 6} C ${cx + w / 2 + 12} ${cy - h / 2 - 14}, ${cx + 120} ${cy - h / 2 - 8}, ${cx - w / 2 + 70} ${cy - h / 2 - 2}" fill="none" stroke="${K.rojo}" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 1.05" stroke-dashoffset="1"/></svg>`;
+        mkPath = $("mkp");
+      }
+
+      function renderAt(t) {
+        if (!mkPath) montaMarcador();
+        const k = Math.min(1, Math.max(0, (t - 0.4) / 0.7)), ke = 1 - Math.pow(1 - k, 2);
+        mkPath.style.strokeDashoffset = 1 - ke;
+        mkPath.style.opacity = k > 0 && t < T.ESTAS ? 1 : 0;
+        filaClase("filaTot", "verdef", t >= 1.7 && t < T.ESTAS);
+        filaClase("filaBS", "marca", t >= T.MENOS && t < T.ESTAS);
+        filaClase("filaV", "marca", t >= T.VULNERABLE && t < T.SEVERO);
+        filaClase("filaSv", "marca", t >= T.SEVERO);
+        C.pintar(t);
+      }
+
+      C.arrancar(renderAt);
+    </script>
+  </body>
+</html>

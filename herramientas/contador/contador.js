@@ -38,6 +38,23 @@
 //            para cuando el guion dice "y el final no es el que esperas". La cifra tiene que estar en fuentes.md.
 //          - Lo que el motor no puede hacer solo: que el personaje ya esté haciendo la acción del vídeo en el
 //            fotograma 0 (en 12-cafe, a medio sorbo y con las tazas cayendo a la mesa). Eso va en cada vídeo.
+//   titulo: "texto" | { texto, clave?, hasta? }  (16 de noviembre)
+//          - Como texto (lo de siempre): el gancho grande del centro, que se va a los 2-3 s.
+//          - Como objeto: un título fijo con la pregunta ENTERA y concreta ("¿Y si bajaras al fondo de la fosa de las
+//            Marianas?"), a la vista en el fotograma 0 (sin entrada: opacidad 1 desde el primer fotograma) y durante todo
+//            el vídeo, o hasta `hasta` segundos (se funde en 0,3 s y el marcador sube a su sitio). Pensado para quien
+//            llega al vídeo sin saber de qué va: el gancho grande vago ya no hace falta.
+//            texto: máximo 2 líneas; el motor baja el cuerpo de 66 a 58 px hasta que cabe y avisa por consola si aun
+//                   así pasa de 2 líneas (acorta el texto).
+//            clave: palabra (o lista de palabras) del título, por su comienzo, que sale resaltada en azul marino.
+//            Estilo: la misma pegatina amarilla de la pregunta final (texto marino, borde de 6 px, sombra dura), sin
+//            degradado ni brillo. Va ENCIMA del marcador, a 140 px del borde de arriba (deja libre la franja de la
+//            interfaz de TikTok), y el marcador baja lo que mida el título (unos 190 px con 2 líneas): las etiquetas
+//            (con etiquetas_bajo_marcador) y el sello de `adelanto` bajan con él. Las tarjetas y rótulos fijos que el
+//            vídeo ponga a mano (top: 646px...) hay que bajarlos esos mismos píxeles: C.titulo.desplazamiento() los da.
+//          - El gancho grande pasa a ser opcional: `gancho: "texto"` en la escena lo pone como siempre (sale a los 2-3 s y
+//            tapa los subtítulos mientras está). Sin `gancho`, los subtítulos salen desde la primera palabra.
+//          - Sin `titulo`, o con `titulo` como texto, el vídeo sale igual que antes, fotograma a fotograma.
 
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
@@ -332,9 +349,54 @@ export function crearContador(THREE) {
   // ---------- HUD, title, captions ----------
   const altEl = document.getElementById("alt"), clockEl = document.getElementById("clock"), extraEl = document.getElementById("extra");
   const titleEl = document.getElementById("title");
-  titleEl.textContent = ESC.titulo;
+  // titulo as an object is the fixed banner; the big hook is then ESC.gancho (optional). As a string: as always.
+  const TIT = ESC.titulo && typeof ESC.titulo === "object" ? ESC.titulo : null;
+  const GANCHO = TIT ? ESC.gancho || "" : ESC.titulo;
+  titleEl.textContent = GANCHO;
   document.getElementById("note").textContent = ESC.nota || "";
   document.getElementById("since").textContent = ESC.desde || "SUBIENDO DESDE HACE";
+
+  // the fixed title banner (ESC.titulo as an object): above the marker, which moves down by what the banner measures
+  const hudEl = document.getElementById("hud");
+  const TIT_TOP = 140, TIT_GAP = 22, HUD_TOP = 176;
+  let bannerEl = null, bannerAlto = 0;
+  if (TIT) {
+    if (!TIT.texto) throw new Error("titulo: falta el texto");
+    bannerEl = document.createElement("div"); bannerEl.className = "banner"; bannerEl.style.top = TIT_TOP + "px";
+    const claves = [].concat(TIT.clave || []).map(norm);
+    const span = document.createElement("span");
+    TIT.texto.split(/\s+/).forEach((w, i) => {
+      if (i) span.appendChild(document.createTextNode(" "));
+      const el = document.createElement("span"); el.textContent = w;
+      if (claves.some((c) => norm(w).startsWith(c))) el.className = "k";
+      span.appendChild(el);
+    });
+    bannerEl.appendChild(span);
+    document.getElementById("labels").appendChild(bannerEl);
+  }
+  // the banner has a font size that fits in 2 lines (66 px down to 58 px); measured once the fonts are ready
+  function medirBanner() {
+    if (!bannerEl || bannerAlto) return;
+    let px = 66;
+    for (; px >= 58; px -= 2) { bannerEl.style.fontSize = px + "px"; if (lineas() <= 2) break; }
+    if (lineas() > 2) console.warn(`titulo: "${TIT.texto}" ocupa más de 2 líneas a 58 px; acórtalo`);
+    bannerAlto = bannerEl.offsetHeight;
+  }
+  // number of lines of the banner text (distinct line tops of its words)
+  function lineas() { return new Set([...bannerEl.firstChild.children].map((e) => Math.round(e.getBoundingClientRect().top / 10))).size; }
+  // how many px the marker (and what hangs from it) is moved down because of the banner, at time t
+  const hasta = TIT && TIT.hasta != null ? TIT.hasta : Infinity;
+  function desplazamiento(t = 0) {
+    if (!TIT) return 0;
+    medirBanner();
+    const kout = ease(clamp((t - hasta) / 0.3));
+    return Math.max(0, TIT_TOP + bannerAlto + TIT_GAP - HUD_TOP) * (1 - kout);
+  }
+  function drawBanner(t) {
+    medirBanner();
+    bannerEl.style.opacity = 1 - clamp((t - hasta) / 0.3);
+    hudEl.style.top = HUD_TOP + desplazamiento(t) + "px";
+  }
 
   // the teaser of the moving start: a stamp with the final figure, blurred
   let adelEl = null;
@@ -355,6 +417,7 @@ export function crearContador(THREE) {
   function drawAdelanto(t) {
     const v = ventanas.find(([t0, d]) => t >= t0 && t <= t0 + d + 0.3);
     if (!v) { adelEl.style.opacity = 0; return; }
+    if (TIT && ARR.adelanto.top == null) adelEl.style.top = 700 + desplazamiento(t) + "px"; // follows the marker
     const u = t - v[0], kin = 1 - Math.pow(1 - clamp(u / 0.3), 3), kout = ease(clamp((u - v[1]) / 0.3));
     adelEl.style.opacity = 1 - kout;
     adelEl.style.transform = `translateX(${kout * 240}px) rotate(${2 + 4 * kin + 8 * kout}deg) scale(${0.74 + 0.26 * kin + 0.07 * Math.sin(Math.PI * clamp(u / 0.5)) - 0.2 * kout})`;
@@ -379,8 +442,9 @@ export function crearContador(THREE) {
     // the title card (the hook) stays until the first text line in text mode, at least 2.9 s
     // (with the moving start it leaves when the spoken hook ends, and it comes in with a punch)
     const tFin = ARR && VOZ.modo !== "texto" ? clamp(VOZ.lines[0].e + 0.3, 1.8, 2.9) : Math.max(2.9, VOZ.modo === "texto" ? VOZ.lines[0].s : 0);
-    const tk = 1 - ramp(t, tFin - 0.5, tFin); titleEl.style.opacity = tk; titleEl.style.transform = `scale(${0.96 + 0.04 * tk})`;
+    const tk = GANCHO || !TIT ? 1 - ramp(t, tFin - 0.5, tFin) : 0; titleEl.style.opacity = tk; titleEl.style.transform = `scale(${0.96 + 0.04 * tk})`;
     if (ARR) { const q = Math.pow(1 - clamp(t / 0.5), 3); titleEl.style.transform = `scale(${(0.96 + 0.04 * tk) * (1 + 0.1 * q)}) rotate(${-3 * q}deg)`; }
+    if (bannerEl) drawBanner(t);
     if (adelEl) drawAdelanto(t);
     capsEl.style.opacity = 1 - tk;
     drawLabels(t, y);
@@ -401,5 +465,6 @@ export function crearContador(THREE) {
     clamp, lerp, ease, smooth, ramp, v3, hash, norm, miles, Y, V, yAt, fmtValor, fmtEtiqueta, fmtTime, tiempoDe,
     renderer, composer, scene, camera, hemi, key, rim, mat, glow, box, at,
     personaje, fondo, escala, etiquetas, pintar, arrancar, impulso,
+    titulo: { desplazamiento },
   };
 }

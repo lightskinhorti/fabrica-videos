@@ -531,6 +531,24 @@ Javier mandó un reel de un creador que enseña su "máquina": su Claude mira re
 
 **Recetas de las cuentas que funcionan (16 de noviembre):** se desmontaron 16 vídeos de @tu_blog_fiscal, @altezseraverdad y @que_pasariasi. El detalle está en `ideas/recetas.md`. En corto: en dinero funciona "dinero que te toca a ti ahora" con la condición y la cifra en el gancho; en cosas, partir de un mito y dudar ("¿será verdad?") con el veredicto al final; en qué pasaría si, misiones extremas en segunda persona, no hábitos de salud. Los vídeos siguientes se hacen con estas recetas.
 
+**Comparación de los 3 primeros segundos (16 de noviembre, por la tarde):** se pusieron en fila, foto a foto cada medio segundo, los 5 vídeos más vistos de cada nicho (bajados con `referentes.py`) y los nuestros del 12, el 13 y el 16.
+
+- **Ellos llevan un rótulo fijo todo el vídeo que dice la pregunta entera** ("¿Y si estuvieras solo 5 segundos en Urano?", "Ayuda de hasta 1.380 € por hijo a cargo"). El nuestro era una frase suelta ("¿Llegas al fondo?", "No es un regalo") que se iba a los 2,5 s: quien llega no sabe de qué va el vídeo.
+- **Lo suyo llena la pantalla y se mueve desde el fotograma 0.** En Las cosas por dentro el objeto ocupaba un tercio y el resto era negro; en Dinero sin lío, cinco fotos seguidas eran casi iguales.
+- **8 de los 12 abren con una persona o con imagen real.** Eso no lo tenemos y no se arregla con código.
+- La voz no es el problema: en los tres vídeos del 16 empieza a los 0,25 s.
+
+Qué cambia en los vídeos nuevos (los ya programados no se tocan):
+
+- **Título fijo** en los tres motores: `titulo: { texto, clave?, hasta? }` en la escena. Va arriba (de y 140 a unos 310), se lee entero en el fotograma 0 y dice la pregunta o la promesa completa, con el tema nombrado. En El contador loco el marcador baja lo que ocupa el título (ahí `titulo` como texto suelto sigue siendo el gancho grande de antes, que ahora también se puede dar como `gancho`); en Las cosas por dentro y Dinero sin lío los subtítulos bajan a y 320, así que las piezas empiezan en y 490.
+- Con título fijo, el gancho grande del centro sobra casi siempre: se quita para que se vea el objeto.
+- **Las cosas por dentro:** en el fotograma 0 el objeto ocupa al menos el 60 % del ancho y ya le está pasando algo.
+- **Dinero sin lío:** en los 3 primeros segundos cambia algo cada medio segundo (el papel grande desde el principio, la cifra rodeada con un trazo, el total contando).
+- Los vídeos sin `titulo` salen igual que antes (comprobado con fotos antes y después en 6 vídeos).
+- Las pruebas están en `estudio/arranque/` (copias de los vídeos del 16, sin voz nueva) y las fotos en `exports/arranque/`.
+
+Si esto tampoco mueve las visualizaciones, lo siguiente es abrir con imagen real gratuita (NASA, NOAA, bancos libres). Lo decide Javier.
+
 **Lo que no se sabe:** si el techo de unas 800 visualizaciones es solo por el gancho. Las cuentas nuevas suelen recibir una primera tanda pequeña de público, y pasar de ahí depende también de cuánta gente ve el vídeo entero y lo comparte. El gancho es lo primero que se arregla porque es donde más gente se pierde, pero no hay garantía de que baste.
 
 ## Instagram: cómo lo hacemos y packs en la bio

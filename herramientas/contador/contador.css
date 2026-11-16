@@ -66,3 +66,11 @@ html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1592f
 .adelanto .rot { font-weight: 900; font-size: 40px; letter-spacing: 0.1em; line-height: 1; }
 .adelanto .cifra { font-family: "Archivo Black", sans-serif; font-size: 118px; line-height: 1.08; white-space: nowrap; }
 .adelanto .pie { font-weight: 900; font-size: 44px; line-height: 1; }
+/* titulo (objeto): el título fijo con la pregunta entera, encima del marcador; la misma pegatina que la pregunta final */
+.banner {
+  position: absolute; left: 50px; right: 50px; text-align: center; opacity: 1;
+  font-weight: 900; font-size: 66px; line-height: 1.08; color: var(--navy);
+  padding: 14px 28px 16px; border-radius: 30px; background: var(--yellow); border: 6px solid var(--stroke);
+  box-shadow: 0 10px 0 rgba(11, 26, 58, 0.45);
+}
+.banner .k { display: inline-block; line-height: 1; background: var(--navy); color: var(--yellow); padding: 3px 12px 5px; border-radius: 14px; }
