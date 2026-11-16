@@ -1,5 +1,5 @@
 {
- "leido": "2026-11-11 00:15",
+ "leido": "2026-11-16 12:30",
  "fuente": "TikTok Studio, leído por Claude en el perfil de Chrome de cada cuenta",
  "campos": [
   "visualizaciones",
@@ -127,6 +127,48 @@
    2.1,
    0,
    80
+  ],
+  "elcontadorloco/13-sueno": [
+   763,
+   13.16,
+   1.8,
+   0,
+   68
+  ],
+  "elcontadorloco/14-sentado": [
+   764,
+   7.68,
+   0.9,
+   0,
+   65
+  ],
+  "lascosaspordentro/13-bateria": [
+   755,
+   12.59,
+   2.6,
+   1,
+   62
+  ],
+  "lascosaspordentro/14-qr": [
+   736,
+   12.83,
+   2.9,
+   0,
+   66
+  ],
+  "dinerosinlio/11-pagaextra": [
+   767,
+   14.86,
+   5.9,
+   5,
+   67
+  ],
+  "dinerosinlio/12-precio99": [
+   763,
+   6.94,
+   8.5,
+   1,
+   26
   ]
  },
  "retencion_pct_por_segundo": {
@@ -150,5 +192,6 @@
    "30": 10
   }
  },
- "notas": "Casi todas las visualizaciones llegan de Para ti (94-100 %) en las primeras 4 a 11 horas y luego se paran. Creator Rewards no aparece en la página de monetización de ninguna de las 3 cuentas."
+ "notas": "Casi todas las visualizaciones llegan de Para ti (94-100 %) en las primeras 4 a 11 horas y luego se paran. Creator Rewards no aparece en la página de monetización de ninguna de las 3 cuentas.",
+ "notas_16nov": "Los 6 vídeos con el gancho nuevo, el cebo y la prueba corta acaban entre 736 y 767 visualizaciones, igual que los anteriores. En todos, Studio dice que la mayoría deja de ver en el segundo 0:01. No se leyó la curva segundo a segundo."
 }

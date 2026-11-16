@@ -2,27 +2,27 @@
  "cuentas": {
   "dinerosinlio": {
    "error": null,
-   "leido": 1794492106,
-   "megusta": 128,
-   "seguidores": 8,
+   "leido": 1794822277,
+   "megusta": 175,
+   "seguidores": 13,
    "tiktok": "eldinerosinlio"
   },
   "elcontadorloco": {
    "error": null,
-   "leido": 1794492106,
-   "megusta": 226,
+   "leido": 1794822277,
+   "megusta": 265,
    "seguidores": 5,
    "tiktok": "elcontadorloco"
   },
   "lascosaspordentro": {
    "error": null,
-   "leido": 1794492106,
-   "megusta": 164,
-   "seguidores": 6,
+   "leido": 1794822277,
+   "megusta": 207,
+   "seguidores": 7,
    "tiktok": "lascosaspordentro"
   }
  },
- "leido": 1794492106,
+ "leido": 1794822277,
  "videos": {
   "7703610063235190038": {
    "comentarios": 3,
@@ -113,7 +113,7 @@
    "url": "https://www.tiktok.com/@elcontadorloco/video/7703939992397073686",
    "v24": null,
    "v7": 283,
-   "vistas": 284
+   "vistas": 290
   },
   "7703940311143288086": {
    "comentarios": 0,
@@ -126,7 +126,7 @@
    "url": "https://www.tiktok.com/@elcontadorloco/video/7703940311143288086",
    "v24": 220,
    "v7": 238,
-   "vistas": 239
+   "vistas": 241
   },
   "7703940797799927062": {
    "comentarios": 0,
@@ -139,7 +139,7 @@
    "url": "https://www.tiktok.com/@lascosaspordentro/video/7703940797799927062",
    "v24": null,
    "v7": 191,
-   "vistas": 193
+   "vistas": 194
   },
   "7703941048547953942": {
    "comentarios": 0,
@@ -152,7 +152,7 @@
    "url": "https://www.tiktok.com/@lascosaspordentro/video/7703941048547953942",
    "v24": 192,
    "v7": 202,
-   "vistas": 202
+   "vistas": 204
   },
   "7703941507107097878": {
    "comentarios": 0,
@@ -216,6 +216,7 @@
    "texto": "10.000 pasos al día, todos los días: qué dicen los estudios del azúcar tras comer, la tensión, la forma física, el cereb",
    "url": "https://www.tiktok.com/@elcontadorloco/video/7704716264723483926",
    "v24": 800,
+   "v7": 823,
    "vistas": 823
   },
   "7704716506323520790": {
@@ -228,7 +229,8 @@
    "texto": "Si pagas un café de 2 euros con tarjeta, el bar paga de media unas 7 décimas de céntimo de comisión, y una parte va a tu",
    "url": "https://www.tiktok.com/@eldinerosinlio/video/7704716506323520790",
    "v24": 288,
-   "vistas": 317
+   "v7": 318,
+   "vistas": 320
   },
   "7704716784225537302": {
    "comentarios": 0,
@@ -240,7 +242,8 @@
    "texto": "El microondas no calienta desde dentro: sus ondas solo entran unos centímetros y el centro se calienta después, por cond",
    "url": "https://www.tiktok.com/@lascosaspordentro/video/7704716784225537302",
    "v24": 261,
-   "vistas": 275
+   "v7": 275,
+   "vistas": 276
   },
   "7705523382627994902": {
    "comentarios": 0,
@@ -252,7 +255,8 @@
    "texto": "La comida que se tira en casa, sumada: unos 64 gramos al día por persona, una maleta al año y casi 2 toneladas en toda u",
    "url": "https://www.tiktok.com/@elcontadorloco/video/7705523382627994902",
    "v24": null,
-   "vistas": 901
+   "v7": 902,
+   "vistas": 902
   },
   "7705523999446519062": {
    "comentarios": 0,
@@ -264,19 +268,21 @@
    "texto": "Tu nevera no fabrica frío: saca el calor de la comida y lo suelta por detrás, en tu cocina. Por eso dejarla abierta no e",
    "url": "https://www.tiktok.com/@lascosaspordentro/video/7705523999446519062",
    "v24": null,
-   "vistas": 816
+   "v7": 821,
+   "vistas": 822
   },
   "7705524543095426326": {
    "comentarios": 0,
    "compartidos": 0,
    "cuenta": "dinerosinlio",
-   "megusta": 13,
+   "megusta": 14,
    "panel": "dinerosinlio/06-iva",
    "publicado": 1794085200,
    "texto": "En España el pan común, la leche, los huevos, el queso, la fruta, la verdura, las legumbres y el aceite de oliva llevan ",
    "url": "https://www.tiktok.com/@eldinerosinlio/video/7705524543095426326",
    "v24": null,
-   "vistas": 845
+   "v7": 848,
+   "vistas": 848
   },
   "7706114335826824451": {
    "comentarios": 1,
@@ -288,7 +294,7 @@
    "texto": "4 horas de móvil al día, sumadas: 28 horas a la semana, 2 meses enteros al año y 12 años enteros en toda una vida (desde",
    "url": "https://www.tiktok.com/@elcontadorloco/video/7706114335826824451",
    "v24": 781,
-   "vistas": 793
+   "vistas": 796
   },
   "7706115412081069334": {
    "comentarios": 0,
@@ -300,7 +306,7 @@
    "texto": "Una lata de refresco con azúcar al día, todos los días: qué dicen la OMS y los estudios de los dientes, el peso, la diab",
    "url": "https://www.tiktok.com/@elcontadorloco/video/7706115412081069334",
    "v24": 779,
-   "vistas": 784
+   "vistas": 786
   },
   "7706116011107405078": {
    "comentarios": 0,
@@ -312,7 +318,7 @@
    "texto": "Tu mando dispara destellos de luz infrarroja que tus ojos no ven, pero la cámara del móvil sí. Cada botón es un código d",
    "url": "https://www.tiktok.com/@lascosaspordentro/video/7706116011107405078",
    "v24": 809,
-   "vistas": 818
+   "vistas": 823
   },
   "7706116389475519766": {
    "comentarios": 0,
@@ -324,7 +330,7 @@
    "texto": "Tu ratón óptico lleva una cámara diminuta: hace más de mil fotos por segundo de tu mesa, iluminada con una luz casi rasa",
    "url": "https://www.tiktok.com/@lascosaspordentro/video/7706116389475519766",
    "v24": 738,
-   "vistas": 738
+   "vistas": 742
   },
   "7706116969228946710": {
    "comentarios": 0,
@@ -336,7 +342,7 @@
    "texto": "En España, si sacas dinero en un cajero de otro banco, el dueño del cajero no puede cobrarte a ti: cobra a tu banco, que",
    "url": "https://www.tiktok.com/@eldinerosinlio/video/7706116969228946710",
    "v24": 777,
-   "vistas": 785
+   "vistas": 787
   },
   "7706117419705568534": {
    "comentarios": 1,
@@ -348,7 +354,7 @@
    "texto": "El 2 de noviembre de 2026 el litro de gasolina 95 costaba de media en España 1,73 €, y 57 céntimos eran impuestos: el de",
    "url": "https://www.tiktok.com/@eldinerosinlio/video/7706117419705568534",
    "v24": 780,
-   "vistas": 785
+   "vistas": 798
   },
   "7706847925699169558": {
    "comentarios": 0,
@@ -359,7 +365,8 @@
    "publicado": 1794416400,
    "texto": "Tres cafés al día, todos los días: qué dicen los estudios del sueño, el cáncer, la diabetes tipo 2 y la mortalidad. Fuen",
    "url": "https://www.tiktok.com/@elcontadorloco/video/7706847925699169558",
-   "vistas": 246
+   "v24": 247,
+   "vistas": 252
   },
   "7706848305107537174": {
    "comentarios": 0,
@@ -370,7 +377,8 @@
    "publicado": 1794416400,
    "texto": "Un pendrive guarda tus fotos sin pilas porque cada celda de su memoria flash atrapa electrones en una puerta flotante ro",
    "url": "https://www.tiktok.com/@lascosaspordentro/video/7706848305107537174",
-   "vistas": 778
+   "v24": 778,
+   "vistas": 782
   },
   "7706848710679891222": {
    "comentarios": 0,
@@ -381,7 +389,80 @@
    "publicado": 1794416400,
    "texto": "¿Qué haces con los céntimos del cambio? Muchos acaban en un cajón y hay que fabricar más. Y fabricar las monedas de 1 y ",
    "url": "https://www.tiktok.com/@eldinerosinlio/video/7706848710679891222",
-   "vistas": 776
+   "v24": 776,
+   "vistas": 779
+  },
+  "7707312845528075542": {
+   "comentarios": 0,
+   "compartidos": 0,
+   "cuenta": "elcontadorloco",
+   "megusta": 26,
+   "panel": "elcontadorloco/13-sueno",
+   "publicado": 1794502800,
+   "texto": "Dormir 6 horas cada noche: qué dicen los estudios del resfriado, del riesgo de morir y de la atención. Fuentes: AASM y S",
+   "url": "https://www.tiktok.com/@elcontadorloco/video/7707312845528075542",
+   "v24": 760,
+   "vistas": 763
+  },
+  "7707313706908126486": {
+   "comentarios": 0,
+   "compartidos": 2,
+   "cuenta": "lascosaspordentro",
+   "megusta": 29,
+   "panel": "lascosaspordentro/13-bateria",
+   "publicado": 1794502800,
+   "texto": "Una batería de móvil se gasta aunque no la uses: por dentro, una costra finísima crece sobre el grafito y se queda con l",
+   "url": "https://www.tiktok.com/@lascosaspordentro/video/7707313706908126486",
+   "v24": 750,
+   "vistas": 753
+  },
+  "7707314003508284694": {
+   "comentarios": 0,
+   "compartidos": 0,
+   "cuenta": "dinerosinlio",
+   "megusta": 37,
+   "panel": "dinerosinlio/11-pagaextra",
+   "publicado": 1794502800,
+   "texto": "Tu paga extra no es un regalo: el Estatuto de los Trabajadores (art. 31) da dos gratificaciones extraordinarias al año, ",
+   "url": "https://www.tiktok.com/@eldinerosinlio/video/7707314003508284694",
+   "v24": 762,
+   "vistas": 767
+  },
+  "7707343857654025494": {
+   "comentarios": 1,
+   "compartidos": 0,
+   "cuenta": "elcontadorloco",
+   "megusta": 13,
+   "panel": "elcontadorloco/14-sentado",
+   "publicado": 1794589200,
+   "texto": "Estar sentado 8 horas al día: qué dicen los estudios del azúcar en sangre, del riesgo de morir y de quién se libra. Fuen",
+   "url": "https://www.tiktok.com/@elcontadorloco/video/7707343857654025494",
+   "v24": null,
+   "vistas": 764
+  },
+  "7707344182586772758": {
+   "comentarios": 0,
+   "compartidos": 0,
+   "cuenta": "lascosaspordentro",
+   "megusta": 14,
+   "panel": "lascosaspordentro/14-qr",
+   "publicado": 1794589200,
+   "texto": "Un código QR se lee aunque le falte un trozo: tres cuadrados lo encuentran, unos y ceros guardan el mensaje y un código ",
+   "url": "https://www.tiktok.com/@lascosaspordentro/video/7707344182586772758",
+   "v24": null,
+   "vistas": 736
+  },
+  "7707344517334191382": {
+   "comentarios": 0,
+   "compartidos": 0,
+   "cuenta": "dinerosinlio",
+   "megusta": 11,
+   "panel": "dinerosinlio/12-precio99",
+   "publicado": 1794589200,
+   "texto": "Ese 9,99 no es casualidad: el cerebro se fija primero en el dígito de la izquierda, así que 2,99 tiende a verse como \"do",
+   "url": "https://www.tiktok.com/@eldinerosinlio/video/7707344517334191382",
+   "v24": null,
+   "vistas": 763
   }
  }
 }
