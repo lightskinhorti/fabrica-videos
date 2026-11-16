@@ -125,10 +125,13 @@ if CONTADOR:
         n = lineas(CAP, g, 800, 72 * 0.26 + 12)
         if n > 2:
             errores.append(f"subtítulo en {n} líneas, se sale de su caja: \"{' '.join(g)}\"")
-    TIT = letra("nunito", 900, 92)
-    n = lineas(TIT, ESC["titulo"].split(), 880, ancho(TIT, " "))
-    if n > 3:
-        errores.append(f"el título ocupa {n} líneas (máximo 3): \"{ESC['titulo']}\"")
+    # big centre hook: `titulo` as plain text, or `gancho` when `titulo` is the fixed banner (an object)
+    grande = ESC.get("titulo") if isinstance(ESC.get("titulo"), str) else ESC.get("gancho")
+    if isinstance(grande, str) and grande:
+        TIT = letra("nunito", 900, 92)
+        n = lineas(TIT, grande.split(), 880, ancho(TIT, " "))
+        if n > 3:
+            errores.append(f"el título ocupa {n} líneas (máximo 3): \"{grande}\"")
 else:
     # box: 1080 - 90 - 90 = 900 px at the top; 0.12em of margin per side; a word with an icon is ~1.2em wider
     CAP = letra("inter", 700, 68)
