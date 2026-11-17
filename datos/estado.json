@@ -246,7 +246,9 @@
   "aprobado": true,
   "programado": true,
   "fecha": "2026-11-17",
-  "hora": "20:00"
+  "hora": "20:00",
+  "instagram": true,
+  "instagram_fecha": "2026-11-17 20:00"
  },
  "lascosaspordentro/16-cargador-enchufado": {
   "aprobado": true,
