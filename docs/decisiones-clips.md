@@ -16,7 +16,7 @@ Javier dejó a Claude trabajando solo el 18 de noviembre de 2026 por la noche, c
 | 8 | Cada descripción nombra el canal de Twitch del streamer, y el vídeo lleva su canal escrito. | Es contenido suyo: el crédito es lo mínimo y reduce el riesgo de queja. |
 | 9 | No se activa la etiqueta de contenido con IA ni se cambia ningún ajuste de la cuenta. Al aviso "Turn on automatic content checks?" se le dio a cancelar. | No es contenido generado con IA, y los ajustes de la cuenta son de Javier. |
 | 10 | Publicar al momento, sin programar. | Javier: "aquí dan igual los horarios". |
-| 11 | Tope: 10 clips al día y 2 por ejecución. Javier hablaba de hasta 30. | Una cuenta recién creada que sube 30 vídeos al día se parece a spam y TikTok puede limitarla. Se puede subir el tope cambiando el número en la tarea programada. |
+| 11 | Tope: 30 clips al día y 4 por ejecución, con una ejecución cada hora de 9:20 a 1:20. Claude había puesto 10 al día. | Javier lo pidió el 18 de noviembre por la noche: "me parece poco porque van a estar saliendo tantos clips y la gente los quiere aprovechar al máximo". Claude mantiene el aviso: una cuenta nueva que sube tanto se parece a spam; si TikTok avisa, la tarea se para sola (decisión 14). |
 | 12 | Si no hay ningún clip bueno, no se sube nada. | Subir relleno baja la media de la cuenta y no trae seguidores. |
 | 13 | No se suben finales, escenas de la historia ni revelaciones del juego. | Rockstar los retira (ver PRD, opción de GTA 6). |
 | 14 | Si TikTok avisa de una infracción o retira un vídeo, la subida automática se para sola y lo apunta aquí abajo. | Tres avisos pueden cerrar una cuenta; es mejor parar y que decida Javier. |
