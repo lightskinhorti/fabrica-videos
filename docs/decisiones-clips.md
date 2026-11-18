@@ -22,6 +22,8 @@ Javier dejó a Claude trabajando solo el 18 de noviembre de 2026 por la noche, c
 | 14 | Si TikTok avisa de una infracción o retira un vídeo, la subida automática se para sola y lo apunta aquí abajo. | Tres avisos pueden cerrar una cuenta; es mejor parar y que decida Javier. |
 | 15 | Momentos del directo: se sacan de los picos del chat del directo grabado (`clips.py directo`). | Es la señal gratuita de que ha pasado algo; así no dependemos de que un espectador haga el clip y se pueden hacer vídeos de más de 60 s. |
 | 16 | La subida automática la hace una tarea programada de Claude (`clips-gta6sinparar`), no un script. | La subida a TikTok va por la extensión de Chrome, que solo puede manejar Claude. La tarea solo corre con la app de Claude abierta. |
+| 18 | Con chats muy rápidos (Rubius: 80 mensajes cada 10 s) se acepta un pico de 1,5 o 1,3 veces lo normal, y solo se mira la última media hora. | Con el umbral de 2 veces no salía ningún momento, y bajar más chat tardaba más de 7 minutos por hora. |
+| 19 | El VOD de DjMaRiiO que da Twitch era de hace dos días (fútbol): sus momentos del directo se descartaron. | No eran de GTA 6. Sus clips de espectadores sí valen. |
 | 17 | La tanda completa (con directos) solo a las 14:20 y a las 22:20; el resto de ejecuciones, solo clips. | Bajar el chat de un directo grande tarda mucho (el de Rubius, más de 20 minutos por 2 horas de directo). |
 
 ## Cómo funciona la automatización
@@ -41,6 +43,12 @@ Para parar la subida automática: en la app de Claude, sección "Scheduled", des
 | 22:19 | rubius `764429081` | Rubius finge estar en Nueva Zelanda para jugar GTA 6 |
 | 22:20 | rubius `3735558195` | A Rubius le hackean en directo nada más entrar |
 | 22:24 | thegrefg `746928124` | TheGrefg pide denunciar a quien juegue GTA 6 antes de las 12 |
+| 22:41 | vegetta777 `directo-2932422696-6238` | Vegetta la lía en un bar de GTA 6 y acaba pidiendo perdón |
+| 22:42 | rubius `directo-2932415021-20078` | Rubius salta en paracaídas en GTA 6 y lo hace al revés |
+| 22:43 | vegetta777 `directo-2932422696-4918` | Vegetta alucina con la ciudad de GTA 6 desde el aire |
+| 22:44 | rubius `directo-2932415021-20138` | Rubius reaparece en el hospital en GTA 6 y no sabe dónde está |
+
+Los cuatro últimos salen del propio directo (picos del chat), no de clips de espectadores. Paré en 8 el primer día, por debajo del tope de 10 (decisión 11).
 
 ## Riesgos que siguen abiertos
 
