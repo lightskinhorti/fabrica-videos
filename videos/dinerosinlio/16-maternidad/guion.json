@@ -1,0 +1,42 @@
+{
+  "titulo": "Deducción por maternidad: hasta 1.200 € al año por hijo",
+  "lines": [
+    "Madre con hijo pequeño: esto puede tocarte.",
+    "Deducción por maternidad: hasta mil doscientos euros al año, por hijo. ¿Cumples los requisitos?",
+    "Primero, el papel. Ley del IRPF, artículo ochenta y uno: hasta mil doscientos euros por cada hijo menor de tres años.",
+    "Ejemplo redondo: un hijo, doce meses cumpliendo todo. Mil doscientos euros al año, o cien al mes.",
+    "Uno: ser mujer con un hijo menor de tres años, por el que te toque el mínimo por descendientes.",
+    "Dos: trabajar, por cuenta propia o ajena, y estar de alta en la Seguridad Social.",
+    "Ojo, hay tope: lo cotizado a la Seguridad Social desde el nacimiento.",
+    "Y se calcula por meses: solo cuentan los que cumples todo.",
+    "Si el padre tiene la custodia en exclusiva, o la madre fallece, la aplica él.",
+    "Se cobra en la renta o por adelantado: con el modelo ciento cuarenta, la Agencia Tributaria paga cien euros al mes por hijo.",
+    "Y por guardería autorizada, hasta mil euros más, solo en la renta: en total, hasta dos mil doscientos euros por hijo.",
+    "Pásaselo a una madre con un bebé. ¿Conocías esta deducción? Sí o no."
+  ],
+  "claves": [
+    "tocarte",
+    "requisitos",
+    "papel",
+    "ejemplo",
+    "mujer",
+    "trabajar",
+    "tope",
+    "meses",
+    "padre",
+    "adelantado",
+    "guardería",
+    "conocías"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "Deducción por maternidad: según el artículo 81 de la Ley 35/2006 del IRPF, las mujeres con hijos menores de tres años con derecho al mínimo por descendientes que trabajen por cuenta propia o ajena y estén de alta en la Seguridad Social o en una mutualidad pueden minorar la cuota diferencial hasta en 1.200 euros al año por cada hijo, con el tope de las cotizaciones y calculado por meses. Si el padre tiene la custodia en exclusiva o fallece la madre, puede aplicarla él. Hasta 1.000 euros más por gastos de guardería o centro de educación infantil autorizados, que se aplican en la declaración de la renta. Se puede pedir el abono anticipado (modelo 140): la Agencia Tributaria paga 100 euros al mes por hijo (Real Decreto 439/2007, art. 60). Ejemplo simplificado: un hijo y 12 meses con todos los requisitos son 1.200 euros al año. ¿Conocías esta deducción? Sí o no, en los comentarios.",
+    "hashtags": [
+      "#deduccionmaternidad",
+      "#renta",
+      "#hacienda"
+    ],
+    "portada_en": "tocarte"
+  },
+  "voz_dice": "La voz se generó con los números en palabras (mil doscientos, ochenta y uno, tres, doce, cien, ciento cuarenta, mil, dos mil doscientos); Whisper los oye en cifras y los subtítulos salen en cifras. La voz salió a 65,1 s y se aceleró con atempo 1,15 solo la primera frase (0 a 2,6 s) para que el gancho acabe antes de 2,5 s; el original está en exports/voces/16-maternidad.original.wav. La primera voz (59,7 s, sin la frase de los meses) está descartada en exports/voces/16-maternidad.v1-descartada.wav."
+}
