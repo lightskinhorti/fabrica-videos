@@ -1,0 +1,36 @@
+{
+ "canales": [
+  {
+   "canal": "rubius",
+   "idioma": "es",
+   "min_visitas": 300,
+   "horas_directo": 0.5
+  },
+  {
+   "canal": "djmariio",
+   "idioma": "es",
+   "min_visitas": 300,
+   "horas_directo": 2
+  },
+  {
+   "canal": "vegetta777",
+   "idioma": "es",
+   "min_visitas": 50,
+   "horas_directo": 2
+  },
+  {
+   "canal": "thegrefg",
+   "idioma": "es",
+   "min_visitas": 300,
+   "horas_directo": 0.5
+  },
+  {
+   "canal": "illojuan",
+   "idioma": "es",
+   "min_visitas": 300,
+   "horas_directo": 0.5
+  }
+ ],
+ "clips_por_canal": 3,
+ "momentos_por_canal": 2
+}

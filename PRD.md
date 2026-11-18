@@ -661,6 +661,20 @@ Propuesta de Claude, por orden: **bulos y estafas**, mitos de comida y de casa, 
 - **Cuenta de clips: decisiones de Javier.** Streamers españoles (los ingleses están saturados: 31 clips de GTA de Kai Cenat en un día). La cuenta se crea en el perfil de Chrome de El contador loco, cerrando allí esa sesión de TikTok. El nombre lleva "clips" y "GTA 6"; parecen libres `@gta6clipsinparar` y `@gta6sinparar` (solo el registro lo confirma). Ritmo previsto por Javier: hasta 30 clips al día; Claude propone empezar con 5 a 8 la primera semana para que TikTok no la trate como spam.
 - **Clips preparados** en `exports/clips/` (12): 4 de DjMaRiiO y 4 de Rubius jugando ya a GTA 6, 1 de TheGrefg y 3 de Kai Cenat. Los espectadores no ponen "gta" en el título, así que para quien juega todo el día se eligen los más vistos sin filtro de palabra. Pendiente: leer lo que se dice en cada clip para quedarse con los que se entienden fuera del directo y reescribir el título como gancho.
 
+**Noche del 18 de noviembre: cuenta de clips en marcha.**
+
+- **Cuenta:** `@gta6sinparar`, creada por Javier en el perfil de Chrome que era de El contador loco. Claude puso la foto (`perfiles/clips/foto.py`) y la biografía, y subió 4 clips (DjMaRiiO, dos de Rubius y TheGrefg).
+- **Instagram de Dinero sin lío:** Javier conectó Meta Business Suite; subidos los tres mejores vídeos (`13-bonosocial` publicado; `10-centimos` y `11-pagaextra` programados para el 19 y el 20 a las 18:00).
+- **Portadas de Dinero sin lío (Javier):** las de `14-cercanias` y `15-garantia` no llaman la atención como la de `13-bonosocial` (13 mil visitas): hace falta la cifra en grande, un objeto grande y ningún contador en cero en el fotograma 0. Regla para los vídeos nuevos.
+
+**Engineering: fábrica de clips.**
+
+- **Componentes:** `herramientas/clips.py` (lista, elige, baja, subtitula y monta; orden `directo` para los picos de chat del directo grabado), `herramientas/clips_tanda.py` (recorre los canales de `datos/clips_canales.json`), `herramientas/clips_cola.py` (cola de subida: pendientes, preparar, subido, descartar, hoy) y la tarea programada `clips-gta6sinparar` de la app de Claude, que elige leyendo lo que se dice, titula, sube con Chrome y apunta. El estado está en `datos/clips_hechos.json`.
+- **Qué puede fallar:** Twitch o yt-dlp no responden (límite de tiempo, 3 reintentos, el canal se salta); el chat de un directo grande es muy largo (se corta en 800 páginas y avisa; por eso los canales grandes miran solo la última media hora); el chat rápido no da picos de 2 veces lo normal (se prueban umbrales de 2, 1,5 y 1,3); la sesión de TikTok no es la esperada o TikTok avisa de una infracción (la tarea no sube y lo apunta en `docs/decisiones-clips.md`); la copia pesa más de 10 MB (se recodifica en H.265 al tamaño justo y, si no cabe, da error).
+- **Pruebas:** 37 pruebas de la lógica en `tests/` (`test_clips.py` y `test_clips_cola.py`), todas pasan. Prueba real: 4 clips subidos el 18 de noviembre.
+- **Volumen supuesto:** 5 canales, 5 a 10 clips subidos al día (tope de 10 puesto por Claude; Javier hablaba de hasta 30). **Coste:** cero euros; solo tiempo de Claude en cada ejecución (7 al día).
+- **Decisiones y sus motivos:** `docs/decisiones-clips.md`.
+
 **Repositorios de estilos valorados el 18 de noviembre** (los pasó Javier; no se ha instalado ninguno):
 
 | Repositorio | Qué hace | Licencia y coste | ¿Nos sirve? |

@@ -5,7 +5,8 @@
   "url": "https://www.twitch.tv/kaicenat/clip/SparklingGrotesqueArtichokeCorgiDerp-I3x3bsdsVQvrlIkt",
   "visitas_twitch": 1073,
   "archivo": "exports/clips/kaicenat/2014379592.mp4",
-  "hecho": "2026-11-18 14:29"
+  "hecho": "2026-11-18 14:29",
+  "descartado": "en inglés: la cuenta es de streamers españoles"
  },
  "746928124": {
   "canal": "thegrefg",
@@ -13,7 +14,11 @@
   "url": "https://www.twitch.tv/thegrefg/clip/HandsomeCarelessHerdBudBlast-HqL8eu16fpf9g5Rj",
   "visitas_twitch": 819,
   "archivo": "exports/clips/thegrefg/746928124.mp4",
-  "hecho": "2026-11-18 18:21"
+  "hecho": "2026-11-18 18:21",
+  "titulo_final": "TheGrefg pide denunciar a quien juegue GTA 6 antes de las 12",
+  "subida": "exports/clips/subida/746928124.mp4",
+  "subido": "2026-11-18 22:24",
+  "descripcion": "TheGrefg explica cómo denunciar a los que jueguen a GTA 6 antes de las 12."
  },
  "3534774090": {
   "canal": "kaicenat",
@@ -21,7 +26,8 @@
   "url": "https://www.twitch.tv/kaicenat/clip/SpikyAlertCookieDuDudu-o9wrV5cBrwlNKB_5",
   "visitas_twitch": 1533,
   "archivo": "exports/clips/kaicenat/3534774090.mp4",
-  "hecho": "2026-11-18 18:22"
+  "hecho": "2026-11-18 18:22",
+  "descartado": "en inglés: la cuenta es de streamers españoles"
  },
  "2039611318": {
   "canal": "kaicenat",
@@ -29,7 +35,8 @@
   "url": "https://www.twitch.tv/kaicenat/clip/TubularAwkwardFrogPanicBasket-16J-tuUOS6Kxw8bS",
   "visitas_twitch": 1284,
   "archivo": "exports/clips/kaicenat/2039611318.mp4",
-  "hecho": "2026-11-18 18:22"
+  "hecho": "2026-11-18 18:22",
+  "descartado": "en inglés: la cuenta es de streamers españoles"
  },
  "3390326936": {
   "canal": "djmariio",
@@ -45,7 +52,8 @@
   "url": "https://www.twitch.tv/djmariio/clip/TameDeafWitchTebowing-w1u69yHRFIZwfPr4",
   "visitas_twitch": 1604,
   "archivo": "exports/clips/djmariio/1322456402.mp4",
-  "hecho": "2026-11-18 18:24"
+  "hecho": "2026-11-18 18:24",
+  "descartado": "no se entiende fuera del directo"
  },
  "1291605912": {
   "canal": "djmariio",
@@ -53,7 +61,8 @@
   "url": "https://www.twitch.tv/djmariio/clip/JoyousRichWatermelonKreygasm-8wzhPfknznMh8Jy9",
   "visitas_twitch": 779,
   "archivo": "exports/clips/djmariio/1291605912.mp4",
-  "hecho": "2026-11-18 18:24"
+  "hecho": "2026-11-18 18:24",
+  "descartado": "no se entiende fuera del directo"
  },
  "1235621977": {
   "canal": "djmariio",
@@ -61,7 +70,9 @@
   "url": "https://www.twitch.tv/djmariio/clip/HelpfulThirstyKaleGOWSkull-OQ5YUWU6Fn7_T88b",
   "visitas_twitch": 686,
   "archivo": "exports/clips/djmariio/1235621977.mp4",
-  "hecho": "2026-11-18 18:24"
+  "hecho": "2026-11-18 18:24",
+  "subido": "2026-11-18 22:22",
+  "descripcion": "DjMaRiiO estrena GTA 6 y lo primero que hace es cargarse un pelícano."
  },
  "764429081": {
   "canal": "rubius",
@@ -69,7 +80,9 @@
   "url": "https://www.twitch.tv/rubius/clip/DoubtfulNeighborlyDootDendiFace-gJqrzJmTOD_YdhEc",
   "visitas_twitch": 4635,
   "archivo": "exports/clips/rubius/764429081.mp4",
-  "hecho": "2026-11-18 18:25"
+  "hecho": "2026-11-18 18:25",
+  "subido": "2026-11-18 22:22",
+  "descripcion": "Rubius ya juega a GTA 6 antes de tiempo y nos da el parte del tiempo en Nueva Zelanda."
  },
  "3619410653": {
   "canal": "rubius",
@@ -85,7 +98,8 @@
   "url": "https://www.twitch.tv/rubius/clip/PluckyEagerPangolinOSfrog-cJnVGXrr5sQrJtgx",
   "visitas_twitch": 1125,
   "archivo": "exports/clips/rubius/2121187371.mp4",
-  "hecho": "2026-11-18 18:26"
+  "hecho": "2026-11-18 18:26",
+  "descartado": "no se entiende fuera del directo"
  },
  "3735558195": {
   "canal": "rubius",
@@ -93,6 +107,34 @@
   "url": "https://www.twitch.tv/rubius/clip/TalentedSullenGarageBIRB-2jCFx82C9DogaHql",
   "visitas_twitch": 901,
   "archivo": "exports/clips/rubius/3735558195.mp4",
-  "hecho": "2026-11-18 18:27"
+  "hecho": "2026-11-18 18:27",
+  "subido": "2026-11-18 22:22",
+  "descripcion": "A Rubius le empiezan a hackear en pleno directo."
+ },
+ "directo-2930644638-9358": {
+  "canal": "djmariio",
+  "titulo": "Hay gente que se la apela al GTA.",
+  "url": "https://www.twitch.tv/videos/2930644638",
+  "visitas_twitch": null,
+  "archivo": "exports/clips/djmariio/directo-2930644638-9358.mp4",
+  "hecho": "2026-11-18 18:39",
+  "vod": "2930644638",
+  "inicio": 9358,
+  "fin": 9420,
+  "mensajes_pico": 39,
+  "descartado": "directo de fútbol de hace dos días, sin momento claro"
+ },
+ "directo-2930644638-11788": {
+  "canal": "djmariio",
+  "titulo": "Ya tienes a McGevey y no varios,¿tú crees?¡Correcto!",
+  "url": "https://www.twitch.tv/videos/2930644638",
+  "visitas_twitch": null,
+  "archivo": "exports/clips/djmariio/directo-2930644638-11788.mp4",
+  "hecho": "2026-11-18 18:40",
+  "vod": "2930644638",
+  "inicio": 11788,
+  "fin": 11863,
+  "mensajes_pico": 30,
+  "descartado": "directo de fútbol de hace dos días, sin momento claro"
  }
 }

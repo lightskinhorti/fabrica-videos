@@ -1,6 +1,14 @@
 # Cómo subir y programar los vídeos de Dinero sin lío (@eldinerosinlio en TikTok)
 
-De momento solo se sube a TikTok (decisión del 2 de noviembre). Instagram se automatizará más adelante.
+Se sube a TikTok y, desde el 18 de noviembre, también a Instagram (`@eldinerosinlio`) con Meta Business Suite en el perfil de Chrome de Dinero sin lío. El procedimiento es el de `publicar/elcontadorloco.md` ("Procedimiento probado el 12 de noviembre"); la cuenta que tiene que salir arriba es `@eldinerosinlio`. Como mucho 5 hashtags.
+
+Reels en Instagram (los tres mejores de TikTok, elegidos el 18 de noviembre por visualizaciones y "me gusta"):
+
+| Día | Vídeo | Hashtags de Instagram | Estado |
+|---|---|---|---|
+| 18 nov | `13-bonosocial` | `#dinero #finanzaspersonales #bonosocial #luz #facturaluz` | Publicado |
+| 19 nov, 18:00 | `10-centimos` | `#dinero #finanzaspersonales #centimos #monedas #euro` | Programado |
+| 20 nov, 18:00 | `11-pagaextra` | `#dinero #finanzaspersonales #pagaextra #nomina #sueldo` | Programado |
 
 Los vídeos están en `exports/render/` (en el Finder: Escritorio > ProyectoPersonal > VideosYCosas > fabrica-prueba >
 exports > render). Cada uno tiene al lado su portada (`-portada.png`).
