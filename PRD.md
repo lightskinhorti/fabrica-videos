@@ -635,7 +635,16 @@ Propuesta de Claude, por orden: **bulos y estafas**, mitos de comida y de casa, 
 - **Clips de streamers:** fácil de editar, pero es contenido de otros. Según las guías consultadas (no la página oficial de TikTok), el programa de pagos no cuenta las visualizaciones de contenido no original, y el streamer puede pedir que se retire. Choca con la regla del proyecto de no copiar contenido ajeno. No recomendado.
 - **Trucos y guías:** útil de verdad y con mucha demanda estas semanas, pero hace falta partida propia: una PS5 o Xbox, el juego y horas de Javier jugando y grabando. La fábrica (vídeo hecho con código) no puede fabricar esas imágenes; Claude sí puede hacer el guion, la voz, los subtítulos y el montaje sobre lo que Javier grabe.
 - **Normas de Rockstar** (su política de vídeos, según medios; la página oficial no cargó): permite subir partidas propias; retira finales, recopilaciones de escenas de vídeo y grandes revelaciones de la historia, sin fecha de fin; habla de uso "no comercial", así que cobrar por esos vídeos queda en zona gris.
-- Pendiente de Javier: si tiene consola y quiere jugar y grabar. Sin eso, la opción no es viable.
+- Respuesta de Javier (18 de noviembre): no va a grabar partidas. Quiere una cuenta de clips de streamers muy famosos (Kai Cenat y parecidos) jugando a GTA 6, solo con buenos momentos. Las guías con partida propia quedan descartadas.
+
+**Clips de streamers con GTA 6: segunda comprobación (18 de noviembre).** Javier tiene razón en una cosa: las cifras de arriba son de antes del lanzamiento y no sirven para medir la demanda de la semana de salida. Lo que no cambia es por dónde entra el dinero.
+
+- **Técnicamente se puede y sin pagar:** la lista de clips más vistos de cada canal de Twitch ya dice cuáles son los buenos momentos (los eligen los espectadores); se bajan, se pasan a vertical, se subtitulan con Whisper y se montan. Faltaría probarlo el primer día con un canal real.
+- **El programa de pagos de TikTok no paga esto:** las guías consultadas (no la página oficial) coinciden en que el contenido copiado o con cambios pequeños cuenta como no original y no cobra; un clip solo entraría si el montaje añade algo propio y dura más de 60 s.
+- **Cómo se cobra de verdad con clips:** campañas de clips en las que el propio streamer o una marca paga por cada 1.000 visualizaciones verificadas (Content Rewards en Whop, Vyro, Ssemble). Cifras de las propias plataformas: de 0,20 a 6 dólares por 1.000, lo normal alrededor de 1. Ssemble dice admitir España y pagar por Stripe; en Whop no está confirmado. No se ha encontrado un programa oficial de Kai Cenat con tarifas publicadas; una campaña relacionada con él pagaba 1 dólar por 1.000.
+- **Competencia:** CreatorDB contó 759 cuentas de clips de Kai Cenat y 3.266 clips en 30 días (hasta el 26 de agosto de 2026), con 128 millones de reproducciones en TikTok.
+- **Riesgos:** sin campaña es contenido ajeno sin permiso (retiradas y avisos a la cuenta); con campaña hay permiso, pero dentro de sus normas. Rockstar retira finales y escenas de la historia. Cambia la regla del proyecto de no copiar contenido de otras cuentas: es decisión de Javier.
+- **Propuesta de Claude:** hacerlo solo dentro de una campaña de clips que pague en España, con la cuenta nueva creada por Javier y su alta en la plataforma hecha por él. Fuera de campaña no se recomienda como cuenta para cobrar.
 
 **Repositorios de estilos valorados el 18 de noviembre** (los pasó Javier; no se ha instalado ninguno):
 
