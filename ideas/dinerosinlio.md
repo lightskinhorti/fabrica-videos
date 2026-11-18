@@ -45,3 +45,20 @@ Reglas en el PRD, sección "Ganchos y temas".
 - [x] 13: Hasta 57,5 % menos (bono social de la luz; Real Decreto-ley 7/2026 y Real Decreto 897/2017). 64,9 s. El primero con la receta de "dinero que te toca" (`ideas/recetas.md`). Hecho el 16 de noviembre; falta que Javier lo apruebe. **Los porcentajes valen hasta el 31 de diciembre de 2026.**
 
 - [x] 14: Cercanías a 10 € al mes para nacidos de 2000 a 2011 (Real Decreto-ley 17/2025, art. 3). 61,5 s, con título fijo y el arranque nuevo. Hecho el 16 de noviembre con dos voces; falta que Javier lo apruebe. **Los precios valen hasta el 31 de diciembre de 2026.** Las cifras las leyó el agente en el BOE; la web de Renfe no cargó.
+
+## Línea decidida por Javier el 18 de noviembre: "dinero que te toca"
+
+Los siguientes vídeos son del estilo de `13-bonosocial`, que el 18 de noviembre a las 23:58 llevaba 19.400 visualizaciones, 216 "me gusta" y 169 compartidos (el resto de la cuenta, entre 766 y 883). Cada vídeo: una ayuda, descuento o derecho que mucha gente tiene y no pide, la cifra en grande en la portada (como en el 13: texto enorme, objeto grande y el resultado ya puesto, sin contadores en cero), quién lo puede pedir y un ejemplo en euros. Se explica, no se recomienda.
+
+Temas candidatos. **Las cifras y la vigencia no están comprobadas**: se comprueban en la fuente oficial el día del guion y, si un tema no está vigente o no es claro, se cambia por otro.
+
+| Tema | A quién le sirve | Dónde comprobarlo |
+|---|---|---|
+| Bono social térmico | Quien ya tiene el bono social de la luz | BOE y Ministerio para la Transición Ecológica |
+| Complemento de ayuda para la infancia | Familias con hijos y renta baja o media-baja | Seguridad Social |
+| Bono Cultural Joven | Quien cumple 18 años | Ministerio de Cultura |
+| Deducción por maternidad y gastos de guardería | Madres con hijos menores de 3 años | Agencia Tributaria |
+| Complemento para reducir la brecha de género en la pensión | Pensionistas con hijos | Seguridad Social |
+| Bonificación del IBI o del agua para familias numerosas | Familias numerosas (depende del ayuntamiento) | Ordenanzas municipales: solo si se puede contar sin liar |
+| Reclamar el dinero de un vuelo retrasado | Cualquiera que vuele | Reglamento (CE) 261/2004 |
+| Garantía legal de 3 años en lo que compras | Cualquiera | Ley General para la Defensa de los Consumidores |
