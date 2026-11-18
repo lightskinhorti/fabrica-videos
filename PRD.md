@@ -608,6 +608,35 @@ La cuenta nueva sirve además de prueba del techo: si también se queda en unas 
 
 Propuesta de Claude, por orden: **bulos y estafas**, mitos de comida y de casa, trucos del móvil. Avisos: las cuentas de referencia son instituciones o personas conocidas con muchos seguidores, así que la mediana mide el interés por el tema, no lo que alcanzaría una cuenta nueva; y con una o dos cuentas por nicho es una pista, no una prueba.
 
+**Tercera búsqueda: cuentas hechas con IA (18 de noviembre, pedida por Javier).** Los nombres salieron de las etiquetas de TikTok (#historiasconia, #hechoconia, #frutinovelas, #objetosquehablan, #historiasinteractivas, #datoscuriososia y otras), abiertas sin iniciar sesión. Leídas 77 cuentas en español (últimos 40 vídeos). Mediana de visualizaciones y vídeo más visto:
+
+| Formato | Cuentas (mediana) | Lo que más ven | ¿Nos vale? |
+| --- | --- | --- | --- |
+| Comida y objetos que hablan y dan un truco | @fruticocina (128 mil, con 40 mil seguidores), @comidaconboca (10 mil), @kiwinanovela (11 mil) | "¿Dónde guardas los huevos?" (2,3 M), "¿quién cocina el pescado así?" (4,4 M), mascarillas caseras (769 mil) | Sí: útil, con personaje, y se puede dibujar con código |
+| Historias "tú decides" (terror y suspense por partes) | @memoriaentinta (312 mil, 71 mil seguidores), @fuera.de.guion57 (291 mil), @cuentos.animados.mx (100 mil), @agiladorada3 (73 mil) | "Parte 1. ¿Tú qué harías? Comenta A o B" (3,8 M) | Sí como formato: historia entretenida y los comentarios eligen la parte siguiente |
+| Curiosidades de cada día | @hechostk (702 mil), @las1000curiosidades_ (550 mil), @gatolestv (47 mil), @trendlumesp (22 mil, 10 mil seguidores) | "¿Desodorante en barra o en aerosol?" (736 mil), "vas a 120 y metes la marcha atrás, ¿qué pasa dentro?" (1,4 M) | Sí: es Las cosas por dentro con preguntas de cada día |
+| Dramas de frutas y objetos (frutinovelas) | @habitosanimados1 (441 mil), @frutidrama223 (248 mil), @doscosas3 (216 mil), @frutalworld (155 mil), @cosavoz (101 mil) | Infidelidades y dramas por partes (hasta 36,5 M) | No: no da nada útil, es moda de 2026 y pide vídeo generado de pago |
+| Novelas con personas de IA | @viva.mexico22 (143 mil), @atriumstories_ (97 mil), @mxnovelashd (29 mil) | Suegras, millonarios y secretos, por capítulos | No: lo mismo, y público de México |
+| Cuerpo y salud con IA | 9 cuentas, casi todas por debajo de 1.000 | — | No funciona en lo leído |
+
+- No confirmado: que todas estén hechas con IA (salen de etiquetas de IA, pero las miniaturas no cargaron; @hechostk y @las1000curiosidades_ pueden usar vídeo real). El público de casi todas es de América Latina, sobre todo México.
+- Diferencia con las búsquedas anteriores: aquí hay cuentas pequeñas (10 a 70 mil seguidores) con cientos de miles de visualizaciones, así que la cifra no viene de ser una institución conocida.
+- Sigue en pie no pagar por generar imágenes ni vídeo: se copia la receta (personaje que habla, "tú decides", pregunta de cada día) y se dibuja con código.
+- Propuesta de Claude para la cuenta nueva: un personaje propio (un alimento o un objeto de casa) que te dice el truco o desmonta el mito, que une este formato con el nicho "mitos de comida y de casa". Bulos y estafas pasa a segunda opción, y encajaría con el formato "tú decides" ("te llega este SMS: ¿A o B?"). Falta la decisión de Javier.
+
+**Opción de Javier: cuenta de GTA 6 (18 de noviembre), comprobada el mismo día.** El juego sale el 19 de noviembre de 2026, solo en PS5 y Xbox Series (sin versión de PC anunciada). Leídas 22 cuentas en español sacadas de #gta6español, #trucosgta, #gtavi y #clipsdestreamers:
+
+| Tipo | Cuentas (mediana) | Qué se ve |
+| --- | --- | --- |
+| Historia, secretos y guías con partida propia | @trashud0 (325 mil; más visto 3,8 M) | Cuenta ya hecha con GTA 5, narrada y con sus propias partidas |
+| Noticias y trucos de GTA 6 | @astrogamee_gta6 (5 mil), @labandagta (3 mil), @zafirogta0 (2 mil), @viceparatodos (1 mil), @leonidatv6 (783) | Medianas bajas con algún pico de 100 a 380 mil; además hay 7 cuentas recién creadas con menos de 5 vídeos |
+| Clips de streamers | @universotwitch_ (6 mil), @twitchhub.esp (3 mil), @ojoalclip.es (2 mil), @clips.famosos03 (1 mil; pico de 1,5 M) | Medianas bajas y algún pico suelto |
+
+- **Clips de streamers:** fácil de editar, pero es contenido de otros. Según las guías consultadas (no la página oficial de TikTok), el programa de pagos no cuenta las visualizaciones de contenido no original, y el streamer puede pedir que se retire. Choca con la regla del proyecto de no copiar contenido ajeno. No recomendado.
+- **Trucos y guías:** útil de verdad y con mucha demanda estas semanas, pero hace falta partida propia: una PS5 o Xbox, el juego y horas de Javier jugando y grabando. La fábrica (vídeo hecho con código) no puede fabricar esas imágenes; Claude sí puede hacer el guion, la voz, los subtítulos y el montaje sobre lo que Javier grabe.
+- **Normas de Rockstar** (su política de vídeos, según medios; la página oficial no cargó): permite subir partidas propias; retira finales, recopilaciones de escenas de vídeo y grandes revelaciones de la historia, sin fecha de fin; habla de uso "no comercial", así que cobrar por esos vídeos queda en zona gris.
+- Pendiente de Javier: si tiene consola y quiere jugar y grabar. Sin eso, la opción no es viable.
+
 **Repositorios de estilos valorados el 18 de noviembre** (los pasó Javier; no se ha instalado ninguno):
 
 | Repositorio | Qué hace | Licencia y coste | ¿Nos sirve? |
