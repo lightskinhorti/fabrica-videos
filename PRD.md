@@ -592,6 +592,22 @@ La cuenta nueva sirve además de prueba del techo: si también se queda en unas 
 - Trucos del móvil es el nicho útil con la mediana más alta entre los nuevos. Pegas: sus vídeos duran de 30 a 50 s (el programa de pagos pide más de 60), se hacen con grabaciones de pantalla reales y dependen de marcas.
 - **Política queda fuera (Javier, 18 de noviembre):** ya lo hace muy bien En Plata. No se ha podido leer su cuenta: no se ha encontrado su nombre de usuario en TikTok.
 
+**Segunda búsqueda de nichos (18 de noviembre, pedida por Javier):** leídas 40 cuentas más en 14 nichos (últimos 40 vídeos de cada una). Mediana de visualizaciones y vídeo más visto:
+
+| Nicho | Cuentas leídas (mediana) | Lo que más ven | ¿Pasa el criterio y se puede hacer con animación? |
+| --- | --- | --- | --- |
+| Bulos y estafas | @policia (103 mil), @guardiacivil (51 mil) | "Es un bulo" (3,2 M) y "Cuidado con esta estafa, cómo funciona paso a paso" (1,2 M) | Sí: útil, cada estafa es una historia corta, fuentes oficiales, se anima bien (mensajes y pantallas) |
+| Mitos de comida y de casa | @lahiperactina (71 mil), @boticariagarcia (29 mil), @blancanutri (22 mil) | Por qué los huevos del súper no están en nevera (1,5 M), sprays nasales (1,0 M) | Sí en comida y consumo; lo médico queda fuera (sin consejos de salud) |
+| Trucos del móvil | @tuapplemundo (102 mil) | Función del iPhone que casi nadie sabe (2,4 M) | Útil, pero corto (30 a 50 s) y con grabación de pantalla real |
+| Historia contada con humor | @historiaparatontos (283 mil), @academiaplay (12 mil) | Vídeos de 3 a 10 minutos | No: es temario escolar (eduki) y a menudo político |
+| Sucesos reales | @criminopatia (5 mil, con picos de 1,2 M) | Casos de desaparecidos | No: personas reales, derecho al honor y a la intimidad |
+| Recetas | @cocinacesar (216 mil) | Recetas grabadas | No se puede hacer con animación |
+| Noticias de tecnología | @midudev (75 mil), @dotcsv (18 mil) | Novedades del día | Depende de la persona y de ir al día |
+| Chollos y viajes | @yosoyviajera (64 mil), @chollometro (11 mil) | Vídeo grabado | No con animación |
+| Excel, vivienda, emprender, coches, psicología | de 200 a 5 mil | — | Poca demanda en lo leído |
+
+Propuesta de Claude, por orden: **bulos y estafas**, mitos de comida y de casa, trucos del móvil. Avisos: las cuentas de referencia son instituciones o personas conocidas con muchos seguidores, así que la mediana mide el interés por el tema, no lo que alcanzaría una cuenta nueva; y con una o dos cuentas por nicho es una pista, no una prueba.
+
 **Repositorios de estilos valorados el 18 de noviembre** (los pasó Javier; no se ha instalado ninguno):
 
 | Repositorio | Qué hace | Licencia y coste | ¿Nos sirve? |
