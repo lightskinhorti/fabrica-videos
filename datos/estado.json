@@ -51,12 +51,14 @@
     "aprobado": true,
     "fecha": "2026-11-11",
     "hora": "18:00",
+    "instagram": true,
     "programado": true
   },
   "dinerosinlio/11-pagaextra": {
     "aprobado": true,
     "fecha": "2026-11-12",
     "hora": "18:00",
+    "instagram": true,
     "programado": true
   },
   "dinerosinlio/12-precio99": {
@@ -69,6 +71,7 @@
     "aprobado": true,
     "fecha": "2026-11-16",
     "hora": "20:00",
+    "instagram": true,
     "programado": true
   },
   "dinerosinlio/14-cercanias": {
