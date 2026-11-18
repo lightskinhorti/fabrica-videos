@@ -217,7 +217,8 @@
   "vod": "2932415021",
   "inicio": 19958,
   "fin": 20003,
-  "mensajes_pico": 125
+  "mensajes_pico": 125,
+  "descartado": "frases sueltas"
  },
  "directo-2932422696-4588": {
   "canal": "vegetta777",
@@ -229,7 +230,8 @@
   "vod": "2932422696",
   "inicio": 4588,
   "fin": 4660,
-  "mensajes_pico": 92
+  "mensajes_pico": 92,
+  "descartado": "ajustes del juego, sin momento claro"
  },
  "directo-2932415021-20138": {
   "canal": "rubius",
@@ -257,7 +259,8 @@
   "vod": "2932422696",
   "inicio": 4048,
   "fin": 4100,
-  "mensajes_pico": 89
+  "mensajes_pico": 89,
+  "descartado": "frases sueltas"
  },
  "directo-2932415021-20078": {
   "canal": "rubius",
@@ -297,7 +300,8 @@
   "url": "https://www.twitch.tv/rubius/clip/SpicyBlushingCroquetteFloof-JoLogoG0s9g1Bhvh",
   "visitas_twitch": 834,
   "archivo": "exports/clips/rubius/2424815164.mp4",
-  "hecho": "2026-11-18 22:34"
+  "hecho": "2026-11-18 22:34",
+  "descartado": "no es de GTA 6"
  },
  "directo-2932415021-20458": {
   "canal": "rubius",
@@ -309,7 +313,8 @@
   "vod": "2932415021",
   "inicio": 20458,
   "fin": 20503,
-  "mensajes_pico": 117
+  "mensajes_pico": 117,
+  "descartado": "frases sueltas"
  },
  "4251011782": {
   "canal": "rubius",
@@ -317,6 +322,179 @@
   "url": "https://www.twitch.tv/rubius/clip/HungryResoluteGazelleRlyTho-jECTTPaujGbB3Xyf",
   "visitas_twitch": 551,
   "archivo": "exports/clips/rubius/4251011782.mp4",
-  "hecho": "2026-11-18 22:35"
+  "hecho": "2026-11-18 22:35",
+  "descartado": "escena de la historia del juego"
+ },
+ "3509095416": {
+  "canal": "rubius",
+  "titulo": "Lo real que es GTA6",
+  "url": "https://www.twitch.tv/rubius/clip/SuperBadNightingaleRlyTho-B9FZAXYBOnpW38es",
+  "visitas_twitch": 892,
+  "archivo": "exports/clips/rubius/3509095416.mp4",
+  "hecho": "2026-11-18 23:41",
+  "descartado": "escena de la historia del juego"
+ },
+ "1516465023": {
+  "canal": "rubius",
+  "titulo": "PRIMERA TROLEADA EN GTA 6 LOL",
+  "url": "https://www.twitch.tv/rubius/clip/ElegantRespectfulLocustTTours-A4rCFEQ7qa235ixW",
+  "visitas_twitch": 509,
+  "archivo": "exports/clips/rubius/1516465023.mp4",
+  "hecho": "2026-11-18 23:41",
+  "titulo_final": "El chat le cuela la primera troleada a Rubius en GTA 6",
+  "subida": "exports/clips/subida/1516465023.mp4",
+  "subido": "2026-11-18 23:56",
+  "descripcion": "El chat le dice a Rubius qué botón pulsar en GTA 6 y casi cae."
+ },
+ "2361978734": {
+  "canal": "rubius",
+  "titulo": "PS5 Pro lagazos GTA VI xddd",
+  "url": "https://www.twitch.tv/rubius/clip/EsteemedRacyTildeWutFace-UOgo_ykFFw15xikU",
+  "visitas_twitch": 460,
+  "archivo": "exports/clips/rubius/2361978734.mp4",
+  "hecho": "2026-11-18 23:42",
+  "descartado": "sin momento claro"
+ },
+ "781133965": {
+  "canal": "djmariio",
+  "titulo": "Caminante",
+  "url": "https://www.twitch.tv/djmariio/clip/ExuberantProudGazellePipeHype-KdJZz6OyzoDSO0wj",
+  "visitas_twitch": 6945,
+  "archivo": "exports/clips/djmariio/781133965.mp4",
+  "hecho": "2026-11-18 23:42",
+  "descartado": "escena del club: mejor no subirla"
+ },
+ "1246397173": {
+  "canal": "djmariio",
+  "titulo": "Tremenda comida en el Club...",
+  "url": "https://www.twitch.tv/djmariio/clip/SlickHedonisticZebraFUNgineer-mE6bCuuNZnmobaIT",
+  "visitas_twitch": 1815,
+  "archivo": "exports/clips/djmariio/1246397173.mp4",
+  "hecho": "2026-11-18 23:42",
+  "descartado": "sin momento claro"
+ },
+ "1243491789": {
+  "canal": "djmariio",
+  "titulo": "UNBOXING DE IRAI?",
+  "url": "https://www.twitch.tv/djmariio/clip/InexpensiveCourageousMonkeyRickroll-tjv4pzUHYhdhwCj1",
+  "visitas_twitch": 1244,
+  "archivo": "exports/clips/djmariio/1243491789.mp4",
+  "hecho": "2026-11-18 23:42",
+  "descartado": "habla de su familia, no de GTA 6"
+ },
+ "58445163": {
+  "canal": "vegetta777",
+  "titulo": "No hagaís esto jamás... 🔥",
+  "url": "https://www.twitch.tv/vegetta777/clip/DiligentSleepyApePJSalt-36726ZfcpgTYlOQu",
+  "visitas_twitch": 4469,
+  "archivo": "exports/clips/vegetta777/58445163.mp4",
+  "hecho": "2026-11-18 23:43",
+  "descartado": "repetido: ya subido desde el directo"
+ },
+ "3183524700": {
+  "canal": "vegetta777",
+  "titulo": ".",
+  "url": "https://www.twitch.tv/vegetta777/clip/CheerfulStrangeAlligatorDBstyle-WBimucE71DCVUFdq",
+  "visitas_twitch": 243,
+  "archivo": "exports/clips/vegetta777/3183524700.mp4",
+  "hecho": "2026-11-18 23:43",
+  "descartado": "comentario subido de tono"
+ },
+ "485274366": {
+  "canal": "vegetta777",
+  "titulo": "GTA 6 - MUNDO ABIERTO (Sin Spoilers)",
+  "url": "https://www.twitch.tv/vegetta777/clip/AnimatedBovineToothBleedPurple-cMQ1KzJnyQZhrlwn",
+  "visitas_twitch": 64,
+  "archivo": "exports/clips/vegetta777/485274366.mp4",
+  "hecho": "2026-11-18 23:43",
+  "descartado": "introducción sin momento claro"
+ },
+ "1861907523": {
+  "canal": "thegrefg",
+  "titulo": "silla 1",
+  "url": "https://www.twitch.tv/thegrefg/clip/DistinctProudEagleAllenHuhu-oW5iIvkoCw6s4Ggi",
+  "visitas_twitch": 18457,
+  "archivo": "exports/clips/thegrefg/1861907523.mp4",
+  "hecho": "2026-11-18 23:44",
+  "descartado": "no es de GTA 6"
+ },
+ "1362440390": {
+  "canal": "thegrefg",
+  "titulo": "silla 2",
+  "url": "https://www.twitch.tv/thegrefg/clip/GenerousCarelessPicklesKreygasm-klDZkhsy5BuSMlQM",
+  "visitas_twitch": 2501,
+  "archivo": "exports/clips/thegrefg/1362440390.mp4",
+  "hecho": "2026-11-18 23:44",
+  "descartado": "no es de GTA 6"
+ },
+ "1839661660": {
+  "canal": "thegrefg",
+  "titulo": "para q lo sepas",
+  "url": "https://www.twitch.tv/thegrefg/clip/AntediluvianJoyousGorillaTebowing-9le1UNwBjnJ0N_nN",
+  "visitas_twitch": 1399,
+  "archivo": "exports/clips/thegrefg/1839661660.mp4",
+  "hecho": "2026-11-18 23:44",
+  "titulo_final": "El plan de TheGrefg para GTA 6: esperar a que baneen a todos",
+  "subida": "exports/clips/subida/1839661660.mp4",
+  "subido": "2026-11-18 23:56",
+  "descripcion": "TheGrefg cuenta su plan para GTA 6: esperar a que baneen a los que juegan antes de tiempo."
+ },
+ "directo-2932422696-10568": {
+  "canal": "vegetta777",
+  "titulo": "cual pero seguiremos desde ese punto de la",
+  "url": "https://www.twitch.tv/videos/2932422696",
+  "visitas_twitch": null,
+  "archivo": "exports/clips/vegetta777/directo-2932422696-10568.mp4",
+  "hecho": "2026-11-18 23:47",
+  "vod": "2932422696",
+  "inicio": 10568,
+  "fin": 10643,
+  "mensajes_pico": 73,
+  "descartado": "despedida del directo"
+ },
+ "directo-2932422696-10728": {
+  "canal": "vegetta777",
+  "titulo": "para eso os hago un directo y ya",
+  "url": "https://www.twitch.tv/videos/2932422696",
+  "visitas_twitch": null,
+  "archivo": "exports/clips/vegetta777/directo-2932422696-10728.mp4",
+  "hecho": "2026-11-18 23:48",
+  "vod": "2932422696",
+  "inicio": 10728,
+  "fin": 10790,
+  "mensajes_pico": 64,
+  "descartado": "despedida del directo"
+ },
+ "directo-2932422696-9108": {
+  "canal": "vegetta777",
+  "titulo": "Estifle panel.¡Suspecto!¡Pero el tren está en PCI!",
+  "url": "https://www.twitch.tv/videos/2932422696",
+  "visitas_twitch": null,
+  "archivo": "exports/clips/vegetta777/directo-2932422696-9108.mp4",
+  "hecho": "2026-11-18 23:48",
+  "vod": "2932422696",
+  "inicio": 9108,
+  "fin": 9170,
+  "mensajes_pico": 56,
+  "titulo_final": "Vegetta roba un avión de pasajeros en GTA 6 con cuatro estrellas",
+  "subida": "exports/clips/subida/directo-2932422696-9108.mp4",
+  "subido": "2026-11-18 23:56",
+  "descripcion": "Vegetta se cuela en el aeropuerto de GTA 6 con cuatro estrellas y se lleva un avión de pasajeros."
+ },
+ "directo-2932422696-5348": {
+  "canal": "vegetta777",
+  "titulo": "aquí.¿Dónde van esos dos?",
+  "url": "https://www.twitch.tv/videos/2932422696",
+  "visitas_twitch": null,
+  "archivo": "exports/clips/vegetta777/directo-2932422696-5348.mp4",
+  "hecho": "2026-11-18 23:49",
+  "vod": "2932422696",
+  "inicio": 5348,
+  "fin": 5410,
+  "mensajes_pico": 54,
+  "titulo_final": "Vegetta se esconde en un arbusto en GTA 6 y pasa esto",
+  "subida": "exports/clips/subida/directo-2932422696-5348.mp4",
+  "subido": "2026-11-18 23:56",
+  "descripcion": "Vegetta se esconde en un arbusto en GTA 6 y acaba cortándoles el rollo a dos perros."
  }
 }

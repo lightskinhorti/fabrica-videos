@@ -48,7 +48,14 @@ Para parar la subida automática: en la app de Claude, sección "Scheduled", des
 | 22:43 | vegetta777 `directo-2932422696-4918` | Vegetta alucina con la ciudad de GTA 6 desde el aire |
 | 22:44 | rubius `directo-2932415021-20138` | Rubius reaparece en el hospital en GTA 6 y no sabe dónde está |
 
-Los cuatro últimos salen del propio directo (picos del chat), no de clips de espectadores. Paré en 8 el primer día, por debajo del tope de 10 (decisión 11).
+| 23:53 | vegetta777 `directo-2932422696-9108` | Vegetta roba un avión de pasajeros en GTA 6 con cuatro estrellas |
+| 23:54 | vegetta777 `directo-2932422696-5348` | Vegetta se esconde en un arbusto en GTA 6 y pasa esto |
+| 23:55 | thegrefg `1839661660` | El plan de TheGrefg para GTA 6: esperar a que baneen a todos |
+| 23:56 | rubius `1516465023` | El chat le cuela la primera troleada a Rubius en GTA 6 |
+
+Total del primer día: 12. Descartados 26, con su motivo en `datos/clips_hechos.json` (frases sueltas, escenas de la historia, cosas que no son de GTA 6, una escena de club y un comentario sobre su familia).
+
+Los cuatro últimos salen del propio directo (picos del chat), no de clips de espectadores. 
 
 ## Riesgos que siguen abiertos
 
