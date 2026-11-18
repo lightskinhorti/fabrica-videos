@@ -553,6 +553,32 @@ Si esto tampoco mueve las visualizaciones, lo siguiente es abrir con imagen real
 
 **Lo que no se sabe:** si el techo de unas 800 visualizaciones es solo por el gancho. Las cuentas nuevas suelen recibir una primera tanda pequeña de público, y pasar de ahí depende también de cuánta gente ve el vídeo entero y lo comparte. El gancho es lo primero que se arregla porque es donde más gente se pierde, pero no hay garantía de que baste.
 
+**Primera revisión del torneo (18 de noviembre, con `datos/metricas.json` leído a las 10:41; pendiente de que Javier decida):**
+
+| Cuenta | Vídeos | Mediana | Mejor vídeo | Seguidores | Seguidores por cada 1.000 visualizaciones |
+| --- | --- | --- | --- | --- | --- |
+| Dinero sin lío | 13 | 765 | 1.609 (`13-bonosocial`) | 17 | 2,3 |
+| Las cosas por dentro | 14 | 715 | 824 | 7 | 1,0 |
+| El contador loco | 14 | 517 | 906 | 5 | 0,7 |
+
+- Los tres vídeos del 17 con título fijo llevaban 744, 723 y 746 visualizaciones a las 15 horas: el mismo techo que los anteriores. El título fijo no ha movido las visualizaciones; falta ver en Studio si cambia lo que queda a los 2 s y a los 5 s.
+- El único vídeo que ha pasado el techo es `13-bonosocial` (992 a las 24 horas y 1.609 a los dos días, 4 compartidos), hecho con la receta de "una ayuda, a quién le toca y cuánto". `14-cercanias`, con la misma receta, se quedó en el techo: un caso de dos, no es una regla.
+- Según la regla del torneo, la peor es El contador loco: peor mediana, menos seguidores y tres vídeos recientes parados cerca de 250. Propuesta de Claude: dejar de publicar en ella (sin borrarla), pasar su vídeo diario a Dinero sin lío con la receta de las ayudas, y dar a Las cosas por dentro dos semanas más. No se abre un nicho nuevo hasta saber si el techo es de la cuenta (prueba de subir desde el móvil, sin hacer).
+- Aviso: el torneo distingue poco, porque las tres cuentas chocan con el mismo techo de unas 750 a 820 visualizaciones.
+
+**Repositorios de estilos valorados el 18 de noviembre** (los pasó Javier; no se ha instalado ninguno):
+
+| Repositorio | Qué hace | Licencia y coste | ¿Nos sirve? |
+| --- | --- | --- | --- |
+| Bang Motion (`bangtutorial/bang-motion`) | Reglas y estilos de animación en un solo HTML con GSAP; vertical 9:16; seis estilos de explicación | MIT, sin API de pago | Sí, como guía de estilo: usa la misma técnica que nuestros motores. Candidato para una prueba en Dinero sin lío |
+| video-shotcraft (`Vincentwei1021/video-shotcraft`) | 124 recetas de planos, transiciones y cámara para vídeos de producto | Apache-2.0, pero con Remotion, que es otro motor y tiene licencia propia para empresas | Solo de consulta: las recetas de cámara y transición. No se cambia de motor |
+| Anything2Explainer (`Vincentwei1021/anything2explainer`) | Explicaciones con diagramas, voz y capítulos | PolyForm Noncommercial: uso comercial solo con permiso del autor. Solo horizontal, chino e inglés | No. Mismo caso que onetake: no se instala ni se copia |
+| Vox Explainer (`Alisa0808/vox-director` o `CK42BB/vox-explainer-skill`; no se sabe cuál de los dos sale en el vídeo) | Recortes de papel con fotos, estilo documental | MIT, pero todo sale de modelos de pago en Atlas Cloud (imágenes, vídeo, voz y música) | Tal cual no: cuesta dinero por vídeo y son imágenes generadas. El aspecto sí se puede imitar con código y fotos de dominio público |
+| Paint MV Skills (parece el de `lintsinghua`, sin confirmar) | Vídeos musicales de acuarela con p5.brush | Sin confirmar | No: son videoclips, no explicaciones |
+| Hand-Drawn Explainer | Dibujos que aparecen trazo a trazo | Repositorio no encontrado | La técnica es fácil de hacer en nuestro motor 2D sin instalar nada |
+
+Ningún estilo nuevo arregla por sí solo el problema medido, que es que la gente se va en los 2 primeros segundos.
+
 ## Instagram: cómo lo hacemos y packs en la bio
 
 En Instagram, la cuenta enseña cómo funciona la fábrica, igual que hace la cuenta del vídeo de referencia, y en la bio hay una página con packs de configuración. Instagram no paga por visualizaciones en España, así que aquí el dinero sale de los packs.
