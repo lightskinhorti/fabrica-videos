@@ -1,0 +1,1086 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <script type="importmap">
+      { "imports": { "three": "./lib/three.module.js", "three/addons/": "./lib/addons/" } }
+    </script>
+    <link rel="stylesheet" href="comun/pordentro.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+      .mono { font-family: "JetBrains Mono", monospace; position: absolute; left: -2000px; top: 0; }
+      .lectura-p .v, .panel .cifra { font-family: "JetBrains Mono", monospace; font-weight: 700; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="65.1" data-width="1080" data-height="1920" data-fps="30">
+      <canvas id="gl" class="clip" data-start="0" data-duration="65.1" data-track-index="0" width="1080" height="1920"></canvas>
+      <div id="shade" class="clip" data-start="0" data-duration="65.1" data-track-index="1"></div>
+      <svg id="leaders" class="clip" data-start="0" data-duration="65.1" data-track-index="2" width="1080" height="1920" data-layout-allow-overlap></svg>
+      <div id="labels" class="clip" data-start="0" data-duration="65.1" data-track-index="3" data-layout-allow-overlap><span class="mono">0123456789</span></div>
+      <div id="note" class="clip" data-start="0" data-duration="65.1" data-track-index="4"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="65.1"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="65.1" data-track-index="5" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 63.88, "lines": [{"id": "l1", "s": 0.01, "e": 2.7, "words": [{"w": "Tu", "s": 0.01, "e": 0.21, "key": false}, {"w": "cargador", "s": 0.24, "e": 0.76, "key": true}, {"w": "es", "s": 0.86, "e": 0.9, "key": false}, {"w": "potente.", "s": 0.96, "e": 1.83, "key": false}, {"w": "¿Peligro?", "s": 1.83, "e": 2.7, "key": false}]}, {"id": "l2", "s": 2.7, "e": 6.45, "words": [{"w": "Dicen", "s": 2.7, "e": 2.97, "key": false}, {"w": "que", "s": 2.97, "e": 3.13, "key": false}, {"w": "un", "s": 3.13, "e": 3.23, "key": false}, {"w": "cargador", "s": 3.25, "e": 3.67, "key": false}, {"w": "potente", "s": 3.67, "e": 4.08, "key": false}, {"w": "estropea", "s": 4.08, "e": 4.44, "key": true}, {"w": "el", "s": 4.44, "e": 4.53, "key": false}, {"w": "móvil.", "s": 4.53, "e": 5.186, "key": false}, {"w": "¿Será", "s": 5.186, "e": 5.71, "key": false}, {"w": "verdad?", "s": 5.71, "e": 6.45, "key": false}]}, {"id": "l3", "s": 6.59, "e": 9.99, "words": [{"w": "Tres", "s": 6.59, "e": 6.86, "key": false}, {"w": "cosas", "s": 7.07, "e": 7.19, "key": false}, {"w": "por", "s": 7.19, "e": 7.39, "key": false}, {"w": "dentro,", "s": 7.39, "e": 7.44, "key": false}, {"w": "y", "s": 7.67, "e": 7.85, "key": false}, {"w": "la", "s": 7.85, "e": 7.98, "key": false}, {"w": "última", "s": 8.21, "e": 8.38, "key": true}, {"w": "es", "s": 8.38, "e": 8.51, "key": false}, {"w": "la", "s": 8.51, "e": 8.68, "key": false}, {"w": "que", "s": 8.68, "e": 8.8, "key": false}, {"w": "te", "s": 8.8, "e": 8.9, "key": false}, {"w": "protege.", "s": 8.9, "e": 9.99, "key": false}]}, {"id": "l4", "s": 10.27, "e": 14.72, "words": [{"w": "Primera:", "s": 10.27, "e": 10.63, "key": false}, {"w": "el", "s": 10.64, "e": 10.78, "key": false}, {"w": "cargador", "s": 10.78, "e": 11.24, "key": false}, {"w": "no", "s": 11.24, "e": 11.45, "key": false}, {"w": "empuja", "s": 11.45, "e": 11.84, "key": false}, {"w": "corriente.", "s": 11.87, "e": 12.58, "key": false}, {"w": "Solo", "s": 12.58, "e": 12.84, "key": false}, {"w": "la", "s": 12.84, "e": 13.01, "key": false}, {"w": "ofrece,", "s": 13.01, "e": 13.4, "key": true}, {"w": "y", "s": 13.4, "e": 13.47, "key": false}, {"w": "el", "s": 13.47, "e": 13.61, "key": false}, {"w": "móvil", "s": 13.61, "e": 13.95, "key": false}, {"w": "la", "s": 13.95, "e": 14.06, "key": false}, {"w": "coge.", "s": 14.09, "e": 14.72, "key": false}]}, {"id": "l5", "s": 14.93, "e": 19.08, "words": [{"w": "Segunda:", "s": 14.93, "e": 15.35, "key": false}, {"w": "móvil", "s": 15.35, "e": 15.7, "key": false}, {"w": "y", "s": 15.7, "e": 15.77, "key": false}, {"w": "cargador", "s": 15.77, "e": 16.28, "key": false}, {"w": "hablan", "s": 16.54, "e": 16.75, "key": false}, {"w": "por", "s": 16.75, "e": 16.92, "key": false}, {"w": "el", "s": 16.92, "e": 17.1, "key": false}, {"w": "cable.", "s": 17.1, "e": 17.72, "key": false}, {"w": "El", "s": 17.72, "e": 17.79, "key": false}, {"w": "cargador", "s": 17.85, "e": 18.27, "key": false}, {"w": "anuncia", "s": 18.27, "e": 18.65, "key": true}, {"w": "lo", "s": 18.65, "e": 18.74, "key": false}, {"w": "que", "s": 18.77, "e": 18.93, "key": false}, {"w": "da.", "s": 18.93, "e": 19.08, "key": false}]}, {"id": "l6", "s": 19.08, "e": 21.48, "words": [{"w": "Y", "s": 19.08, "e": 19.14, "key": false}, {"w": "el", "s": 19.14, "e": 19.28, "key": false}, {"w": "móvil", "s": 19.28, "e": 19.51, "key": false}, {"w": "pide", "s": 19.61, "e": 19.9, "key": false}, {"w": "solo", "s": 19.9, "e": 20.2, "key": false}, {"w": "lo", "s": 20.2, "e": 20.36, "key": false}, {"w": "que", "s": 20.36, "e": 20.59, "key": false}, {"w": "necesita.", "s": 20.59, "e": 21.48, "key": true}]}, {"id": "l7", "s": 21.48, "e": 27.78, "words": [{"w": "Un", "s": 21.48, "e": 21.57, "key": false}, {"w": "ejemplo,", "s": 21.58, "e": 22.05, "key": false}, {"w": "con", "s": 22.05, "e": 22.21, "key": false}, {"w": "cifras", "s": 22.21, "e": 22.52, "key": false}, {"w": "redondas:", "s": 22.57, "e": 23.16, "key": false}, {"w": "cargador", "s": 23.16, "e": 23.62, "key": false}, {"w": "de", "s": 23.65, "e": 23.72, "key": false}, {"w": "65", "s": 23.72, "e": 24.35, "key": true}, {"w": "vatios,", "s": 24.53, "e": 25.04, "key": false}, {"w": "móvil", "s": 25.04, "e": 25.28, "key": false}, {"w": "que", "s": 25.38, "e": 25.57, "key": false}, {"w": "pide", "s": 25.57, "e": 25.73, "key": false}, {"w": "20.", "s": 26.24, "e": 26.44, "key": false}, {"w": "El", "s": 26.44, "e": 26.57, "key": false}, {"w": "móvil", "s": 26.57, "e": 26.72, "key": false}, {"w": "toma", "s": 26.89, "e": 27.17, "key": false}, {"w": "20.", "s": 27.49, "e": 27.78, "key": false}]}, {"id": "l8", "s": 27.78, "e": 32.16, "words": [{"w": "Si", "s": 27.78, "e": 27.89, "key": false}, {"w": "el", "s": 27.91, "e": 28.03, "key": false}, {"w": "cargador", "s": 28.04, "e": 28.54, "key": false}, {"w": "es", "s": 28.57, "e": 28.64, "key": false}, {"w": "flojo,", "s": 28.72, "e": 29.14, "key": true}, {"w": "no", "s": 29.14, "e": 29.27, "key": false}, {"w": "pasa", "s": 29.28, "e": 29.76, "key": false}, {"w": "nada.", "s": 29.76, "e": 29.96, "key": false}, {"w": "El", "s": 29.96, "e": 30.2, "key": false}, {"w": "móvil", "s": 30.2, "e": 30.52, "key": false}, {"w": "solo", "s": 30.52, "e": 30.84, "key": false}, {"w": "carga", "s": 30.84, "e": 31.16, "key": false}, {"w": "más", "s": 31.16, "e": 31.79, "key": false}, {"w": "despacio.", "s": 31.79, "e": 32.16, "key": false}]}, {"id": "l9", "s": 32.37, "e": 36.81, "words": [{"w": "Tercera:", "s": 32.37, "e": 32.833, "key": false}, {"w": "¿cuánto", "s": 32.833, "e": 33.23, "key": false}, {"w": "puede", "s": 33.23, "e": 33.5, "key": false}, {"w": "dar", "s": 33.5, "e": 33.7, "key": false}, {"w": "un", "s": 33.76, "e": 33.82, "key": false}, {"w": "cargador?", "s": 33.86, "e": 34.2, "key": false}, {"w": "Los", "s": 34.2, "e": 34.44, "key": false}, {"w": "más", "s": 34.44, "e": 34.62, "key": false}, {"w": "potentes", "s": 34.62, "e": 35.17, "key": false}, {"w": "llegan", "s": 35.17, "e": 35.58, "key": false}, {"w": "a", "s": 35.58, "e": 35.65, "key": false}, {"w": "240", "s": 36.03, "e": 36.27, "key": true}, {"w": "vatios.", "s": 36.27, "e": 36.81, "key": false}]}, {"id": "l10", "s": 36.81, "e": 39.94, "words": [{"w": "¿Dónde", "s": 36.81, "e": 37.26, "key": false}, {"w": "está", "s": 37.26, "e": 37.54, "key": false}, {"w": "el", "s": 37.54, "e": 37.68, "key": false}, {"w": "riesgo?", "s": 37.68, "e": 38.32, "key": false}, {"w": "En", "s": 38.4, "e": 38.95, "key": false}, {"w": "los", "s": 38.95, "e": 39.04, "key": false}, {"w": "cargadores", "s": 39.33, "e": 39.64, "key": false}, {"w": "falsos.", "s": 39.64, "e": 39.94, "key": true}]}, {"id": "l11", "s": 39.94, "e": 49.34, "words": [{"w": "Una", "s": 39.94, "e": 40.24, "key": false}, {"w": "organización", "s": 40.24, "e": 40.9, "key": true}, {"w": "británica", "s": 40.96, "e": 41.34, "key": false}, {"w": "de", "s": 41.41, "e": 41.64, "key": false}, {"w": "seguridad", "s": 41.83, "e": 42.2, "key": false}, {"w": "eléctrica", "s": 42.34, "e": 42.82, "key": false}, {"w": "probó", "s": 42.97, "e": 43.18, "key": false}, {"w": "116", "s": 43.18, "e": 43.74, "key": false}, {"w": "cargadores", "s": 43.8, "e": 44.52, "key": false}, {"w": "falsos", "s": 44.52, "e": 44.79, "key": false}, {"w": "de", "s": 44.83, "e": 44.84, "key": false}, {"w": "20", "s": 44.84, "e": 45.21, "key": false}, {"w": "vatios.", "s": 45.21, "e": 45.47, "key": false}, {"w": "107", "s": 45.72, "e": 46.24, "key": false}, {"w": "fallaron", "s": 46.24, "e": 46.69, "key": false}, {"w": "una", "s": 46.89, "e": 47.17, "key": false}, {"w": "prueba", "s": 47.31, "e": 47.68, "key": false}, {"w": "de", "s": 47.68, "e": 48.45, "key": false}, {"w": "seguridad", "s": 48.45, "e": 48.61, "key": false}, {"w": "crítica.", "s": 48.61, "e": 49.34, "key": false}]}, {"id": "l12", "s": 49.38, "e": 50.27, "words": [{"w": "Un", "s": 49.38, "e": 49.54, "key": false}, {"w": "noventa", "s": 49.54, "e": 49.796, "key": true}, {"w": "y", "s": 49.796, "e": 49.832, "key": false}, {"w": "dos", "s": 49.832, "e": 49.942, "key": false}, {"w": "por", "s": 49.942, "e": 50.051, "key": false}, {"w": "ciento.", "s": 50.051, "e": 50.27, "key": false}]}, {"id": "l13", "s": 50.27, "e": 56.04, "words": [{"w": "Lo", "s": 50.27, "e": 50.69, "key": false}, {"w": "prometido:", "s": 50.69, "e": 51.96, "key": true}, {"w": "un", "s": 51.96, "e": 52.4, "key": false}, {"w": "cargador", "s": 52.4, "e": 52.76, "key": false}, {"w": "potente", "s": 52.76, "e": 53.2, "key": false}, {"w": "no", "s": 53.2, "e": 53.46, "key": false}, {"w": "estropea", "s": 53.67, "e": 53.99, "key": false}, {"w": "tu", "s": 53.99, "e": 54.12, "key": false}, {"w": "móvil.", "s": 54.12, "e": 54.63, "key": false}, {"w": "El", "s": 54.63, "e": 54.69, "key": false}, {"w": "peligro", "s": 55.08, "e": 55.21, "key": false}, {"w": "es", "s": 55.31, "e": 55.34, "key": false}, {"w": "el", "s": 55.34, "e": 55.46, "key": false}, {"w": "falso.", "s": 55.47, "e": 56.04, "key": false}]}, {"id": "l14", "s": 56.04, "e": 60.355, "words": [{"w": "Veredicto:", "s": 56.04, "e": 56.98, "key": true}, {"w": "la", "s": 56.98, "e": 57.15, "key": false}, {"w": "potencia", "s": 57.15, "e": 57.92, "key": false}, {"w": "da", "s": 57.92, "e": 58.1, "key": false}, {"w": "igual.", "s": 58.1, "e": 58.76, "key": false}, {"w": "Lo", "s": 58.76, "e": 58.83, "key": false}, {"w": "que", "s": 58.85, "e": 58.95, "key": false}, {"w": "importa", "s": 58.96, "e": 59.21, "key": false}, {"w": "es", "s": 59.21, "e": 59.47, "key": false}, {"w": "que", "s": 59.47, "e": 59.56, "key": false}, {"w": "no", "s": 59.59, "e": 59.67, "key": false}, {"w": "sea", "s": 59.69, "e": 59.88, "key": false}, {"w": "falso.", "s": 59.88, "e": 60.355, "key": false}]}, {"id": "l15", "s": 60.355, "e": 63.55, "words": [{"w": "¿Y", "s": 60.355, "e": 60.45, "key": false}, {"w": "tú?", "s": 60.64, "e": 60.81, "key": false}, {"w": "¿Usas", "s": 60.81, "e": 61.15, "key": true}, {"w": "cargadores", "s": 61.15, "e": 61.44, "key": false}, {"w": "de", "s": 61.66, "e": 61.92, "key": false}, {"w": "otros", "s": 62.2, "e": 62.24, "key": false}, {"w": "móviles?", "s": 62.24, "e": 62.948, "key": false}, {"w": "Sí", "s": 62.948, "e": 63.15, "key": false}, {"w": "o", "s": 63.19, "e": 63.21, "key": false}, {"w": "no.", "s": 63.21, "e": 63.55, "key": false}]}]}</script>
+    <script id="escena" type="application/json">
+{
+ "momentos": [
+  {
+   "id": "DICEN",
+   "clave": "dicen"
+  },
+  {
+   "id": "ESTROPEA",
+   "clave": "estropea"
+  },
+  {
+   "id": "SERA",
+   "clave": "sera"
+  },
+  {
+   "id": "TRES",
+   "clave": "tres"
+  },
+  {
+   "id": "ULTIMA",
+   "clave": "ultima"
+  },
+  {
+   "id": "PRIMERA",
+   "clave": "primera"
+  },
+  {
+   "id": "OFRECE",
+   "clave": "ofrece"
+  },
+  {
+   "id": "SEGUNDA",
+   "clave": "segunda"
+  },
+  {
+   "id": "HABLAN",
+   "clave": "hablan"
+  },
+  {
+   "id": "ANUNCIA",
+   "clave": "anuncia"
+  },
+  {
+   "id": "PIDE",
+   "clave": "pide"
+  },
+  {
+   "id": "EJEMPLO",
+   "clave": "ejemplo"
+  },
+  {
+   "id": "C65",
+   "clave": "65"
+  },
+  {
+   "id": "PIDE2",
+   "clave": "pide"
+  },
+  {
+   "id": "C20",
+   "clave": "20"
+  },
+  {
+   "id": "TOMA",
+   "clave": "toma"
+  },
+  {
+   "id": "C20B",
+   "clave": "20"
+  },
+  {
+   "id": "FLOJO",
+   "clave": "flojo"
+  },
+  {
+   "id": "DESPACIO",
+   "clave": "despacio"
+  },
+  {
+   "id": "TERCERA",
+   "clave": "tercera"
+  },
+  {
+   "id": "CUANTO",
+   "clave": "cuanto"
+  },
+  {
+   "id": "C240",
+   "clave": "240"
+  },
+  {
+   "id": "RIESGO",
+   "clave": "riesgo"
+  },
+  {
+   "id": "FALSOS",
+   "clave": "falsos"
+  },
+  {
+   "id": "ORG",
+   "clave": "organizacion"
+  },
+  {
+   "id": "C116",
+   "clave": "116"
+  },
+  {
+   "id": "C107",
+   "clave": "107"
+  },
+  {
+   "id": "C92",
+   "clave": "noventa"
+  },
+  {
+   "id": "PROMETIDO",
+   "clave": "prometido"
+  },
+  {
+   "id": "PELIGRO",
+   "clave": "peligro"
+  },
+  {
+   "id": "VEREDICTO",
+   "clave": "veredicto"
+  },
+  {
+   "id": "Y",
+   "clave": "y"
+  }
+ ],
+ "titulo": {
+  "texto": "¿Un cargador potente estropea tu móvil?",
+  "clave": "cargador"
+ },
+ "arranque": {
+  "cambio": 1.15,
+  "transicion": 0.35
+ },
+ "encuadre": {
+  "llenar": 1.3,
+  "zona": [
+   50,
+   620,
+   950,
+   1440
+  ]
+ },
+ "estilo": "rejilla",
+ "desenfoque": {
+  "apertura": 0,
+  "max": 0.012
+ },
+ "iconos": {},
+ "etiquetas": [
+  {
+   "texto": "PUERTO USB",
+   "pieza": "ch.puerto",
+   "desde": "OFRECE",
+   "hasta": "SEGUNDA",
+   "dx": 40,
+   "dy": -220
+  },
+  {
+   "texto": "CONECTOR DEL MÓVIL",
+   "pieza": "mv.conector",
+   "desde": "HABLAN",
+   "hasta": "ANUNCIA",
+   "dx": -40,
+   "dy": -220
+  },
+  {
+   "texto": "CHIP DEL MÓVIL",
+   "pieza": "mv.chip",
+   "desde": "PIDE",
+   "hasta": "EJEMPLO",
+   "dx": 40,
+   "dy": -230
+  },
+  {
+   "texto": "BATERÍA",
+   "pieza": "mv.bateria",
+   "desde": "TOMA",
+   "hasta": "FLOJO",
+   "dx": -40,
+   "dy": -230
+  },
+  {
+   "texto": "RESISTENCIAS",
+   "pieza": "ch.resistencias",
+   "desde": "FALSOS",
+   "hasta": "C116",
+   "dx": 40,
+   "dy": -240
+  }
+ ],
+ "notas": [
+  {
+   "texto": "Ilustración ampliada, no a escala",
+   "desde": 0
+  },
+  {
+   "texto": "Ilustración simplificada, sin marca",
+   "desde": "PRIMERA"
+  },
+  {
+   "texto": "Ejemplo ilustrativo: 65 W y 20 W",
+   "desde": "EJEMPLO"
+  },
+  {
+   "texto": "Ilustración simplificada, sin marca",
+   "desde": "FLOJO"
+  },
+  {
+   "texto": "USB-IF: USB PD 3.1, hasta 240 W",
+   "desde": "CUANTO"
+  },
+  {
+   "texto": "Electrical Safety First (2025): 116 falsos de 20 W, 107 fallaron",
+   "desde": "ORG"
+  },
+  {
+   "texto": "Ilustración simplificada, sin marca",
+   "desde": "PROMETIDO"
+  },
+  {
+   "texto": "",
+   "desde": "Y"
+  }
+ ],
+ "leyenda": [
+  {
+   "color": "#6fdcff",
+   "forma": "punto",
+   "texto": "energía hacia el móvil",
+   "desde": "PRIMERA",
+   "hasta": "SEGUNDA"
+  }
+ ],
+ "sonidos": [
+  {
+   "tipo": "zumbido",
+   "desde": 0.1,
+   "hasta": "DICEN",
+   "volumen": 0.35
+  },
+  {
+   "tipo": "pop",
+   "en": "TRES"
+  },
+  {
+   "tipo": "brillo",
+   "en": "ULTIMA"
+  },
+  {
+   "tipo": "desliza",
+   "en": "PRIMERA"
+  },
+  {
+   "tipo": "toque",
+   "en": "OFRECE"
+  },
+  {
+   "tipo": "pop",
+   "en": "SEGUNDA"
+  },
+  {
+   "tipo": "chip",
+   "en": "HABLAN"
+  },
+  {
+   "tipo": "chip",
+   "en": "PIDE"
+  },
+  {
+   "tipo": "sube",
+   "en": "C65"
+  },
+  {
+   "tipo": "sube",
+   "en": "C20"
+  },
+  {
+   "tipo": "brillo",
+   "en": "TOMA"
+  },
+  {
+   "tipo": "pop",
+   "en": "TERCERA"
+  },
+  {
+   "tipo": "sube",
+   "en": "C240"
+  },
+  {
+   "tipo": "error",
+   "en": "FALSOS",
+   "volumen": 0.3
+  },
+  {
+   "tipo": "sube",
+   "en": "C116"
+  },
+  {
+   "tipo": "sube",
+   "en": "C107"
+  },
+  {
+   "tipo": "sube",
+   "en": "C92"
+  },
+  {
+   "tipo": "pop",
+   "en": "VEREDICTO"
+  },
+  {
+   "tipo": "toque",
+   "en": "Y"
+  }
+ ],
+ "sets": {
+  "ch": {
+   "objetos": [
+    {
+     "tipo": "cargadorPared",
+     "id": "ch"
+    }
+   ],
+   "luz": "anuncio"
+  },
+  "mv": {
+   "objetos": [
+    {
+     "tipo": "movilBateria",
+     "id": "mv",
+     "rot": [
+      0,
+      0,
+      35
+     ]
+    }
+   ],
+   "luz": "anuncio"
+  },
+  "ml": {
+   "objetos": [
+    {
+     "tipo": "medidorLimite",
+     "id": "ml"
+    }
+   ],
+   "luz": "anuncio"
+  }
+ },
+ "flujos": {
+  "salida": {
+   "set": "ch",
+   "ruta": [
+    {
+     "curva": "ch.salida"
+    }
+   ],
+   "color": "#6fdcff",
+   "hebras": 2,
+   "ancho": 0.12,
+   "separa": 0.1,
+   "puntos": 300,
+   "intensidad": 0.9
+  }
+ },
+ "planos": [
+  {
+   "tipo": "anuncio",
+   "set": "ch",
+   "pieza": "ch",
+   "desde": 0,
+   "estado": {
+    "rayosX": 1,
+    "modo": 1,
+    "latido": 1,
+    "traza": 0,
+    "salida": 1
+   },
+   "angulo": 8,
+   "altura": 6,
+   "orbita": 14,
+   "empuje": 0.06,
+   "variantes": [
+    {
+     "pieza": "ch.puerto",
+     "radio": 3.4,
+     "angulo": -26,
+     "altura": 14
+    }
+   ]
+  },
+  {
+   "tipo": "anuncio",
+   "set": "mv",
+   "pieza": "mv",
+   "desde": "DICEN",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": 0.6,
+    "calor": 0
+   },
+   "angulo": -14,
+   "altura": 6,
+   "orbita": 12,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "macro",
+   "set": "mv",
+   "pieza": "mv.bateria",
+   "desde": "ESTROPEA",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": 0.6,
+    "calor": {
+     "de": 0,
+     "a": 0.5,
+     "en": "ESTROPEA",
+     "dur": 1.0
+    }
+   },
+   "radio": 4.2,
+   "angulo": -20,
+   "altura": 10,
+   "apertura": 0.003,
+   "empuje": 0.08
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ml",
+   "pieza": "ml",
+   "desde": "SERA",
+   "estado": {
+    "texto": "?? W",
+    "sub": "¿CUÁNTO TOMA?",
+    "luz": 1
+   },
+   "angulo": 12,
+   "altura": 8,
+   "orbita": 10,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "cifra",
+   "set": "ch",
+   "pieza": "ch",
+   "desde": "TRES",
+   "estado": {
+    "rayosX": 1,
+    "modo": 1,
+    "latido": 1,
+    "traza": 0,
+    "salida": 1
+   },
+   "angulo": 8,
+   "altura": 6,
+   "lectura": {
+    "texto": "3",
+    "titulo": "TRES COSAS POR DENTRO",
+    "y": 960,
+    "tam": 260
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ml",
+   "pieza": "ml.pantalla",
+   "desde": "ULTIMA",
+   "estado": {
+    "texto": "?",
+    "sub": "LA ÚLTIMA",
+    "luz": 1
+   },
+   "radio": 4.8,
+   "angulo": 10,
+   "altura": 4,
+   "empuje": 0.08
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ch",
+   "pieza": "ch",
+   "desde": "PRIMERA",
+   "estado": {
+    "rayosX": 1,
+    "modo": 0,
+    "latido": 1,
+    "traza": 0,
+    "salida": 0
+   },
+   "angulo": -8,
+   "altura": 6,
+   "orbita": 12,
+   "flujos": [
+    "salida"
+   ],
+   "crece": true
+  },
+  {
+   "tipo": "macro",
+   "set": "ch",
+   "pieza": "ch.puerto",
+   "desde": "OFRECE",
+   "estado": {
+    "rayosX": 1,
+    "modo": 0,
+    "latido": 1,
+    "traza": 0,
+    "salida": 0
+   },
+   "radio": 3.4,
+   "angulo": -30,
+   "altura": 14,
+   "apertura": 0.003,
+   "empuje": 0.08,
+   "flujos": [
+    "salida"
+   ],
+   "crece": true
+  },
+  {
+   "tipo": "anuncio",
+   "set": "mv",
+   "pieza": "mv",
+   "desde": "SEGUNDA",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": 0.5,
+    "calor": 0
+   },
+   "angulo": 10,
+   "altura": 6,
+   "orbita": -12,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "macro",
+   "set": "mv",
+   "pieza": "mv.conector",
+   "desde": "HABLAN",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": 0.5,
+    "calor": 0
+   },
+   "radio": 3.2,
+   "angulo": 18,
+   "altura": 14,
+   "apertura": 0.003,
+   "empuje": 0.08,
+   "resaltar": [
+    "mv.conector"
+   ],
+   "fuerzaResalte": 0.3
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ml",
+   "pieza": "ml",
+   "desde": "ANUNCIA",
+   "estado": {
+    "texto": "OFRECE 65 W",
+    "sub": "CARGADOR",
+    "luz": 1
+   },
+   "angulo": -14,
+   "altura": 8,
+   "orbita": 10,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "macro",
+   "set": "mv",
+   "pieza": "mv.chip",
+   "desde": "PIDE",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": 0.5,
+    "calor": 0
+   },
+   "radio": 2.8,
+   "angulo": -16,
+   "altura": 12,
+   "apertura": 0.003,
+   "empuje": 0.1,
+   "resaltar": [
+    "mv.chip"
+   ],
+   "colorResalte": "120,200,255",
+   "fuerzaResalte": 0.3
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ml",
+   "pieza": "ml",
+   "desde": "EJEMPLO",
+   "estado": {
+    "texto": "OFRECE 65 W",
+    "sub": "CARGADOR · EJEMPLO",
+    "luz": 1
+   },
+   "angulo": 12,
+   "altura": 8,
+   "orbita": -10,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "cifra",
+   "set": "ml",
+   "pieza": "ml",
+   "desde": "C65",
+   "estado": {
+    "texto": "OFRECE 65 W",
+    "sub": "CARGADOR · EJEMPLO",
+    "luz": 0.5
+   },
+   "angulo": 10,
+   "altura": 6,
+   "lectura": {
+    "de": 0,
+    "a": 65,
+    "decimales": 0,
+    "unidad": " W",
+    "titulo": "EL CARGADOR OFRECE",
+    "en": "C65",
+    "dur": 1.0,
+    "y": 960,
+    "tam": 230,
+    "tituloTam": 64
+   }
+  },
+  {
+   "tipo": "macro",
+   "set": "ml",
+   "pieza": "ml.pantalla",
+   "desde": "PIDE2",
+   "estado": {
+    "texto": "PIDE 20 W",
+    "sub": "MÓVIL · EJEMPLO",
+    "luz": 1
+   },
+   "radio": 4.4,
+   "angulo": -8,
+   "altura": 3,
+   "apertura": 0.002,
+   "empuje": 0.08
+  },
+  {
+   "tipo": "cifra",
+   "set": "ml",
+   "pieza": "ml",
+   "desde": "C20",
+   "estado": {
+    "texto": "PIDE 20 W",
+    "sub": "MÓVIL · EJEMPLO",
+    "luz": 0.5
+   },
+   "angulo": -10,
+   "altura": 6,
+   "lectura": {
+    "de": 0,
+    "a": 20,
+    "decimales": 0,
+    "unidad": " W",
+    "titulo": "EL MÓVIL PIDE",
+    "en": "C20",
+    "dur": 0.8,
+    "y": 960,
+    "tam": 230,
+    "tituloTam": 64
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "set": "mv",
+   "pieza": "mv",
+   "desde": "TOMA",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": {
+     "de": 0.3,
+     "a": 0.7,
+     "en": "TOMA",
+     "dur": 2.2
+    },
+    "calor": 0
+   },
+   "angulo": 8,
+   "altura": 8,
+   "orbita": 14,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "cifra",
+   "set": "ml",
+   "pieza": "ml",
+   "desde": "C20B",
+   "estado": {
+    "texto": "TOMA 20 W",
+    "sub": "MÓVIL · EJEMPLO",
+    "luz": 0.5
+   },
+   "angulo": 8,
+   "altura": 6,
+   "lectura": {
+    "de": 65,
+    "a": 20,
+    "decimales": 0,
+    "unidad": " W",
+    "titulo": "EL MÓVIL TOMA",
+    "en": "C20B",
+    "dur": 0.9,
+    "y": 960,
+    "tam": 230,
+    "tituloTam": 64
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ch",
+   "pieza": "ch",
+   "desde": "FLOJO",
+   "estado": {
+    "rayosX": 1,
+    "modo": 1,
+    "latido": 1,
+    "traza": 0,
+    "salida": 1
+   },
+   "angulo": 14,
+   "altura": 8,
+   "orbita": -12,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "cifra",
+   "set": "mv",
+   "pieza": "mv",
+   "desde": "DESPACIO",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": {
+     "de": 0.2,
+     "a": 0.45,
+     "en": "DESPACIO",
+     "dur": 3.0
+    },
+    "calor": 0
+   },
+   "angulo": -8,
+   "altura": 8,
+   "lectura": {
+    "texto": "MÁS LENTO",
+    "titulo": "CARGADOR FLOJO",
+    "sub": "pero no se estropea",
+    "y": 950,
+    "tam": 170,
+    "tituloTam": 64,
+    "subTam": 54
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ch",
+   "pieza": "ch",
+   "desde": "TERCERA",
+   "estado": {
+    "rayosX": 1,
+    "modo": 1,
+    "latido": 1,
+    "traza": 0,
+    "salida": 1
+   },
+   "angulo": -22,
+   "altura": 10,
+   "orbita": 14,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ml",
+   "pieza": "ml",
+   "desde": "CUANTO",
+   "estado": {
+    "texto": "MÁX ?? W",
+    "sub": "¿CUÁNTO?",
+    "luz": 1
+   },
+   "angulo": 14,
+   "altura": 8,
+   "orbita": 10,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "cifra",
+   "set": "ml",
+   "pieza": "ml",
+   "desde": "C240",
+   "estado": {
+    "texto": "MÁX 240 W",
+    "sub": "USB PD 3.1",
+    "luz": 0.5
+   },
+   "angulo": -10,
+   "altura": 6,
+   "lectura": {
+    "de": 0,
+    "a": 240,
+    "decimales": 0,
+    "unidad": " W",
+    "titulo": "LOS MÁS POTENTES, HASTA",
+    "en": "C240",
+    "dur": 1.4,
+    "y": 960,
+    "tam": 230,
+    "tituloTam": 64
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ch",
+   "pieza": "ch",
+   "desde": "RIESGO",
+   "estado": {
+    "rayosX": 1,
+    "modo": 1,
+    "latido": 1,
+    "traza": 0,
+    "salida": 1
+   },
+   "angulo": 10,
+   "altura": 6,
+   "orbita": -14,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "macro",
+   "set": "ch",
+   "pieza": "ch.resistencias",
+   "desde": "FALSOS",
+   "estado": {
+    "rayosX": 1,
+    "modo": 1,
+    "latido": 1,
+    "traza": 0,
+    "salida": 1
+   },
+   "radio": 2.2,
+   "angulo": -12,
+   "altura": 22,
+   "apertura": 0.003,
+   "empuje": 0.08,
+   "resaltar": [
+    "ch.resistencias"
+   ],
+   "colorResalte": "255,120,70",
+   "fuerzaResalte": 0.35
+  },
+  {
+   "tipo": "cifra",
+   "set": "ch",
+   "pieza": "ch",
+   "desde": "C116",
+   "estado": {
+    "rayosX": 0,
+    "modo": 1,
+    "latido": 1,
+    "traza": 0,
+    "salida": 1
+   },
+   "angulo": -12,
+   "altura": 8,
+   "lectura": {
+    "de": 0,
+    "a": 116,
+    "decimales": 0,
+    "unidad": "",
+    "titulo": "CARGADORES FALSOS ANALIZADOS",
+    "en": "C116",
+    "dur": 1.2,
+    "y": 960,
+    "tam": 230,
+    "tituloTam": 60
+   }
+  },
+  {
+   "tipo": "cifra",
+   "set": "ch",
+   "pieza": "ch",
+   "desde": "C107",
+   "estado": {
+    "rayosX": 0,
+    "modo": 1,
+    "latido": 1,
+    "traza": 0,
+    "salida": 1
+   },
+   "angulo": 12,
+   "altura": 8,
+   "lectura": {
+    "de": 0,
+    "a": 107,
+    "decimales": 0,
+    "unidad": "",
+    "titulo": "SUSPENDIERON UNA PRUEBA CRÍTICA",
+    "en": "C107",
+    "dur": 1.2,
+    "y": 960,
+    "tam": 230,
+    "tituloTam": 60
+   }
+  },
+  {
+   "tipo": "cifra",
+   "set": "ch",
+   "pieza": "ch",
+   "desde": "C92",
+   "estado": {
+    "rayosX": 1,
+    "modo": 1,
+    "latido": 1,
+    "traza": 0,
+    "salida": 1
+   },
+   "angulo": -8,
+   "altura": 8,
+   "lectura": {
+    "de": 0,
+    "a": 92,
+    "decimales": 0,
+    "unidad": " %",
+    "titulo": "DE LOS FALSOS FALLARON",
+    "en": "C92",
+    "dur": 1.0,
+    "y": 960,
+    "tam": 230,
+    "tituloTam": 60
+   }
+  },
+  {
+   "tipo": "anuncio",
+   "set": "mv",
+   "pieza": "mv",
+   "desde": "PROMETIDO",
+   "estado": {
+    "rayosX": 1,
+    "capacidad": 0.9,
+    "calor": 0
+   },
+   "angulo": 12,
+   "altura": 6,
+   "orbita": -12,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "anuncio",
+   "set": "ch",
+   "pieza": "ch",
+   "desde": "PELIGRO",
+   "estado": {
+    "rayosX": 1,
+    "modo": 1,
+    "latido": 1,
+    "traza": 0,
+    "salida": 1
+   },
+   "angulo": -14,
+   "altura": 8,
+   "orbita": 12,
+   "empuje": 0.05
+  },
+  {
+   "tipo": "cifra",
+   "set": "ch",
+   "pieza": "ch",
+   "desde": "VEREDICTO",
+   "estado": {
+    "rayosX": 0,
+    "modo": 1,
+    "latido": 1,
+    "traza": 0,
+    "salida": 1
+   },
+   "angulo": -12,
+   "altura": 8,
+   "lectura": {
+    "texto": "DA IGUAL",
+    "titulo": "LA POTENCIA",
+    "sub": "lo que importa: que no sea falso",
+    "y": 950,
+    "tam": 190,
+    "tituloTam": 64,
+    "subTam": 50
+   }
+  },
+  {
+   "tipo": "cifra",
+   "set": "ch",
+   "pieza": "ch",
+   "desde": "Y",
+   "estado": {
+    "rayosX": 0,
+    "modo": 1,
+    "latido": 1,
+    "traza": 0,
+    "salida": 1
+   },
+   "angulo": 12,
+   "altura": 8,
+   "lectura": {
+    "texto": "?",
+    "titulo": "¿Usas cargadores de otros móviles?",
+    "y": 950,
+    "tam": 230,
+    "tituloTam": 76,
+    "tituloAncho": 780,
+    "sub": "Sí o no, en los comentarios",
+    "subTam": 44
+   }
+  }
+ ]
+}
+    </script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 65.1 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      // 17-cargador-potente: the scene is the JSON above (sets and shots), built by the shot templates. The wall charger, the
+      // phone and the meter are library objects (objetos/cargador.js, objetos/bateria.js, registered in objetos/index.js).
+      // Uses the fixed title ("titulo"), "arranque" and "encuadre": see the headers of the engine.
+      import * as THREE from "three";
+      import { crearPorDentro } from "./comun/pordentro.js";
+      import { crearDetalle } from "./comun/detalle.js";
+      import { crearPlantillas } from "./comun/plantillas.js";
+      await Promise.all(['700 50px "Inter"', '400 50px "Inter"', '700 50px "JetBrains Mono"', '400 50px "JetBrains Mono"'].map((f) => document.fonts.load(f)));
+      const C = crearPorDentro(THREE);
+      const X = crearDetalle(THREE, C);
+      const P = crearPlantillas(THREE, C, X, { cerca: 0.5 });
+      C.camera.far = 3000; C.camera.updateProjectionMatrix();
+      P.arrancar();
+    </script>
+  </body>
+</html>

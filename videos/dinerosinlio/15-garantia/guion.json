@@ -1,0 +1,45 @@
+{
+  "titulo": "Banco en quiebra: hasta 100.000 € protegidos",
+  "lines": [
+    "Tu banco quiebra. ¿Cuánto recuperas?",
+    "Hay un límite, y casi nadie sabe cuál. Y al final, cuántos días tardarías en cobrar.",
+    "En España existe el Fondo de Garantía de Depósitos, el FGD.",
+    "Según el propio fondo, garantiza hasta cien mil euros por titular y por entidad.",
+    "Ojo: es por entidad. Si tienes ahorros en dos bancos distintos, el límite cuenta en cada uno.",
+    "Cubre cuentas corrientes, cuentas de ahorro y depósitos a plazo fijo.",
+    "Si una cuenta tiene varios titulares, el saldo se reparte a partes iguales, salvo que el contrato diga otra cosa, y el límite se aplica a cada titular.",
+    "Por ejemplo, ciento cincuenta mil euros entre dos titulares: setenta y cinco mil para cada uno, todo dentro del límite.",
+    "No cubre los planes de pensiones ni los productos que no garantizan devolver el capital.",
+    "Y si usas un banco digital, su dinero puede estar protegido por un fondo de otro país.",
+    "Ahora, lo que casi nadie sabe: el FGD paga sin que tengas que pedirlo, y tiene siete días hábiles para hacerlo.",
+    "Pásaselo a quien tenga ahorros. ¿Sabías que el límite es por entidad? Sí o no."
+  ],
+  "claves": [
+    "quiebra",
+    "límite",
+    "fondo",
+    "titular",
+    "ojo",
+    "cubre",
+    "iguales",
+    "dentro",
+    "pensiones",
+    "digital",
+    "hábiles",
+    "sabías"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "Según el Fondo de Garantía de Depósitos (FGD), en España garantiza hasta 100.000 euros por titular y por entidad. Cubre cuentas corrientes, cuentas de ahorro y depósitos a plazo fijo; si una cuenta tiene varios titulares, el saldo se divide entre ellos a partes iguales salvo que el contrato diga otra cosa. No cubre los planes de pensiones ni los productos sin garantía de devolución del capital. Para los depósitos en dinero, el FGD tiene 7 días hábiles para pagar los importes garantizados y lo hace sin que el depositante tenga que solicitarlo. Fuente: fgd.es y Real Decreto 2606/1996. Cuenta de ejemplo: 150.000 euros entre dos titulares son 75.000 por titular. ¿Sabías que el límite es por entidad? Sí o no, en los comentarios.",
+    "hashtags": [
+      "#dinero",
+      "#banco",
+      "#ahorro",
+      "#fgd",
+      "#finanzas",
+      "#parati"
+    ],
+    "portada_en": "quiebra"
+  },
+  "voz_dice": "La voz se generó con los números en palabras (cien mil, ciento cincuenta mil, setenta y cinco mil, siete); Whisper los oye en cifras y los subtítulos salen en cifras. Se hizo una primera voz de 58 s (corta) y se rehízo con una frase más."
+}

@@ -655,6 +655,12 @@ Propuesta de Claude, por orden: **bulos y estafas**, mitos de comida y de casa, 
 - **Coste:** cero. Volumen supuesto: de 3 a 10 clips al día.
 - **Límites:** los clips de Twitch duran 60 s como mucho, así que ninguno pasa del minuto que pide el programa de pagos; habría que unir varios o cortar del directo entero. El título es el que puso el espectador, en inglés. La palabra del título es el único filtro de tema: no distingue un clip de partida de uno de charla. Subtítulos en inglés, tal como habla el streamer (decisión de Javier del 18 de noviembre; es lo que ya hace la herramienta por defecto). Falta elegir canales y crear la cuenta (Javier).
 
+**Tarde del 18 de noviembre.**
+
+- **Vídeos de hoy, hechos y programados para las 20:00** (dos agentes en paralelo, 2 voces de pago cada uno; Javier pidió programarlos sin verlos antes para no perder el día): `lascosaspordentro/17-cargador-potente` (65,1 s, "¿Un cargador potente estropea tu móvil?"; aviso del control: el gancho acaba a los 2,7 s) y `dinerosinlio/15-garantia` (63,7 s, Fondo de Garantía de Depósitos; cifras de fgd.es, sin leer la norma en el BOE).
+- **Cuenta de clips: decisiones de Javier.** Streamers españoles (los ingleses están saturados: 31 clips de GTA de Kai Cenat en un día). La cuenta se crea en el perfil de Chrome de El contador loco, cerrando allí esa sesión de TikTok. El nombre lleva "clips" y "GTA 6"; parecen libres `@gta6clipsinparar` y `@gta6sinparar` (solo el registro lo confirma). Ritmo previsto por Javier: hasta 30 clips al día; Claude propone empezar con 5 a 8 la primera semana para que TikTok no la trate como spam.
+- **Clips preparados** en `exports/clips/` (12): 4 de DjMaRiiO y 4 de Rubius jugando ya a GTA 6, 1 de TheGrefg y 3 de Kai Cenat. Los espectadores no ponen "gta" en el título, así que para quien juega todo el día se eligen los más vistos sin filtro de palabra. Pendiente: leer lo que se dice en cada clip para quedarse con los que se entienden fuera del directo y reescribir el título como gancho.
+
 **Repositorios de estilos valorados el 18 de noviembre** (los pasó Javier; no se ha instalado ninguno):
 
 | Repositorio | Qué hace | Licencia y coste | ¿Nos sirve? |

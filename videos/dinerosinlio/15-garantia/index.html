@@ -1,0 +1,842 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <link rel="stylesheet" href="comun/dinero.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+      .cifra, .fila b, .grande { font-family: "Archivo Black", sans-serif; }
+      .ancho { left: 0; width: 1080px; text-align: center; }
+      .cifra.g150 { font-size: 150px; }
+      .cifra.g200 { font-size: 200px; }
+      .rotulo.r44 { font-size: 44px; line-height: 1.3; letter-spacing: 0.06em; }
+      .chip.c64 { font-size: 64px; }
+      .chip.c58 { font-size: 58px; }
+      .chip.c50 { font-size: 50px; }
+      .chip.c46 { font-size: 46px; }
+      .chip.c42 { font-size: 42px; }
+      .sello.s62 { font-size: 62px; line-height: 1.12; text-align: center; }
+      .sello.s54 { font-size: 54px; line-height: 1.1; text-align: center; }
+      .sello.s130 { font-size: 120px; line-height: 1.05; border-width: 14px; border-radius: 26px; padding: 12px 44px; }
+      .docg .doc { width: 840px; padding: 30px 40px 20px; }
+      .docg .doc-tit { font-size: 36px; }
+      .docg .fila { font-size: 38px; padding: 16px 0; }
+      .docg .fila b { font-size: 46px; white-space: nowrap; }
+      .docg.gr .doc { width: 900px; padding: 34px 44px 26px; }
+      .docg.gr .doc-tit { font-size: 38px; }
+      .docg.gr .fila { font-size: 40px; padding: 22px 0; }
+      .docg.gr .fila b { font-size: 60px; }
+      .fila.marca { background: #f8dc7a; margin: 0 -18px; padding-left: 18px; padding-right: 18px; border-radius: 10px; }
+      .fila.verdef { background: #cfe9dc; margin: 0 -18px; padding-left: 18px; padding-right: 18px; border-radius: 10px; }
+      .barra.alta { height: 170px; }
+      .barra.alta .seg { font-size: 46px; }
+      .seg.d { background: #f2b705; }
+      .seg.p { background: #fffaf0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="63.7" data-width="1080" data-height="1920" data-fps="30">
+      <div id="fondo" class="clip" data-start="0" data-duration="63.7" data-track-index="0"></div>
+      <div id="escenario" class="clip" data-start="0" data-duration="63.7" data-track-index="1" data-layout-allow-overlap data-layout-allow-overflow>
+        <!-- A: frame 0. A bank, a QUIEBRA stamp, and the paper with the limit already counting up -->
+        <div class="pieza" id="banco" style="left:290px; top:500px" data-icono="edificio" data-args='["BANCO", "#fffaf0", 480]'></div>
+        <div class="pieza ancho" id="quiebra" style="top:700px"><div class="sello s62" style="color:#e5383b; border-color:#e5383b; font-size:110px; background:#fffaf0">QUIEBRA</div></div>
+        <div class="pieza docg gr" id="fact" style="left:90px; top:1000px" data-icono="doc"
+          data-args='["FONDO DE GARANTÍA DE DEPÓSITOS", [["POR TITULAR Y ENTIDAD", "0 €", "filaL", "verdef"]]]'></div>
+        <div class="pieza ancho" id="chipCuanto" style="top:1300px"><div class="chip rojo c58">¿CUÁNTO RECUPERAS?</div></div>
+
+        <!-- B: there is a limit, and days to wait -->
+        <div class="pieza ancho" id="chipLim" style="top:500px"><div class="chip c58">HAY UN LÍMITE</div></div>
+        <div class="pieza cifra g200 rojo ancho" id="interr" style="top:660px; font-size:420px">?</div>
+        <div class="pieza ancho" id="chipDias" style="top:1230px"><div class="sello s54" style="color:#e5383b; border-color:#e5383b">¿CUÁNTOS DÍAS<br>TARDARÍAS?</div></div>
+
+        <!-- C: the fund -->
+        <div class="pieza" id="edifFGD" style="left:290px; top:520px" data-icono="edificio" data-args='["FGD", "#fffaf0", 480]'></div>
+        <div class="pieza ancho" id="chipFondo" style="top:1090px"><div class="chip c42">FONDO DE GARANTÍA DE DEPÓSITOS</div></div>
+        <div class="pieza ancho" id="chipFGD" style="top:1230px"><div class="chip blanco c64">FGD</div></div>
+
+        <!-- D: per holder and per entity -->
+        <div class="pieza docg gr" id="docL" style="left:90px; top:520px" data-icono="doc"
+          data-args='["FGD · LÍMITE DE LA GARANTÍA", [["POR TITULAR Y ENTIDAD", "0 €", "filaL2", "verdef"]]]'></div>
+        <div class="pieza" id="pers1" style="left:110px; top:960px" data-icono="persona" data-args='["#4a78c2", 200]'></div>
+        <div class="pieza" id="chipTit" style="left:370px; top:1010px"><div class="chip c46">TITULAR</div></div>
+        <div class="pieza" id="chipEnt" style="left:370px; top:1150px"><div class="chip blanco c46">ENTIDAD</div></div>
+        <div class="pieza" id="edifE" style="left:760px; top:1000px" data-icono="edificio" data-args='["BANCO", "#fffaf0", 240]'></div>
+
+        <!-- E: it is per entity -->
+        <div class="pieza ancho" id="selloOjo" style="top:500px"><div class="sello s62" style="color:#e5383b; border-color:#e5383b; font-size:150px">OJO</div></div>
+        <div class="pieza ancho" id="chipPorEnt" style="top:790px"><div class="chip blanco c58">UN LÍMITE POR ENTIDAD</div></div>
+        <div class="pieza" id="edA" style="left:110px; top:960px" data-icono="edificio" data-args='["BANCO A", "#fffaf0", 380]'></div>
+        <div class="pieza" id="edB" style="left:590px; top:960px" data-icono="edificio" data-args='["BANCO B", "#fffaf0", 380]'></div>
+        <div class="pieza ancho" id="chipCada" style="top:1330px"><div class="chip verde c50">100.000 € EN CADA UNO</div></div>
+
+        <!-- F: what it covers -->
+        <div class="pieza docg gr" id="docC" style="left:90px; top:520px" data-icono="doc"
+          data-args='["EL FGD CUBRE", [["CUENTAS CORRIENTES", "SÍ", "filaCo"], ["CUENTAS DE AHORRO", "SÍ", "filaAh"], ["DEPÓSITOS A PLAZO FIJO", "SÍ", "filaPl"]]]'></div>
+
+        <!-- G: several holders -->
+        <div class="pieza" id="pjs" style="left:300px; top:520px"><div style="display:flex; gap:30px; align-items:flex-end">
+          <div data-icono="persona" data-args='["#4a78c2", 230]'></div><div data-icono="persona" data-args='["#e5383b", 230]'></div></div></div>
+        <div class="pieza ancho" id="selloIg" style="top:880px"><div class="sello s62" style="color:#2f8f6b; border-color:#2f8f6b">A PARTES IGUALES</div></div>
+        <div class="pieza ancho" id="chipCont" style="top:1080px"><div class="chip blanco c46">SI EL CONTRATO DICE OTRA COSA</div></div>
+        <div class="pieza ancho" id="chipApl" style="top:1230px"><div class="chip c50">LÍMITE PARA CADA TITULAR</div></div>
+
+        <!-- H: the example -->
+        <div class="pieza ancho" id="chipEj" style="top:500px"><div class="chip c58">EJEMPLO</div></div>
+        <div class="pieza rotulo r44 ancho" id="rotEj" style="top:640px">CUENTA DE 150.000 € ENTRE 2 TITULARES</div>
+        <div class="pieza" id="barEj" style="left:90px; top:710px; width:900px"><div class="barra alta"><div class="seg d" style="width:50%">75.000 €</div><div class="seg p" style="width:50%">75.000 €</div></div></div>
+        <div class="pieza" id="persA" style="left:200px; top:950px" data-icono="persona" data-args='["#4a78c2", 200]'></div>
+        <div class="pieza" id="persB" style="left:680px; top:950px" data-icono="persona" data-args='["#e5383b", 200]'></div>
+        <div class="pieza ancho" id="chipDentro" style="top:1290px"><div class="chip verde c50">TODO DENTRO DEL LÍMITE</div></div>
+
+        <!-- I: what it does not cover -->
+        <div class="pieza ancho" id="selloNo" style="top:500px"><div class="sello s62" style="color:#e5383b; border-color:#e5383b; font-size:130px">NO CUBRE</div></div>
+        <div class="pieza ancho" id="chipPens" style="top:800px"><div class="chip blanco c50">PLANES DE PENSIONES</div></div>
+        <div class="pieza ancho" id="chipCap" style="top:940px"><div class="chip blanco c46">SIN EL CAPITAL GARANTIZADO</div></div>
+        <div class="pieza" id="tach" style="left:360px; top:1040px" data-icono="tachado" data-args="[360]"></div>
+
+        <div class="pieza ancho" id="chipBD" style="top:500px"><div class="chip c58">BANCO DIGITAL</div></div>
+        <div class="pieza" id="edifOtro" style="left:310px; top:640px" data-icono="edificio" data-args='["OTRO FONDO", "#fffaf0", 460]'></div>
+        <div class="pieza ancho" id="chipOtro" style="top:1220px"><div class="chip blanco c50">PUEDE SER DE OTRO PAÍS</div></div>
+
+        <!-- J: pays on its own, 7 working days -->
+        <div class="pieza ancho" id="chipNadie" style="top:500px"><div class="chip c50">LO QUE CASI NADIE SABE</div></div>
+        <div class="pieza ancho" id="selloPaga" style="top:660px"><div class="sello s62" style="color:#2f8f6b; border-color:#2f8f6b; font-size:100px">PAGA SOLO</div></div>
+        <div class="pieza ancho" id="chipPedir" style="top:830px"><div class="chip blanco c50">SIN QUE LO PIDAS</div></div>
+        <div class="pieza cifra g200 verde ancho" id="c7" style="top:930px; font-size:240px">0</div>
+        <div class="pieza rotulo r44 ancho" id="rotDias" style="top:1190px">DÍAS HÁBILES</div>
+        <div class="pieza ancho" id="chipPlazo" style="top:1280px"><div class="chip c46">PLAZO MÁXIMO DEL FGD</div></div>
+
+        <!-- K: pass it on -->
+        <div class="pieza" id="fam" style="left:100px; top:500px"><div style="display:flex; gap:20px">
+          <div data-icono="persona" data-args='["#4a78c2", 200]'></div><div data-icono="persona" data-args='["#e5383b", 200]'></div><div data-icono="persona" data-args='["#2f8f6b", 200]'></div><div data-icono="persona" data-args='["#8e6bbf", 200]'></div></div></div>
+        <div class="pieza ancho" id="selloPas" style="top:805px"><div class="sello s62" style="color:#e5383b; border-color:#e5383b">PÁSASELO</div></div>
+        <div class="pieza ancho" id="chipAh" style="top:815px"><div class="chip c58">QUIEN TENGA AHORROS</div></div>
+        <div class="pieza ancho grande" id="qBig" style="top:930px; font-size:104px; line-height:1.1; color:#1d2a44">¿SABÍAS QUE<br>EL LÍMITE ES<br>POR ENTIDAD?</div>
+        <div class="pieza ancho" id="selloSN" style="top:1330px"><div class="sello s130" style="color:#e5383b; border-color:#e5383b">SÍ O NO</div></div>
+      </div>
+      <div id="gancho" class="clip" data-start="0" data-duration="63.7" data-track-index="2"></div>
+      <div id="note" class="clip" data-start="0" data-duration="63.7" data-track-index="3"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="63.7"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="63.7" data-track-index="4" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 62.44, "lines": [{"id": "l1", "s": 0.15, "e": 2.23, "words": [{"w": "Tu", "s": 0.15, "e": 0.25, "key": false}, {"w": "banco", "s": 0.25, "e": 0.52, "key": false}, {"w": "quiebra.", "s": 0.53, "e": 1.138, "key": true}, {"w": "¿Cuánto", "s": 1.138, "e": 1.66, "key": false}, {"w": "recuperas?", "s": 1.68, "e": 2.23, "key": false}]}, {"id": "l2", "s": 2.23, "e": 8.36, "words": [{"w": "Hay", "s": 2.23, "e": 2.73, "key": false}, {"w": "un", "s": 2.73, "e": 2.93, "key": false}, {"w": "límite,", "s": 2.93, "e": 3.71, "key": true}, {"w": "y", "s": 3.72, "e": 3.77, "key": false}, {"w": "casi", "s": 3.77, "e": 3.98, "key": false}, {"w": "nadie", "s": 4.02, "e": 4.29, "key": false}, {"w": "sabe", "s": 4.33, "e": 4.47, "key": false}, {"w": "cuál.", "s": 4.56, "e": 4.96, "key": false}, {"w": "Y", "s": 5.31, "e": 5.36, "key": false}, {"w": "al", "s": 5.36, "e": 5.46, "key": false}, {"w": "final,", "s": 5.7, "e": 6.004, "key": false}, {"w": "cuántos", "s": 6.004, "e": 6.43, "key": false}, {"w": "días", "s": 6.43, "e": 6.47, "key": false}, {"w": "tardarías", "s": 6.91, "e": 7.44, "key": false}, {"w": "en", "s": 7.45, "e": 7.6, "key": false}, {"w": "cobrar.", "s": 7.6, "e": 8.36, "key": false}]}, {"id": "l3", "s": 8.36, "e": 12.08, "words": [{"w": "En", "s": 8.36, "e": 8.46, "key": false}, {"w": "España", "s": 8.46, "e": 8.7, "key": false}, {"w": "existe", "s": 8.76, "e": 8.87, "key": false}, {"w": "el", "s": 9.18, "e": 9.2, "key": false}, {"w": "Fondo", "s": 9.2, "e": 9.44, "key": true}, {"w": "de", "s": 9.49, "e": 9.6, "key": false}, {"w": "Garantía", "s": 9.6, "e": 9.94, "key": false}, {"w": "de", "s": 10.02, "e": 10.1, "key": false}, {"w": "Depósitos,", "s": 10.34, "e": 11.1, "key": false}, {"w": "el", "s": 11.23, "e": 11.42, "key": false}, {"w": "FGD.", "s": 11.52, "e": 12.08, "key": false}]}, {"id": "l4", "s": 12.08, "e": 16.59, "words": [{"w": "Según", "s": 12.08, "e": 12.32, "key": false}, {"w": "el", "s": 12.32, "e": 12.33, "key": false}, {"w": "propio", "s": 12.33, "e": 12.83, "key": false}, {"w": "fondo,", "s": 12.83, "e": 13.08, "key": false}, {"w": "garantiza", "s": 13.08, "e": 13.49, "key": false}, {"w": "hasta", "s": 13.49, "e": 13.82, "key": false}, {"w": "100.000", "s": 13.82, "e": 14.81, "key": false}, {"w": "euros", "s": 14.82, "e": 14.83, "key": false}, {"w": "por", "s": 14.89, "e": 15.23, "key": false}, {"w": "titular", "s": 15.38, "e": 15.57, "key": true}, {"w": "y", "s": 15.63, "e": 15.7, "key": false}, {"w": "por", "s": 15.86, "e": 15.93, "key": false}, {"w": "entidad.", "s": 15.93, "e": 16.59, "key": false}]}, {"id": "l5", "s": 16.78, "e": 22.62, "words": [{"w": "Ojo:", "s": 16.78, "e": 17.07, "key": true}, {"w": "es", "s": 17.08, "e": 17.19, "key": false}, {"w": "por", "s": 17.23, "e": 17.46, "key": false}, {"w": "entidad.", "s": 17.46, "e": 18.23, "key": false}, {"w": "Si", "s": 18.35, "e": 18.38, "key": false}, {"w": "tienes", "s": 18.38, "e": 18.85, "key": false}, {"w": "ahorros", "s": 18.85, "e": 19.39, "key": false}, {"w": "en", "s": 19.39, "e": 19.68, "key": false}, {"w": "dos", "s": 19.68, "e": 19.87, "key": false}, {"w": "bancos", "s": 19.87, "e": 20.25, "key": false}, {"w": "distintos,", "s": 20.25, "e": 20.98, "key": false}, {"w": "el", "s": 20.98, "e": 21.0, "key": false}, {"w": "límite", "s": 21, "e": 21.34, "key": false}, {"w": "cuenta", "s": 21.58, "e": 21.77, "key": false}, {"w": "en", "s": 21.77, "e": 21.91, "key": false}, {"w": "cada", "s": 21.91, "e": 22.18, "key": false}, {"w": "uno.", "s": 22.19, "e": 22.62, "key": false}]}, {"id": "l6", "s": 22.78, "e": 27.06, "words": [{"w": "Cubre", "s": 22.78, "e": 22.97, "key": true}, {"w": "cuentas", "s": 22.97, "e": 23.47, "key": false}, {"w": "corrientes,", "s": 23.47, "e": 24.33, "key": false}, {"w": "cuentas", "s": 24.33, "e": 24.75, "key": false}, {"w": "de", "s": 24.75, "e": 25.06, "key": false}, {"w": "ahorro", "s": 25.06, "e": 25.4, "key": false}, {"w": "y", "s": 25.4, "e": 25.47, "key": false}, {"w": "depósitos", "s": 25.47, "e": 26.05, "key": false}, {"w": "a", "s": 26.05, "e": 26.18, "key": false}, {"w": "plazo", "s": 26.18, "e": 26.53, "key": false}, {"w": "fijo.", "s": 26.6, "e": 27.06, "key": false}]}, {"id": "l7", "s": 27.19, "e": 35.13, "words": [{"w": "Si", "s": 27.19, "e": 27.27, "key": false}, {"w": "una", "s": 27.42, "e": 27.45, "key": false}, {"w": "cuenta", "s": 27.45, "e": 27.77, "key": false}, {"w": "tiene", "s": 27.77, "e": 28.02, "key": false}, {"w": "varios", "s": 28.03, "e": 28.16, "key": false}, {"w": "titulares,", "s": 28.5, "e": 28.91, "key": false}, {"w": "el", "s": 28.96, "e": 29.05, "key": false}, {"w": "saldo", "s": 29.05, "e": 29.31, "key": false}, {"w": "se", "s": 29.31, "e": 29.4, "key": false}, {"w": "reparte", "s": 29.41, "e": 29.79, "key": false}, {"w": "a", "s": 29.79, "e": 29.91, "key": false}, {"w": "partes", "s": 29.91, "e": 30.16, "key": false}, {"w": "iguales,", "s": 30.16, "e": 30.59, "key": true}, {"w": "salvo", "s": 30.79, "e": 30.98, "key": false}, {"w": "que", "s": 31.03, "e": 31.14, "key": false}, {"w": "el", "s": 31.14, "e": 31.39, "key": false}, {"w": "contrato", "s": 31.39, "e": 31.84, "key": false}, {"w": "diga", "s": 31.84, "e": 32.12, "key": false}, {"w": "otra", "s": 32.12, "e": 32.15, "key": false}, {"w": "cosa,", "s": 32.59, "e": 32.8, "key": false}, {"w": "y", "s": 32.82, "e": 32.87, "key": false}, {"w": "el", "s": 32.92, "e": 33.01, "key": false}, {"w": "límite", "s": 33.05, "e": 33.37, "key": false}, {"w": "se", "s": 33.37, "e": 33.8, "key": false}, {"w": "aplica", "s": 33.8, "e": 34.01, "key": false}, {"w": "a", "s": 34.01, "e": 34.08, "key": false}, {"w": "cada", "s": 34.08, "e": 34.36, "key": false}, {"w": "titular.", "s": 34.36, "e": 35.13, "key": false}]}, {"id": "l8", "s": 35.16, "e": 41.94, "words": [{"w": "Por", "s": 35.16, "e": 35.37, "key": false}, {"w": "ejemplo,", "s": 35.37, "e": 36.06, "key": false}, {"w": "150.000", "s": 36.4, "e": 36.86, "key": false}, {"w": "euros", "s": 37.1, "e": 37.19, "key": false}, {"w": "entre", "s": 37.19, "e": 37.47, "key": false}, {"w": "dos", "s": 37.52, "e": 37.7, "key": false}, {"w": "titulares:", "s": 37.71, "e": 38.42, "key": false}, {"w": "75.000", "s": 38.42, "e": 39.59, "key": false}, {"w": "para", "s": 39.59, "e": 39.85, "key": false}, {"w": "cada", "s": 39.85, "e": 40.1, "key": false}, {"w": "uno,", "s": 40.1, "e": 40.43, "key": false}, {"w": "todo", "s": 40.58, "e": 40.66, "key": false}, {"w": "dentro", "s": 40.71, "e": 41.08, "key": true}, {"w": "del", "s": 41.08, "e": 41.26, "key": false}, {"w": "límite.", "s": 41.27, "e": 41.94, "key": false}]}, {"id": "l9", "s": 41.94, "e": 46.58, "words": [{"w": "No", "s": 41.94, "e": 42.01, "key": false}, {"w": "cubre", "s": 42.14, "e": 42.22, "key": false}, {"w": "los", "s": 42.22, "e": 42.33, "key": false}, {"w": "planes", "s": 42.58, "e": 42.71, "key": false}, {"w": "de", "s": 42.71, "e": 42.8, "key": false}, {"w": "pensiones", "s": 42.85, "e": 43.5, "key": true}, {"w": "ni", "s": 43.54, "e": 43.61, "key": false}, {"w": "los", "s": 43.78, "e": 43.79, "key": false}, {"w": "productos", "s": 43.8, "e": 44.32, "key": false}, {"w": "que", "s": 44.35, "e": 44.54, "key": false}, {"w": "no", "s": 44.54, "e": 44.57, "key": false}, {"w": "garantizan", "s": 45.03, "e": 45.27, "key": false}, {"w": "devolver", "s": 45.27, "e": 45.73, "key": false}, {"w": "el", "s": 45.74, "e": 45.76, "key": false}, {"w": "capital.", "s": 46.06, "e": 46.58, "key": false}]}, {"id": "l10", "s": 46.58, "e": 51.22, "words": [{"w": "Y", "s": 46.58, "e": 46.647, "key": false}, {"w": "si", "s": 46.647, "e": 46.781, "key": false}, {"w": "usas", "s": 46.781, "e": 47.05, "key": false}, {"w": "un", "s": 47.07, "e": 47.18, "key": false}, {"w": "banco", "s": 47.3, "e": 47.49, "key": false}, {"w": "digital,", "s": 47.49, "e": 48.04, "key": true}, {"w": "su", "s": 48.04, "e": 48.07, "key": false}, {"w": "dinero", "s": 48.5, "e": 48.54, "key": false}, {"w": "puede", "s": 48.54, "e": 48.85, "key": false}, {"w": "estar", "s": 48.85, "e": 49.15, "key": false}, {"w": "protegido", "s": 49.15, "e": 49.71, "key": false}, {"w": "por", "s": 49.79, "e": 49.89, "key": false}, {"w": "un", "s": 49.89, "e": 50.01, "key": false}, {"w": "fondo", "s": 50.01, "e": 50.3, "key": false}, {"w": "de", "s": 50.37, "e": 50.44, "key": false}, {"w": "otro", "s": 50.44, "e": 50.48, "key": false}, {"w": "país.", "s": 50.78, "e": 51.22, "key": false}]}, {"id": "l11", "s": 51.22, "e": 58.5, "words": [{"w": "Ahora,", "s": 51.22, "e": 51.54, "key": false}, {"w": "lo", "s": 51.62, "e": 51.72, "key": false}, {"w": "que", "s": 51.72, "e": 51.77, "key": false}, {"w": "casi", "s": 51.88, "e": 52.13, "key": false}, {"w": "nadie", "s": 52.38, "e": 52.54, "key": false}, {"w": "sabe:", "s": 52.54, "e": 53.02, "key": false}, {"w": "el", "s": 53.02, "e": 53.12, "key": false}, {"w": "FGD", "s": 53.26, "e": 53.41, "key": false}, {"w": "paga", "s": 53.5, "e": 53.71, "key": false}, {"w": "sin", "s": 53.75, "e": 53.98, "key": false}, {"w": "que", "s": 53.98, "e": 54.2, "key": false}, {"w": "tengas", "s": 54.2, "e": 54.7, "key": false}, {"w": "que", "s": 54.87, "e": 54.94, "key": false}, {"w": "pedirlo,", "s": 54.94, "e": 55.56, "key": false}, {"w": "y", "s": 55.65, "e": 55.66, "key": false}, {"w": "tiene", "s": 55.86, "e": 56.22, "key": false}, {"w": "7", "s": 56.22, "e": 56.43, "key": false}, {"w": "días", "s": 56.47, "e": 56.78, "key": false}, {"w": "hábiles", "s": 56.78, "e": 57.34, "key": true}, {"w": "para", "s": 57.45, "e": 57.61, "key": false}, {"w": "hacerlo.", "s": 57.67, "e": 58.5, "key": false}]}, {"id": "l12", "s": 58.55, "e": 62.18, "words": [{"w": "Pásaselo", "s": 58.55, "e": 58.94, "key": false}, {"w": "a", "s": 58.94, "e": 58.99, "key": false}, {"w": "quien", "s": 58.99, "e": 59.25, "key": false}, {"w": "tenga", "s": 59.25, "e": 59.48, "key": false}, {"w": "ahorros.", "s": 59.48, "e": 59.959, "key": false}, {"w": "¿Sabías", "s": 59.959, "e": 60.37, "key": true}, {"w": "que", "s": 60.37, "e": 60.52, "key": false}, {"w": "el", "s": 60.52, "e": 60.61, "key": false}, {"w": "límite", "s": 60.61, "e": 60.77, "key": false}, {"w": "es", "s": 60.92, "e": 61.01, "key": false}, {"w": "por", "s": 61.01, "e": 61.27, "key": false}, {"w": "entidad?", "s": 61.27, "e": 61.783, "key": false}, {"w": "Sí", "s": 61.783, "e": 61.93, "key": false}, {"w": "o", "s": 61.93, "e": 61.96, "key": false}, {"w": "no.", "s": 62.05, "e": 62.18, "key": false}]}]}</script>
+    <script id="escena" type="application/json">
+{
+ "momentos": [
+  {
+   "id": "QUIEBRA",
+   "clave": "quiebra"
+  },
+  {
+   "id": "CUANTO",
+   "clave": "cuánto"
+  },
+  {
+   "id": "LIMITE",
+   "clave": "límite"
+  },
+  {
+   "id": "DIAS",
+   "clave": "días"
+  },
+  {
+   "id": "FONDO",
+   "clave": "fondo"
+  },
+  {
+   "id": "FGD",
+   "clave": "fgd"
+  },
+  {
+   "id": "GARANTIZA",
+   "clave": "garantiza"
+  },
+  {
+   "id": "TITULAR",
+   "clave": "titular"
+  },
+  {
+   "id": "ENTIDAD",
+   "clave": "entidad"
+  },
+  {
+   "id": "OJO",
+   "clave": "ojo"
+  },
+  {
+   "id": "BANCOS",
+   "clave": "bancos"
+  },
+  {
+   "id": "CADA",
+   "clave": "cada"
+  },
+  {
+   "id": "CUBRE",
+   "clave": "cubre"
+  },
+  {
+   "id": "CORRIENTES",
+   "clave": "corrientes"
+  },
+  {
+   "id": "AHORRO",
+   "clave": "ahorro"
+  },
+  {
+   "id": "PLAZO",
+   "clave": "plazo"
+  },
+  {
+   "id": "VARIOS",
+   "clave": "varios"
+  },
+  {
+   "id": "IGUALES",
+   "clave": "iguales"
+  },
+  {
+   "id": "CONTRATO",
+   "clave": "contrato"
+  },
+  {
+   "id": "APLICA",
+   "clave": "aplica"
+  },
+  {
+   "id": "EJEMPLO",
+   "clave": "ejemplo"
+  },
+  {
+   "id": "DENTRO",
+   "clave": "dentro"
+  },
+  {
+   "id": "PENSIONES",
+   "clave": "pensiones"
+  },
+  {
+   "id": "CAPITAL",
+   "clave": "capital"
+  },
+  {
+   "id": "DIGITAL",
+   "clave": "digital"
+  },
+  {
+   "id": "FONDO2",
+   "clave": "fondo"
+  },
+  {
+   "id": "AHORA",
+   "clave": "ahora"
+  },
+  {
+   "id": "PAGA",
+   "clave": "paga"
+  },
+  {
+   "id": "PEDIRLO",
+   "clave": "pedirlo"
+  },
+  {
+   "id": "HABILES",
+   "clave": "hábiles"
+  },
+  {
+   "id": "PASASELO",
+   "clave": "pásaselo"
+  },
+  {
+   "id": "AHORROS2",
+   "clave": "ahorros"
+  },
+  {
+   "id": "SABIAS",
+   "clave": "sabías"
+  },
+  {
+   "id": "SI",
+   "clave": "sí"
+  }
+ ],
+ "arranque": {
+  "zoom": 1.06,
+  "dura": 3.0,
+  "centro": [
+   540,
+   900
+  ]
+ },
+ "lluvia": [
+  {
+   "icono": "moneda",
+   "args": [
+    "€",
+    96
+   ],
+   "n": 9,
+   "desde": 0,
+   "hasta": "LIMITE",
+   "vel": 420,
+   "opacidad": 0.4
+  }
+ ],
+ "piezas": [
+  {
+   "id": "banco",
+   "desde": 0,
+   "hasta": "LIMITE",
+   "viaja": {
+    "s": 1.1,
+    "dura": 1.2
+   },
+   "mueve": "late"
+  },
+  {
+   "id": "quiebra",
+   "desde": 0,
+   "hasta": "LIMITE",
+   "entra": "sello"
+  },
+  {
+   "id": "fact",
+   "desde": 0,
+   "hasta": "LIMITE",
+   "viaja": {
+    "y": 60,
+    "dura": 1.0
+   }
+  },
+  {
+   "id": "chipCuanto",
+   "desde": "CUANTO",
+   "hasta": "LIMITE",
+   "entra": "escala"
+  },
+  {
+   "id": "chipLim",
+   "desde": "LIMITE",
+   "hasta": "FONDO",
+   "entra": "baja"
+  },
+  {
+   "id": "interr",
+   "desde": "LIMITE",
+   "hasta": "FONDO",
+   "entra": "escala",
+   "mueve": "late"
+  },
+  {
+   "id": "chipDias",
+   "desde": "DIAS",
+   "hasta": "FONDO",
+   "entra": "sello"
+  },
+  {
+   "id": "edifFGD",
+   "desde": "FONDO",
+   "hasta": "GARANTIZA",
+   "entra": "escala",
+   "mueve": "late"
+  },
+  {
+   "id": "chipFondo",
+   "desde": "FONDO",
+   "hasta": "GARANTIZA",
+   "entra": "sube"
+  },
+  {
+   "id": "chipFGD",
+   "desde": "FGD",
+   "hasta": "GARANTIZA",
+   "entra": "sello"
+  },
+  {
+   "id": "docL",
+   "desde": "GARANTIZA",
+   "hasta": "OJO",
+   "entra": "sube"
+  },
+  {
+   "id": "pers1",
+   "desde": "TITULAR",
+   "hasta": "OJO",
+   "entra": "escala",
+   "mueve": "flota"
+  },
+  {
+   "id": "chipTit",
+   "desde": "TITULAR",
+   "hasta": "OJO",
+   "entra": "der"
+  },
+  {
+   "id": "chipEnt",
+   "desde": "ENTIDAD",
+   "hasta": "OJO",
+   "entra": "der"
+  },
+  {
+   "id": "edifE",
+   "desde": "ENTIDAD",
+   "hasta": "OJO",
+   "entra": "escala"
+  },
+  {
+   "id": "selloOjo",
+   "desde": "OJO",
+   "hasta": "CUBRE",
+   "entra": "sello"
+  },
+  {
+   "id": "chipPorEnt",
+   "desde": "OJO",
+   "hasta": "CUBRE",
+   "entra": "baja"
+  },
+  {
+   "id": "edA",
+   "desde": "BANCOS",
+   "hasta": "CUBRE",
+   "entra": "izq"
+  },
+  {
+   "id": "edB",
+   "desde": "BANCOS",
+   "hasta": "CUBRE",
+   "entra": "der"
+  },
+  {
+   "id": "chipCada",
+   "desde": "CADA",
+   "hasta": "CUBRE",
+   "entra": "sello"
+  },
+  {
+   "id": "docC",
+   "desde": "CUBRE",
+   "hasta": "VARIOS",
+   "entra": "sube"
+  },
+  {
+   "id": "pjs",
+   "desde": "VARIOS",
+   "hasta": "EJEMPLO",
+   "entra": "escala",
+   "mueve": "flota"
+  },
+  {
+   "id": "selloIg",
+   "desde": "IGUALES",
+   "hasta": "EJEMPLO",
+   "entra": "sello"
+  },
+  {
+   "id": "chipCont",
+   "desde": "CONTRATO",
+   "hasta": "EJEMPLO",
+   "entra": "der"
+  },
+  {
+   "id": "chipApl",
+   "desde": "APLICA",
+   "hasta": "EJEMPLO",
+   "entra": "sello"
+  },
+  {
+   "id": "chipEj",
+   "desde": "EJEMPLO",
+   "hasta": "PENSIONES",
+   "entra": "baja"
+  },
+  {
+   "id": "rotEj",
+   "desde": "EJEMPLO",
+   "hasta": "PENSIONES"
+  },
+  {
+   "id": "barEj",
+   "desde": "EJEMPLO",
+   "hasta": "PENSIONES",
+   "entra": "izq"
+  },
+  {
+   "id": "persA",
+   "desde": "EJEMPLO",
+   "hasta": "PENSIONES",
+   "entra": "sube",
+   "mueve": "flota"
+  },
+  {
+   "id": "persB",
+   "desde": "EJEMPLO",
+   "hasta": "PENSIONES",
+   "entra": "sube",
+   "mueve": "flota"
+  },
+  {
+   "id": "chipDentro",
+   "desde": "DENTRO",
+   "hasta": "PENSIONES",
+   "entra": "sello"
+  },
+  {
+   "id": "selloNo",
+   "desde": "PENSIONES",
+   "hasta": "DIGITAL",
+   "entra": "sello"
+  },
+  {
+   "id": "chipPens",
+   "desde": "PENSIONES",
+   "hasta": "DIGITAL",
+   "entra": "der"
+  },
+  {
+   "id": "chipCap",
+   "desde": "CAPITAL",
+   "hasta": "DIGITAL",
+   "entra": "izq"
+  },
+  {
+   "id": "tach",
+   "desde": "PENSIONES",
+   "hasta": "DIGITAL",
+   "entra": "escala",
+   "mueve": "late"
+  },
+  {
+   "id": "chipBD",
+   "desde": "DIGITAL",
+   "hasta": "AHORA",
+   "entra": "baja"
+  },
+  {
+   "id": "edifOtro",
+   "desde": "FONDO2",
+   "hasta": "AHORA",
+   "entra": "escala",
+   "mueve": "late"
+  },
+  {
+   "id": "chipOtro",
+   "desde": "FONDO2",
+   "hasta": "AHORA",
+   "entra": "sube"
+  },
+  {
+   "id": "chipNadie",
+   "desde": "AHORA",
+   "hasta": "PASASELO",
+   "entra": "baja"
+  },
+  {
+   "id": "selloPaga",
+   "desde": "PAGA",
+   "hasta": "PASASELO",
+   "entra": "sello"
+  },
+  {
+   "id": "chipPedir",
+   "desde": "PEDIRLO",
+   "hasta": "PASASELO",
+   "entra": "der"
+  },
+  {
+   "id": "c7",
+   "desde": "HABILES",
+   "hasta": "PASASELO",
+   "entra": "escala"
+  },
+  {
+   "id": "rotDias",
+   "desde": "HABILES",
+   "hasta": "PASASELO",
+   "entra": "escala"
+  },
+  {
+   "id": "chipPlazo",
+   "desde": "HABILES",
+   "hasta": "PASASELO",
+   "entra": "sube"
+  },
+  {
+   "id": "fam",
+   "desde": "PASASELO",
+   "entra": "escala",
+   "mueve": "flota"
+  },
+  {
+   "id": "selloPas",
+   "desde": "PASASELO",
+   "hasta": "AHORROS2",
+   "entra": "sello"
+  },
+  {
+   "id": "chipAh",
+   "desde": "AHORROS2",
+   "hasta": "SABIAS",
+   "entra": "baja"
+  },
+  {
+   "id": "qBig",
+   "desde": "SABIAS",
+   "entra": "escala"
+  },
+  {
+   "id": "selloSN",
+   "desde": "SI",
+   "entra": "sello"
+  }
+ ],
+ "cifras": [
+  {
+   "id": "filaL",
+   "desde": 0,
+   "de": 0,
+   "a": 100000,
+   "formato": "euros",
+   "dura": 1.8,
+   "curva": "lineal"
+  },
+  {
+   "id": "filaL2",
+   "desde": "GARANTIZA",
+   "de": 0,
+   "a": 100000,
+   "formato": "euros",
+   "dura": 1.0,
+   "curva": "sale"
+  },
+  {
+   "id": "c7",
+   "desde": "HABILES",
+   "de": 0,
+   "a": 7,
+   "formato": "numero",
+   "dura": 0.7,
+   "curva": "sale"
+  }
+ ],
+ "notas": [
+  {
+   "texto": "FGD (fgd.es): «garantiza hasta 100.000 € por titular y entidad». Real Decreto 2606/1996",
+   "desde": 0.6
+  },
+  {
+   "texto": "",
+   "desde": "CUBRE"
+  },
+  {
+   "texto": "FGD, preguntas frecuentes: cuentas con varios titulares, a partes iguales salvo contrato. Cuenta de ejemplo: 150.000 / 2 = 75.000 (cálculo propio)",
+   "desde": "VARIOS"
+  },
+  {
+   "texto": "FGD: no cubre los planes de pensiones; solo depósitos con devolución del capital garantizada",
+   "desde": "PENSIONES"
+  },
+  {
+   "texto": "FGD: el dinero de un banco digital puede estar cubierto por otro sistema de garantía",
+   "desde": "DIGITAL"
+  },
+  {
+   "texto": "FGD: 7 días hábiles para depósitos en dinero, sin solicitud (Real Decreto 2606/1996, art. 7 bis)",
+   "desde": "AHORA"
+  },
+  {
+   "texto": "",
+   "desde": "PASASELO"
+  }
+ ],
+ "fondo": "claro",
+ "sonidos": [
+  {
+   "tipo": "desliza",
+   "en": 0.0
+  },
+  {
+   "tipo": "metal",
+   "en": 0.12
+  },
+  {
+   "tipo": "error",
+   "en": "QUIEBRA"
+  },
+  {
+   "tipo": "pop",
+   "en": "CUANTO"
+  },
+  {
+   "tipo": "desliza",
+   "en": "LIMITE"
+  },
+  {
+   "tipo": "pop",
+   "en": "DIAS"
+  },
+  {
+   "tipo": "desliza",
+   "en": "FONDO"
+  },
+  {
+   "tipo": "pop",
+   "en": "FGD"
+  },
+  {
+   "tipo": "desliza",
+   "en": "GARANTIZA"
+  },
+  {
+   "tipo": "pagado",
+   "en": "TITULAR"
+  },
+  {
+   "tipo": "pop",
+   "en": "ENTIDAD"
+  },
+  {
+   "tipo": "error",
+   "en": "OJO"
+  },
+  {
+   "tipo": "pop",
+   "en": "BANCOS"
+  },
+  {
+   "tipo": "toque",
+   "en": "CADA"
+  },
+  {
+   "tipo": "desliza",
+   "en": "CUBRE"
+  },
+  {
+   "tipo": "pop",
+   "en": "CORRIENTES"
+  },
+  {
+   "tipo": "pop",
+   "en": "AHORRO"
+  },
+  {
+   "tipo": "pop",
+   "en": "PLAZO"
+  },
+  {
+   "tipo": "desliza",
+   "en": "VARIOS"
+  },
+  {
+   "tipo": "toque",
+   "en": "IGUALES"
+  },
+  {
+   "tipo": "pop",
+   "en": "CONTRATO"
+  },
+  {
+   "tipo": "toque",
+   "en": "APLICA"
+  },
+  {
+   "tipo": "desliza",
+   "en": "EJEMPLO"
+  },
+  {
+   "tipo": "pagado",
+   "en": "DENTRO"
+  },
+  {
+   "tipo": "error",
+   "en": "PENSIONES"
+  },
+  {
+   "tipo": "pop",
+   "en": "CAPITAL"
+  },
+  {
+   "tipo": "pop",
+   "en": "DIGITAL"
+  },
+  {
+   "tipo": "toque",
+   "en": "FONDO2"
+  },
+  {
+   "tipo": "desliza",
+   "en": "AHORA"
+  },
+  {
+   "tipo": "pagado",
+   "en": "PAGA"
+  },
+  {
+   "tipo": "pop",
+   "en": "PEDIRLO"
+  },
+  {
+   "tipo": "toque",
+   "en": "HABILES"
+  },
+  {
+   "tipo": "desliza",
+   "en": "PASASELO"
+  },
+  {
+   "tipo": "pop",
+   "en": "SABIAS"
+  },
+  {
+   "tipo": "pagado",
+   "en": "SI"
+  },
+  {
+   "tipo": "brillo",
+   "en": "DENTRO"
+  },
+  {
+   "tipo": "brillo",
+   "en": "SABIAS",
+   "mas": 0.2
+  }
+ ],
+ "titulo": {
+  "texto": "Banco en quiebra: hasta 100.000 € protegidos",
+  "clave": "100.000"
+ }
+}</script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 63.7 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import { crearDinero, COLOR } from "./comun/dinero.js";
+      const $ = (id) => document.getElementById(id);
+      const C = crearDinero();
+      const { T } = C;
+      const filaClase = (id, clase, on) => { const b = $(id); if (b) b.parentElement.classList.toggle(clase, on); };
+
+      function renderAt(t) {
+        filaClase("filaCo", "marca", t >= T.CORRIENTES && t < T.AHORRO);
+        filaClase("filaAh", "marca", t >= T.AHORRO && t < T.PLAZO);
+        filaClase("filaPl", "marca", t >= T.PLAZO && t < T.VARIOS);
+        C.pintar(t);
+      }
+
+      C.arrancar(renderAt);
+    </script>
+  </body>
+</html>

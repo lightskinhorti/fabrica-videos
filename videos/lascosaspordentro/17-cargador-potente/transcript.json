@@ -1,0 +1,1004 @@
+[
+  {
+    "text": "¿Tu",
+    "start": 0.01,
+    "end": 0.21,
+    "id": "w0"
+  },
+  {
+    "text": "cargador",
+    "start": 0.24,
+    "end": 0.76,
+    "id": "w1"
+  },
+  {
+    "text": "es",
+    "start": 0.86,
+    "end": 0.9,
+    "id": "w2"
+  },
+  {
+    "text": "potente?¿Peligro?",
+    "start": 0.96,
+    "end": 2.7,
+    "id": "w3"
+  },
+  {
+    "text": "Dicen",
+    "start": 2.7,
+    "end": 2.97,
+    "id": "w4"
+  },
+  {
+    "text": "que",
+    "start": 2.97,
+    "end": 3.13,
+    "id": "w5"
+  },
+  {
+    "text": "un",
+    "start": 3.13,
+    "end": 3.23,
+    "id": "w6"
+  },
+  {
+    "text": "cargador",
+    "start": 3.25,
+    "end": 3.67,
+    "id": "w7"
+  },
+  {
+    "text": "potente",
+    "start": 3.67,
+    "end": 4.08,
+    "id": "w8"
+  },
+  {
+    "text": "estropea",
+    "start": 4.08,
+    "end": 4.44,
+    "id": "w9"
+  },
+  {
+    "text": "el",
+    "start": 4.44,
+    "end": 4.53,
+    "id": "w10"
+  },
+  {
+    "text": "móvil.¿Será",
+    "start": 4.53,
+    "end": 5.71,
+    "id": "w11"
+  },
+  {
+    "text": "verdad?",
+    "start": 5.71,
+    "end": 6.45,
+    "id": "w12"
+  },
+  {
+    "text": "Tres",
+    "start": 6.59,
+    "end": 6.86,
+    "id": "w13"
+  },
+  {
+    "text": "cosas",
+    "start": 7.07,
+    "end": 7.19,
+    "id": "w14"
+  },
+  {
+    "text": "por",
+    "start": 7.19,
+    "end": 7.39,
+    "id": "w15"
+  },
+  {
+    "text": "dentro",
+    "start": 7.39,
+    "end": 7.44,
+    "id": "w16"
+  },
+  {
+    "text": "y",
+    "start": 7.67,
+    "end": 7.85,
+    "id": "w17"
+  },
+  {
+    "text": "la",
+    "start": 7.85,
+    "end": 7.98,
+    "id": "w18"
+  },
+  {
+    "text": "última",
+    "start": 8.21,
+    "end": 8.38,
+    "id": "w19"
+  },
+  {
+    "text": "es",
+    "start": 8.38,
+    "end": 8.51,
+    "id": "w20"
+  },
+  {
+    "text": "la",
+    "start": 8.51,
+    "end": 8.68,
+    "id": "w21"
+  },
+  {
+    "text": "que",
+    "start": 8.68,
+    "end": 8.8,
+    "id": "w22"
+  },
+  {
+    "text": "te",
+    "start": 8.8,
+    "end": 8.9,
+    "id": "w23"
+  },
+  {
+    "text": "protege.",
+    "start": 8.9,
+    "end": 9.99,
+    "id": "w24"
+  },
+  {
+    "text": "Primero,",
+    "start": 10.27,
+    "end": 10.63,
+    "id": "w25"
+  },
+  {
+    "text": "el",
+    "start": 10.64,
+    "end": 10.78,
+    "id": "w26"
+  },
+  {
+    "text": "cargador",
+    "start": 10.78,
+    "end": 11.24,
+    "id": "w27"
+  },
+  {
+    "text": "no",
+    "start": 11.24,
+    "end": 11.45,
+    "id": "w28"
+  },
+  {
+    "text": "empuja",
+    "start": 11.45,
+    "end": 11.84,
+    "id": "w29"
+  },
+  {
+    "text": "corriente,",
+    "start": 11.87,
+    "end": 12.58,
+    "id": "w30"
+  },
+  {
+    "text": "solo",
+    "start": 12.58,
+    "end": 12.84,
+    "id": "w31"
+  },
+  {
+    "text": "la",
+    "start": 12.84,
+    "end": 13.01,
+    "id": "w32"
+  },
+  {
+    "text": "ofrece",
+    "start": 13.01,
+    "end": 13.4,
+    "id": "w33"
+  },
+  {
+    "text": "y",
+    "start": 13.4,
+    "end": 13.47,
+    "id": "w34"
+  },
+  {
+    "text": "el",
+    "start": 13.47,
+    "end": 13.61,
+    "id": "w35"
+  },
+  {
+    "text": "móvil",
+    "start": 13.61,
+    "end": 13.95,
+    "id": "w36"
+  },
+  {
+    "text": "la",
+    "start": 13.95,
+    "end": 14.06,
+    "id": "w37"
+  },
+  {
+    "text": "coge.",
+    "start": 14.09,
+    "end": 14.72,
+    "id": "w38"
+  },
+  {
+    "text": "Segunda,",
+    "start": 14.93,
+    "end": 15.35,
+    "id": "w39"
+  },
+  {
+    "text": "móvil",
+    "start": 15.35,
+    "end": 15.7,
+    "id": "w40"
+  },
+  {
+    "text": "y",
+    "start": 15.7,
+    "end": 15.77,
+    "id": "w41"
+  },
+  {
+    "text": "cargador",
+    "start": 15.77,
+    "end": 16.28,
+    "id": "w42"
+  },
+  {
+    "text": "hablan",
+    "start": 16.54,
+    "end": 16.75,
+    "id": "w43"
+  },
+  {
+    "text": "por",
+    "start": 16.75,
+    "end": 16.92,
+    "id": "w44"
+  },
+  {
+    "text": "el",
+    "start": 16.92,
+    "end": 17.1,
+    "id": "w45"
+  },
+  {
+    "text": "cable.",
+    "start": 17.1,
+    "end": 17.72,
+    "id": "w46"
+  },
+  {
+    "text": "El",
+    "start": 17.72,
+    "end": 17.79,
+    "id": "w47"
+  },
+  {
+    "text": "cargador",
+    "start": 17.85,
+    "end": 18.27,
+    "id": "w48"
+  },
+  {
+    "text": "anuncia",
+    "start": 18.27,
+    "end": 18.65,
+    "id": "w49"
+  },
+  {
+    "text": "lo",
+    "start": 18.65,
+    "end": 18.74,
+    "id": "w50"
+  },
+  {
+    "text": "que",
+    "start": 18.77,
+    "end": 18.93,
+    "id": "w51"
+  },
+  {
+    "text": "da",
+    "start": 18.93,
+    "end": 19.08,
+    "id": "w52"
+  },
+  {
+    "text": "y",
+    "start": 19.08,
+    "end": 19.14,
+    "id": "w53"
+  },
+  {
+    "text": "el",
+    "start": 19.14,
+    "end": 19.28,
+    "id": "w54"
+  },
+  {
+    "text": "móvil",
+    "start": 19.28,
+    "end": 19.51,
+    "id": "w55"
+  },
+  {
+    "text": "pide",
+    "start": 19.61,
+    "end": 19.9,
+    "id": "w56"
+  },
+  {
+    "text": "solo",
+    "start": 19.9,
+    "end": 20.2,
+    "id": "w57"
+  },
+  {
+    "text": "lo",
+    "start": 20.2,
+    "end": 20.36,
+    "id": "w58"
+  },
+  {
+    "text": "que",
+    "start": 20.36,
+    "end": 20.59,
+    "id": "w59"
+  },
+  {
+    "text": "necesita.",
+    "start": 20.59,
+    "end": 21.48,
+    "id": "w60"
+  },
+  {
+    "text": "Un",
+    "start": 21.48,
+    "end": 21.57,
+    "id": "w61"
+  },
+  {
+    "text": "ejemplo,",
+    "start": 21.58,
+    "end": 22.05,
+    "id": "w62"
+  },
+  {
+    "text": "con",
+    "start": 22.05,
+    "end": 22.21,
+    "id": "w63"
+  },
+  {
+    "text": "cifras",
+    "start": 22.21,
+    "end": 22.52,
+    "id": "w64"
+  },
+  {
+    "text": "redondas.",
+    "start": 22.57,
+    "end": 23.16,
+    "id": "w65"
+  },
+  {
+    "text": "Cargador",
+    "start": 23.16,
+    "end": 23.62,
+    "id": "w66"
+  },
+  {
+    "text": "de",
+    "start": 23.65,
+    "end": 23.72,
+    "id": "w67"
+  },
+  {
+    "text": "65",
+    "start": 23.72,
+    "end": 24.35,
+    "id": "w68"
+  },
+  {
+    "text": "vatios,",
+    "start": 24.53,
+    "end": 25.04,
+    "id": "w69"
+  },
+  {
+    "text": "móvil",
+    "start": 25.04,
+    "end": 25.28,
+    "id": "w70"
+  },
+  {
+    "text": "que",
+    "start": 25.38,
+    "end": 25.57,
+    "id": "w71"
+  },
+  {
+    "text": "pide",
+    "start": 25.57,
+    "end": 25.73,
+    "id": "w72"
+  },
+  {
+    "text": "20.",
+    "start": 26.24,
+    "end": 26.44,
+    "id": "w73"
+  },
+  {
+    "text": "El",
+    "start": 26.44,
+    "end": 26.57,
+    "id": "w74"
+  },
+  {
+    "text": "móvil",
+    "start": 26.57,
+    "end": 26.72,
+    "id": "w75"
+  },
+  {
+    "text": "toma",
+    "start": 26.89,
+    "end": 27.17,
+    "id": "w76"
+  },
+  {
+    "text": "20.",
+    "start": 27.49,
+    "end": 27.78,
+    "id": "w77"
+  },
+  {
+    "text": "Si",
+    "start": 27.78,
+    "end": 27.89,
+    "id": "w78"
+  },
+  {
+    "text": "el",
+    "start": 27.91,
+    "end": 28.03,
+    "id": "w79"
+  },
+  {
+    "text": "cargador",
+    "start": 28.04,
+    "end": 28.54,
+    "id": "w80"
+  },
+  {
+    "text": "es",
+    "start": 28.57,
+    "end": 28.64,
+    "id": "w81"
+  },
+  {
+    "text": "flojo,",
+    "start": 28.72,
+    "end": 29.14,
+    "id": "w82"
+  },
+  {
+    "text": "no",
+    "start": 29.14,
+    "end": 29.27,
+    "id": "w83"
+  },
+  {
+    "text": "pasa",
+    "start": 29.28,
+    "end": 29.76,
+    "id": "w84"
+  },
+  {
+    "text": "nada.",
+    "start": 29.76,
+    "end": 29.96,
+    "id": "w85"
+  },
+  {
+    "text": "El",
+    "start": 29.96,
+    "end": 30.2,
+    "id": "w86"
+  },
+  {
+    "text": "móvil",
+    "start": 30.2,
+    "end": 30.52,
+    "id": "w87"
+  },
+  {
+    "text": "solo",
+    "start": 30.52,
+    "end": 30.84,
+    "id": "w88"
+  },
+  {
+    "text": "carga",
+    "start": 30.84,
+    "end": 31.16,
+    "id": "w89"
+  },
+  {
+    "text": "más",
+    "start": 31.16,
+    "end": 31.79,
+    "id": "w90"
+  },
+  {
+    "text": "despacio.",
+    "start": 31.79,
+    "end": 32.16,
+    "id": "w91"
+  },
+  {
+    "text": "Tercera,¿cuánto",
+    "start": 32.37,
+    "end": 33.23,
+    "id": "w92"
+  },
+  {
+    "text": "puede",
+    "start": 33.23,
+    "end": 33.5,
+    "id": "w93"
+  },
+  {
+    "text": "dar",
+    "start": 33.5,
+    "end": 33.7,
+    "id": "w94"
+  },
+  {
+    "text": "un",
+    "start": 33.76,
+    "end": 33.82,
+    "id": "w95"
+  },
+  {
+    "text": "cargador?",
+    "start": 33.86,
+    "end": 34.2,
+    "id": "w96"
+  },
+  {
+    "text": "Los",
+    "start": 34.2,
+    "end": 34.44,
+    "id": "w97"
+  },
+  {
+    "text": "más",
+    "start": 34.44,
+    "end": 34.62,
+    "id": "w98"
+  },
+  {
+    "text": "potentes",
+    "start": 34.62,
+    "end": 35.17,
+    "id": "w99"
+  },
+  {
+    "text": "llegan",
+    "start": 35.17,
+    "end": 35.58,
+    "id": "w100"
+  },
+  {
+    "text": "a",
+    "start": 35.58,
+    "end": 35.65,
+    "id": "w101"
+  },
+  {
+    "text": "240",
+    "start": 36.03,
+    "end": 36.27,
+    "id": "w102"
+  },
+  {
+    "text": "vatios.¿Dónde",
+    "start": 36.27,
+    "end": 37.26,
+    "id": "w103"
+  },
+  {
+    "text": "está",
+    "start": 37.26,
+    "end": 37.54,
+    "id": "w104"
+  },
+  {
+    "text": "el",
+    "start": 37.54,
+    "end": 37.68,
+    "id": "w105"
+  },
+  {
+    "text": "riesgo?",
+    "start": 37.68,
+    "end": 38.32,
+    "id": "w106"
+  },
+  {
+    "text": "En",
+    "start": 38.4,
+    "end": 38.95,
+    "id": "w107"
+  },
+  {
+    "text": "los",
+    "start": 38.95,
+    "end": 39.04,
+    "id": "w108"
+  },
+  {
+    "text": "cargadores",
+    "start": 39.33,
+    "end": 39.64,
+    "id": "w109"
+  },
+  {
+    "text": "falsos.",
+    "start": 39.64,
+    "end": 39.94,
+    "id": "w110"
+  },
+  {
+    "text": "Una",
+    "start": 39.94,
+    "end": 40.24,
+    "id": "w111"
+  },
+  {
+    "text": "organización",
+    "start": 40.24,
+    "end": 40.9,
+    "id": "w112"
+  },
+  {
+    "text": "británica",
+    "start": 40.96,
+    "end": 41.34,
+    "id": "w113"
+  },
+  {
+    "text": "de",
+    "start": 41.41,
+    "end": 41.64,
+    "id": "w114"
+  },
+  {
+    "text": "seguridad",
+    "start": 41.83,
+    "end": 42.2,
+    "id": "w115"
+  },
+  {
+    "text": "eléctrica",
+    "start": 42.34,
+    "end": 42.82,
+    "id": "w116"
+  },
+  {
+    "text": "probó",
+    "start": 42.97,
+    "end": 43.18,
+    "id": "w117"
+  },
+  {
+    "text": "116",
+    "start": 43.18,
+    "end": 43.74,
+    "id": "w118"
+  },
+  {
+    "text": "cargadores",
+    "start": 43.8,
+    "end": 44.52,
+    "id": "w119"
+  },
+  {
+    "text": "falsos",
+    "start": 44.52,
+    "end": 44.79,
+    "id": "w120"
+  },
+  {
+    "text": "de",
+    "start": 44.83,
+    "end": 44.84,
+    "id": "w121"
+  },
+  {
+    "text": "20",
+    "start": 44.84,
+    "end": 45.21,
+    "id": "w122"
+  },
+  {
+    "text": "vatios.",
+    "start": 45.21,
+    "end": 45.47,
+    "id": "w123"
+  },
+  {
+    "text": "107",
+    "start": 45.72,
+    "end": 46.24,
+    "id": "w124"
+  },
+  {
+    "text": "fallaron",
+    "start": 46.24,
+    "end": 46.69,
+    "id": "w125"
+  },
+  {
+    "text": "una",
+    "start": 46.89,
+    "end": 47.17,
+    "id": "w126"
+  },
+  {
+    "text": "prueba",
+    "start": 47.31,
+    "end": 47.68,
+    "id": "w127"
+  },
+  {
+    "text": "de",
+    "start": 47.68,
+    "end": 48.45,
+    "id": "w128"
+  },
+  {
+    "text": "seguridad",
+    "start": 48.45,
+    "end": 48.61,
+    "id": "w129"
+  },
+  {
+    "text": "crítica,",
+    "start": 48.61,
+    "end": 49.34,
+    "id": "w130"
+  },
+  {
+    "text": "un",
+    "start": 49.38,
+    "end": 49.54,
+    "id": "w131"
+  },
+  {
+    "text": "92%.",
+    "start": 49.54,
+    "end": 50.27,
+    "id": "w132"
+  },
+  {
+    "text": "Lo",
+    "start": 50.27,
+    "end": 50.69,
+    "id": "w133"
+  },
+  {
+    "text": "prometido,",
+    "start": 50.69,
+    "end": 51.96,
+    "id": "w134"
+  },
+  {
+    "text": "un",
+    "start": 51.96,
+    "end": 52.4,
+    "id": "w135"
+  },
+  {
+    "text": "cargador",
+    "start": 52.4,
+    "end": 52.76,
+    "id": "w136"
+  },
+  {
+    "text": "potente",
+    "start": 52.76,
+    "end": 53.2,
+    "id": "w137"
+  },
+  {
+    "text": "no",
+    "start": 53.2,
+    "end": 53.46,
+    "id": "w138"
+  },
+  {
+    "text": "estropea",
+    "start": 53.67,
+    "end": 53.99,
+    "id": "w139"
+  },
+  {
+    "text": "tu",
+    "start": 53.99,
+    "end": 54.12,
+    "id": "w140"
+  },
+  {
+    "text": "móvil.",
+    "start": 54.12,
+    "end": 54.63,
+    "id": "w141"
+  },
+  {
+    "text": "El",
+    "start": 54.63,
+    "end": 54.69,
+    "id": "w142"
+  },
+  {
+    "text": "peligro",
+    "start": 55.08,
+    "end": 55.21,
+    "id": "w143"
+  },
+  {
+    "text": "es",
+    "start": 55.31,
+    "end": 55.34,
+    "id": "w144"
+  },
+  {
+    "text": "el",
+    "start": 55.34,
+    "end": 55.46,
+    "id": "w145"
+  },
+  {
+    "text": "falso.",
+    "start": 55.47,
+    "end": 56.04,
+    "id": "w146"
+  },
+  {
+    "text": "Veredicto,",
+    "start": 56.04,
+    "end": 56.98,
+    "id": "w147"
+  },
+  {
+    "text": "la",
+    "start": 56.98,
+    "end": 57.15,
+    "id": "w148"
+  },
+  {
+    "text": "potencia",
+    "start": 57.15,
+    "end": 57.92,
+    "id": "w149"
+  },
+  {
+    "text": "da",
+    "start": 57.92,
+    "end": 58.1,
+    "id": "w150"
+  },
+  {
+    "text": "igual,",
+    "start": 58.1,
+    "end": 58.76,
+    "id": "w151"
+  },
+  {
+    "text": "lo",
+    "start": 58.76,
+    "end": 58.83,
+    "id": "w152"
+  },
+  {
+    "text": "que",
+    "start": 58.85,
+    "end": 58.95,
+    "id": "w153"
+  },
+  {
+    "text": "importa",
+    "start": 58.96,
+    "end": 59.21,
+    "id": "w154"
+  },
+  {
+    "text": "es",
+    "start": 59.21,
+    "end": 59.47,
+    "id": "w155"
+  },
+  {
+    "text": "que",
+    "start": 59.47,
+    "end": 59.56,
+    "id": "w156"
+  },
+  {
+    "text": "no",
+    "start": 59.59,
+    "end": 59.67,
+    "id": "w157"
+  },
+  {
+    "text": "sea",
+    "start": 59.69,
+    "end": 59.88,
+    "id": "w158"
+  },
+  {
+    "text": "falso.¿Y",
+    "start": 59.88,
+    "end": 60.45,
+    "id": "w159"
+  },
+  {
+    "text": "tú?¿Usas",
+    "start": 60.64,
+    "end": 61.15,
+    "id": "w160"
+  },
+  {
+    "text": "cargadores",
+    "start": 61.15,
+    "end": 61.44,
+    "id": "w161"
+  },
+  {
+    "text": "de",
+    "start": 61.66,
+    "end": 61.92,
+    "id": "w162"
+  },
+  {
+    "text": "otros",
+    "start": 62.2,
+    "end": 62.24,
+    "id": "w163"
+  },
+  {
+    "text": "móviles?¿Sí",
+    "start": 62.24,
+    "end": 63.15,
+    "id": "w164"
+  },
+  {
+    "text": "o",
+    "start": 63.19,
+    "end": 63.21,
+    "id": "w165"
+  },
+  {
+    "text": "no?",
+    "start": 63.21,
+    "end": 63.55,
+    "id": "w166"
+  }
+]

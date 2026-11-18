@@ -1,0 +1,50 @@
+{
+  "titulo": "¿Un cargador potente estropea tu móvil?",
+  "lines": [
+    "Tu cargador es potente. ¿Peligro?",
+    "Dicen que un cargador potente estropea el móvil. ¿Será verdad?",
+    "Tres cosas por dentro, y la última es la que te protege.",
+    "Primera: el cargador no empuja corriente. Solo la ofrece, y el móvil la coge.",
+    "Segunda: móvil y cargador hablan por el cable. El cargador anuncia lo que da.",
+    "Y el móvil pide solo lo que necesita.",
+    "Un ejemplo, con cifras redondas: cargador de sesenta y cinco vatios, móvil que pide veinte. El móvil toma veinte.",
+    "Si el cargador es flojo, no pasa nada. El móvil solo carga más despacio.",
+    "Tercera: ¿cuánto puede dar un cargador? Los más potentes llegan a doscientos cuarenta vatios.",
+    "¿Dónde está el riesgo? En los cargadores falsos.",
+    "Una organización británica de seguridad eléctrica probó ciento dieciséis cargadores falsos de veinte vatios. Ciento siete fallaron una prueba de seguridad crítica.",
+    "Un noventa y dos por ciento.",
+    "Lo prometido: un cargador potente no estropea tu móvil. El peligro es el falso.",
+    "Veredicto: la potencia da igual. Lo que importa es que no sea falso.",
+    "¿Y tú? ¿Usas cargadores de otros móviles? Sí o no."
+  ],
+  "claves": [
+    "cargador",
+    "estropea",
+    "última",
+    "ofrece",
+    "anuncia",
+    "necesita",
+    "sesenta",
+    "flojo",
+    "doscientos",
+    "falsos",
+    "organización",
+    "noventa",
+    "prometido",
+    "veredicto",
+    "usas"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "¿Un cargador más potente estropea el móvil? No: el cargador no empuja corriente, solo la ofrece, y el móvil pide por el cable solo la que necesita. El peligro real son los cargadores falsos: una organización británica de seguridad eléctrica probó 116 falsos de 20 W y 107 fallaron una prueba de seguridad crítica (92 %). Ilustración simplificada, sin marca; las cifras de 65 W y 20 W son un ejemplo. ¿Y tú? ¿Usas cargadores de otros móviles? Sí o no.",
+    "hashtags": [
+      "#comofunciona",
+      "#tecnologia",
+      "#curiosidades",
+      "#parati",
+      "#mitos",
+      "#movil"
+    ],
+    "portada_en": "cargador"
+  }
+}

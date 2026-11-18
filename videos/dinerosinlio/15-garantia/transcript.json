@@ -1,0 +1,1076 @@
+[
+  {
+    "text": "Tu",
+    "start": 0.15,
+    "end": 0.25,
+    "id": "w0"
+  },
+  {
+    "text": "banco",
+    "start": 0.25,
+    "end": 0.52,
+    "id": "w1"
+  },
+  {
+    "text": "quiebra.¿Cuánto",
+    "start": 0.53,
+    "end": 1.66,
+    "id": "w2"
+  },
+  {
+    "text": "recuperas?",
+    "start": 1.68,
+    "end": 2.23,
+    "id": "w3"
+  },
+  {
+    "text": "Hay",
+    "start": 2.23,
+    "end": 2.73,
+    "id": "w4"
+  },
+  {
+    "text": "un",
+    "start": 2.73,
+    "end": 2.93,
+    "id": "w5"
+  },
+  {
+    "text": "límite,",
+    "start": 2.93,
+    "end": 3.71,
+    "id": "w6"
+  },
+  {
+    "text": "y",
+    "start": 3.72,
+    "end": 3.77,
+    "id": "w7"
+  },
+  {
+    "text": "casi",
+    "start": 3.77,
+    "end": 3.98,
+    "id": "w8"
+  },
+  {
+    "text": "nadie",
+    "start": 4.02,
+    "end": 4.29,
+    "id": "w9"
+  },
+  {
+    "text": "sabe",
+    "start": 4.33,
+    "end": 4.47,
+    "id": "w10"
+  },
+  {
+    "text": "cuál,",
+    "start": 4.56,
+    "end": 4.96,
+    "id": "w11"
+  },
+  {
+    "text": "y",
+    "start": 5.31,
+    "end": 5.36,
+    "id": "w12"
+  },
+  {
+    "text": "al",
+    "start": 5.36,
+    "end": 5.46,
+    "id": "w13"
+  },
+  {
+    "text": "final¿cuántos",
+    "start": 5.7,
+    "end": 6.43,
+    "id": "w14"
+  },
+  {
+    "text": "días",
+    "start": 6.43,
+    "end": 6.47,
+    "id": "w15"
+  },
+  {
+    "text": "tardarías",
+    "start": 6.91,
+    "end": 7.44,
+    "id": "w16"
+  },
+  {
+    "text": "en",
+    "start": 7.45,
+    "end": 7.6,
+    "id": "w17"
+  },
+  {
+    "text": "cobrar?",
+    "start": 7.6,
+    "end": 8.36,
+    "id": "w18"
+  },
+  {
+    "text": "En",
+    "start": 8.36,
+    "end": 8.46,
+    "id": "w19"
+  },
+  {
+    "text": "España",
+    "start": 8.46,
+    "end": 8.7,
+    "id": "w20"
+  },
+  {
+    "text": "existe",
+    "start": 8.76,
+    "end": 8.87,
+    "id": "w21"
+  },
+  {
+    "text": "el",
+    "start": 9.18,
+    "end": 9.2,
+    "id": "w22"
+  },
+  {
+    "text": "Fondo",
+    "start": 9.2,
+    "end": 9.44,
+    "id": "w23"
+  },
+  {
+    "text": "de",
+    "start": 9.49,
+    "end": 9.6,
+    "id": "w24"
+  },
+  {
+    "text": "Garantía",
+    "start": 9.6,
+    "end": 9.94,
+    "id": "w25"
+  },
+  {
+    "text": "de",
+    "start": 10.02,
+    "end": 10.1,
+    "id": "w26"
+  },
+  {
+    "text": "Depósitos,",
+    "start": 10.34,
+    "end": 11.1,
+    "id": "w27"
+  },
+  {
+    "text": "el",
+    "start": 11.23,
+    "end": 11.42,
+    "id": "w28"
+  },
+  {
+    "text": "FGD.",
+    "start": 11.52,
+    "end": 12.08,
+    "id": "w29"
+  },
+  {
+    "text": "Según",
+    "start": 12.08,
+    "end": 12.32,
+    "id": "w30"
+  },
+  {
+    "text": "el",
+    "start": 12.32,
+    "end": 12.33,
+    "id": "w31"
+  },
+  {
+    "text": "propio",
+    "start": 12.33,
+    "end": 12.83,
+    "id": "w32"
+  },
+  {
+    "text": "fondo,",
+    "start": 12.83,
+    "end": 13.08,
+    "id": "w33"
+  },
+  {
+    "text": "garantiza",
+    "start": 13.08,
+    "end": 13.49,
+    "id": "w34"
+  },
+  {
+    "text": "hasta",
+    "start": 13.49,
+    "end": 13.82,
+    "id": "w35"
+  },
+  {
+    "text": "100.000",
+    "start": 13.82,
+    "end": 14.81,
+    "id": "w36"
+  },
+  {
+    "text": "euros",
+    "start": 14.82,
+    "end": 14.83,
+    "id": "w37"
+  },
+  {
+    "text": "por",
+    "start": 14.89,
+    "end": 15.23,
+    "id": "w38"
+  },
+  {
+    "text": "titular",
+    "start": 15.38,
+    "end": 15.57,
+    "id": "w39"
+  },
+  {
+    "text": "y",
+    "start": 15.63,
+    "end": 15.7,
+    "id": "w40"
+  },
+  {
+    "text": "por",
+    "start": 15.86,
+    "end": 15.93,
+    "id": "w41"
+  },
+  {
+    "text": "entidad.",
+    "start": 15.93,
+    "end": 16.59,
+    "id": "w42"
+  },
+  {
+    "text": "Ojo,",
+    "start": 16.78,
+    "end": 17.07,
+    "id": "w43"
+  },
+  {
+    "text": "es",
+    "start": 17.08,
+    "end": 17.19,
+    "id": "w44"
+  },
+  {
+    "text": "por",
+    "start": 17.23,
+    "end": 17.46,
+    "id": "w45"
+  },
+  {
+    "text": "entidad.",
+    "start": 17.46,
+    "end": 18.23,
+    "id": "w46"
+  },
+  {
+    "text": "Si",
+    "start": 18.35,
+    "end": 18.38,
+    "id": "w47"
+  },
+  {
+    "text": "tienes",
+    "start": 18.38,
+    "end": 18.85,
+    "id": "w48"
+  },
+  {
+    "text": "ahorros",
+    "start": 18.85,
+    "end": 19.39,
+    "id": "w49"
+  },
+  {
+    "text": "en",
+    "start": 19.39,
+    "end": 19.68,
+    "id": "w50"
+  },
+  {
+    "text": "dos",
+    "start": 19.68,
+    "end": 19.87,
+    "id": "w51"
+  },
+  {
+    "text": "bancos",
+    "start": 19.87,
+    "end": 20.25,
+    "id": "w52"
+  },
+  {
+    "text": "distintos,",
+    "start": 20.25,
+    "end": 20.98,
+    "id": "w53"
+  },
+  {
+    "text": "el",
+    "start": 20.98,
+    "end": 21,
+    "id": "w54"
+  },
+  {
+    "text": "límite",
+    "start": 21,
+    "end": 21.34,
+    "id": "w55"
+  },
+  {
+    "text": "cuenta",
+    "start": 21.58,
+    "end": 21.77,
+    "id": "w56"
+  },
+  {
+    "text": "en",
+    "start": 21.77,
+    "end": 21.91,
+    "id": "w57"
+  },
+  {
+    "text": "cada",
+    "start": 21.91,
+    "end": 22.18,
+    "id": "w58"
+  },
+  {
+    "text": "uno.",
+    "start": 22.19,
+    "end": 22.62,
+    "id": "w59"
+  },
+  {
+    "text": "Cubre",
+    "start": 22.78,
+    "end": 22.97,
+    "id": "w60"
+  },
+  {
+    "text": "cuentas",
+    "start": 22.97,
+    "end": 23.47,
+    "id": "w61"
+  },
+  {
+    "text": "corrientes,",
+    "start": 23.47,
+    "end": 24.33,
+    "id": "w62"
+  },
+  {
+    "text": "cuentas",
+    "start": 24.33,
+    "end": 24.75,
+    "id": "w63"
+  },
+  {
+    "text": "de",
+    "start": 24.75,
+    "end": 25.06,
+    "id": "w64"
+  },
+  {
+    "text": "ahorro",
+    "start": 25.06,
+    "end": 25.4,
+    "id": "w65"
+  },
+  {
+    "text": "y",
+    "start": 25.4,
+    "end": 25.47,
+    "id": "w66"
+  },
+  {
+    "text": "depósitos",
+    "start": 25.47,
+    "end": 26.05,
+    "id": "w67"
+  },
+  {
+    "text": "a",
+    "start": 26.05,
+    "end": 26.18,
+    "id": "w68"
+  },
+  {
+    "text": "plazo",
+    "start": 26.18,
+    "end": 26.53,
+    "id": "w69"
+  },
+  {
+    "text": "fijo.",
+    "start": 26.6,
+    "end": 27.06,
+    "id": "w70"
+  },
+  {
+    "text": "Si",
+    "start": 27.19,
+    "end": 27.27,
+    "id": "w71"
+  },
+  {
+    "text": "una",
+    "start": 27.42,
+    "end": 27.45,
+    "id": "w72"
+  },
+  {
+    "text": "cuenta",
+    "start": 27.45,
+    "end": 27.77,
+    "id": "w73"
+  },
+  {
+    "text": "tiene",
+    "start": 27.77,
+    "end": 28.02,
+    "id": "w74"
+  },
+  {
+    "text": "varios",
+    "start": 28.03,
+    "end": 28.16,
+    "id": "w75"
+  },
+  {
+    "text": "titulares,",
+    "start": 28.5,
+    "end": 28.91,
+    "id": "w76"
+  },
+  {
+    "text": "el",
+    "start": 28.96,
+    "end": 29.05,
+    "id": "w77"
+  },
+  {
+    "text": "saldo",
+    "start": 29.05,
+    "end": 29.31,
+    "id": "w78"
+  },
+  {
+    "text": "se",
+    "start": 29.31,
+    "end": 29.4,
+    "id": "w79"
+  },
+  {
+    "text": "reparte",
+    "start": 29.41,
+    "end": 29.79,
+    "id": "w80"
+  },
+  {
+    "text": "a",
+    "start": 29.79,
+    "end": 29.91,
+    "id": "w81"
+  },
+  {
+    "text": "partes",
+    "start": 29.91,
+    "end": 30.16,
+    "id": "w82"
+  },
+  {
+    "text": "iguales,",
+    "start": 30.16,
+    "end": 30.59,
+    "id": "w83"
+  },
+  {
+    "text": "salvo",
+    "start": 30.79,
+    "end": 30.98,
+    "id": "w84"
+  },
+  {
+    "text": "que",
+    "start": 31.03,
+    "end": 31.14,
+    "id": "w85"
+  },
+  {
+    "text": "el",
+    "start": 31.14,
+    "end": 31.39,
+    "id": "w86"
+  },
+  {
+    "text": "contrato",
+    "start": 31.39,
+    "end": 31.84,
+    "id": "w87"
+  },
+  {
+    "text": "diga",
+    "start": 31.84,
+    "end": 32.12,
+    "id": "w88"
+  },
+  {
+    "text": "otra",
+    "start": 32.12,
+    "end": 32.15,
+    "id": "w89"
+  },
+  {
+    "text": "cosa,",
+    "start": 32.59,
+    "end": 32.8,
+    "id": "w90"
+  },
+  {
+    "text": "y",
+    "start": 32.82,
+    "end": 32.87,
+    "id": "w91"
+  },
+  {
+    "text": "el",
+    "start": 32.92,
+    "end": 33.01,
+    "id": "w92"
+  },
+  {
+    "text": "límite",
+    "start": 33.05,
+    "end": 33.37,
+    "id": "w93"
+  },
+  {
+    "text": "se",
+    "start": 33.37,
+    "end": 33.8,
+    "id": "w94"
+  },
+  {
+    "text": "aplica",
+    "start": 33.8,
+    "end": 34.01,
+    "id": "w95"
+  },
+  {
+    "text": "a",
+    "start": 34.01,
+    "end": 34.08,
+    "id": "w96"
+  },
+  {
+    "text": "cada",
+    "start": 34.08,
+    "end": 34.36,
+    "id": "w97"
+  },
+  {
+    "text": "titular.",
+    "start": 34.36,
+    "end": 35.13,
+    "id": "w98"
+  },
+  {
+    "text": "Por",
+    "start": 35.16,
+    "end": 35.37,
+    "id": "w99"
+  },
+  {
+    "text": "ejemplo,",
+    "start": 35.37,
+    "end": 36.06,
+    "id": "w100"
+  },
+  {
+    "text": "150.000",
+    "start": 36.4,
+    "end": 36.86,
+    "id": "w101"
+  },
+  {
+    "text": "euros",
+    "start": 37.1,
+    "end": 37.19,
+    "id": "w102"
+  },
+  {
+    "text": "entre",
+    "start": 37.19,
+    "end": 37.47,
+    "id": "w103"
+  },
+  {
+    "text": "dos",
+    "start": 37.52,
+    "end": 37.7,
+    "id": "w104"
+  },
+  {
+    "text": "titulares,",
+    "start": 37.71,
+    "end": 38.42,
+    "id": "w105"
+  },
+  {
+    "text": "75.000",
+    "start": 38.42,
+    "end": 39.59,
+    "id": "w106"
+  },
+  {
+    "text": "para",
+    "start": 39.59,
+    "end": 39.85,
+    "id": "w107"
+  },
+  {
+    "text": "cada",
+    "start": 39.85,
+    "end": 40.1,
+    "id": "w108"
+  },
+  {
+    "text": "uno,",
+    "start": 40.1,
+    "end": 40.43,
+    "id": "w109"
+  },
+  {
+    "text": "todo",
+    "start": 40.58,
+    "end": 40.66,
+    "id": "w110"
+  },
+  {
+    "text": "dentro",
+    "start": 40.71,
+    "end": 41.08,
+    "id": "w111"
+  },
+  {
+    "text": "del",
+    "start": 41.08,
+    "end": 41.26,
+    "id": "w112"
+  },
+  {
+    "text": "límite.",
+    "start": 41.27,
+    "end": 41.94,
+    "id": "w113"
+  },
+  {
+    "text": "No",
+    "start": 41.94,
+    "end": 42.01,
+    "id": "w114"
+  },
+  {
+    "text": "cubre",
+    "start": 42.14,
+    "end": 42.22,
+    "id": "w115"
+  },
+  {
+    "text": "los",
+    "start": 42.22,
+    "end": 42.33,
+    "id": "w116"
+  },
+  {
+    "text": "planes",
+    "start": 42.58,
+    "end": 42.71,
+    "id": "w117"
+  },
+  {
+    "text": "de",
+    "start": 42.71,
+    "end": 42.8,
+    "id": "w118"
+  },
+  {
+    "text": "pensiones,",
+    "start": 42.85,
+    "end": 43.5,
+    "id": "w119"
+  },
+  {
+    "text": "ni",
+    "start": 43.54,
+    "end": 43.61,
+    "id": "w120"
+  },
+  {
+    "text": "los",
+    "start": 43.78,
+    "end": 43.79,
+    "id": "w121"
+  },
+  {
+    "text": "productos",
+    "start": 43.8,
+    "end": 44.32,
+    "id": "w122"
+  },
+  {
+    "text": "que",
+    "start": 44.35,
+    "end": 44.54,
+    "id": "w123"
+  },
+  {
+    "text": "no",
+    "start": 44.54,
+    "end": 44.57,
+    "id": "w124"
+  },
+  {
+    "text": "garantizan",
+    "start": 45.03,
+    "end": 45.27,
+    "id": "w125"
+  },
+  {
+    "text": "devolver",
+    "start": 45.27,
+    "end": 45.73,
+    "id": "w126"
+  },
+  {
+    "text": "el",
+    "start": 45.74,
+    "end": 45.76,
+    "id": "w127"
+  },
+  {
+    "text": "capital.",
+    "start": 46.06,
+    "end": 46.58,
+    "id": "w128"
+  },
+  {
+    "text": "Ysi",
+    "start": 46.58,
+    "end": 46.77,
+    "id": "w129"
+  },
+  {
+    "text": "uses",
+    "start": 46.77,
+    "end": 47.05,
+    "id": "w130"
+  },
+  {
+    "text": "un",
+    "start": 47.07,
+    "end": 47.18,
+    "id": "w131"
+  },
+  {
+    "text": "banco",
+    "start": 47.3,
+    "end": 47.49,
+    "id": "w132"
+  },
+  {
+    "text": "digital,",
+    "start": 47.49,
+    "end": 48.04,
+    "id": "w133"
+  },
+  {
+    "text": "su",
+    "start": 48.04,
+    "end": 48.07,
+    "id": "w134"
+  },
+  {
+    "text": "dinero",
+    "start": 48.5,
+    "end": 48.54,
+    "id": "w135"
+  },
+  {
+    "text": "puede",
+    "start": 48.54,
+    "end": 48.85,
+    "id": "w136"
+  },
+  {
+    "text": "estar",
+    "start": 48.85,
+    "end": 49.15,
+    "id": "w137"
+  },
+  {
+    "text": "protegido",
+    "start": 49.15,
+    "end": 49.71,
+    "id": "w138"
+  },
+  {
+    "text": "por",
+    "start": 49.79,
+    "end": 49.89,
+    "id": "w139"
+  },
+  {
+    "text": "un",
+    "start": 49.89,
+    "end": 50.01,
+    "id": "w140"
+  },
+  {
+    "text": "fondo",
+    "start": 50.01,
+    "end": 50.3,
+    "id": "w141"
+  },
+  {
+    "text": "de",
+    "start": 50.37,
+    "end": 50.44,
+    "id": "w142"
+  },
+  {
+    "text": "otro",
+    "start": 50.44,
+    "end": 50.48,
+    "id": "w143"
+  },
+  {
+    "text": "país.",
+    "start": 50.78,
+    "end": 51.22,
+    "id": "w144"
+  },
+  {
+    "text": "Ahora,",
+    "start": 51.22,
+    "end": 51.54,
+    "id": "w145"
+  },
+  {
+    "text": "lo",
+    "start": 51.62,
+    "end": 51.72,
+    "id": "w146"
+  },
+  {
+    "text": "que",
+    "start": 51.72,
+    "end": 51.77,
+    "id": "w147"
+  },
+  {
+    "text": "casi",
+    "start": 51.88,
+    "end": 52.13,
+    "id": "w148"
+  },
+  {
+    "text": "nadie",
+    "start": 52.38,
+    "end": 52.54,
+    "id": "w149"
+  },
+  {
+    "text": "sabe,",
+    "start": 52.54,
+    "end": 53.02,
+    "id": "w150"
+  },
+  {
+    "text": "el",
+    "start": 53.02,
+    "end": 53.12,
+    "id": "w151"
+  },
+  {
+    "text": "FGD",
+    "start": 53.26,
+    "end": 53.41,
+    "id": "w152"
+  },
+  {
+    "text": "paga",
+    "start": 53.5,
+    "end": 53.71,
+    "id": "w153"
+  },
+  {
+    "text": "sin",
+    "start": 53.75,
+    "end": 53.98,
+    "id": "w154"
+  },
+  {
+    "text": "que",
+    "start": 53.98,
+    "end": 54.2,
+    "id": "w155"
+  },
+  {
+    "text": "tengas",
+    "start": 54.2,
+    "end": 54.7,
+    "id": "w156"
+  },
+  {
+    "text": "que",
+    "start": 54.87,
+    "end": 54.94,
+    "id": "w157"
+  },
+  {
+    "text": "pedirlo,",
+    "start": 54.94,
+    "end": 55.56,
+    "id": "w158"
+  },
+  {
+    "text": "y",
+    "start": 55.65,
+    "end": 55.66,
+    "id": "w159"
+  },
+  {
+    "text": "tienes",
+    "start": 55.86,
+    "end": 56.22,
+    "id": "w160"
+  },
+  {
+    "text": "7",
+    "start": 56.22,
+    "end": 56.43,
+    "id": "w161"
+  },
+  {
+    "text": "días",
+    "start": 56.47,
+    "end": 56.78,
+    "id": "w162"
+  },
+  {
+    "text": "hábiles",
+    "start": 56.78,
+    "end": 57.34,
+    "id": "w163"
+  },
+  {
+    "text": "para",
+    "start": 57.45,
+    "end": 57.61,
+    "id": "w164"
+  },
+  {
+    "text": "hacerlo.",
+    "start": 57.67,
+    "end": 58.5,
+    "id": "w165"
+  },
+  {
+    "text": "Pásaselo",
+    "start": 58.55,
+    "end": 58.94,
+    "id": "w166"
+  },
+  {
+    "text": "a",
+    "start": 58.94,
+    "end": 58.99,
+    "id": "w167"
+  },
+  {
+    "text": "quien",
+    "start": 58.99,
+    "end": 59.25,
+    "id": "w168"
+  },
+  {
+    "text": "tenga",
+    "start": 59.25,
+    "end": 59.48,
+    "id": "w169"
+  },
+  {
+    "text": "ahorros.¿Sabías",
+    "start": 59.48,
+    "end": 60.37,
+    "id": "w170"
+  },
+  {
+    "text": "que",
+    "start": 60.37,
+    "end": 60.52,
+    "id": "w171"
+  },
+  {
+    "text": "el",
+    "start": 60.52,
+    "end": 60.61,
+    "id": "w172"
+  },
+  {
+    "text": "límite",
+    "start": 60.61,
+    "end": 60.77,
+    "id": "w173"
+  },
+  {
+    "text": "es",
+    "start": 60.92,
+    "end": 61.01,
+    "id": "w174"
+  },
+  {
+    "text": "por",
+    "start": 61.01,
+    "end": 61.27,
+    "id": "w175"
+  },
+  {
+    "text": "entidad?¿Sí",
+    "start": 61.27,
+    "end": 61.93,
+    "id": "w176"
+  },
+  {
+    "text": "o",
+    "start": 61.93,
+    "end": 61.96,
+    "id": "w177"
+  },
+  {
+    "text": "no?",
+    "start": 62.05,
+    "end": 62.18,
+    "id": "w178"
+  }
+]
