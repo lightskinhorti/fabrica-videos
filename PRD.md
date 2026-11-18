@@ -645,6 +645,15 @@ Propuesta de Claude, por orden: **bulos y estafas**, mitos de comida y de casa, 
 - **Competencia:** CreatorDB contó 759 cuentas de clips de Kai Cenat y 3.266 clips en 30 días (hasta el 26 de agosto de 2026), con 128 millones de reproducciones en TikTok.
 - **Riesgos:** sin campaña es contenido ajeno sin permiso (retiradas y avisos a la cuenta); con campaña hay permiso, pero dentro de sus normas. Rockstar retira finales y escenas de la historia. Cambia la regla del proyecto de no copiar contenido de otras cuentas: es decisión de Javier.
 - **Propuesta de Claude:** hacerlo solo dentro de una campaña de clips que pague en España, con la cuenta nueva creada por Javier y su alta en la plataforma hecha por él. Fuera de campaña no se recomienda como cuenta para cobrar.
+- **Decisión de Javier (18 de noviembre):** se hace igualmente; cuenta con que TikTok pagará y pide no darle más vueltas al cobro. Claude mantiene el aviso de arriba como riesgo abierto.
+
+**Herramienta de clips (18 de noviembre): `herramientas/clips.py`.**
+
+- **Piezas:** lista (yt-dlp sobre los clips más vistos del canal en Twitch, sin iniciar sesión), elección (palabras en el título, mínimo de visualizaciones, duración de 15 a 60 s, de más a menos vistos), descarga, subtítulos (Whisper, grupos de 3 palabras) y montaje con ffmpeg (clip entero a lo ancho sobre su imagen desenfocada, título arriba, subtítulos debajo y el canal como crédito). No sube nada.
+- **Fallos previstos:** cada orden externa tiene límite de tiempo y la red 3 intentos; si un clip falla se sigue con el siguiente y la orden acaba con error. Lo hecho queda en `datos/clips_hechos.json` y no se repite.
+- **Pruebas:** 11 pruebas de la lógica en `tests/test_clips.py`, todas pasan. Prueba real: un clip de 30 s de Kai Cenat hablando de GTA 6 hecho en 20 s, 6,7 MB (menos de los 10 MB que admite la subida desde Chrome).
+- **Coste:** cero. Volumen supuesto: de 3 a 10 clips al día.
+- **Límites:** los clips de Twitch duran 60 s como mucho, así que ninguno pasa del minuto que pide el programa de pagos; habría que unir varios o cortar del directo entero. El título es el que puso el espectador, en inglés. La palabra del título es el único filtro de tema: no distingue un clip de partida de uno de charla. Falta elegir canales, idioma de los subtítulos y crear la cuenta (Javier).
 
 **Repositorios de estilos valorados el 18 de noviembre** (los pasó Javier; no se ha instalado ninguno):
 
