@@ -574,6 +574,8 @@ Si esto tampoco mueve las visualizaciones, lo siguiente es abrir con imagen real
 
 La cuenta nueva sirve además de prueba del techo: si también se queda en unas 750 visualizaciones con otro nicho y otro estilo, el límite no es del nicho.
 
+**Criterio de Javier para elegir nicho y tema (18 de noviembre):** las tres propuestas de arriba quedan descartadas. Un vídeo tiene que dar algo útil de verdad (información que la persona siente que le ayuda) o ser una historia muy entretenida de ver. Según él, Dinero sin lío va mejor por eso, y Las cosas por dentro da explicaciones complejas que interesan pero no enganchan. Lo que dicen los datos: Dinero sin lío es la primera en las tres medidas y tiene el único vídeo que pasó el techo, pero la diferencia de mediana con Las cosas por dentro es pequeña (765 frente a 715), así que es una hipótesis razonable, no algo probado. Propuesta nueva de Claude para la cuenta que entra: **derechos y trámites de cada día** (vuelo cancelado, garantía, devoluciones, multas, alquiler), con la receta de las ayudas: a quién le toca, cuánto y dónde lo dice la norma. Se explica, nunca se aconseja. Pendiente de que Javier lo confirme.
+
 **Repositorios de estilos valorados el 18 de noviembre** (los pasó Javier; no se ha instalado ninguno):
 
 | Repositorio | Qué hace | Licencia y coste | ¿Nos sirve? |
