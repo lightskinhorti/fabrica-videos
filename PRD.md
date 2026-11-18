@@ -566,6 +566,14 @@ Si esto tampoco mueve las visualizaciones, lo siguiente es abrir con imagen real
 - Según la regla del torneo, la peor es El contador loco: peor mediana, menos seguidores y tres vídeos recientes parados cerca de 250. Propuesta de Claude: dejar de publicar en ella (sin borrarla), pasar su vídeo diario a Dinero sin lío con la receta de las ayudas, y dar a Las cosas por dentro dos semanas más. No se abre un nicho nuevo hasta saber si el techo es de la cuenta (prueba de subir desde el móvil, sin hacer).
 - Aviso: el torneo distingue poco, porque las tres cuentas chocan con el mismo techo de unas 750 a 820 visualizaciones.
 
+**Decisión de Javier (18 de noviembre): El contador loco deja de publicar** (no se borra) y su sitio en el torneo lo ocupa una cuenta nueva, hecha con uno de los estilos nuevos. El último vídeo publicado es `16-luna`. La cuenta nueva la crea Javier, con su propio perfil de Chrome. Nicho pendiente de que él elija; propuestas de Claude, por orden:
+
+1. **España desde arriba** (nicho 6): recortes de papel con fotos reales y de satélite gratuitas (NASA, Copernicus), al estilo de Vox Explainer pero hecho con código, sin modelos de pago. Es la única opción que cambia lo que medimos: abrir con una imagen real. Antes de usar cada imagen se comprueba su licencia. Se evita lo que sea temario escolar.
+2. **Política y leyes explicadas sin opinar** (nicho 11, el primer sustituto previsto): estilo "visual journalism" de Bang Motion. Mucha demanda, pero puede no cobrar y cada dato lo revisa Javier.
+3. **Cómo se fabrica algo cotidiano** (nicho 9): dibujo trazo a trazo. Barato de hacer, pero vuelve a ser animación pura, como las tres cuentas ya probadas.
+
+La cuenta nueva sirve además de prueba del techo: si también se queda en unas 750 visualizaciones con otro nicho y otro estilo, el límite no es del nicho.
+
 **Repositorios de estilos valorados el 18 de noviembre** (los pasó Javier; no se ha instalado ninguno):
 
 | Repositorio | Qué hace | Licencia y coste | ¿Nos sirve? |
