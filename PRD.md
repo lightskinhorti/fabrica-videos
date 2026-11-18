@@ -653,7 +653,7 @@ Propuesta de Claude, por orden: **bulos y estafas**, mitos de comida y de casa, 
 - **Fallos previstos:** cada orden externa tiene límite de tiempo y la red 3 intentos; si un clip falla se sigue con el siguiente y la orden acaba con error. Lo hecho queda en `datos/clips_hechos.json` y no se repite.
 - **Pruebas:** 11 pruebas de la lógica en `tests/test_clips.py`, todas pasan. Prueba real: un clip de 30 s de Kai Cenat hablando de GTA 6 hecho en 20 s, 6,7 MB (menos de los 10 MB que admite la subida desde Chrome).
 - **Coste:** cero. Volumen supuesto: de 3 a 10 clips al día.
-- **Límites:** los clips de Twitch duran 60 s como mucho, así que ninguno pasa del minuto que pide el programa de pagos; habría que unir varios o cortar del directo entero. El título es el que puso el espectador, en inglés. La palabra del título es el único filtro de tema: no distingue un clip de partida de uno de charla. Falta elegir canales, idioma de los subtítulos y crear la cuenta (Javier).
+- **Límites:** los clips de Twitch duran 60 s como mucho, así que ninguno pasa del minuto que pide el programa de pagos; habría que unir varios o cortar del directo entero. El título es el que puso el espectador, en inglés. La palabra del título es el único filtro de tema: no distingue un clip de partida de uno de charla. Subtítulos en inglés, tal como habla el streamer (decisión de Javier del 18 de noviembre; es lo que ya hace la herramienta por defecto). Falta elegir canales y crear la cuenta (Javier).
 
 **Repositorios de estilos valorados el 18 de noviembre** (los pasó Javier; no se ha instalado ninguno):
 
