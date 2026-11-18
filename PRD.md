@@ -576,6 +576,22 @@ La cuenta nueva sirve además de prueba del techo: si también se queda en unas 
 
 **Criterio de Javier para elegir nicho y tema (18 de noviembre):** las tres propuestas de arriba quedan descartadas. Un vídeo tiene que dar algo útil de verdad (información que la persona siente que le ayuda) o ser una historia muy entretenida de ver. Según él, Dinero sin lío va mejor por eso, y Las cosas por dentro da explicaciones complejas que interesan pero no enganchan. Lo que dicen los datos: Dinero sin lío es la primera en las tres medidas y tiene el único vídeo que pasó el techo, pero la diferencia de mediana con Las cosas por dentro es pequeña (765 frente a 715), así que es una hipótesis razonable, no algo probado. Propuesta nueva de Claude para la cuenta que entra: **derechos y trámites de cada día** (vuelo cancelado, garantía, devoluciones, multas, alquiler), con la receta de las ayudas: a quién le toca, cuánto y dónde lo dice la norma. Se explica, nunca se aconseja. Pendiente de que Javier lo confirme.
 
+**Cuentas de referencia de los nichos candidatos (18 de noviembre, leídas con `yt-dlp` como hace `referentes.py`, últimos 40 vídeos; muestra pequeña, porque muchas cuentas probadas no existen o TikTok no las dejó leer):**
+
+| Nicho | Cuenta leída | Visualizaciones normales (mediana) | Su vídeo más visto |
+| --- | --- | --- | --- |
+| Trucos útiles del móvil | @tuapplemundo | 102 mil | 2,4 M: una función del iPhone que "casi nadie sabe" (43 s) |
+| Actualidad explicada | @ac2ality | 66 mil | 17,3 M: una noticia (37 s) |
+| Tecnología y trabajo | @holamundodev | 52 mil | 484 mil: "¿Necesito título para ser ingeniero?" |
+| Derechos y leyes | @lawtips | 14 mil | 964 mil: "1.380 € por cada hijo que tengas" |
+| Derechos y leyes | @xaviabat, @tuabogadolaboralista, @consumidorglobal, @abogadaentiktok | de 1 a 5 mil | — |
+
+- De comparación, lo ya medido el 12 de noviembre: @tu_blog_fiscal 239 mil y @altezseraverdad 230 mil.
+- El vídeo más visto de @lawtips es la misma ayuda por hijo que el más visto de @tu_blog_fiscal: la receta de "dinero que te toca" se repite en dos cuentas distintas. Eso ya lo cubre Dinero sin lío.
+- Derechos y leyes, como nicho, tiene medianas bajas: lo que revienta dentro de él son las ayudas. Pierde fuerza como cuenta aparte.
+- Trucos del móvil es el nicho útil con la mediana más alta entre los nuevos. Pegas: sus vídeos duran de 30 a 50 s (el programa de pagos pide más de 60), se hacen con grabaciones de pantalla reales y dependen de marcas.
+- **Política queda fuera (Javier, 18 de noviembre):** ya lo hace muy bien En Plata. No se ha podido leer su cuenta: no se ha encontrado su nombre de usuario en TikTok.
+
 **Repositorios de estilos valorados el 18 de noviembre** (los pasó Javier; no se ha instalado ninguno):
 
 | Repositorio | Qué hace | Licencia y coste | ¿Nos sirve? |
