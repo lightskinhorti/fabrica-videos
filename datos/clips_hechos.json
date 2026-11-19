@@ -736,7 +736,9 @@
   "archivo": "exports/clips/rubius/1643746241.mp4",
   "hecho": "2026-11-19 09:27",
   "titulo_final": "Rubius lanza a uno desde una torre en GTA 6 y sube de nivel",
-  "subida": "exports/clips/subida/1643746241.mp4"
+  "subida": "exports/clips/subida/1643746241.mp4",
+  "subido": "2026-11-19 09:43",
+  "descripcion": "Rubius lanza a un personaje desde lo alto de una torre en GTA 6 y el juego le sube de nivel."
  },
  "3871098239": {
   "canal": "djmariio",
@@ -774,7 +776,9 @@
   "hecho": "2026-11-19 09:34",
   "descartado": "Contenido sexual en la tele del juego",
   "titulo_final": "Vegetta enciende la tele en GTA 6 y sale este canal",
-  "subida": "exports/clips/subida/1330749411.mp4"
+  "subida": "exports/clips/subida/1330749411.mp4",
+  "subido": "2026-11-19 09:43",
+  "descripcion": "Vegetta enciende la tele en GTA 6 y se encuentra un canal que no esperaba."
  },
  "3735588069": {
   "canal": "vegetta777",
@@ -784,7 +788,9 @@
   "archivo": "exports/clips/vegetta777/3735588069.mp4",
   "hecho": "2026-11-19 09:35",
   "titulo_final": "Vegetta roba un descapotable en GTA 6 y le da pena la señora",
-  "subida": "exports/clips/subida/3735588069.mp4"
+  "subida": "exports/clips/subida/3735588069.mp4",
+  "subido": "2026-11-19 09:43",
+  "descripcion": "Vegetta se lleva un descapotable en GTA 6 y luego le da pena la señora."
  },
  "2744590833": {
   "canal": "vegetta777",
@@ -804,7 +810,9 @@
   "hecho": "2026-11-19 09:35",
   "descartado": "Insultos graves al policía del juego",
   "titulo_final": "TheGrefg le pide a un policía que le detenga en GTA 6",
-  "subida": "exports/clips/subida/535967153.mp4"
+  "subida": "exports/clips/subida/535967153.mp4",
+  "subido": "2026-11-19 09:43",
+  "descripcion": "TheGrefg se acerca a un policía en GTA 6 y le dice deténgame a mí también."
  },
  "3335292422": {
   "canal": "illojuan",
@@ -822,5 +830,53 @@
   "visitas_twitch": 318,
   "archivo": "exports/clips/rubius/1076341053.mp4",
   "hecho": "2026-11-19 09:36"
+ },
+ "directo-2932415021-30818": {
+  "canal": "rubius",
+  "titulo": "Yya sabéis, la verdad es que esta es",
+  "url": "https://www.twitch.tv/videos/2932415021",
+  "visitas_twitch": null,
+  "archivo": "exports/clips/rubius/directo-2932415021-30818.mp4",
+  "hecho": "2026-11-19 09:41",
+  "vod": "2932415021",
+  "inicio": 30818,
+  "fin": 30880,
+  "mensajes_pico": 128
+ },
+ "directo-2932415021-30018": {
+  "canal": "rubius",
+  "titulo": "¿Me voy a sentar?¿Tengo que sentarme?¡Dios mío!¡Me voy",
+  "url": "https://www.twitch.tv/videos/2932415021",
+  "visitas_twitch": null,
+  "archivo": "exports/clips/rubius/directo-2932415021-30018.mp4",
+  "hecho": "2026-11-19 09:42",
+  "vod": "2932415021",
+  "inicio": 30018,
+  "fin": 30063,
+  "mensajes_pico": 120
+ },
+ "3053018972": {
+  "canal": "djmariio",
+  "titulo": "PRIMER DIRECTO GTA 6 !! DROPS DE CODIGOS DEL JUEGO Y EMBLEMAS SOLO POR VER EL DIRECTO | CODIGOS PARA SEGUIDORES Y SUSCRIPTORES",
+  "url": "https://www.twitch.tv/djmariio/clip/OutstandingPopularSheepKappaClaus-iwXELjcq18ZbpYX2",
+  "visitas_twitch": 513,
+  "archivo": "exports/clips/djmariio/3053018972.mp4",
+  "hecho": "2026-11-19 09:42"
+ },
+ "378576021": {
+  "canal": "djmariio",
+  "titulo": "PRIMER DIRECTO GTA 6 !! DROPS DE CODIGOS DEL JUEGO Y EMBLEMAS SOLO POR VER EL DIRECTO | CODIGOS PARA SEGUIDORES Y SUSCRIPTORES",
+  "url": "https://www.twitch.tv/djmariio/clip/EvilObeseSalamanderMoreCowbell-8MlVomNCsGB4n31n",
+  "visitas_twitch": 473,
+  "archivo": "exports/clips/djmariio/378576021.mp4",
+  "hecho": "2026-11-19 09:43"
+ },
+ "1765697346": {
+  "canal": "djmariio",
+  "titulo": "PRIMER DIRECTO GTA 6 !! DROPS DE CODIGOS DEL JUEGO Y EMBLEMAS SOLO POR VER EL DIRECTO | CODIGOS PARA SEGUIDORES Y SUSCRIPTORES",
+  "url": "https://www.twitch.tv/djmariio/clip/FlaccidEntertainingCheeseNotATK-8RFbnhMQ2wsHHBZ4",
+  "visitas_twitch": 455,
+  "archivo": "exports/clips/djmariio/1765697346.mp4",
+  "hecho": "2026-11-19 09:43"
  }
 }

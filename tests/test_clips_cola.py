@@ -40,6 +40,12 @@ class Cola(unittest.TestCase):
         with self.assertRaises(ValueError):
             clips_cola.kbps_para(0)
 
+    def test_censurar_tapa_los_insultos_fuertes_y_deja_el_resto(self):
+        self.assertEqual(clips_cola.censurar("ME CAGO EN TU PUTA MADRE"), "ME CAGO EN TU P*** MADRE")
+        self.assertEqual(clips_cola.censurar("hijo de puta, qué putada"), "hijo de p***, qué putada")
+        self.assertEqual(clips_cola.censurar("Los putos coches"), "Los p**** coches")
+        self.assertEqual(clips_cola.censurar("disputa computadora"), "disputa computadora")
+
     def test_texto_de(self):
         ps = [{"text": " hola "}, {"text": None}, {"text": "mundo"}]
         self.assertEqual(clips_cola.texto_de(ps), "hola  mundo")

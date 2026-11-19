@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 import time
 from pathlib import Path
@@ -46,6 +47,15 @@ def kbps_para(dur: float, tope_bytes: int = TOPE_BYTES, audio_kbps: int = 128) -
         raise ValueError("La duración tiene que ser mayor que cero")
     total = tope_bytes * 8 / dur / 1000 * 0.94
     return max(300, int(total - audio_kbps))
+
+
+FUERTES = re.compile(r"\b(put[ao]s?)\b", re.IGNORECASE)
+
+
+def censurar(texto: str) -> str:
+    """Tapa en los subtítulos los insultos más fuertes (deja la inicial): TikTok lee el texto
+    en pantalla y puede limitar el vídeo. La voz no se toca."""
+    return FUERTES.sub(lambda m: m.group(1)[0] + "*" * (len(m.group(1)) - 1), texto)
 
 
 def texto_de(palabras: list[dict], maximo: int = 420) -> str:
@@ -83,7 +93,8 @@ def preparar(ident: str, titulo: str) -> Path:
     original = _original(carpeta)
     palabras = json.loads((carpeta / "transcript.json").read_text(encoding="utf-8"))
     montado = clips.SALIDA / dato["canal"] / f"{ident}.mp4"
-    clips.montar(original, carpeta, clips.titulo_limpio(titulo, 70), clips.grupos(palabras), dato["canal"], montado)
+    subs = [{**g, "text": censurar(g["text"])} for g in clips.grupos(palabras)]
+    clips.montar(original, carpeta, clips.titulo_limpio(titulo, 70), subs, dato["canal"], montado)
     SUBIDA.mkdir(parents=True, exist_ok=True)
     destino = SUBIDA / f"{ident}.mp4"
     if montado.stat().st_size <= TOPE_BYTES:

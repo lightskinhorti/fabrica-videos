@@ -65,4 +65,11 @@ Los cuatro últimos salen del propio directo (picos del chat), no de clips de es
 
 ## Avisos de TikTok
 
-Ninguno hasta ahora.
+**19 de noviembre de 2026, 09:45. Subida automática parada por Claude (decisión 14).**
+
+- Leído en TikTok Studio, en las estadísticas del clip "El chat le dice a Rubius qué botón pulsar" (publicado el 18 a las 23:55): "Visibility restricted. Your video is not eligible for recommendation in the For You feed and its visibility has been restricted in search results. This is because of policy violations in Unoriginal, low-quality, and QR code content."
+- TikTok lo explica así: contenido "imported or copied from other sources without any new, creative edits".
+- Leído de la página pública a las 09:43: de 17 clips, 16 tienen exactamente 0 visualizaciones (algunos con 11 horas) y solo "Vegetta entra en un bar" tiene 582 y 10 "me gusta". La cuenta: 2 seguidores.
+- Solo he abierto el aviso de un vídeo; que los otros 15 tengan el mismo aviso es una deducción por sus 0 visualizaciones, no está comprobado uno por uno.
+- No he apelado ni borrado nada: eso lo decide Javier. La tarea programada `clips-gta6sinparar` está desactivada; se reactiva en "Scheduled".
+- Total subido: 18 clips (12 el día 18 y 6 el día 19).
