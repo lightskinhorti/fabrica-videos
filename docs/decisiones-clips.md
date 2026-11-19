@@ -73,3 +73,11 @@ Los cuatro últimos salen del propio directo (picos del chat), no de clips de es
 - Solo he abierto el aviso de un vídeo; que los otros 15 tengan el mismo aviso es una deducción por sus 0 visualizaciones, no está comprobado uno por uno.
 - No he apelado ni borrado nada: eso lo decide Javier. La tarea programada `clips-gta6sinparar` está desactivada; se reactiva en "Scheduled".
 - Total subido: 18 clips (12 el día 18 y 6 el día 19).
+
+**19 de noviembre, 10:00. Comprobado vídeo por vídeo (lo pidió Javier: "¿cómo sabes que es porque está restringido y no porque la cuenta no haya despegado aún?").**
+
+- Abiertas las estadísticas de los 18 clips en TikTok Studio. **Con aviso de restricción: 4** (Rubius "desde Nueva Zelanda", el chat y Rubius, Rubius en la torre y Vegetta y la tele). **Sin aviso: 14**, de los que 12 tienen 0 visualizaciones, uno tiene 1 y uno tiene 593.
+- El de 593 (Vegetta en el bar) recibe el 86 % de sus visitas del buscador y el 13,8 % de "Para ti".
+- Corrección: lo que Claude dijo a las 09:45 ("TikTok ha restringido los clips") era verdad para 4, no para los 18. En los otros 14 no hay aviso: puede ser cuenta nueva, revisión pendiente o una limitación sin aviso; no se puede distinguir desde fuera.
+- Comparación: los primeros vídeos de Dinero sin lío, también en cuenta nueva, tuvieron de 16 a 23 visualizaciones, no 0.
+
