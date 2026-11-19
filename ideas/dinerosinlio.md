@@ -62,3 +62,5 @@ Temas candidatos. **Las cifras y la vigencia no están comprobadas**: se comprue
 | Bonificación del IBI o del agua para familias numerosas | Familias numerosas (depende del ayuntamiento) | Ordenanzas municipales: solo si se puede contar sin liar |
 | Reclamar el dinero de un vuelo retrasado | Cualquiera que vuele | Reglamento (CE) 261/2004 |
 | Garantía legal de 3 años en lo que compras | Cualquiera | Ley General para la Defensa de los Consumidores |
+
+**Decisión de Javier del 19 de noviembre:** los temas que Claude había dejado fuera al hacer `16-maternidad` (dinero por un vuelo retrasado, complemento de ayuda para la infancia y bono social térmico) **no se descartan: se hacen igual**. Antes de cada guion hay que conseguir la cifra vigente en la fuente oficial; si una cifra depende de la zona o de una reforma en curso, se cuenta así en el vídeo ("depende de dónde vivas", "la norma está cambiando") en vez de saltarse el tema.
