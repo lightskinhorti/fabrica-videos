@@ -1,0 +1,52 @@
+{
+  "titulo": "¿Apagar el router de noche ahorra luz?",
+  "lines": [
+    "Tu router gasta luz mientras duermes.",
+    "Dicen que apagarlo de noche ahorra mucho. ¿Será verdad?",
+    "Tres cosas por dentro, y la última es la cifra.",
+    "Primera: un router es un mini ordenador. Dentro hay un chip que trabaja sin parar.",
+    "Segunda: tiene antenas que mandan wifi, y sigue encendido aunque nadie lo use.",
+    "Tercera: ¿cuánto gasta? Entre cinco y diez vatios, según el modelo.",
+    "Un ejemplo con diez vatios: en un año entero son casi ochenta y ocho kilovatios hora.",
+    "Si lo apagas ocho horas cada noche, te ahorras un tercio: unos veintinueve.",
+    "Según el modelo, con el precio de la luz de octubre, son entre cuatro y siete euros al año.",
+    "Y apagarlo tiene letra pequeña.",
+    "Si tu teléfono fijo va por internet, no recibirás llamadas.",
+    "La alarma y las cámaras pierden la conexión.",
+    "Y las actualizaciones de noche llegan al encenderlo.",
+    "Lo prometido: apagar el router de noche sí ahorra luz.",
+    "Veredicto: es verdad, pero son unos pocos euros al año.",
+    "¿Y tú? ¿Lo apagas por las noches? Sí o no."
+  ],
+  "claves": [
+    "router",
+    "apagarlo",
+    "última",
+    "chip",
+    "antenas",
+    "vatios",
+    "diez",
+    "tercio",
+    "euros",
+    "pequeña",
+    "teléfono",
+    "alarma",
+    "actualizaciones",
+    "prometido",
+    "veredicto",
+    "apagas"
+  ],
+  "pausa_segundos": 0.35,
+  "publicacion": {
+    "descripcion": "¿Apagar el router de noche ahorra luz? Sí, pero poco. Un router gasta entre 5 y 10 W según Repsol; con 10 W, apagarlo 8 horas cada noche ahorra unos 29 kWh al año, entre 4 y 7 euros al precio de la luz de octubre de 2026 (Selectra con datos de Red Eléctrica). Ojo: sin router no entran llamadas del fijo por internet y la alarma o las cámaras pierden la conexión. Ilustración simplificada, sin marca. ¿Y tú? ¿Lo apagas por las noches? Sí o no.",
+    "hashtags": [
+      "#comofunciona",
+      "#tecnologia",
+      "#curiosidades",
+      "#parati",
+      "#mitos",
+      "#ahorro"
+    ],
+    "portada_en": "router"
+  }
+}

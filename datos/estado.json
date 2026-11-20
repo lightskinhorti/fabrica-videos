@@ -86,6 +86,12 @@
     "hora": "20:00",
     "programado": true
   },
+  "dinerosinlio/16-maternidad": {
+    "aprobado": true,
+    "fecha": "2026-11-20",
+    "hora": "20:00",
+    "programado": true
+  },
   "elcontadorloco/01-ascensor": {
     "aprobado": true,
     "fecha": "2026-11-02",
@@ -274,6 +280,12 @@
   "lascosaspordentro/17-cargador-potente": {
     "aprobado": true,
     "fecha": "2026-11-18",
+    "hora": "20:00",
+    "programado": true
+  },
+  "lascosaspordentro/18-router-noche": {
+    "aprobado": true,
+    "fecha": "2026-11-20",
     "hora": "20:00",
     "programado": true
   }

@@ -81,3 +81,9 @@ Los cuatro últimos salen del propio directo (picos del chat), no de clips de es
 - Corrección: lo que Claude dijo a las 09:45 ("TikTok ha restringido los clips") era verdad para 4, no para los 18. En los otros 14 no hay aviso: puede ser cuenta nueva, revisión pendiente o una limitación sin aviso; no se puede distinguir desde fuera.
 - Comparación: los primeros vídeos de Dinero sin lío, también en cuenta nueva, tuvieron de 16 a 23 visualizaciones, no 0.
 
+**20 de noviembre, 09:53. Un día después (Javier dijo "Espera a mañana").**
+
+- Leído de la página pública con `yt-dlp`: de los 18 clips, 14 tienen 1 visualización y 1 "me gusta", 3 tienen 2 visualizaciones y "Vegetta entra en un bar" tiene 711 y 11 "me gusta" (el día antes, 593).
+- Los clips sin aviso no se han movido en 24 a 35 horas, igual que los 4 que sí llevan aviso. Con un día entero ya no encaja con "cuenta nueva que aún no ha despegado": TikTok no los está enseñando.
+- No se ha vuelto a abrir Studio, así que no se sabe si hay avisos nuevos. La subida automática sigue parada; no se ha apelado ni borrado nada.
+
