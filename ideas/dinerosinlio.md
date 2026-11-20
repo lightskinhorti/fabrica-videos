@@ -64,3 +64,9 @@ Temas candidatos. **Las cifras y la vigencia no están comprobadas**: se comprue
 | Garantía legal de 3 años en lo que compras | Cualquiera | Ley General para la Defensa de los Consumidores |
 
 **Decisión de Javier del 19 de noviembre:** los temas que Claude había dejado fuera al hacer `16-maternidad` (dinero por un vuelo retrasado, complemento de ayuda para la infancia y bono social térmico) **no se descartan: se hacen igual**. Antes de cada guion hay que conseguir la cifra vigente en la fuente oficial; si una cifra depende de la zona o de una reforma en curso, se cuenta así en el vídeo ("depende de dónde vivas", "la norma está cambiando") en vez de saltarse el tema.
+
+### Hechos el 20 de noviembre (línea de ayudas), pendientes de que Javier los vea
+
+- `17-bonotermico` (64,1 s): bono social térmico, gancho "HASTA 400 € AL AÑO". Control sin errores. Los importes de ejemplo son de la tabla de Aragón para 2026 (comprobada en aragon.es, actualizada el 12-11-2026); no hay tabla estatal con las seis zonas, y la voz dice "con la tabla de Aragón". Alternativa si no se quiere depender de una comunidad: gancho "DESDE 50 €" (mínimo del Real Decreto-ley 7/2026).
+- `18-infancia` (67,1 s): complemento de ayuda para la infancia, gancho "HASTA 115 € AL MES". Control sin errores. Importes y topes comprobados en la web del Ministerio de Inclusión (115, 80,50 y 57,50 euros; 2.861,04 y 55.460 euros). El texto consolidado del BOE aún enseña los importes antiguos (100, 70 y 50). La descripción añade el requisito de residencia legal y efectiva, que el vídeo no dice.
+- Copias de subida en `exports/subida/`. Queda de la lista: vuelo retrasado.

@@ -1,0 +1,924 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <link rel="stylesheet" href="comun/dinero.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+      .cifra, .fila b, .caso .num, .grande { font-family: "Archivo Black", sans-serif; }
+      /* everything big, from y = 430 to 1420 (what TikTok leaves free) */
+      .ancho { left: 0; width: 1080px; text-align: center; }
+      .cifra.g150 { font-size: 150px; }
+      .rotulo.r44 { font-size: 44px; line-height: 1.3; letter-spacing: 0.06em; }
+      .chip.c64 { font-size: 64px; }
+      .chip.c58 { font-size: 58px; }
+      .chip.c50 { font-size: 50px; }
+      .chip.c44 { font-size: 44px; }
+      .sello.s62 { font-size: 62px; line-height: 1.12; text-align: center; }
+      .sello.s54 { font-size: 54px; }
+      .sello.s130 { font-size: 130px; line-height: 1.05; border-width: 14px; border-radius: 26px; padding: 14px 44px; }
+      .docg .doc { width: 840px; padding: 30px 40px 20px; }
+      .docg .doc-tit { font-size: 36px; }
+      .docg .fila { font-size: 38px; padding: 16px 0; }
+      .docg .fila b { font-size: 46px; white-space: nowrap; }
+      .fila.marca { background: #f8dc7a; margin: 0 -18px; padding-left: 18px; padding-right: 18px; border-radius: 10px; }
+      .barra.alta { height: 190px; }
+      .barra.alta .seg { font-size: 46px; }
+      .docg.gr .doc { width: 900px; padding: 34px 44px 26px; }
+      .docg.gr .doc-tit { font-size: 40px; }
+      .docg.gr .fila { font-size: 44px; padding: 20px 0; }
+      .docg.gr .fila b { font-size: 54px; }
+      .chip.c72 { font-size: 72px; }
+      .cifra.g200 { font-size: 210px; }
+      .seg.d { background: #f2b705; }
+      .seg.p { background: #fffaf0; }
+      /* the four cases */
+      .caso { width: 450px; height: 340px; border: 8px solid #1d2a44; border-radius: 22px; box-shadow: 12px 12px 0 #1d2a44; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center; }
+      .caso.oro { background: #f2b705; }
+      .caso.blanco { background: #fffaf0; }
+      .caso .num { font-size: 120px; line-height: 1; }
+      .caso .tx { font-size: 44px; font-weight: 800; line-height: 1.12; letter-spacing: 0.02em; }
+      /* the big card of each case */
+      .tg { width: 900px; height: 740px; border: 8px solid #1d2a44; border-radius: 26px; box-shadow: 14px 14px 0 #1d2a44; background: #fffaf0; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 28px; text-align: center; }
+      .tg .num { width: 110px; height: 110px; border-radius: 55px; background: #f2b705; border: 7px solid #1d2a44; font-size: 66px; line-height: 96px; font-family: "Archivo Black"; }
+      .tg .t1 { font-family: "Archivo Black"; font-size: 78px; line-height: 1.05; margin-top: 18px; }
+      .tg .t2 { font-size: 38px; font-weight: 800; letter-spacing: 0.04em; line-height: 1.2; margin-top: 12px; padding: 0 30px; }
+      .tg .fila-p { display: flex; gap: 12px; margin-top: 22px; }
+      #sueloF { height: 10px; background: #1d2a44; border-radius: 5px; }
+          .barra.doce { height: 150px; }
+      .barra.doce .seg { font-size: 34px; border-left: 4px solid #1d2a44; }
+      .barra.doce .seg:first-child { border-left: 0; }
+      .barcol18 { border: 7px solid #1d2a44; border-bottom: none; border-radius: 18px 18px 0 0; box-shadow: 12px 0 0 #1d2a44; }
+      .suelo { height: 9px; background: #1d2a44; border-radius: 5px; }
+      .rotulo.r36 { font-size: 36px; line-height: 1.25; }
+      .rotulo.r30 { font-size: 30px; line-height: 1.25; }
+</style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="67.1" data-width="1080" data-height="1920" data-fps="30">
+      <div id="fondo" class="clip" data-start="0" data-duration="67.1" data-track-index="0"></div>
+      <div id="escenario" class="clip" data-start="0" data-duration="67.1" data-track-index="1" data-layout-allow-overlap data-layout-allow-overflow>
+        <div class="pieza docg gr" id="fact" style="left:90px; top:890px" data-icono="doc"
+          data-args='["AYUDA POR HIJO · AL MES", [["MENOR DE 3 AÑOS", "115,00 €", "filaA", "roja"], ["DE 3 A 5 AÑOS", "80,50 €"], ["DE 6 A 17 AÑOS", "57,50 €", "filaA3", "verde fuerte"]]]'></div>
+        <div class="pieza" id="bib" style="left:810px; top:640px" data-dibujo="osito" data-args="[270]"></div>
+        <div class="pieza ancho" id="chipDed" style="top:450px"><div class="chip c50">AYUDA PARA LA INFANCIA</div></div>
+        <div class="pieza" id="c1" style="left:60px; top:540px"><div class="caso oro"><div class="num">1</div><div class="tx">INGRESOS<br>DEL HOGAR</div></div></div>
+        <div class="pieza" id="c2" style="left:570px; top:540px"><div class="caso blanco"><div class="num">2</div><div class="tx">PATRIMONIO<br>SIN TU CASA</div></div></div>
+        <div class="pieza" id="c3" style="left:315px; top:930px"><div class="caso oro"><div class="num">3</div><div class="tx">PERSONAS<br>EN CASA</div></div></div>
+        <div class="pieza ancho" id="chipQ" style="top:1320px"><div class="chip rojo c58">¿ENTRAS EN LOS LÍMITES?</div></div>
+        <div class="pieza" id="edif" style="left:130px; top:540px" data-icono="edificio" data-args='["SEG. SOCIAL", "#fffaf0", 820]'></div>
+        <div class="pieza ancho" id="chipCobrar" style="top:1230px"><div class="chip verde c58">SE PUEDE COBRAR SOLO</div></div>
+        <div class="pieza ancho" id="chipIMV" style="top:1360px"><div class="chip blanco c50">SIN EL INGRESO MÍNIMO VITAL</div></div>
+        <div class="pieza ancho" id="chipP" style="top:450px"><div class="chip c58">1 · LO QUE PAGA</div></div>
+        <div class="pieza barcol18" id="b115" style="left:110px; top:690px; width:240px; height:560px; background:#e5383b"></div>
+        <div class="pieza cifra media" id="c115" style="left:80px; top:580px; width:300px; text-align:center">0 €</div>
+        <div class="pieza rotulo r30" id="l115" style="left:80px; top:1280px; width:300px">MENOR DE<br>3 AÑOS</div>
+        <div class="pieza barcol18" id="b80" style="left:420px; top:858px; width:240px; height:392px; background:#f2b705"></div>
+        <div class="pieza cifra media" id="c80" style="left:390px; top:748px; width:300px; text-align:center">0 €</div>
+        <div class="pieza rotulo r30" id="l80" style="left:390px; top:1280px; width:300px">DE 3 A<br>5 AÑOS</div>
+        <div class="pieza barcol18" id="b57" style="left:730px; top:970px; width:240px; height:280px; background:#2f8f6b"></div>
+        <div class="pieza cifra media" id="c57" style="left:700px; top:860px; width:300px; text-align:center">0 €</div>
+        <div class="pieza rotulo r30" id="l57" style="left:700px; top:1280px; width:300px">DE 6 A<br>17 AÑOS</div>
+        <div class="pieza suelo" id="suelo" style="left:80px; top:1248px; width:940px"></div>
+        <div class="pieza rotulo r36 ancho" id="rotMes" style="top:1400px">€ AL MES, POR HIJO</div>
+        <div class="pieza ancho" id="chipS" style="top:450px"><div class="chip c58">2 · INGRESOS DEL HOGAR</div></div>
+        <div class="pieza" id="fam" style="left:300px; top:560px"><div style="display:flex; gap:40px; align-items:flex-end">
+          <div data-icono="persona" data-args='["#e5383b", 280]'></div><div data-icono="persona" data-args='["#f2b705", 150]'></div></div></div>
+        <div class="pieza rotulo r44 ancho" id="rotI" style="top:960px">TOPE AL MES · UN ADULTO Y UN HIJO</div>
+        <div class="pieza cifra g200 verde ancho" id="cI" style="top:1040px">0 €</div>
+        <div class="pieza ancho" id="chipSolo" style="top:1290px"><div class="chip blanco c50">SOLO ESTE COMPLEMENTO</div></div>
+        <div class="pieza ancho" id="chipT" style="top:450px"><div class="chip c58">3 · PATRIMONIO</div></div>
+        <div class="pieza" id="casa" style="left:290px; top:560px" data-icono="edificio" data-args='["TU CASA", "#fffaf0", 500]'></div>
+        <div class="pieza ancho" id="selloNo" style="top:760px"><div class="sello s54" style="color:#e5383b; border-color:#e5383b">NO CUENTA</div></div>
+        <div class="pieza rotulo r44 ancho" id="rotP" style="top:1010px">TOPE · UN ADULTO Y UN HIJO</div>
+        <div class="pieza cifra g200 verde ancho" id="cP" style="top:1090px">0 €</div>
+        <div class="pieza" id="fam3" style="left:170px; top:560px"><div style="display:flex; gap:34px; align-items:flex-end">
+          <div data-icono="persona" data-args='["#e5383b", 250]'></div><div data-icono="persona" data-args='["#4a78c2", 250]'></div><div data-icono="persona" data-args='["#f2b705", 150]'></div><div data-icono="persona" data-args='["#2f8f6b", 130]'></div></div></div>
+        <div class="pieza ancho" id="selloSube" style="top:1000px"><div class="sello s62" style="color:#2f8f6b; border-color:#2f8f6b">LOS TOPES SUBEN</div></div>
+        <div class="pieza ancho" id="chipEj" style="top:450px"><div class="chip c44">EJEMPLO · SI EL HOGAR ENTRA</div></div>
+        <div class="pieza docg gr" id="docEj" style="left:90px; top:540px" data-icono="doc"
+          data-args='["UN ADULTO · DOS HIJOS", [["HIJO DE 2 AÑOS", "115,00 €"], ["HIJO DE 5 AÑOS", "80,50 €"]]]'></div>
+        <div class="pieza rotulo r44 ancho" id="rotMesEj" style="top:910px">AL MES, EN TOTAL</div>
+        <div class="pieza cifra g150 verde ancho" id="cMes" style="top:950px">0 €</div>
+        <div class="pieza rotulo r44 ancho" id="rotAno" style="top:1135px">AL AÑO</div>
+        <div class="pieza cifra g200 ancho" id="cAno" style="top:1180px; color:#e5383b">0 €</div>
+        <div class="pieza ancho" id="chipSol" style="top:450px"><div class="chip c58">SE PIDE EN LA WEB</div></div>
+        <div class="pieza" id="edif2" style="left:230px; top:600px" data-icono="edificio" data-args='["SEG. SOCIAL", "#fffaf0", 620]'></div>
+        <div class="pieza ancho" id="chipSol2" style="top:1010px"><div class="chip blanco c50">SOLICITUD DEL INGRESO MÍNIMO VITAL</div></div>
+        <div class="pieza ancho" id="chipSim" style="top:1150px"><div class="chip verde c64">HAY UN SIMULADOR</div></div>
+        <div class="pieza" id="famF" style="left:300px; top:500px"><div style="display:flex; gap:40px; align-items:flex-end">
+          <div data-icono="persona" data-args='["#e5383b", 280]'></div><div data-icono="persona" data-args='["#f2b705", 150]'></div></div></div>
+        <div class="pieza ancho" id="chipMad" style="top:910px"><div class="chip c64">ALGUIEN CON HIJOS</div></div>
+        <div class="pieza ancho grande" id="qBig" style="top:480px; font-size:100px; line-height:1.08; color:#1d2a44">¿CONOCÍAS<br>ESTE<br>COMPLEMENTO?</div>
+        <div class="pieza ancho" id="selloSN" style="top:940px"><div class="sello s130" style="color:#e5383b; border-color:#e5383b">SÍ O NO</div></div>
+        <div class="pieza" id="bibF" style="left:430px; top:1190px" data-dibujo="osito" data-args="[220]"></div>
+      </div>
+      <div id="gancho" class="clip" data-start="0" data-duration="67.1" data-track-index="2"></div>
+      <div id="note" class="clip" data-start="0" data-duration="67.1" data-track-index="3"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="67.1"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="67.1" data-track-index="4" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 65.885, "lines": [{"id": "l1", "s": 0.2, "e": 2.22, "words": [{"w": "Con", "s": 0.2, "e": 0.23, "key": false}, {"w": "hijos", "s": 0.23, "e": 0.53, "key": false}, {"w": "menores,", "s": 0.53, "e": 1.02, "key": false}, {"w": "esto", "s": 1.23, "e": 1.38, "key": false}, {"w": "puede", "s": 1.38, "e": 1.71, "key": false}, {"w": "tocarte.", "s": 1.71, "e": 2.22, "key": true}]}, {"id": "l2", "s": 2.89, "e": 9.12, "words": [{"w": "Complemento", "s": 2.89, "e": 3.46, "key": false}, {"w": "de", "s": 3.46, "e": 3.6, "key": false}, {"w": "ayuda", "s": 3.6, "e": 3.96, "key": false}, {"w": "para", "s": 3.96, "e": 4.2, "key": false}, {"w": "la", "s": 4.28, "e": 4.39, "key": false}, {"w": "infancia:", "s": 4.39, "e": 5.03, "key": false}, {"w": "hasta", "s": 5.03, "e": 5.48, "key": false}, {"w": "115", "s": 5.48, "e": 6.04, "key": false}, {"w": "euros", "s": 6.09, "e": 6.37, "key": false}, {"w": "al", "s": 6.42, "e": 6.55, "key": false}, {"w": "mes,", "s": 6.55, "e": 6.8, "key": false}, {"w": "por", "s": 6.8, "e": 7.14, "key": false}, {"w": "hijo.", "s": 7.14, "e": 7.524, "key": false}, {"w": "¿Entras", "s": 7.524, "e": 8.1, "key": false}, {"w": "en", "s": 8.1, "e": 8.23, "key": false}, {"w": "los", "s": 8.23, "e": 8.43, "key": false}, {"w": "límites?", "s": 8.43, "e": 9.12, "key": true}]}, {"id": "l3", "s": 9.12, "e": 13.76, "words": [{"w": "Lo", "s": 9.12, "e": 9.35, "key": false}, {"w": "da", "s": 9.35, "e": 9.42, "key": false}, {"w": "la", "s": 9.42, "e": 9.57, "key": false}, {"w": "Seguridad", "s": 9.57, "e": 10.07, "key": true}, {"w": "Social,", "s": 10.35, "e": 10.64, "key": false}, {"w": "y", "s": 10.72, "e": 10.79, "key": false}, {"w": "se", "s": 10.79, "e": 10.91, "key": false}, {"w": "puede", "s": 10.94, "e": 11.25, "key": false}, {"w": "cobrar", "s": 11.25, "e": 11.69, "key": false}, {"w": "sin", "s": 11.69, "e": 11.92, "key": false}, {"w": "cobrar", "s": 11.92, "e": 12.24, "key": false}, {"w": "el", "s": 12.24, "e": 12.35, "key": false}, {"w": "ingreso", "s": 12.35, "e": 12.73, "key": false}, {"w": "mínimo", "s": 12.73, "e": 13.06, "key": false}, {"w": "vital.", "s": 13.06, "e": 13.76, "key": false}]}, {"id": "l4", "s": 13.99, "e": 26.07, "words": [{"w": "Primero,", "s": 13.99, "e": 14.25, "key": false}, {"w": "lo", "s": 14.25, "e": 14.39, "key": false}, {"w": "que", "s": 14.39, "e": 14.6, "key": false}, {"w": "paga,", "s": 14.6, "e": 15.02, "key": false}, {"w": "según", "s": 15.02, "e": 15.37, "key": false}, {"w": "la", "s": 15.37, "e": 15.51, "key": false}, {"w": "edad.", "s": 15.51, "e": 15.84, "key": false}, {"w": "Menores", "s": 16.07, "e": 16.4, "key": true}, {"w": "de", "s": 16.4, "e": 16.56, "key": false}, {"w": "3", "s": 16.56, "e": 16.79, "key": false}, {"w": "años:", "s": 16.79, "e": 17.32, "key": false}, {"w": "115", "s": 17.32, "e": 17.97, "key": false}, {"w": "euros", "s": 18.63, "e": 18.78, "key": false}, {"w": "al", "s": 18.78, "e": 18.99, "key": false}, {"w": "mes.", "s": 18.99, "e": 19.32, "key": false}, {"w": "Entre", "s": 19.55, "e": 19.95, "key": false}, {"w": "3", "s": 19.95, "e": 20.27, "key": false}, {"w": "y", "s": 20.27, "e": 20.34, "key": false}, {"w": "seis:", "s": 20.55, "e": 20.9, "key": false}, {"w": "ochenta", "s": 20.9, "e": 21.511, "key": false}, {"w": "con", "s": 21.511, "e": 21.773, "key": false}, {"w": "cincuenta.", "s": 21.773, "e": 22.56, "key": false}, {"w": "Entre", "s": 22.79, "e": 23.07, "key": false}, {"w": "6", "s": 23.07, "e": 23.37, "key": false}, {"w": "y", "s": 23.38, "e": 23.48, "key": false}, {"w": "diecisiete:", "s": 23.48, "e": 24.18, "key": false}, {"w": "cincuenta", "s": 24.18, "e": 24.81, "key": false}, {"w": "y", "s": 24.81, "e": 24.88, "key": false}, {"w": "siete", "s": 24.88, "e": 25.23, "key": false}, {"w": "con", "s": 25.23, "e": 25.44, "key": false}, {"w": "cincuenta.", "s": 25.44, "e": 26.07, "key": false}]}, {"id": "l5", "s": 26.31, "e": 35.0, "words": [{"w": "Segundo,", "s": 26.31, "e": 26.88, "key": false}, {"w": "los", "s": 26.88, "e": 27.06, "key": false}, {"w": "ingresos", "s": 27.31, "e": 27.83, "key": true}, {"w": "del", "s": 27.83, "e": 28.07, "key": false}, {"w": "hogar.", "s": 28.07, "e": 28.6, "key": false}, {"w": "Para", "s": 28.6, "e": 28.83, "key": false}, {"w": "cobrar", "s": 28.83, "e": 29.17, "key": false}, {"w": "solo", "s": 29.17, "e": 29.4, "key": false}, {"w": "este", "s": 29.4, "e": 29.58, "key": false}, {"w": "complemento,", "s": 29.83, "e": 30.44, "key": false}, {"w": "un", "s": 30.44, "e": 30.6, "key": false}, {"w": "adulto", "s": 30.6, "e": 31.08, "key": false}, {"w": "con", "s": 31.08, "e": 31.4, "key": false}, {"w": "un", "s": 31.4, "e": 31.49, "key": false}, {"w": "hijo:", "s": 31.49, "e": 32.02, "key": false}, {"w": "hasta", "s": 32.02, "e": 32.47, "key": false}, {"w": "2.861", "s": 32.47, "e": 33.82, "key": false}, {"w": "euros", "s": 33.82, "e": 34.27, "key": false}, {"w": "al", "s": 34.27, "e": 34.44, "key": false}, {"w": "mes.", "s": 34.53, "e": 35.0, "key": false}]}, {"id": "l6", "s": 35.23, "e": 41.56, "words": [{"w": "Tercero,", "s": 35.23, "e": 35.61, "key": false}, {"w": "el", "s": 35.61, "e": 35.74, "key": false}, {"w": "patrimonio,", "s": 35.74, "e": 36.52, "key": true}, {"w": "sin", "s": 36.52, "e": 36.71, "key": false}, {"w": "la", "s": 36.71, "e": 36.83, "key": false}, {"w": "vivienda", "s": 36.84, "e": 37.24, "key": false}, {"w": "habitual:", "s": 37.82, "e": 38.03, "key": false}, {"w": "hasta", "s": 38.09, "e": 38.64, "key": false}, {"w": "55.460", "s": 38.64, "e": 40.64, "key": false}, {"w": "euros.", "s": 40.64, "e": 41.56, "key": false}]}, {"id": "l7", "s": 41.56, "e": 44.01, "words": [{"w": "Con", "s": 41.56, "e": 41.79, "key": false}, {"w": "más", "s": 41.79, "e": 41.96, "key": false}, {"w": "personas", "s": 41.96, "e": 42.47, "key": false}, {"w": "en", "s": 42.47, "e": 42.57, "key": false}, {"w": "casa,", "s": 42.79, "e": 42.94, "key": false}, {"w": "los", "s": 43.02, "e": 43.21, "key": false}, {"w": "topes", "s": 43.21, "e": 43.53, "key": true}, {"w": "suben.", "s": 43.53, "e": 44.01, "key": false}]}, {"id": "l8", "s": 44.12, "e": 52.72, "words": [{"w": "Ejemplo:", "s": 44.12, "e": 44.85, "key": true}, {"w": "un", "s": 44.85, "e": 45.01, "key": false}, {"w": "adulto", "s": 45.01, "e": 45.5, "key": false}, {"w": "con", "s": 45.5, "e": 45.73, "key": false}, {"w": "dos", "s": 45.73, "e": 45.98, "key": false}, {"w": "hijos,", "s": 45.98, "e": 46.49, "key": false}, {"w": "de", "s": 46.55, "e": 46.71, "key": false}, {"w": "2", "s": 46.92, "e": 46.95, "key": false}, {"w": "y", "s": 46.95, "e": 47.03, "key": false}, {"w": "5", "s": 47.03, "e": 47.27, "key": false}, {"w": "años.", "s": 47.27, "e": 47.92, "key": false}, {"w": "115", "s": 48.15, "e": 48.83, "key": false}, {"w": "más", "s": 48.83, "e": 48.92, "key": false}, {"w": "ochenta", "s": 49.15, "e": 49.644, "key": false}, {"w": "con", "s": 49.644, "e": 49.855, "key": false}, {"w": "cincuenta:", "s": 49.855, "e": 50.49, "key": false}, {"w": "195,50", "s": 50.75, "e": 52.05, "key": false}, {"w": "al", "s": 52.12, "e": 52.3, "key": false}, {"w": "mes.", "s": 52.3, "e": 52.72, "key": false}]}, {"id": "l9", "s": 52.8, "e": 56.72, "words": [{"w": "Son", "s": 52.8, "e": 52.9, "key": false}, {"w": "2.346", "s": 53.31, "e": 54.35, "key": false}, {"w": "euros", "s": 54.38, "e": 54.78, "key": false}, {"w": "al", "s": 54.78, "e": 54.96, "key": false}, {"w": "año,", "s": 54.96, "e": 55.22, "key": true}, {"w": "si", "s": 55.22, "e": 55.31, "key": false}, {"w": "el", "s": 55.31, "e": 55.65, "key": false}, {"w": "hogar", "s": 55.65, "e": 55.92, "key": false}, {"w": "entra.", "s": 56.05, "e": 56.72, "key": false}]}, {"id": "l10", "s": 56.72, "e": 62.18, "words": [{"w": "Se", "s": 56.72, "e": 56.9, "key": false}, {"w": "pide", "s": 56.9, "e": 57.08, "key": false}, {"w": "con", "s": 57.08, "e": 57.26, "key": false}, {"w": "la", "s": 57.26, "e": 57.38, "key": false}, {"w": "solicitud", "s": 57.38, "e": 57.72, "key": true}, {"w": "del", "s": 57.95, "e": 58.1, "key": false}, {"w": "ingreso", "s": 58.1, "e": 58.51, "key": false}, {"w": "mínimo", "s": 58.51, "e": 58.85, "key": false}, {"w": "vital,", "s": 58.85, "e": 59.34, "key": false}, {"w": "en", "s": 59.34, "e": 59.52, "key": false}, {"w": "la", "s": 59.52, "e": 59.57, "key": false}, {"w": "web", "s": 59.57, "e": 59.7, "key": false}, {"w": "de", "s": 59.77, "e": 59.84, "key": false}, {"w": "la", "s": 59.84, "e": 59.95, "key": false}, {"w": "Seguridad", "s": 59.95, "e": 60.41, "key": false}, {"w": "Social,", "s": 60.46, "e": 60.871, "key": false}, {"w": "y", "s": 60.871, "e": 60.94, "key": false}, {"w": "hay", "s": 61.03, "e": 61.16, "key": false}, {"w": "un", "s": 61.16, "e": 61.3, "key": false}, {"w": "simulador.", "s": 61.3, "e": 62.18, "key": false}]}, {"id": "l11", "s": 62.2, "e": 65.72, "words": [{"w": "Pásaselo", "s": 62.2, "e": 62.63, "key": false}, {"w": "a", "s": 62.64, "e": 62.69, "key": false}, {"w": "alguien", "s": 62.69, "e": 63.09, "key": false}, {"w": "con", "s": 63.09, "e": 63.2, "key": false}, {"w": "hijos.", "s": 63.43, "e": 63.73, "key": false}, {"w": "¿Conocías", "s": 63.73, "e": 64.21, "key": true}, {"w": "este", "s": 64.21, "e": 64.42, "key": false}, {"w": "complemento?", "s": 64.42, "e": 65.215, "key": false}, {"w": "Sí", "s": 65.215, "e": 65.36, "key": false}, {"w": "o", "s": 65.36, "e": 65.43, "key": false}, {"w": "no.", "s": 65.43, "e": 65.72, "key": false}]}]}</script>
+
+    <script id="escena" type="application/json">
+{
+ "momentos": [
+  {
+   "id": "GFIN",
+   "clave": "tocarte",
+   "fin": true,
+   "mas": 0.35
+  },
+  {
+   "id": "COMPL",
+   "clave": "complemento"
+  },
+  {
+   "id": "HIJO",
+   "clave": "hijo"
+  },
+  {
+   "id": "ENTRAS",
+   "clave": "entras"
+  },
+  {
+   "id": "LIMITES",
+   "clave": "límites"
+  },
+  {
+   "id": "SEGURIDAD",
+   "clave": "seguridad"
+  },
+  {
+   "id": "COBRAR",
+   "clave": "cobrar"
+  },
+  {
+   "id": "INGRESO",
+   "clave": "ingreso"
+  },
+  {
+   "id": "PRIMERO",
+   "clave": "primero"
+  },
+  {
+   "id": "MENORES",
+   "clave": "menores"
+  },
+  {
+   "id": "ENTRE1",
+   "clave": "entre"
+  },
+  {
+   "id": "ENTRE2",
+   "clave": "entre"
+  },
+  {
+   "id": "SEGUNDO",
+   "clave": "segundo"
+  },
+  {
+   "id": "ING2",
+   "clave": "ingresos"
+  },
+  {
+   "id": "SOLO",
+   "clave": "solo"
+  },
+  {
+   "id": "ADULTO1",
+   "clave": "adulto"
+  },
+  {
+   "id": "HASTA5",
+   "clave": "hasta"
+  },
+  {
+   "id": "TERCERO",
+   "clave": "tercero"
+  },
+  {
+   "id": "PATRI",
+   "clave": "patrimonio"
+  },
+  {
+   "id": "VIVIENDA",
+   "clave": "vivienda"
+  },
+  {
+   "id": "HASTA6",
+   "clave": "hasta"
+  },
+  {
+   "id": "TOPES",
+   "clave": "topes"
+  },
+  {
+   "id": "EJEMPLO",
+   "clave": "ejemplo"
+  },
+  {
+   "id": "ADULTO2",
+   "clave": "adulto"
+  },
+  {
+   "id": "HIJOS2",
+   "clave": "hijos"
+  },
+  {
+   "id": "MAS8",
+   "clave": "más"
+  },
+  {
+   "id": "MES8",
+   "clave": "mes"
+  },
+  {
+   "id": "ANO",
+   "clave": "año"
+  },
+  {
+   "id": "ENTRA",
+   "clave": "entra"
+  },
+  {
+   "id": "SOLICITUD",
+   "clave": "solicitud"
+  },
+  {
+   "id": "WEB",
+   "clave": "web"
+  },
+  {
+   "id": "SIMULADOR",
+   "clave": "simulador"
+  },
+  {
+   "id": "PASASELO",
+   "clave": "pásaselo"
+  },
+  {
+   "id": "HIJOSF",
+   "clave": "hijos"
+  },
+  {
+   "id": "CONOCIAS",
+   "clave": "conocías"
+  },
+  {
+   "id": "SI",
+   "clave": "sí"
+  }
+ ],
+ "gancho": {
+  "texto": "HASTA 115 € AL MES",
+  "clave": "al mes",
+  "tam": 130,
+  "top": 480,
+  "hasta": "GFIN"
+ },
+ "arranque": {
+  "zoom": 1.06,
+  "centro": [
+   540,
+   900
+  ]
+ },
+ "lluvia": [
+  {
+   "icono": "moneda",
+   "args": [
+    "€",
+    96
+   ],
+   "n": 9,
+   "desde": 0,
+   "hasta": "ENTRAS",
+   "vel": 420,
+   "opacidad": 0.4
+  }
+ ],
+ "piezas": [
+  {
+   "id": "fact",
+   "desde": 0,
+   "hasta": "ENTRAS",
+   "viaja": {
+    "s": 1.06,
+    "dura": 1.0
+   }
+  },
+  {
+   "id": "bib",
+   "desde": 0,
+   "hasta": "ENTRAS",
+   "viaja": {
+    "s": 1.2,
+    "y": -30,
+    "r": -9,
+    "dura": 1.0
+   },
+   "mueve": {
+    "tipo": "balancea",
+    "fuerza": 6,
+    "ritmo": 3
+   }
+  },
+  {
+   "id": "chipDed",
+   "desde": "COMPL",
+   "hasta": "ENTRAS",
+   "entra": "baja"
+  },
+  {
+   "id": "c1",
+   "desde": "ENTRAS",
+   "hasta": "SEGURIDAD",
+   "entra": "escala"
+  },
+  {
+   "id": "c2",
+   "desde": "LIMITES",
+   "hasta": "SEGURIDAD",
+   "entra": "escala"
+  },
+  {
+   "id": "c3",
+   "desde": "LIMITES",
+   "hasta": "SEGURIDAD",
+   "entra": "escala"
+  },
+  {
+   "id": "chipQ",
+   "desde": "LIMITES",
+   "hasta": "SEGURIDAD",
+   "entra": "sello",
+   "mueve": {
+    "tipo": "late",
+    "fuerza": 4,
+    "ritmo": 5
+   }
+  },
+  {
+   "id": "edif",
+   "desde": "SEGURIDAD",
+   "hasta": "PRIMERO",
+   "entra": "escala"
+  },
+  {
+   "id": "chipCobrar",
+   "desde": "COBRAR",
+   "hasta": "PRIMERO",
+   "entra": "sello"
+  },
+  {
+   "id": "chipIMV",
+   "desde": "INGRESO",
+   "hasta": "PRIMERO",
+   "entra": "sube"
+  },
+  {
+   "id": "chipP",
+   "desde": "PRIMERO",
+   "hasta": "SEGUNDO",
+   "entra": "baja"
+  },
+  {
+   "id": "suelo",
+   "desde": "PRIMERO",
+   "hasta": "SEGUNDO",
+   "entra": "izq"
+  },
+  {
+   "id": "rotMes",
+   "desde": "PRIMERO",
+   "hasta": "SEGUNDO",
+   "entra": "sube"
+  },
+  {
+   "id": "b115",
+   "desde": "MENORES",
+   "hasta": "SEGUNDO",
+   "entra": "crece"
+  },
+  {
+   "id": "c115",
+   "desde": "MENORES",
+   "hasta": "SEGUNDO",
+   "entra": "escala"
+  },
+  {
+   "id": "l115",
+   "desde": "MENORES",
+   "hasta": "SEGUNDO",
+   "entra": "sube"
+  },
+  {
+   "id": "b80",
+   "desde": "ENTRE1",
+   "hasta": "SEGUNDO",
+   "entra": "crece"
+  },
+  {
+   "id": "c80",
+   "desde": "ENTRE1",
+   "hasta": "SEGUNDO",
+   "entra": "escala"
+  },
+  {
+   "id": "l80",
+   "desde": "ENTRE1",
+   "hasta": "SEGUNDO",
+   "entra": "sube"
+  },
+  {
+   "id": "b57",
+   "desde": "ENTRE2",
+   "hasta": "SEGUNDO",
+   "entra": "crece"
+  },
+  {
+   "id": "c57",
+   "desde": "ENTRE2",
+   "hasta": "SEGUNDO",
+   "entra": "escala"
+  },
+  {
+   "id": "l57",
+   "desde": "ENTRE2",
+   "hasta": "SEGUNDO",
+   "entra": "sube"
+  },
+  {
+   "id": "chipS",
+   "desde": "SEGUNDO",
+   "hasta": "TERCERO",
+   "entra": "baja"
+  },
+  {
+   "id": "fam",
+   "desde": "SEGUNDO",
+   "hasta": "TERCERO",
+   "entra": "izq"
+  },
+  {
+   "id": "rotI",
+   "desde": "ADULTO1",
+   "hasta": "TERCERO",
+   "entra": "baja"
+  },
+  {
+   "id": "cI",
+   "desde": "HASTA5",
+   "hasta": "TERCERO",
+   "entra": "escala"
+  },
+  {
+   "id": "chipSolo",
+   "desde": "SOLO",
+   "hasta": "TERCERO",
+   "entra": "sello"
+  },
+  {
+   "id": "chipT",
+   "desde": "TERCERO",
+   "hasta": "TOPES",
+   "entra": "baja"
+  },
+  {
+   "id": "casa",
+   "desde": "PATRI",
+   "hasta": "TOPES",
+   "entra": "escala"
+  },
+  {
+   "id": "selloNo",
+   "desde": "VIVIENDA",
+   "hasta": "TOPES",
+   "entra": "sello"
+  },
+  {
+   "id": "rotP",
+   "desde": "HASTA6",
+   "hasta": "TOPES",
+   "entra": "baja"
+  },
+  {
+   "id": "cP",
+   "desde": "HASTA6",
+   "hasta": "TOPES",
+   "entra": "escala"
+  },
+  {
+   "id": "fam3",
+   "desde": "TOPES",
+   "hasta": "EJEMPLO",
+   "entra": "izq"
+  },
+  {
+   "id": "selloSube",
+   "desde": "TOPES",
+   "hasta": "EJEMPLO",
+   "entra": "sello"
+  },
+  {
+   "id": "chipEj",
+   "desde": "EJEMPLO",
+   "hasta": "SOLICITUD",
+   "entra": "sello"
+  },
+  {
+   "id": "docEj",
+   "desde": "ADULTO2",
+   "hasta": "SOLICITUD",
+   "entra": "sube"
+  },
+  {
+   "id": "rotMesEj",
+   "desde": "MAS8",
+   "hasta": "SOLICITUD",
+   "entra": "baja"
+  },
+  {
+   "id": "cMes",
+   "desde": "MAS8",
+   "hasta": "SOLICITUD",
+   "entra": "escala"
+  },
+  {
+   "id": "rotAno",
+   "desde": "ANO",
+   "hasta": "SOLICITUD",
+   "entra": "baja"
+  },
+  {
+   "id": "cAno",
+   "desde": "ANO",
+   "hasta": "SOLICITUD",
+   "entra": "escala"
+  },
+  {
+   "id": "chipSol",
+   "desde": "SOLICITUD",
+   "hasta": "PASASELO",
+   "entra": "baja"
+  },
+  {
+   "id": "edif2",
+   "desde": "SOLICITUD",
+   "hasta": "PASASELO",
+   "entra": "escala"
+  },
+  {
+   "id": "chipSol2",
+   "desde": "SOLICITUD",
+   "hasta": "PASASELO",
+   "entra": "sube"
+  },
+  {
+   "id": "chipSim",
+   "desde": "SIMULADOR",
+   "hasta": "PASASELO",
+   "entra": "sello"
+  },
+  {
+   "id": "famF",
+   "desde": "PASASELO",
+   "hasta": "CONOCIAS",
+   "entra": "izq"
+  },
+  {
+   "id": "chipMad",
+   "desde": "HIJOSF",
+   "hasta": "CONOCIAS",
+   "entra": "sello"
+  },
+  {
+   "id": "qBig",
+   "desde": "CONOCIAS",
+   "entra": "escala"
+  },
+  {
+   "id": "selloSN",
+   "desde": "SI",
+   "entra": "sello",
+   "mueve": {
+    "tipo": "late",
+    "fuerza": 4,
+    "ritmo": 5
+   }
+  },
+  {
+   "id": "bibF",
+   "desde": "CONOCIAS",
+   "entra": "sube",
+   "mueve": {
+    "tipo": "balancea",
+    "fuerza": 6,
+    "ritmo": 3
+   }
+  }
+ ],
+ "cifras": [
+  {
+   "id": "c115",
+   "desde": "MENORES",
+   "a": 115,
+   "formato": "euros",
+   "dura": 0.7,
+   "curva": "sale"
+  },
+  {
+   "id": "c80",
+   "desde": "ENTRE1",
+   "a": 80.5,
+   "formato": "euros",
+   "dec": 2,
+   "dura": 0.7,
+   "curva": "sale"
+  },
+  {
+   "id": "c57",
+   "desde": "ENTRE2",
+   "a": 57.5,
+   "formato": "euros",
+   "dec": 2,
+   "dura": 0.7,
+   "curva": "sale"
+  },
+  {
+   "id": "cI",
+   "desde": "HASTA5",
+   "a": 2861,
+   "formato": "euros",
+   "dura": 1.1,
+   "curva": "sale"
+  },
+  {
+   "id": "cP",
+   "desde": "HASTA6",
+   "a": 55460,
+   "formato": "euros",
+   "dura": 1.1,
+   "curva": "sale"
+  },
+  {
+   "id": "cMes",
+   "desde": "MAS8",
+   "a": 195.5,
+   "formato": "euros",
+   "dec": 2,
+   "dura": 0.9,
+   "curva": "sale"
+  },
+  {
+   "id": "cAno",
+   "desde": "ANO",
+   "a": 2346,
+   "formato": "euros",
+   "dura": 0.9,
+   "curva": "sale"
+  }
+ ],
+ "notas": [
+  {
+   "texto": "Importes de 2026 por menor y mes, según el Ministerio de Inclusión. Los topes dependen de quién viva en casa",
+   "desde": 1.2
+  },
+  {
+   "texto": "",
+   "desde": "ENTRAS"
+  },
+  {
+   "texto": "Seguridad Social: el complemento forma parte del IMV, pero se puede conceder de forma independiente",
+   "desde": "SEGURIDAD"
+  },
+  {
+   "texto": "Ministerio de Inclusión (CAPI), importes de 2026. Edad cumplida el 1 de enero (Ley 19/2021)",
+   "desde": "PRIMERO"
+  },
+  {
+   "texto": "Tope de ingresos para cobrar solo el complemento, un adulto y un menor: 2.861,04 €/mes (Inclusión)",
+   "desde": "SEGUNDO"
+  },
+  {
+   "texto": "Patrimonio neto sin la vivienda habitual, un adulto y un menor: 55.460 € (Inclusión)",
+   "desde": "TERCERO"
+  },
+  {
+   "texto": "Ministerio de Inclusión: los topes cambian según el número de adultos y de menores",
+   "desde": "TOPES"
+  },
+  {
+   "texto": "Cálculo propio: 115 € + 80,50 € = 195,50 € al mes; × 12 = 2.346 € al año. Hogar con un adulto y dos menores",
+   "desde": "EJEMPLO"
+  },
+  {
+   "texto": "Es incompatible con la asignación por hijo a cargo sin discapacidad (Ley 19/2021, disp. adicional 10.ª)",
+   "desde": "SOLICITUD"
+  },
+  {
+   "texto": "",
+   "desde": "CONOCIAS"
+  }
+ ],
+ "fondo": "claro",
+ "sonidos": [
+  {
+   "tipo": "desliza",
+   "en": 0.0
+  },
+  {
+   "tipo": "metal",
+   "en": 0.12
+  },
+  {
+   "tipo": "toque",
+   "en": 1.2
+  },
+  {
+   "tipo": "pop",
+   "en": "COMPL"
+  },
+  {
+   "tipo": "pop",
+   "en": "ENTRAS"
+  },
+  {
+   "tipo": "pop",
+   "en": "LIMITES"
+  },
+  {
+   "tipo": "pop",
+   "en": "SEGURIDAD"
+  },
+  {
+   "tipo": "pop",
+   "en": "COBRAR"
+  },
+  {
+   "tipo": "pop",
+   "en": "INGRESO"
+  },
+  {
+   "tipo": "pop",
+   "en": "PRIMERO"
+  },
+  {
+   "tipo": "toque",
+   "en": "MENORES"
+  },
+  {
+   "tipo": "toque",
+   "en": "ENTRE1"
+  },
+  {
+   "tipo": "toque",
+   "en": "ENTRE2"
+  },
+  {
+   "tipo": "desliza",
+   "en": "SEGUNDO"
+  },
+  {
+   "tipo": "toque",
+   "en": "HASTA5"
+  },
+  {
+   "tipo": "pop",
+   "en": "SOLO"
+  },
+  {
+   "tipo": "desliza",
+   "en": "TERCERO"
+  },
+  {
+   "tipo": "pop",
+   "en": "PATRI"
+  },
+  {
+   "tipo": "error",
+   "en": "VIVIENDA"
+  },
+  {
+   "tipo": "toque",
+   "en": "HASTA6"
+  },
+  {
+   "tipo": "desliza",
+   "en": "TOPES"
+  },
+  {
+   "tipo": "pop",
+   "en": "EJEMPLO"
+  },
+  {
+   "tipo": "desliza",
+   "en": "ADULTO2"
+  },
+  {
+   "tipo": "toque",
+   "en": "MAS8"
+  },
+  {
+   "tipo": "toque",
+   "en": "ANO"
+  },
+  {
+   "tipo": "pop",
+   "en": "SOLICITUD"
+  },
+  {
+   "tipo": "pop",
+   "en": "SIMULADOR"
+  },
+  {
+   "tipo": "desliza",
+   "en": "PASASELO"
+  },
+  {
+   "tipo": "pop",
+   "en": "HIJOSF"
+  },
+  {
+   "tipo": "pop",
+   "en": "CONOCIAS"
+  },
+  {
+   "tipo": "pagado",
+   "en": "SI"
+  },
+  {
+   "tipo": "brillo",
+   "en": "ANO"
+  },
+  {
+   "tipo": "brillo",
+   "en": "CONOCIAS",
+   "mas": 0.2
+  }
+ ]
+}
+    </script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 67.1 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import { crearDinero, COLOR } from "./comun/dinero.js";
+      const $ = (id) => document.getElementById(id);
+      const K = COLOR;
+
+      // ---------- drawings this video needs, in the account's flat style (navy outline, solid offset shadow) ----------
+      const DIBUJOS = {
+        // a light bulb: glass, screw base and three rays
+        bombilla: (w = 240) => `<svg width="${w}" height="${Math.round(w * 1.2)}" viewBox="0 0 200 240">
+          <g transform="translate(10 10)" fill="${K.tinta}"><path d="M100 14 C52 14 22 50 22 92 C22 122 40 140 54 158 C62 168 64 176 64 186 H136 C136 176 138 168 146 158 C160 140 178 122 178 92 C178 50 148 14 100 14 Z"/><rect x="62" y="190" width="76" height="34" rx="10"/></g>
+          <path d="M100 14 C52 14 22 50 22 92 C22 122 40 140 54 158 C62 168 64 176 64 186 H136 C136 176 138 168 146 158 C160 140 178 122 178 92 C178 50 148 14 100 14 Z" fill="${K.oro}" stroke="${K.tinta}" stroke-width="9" stroke-linejoin="round"/>
+          <rect x="62" y="190" width="76" height="34" rx="10" fill="${K.blanco}" stroke="${K.tinta}" stroke-width="9"/>
+          <path d="M80 100 L100 130 L120 100" fill="none" stroke="${K.tinta}" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="100" y1="130" x2="100" y2="186" stroke="${K.tinta}" stroke-width="9" stroke-linecap="round"/></svg>`,
+        // a teddy bear: ears, head, snout, eyes, body
+        osito: (w = 240) => `<svg width="${w}" height="${Math.round(w * 1.1)}" viewBox="0 0 200 220">
+          <g transform="translate(10 10)" fill="${K.tinta}"><circle cx="42" cy="34" r="30"/><circle cx="148" cy="34" r="30"/><circle cx="95" cy="70" r="58"/><ellipse cx="95" cy="168" rx="52" ry="42"/></g>
+          <ellipse cx="95" cy="168" rx="52" ry="42" fill="${K.oro}" stroke="${K.tinta}" stroke-width="9"/>
+          <ellipse cx="95" cy="176" rx="28" ry="24" fill="${K.blanco}" stroke="${K.tinta}" stroke-width="7"/>
+          <circle cx="42" cy="34" r="30" fill="${K.oro}" stroke="${K.tinta}" stroke-width="9"/><circle cx="148" cy="34" r="30" fill="${K.oro}" stroke="${K.tinta}" stroke-width="9"/>
+          <circle cx="42" cy="34" r="13" fill="${K.rojo}"/><circle cx="148" cy="34" r="13" fill="${K.rojo}"/>
+          <circle cx="95" cy="70" r="58" fill="${K.oro}" stroke="${K.tinta}" stroke-width="9"/>
+          <ellipse cx="95" cy="88" rx="26" ry="19" fill="${K.blanco}" stroke="${K.tinta}" stroke-width="7"/>
+          <ellipse cx="95" cy="82" rx="9" ry="6" fill="${K.tinta}"/>
+          <circle cx="72" cy="58" r="7" fill="${K.tinta}"/><circle cx="118" cy="58" r="7" fill="${K.tinta}"/></svg>`,
+        // a wall calendar: red header, DIC 2026 and a big 31
+        calendario: (w = 640) => { const h = Math.round(w * 0.9); return `<div style="width:${w}px;height:${h}px;border:9px solid ${K.tinta};border-radius:26px;background:${K.blanco};box-shadow:14px 14px 0 ${K.tinta};overflow:hidden;text-align:center;color:${K.tinta}">
+          <div style="background:${K.rojo};height:${Math.round(h * 0.26)}px;border-bottom:9px solid ${K.tinta};color:#fff;font:800 ${Math.round(w * 0.085)}px/${Math.round(h * 0.26)}px Inter;letter-spacing:.14em">DICIEMBRE 2026</div>
+          <div style="font-family:'Archivo Black';font-size:${Math.round(w * 0.46)}px;line-height:${Math.round(h * 0.74)}px">31</div></div>`; },
+      };
+      for (const el of document.querySelectorAll("[data-dibujo]")) el.innerHTML = DIBUJOS[el.dataset.dibujo](...JSON.parse(el.dataset.args || "[]"));
+
+      // ---------- the engine ----------
+      const C = crearDinero();
+      const { T } = C;
+      const filaClase = (id, clase, on) => { const b = $(id); if (b) b.parentElement.classList.toggle(clase, on); };
+
+      function renderAt(t) {
+        filaClase("filaA", "marca", t >= T.COMPL && t < T.ENTRAS);
+        filaClase("filaEj", "marca", t >= T.MES8 && t < T.ANO);
+        C.pintar(t);
+      }
+
+      C.arrancar(renderAt);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,932 @@
+[
+  {
+    "text": "¿Tienes",
+    "start": 0.01,
+    "end": 0.41,
+    "id": "w0"
+  },
+  {
+    "text": "bono",
+    "start": 0.41,
+    "end": 0.62,
+    "id": "w1"
+  },
+  {
+    "text": "social?",
+    "start": 0.66,
+    "end": 1.2,
+    "id": "w2"
+  },
+  {
+    "text": "Esto",
+    "start": 1.26,
+    "end": 1.43,
+    "id": "w3"
+  },
+  {
+    "text": "puede",
+    "start": 1.43,
+    "end": 1.66,
+    "id": "w4"
+  },
+  {
+    "text": "tocarte.",
+    "start": 1.66,
+    "end": 2.22,
+    "id": "w5"
+  },
+  {
+    "text": "Bono",
+    "start": 2.4,
+    "end": 2.57,
+    "id": "w6"
+  },
+  {
+    "text": "social",
+    "start": 2.58,
+    "end": 3.03,
+    "id": "w7"
+  },
+  {
+    "text": "térmico.",
+    "start": 3.31,
+    "end": 3.92,
+    "id": "w8"
+  },
+  {
+    "text": "Hasta",
+    "start": 3.94,
+    "end": 4.09,
+    "id": "w9"
+  },
+  {
+    "text": "unos",
+    "start": 4.47,
+    "end": 4.57,
+    "id": "w10"
+  },
+  {
+    "text": "400€",
+    "start": 4.57,
+    "end": 5.24,
+    "id": "w11"
+  },
+  {
+    "text": "al",
+    "start": 5.25,
+    "end": 5.37,
+    "id": "w12"
+  },
+  {
+    "text": "año",
+    "start": 5.37,
+    "end": 5.62,
+    "id": "w13"
+  },
+  {
+    "text": "para",
+    "start": 5.62,
+    "end": 5.86,
+    "id": "w14"
+  },
+  {
+    "text": "calefacción,",
+    "start": 5.86,
+    "end": 6.58,
+    "id": "w15"
+  },
+  {
+    "text": "agua",
+    "start": 6.71,
+    "end": 6.83,
+    "id": "w16"
+  },
+  {
+    "text": "caliente",
+    "start": 6.87,
+    "end": 7.32,
+    "id": "w17"
+  },
+  {
+    "text": "y",
+    "start": 7.32,
+    "end": 7.38,
+    "id": "w18"
+  },
+  {
+    "text": "cocina.¿De",
+    "start": 7.38,
+    "end": 8.7,
+    "id": "w19"
+  },
+  {
+    "text": "qué",
+    "start": 8.7,
+    "end": 8.87,
+    "id": "w20"
+  },
+  {
+    "text": "depende?",
+    "start": 8.88,
+    "end": 9.34,
+    "id": "w21"
+  },
+  {
+    "text": "Primero,",
+    "start": 9.62,
+    "end": 10.2,
+    "id": "w22"
+  },
+  {
+    "text": "el",
+    "start": 10.2,
+    "end": 10.34,
+    "id": "w23"
+  },
+  {
+    "text": "papel.",
+    "start": 10.35,
+    "end": 10.98,
+    "id": "w24"
+  },
+  {
+    "text": "Real",
+    "start": 10.98,
+    "end": 11.22,
+    "id": "w25"
+  },
+  {
+    "text": "decreto",
+    "start": 11.3,
+    "end": 11.67,
+    "id": "w26"
+  },
+  {
+    "text": "ley",
+    "start": 11.67,
+    "end": 11.8,
+    "id": "w27"
+  },
+  {
+    "text": "15",
+    "start": 11.85,
+    "end": 12.21,
+    "id": "w28"
+  },
+  {
+    "text": "de",
+    "start": 12.21,
+    "end": 12.37,
+    "id": "w29"
+  },
+  {
+    "text": "2018,",
+    "start": 12.37,
+    "end": 13.24,
+    "id": "w30"
+  },
+  {
+    "text": "artículo",
+    "start": 13.24,
+    "end": 13.79,
+    "id": "w31"
+  },
+  {
+    "text": "5.",
+    "start": 13.82,
+    "end": 14.55,
+    "id": "w32"
+  },
+  {
+    "text": "Una",
+    "start": 14.55,
+    "end": 14.8,
+    "id": "w33"
+  },
+  {
+    "text": "ayuda",
+    "start": 14.8,
+    "end": 14.95,
+    "id": "w34"
+  },
+  {
+    "text": "contra",
+    "start": 14.95,
+    "end": 15.34,
+    "id": "w35"
+  },
+  {
+    "text": "la",
+    "start": 15.34,
+    "end": 15.43,
+    "id": "w36"
+  },
+  {
+    "text": "pobreza",
+    "start": 15.72,
+    "end": 15.93,
+    "id": "w37"
+  },
+  {
+    "text": "energética.¿Quién",
+    "start": 15.93,
+    "end": 17.19,
+    "id": "w38"
+  },
+  {
+    "text": "la",
+    "start": 17.27,
+    "end": 17.32,
+    "id": "w39"
+  },
+  {
+    "text": "recibe?¿Quién",
+    "start": 17.4,
+    "end": 18.18,
+    "id": "w40"
+  },
+  {
+    "text": "tenga",
+    "start": 18.18,
+    "end": 18.33,
+    "id": "w41"
+  },
+  {
+    "text": "el",
+    "start": 18.33,
+    "end": 18.47,
+    "id": "w42"
+  },
+  {
+    "text": "bono",
+    "start": 18.47,
+    "end": 18.58,
+    "id": "w43"
+  },
+  {
+    "text": "social",
+    "start": 18.65,
+    "end": 18.92,
+    "id": "w44"
+  },
+  {
+    "text": "eléctrico",
+    "start": 19.04,
+    "end": 19.46,
+    "id": "w45"
+  },
+  {
+    "text": "a",
+    "start": 19.51,
+    "end": 19.52,
+    "id": "w46"
+  },
+  {
+    "text": "31",
+    "start": 19.52,
+    "end": 19.74,
+    "id": "w47"
+  },
+  {
+    "text": "de",
+    "start": 20.01,
+    "end": 20.03,
+    "id": "w48"
+  },
+  {
+    "text": "diciembre",
+    "start": 20.03,
+    "end": 20.6,
+    "id": "w49"
+  },
+  {
+    "text": "del",
+    "start": 20.6,
+    "end": 20.76,
+    "id": "w50"
+  },
+  {
+    "text": "año",
+    "start": 20.76,
+    "end": 20.82,
+    "id": "w51"
+  },
+  {
+    "text": "anterior?",
+    "start": 21.17,
+    "end": 21.62,
+    "id": "w52"
+  },
+  {
+    "text": "No",
+    "start": 21.7,
+    "end": 21.8,
+    "id": "w53"
+  },
+  {
+    "text": "se",
+    "start": 21.8,
+    "end": 21.86,
+    "id": "w54"
+  },
+  {
+    "text": "pide",
+    "start": 21.96,
+    "end": 22.17,
+    "id": "w55"
+  },
+  {
+    "text": "aparte.",
+    "start": 22.17,
+    "end": 22.56,
+    "id": "w56"
+  },
+  {
+    "text": "Llega",
+    "start": 22.77,
+    "end": 23.04,
+    "id": "w57"
+  },
+  {
+    "text": "sin",
+    "start": 23.04,
+    "end": 23.23,
+    "id": "w58"
+  },
+  {
+    "text": "solicitud,",
+    "start": 23.23,
+    "end": 23.92,
+    "id": "w59"
+  },
+  {
+    "text": "en",
+    "start": 23.92,
+    "end": 24.19,
+    "id": "w60"
+  },
+  {
+    "text": "un",
+    "start": 24.19,
+    "end": 24.38,
+    "id": "w61"
+  },
+  {
+    "text": "pago",
+    "start": 24.38,
+    "end": 24.66,
+    "id": "w62"
+  },
+  {
+    "text": "único",
+    "start": 24.66,
+    "end": 25.01,
+    "id": "w63"
+  },
+  {
+    "text": "al",
+    "start": 25.01,
+    "end": 25.3,
+    "id": "w64"
+  },
+  {
+    "text": "año.",
+    "start": 25.3,
+    "end": 25.66,
+    "id": "w65"
+  },
+  {
+    "text": "Depende",
+    "start": 25.66,
+    "end": 26.05,
+    "id": "w66"
+  },
+  {
+    "text": "de",
+    "start": 26.05,
+    "end": 26.45,
+    "id": "w67"
+  },
+  {
+    "text": "dos",
+    "start": 26.45,
+    "end": 26.58,
+    "id": "w68"
+  },
+  {
+    "text": "cosas.",
+    "start": 26.58,
+    "end": 27.15,
+    "id": "w69"
+  },
+  {
+    "text": "Una,",
+    "start": 27.23,
+    "end": 27.58,
+    "id": "w70"
+  },
+  {
+    "text": "la",
+    "start": 27.58,
+    "end": 27.65,
+    "id": "w71"
+  },
+  {
+    "text": "zona",
+    "start": 27.77,
+    "end": 27.84,
+    "id": "w72"
+  },
+  {
+    "text": "climática,",
+    "start": 28.05,
+    "end": 28.88,
+    "id": "w73"
+  },
+  {
+    "text": "de",
+    "start": 28.89,
+    "end": 29.04,
+    "id": "w74"
+  },
+  {
+    "text": "la",
+    "start": 29.04,
+    "end": 29.19,
+    "id": "w75"
+  },
+  {
+    "text": "alfa",
+    "start": 29.19,
+    "end": 29.47,
+    "id": "w76"
+  },
+  {
+    "text": "a",
+    "start": 29.5,
+    "end": 29.57,
+    "id": "w77"
+  },
+  {
+    "text": "la",
+    "start": 29.57,
+    "end": 29.92,
+    "id": "w78"
+  },
+  {
+    "text": "e,",
+    "start": 29.92,
+    "end": 30.39,
+    "id": "w79"
+  },
+  {
+    "text": "cuanto",
+    "start": 30.58,
+    "end": 30.78,
+    "id": "w80"
+  },
+  {
+    "text": "más",
+    "start": 30.78,
+    "end": 30.94,
+    "id": "w81"
+  },
+  {
+    "text": "frío,",
+    "start": 30.99,
+    "end": 31.22,
+    "id": "w82"
+  },
+  {
+    "text": "más",
+    "start": 31.49,
+    "end": 31.52,
+    "id": "w83"
+  },
+  {
+    "text": "ayuda.",
+    "start": 31.52,
+    "end": 32.08,
+    "id": "w84"
+  },
+  {
+    "text": "Dos,",
+    "start": 32.08,
+    "end": 32.5,
+    "id": "w85"
+  },
+  {
+    "text": "el",
+    "start": 32.65,
+    "end": 32.67,
+    "id": "w86"
+  },
+  {
+    "text": "grado",
+    "start": 32.67,
+    "end": 33.09,
+    "id": "w87"
+  },
+  {
+    "text": "de",
+    "start": 33.09,
+    "end": 33.26,
+    "id": "w88"
+  },
+  {
+    "text": "vulnerabilidad.",
+    "start": 33.26,
+    "end": 34.72,
+    "id": "w89"
+  },
+  {
+    "text": "El",
+    "start": 34.72,
+    "end": 34.76,
+    "id": "w90"
+  },
+  {
+    "text": "vulnerable",
+    "start": 34.89,
+    "end": 35.24,
+    "id": "w91"
+  },
+  {
+    "text": "severo",
+    "start": 35.42,
+    "end": 35.76,
+    "id": "w92"
+  },
+  {
+    "text": "cobra",
+    "start": 35.76,
+    "end": 36.05,
+    "id": "w93"
+  },
+  {
+    "text": "un",
+    "start": 36.33,
+    "end": 36.37,
+    "id": "w94"
+  },
+  {
+    "text": "60%",
+    "start": 36.37,
+    "end": 36.97,
+    "id": "w95"
+  },
+  {
+    "text": "más.",
+    "start": 36.97,
+    "end": 37.5,
+    "id": "w96"
+  },
+  {
+    "text": "Hay",
+    "start": 37.5,
+    "end": 37.76,
+    "id": "w97"
+  },
+  {
+    "text": "suelo.",
+    "start": 37.76,
+    "end": 38.44,
+    "id": "w98"
+  },
+  {
+    "text": "Desde",
+    "start": 38.44,
+    "end": 38.69,
+    "id": "w99"
+  },
+  {
+    "text": "marzo",
+    "start": 39.09,
+    "end": 39.32,
+    "id": "w100"
+  },
+  {
+    "text": "de",
+    "start": 39.32,
+    "end": 39.49,
+    "id": "w101"
+  },
+  {
+    "text": "2026,",
+    "start": 39.49,
+    "end": 40.72,
+    "id": "w102"
+  },
+  {
+    "text": "mínimo",
+    "start": 40.72,
+    "end": 41.24,
+    "id": "w103"
+  },
+  {
+    "text": "50€.",
+    "start": 41.34,
+    "end": 42.28,
+    "id": "w104"
+  },
+  {
+    "text": "Ejemplo",
+    "start": 42.28,
+    "end": 42.38,
+    "id": "w105"
+  },
+  {
+    "text": "con",
+    "start": 42.38,
+    "end": 42.46,
+    "id": "w106"
+  },
+  {
+    "text": "la",
+    "start": 42.46,
+    "end": 42.47,
+    "id": "w107"
+  },
+  {
+    "text": "tabla",
+    "start": 42.7,
+    "end": 42.97,
+    "id": "w108"
+  },
+  {
+    "text": "de",
+    "start": 42.97,
+    "end": 43.14,
+    "id": "w109"
+  },
+  {
+    "text": "Aragón",
+    "start": 43.18,
+    "end": 43.69,
+    "id": "w110"
+  },
+  {
+    "text": "para",
+    "start": 43.69,
+    "end": 44.05,
+    "id": "w111"
+  },
+  {
+    "text": "2026.",
+    "start": 44.05,
+    "end": 45.43,
+    "id": "w112"
+  },
+  {
+    "text": "Zona",
+    "start": 45.43,
+    "end": 45.78,
+    "id": "w113"
+  },
+  {
+    "text": "de",
+    "start": 45.78,
+    "end": 45.97,
+    "id": "w114"
+  },
+  {
+    "text": "vulnerable,",
+    "start": 46.37,
+    "end": 47.08,
+    "id": "w115"
+  },
+  {
+    "text": "unos",
+    "start": 47.08,
+    "end": 47.45,
+    "id": "w116"
+  },
+  {
+    "text": "212€.",
+    "start": 47.45,
+    "end": 48.65,
+    "id": "w117"
+  },
+  {
+    "text": "Vulnerable",
+    "start": 48.8,
+    "end": 49.06,
+    "id": "w118"
+  },
+  {
+    "text": "severo,",
+    "start": 49.19,
+    "end": 49.43,
+    "id": "w119"
+  },
+  {
+    "text": "misma",
+    "start": 49.49,
+    "end": 49.68,
+    "id": "w120"
+  },
+  {
+    "text": "zona,",
+    "start": 49.68,
+    "end": 50.07,
+    "id": "w121"
+  },
+  {
+    "text": "unos",
+    "start": 50.3,
+    "end": 50.5,
+    "id": "w122"
+  },
+  {
+    "text": "340€.",
+    "start": 50.5,
+    "end": 51.73,
+    "id": "w123"
+  },
+  {
+    "text": "En",
+    "start": 51.73,
+    "end": 51.87,
+    "id": "w124"
+  },
+  {
+    "text": "la",
+    "start": 51.9,
+    "end": 51.99,
+    "id": "w125"
+  },
+  {
+    "text": "zona",
+    "start": 52.37,
+    "end": 52.49,
+    "id": "w126"
+  },
+  {
+    "text": "E,",
+    "start": 52.49,
+    "end": 52.69,
+    "id": "w127"
+  },
+  {
+    "text": "la",
+    "start": 52.77,
+    "end": 52.96,
+    "id": "w128"
+  },
+  {
+    "text": "más",
+    "start": 52.96,
+    "end": 53.25,
+    "id": "w129"
+  },
+  {
+    "text": "fría,",
+    "start": 53.25,
+    "end": 53.82,
+    "id": "w130"
+  },
+  {
+    "text": "hasta",
+    "start": 53.97,
+    "end": 54.3,
+    "id": "w131"
+  },
+  {
+    "text": "400€.",
+    "start": 54.3,
+    "end": 55.64,
+    "id": "w132"
+  },
+  {
+    "text": "Las",
+    "start": 55.64,
+    "end": 55.74,
+    "id": "w133"
+  },
+  {
+    "text": "comunidades",
+    "start": 55.79,
+    "end": 56.15,
+    "id": "w134"
+  },
+  {
+    "text": "autónomas",
+    "start": 56.21,
+    "end": 56.6,
+    "id": "w135"
+  },
+  {
+    "text": "pagan",
+    "start": 56.6,
+    "end": 56.92,
+    "id": "w136"
+  },
+  {
+    "text": "la",
+    "start": 56.92,
+    "end": 57.1,
+    "id": "w137"
+  },
+  {
+    "text": "ayuda,",
+    "start": 57.1,
+    "end": 57.46,
+    "id": "w138"
+  },
+  {
+    "text": "cada",
+    "start": 57.51,
+    "end": 57.73,
+    "id": "w139"
+  },
+  {
+    "text": "una",
+    "start": 57.73,
+    "end": 57.74,
+    "id": "w140"
+  },
+  {
+    "text": "con",
+    "start": 58.02,
+    "end": 58.11,
+    "id": "w141"
+  },
+  {
+    "text": "su",
+    "start": 58.18,
+    "end": 58.23,
+    "id": "w142"
+  },
+  {
+    "text": "tabla.",
+    "start": 58.23,
+    "end": 58.72,
+    "id": "w143"
+  },
+  {
+    "text": "Pásaselo",
+    "start": 58.72,
+    "end": 59.22,
+    "id": "w144"
+  },
+  {
+    "text": "a",
+    "start": 59.22,
+    "end": 59.28,
+    "id": "w145"
+  },
+  {
+    "text": "quien",
+    "start": 59.28,
+    "end": 59.6,
+    "id": "w146"
+  },
+  {
+    "text": "tenga",
+    "start": 59.6,
+    "end": 59.87,
+    "id": "w147"
+  },
+  {
+    "text": "bono",
+    "start": 59.95,
+    "end": 60.17,
+    "id": "w148"
+  },
+  {
+    "text": "social.¿Conocías",
+    "start": 60.17,
+    "end": 61.44,
+    "id": "w149"
+  },
+  {
+    "text": "esta",
+    "start": 61.44,
+    "end": 61.6,
+    "id": "w150"
+  },
+  {
+    "text": "ayuda?",
+    "start": 61.78,
+    "end": 62.06,
+    "id": "w151"
+  },
+  {
+    "text": "Sí",
+    "start": 62.06,
+    "end": 62.14,
+    "id": "w152"
+  },
+  {
+    "text": "o",
+    "start": 62.19,
+    "end": 62.22,
+    "id": "w153"
+  },
+  {
+    "text": "no.",
+    "start": 62.26,
+    "end": 62.42,
+    "id": "w154"
+  }
+]

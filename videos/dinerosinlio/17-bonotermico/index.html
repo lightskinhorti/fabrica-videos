@@ -1,0 +1,937 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="lib/gsap.min.js"></script>
+    <link rel="stylesheet" href="comun/dinero.css" />
+    <!-- HyperFrames only installs the fonts it finds in the page's own styles -->
+    <style>
+      #root { font-family: "Inter", sans-serif; }
+      .cifra, .fila b, .caso .num, .grande { font-family: "Archivo Black", sans-serif; }
+      /* everything big, from y = 430 to 1420 (what TikTok leaves free) */
+      .ancho { left: 0; width: 1080px; text-align: center; }
+      .cifra.g150 { font-size: 150px; }
+      .rotulo.r44 { font-size: 44px; line-height: 1.3; letter-spacing: 0.06em; }
+      .chip.c64 { font-size: 64px; }
+      .chip.c58 { font-size: 58px; }
+      .chip.c50 { font-size: 50px; }
+      .chip.c44 { font-size: 44px; }
+      .sello.s62 { font-size: 62px; line-height: 1.12; text-align: center; }
+      .sello.s54 { font-size: 54px; }
+      .sello.s130 { font-size: 130px; line-height: 1.05; border-width: 14px; border-radius: 26px; padding: 14px 44px; }
+      .docg .doc { width: 840px; padding: 30px 40px 20px; }
+      .docg .doc-tit { font-size: 36px; }
+      .docg .fila { font-size: 38px; padding: 16px 0; }
+      .docg .fila b { font-size: 46px; white-space: nowrap; }
+      .fila.marca { background: #f8dc7a; margin: 0 -18px; padding-left: 18px; padding-right: 18px; border-radius: 10px; }
+      .barra.alta { height: 190px; }
+      .barra.alta .seg { font-size: 46px; }
+      .docg.gr .doc { width: 900px; padding: 34px 44px 26px; }
+      .docg.gr .doc-tit { font-size: 40px; }
+      .docg.gr .fila { font-size: 44px; padding: 20px 0; }
+      .docg.gr .fila b { font-size: 54px; }
+      .chip.c72 { font-size: 72px; }
+      .cifra.g200 { font-size: 210px; }
+      .seg.d { background: #f2b705; }
+      .seg.p { background: #fffaf0; }
+      /* the four cases */
+      .caso { width: 450px; height: 340px; border: 8px solid #1d2a44; border-radius: 22px; box-shadow: 12px 12px 0 #1d2a44; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center; }
+      .caso.oro { background: #f2b705; }
+      .caso.blanco { background: #fffaf0; }
+      .caso .num { font-size: 120px; line-height: 1; }
+      .caso .tx { font-size: 44px; font-weight: 800; line-height: 1.12; letter-spacing: 0.02em; }
+      /* the big card of each case */
+      .tg { width: 900px; height: 740px; border: 8px solid #1d2a44; border-radius: 26px; box-shadow: 14px 14px 0 #1d2a44; background: #fffaf0; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 28px; text-align: center; }
+      .tg .num { width: 110px; height: 110px; border-radius: 55px; background: #f2b705; border: 7px solid #1d2a44; font-size: 66px; line-height: 96px; font-family: "Archivo Black"; }
+      .tg .t1 { font-family: "Archivo Black"; font-size: 78px; line-height: 1.05; margin-top: 18px; }
+      .tg .t2 { font-size: 38px; font-weight: 800; letter-spacing: 0.04em; line-height: 1.2; margin-top: 12px; padding: 0 30px; }
+      .tg .fila-p { display: flex; gap: 12px; margin-top: 22px; }
+      #sueloF { height: 10px; background: #1d2a44; border-radius: 5px; }
+          
+      
+      
+
+      .col { border: 7px solid #1d2a44; box-shadow: 8px 0 0 #1d2a44; border-bottom: 0; border-radius: 14px 14px 0 0; }
+      .col.v { background: #f2b705; } .col.s { background: #2f8f6b; }
+      .lb { width: 150px; text-align: center; font-family: "Archivo Black", sans-serif; font-size: 31px; color: #1d2a44; }
+      .zlet { position: relative; width: 1080px; height: 60px; }
+      .zlet span { position: absolute; top: 0; width: 120px; text-align: center; font-family: "Archivo Black", sans-serif; font-size: 52px; color: #1d2a44; }
+      .leg { display: flex; gap: 34px; font: 800 36px Inter; color: #1d2a44; justify-content: center; width: 1080px; }
+      .leg i { display: inline-block; width: 34px; height: 34px; border: 5px solid #1d2a44; border-radius: 6px; vertical-align: -6px; margin-right: 12px; }
+      .cifra.g230 { font-size: 230px; }
+</style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="64.1" data-width="1080" data-height="1920" data-fps="30">
+      <div id="fondo" class="clip" data-start="0" data-duration="64.1" data-track-index="0"></div>
+      <div id="escenario" class="clip" data-start="0" data-duration="64.1" data-track-index="1" data-layout-allow-overlap data-layout-allow-overflow>
+        <div class="pieza docg gr" id="fact" style="left:90px; top:890px" data-icono="doc"
+          data-args='["BONO TÉRMICO · 2026", [["ZONA CLIMÁTICA", "D"], ["VULNERABLE", "212,28 €", "fV", "roja"], ["VULNERABLE SEVERO", "339,65 €", "fS", "verde fuerte"]]]'></div>
+        <div class="pieza" id="llama" style="left:790px; top:610px" data-dibujo="llama" data-args="[250]"></div>
+        <div class="pieza ancho" id="chipT" style="top:450px"><div class="chip c50">BONO SOCIAL TÉRMICO</div></div>
+        <div class="pieza" id="c1" style="left:60px; top:540px"><div class="caso oro"><div class="num">1</div><div class="tx">ZONA<br>CLIMÁTICA</div></div></div>
+        <div class="pieza" id="c2" style="left:570px; top:540px"><div class="caso blanco"><div class="num">2</div><div class="tx">GRADO DE<br>VULNERABILIDAD</div></div></div>
+        <div class="pieza ancho" id="chipQ" style="top:1000px"><div class="chip rojo c58">¿DE QUÉ DEPENDE?</div></div>
+        <div class="pieza" id="edif" style="left:130px; top:540px" data-icono="edificio" data-args='["BOE", "#fffaf0", 820]'></div>
+        <div class="pieza ancho" id="chipPapel" style="top:1240px"><div class="chip c72">EL PAPEL</div></div>
+        <div class="pieza docg gr" id="docLey" style="left:90px; top:470px" data-icono="doc"
+          data-args='["REAL DECRETO-LEY", [["NORMA", "15/2018"], ["ARTÍCULO", "5"], ["AYUDA", "ANUAL"]]]'></div>
+        <div class="pieza ancho" id="chipPob" style="top:1000px"><div class="chip rojo c50">CONTRA LA POBREZA<br>ENERGÉTICA</div></div>
+        <div class="pieza ancho" id="chipE" style="top:450px"><div class="chip c58">BONO SOCIAL ELÉCTRICO</div></div>
+        <div class="pieza" id="bomb" style="left:90px; top:640px" data-dibujo="bombilla" data-args="[320]"></div>
+        <div class="pieza" id="cal" style="left:470px; top:700px" data-dibujo="calendario" data-args='[520, "DICIEMBRE", "31"]'></div>
+        <div class="pieza ancho" id="chipAnt" style="top:1250px"><div class="chip blanco c58">A 31 DE DICIEMBRE<br>DEL AÑO ANTERIOR</div></div>
+        <div class="pieza ancho" id="selloSS" style="top:520px"><div class="sello s130" style="color:#e5383b; border-color:#e5383b; font-size:112px">SIN<br>SOLICITUD</div></div>
+        <div class="pieza ancho" id="chipPago" style="top:1000px"><div class="chip verde c64">UN PAGO AL AÑO</div></div>
+        <div class="pieza" id="bill" style="left:230px; top:1130px" data-icono="billete" data-args='["€", "#2f8f6b", 560]'></div>
+        <div class="pieza ancho" id="chipAr" style="top:450px"><div class="chip c50">TABLA DE ARAGÓN 2026</div></div>
+        <div class="pieza" id="baseG" style="left:50px; top:1380px; width:940px; height:10px; background:#1d2a44; border-radius:5px"></div>
+        <div class="pieza col v" id="v1" style="left:70px; top:1105px; width:120px; height:275px"></div>
+        <div class="pieza lb" id="lv1" style="left:55px; top:1053px">144,72</div>
+        <div class="pieza col v" id="v2" style="left:370px; top:977px; width:120px; height:403px"></div>
+        <div class="pieza lb" id="lv2" style="left:355px; top:925px">212,28</div>
+        <div class="pieza col v" id="v3" style="left:670px; top:905px; width:120px; height:475px"></div>
+        <div class="pieza lb" id="lv3" style="left:655px; top:853px">250,03</div>
+        <div class="pieza col s" id="s1" style="left:200px; top:940px; width:120px; height:440px"></div>
+        <div class="pieza lb" id="ls1" style="left:185px; top:888px">231,55</div>
+        <div class="pieza col s" id="s2" style="left:500px; top:735px; width:120px; height:645px"></div>
+        <div class="pieza lb" id="ls2" style="left:485px; top:683px">339,65</div>
+        <div class="pieza col s" id="s3" style="left:800px; top:620px; width:120px; height:760px"></div>
+        <div class="pieza lb" id="ls3" style="left:785px; top:568px">400,05</div>
+        <div class="pieza" id="zl" style="left:0px; top:1400px"><div class="zlet"><span style="left:140px">C</span><span style="left:440px">D</span><span style="left:740px">E</span></div></div>
+        <div class="pieza" id="leg" style="left:0px; top:545px"><div class="leg" style="justify-content:flex-start; padding-left:60px; width:900px; font-size:32px"><span><i style="background:#f2b705"></i>VULNERABLE</span><span><i style="background:#2f8f6b"></i>SEVERO</span></div></div>
+        <div class="pieza ancho" id="sello60" style="top:640px; left:50px; width:400px; text-align:left"><div class="sello s130" style="color:#e5383b; border-color:#e5383b; background:#fffaf0; font-size:78px; padding:8px 26px; border-width:10px">+60 %</div></div>
+        <div class="pieza ancho" id="chipSue" style="top:450px"><div class="chip c50">RDL 7/2026 · ARTÍCULO 2</div></div>
+        <div class="pieza rotulo r44 ancho" id="rotMin" style="top:640px">AYUDA MÍNIMA POR BENEFICIARIO</div>
+        <div class="pieza cifra g230 verde ancho" id="cMin" style="top:740px">0 €</div>
+        <div class="pieza ancho" id="chipPb" style="top:1080px"><div class="chip blanco c58">DESDE MARZO DE 2026</div></div>
+        <div class="pieza ancho" id="chipEj" style="top:450px"><div class="chip c50">EJEMPLO · TABLA DE ARAGÓN 2026</div></div>
+        <div class="pieza rotulo r44 ancho" id="rV" style="top:600px">ZONA D · VULNERABLE</div>
+        <div class="pieza cifra g200 roja ancho" id="cV" style="top:660px">0 €</div>
+        <div class="pieza rotulo r44 ancho" id="rS" style="top:960px">ZONA D · VULNERABLE SEVERO</div>
+        <div class="pieza cifra g200 verde ancho" id="cS" style="top:1020px">0 €</div>
+        <div class="pieza rotulo r44 ancho" id="rE" style="top:560px">ZONA E · VULNERABLE SEVERO</div>
+        <div class="pieza cifra g200 verde ancho" id="cE" style="top:620px">0 €</div>
+        <div class="pieza ancho" id="chipFr" style="top:960px"><div class="chip blanco c58">LA ZONA MÁS FRÍA</div></div>
+        <div class="pieza" id="llamaE" style="left:400px; top:1080px" data-dibujo="llama" data-args="[200]"></div>
+        <div class="pieza" id="edifC" style="left:190px; top:560px" data-icono="edificio" data-args='["COMUNIDAD", "#fffaf0", 700]'></div>
+        <div class="pieza ancho" id="chipCom" style="top:1130px"><div class="chip c58">LAS PAGAN LAS<br>COMUNIDADES</div></div>
+        <div class="pieza ancho" id="chipTab" style="top:1330px"><div class="chip blanco c50">CADA UNA, SU TABLA</div></div>
+        <div class="pieza ancho grande" id="qBig" style="top:480px; font-size:118px; line-height:1.08; color:#1d2a44">¿CONOCÍAS<br>ESTA<br>AYUDA?</div>
+        <div class="pieza ancho" id="selloSN" style="top:1020px"><div class="sello s130" style="color:#e5383b; border-color:#e5383b">SÍ O NO</div></div>
+        <div class="pieza" id="llamaF" style="left:440px; top:1250px" data-dibujo="llama" data-args="[150]"></div>
+      </div>
+      <div id="gancho" class="clip" data-start="0" data-duration="64.1" data-track-index="2"></div>
+      <div id="note" class="clip" data-start="0" data-duration="64.1" data-track-index="3"></div>
+      <audio id="mezcla" src="assets/mezcla.wav" data-start="0" data-duration="64.1"></audio>
+      <div id="caps" class="clip" data-start="0" data-duration="64.1" data-track-index="4" data-track-kind="captions"></div>
+    </div>
+
+    <script id="vozdata" type="application/json">{"duration": 62.811, "lines": [{"id": "l1", "s": 0.01, "e": 2.22, "words": [{"w": "¿Tienes", "s": 0.01, "e": 0.41, "key": false}, {"w": "bono", "s": 0.41, "e": 0.62, "key": false}, {"w": "social?", "s": 0.66, "e": 1.2, "key": false}, {"w": "Esto", "s": 1.26, "e": 1.43, "key": false}, {"w": "puede", "s": 1.43, "e": 1.66, "key": false}, {"w": "tocarte.", "s": 1.66, "e": 2.22, "key": true}]}, {"id": "l2", "s": 2.4, "e": 9.34, "words": [{"w": "Bono", "s": 2.4, "e": 2.57, "key": false}, {"w": "social", "s": 2.58, "e": 3.03, "key": false}, {"w": "térmico:", "s": 3.31, "e": 3.92, "key": false}, {"w": "hasta", "s": 3.94, "e": 4.09, "key": false}, {"w": "unos", "s": 4.47, "e": 4.57, "key": false}, {"w": "cuatrocientos", "s": 4.57, "e": 5.054, "key": false}, {"w": "euros", "s": 5.054, "e": 5.24, "key": false}, {"w": "al", "s": 5.25, "e": 5.37, "key": false}, {"w": "año", "s": 5.37, "e": 5.62, "key": false}, {"w": "para", "s": 5.62, "e": 5.86, "key": false}, {"w": "calefacción,", "s": 5.86, "e": 6.58, "key": false}, {"w": "agua", "s": 6.71, "e": 6.83, "key": false}, {"w": "caliente", "s": 6.87, "e": 7.32, "key": false}, {"w": "y", "s": 7.32, "e": 7.38, "key": false}, {"w": "cocina.", "s": 7.38, "e": 8.37, "key": false}, {"w": "¿De", "s": 8.37, "e": 8.7, "key": false}, {"w": "qué", "s": 8.7, "e": 8.87, "key": false}, {"w": "depende?", "s": 8.88, "e": 9.34, "key": true}]}, {"id": "l3", "s": 9.62, "e": 16.77, "words": [{"w": "Primero,", "s": 9.62, "e": 10.2, "key": false}, {"w": "el", "s": 10.2, "e": 10.34, "key": false}, {"w": "papel.", "s": 10.35, "e": 10.98, "key": true}, {"w": "Real", "s": 10.98, "e": 11.22, "key": false}, {"w": "Decreto-ley", "s": 11.3, "e": 11.8, "key": false}, {"w": "15", "s": 11.85, "e": 12.21, "key": false}, {"w": "de", "s": 12.21, "e": 12.37, "key": false}, {"w": "2018,", "s": 12.37, "e": 13.24, "key": false}, {"w": "artículo", "s": 13.24, "e": 13.79, "key": false}, {"w": "5:", "s": 13.82, "e": 14.55, "key": false}, {"w": "una", "s": 14.55, "e": 14.8, "key": false}, {"w": "ayuda", "s": 14.8, "e": 14.95, "key": false}, {"w": "contra", "s": 14.95, "e": 15.34, "key": false}, {"w": "la", "s": 15.34, "e": 15.43, "key": false}, {"w": "pobreza", "s": 15.72, "e": 15.93, "key": false}, {"w": "energética.", "s": 15.93, "e": 16.77, "key": false}]}, {"id": "l4", "s": 16.77, "e": 21.62, "words": [{"w": "Quién", "s": 16.77, "e": 17.19, "key": false}, {"w": "la", "s": 17.27, "e": 17.32, "key": false}, {"w": "recibe:", "s": 17.4, "e": 17.825, "key": true}, {"w": "quien", "s": 17.825, "e": 18.18, "key": false}, {"w": "tenga", "s": 18.18, "e": 18.33, "key": false}, {"w": "el", "s": 18.33, "e": 18.47, "key": false}, {"w": "bono", "s": 18.47, "e": 18.58, "key": false}, {"w": "social", "s": 18.65, "e": 18.92, "key": false}, {"w": "eléctrico", "s": 19.04, "e": 19.46, "key": false}, {"w": "a", "s": 19.51, "e": 19.52, "key": false}, {"w": "31", "s": 19.52, "e": 19.74, "key": false}, {"w": "de", "s": 20.01, "e": 20.03, "key": false}, {"w": "diciembre", "s": 20.03, "e": 20.6, "key": false}, {"w": "del", "s": 20.6, "e": 20.76, "key": false}, {"w": "año", "s": 20.76, "e": 20.82, "key": false}, {"w": "anterior.", "s": 21.17, "e": 21.62, "key": false}]}, {"id": "l5", "s": 21.7, "e": 25.66, "words": [{"w": "No", "s": 21.7, "e": 21.8, "key": false}, {"w": "se", "s": 21.8, "e": 21.86, "key": false}, {"w": "pide", "s": 21.96, "e": 22.17, "key": false}, {"w": "aparte:", "s": 22.17, "e": 22.56, "key": true}, {"w": "llega", "s": 22.77, "e": 23.04, "key": false}, {"w": "sin", "s": 23.04, "e": 23.23, "key": false}, {"w": "solicitud,", "s": 23.23, "e": 23.92, "key": false}, {"w": "en", "s": 23.92, "e": 24.19, "key": false}, {"w": "un", "s": 24.19, "e": 24.38, "key": false}, {"w": "pago", "s": 24.38, "e": 24.66, "key": false}, {"w": "único", "s": 24.66, "e": 25.01, "key": false}, {"w": "al", "s": 25.01, "e": 25.3, "key": false}, {"w": "año.", "s": 25.3, "e": 25.66, "key": false}]}, {"id": "l6", "s": 25.66, "e": 32.08, "words": [{"w": "Depende", "s": 25.66, "e": 26.05, "key": false}, {"w": "de", "s": 26.05, "e": 26.45, "key": false}, {"w": "dos", "s": 26.45, "e": 26.58, "key": false}, {"w": "cosas.", "s": 26.58, "e": 27.15, "key": false}, {"w": "Una:", "s": 27.23, "e": 27.58, "key": false}, {"w": "la", "s": 27.58, "e": 27.65, "key": false}, {"w": "zona", "s": 27.77, "e": 27.84, "key": true}, {"w": "climática,", "s": 28.05, "e": 28.88, "key": false}, {"w": "de", "s": 28.89, "e": 29.04, "key": false}, {"w": "la", "s": 29.04, "e": 29.19, "key": false}, {"w": "alfa", "s": 29.19, "e": 29.47, "key": false}, {"w": "a", "s": 29.5, "e": 29.57, "key": false}, {"w": "la", "s": 29.57, "e": 29.92, "key": false}, {"w": "E.", "s": 29.92, "e": 30.39, "key": false}, {"w": "Cuanto", "s": 30.58, "e": 30.78, "key": false}, {"w": "más", "s": 30.78, "e": 30.94, "key": false}, {"w": "frío,", "s": 30.99, "e": 31.22, "key": false}, {"w": "más", "s": 31.49, "e": 31.52, "key": false}, {"w": "ayuda.", "s": 31.52, "e": 32.08, "key": false}]}, {"id": "l7", "s": 32.08, "e": 37.5, "words": [{"w": "Dos:", "s": 32.08, "e": 32.5, "key": false}, {"w": "el", "s": 32.65, "e": 32.67, "key": false}, {"w": "grado", "s": 32.67, "e": 33.09, "key": false}, {"w": "de", "s": 33.09, "e": 33.26, "key": false}, {"w": "vulnerabilidad.", "s": 33.26, "e": 34.72, "key": true}, {"w": "El", "s": 34.72, "e": 34.76, "key": false}, {"w": "vulnerable", "s": 34.89, "e": 35.24, "key": false}, {"w": "severo", "s": 35.42, "e": 35.76, "key": false}, {"w": "cobra", "s": 35.76, "e": 36.05, "key": false}, {"w": "un", "s": 36.33, "e": 36.37, "key": false}, {"w": "sesenta", "s": 36.37, "e": 36.633, "key": false}, {"w": "por", "s": 36.633, "e": 36.745, "key": false}, {"w": "ciento", "s": 36.745, "e": 36.97, "key": false}, {"w": "más.", "s": 36.97, "e": 37.5, "key": false}]}, {"id": "l8", "s": 37.5, "e": 42.28, "words": [{"w": "Hay", "s": 37.5, "e": 37.76, "key": false}, {"w": "suelo:", "s": 37.76, "e": 38.44, "key": true}, {"w": "desde", "s": 38.44, "e": 38.69, "key": false}, {"w": "marzo", "s": 39.09, "e": 39.32, "key": false}, {"w": "de", "s": 39.32, "e": 39.49, "key": false}, {"w": "2026,", "s": 39.49, "e": 40.72, "key": false}, {"w": "mínimo", "s": 40.72, "e": 41.24, "key": false}, {"w": "cincuenta", "s": 41.34, "e": 41.944, "key": false}, {"w": "euros.", "s": 41.944, "e": 42.28, "key": false}]}, {"id": "l9", "s": 42.28, "e": 48.65, "words": [{"w": "Ejemplo,", "s": 42.28, "e": 42.38, "key": true}, {"w": "con", "s": 42.38, "e": 42.46, "key": false}, {"w": "la", "s": 42.46, "e": 42.47, "key": false}, {"w": "tabla", "s": 42.7, "e": 42.97, "key": false}, {"w": "de", "s": 42.97, "e": 43.14, "key": false}, {"w": "Aragón", "s": 43.18, "e": 43.69, "key": false}, {"w": "para", "s": 43.69, "e": 44.05, "key": false}, {"w": "2.026:", "s": 44.05, "e": 45.43, "key": false}, {"w": "zona", "s": 45.43, "e": 45.78, "key": false}, {"w": "D,", "s": 45.78, "e": 45.97, "key": false}, {"w": "vulnerable,", "s": 46.37, "e": 47.08, "key": false}, {"w": "unos", "s": 47.08, "e": 47.45, "key": false}, {"w": "doscientos", "s": 47.45, "e": 48.082, "key": false}, {"w": "doce", "s": 48.082, "e": 48.334, "key": false}, {"w": "euros.", "s": 48.334, "e": 48.65, "key": false}]}, {"id": "l10", "s": 48.8, "e": 51.73, "words": [{"w": "Vulnerable", "s": 48.8, "e": 49.06, "key": false}, {"w": "severo,", "s": 49.19, "e": 49.43, "key": true}, {"w": "misma", "s": 49.49, "e": 49.68, "key": false}, {"w": "zona:", "s": 49.68, "e": 50.07, "key": false}, {"w": "unos", "s": 50.3, "e": 50.5, "key": false}, {"w": "trescientos", "s": 50.5, "e": 51.064, "key": false}, {"w": "cuarenta", "s": 51.064, "e": 51.474, "key": false}, {"w": "euros.", "s": 51.474, "e": 51.73, "key": false}]}, {"id": "l11", "s": 51.73, "e": 55.64, "words": [{"w": "En", "s": 51.73, "e": 51.87, "key": false}, {"w": "la", "s": 51.9, "e": 51.99, "key": false}, {"w": "zona", "s": 52.37, "e": 52.49, "key": false}, {"w": "E,", "s": 52.49, "e": 52.69, "key": false}, {"w": "la", "s": 52.77, "e": 52.96, "key": false}, {"w": "más", "s": 52.96, "e": 53.25, "key": false}, {"w": "fría,", "s": 53.25, "e": 53.82, "key": true}, {"w": "hasta", "s": 53.97, "e": 54.3, "key": false}, {"w": "cuatrocientos", "s": 54.3, "e": 55.268, "key": false}, {"w": "euros.", "s": 55.268, "e": 55.64, "key": false}]}, {"id": "l12", "s": 55.64, "e": 58.72, "words": [{"w": "Las", "s": 55.64, "e": 55.74, "key": false}, {"w": "comunidades", "s": 55.79, "e": 56.15, "key": true}, {"w": "autónomas", "s": 56.21, "e": 56.6, "key": false}, {"w": "pagan", "s": 56.6, "e": 56.92, "key": false}, {"w": "la", "s": 56.92, "e": 57.1, "key": false}, {"w": "ayuda,", "s": 57.1, "e": 57.46, "key": false}, {"w": "cada", "s": 57.51, "e": 57.73, "key": false}, {"w": "una", "s": 57.73, "e": 57.74, "key": false}, {"w": "con", "s": 58.02, "e": 58.11, "key": false}, {"w": "su", "s": 58.18, "e": 58.23, "key": false}, {"w": "tabla.", "s": 58.23, "e": 58.72, "key": false}]}, {"id": "l13", "s": 58.72, "e": 62.42, "words": [{"w": "Pásaselo", "s": 58.72, "e": 59.22, "key": false}, {"w": "a", "s": 59.22, "e": 59.28, "key": false}, {"w": "quien", "s": 59.28, "e": 59.6, "key": false}, {"w": "tenga", "s": 59.6, "e": 59.87, "key": false}, {"w": "bono", "s": 59.95, "e": 60.17, "key": false}, {"w": "social.", "s": 60.17, "e": 60.714, "key": false}, {"w": "¿Conocías", "s": 60.714, "e": 61.44, "key": true}, {"w": "esta", "s": 61.44, "e": 61.6, "key": false}, {"w": "ayuda?", "s": 61.78, "e": 62.06, "key": false}, {"w": "Sí", "s": 62.06, "e": 62.14, "key": false}, {"w": "o", "s": 62.19, "e": 62.22, "key": false}, {"w": "no.", "s": 62.26, "e": 62.42, "key": false}]}]}</script>
+
+    <script id="escena" type="application/json">
+{
+ "momentos": [
+  {
+   "id": "GFIN",
+   "clave": "tocarte",
+   "fin": true,
+   "mas": 0.35
+  },
+  {
+   "id": "TERMICO",
+   "clave": "térmico"
+  },
+  {
+   "id": "DEPENDE",
+   "clave": "depende"
+  },
+  {
+   "id": "PRIMERO",
+   "clave": "primero"
+  },
+  {
+   "id": "PAPEL",
+   "clave": "papel"
+  },
+  {
+   "id": "DECRETO",
+   "clave": "decreto"
+  },
+  {
+   "id": "POBREZA",
+   "clave": "pobreza"
+  },
+  {
+   "id": "RECIBE",
+   "clave": "recibe"
+  },
+  {
+   "id": "ELECT",
+   "clave": "eléctrico"
+  },
+  {
+   "id": "DICIEMBRE",
+   "clave": "diciembre"
+  },
+  {
+   "id": "APARTE",
+   "clave": "aparte"
+  },
+  {
+   "id": "SOLICITUD",
+   "clave": "solicitud"
+  },
+  {
+   "id": "PAGO",
+   "clave": "pago"
+  },
+  {
+   "id": "ZONA",
+   "clave": "zona"
+  },
+  {
+   "id": "ALFA",
+   "clave": "alfa"
+  },
+  {
+   "id": "FRIO",
+   "clave": "frío"
+  },
+  {
+   "id": "VULN",
+   "clave": "vulnerabilidad"
+  },
+  {
+   "id": "SEVERO",
+   "clave": "severo"
+  },
+  {
+   "id": "COBRA",
+   "clave": "cobra"
+  },
+  {
+   "id": "SUELO",
+   "clave": "suelo"
+  },
+  {
+   "id": "MARZO",
+   "clave": "marzo"
+  },
+  {
+   "id": "MINIMO",
+   "clave": "mínimo"
+  },
+  {
+   "id": "EJEMPLO",
+   "clave": "ejemplo"
+  },
+  {
+   "id": "TABLA",
+   "clave": "tabla"
+  },
+  {
+   "id": "ZONAD",
+   "clave": "zona"
+  },
+  {
+   "id": "UNOS",
+   "clave": "unos"
+  },
+  {
+   "id": "SEVERO2",
+   "clave": "severo"
+  },
+  {
+   "id": "UNOS2",
+   "clave": "unos"
+  },
+  {
+   "id": "ZONAE",
+   "clave": "zona"
+  },
+  {
+   "id": "FRIA",
+   "clave": "fría"
+  },
+  {
+   "id": "HASTA",
+   "clave": "hasta"
+  },
+  {
+   "id": "COMUNIDADES",
+   "clave": "comunidades"
+  },
+  {
+   "id": "TABLA2",
+   "clave": "tabla"
+  },
+  {
+   "id": "PASASELO",
+   "clave": "pásaselo"
+  },
+  {
+   "id": "CONOCIAS",
+   "clave": "conocías"
+  },
+  {
+   "id": "SI",
+   "clave": "sí"
+  }
+ ],
+ "gancho": {
+  "texto": "HASTA 400 € AL AÑO",
+  "clave": "al año",
+  "tam": 130,
+  "top": 480,
+  "hasta": "GFIN"
+ },
+ "arranque": {
+  "zoom": 1.06,
+  "centro": [
+   540,
+   900
+  ]
+ },
+ "lluvia": [
+  {
+   "icono": "moneda",
+   "args": [
+    "€",
+    96
+   ],
+   "n": 9,
+   "desde": 0,
+   "hasta": "DEPENDE",
+   "vel": 420,
+   "opacidad": 0.4
+  }
+ ],
+ "piezas": [
+  {
+   "id": "fact",
+   "desde": 0,
+   "hasta": "DEPENDE",
+   "viaja": {
+    "s": 1.06,
+    "dura": 1.0
+   }
+  },
+  {
+   "id": "llama",
+   "desde": 0,
+   "hasta": "DEPENDE",
+   "viaja": {
+    "s": 1.2,
+    "y": -30,
+    "r": -9,
+    "dura": 1.0
+   },
+   "mueve": {
+    "tipo": "balancea",
+    "fuerza": 6,
+    "ritmo": 3
+   }
+  },
+  {
+   "id": "chipT",
+   "desde": "TERMICO",
+   "hasta": "DEPENDE",
+   "entra": "baja"
+  },
+  {
+   "id": "c1",
+   "desde": "DEPENDE",
+   "hasta": "PRIMERO",
+   "entra": "escala"
+  },
+  {
+   "id": "c2",
+   "desde": "DEPENDE",
+   "hasta": "PRIMERO",
+   "entra": "escala"
+  },
+  {
+   "id": "chipQ",
+   "desde": "DEPENDE",
+   "hasta": "PRIMERO",
+   "entra": "sello",
+   "mueve": {
+    "tipo": "late",
+    "fuerza": 4,
+    "ritmo": 5
+   }
+  },
+  {
+   "id": "edif",
+   "desde": "PRIMERO",
+   "hasta": "DECRETO",
+   "entra": "escala"
+  },
+  {
+   "id": "chipPapel",
+   "desde": "PAPEL",
+   "hasta": "DECRETO",
+   "entra": "sello"
+  },
+  {
+   "id": "docLey",
+   "desde": "DECRETO",
+   "hasta": "RECIBE",
+   "entra": "izq"
+  },
+  {
+   "id": "chipPob",
+   "desde": "POBREZA",
+   "hasta": "RECIBE",
+   "entra": "sello"
+  },
+  {
+   "id": "chipE",
+   "desde": "RECIBE",
+   "hasta": "APARTE",
+   "entra": "baja"
+  },
+  {
+   "id": "bomb",
+   "desde": "ELECT",
+   "hasta": "APARTE",
+   "entra": "escala",
+   "mueve": "balancea"
+  },
+  {
+   "id": "cal",
+   "desde": "DICIEMBRE",
+   "hasta": "APARTE",
+   "entra": "escala"
+  },
+  {
+   "id": "chipAnt",
+   "desde": "DICIEMBRE",
+   "hasta": "APARTE",
+   "entra": "sello"
+  },
+  {
+   "id": "selloSS",
+   "desde": "APARTE",
+   "hasta": "ZONA",
+   "entra": "sello"
+  },
+  {
+   "id": "chipPago",
+   "desde": "PAGO",
+   "hasta": "ZONA",
+   "entra": "baja"
+  },
+  {
+   "id": "bill",
+   "desde": "PAGO",
+   "hasta": "ZONA",
+   "entra": "escala",
+   "mueve": "flota"
+  },
+  {
+   "id": "chipAr",
+   "desde": "ZONA",
+   "hasta": "SUELO",
+   "entra": "baja"
+  },
+  {
+   "id": "baseG",
+   "desde": "ZONA",
+   "hasta": "SUELO",
+   "entra": "escala"
+  },
+  {
+   "id": "v1",
+   "desde": "FRIO",
+   "hasta": "SUELO",
+   "entra": "crece"
+  },
+  {
+   "id": "lv1",
+   "desde": "FRIO",
+   "hasta": "SUELO",
+   "entra": "escala"
+  },
+  {
+   "id": "v2",
+   "desde": "FRIO",
+   "hasta": "SUELO",
+   "entra": "crece"
+  },
+  {
+   "id": "lv2",
+   "desde": "FRIO",
+   "hasta": "SUELO",
+   "entra": "escala"
+  },
+  {
+   "id": "v3",
+   "desde": "FRIO",
+   "hasta": "SUELO",
+   "entra": "crece"
+  },
+  {
+   "id": "lv3",
+   "desde": "FRIO",
+   "hasta": "SUELO",
+   "entra": "escala"
+  },
+  {
+   "id": "s1",
+   "desde": "SEVERO",
+   "hasta": "SUELO",
+   "entra": "crece"
+  },
+  {
+   "id": "ls1",
+   "desde": "SEVERO",
+   "hasta": "SUELO",
+   "entra": "escala"
+  },
+  {
+   "id": "s2",
+   "desde": "SEVERO",
+   "hasta": "SUELO",
+   "entra": "crece"
+  },
+  {
+   "id": "ls2",
+   "desde": "SEVERO",
+   "hasta": "SUELO",
+   "entra": "escala"
+  },
+  {
+   "id": "s3",
+   "desde": "SEVERO",
+   "hasta": "SUELO",
+   "entra": "crece"
+  },
+  {
+   "id": "ls3",
+   "desde": "SEVERO",
+   "hasta": "SUELO",
+   "entra": "escala"
+  },
+  {
+   "id": "leg",
+   "desde": "FRIO",
+   "hasta": "SUELO",
+   "entra": "fundido"
+  },
+  {
+   "id": "zl",
+   "desde": "ZONA",
+   "hasta": "SUELO",
+   "entra": "fundido"
+  },
+  {
+   "id": "sello60",
+   "desde": "COBRA",
+   "hasta": "SUELO",
+   "entra": "sello",
+   "mueve": {
+    "tipo": "late",
+    "fuerza": 5,
+    "ritmo": 4
+   }
+  },
+  {
+   "id": "chipSue",
+   "desde": "SUELO",
+   "hasta": "EJEMPLO",
+   "entra": "baja"
+  },
+  {
+   "id": "rotMin",
+   "desde": "SUELO",
+   "hasta": "EJEMPLO",
+   "entra": "baja"
+  },
+  {
+   "id": "cMin",
+   "desde": "MARZO",
+   "hasta": "EJEMPLO",
+   "entra": "escala"
+  },
+  {
+   "id": "chipPb",
+   "desde": "MINIMO",
+   "hasta": "EJEMPLO",
+   "entra": "sello"
+  },
+  {
+   "id": "chipEj",
+   "desde": "EJEMPLO",
+   "hasta": "ZONAE",
+   "entra": "baja"
+  },
+  {
+   "id": "rV",
+   "desde": "ZONAD",
+   "hasta": "ZONAE",
+   "entra": "baja"
+  },
+  {
+   "id": "cV",
+   "desde": "UNOS",
+   "hasta": "ZONAE",
+   "entra": "escala"
+  },
+  {
+   "id": "rS",
+   "desde": "SEVERO2",
+   "hasta": "ZONAE",
+   "entra": "baja"
+  },
+  {
+   "id": "cS",
+   "desde": "UNOS2",
+   "hasta": "ZONAE",
+   "entra": "escala"
+  },
+  {
+   "id": "rE",
+   "desde": "ZONAE",
+   "hasta": "COMUNIDADES",
+   "entra": "baja"
+  },
+  {
+   "id": "cE",
+   "desde": "HASTA",
+   "hasta": "COMUNIDADES",
+   "entra": "escala"
+  },
+  {
+   "id": "chipFr",
+   "desde": "FRIA",
+   "hasta": "COMUNIDADES",
+   "entra": "sello"
+  },
+  {
+   "id": "llamaE",
+   "desde": "ZONAE",
+   "hasta": "COMUNIDADES",
+   "entra": "escala",
+   "mueve": "late"
+  },
+  {
+   "id": "edifC",
+   "desde": "COMUNIDADES",
+   "hasta": "PASASELO",
+   "entra": "escala"
+  },
+  {
+   "id": "chipCom",
+   "desde": "COMUNIDADES",
+   "hasta": "PASASELO",
+   "entra": "sello"
+  },
+  {
+   "id": "chipTab",
+   "desde": "TABLA2",
+   "hasta": "PASASELO",
+   "entra": "baja"
+  },
+  {
+   "id": "qBig",
+   "desde": "PASASELO",
+   "entra": "escala"
+  },
+  {
+   "id": "selloSN",
+   "desde": "CONOCIAS",
+   "entra": "sello"
+  },
+  {
+   "id": "llamaF",
+   "desde": "SI",
+   "entra": "escala"
+  }
+ ],
+ "cifras": [
+  {
+   "id": "cMin",
+   "desde": "MINIMO",
+   "a": 50,
+   "formato": "euros",
+   "dura": 0.7,
+   "curva": "sale"
+  },
+  {
+   "id": "cV",
+   "desde": "UNOS",
+   "a": 212.28,
+   "formato": "euros",
+   "dec": 2,
+   "dura": 0.9,
+   "curva": "sale"
+  },
+  {
+   "id": "cS",
+   "desde": "UNOS2",
+   "a": 339.65,
+   "formato": "euros",
+   "dec": 2,
+   "dura": 0.9,
+   "curva": "sale"
+  },
+  {
+   "id": "cE",
+   "desde": "HASTA",
+   "a": 400.05,
+   "formato": "euros",
+   "dec": 2,
+   "dura": 1.0,
+   "curva": "sale"
+  }
+ ],
+ "notas": [
+  {
+   "texto": "Importes y límites: bono social térmico, RDL 15/2018 y RDL 7/2026 (BOE). Tabla de Aragón 2026 como ejemplo",
+   "desde": 1.2
+  },
+  {
+   "texto": "",
+   "desde": "DEPENDE"
+  },
+  {
+   "texto": "RDL 15/2018, arts. 5 a 10 (BOE, texto consolidado)",
+   "desde": "PAPEL"
+  },
+  {
+   "texto": "RDL 15/2018, art. 8: beneficiarios del bono social eléctrico a 31 de diciembre del año anterior",
+   "desde": "RECIBE"
+  },
+  {
+   "texto": "MITECO: se recibe sin necesidad de solicitarlo. RDL 15/2018, art. 9: pago único anual",
+   "desde": "APARTE"
+  },
+  {
+   "texto": "RDL 15/2018, anexo I: zonas α, A, B, C, D y E. Importes: tabla del Gobierno de Aragón, ejercicio 2026",
+   "desde": "ZONA"
+  },
+  {
+   "texto": "RDL 15/2018, anexo I: el vulnerable severo recibe un 60 % más",
+   "desde": "VULN"
+  },
+  {
+   "texto": "RDL 7/2026, art. 2: ayuda mínima de 50 euros por beneficiario",
+   "desde": "SUELO"
+  },
+  {
+   "texto": "Tabla del Gobierno de Aragón, ejercicio 2026: importes sujetos a las transferencias del Ministerio",
+   "desde": "EJEMPLO"
+  },
+  {
+   "texto": "RDL 15/2018, art. 10: gestión y pago por las comunidades autónomas",
+   "desde": "COMUNIDADES"
+  },
+  {
+   "texto": "",
+   "desde": "PASASELO"
+  }
+ ],
+ "fondo": "claro",
+ "sonidos": [
+  {
+   "tipo": "desliza",
+   "en": 0.0
+  },
+  {
+   "tipo": "metal",
+   "en": 0.12
+  },
+  {
+   "tipo": "toque",
+   "en": 1.2
+  },
+  {
+   "tipo": "pop",
+   "en": "TERMICO"
+  },
+  {
+   "tipo": "pop",
+   "en": "DEPENDE"
+  },
+  {
+   "tipo": "pop",
+   "en": "PRIMERO"
+  },
+  {
+   "tipo": "pop",
+   "en": "PAPEL"
+  },
+  {
+   "tipo": "desliza",
+   "en": "DECRETO"
+  },
+  {
+   "tipo": "pop",
+   "en": "POBREZA"
+  },
+  {
+   "tipo": "pop",
+   "en": "RECIBE"
+  },
+  {
+   "tipo": "pop",
+   "en": "ELECT"
+  },
+  {
+   "tipo": "toque",
+   "en": "DICIEMBRE"
+  },
+  {
+   "tipo": "pop",
+   "en": "APARTE"
+  },
+  {
+   "tipo": "error",
+   "en": "SOLICITUD"
+  },
+  {
+   "tipo": "pagado",
+   "en": "PAGO"
+  },
+  {
+   "tipo": "desliza",
+   "en": "ZONA"
+  },
+  {
+   "tipo": "toque",
+   "en": "FRIO"
+  },
+  {
+   "tipo": "desliza",
+   "en": "VULN"
+  },
+  {
+   "tipo": "toque",
+   "en": "SEVERO"
+  },
+  {
+   "tipo": "pop",
+   "en": "COBRA"
+  },
+  {
+   "tipo": "desliza",
+   "en": "SUELO"
+  },
+  {
+   "tipo": "toque",
+   "en": "MINIMO"
+  },
+  {
+   "tipo": "pop",
+   "en": "EJEMPLO"
+  },
+  {
+   "tipo": "pop",
+   "en": "ZONAD"
+  },
+  {
+   "tipo": "toque",
+   "en": "UNOS"
+  },
+  {
+   "tipo": "pop",
+   "en": "SEVERO2"
+  },
+  {
+   "tipo": "toque",
+   "en": "UNOS2"
+  },
+  {
+   "tipo": "desliza",
+   "en": "ZONAE"
+  },
+  {
+   "tipo": "toque",
+   "en": "HASTA"
+  },
+  {
+   "tipo": "pop",
+   "en": "FRIA"
+  },
+  {
+   "tipo": "desliza",
+   "en": "COMUNIDADES"
+  },
+  {
+   "tipo": "pop",
+   "en": "TABLA2"
+  },
+  {
+   "tipo": "desliza",
+   "en": "PASASELO"
+  },
+  {
+   "tipo": "pop",
+   "en": "CONOCIAS"
+  },
+  {
+   "tipo": "pagado",
+   "en": "SI"
+  },
+  {
+   "tipo": "brillo",
+   "en": "HASTA"
+  },
+  {
+   "tipo": "brillo",
+   "en": "CONOCIAS",
+   "mas": 0.2
+  }
+ ]
+}
+</script>
+
+    <script>
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.escena = new Promise((r) => (window.__escenaReady = r));
+      const tl = gsap.timeline({ paused: true });
+      tl.to({}, { duration: 64.1 }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import { crearDinero, COLOR } from "./comun/dinero.js";
+      const $ = (id) => document.getElementById(id);
+      const K = COLOR;
+
+      const DIBUJOS = {
+        bombilla: (w = 240) => `<svg width="${w}" height="${Math.round(w * 1.2)}" viewBox="0 0 200 240">
+          <g transform="translate(10 10)" fill="${K.tinta}"><path d="M100 14 C52 14 22 50 22 92 C22 122 40 140 54 158 C62 168 64 176 64 186 H136 C136 176 138 168 146 158 C160 140 178 122 178 92 C178 50 148 14 100 14 Z"/><rect x="62" y="190" width="76" height="34" rx="10"/></g>
+          <path d="M100 14 C52 14 22 50 22 92 C22 122 40 140 54 158 C62 168 64 176 64 186 H136 C136 176 138 168 146 158 C160 140 178 122 178 92 C178 50 148 14 100 14 Z" fill="${K.oro}" stroke="${K.tinta}" stroke-width="9" stroke-linejoin="round"/>
+          <rect x="62" y="190" width="76" height="34" rx="10" fill="${K.blanco}" stroke="${K.tinta}" stroke-width="9"/>
+          <path d="M80 100 L100 130 L120 100" fill="none" stroke="${K.tinta}" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="100" y1="130" x2="100" y2="186" stroke="${K.tinta}" stroke-width="9" stroke-linecap="round"/></svg>`,
+        // a flame (heating): red outside, golden inside, with the account's navy offset shadow
+        llama: (w = 240) => `<svg width="${w}" height="${Math.round(w * 1.3)}" viewBox="0 0 200 260">
+          <g transform="translate(10 10)" fill="${K.tinta}"><path d="M100 12 C112 60 170 90 170 160 C170 214 136 246 100 246 C64 246 30 214 30 160 C30 124 52 100 66 78 C72 104 84 112 90 112 C86 76 92 44 100 12 Z"/></g>
+          <path d="M100 12 C112 60 170 90 170 160 C170 214 136 246 100 246 C64 246 30 214 30 160 C30 124 52 100 66 78 C72 104 84 112 90 112 C86 76 92 44 100 12 Z" fill="${K.rojo}" stroke="${K.tinta}" stroke-width="9" stroke-linejoin="round"/>
+          <path d="M100 124 C108 148 136 162 136 192 C136 216 120 232 100 232 C80 232 64 216 64 192 C64 166 90 152 100 124 Z" fill="${K.oro}" stroke="${K.tinta}" stroke-width="8" stroke-linejoin="round"/></svg>`,
+        calendario: (w = 640, cab = "DICIEMBRE", num = "31") => { const h = Math.round(w * 0.9); return `<div style="width:${w}px;height:${h}px;border:9px solid ${K.tinta};border-radius:26px;background:${K.blanco};box-shadow:14px 14px 0 ${K.tinta};overflow:hidden;text-align:center;color:${K.tinta}">
+          <div style="background:${K.rojo};height:${Math.round(h * 0.26)}px;border-bottom:9px solid ${K.tinta};color:#fff;font:800 ${Math.round(w * 0.085)}px/${Math.round(h * 0.26)}px Inter;letter-spacing:.14em">${cab}</div>
+          <div style="font-family:'Archivo Black';font-size:${Math.round(w * 0.46)}px;line-height:${Math.round(h * 0.74)}px">${num}</div></div>`; },
+      };
+      for (const el of document.querySelectorAll("[data-dibujo]")) el.innerHTML = DIBUJOS[el.dataset.dibujo](...JSON.parse(el.dataset.args || "[]"));
+
+      const C = crearDinero();
+      const { T } = C;
+      const filaClase = (id, clase, on) => { const b = $(id); if (b) b.parentElement.classList.toggle(clase, on); };
+
+      function renderAt(t) {
+        filaClase("fV", "marca", t < T.DEPENDE);
+        C.pintar(t);
+      }
+
+      C.arrancar(renderAt);
+    </script>
+  </body>
+</html>
